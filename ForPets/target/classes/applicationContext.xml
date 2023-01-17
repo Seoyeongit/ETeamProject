@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+	<context:component-scan base-package="com.spring.biz"></context:component-scan>
+	
+	<!-- Datasource 설정 : JDBCUTil.java를 대체목적 -->
+	<!-- oracle의 forpets계정 연결하기 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="ForPets"/>
+		<property name="password" value="pets"/>
+	</bean>
+	
+	<!-- Spring JDBC 설정 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" >
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- Transaction처리용(commit, rollback) Bean등록 sql문이 성공하면 commit sql문이 에러나면 rollback처리-->
+	<!-- sql문 처리할때 에러가발생하면 rollback 성공하면 commit하는것을 정의하는 클래스의 bean -->
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<!-- transaction을 적용할 method에서 get으로 시작하는 method는 tansaction 적용안함 (read-only) get..은 select문이니까. -->
+			<tx:method name="get" read-only="true"/>
+			<!-- get으로 시작하는 method들을 제외한 나머지 모든 메서드들에 transaction을 적용한다는 의미입니다. -->
+			<tx:method name="*"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<aop:pointcut expression="execution(* com.spring.biz..*Impl.*(..))" id="boardPointCut"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="boardPointCut"/>
+	</aop:config>
+</beans>

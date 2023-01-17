@@ -18,7 +18,6 @@ import lombok.Setter;
 @Getter @Setter
 public class NoticeVO {
 	private int ntc_seq; //번호
-	private int ntc_no; //게시글번호
 	private String ntc_title; //제목
 	private String ntc_ctnt; //내용
 	private Date ntc_createAt; //발행일

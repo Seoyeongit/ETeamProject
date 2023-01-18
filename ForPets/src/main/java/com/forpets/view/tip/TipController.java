@@ -44,20 +44,20 @@ public class TipController {
 		return "getTipList.do";
 	}
 	
-	@RequestMapping(value="/getTip.do")
+	@RequestMapping(value="getTip.do")
 	public String getTip(TipVO vo, TipDAO tipDAO, Model model) {
 		System.out.println("---> getTip.do 실행");
 		model.addAttribute("tip", tipService.getTip(vo));
 		System.out.println("---> getTip.do 완료");
-		return "getTip.jsp";
+		return "./Tip/getTip.jsp";
 	}
 	
-	@RequestMapping(value="/getTipList.do")
+	@RequestMapping(value="getTipList.do")
 	public String getTipList(TipVO vo, TipDAO tipDAO, Model model) {
 		System.out.println("---> getTipList.do 실행");
 		model.addAttribute("tipList", tipService.getTipList(vo));
 		System.out.println("---> getTipList.do 완료");
-		return  "getTipList.jsp";
+		return  "./Tip/getTipList.jsp";
 	}
 	
 }

@@ -12,7 +12,7 @@
 <body>
 	<ul>
 		<li><a href="">서비스 예약</a></li>
-		<li><a href="findHospital.jsp">근처 병원 찾기</a></li>
+		<li><a href="../FindHospital/findHospital.jsp">근처 병원 찾기</a></li>
 		<li><a href="getTipList.do">Tip 게시판</a></li>
 	</ul>
 	<center>
@@ -36,7 +36,7 @@
 			</c:forEach>
 		</table>
 		<br>
-		<a href="insertTip.jsp">새 글 작성</a>
+		<a href="./Tip/insertTip.jsp">새 글 작성</a>
 	</center>
 </body>
 </html>

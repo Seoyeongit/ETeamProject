@@ -36,7 +36,7 @@
 			</table>
 		</form>
 		<hr>
-		<a href="getTipList.do">글 목록 가기</a>
+		<a href="../getTipList.do">글목록</a>
 	</center>
 </body>
 </html>

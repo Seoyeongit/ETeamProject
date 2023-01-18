@@ -10,14 +10,14 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 
-	<context:component-scan base-package="com.spring.biz"></context:component-scan>
+	<context:component-scan base-package="com.forpets.biz"></context:component-scan>
 	
 	<!-- Datasource 설정 : JDBCUTil.java를 대체목적 -->
 	<!-- oracle의 forpets계정 연결하기 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-		<property name="username" value="ForPets"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+		<property name="username" value="forpets"/>
 		<property name="password" value="pets"/>
 	</bean>
 	

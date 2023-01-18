@@ -14,7 +14,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
-public class ReServeVO {
+public class ReserveVO {
 	private int reserve_num; //예약번호
 	private Date reserve_day; //예약날짜
 	private Date reserve_time; //예약시간

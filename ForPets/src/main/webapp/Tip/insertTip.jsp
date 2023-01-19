@@ -10,12 +10,12 @@
 </head>
 <body>
 	<ul>
-		<li><a href="">서비스 예약</a></li>
-		<li><a href="findHospital.jsp">근처 병원 찾기</a></li>
+		<li><a href="./Service/choice.jsp">서비스 예약</a></li>
+		<li><a href="./FindHospital/findHospital.jsp">근처 병원 찾기</a></li>
 		<li><a href="getTipList.do">Tip 게시판</a></li>
 	</ul>
 	<center>
-		<form action="insertTip.do" method="post">
+		<form action="http://localhost:8000/biz/insertTip.do" method="post">
 			<table border="1" cellpadding="0" cellspacing="0">
 				<tr>
 					<td bgcolor="orange" width="70">제목</td>

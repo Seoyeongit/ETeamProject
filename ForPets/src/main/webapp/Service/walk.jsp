@@ -9,7 +9,7 @@
 </head>
 <body>
 	<ul>
-		<li><a href="./choice.jsp">서비스 예약</a></li>
+		<li><a href="choice.jsp">서비스 예약</a></li>
 		<li><a href="../FindHospital/findHospital.jsp">근처 병원 찾기</a></li>
 		<li><a href="../getTipList.do">Tip 게시판</a></li>
 	</ul>

@@ -25,13 +25,20 @@ function sendPart(part_id) {
 		<c:forEach items="${getPartnerList }" var="partner">
 			<table border="1" cellpadding="0" cellspacing="0" width="300">
 				<tr>
-					<td><input type="text" value="${ partner.part_id }" id="${partner.part_id }_id" readonly></td>				
+					<td>파트너 ID</td>
+					<td><input type="text" value="${ partner.part_id }" id="${partner.part_id }_id" readonly></td>
+				</tr>
+				<tr>
+					<td>파트너 이름</td>
 					<td><input type="text" value="${ partner.part_name }" id="${partner.part_id }_name" readonly></td>
-					<td>
+				</tr>
+				<tr>
+					<td>파트너 성별</td>
+					<td><input type="text"
 						<c:choose>
-							<c:when test="${fn:contains(partner.gender,'M')}" >남자</c:when>
-							<c:when test="${fn:contains(partner.gender,'F')}" >여자</c:when>
-						</c:choose>
+							<c:when test="${fn:contains(partner.gender,'M')}" >value="남자"</c:when>
+							<c:when test="${fn:contains(partner.gender,'F')}" >value="여자"</c:when>
+						</c:choose>>
 					</td>
 				</tr>
 			</table>

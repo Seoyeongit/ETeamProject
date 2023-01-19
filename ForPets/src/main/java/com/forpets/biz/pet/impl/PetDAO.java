@@ -53,7 +53,7 @@ public class PetDAO {
 	
 	public List<PetVO> getPetList(PetVO vo, String user_id) {
 		System.out.println("---> JDBC로 getPetList() 기능 처리");
-		return jdbcTemplate.query("select * from USER_PET where USER_ID =" + user_id + "order by pet_id desc",PetRowMapper);
+		return jdbcTemplate.query("select * from USER_PET where USER_ID = '" + user_id + "' order by pet_id desc",PetRowMapper);
 	}
 	
 }

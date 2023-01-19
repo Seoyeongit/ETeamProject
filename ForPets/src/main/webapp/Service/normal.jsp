@@ -8,7 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="./script/getList.js" type="text/javascript"></script>
 <script src="./script/juso.js" type="text/javascript"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.js"></script>
@@ -25,7 +24,18 @@ function show_pet() {
 function show_partner() {
 	$("#set_partner").show();
 }
-
+function getPetListPopUp(){
+	var url = "http://localhost:8000/biz/getPetList.do";
+	var name = "getPetList"
+	var option = "width = 500, height = 500, top = 100, left = 200, location = no";
+	window.open(url, name, option);
+}
+function getPartnerListPopUp() {
+	var url = "http://localhost:8000/biz/getPartnerList.do";
+	var name = "getPartnerList"
+	var option = "width = 500, height = 500, top = 100, left = 200, location = no";
+	window.open(url, name, option);
+}
 </script>
 </head>
 <body>
@@ -35,10 +45,9 @@ function show_partner() {
 		<li><a href="../getTipList.do">Tip 게시판</a></li>
 	</ul>
 	<center>
-		<form action="paying.do" method="post">
-			<input type="hidden" value="${ user.user_id }" name="user_id">
-			<input type="hidden" value="111111" name="service_num">
-			<input type="hidden" value="123456" name="reserve_num">
+		<form action="reserve.do" method="post">
+			<input type="hidden" value="abc123" name="user_id">
+			<input type="hidden" value="1" name="service_num">
 			<p>반려동물 정보</p>
 			<table id="set_pet">
 				<tr>

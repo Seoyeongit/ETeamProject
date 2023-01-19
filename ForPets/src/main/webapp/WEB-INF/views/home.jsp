@@ -10,5 +10,6 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
+<a href=communitylist.do>커뮤니티 바로가기</a>
 </body>
 </html>

@@ -12,6 +12,7 @@
 <script>
 function sendPet(pet_id) {
 	
+	$("#pet_id", opener.document).val($("#"+pet_id+"_id").val());
 	$("#pet_name", opener.document).val($("#"+pet_id+"_name").val());
 	$("#pet_type", opener.document).val($("#"+pet_id+"_type").val());
 	$("#pet_age", opener.document).val($("#"+pet_id+"_age").val());

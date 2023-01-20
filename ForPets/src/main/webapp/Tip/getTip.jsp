@@ -28,6 +28,7 @@
 				<tr>
 					<td bgcolor="orange">내용</td>
 					<td align="left"><textarea name="content" cols="40" rows="10">${ tip.tip_content }</textarea>
+					<br>
 					<iframe width="300" height="150" src="${tip.tip_video }" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 					</td>
 				</tr>

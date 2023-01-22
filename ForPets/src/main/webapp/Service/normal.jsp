@@ -36,6 +36,14 @@ function getPartnerListPopUp() {
 	var option = "width = 500, height = 500, top = 100, left = 200, location = no";
 	window.open(url, name, option);
 }
+function reserveMake() {
+	call_pet_info();
+	$("form").submit();
+}
+function call_pet_info() {
+	var petid = $("#pet_id").val();
+	$.post("http://localhost:8000/biz/getPet.do", {pet_id : petid});
+}
 </script>
 </head>
 <body>
@@ -102,7 +110,7 @@ function getPartnerListPopUp() {
 			<br>
 			<input type="button" value="파트너선택" onclick="getPartnerListPopUp()">
 			<hr>
-			<input type="submit" value="다음">
+			<input type="button" value="다음" onclick="reserveMake()">
 		</form>
 	</center>
 </body>

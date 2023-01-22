@@ -19,6 +19,15 @@
 			<tr>
 				<td>펫 아이디 : <span>${reserve.pet_id }</span></td>
 			</tr>
+			<tr>	
+				<td>펫 이름 : <span>${pet_info.name }</span></td>
+			</tr>
+			<tr>	
+				<td>펫 종류 : <span>${pet_info.type }</span></td>
+			</tr>
+			<tr>
+				<td>펫 나이 : <span>${pet_info.age }</span>
+			</tr>
 		</table>
 		<hr>
 		<p>예약 날짜 및 시간</p>

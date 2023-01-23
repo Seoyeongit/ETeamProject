@@ -37,12 +37,31 @@ function getPartnerListPopUp() {
 	window.open(url, name, option);
 }
 function reserveMake() {
-	call_pet_info();
-	$("form").submit();
+	call_info();
 }
-function call_pet_info() {
-	var petid = $("#pet_id").val();
-	$.post("http://localhost:8000/biz/getPet.do", {pet_id : petid});
+function call_info() {
+	$.ajax({
+			type : "POST",
+			url : "http://localhost:8000/biz/getPet.do",
+			data : {pet_id : $("#pet_id").val()},
+			success : function(data){
+				
+			},
+			error : function(data){
+				alert("error");
+			}
+	});
+	$.ajax({
+			type : "POST",
+			url : "http://localhost:8000/biz/getService.do",
+			data : {s_num : $("#s_num").val()},
+			success : function(data){
+				$("form").submit();
+			},
+			error : function(data){
+				alert("error");
+			}
+	});
 }
 </script>
 </head>
@@ -56,7 +75,7 @@ function call_pet_info() {
 		<form action="http://localhost:8000/biz/reserve.do" method="post">
 			<input type="hidden" value="abc123" name="user_id">
 			<input type="hidden" id="pet_id" name="pet_id">
-			<input type="hidden" value="1" name="s_num">
+			<input type="hidden" value="1" id="s_num" name="s_num">
 			<p>반려동물 정보</p>
 			<table id="set_pet">
 				<tr>

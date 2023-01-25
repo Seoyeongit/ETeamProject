@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="./script/kakaopay.js" type="text/javascript"></script>
+<script src="./Service/script/kakaopay.js" type="text/javascript"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.js"></script>
@@ -58,8 +58,8 @@
 				<td width="100" align="center">가격</td>
 			</tr>
 			<tr>
-				<td align="center">${serv.s_name }</td>
-				<td align="center">${serv.s_price }</td>
+				<td align="center"><input type="text" value="${serv.s_name }" id="s_name"></td>
+				<td align="center"><input type="text" value="${serv.s_price }" id="s_price"></td>
 			</tr>
 		</table>
 		<hr>

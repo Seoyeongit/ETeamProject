@@ -12,11 +12,11 @@ function pay() {
 		 *  https://docs.iamport.kr/implementation/payment
 		 *  위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
 		 */
-		name: '주문명 : ${serv.s_name}',
+		name: '주문명 : ' + document.getElementById("s_name").value,
 		// 결제창에서 보여질 이름
 		// name: '주문명 : ${auction.a_title}',
 		// 위와같이 model에 담은 정보를 넣어 쓸수도 있습니다.
-		amount: '${serv.s_price}',
+		amount: document.getElementById("s_price").value,
 		// amount: ${bid.b_bid},
 		// 가격 
 		buyer_name: '이름',

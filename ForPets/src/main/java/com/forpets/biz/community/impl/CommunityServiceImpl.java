@@ -24,4 +24,30 @@ public class CommunityServiceImpl implements CommunityService {
 		return communityDAO.getCommunityList();
 	}
 	
+	@Override
+	public void insertCommunity(CommunityVO vo) {
+		communityDAO.insertCommunity(vo);
+	}
+	
+	@Override
+	public CommunityVO getCommunityBoard(String c_code) {
+		return communityDAO.getCommunityBoard(c_code);
+	}
+	
+	@Override
+	public String getlistcount() {
+		return communityDAO.getlistcount();
+	}
+	
+	@Override
+	public void updateComunity(CommunityVO vo) {
+		communityDAO.updateCommunity(vo);
+	}
+	
+	@Override
+	public void deleteCommunity(String c_code) {
+		communityDAO.deleteCommunity(c_code);
+
+	}
+	
 }

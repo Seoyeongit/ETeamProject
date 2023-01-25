@@ -10,5 +10,22 @@ import org.springframework.stereotype.Service;
 @Service
 public interface CommunityService {
 	
+	// 게시판 작성
+	public void insertCommunity(CommunityVO vo);
+	
+	// 게시판 보기
+	public CommunityVO getCommunityBoard(String c_code);
+	
+	// 게시판 목록 보기
 	public List<CommunityVO> getCommunityList() throws Exception;
+	
+	// 게시판 글 삭제
+	void deleteCommunity(String c_code);
+	
+	// 게시판 글 수정
+	void updateComunity(CommunityVO vo);
+	
+	// 소모임코드 총 갯수
+	public String getlistcount();
+	
 }

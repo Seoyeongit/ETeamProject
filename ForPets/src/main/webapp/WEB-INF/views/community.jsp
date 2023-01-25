@@ -23,12 +23,13 @@
 			<c:forEach items="${communityList }" var="community">
 			<tr>
 				<td>${community.c_code }</td>
-				<td>${community.c_title }</td>
+				<td><a href="getcommunityboard.do/${ community.c_code}">${community.c_title }</a></td>
 				<td>${community.user_id }</td>
 				<td>${community.c_date }</td>
 			</tr>
 			</c:forEach>
 		</table>
 	</form>
+	<a href="getcommunity.do"><input type="button" value="글 작성하기"></a>
 </body>
 </html>

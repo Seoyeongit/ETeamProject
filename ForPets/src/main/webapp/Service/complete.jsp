@@ -6,9 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="./Service/script/kakaopay.js" type="text/javascript"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.js"></script>
 </head>
 <body>
@@ -18,9 +15,8 @@
 		<li><a href="../getTipList.do">Tip 게시판</a></li>
 	</ul>
 	<center>
-		<p>반려동물 정보</p>
-		<form action="http://localhost:8000/biz/reserveInsert.do">
-			<table>
+		<p>예약이 완료 되었습니다.</p>
+		<table>
 				<tr>
 					<td>펫 아이디 : <input type="text" value="${reserve.pet_id }"></td>
 				</tr>
@@ -63,9 +59,6 @@
 					<td align="center"><input type="text" value="${serv.s_price }" id="s_price"></td>
 				</tr>
 			</table>
-		</form>
-		<hr>
-		<button type="button" onclick="pay()">결제하기</button>
 	</center>
 </body>
 </html>

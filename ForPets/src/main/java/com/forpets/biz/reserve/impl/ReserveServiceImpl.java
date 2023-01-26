@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.forpets.biz.pet.PetVO;
 import com.forpets.biz.reserve.ReserveService;
 
 @Service("reserveService")
@@ -16,8 +17,8 @@ public class ReserveServiceImpl implements ReserveService {
 	private ReserveDAO reserveDAO;
 	
 	@Override
-	public void insertReserve(ReserveVO vo) {
-		reserveDAO.insertReserve(vo);
+	public void insertReserve(ReserveVO vo, PetVO pvo) {
+		reserveDAO.insertReserve(vo, pvo);
 	}
 	
 	@Override

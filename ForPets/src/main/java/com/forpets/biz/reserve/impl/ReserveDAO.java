@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.forpets.biz.pet.PetVO;
 import com.forpets.biz.reserve.ReserveVO;
 import com.forpets.biz.tip.TipVO;
 
@@ -16,11 +17,13 @@ public class ReserveDAO {
 	private JdbcTemplate jdbcTemplate;
 	
 	// SQL명령어
-	private final String RESERVE_INSERT = "insert into reserve(reserve_num, reserve_day, reserve_time,reserve_add, s_num, user_id, part_id, pet_id)"
-					+ "values((reserve_seq.NEXTVAL), ?, ?, ?, ?, ?, ?, ?)";
+	private final String RESERVE_INSERT = "insert into reserve(reserve_num,"
+			+ " pet_name, pet_type, pet_age,"
+			+ " reserve_day, reserve_time, reserve_add, s_num, user_id, part_id)"
+					+ "values((reserve_seq.NEXTVAL), ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	
-	public void insertReserve(ReserveVO vo) {
-		jdbcTemplate.update(RESERVE_INSERT, vo.getReserve_day(), vo.getReserve_time(), vo.getReserve_add(), vo.getS_num(), vo.getUser_id(), vo.getPart_id(), vo.getPet_id());
+	public void insertReserve(ReserveVO vo, PetVO pvo) {
+		jdbcTemplate.update(RESERVE_INSERT, pvo.getName(), pvo.getType(), pvo.getAge(), vo.getReserve_day(), vo.getReserve_time(), vo.getReserve_add(), vo.getS_num(), vo.getUser_id(), vo.getPart_id());
 	}
 	
 	public ReserveVO makeReserve(ReserveVO vo, HttpServletRequest request) {

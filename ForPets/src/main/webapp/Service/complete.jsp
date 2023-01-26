@@ -18,33 +18,33 @@
 		<p>예약이 완료 되었습니다.</p>
 		<table>
 				<tr>
-					<td>펫 아이디 : <input type="text" value="${reserve.pet_id }"></td>
+					<td>펫 아이디 : <span>${reserve.pet_id }</span></td>
 				</tr>
 				<tr>	
-					<td>펫 이름 : <input type="text" value="${pet_info.name }"></td>
+					<td>펫 이름 : <span>${pet_info.name }</span></td>
 				</tr>
 				<tr>	
-					<td>펫 종류 : <input type="text" value="${pet_info.type }"></td>
+					<td>펫 종류 : <span>${pet_info.type }</span></td>
 				</tr>
 				<tr>
-					<td>펫 나이 : <input type="text" value="${pet_info.age }"></td>
+					<td>펫 나이 : <span>${pet_info.age }</span></td>
 				</tr>
 			</table>
 			<hr>
 			<p>예약 날짜 및 시간</p>
 			<table>
 				<tr>
-					<td>날짜 : <input type="text" value="${reserve.reserve_day }"></td>
+					<td>날짜 : <span>${reserve.reserve_day }</span></td>
 				</tr>
 				<tr>
-					<td>시간 : <input type="text" value="${reserve.reserve_time }"></td>
+					<td>시간 : <span>${reserve.reserve_time }</span></td>
 				</tr>
 			</table>
 			<hr>
 			<p>예약 주소</p>
 			<table>
 				<tr>
-					<td>주소 : <input type="text" value="${reserve.reserve_add }"></td>
+					<td>주소 : <span>${reserve.reserve_add }</span></td>
 				</tr>
 			</table>
 			<hr>
@@ -55,8 +55,8 @@
 					<td width="100" align="center">가격</td>
 				</tr>
 				<tr>
-					<td align="center"><input type="text" value="${serv.s_name }" id="s_name"></td>
-					<td align="center"><input type="text" value="${serv.s_price }" id="s_price"></td>
+					<td align="center"><span>${serv.s_name }</span></td>
+					<td align="center"><span>${serv.s_price }</span></td>
 				</tr>
 			</table>
 	</center>

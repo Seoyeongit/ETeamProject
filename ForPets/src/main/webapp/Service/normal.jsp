@@ -35,13 +35,13 @@ $(document).ready(function(){
 			<p>반려동물 정보</p>
 			<table id="set_pet">
 				<tr>
-					<td>이름 : <input type="text" id="pet_name" name="pet_name"></td>
+					<td>이름 : <input type="text" id="pet_name" name="pet_name" readonly></td>
 				</tr>
 				<tr>
-					<td>종류 : <input type="text" id="pet_type" name="pet_type"></td>
+					<td>종류 : <input type="text" id="pet_type" name="pet_type" readonly></td>
 				</tr>
 				<tr>
-					<td>나이 : <input type="text" id="pet_age" name="pet_age"></td>
+					<td>나이 : <input type="text" id="pet_age" name="pet_age" readonly></td>
 				</tr>
 			</table>
 			<br>
@@ -76,10 +76,10 @@ $(document).ready(function(){
 			<p>파트너 정보</p>
 			<table id="set_partner">
 				<tr>
-					<td>파트너 아이디 : <input type="text" id="part_id" name="part_id"></td>
+					<td>파트너 아이디 : <input type="text" id="part_id" name="part_id" readonly></td>
 				</tr>
 				<tr>
-					<td>파트너 이름 : <input type="text" id="part_name"></td>
+					<td>파트너 이름 : <input type="text" id="part_name" readonly></td>
 				</tr>
 			</table>
 			<br>

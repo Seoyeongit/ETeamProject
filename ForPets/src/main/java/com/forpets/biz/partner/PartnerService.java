@@ -9,4 +9,5 @@ public interface PartnerService {
 	
 	public List<PartnerVO> getPartnerList(PartnerVO vo);
 	
+	PartnerVO getPartner(PartnerVO vo, String part_id);
 }

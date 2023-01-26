@@ -25,22 +25,31 @@ function call_info() {
 			type : "POST",
 			url : "http://localhost:8000/biz/getPet.do",
 			data : {pet_id : $("#pet_id").val()},
-			success : function(data){
-				
+			success : function(){
+				$.ajax({
+					type : "POST",
+					url : "http://localhost:8000/biz/getPartner.do",
+					data : {part_id : $("#part_id").val()},
+					success : function(){
+						$.ajax({
+							type : "POST",
+							url : "http://localhost:8000/biz/getService.do",
+							data : {s_num : $("#s_num").val()},
+							success : function(data){
+								$("form").submit();
+							},
+							error : function(){
+								alert("Serv_info error");
+							}
+						});
+					},
+					error : function(){
+						alert("Partner_info error");
+					}
+				});
 			},
-			error : function(data){
-				alert("error");
-			}
-	});
-	$.ajax({
-			type : "POST",
-			url : "http://localhost:8000/biz/getService.do",
-			data : {s_num : $("#s_num").val()},
-			success : function(data){
-				$("form").submit();
-			},
-			error : function(data){
-				alert("error");
+			error : function(){
+				alert("Pet_info error");
 			}
 	});
 }

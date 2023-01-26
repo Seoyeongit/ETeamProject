@@ -1,4 +1,6 @@
-function pay() {
+function pay(s_name, s_price) {
+	var sn = '주문명 : ' + s_name;
+	var sp = s_price;
 	var IMP = window.IMP; // 생략가능
 	IMP.init('imp17648646'); 
 	// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
@@ -12,11 +14,11 @@ function pay() {
 		 *  https://docs.iamport.kr/implementation/payment
 		 *  위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
 		 */
-		name: '주문명 : ' + document.getElementById("s_name").value,
+		name: sn,
 		// 결제창에서 보여질 이름
 		// name: '주문명 : ${auction.a_title}',
 		// 위와같이 model에 담은 정보를 넣어 쓸수도 있습니다.
-		amount: document.getElementById("s_price").value,
+		amount: sp,
 		// amount: ${bid.b_bid},
 		// 가격 
 		buyer_name: '이름',

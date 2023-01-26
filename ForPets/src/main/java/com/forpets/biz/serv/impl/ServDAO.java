@@ -15,6 +15,7 @@ public class ServDAO {
 	private final String SERV_GET = "select * from serv where s_num=?";
 	
 	public ServVO getServ(ServVO vo, int s_num) {
+		System.out.println("---> JDBC로 getServ() 기능처리");
 		ServVO serv = jdbcTemplate.queryForObject(SERV_GET, 
 				(resultSet, rowNum) -> {
 					ServVO newServ = new ServVO();

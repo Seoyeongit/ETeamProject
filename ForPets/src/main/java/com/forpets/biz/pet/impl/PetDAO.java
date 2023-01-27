@@ -16,7 +16,7 @@ public class PetDAO {
 	private JdbcTemplate jdbcTemplate;
 
 	
-	private final String GET_PETINFO =  "SELECT * FROM USER_PET WHERE USER_ID = ?";
+	private final String GET_PETINFO =  "select * from user_pet,users  where user_pet.user_id = users.user_id and users.USER_ID = ?";
 //	private final String INSERT_PET = "INSERT INTO user_pet VALUES((user_pet_seq.NEXTVAL),?,?,?,?,NULL,?,?)";
 	private final String INSERT_PET = "INSERT INTO user_pet(pet_id,pet_name,pet_type,pet_age,user_id,pet_img) VALUES((user_pet_seq.NEXTVAL),?,?,?,?,?)";
 	
@@ -32,8 +32,7 @@ public class PetDAO {
 	}
 	
 	public PetVO getPetInfo(PetVO vo) {
-		vo.setUser_id("abc123");
-		Object[] orgs = {vo.getUser_id()};
+		Object[] orgs = {vo.getVoU().getUser_id()};
 		return jdbcTemplate.queryForObject(GET_PETINFO,orgs, new PetRowMapper());
 	}
 	

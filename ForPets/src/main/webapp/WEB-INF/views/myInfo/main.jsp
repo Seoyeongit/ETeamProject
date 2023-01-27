@@ -10,13 +10,13 @@
 <body>
     <div>
         <header>
-        <h3>안녕하세요 김작두님 <a href="#">로그아웃</a></h3>
+        <h3>안녕하세요 ${userPet.voU.user_nick}님 <a href="#">로그아웃</a></h3>
         </header>
     </div>
     <div>
         <aside>
             <div>
-                <div>김작두님</div>
+                <div>${userPet.voU.user_nick}님(${userPet.voU.user_id})</div>
                  <a href="../myInfo/edit-Profile"><div>회원정보수정</div></a>
             </div>
         </aside>
@@ -31,7 +31,7 @@
                     		</c:when>
                     	</c:choose>
                     	
-                    	<p>김작두님의 애완동물 : ${userPet.name}
+                    	<p>${userPet.voU.user_nick}님의 애완동물 : ${userPet.name}
                     	<c:choose >
                     		<c:when test="${userPet.type eq '강아지' }"><text>🐶</text></c:when>
                     		<c:when test="${userPet.type eq '고양이' }"><text>😺</text></c:when>

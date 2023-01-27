@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.forpets.biz.user.UserVO;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,4 +29,5 @@ public class PetVO {
 	private String wark; //산책경로
 	private char gender; //성별
 	private String user_id; //유저아이디
+	private UserVO voU;
 }

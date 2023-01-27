@@ -32,6 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.forpets.biz.pet.PetService;
 import com.forpets.biz.pet.PetVO;
 import com.forpets.biz.pet.impl.PetDAO;
+import com.forpets.biz.user.UserVO;
 
 @Controller
 @RequestMapping(value = "/myInfo")
@@ -69,6 +70,13 @@ public class PetController{
 	@RequestMapping(value="/main")
 	public String getPetInfo(PetVO vo, PetDAO petDAO, HttpSession session) {
 		System.out.println("===>pet get start");
+		
+		
+		UserVO voP = new UserVO();
+		voP.setUser_id("abc123");
+		voP.setUser_pw("123");
+		
+		vo.setVoU(voP);
 		session.setAttribute("userPet", petService.getPetInfo(vo));
 		return "myInfo/main";
 		

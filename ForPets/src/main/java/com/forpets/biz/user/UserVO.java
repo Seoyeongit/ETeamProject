@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /*
  *  유저모듈입니다.
@@ -16,6 +17,7 @@ import lombok.Setter;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Getter @Setter
 public class UserVO {
 	private String user_id; //아이디

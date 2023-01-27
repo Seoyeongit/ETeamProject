@@ -10,7 +10,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 
-	<context:component-scan base-package="com.spring.biz"></context:component-scan>
+	<context:component-scan base-package="com.forpets.biz"></context:component-scan>
 	
 	<!-- Datasource 설정 : JDBCUTil.java를 대체목적 -->
 	<!-- oracle의 forpets계정 연결하기 -->
@@ -42,7 +42,7 @@
 	</tx:advice>
 	
 	<aop:config>
-		<aop:pointcut expression="execution(* com.spring.biz..*Impl.*(..))" id="boardPointCut"/>
+		<aop:pointcut expression="execution(* com.forpets.biz..*Impl.*(..))" id="boardPointCut"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="boardPointCut"/>
 	</aop:config>
 </beans>

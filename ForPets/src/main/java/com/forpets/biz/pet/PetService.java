@@ -1,4 +1,7 @@
 package com.forpets.biz.pet;
+
+import java.util.List;
+
 /*
  *  펫관련 서비스는 여기서 추상메서드를 추가하세요.
  */
@@ -17,4 +20,10 @@ public interface PetService {
 	 * @return petVO가 리턴되며 해당객체는 가져온 펫정보가 초기화된 객체이다.
 	 */
 	PetVO getPetInfo (PetVO vo);
+	
+	//230130 최지혁
+	List<PetVO> getPetList(PetVO vo, String user_id);
+	
+	//230130 최지혁
+	PetVO getPet(PetVO pvo, String user_id);
 }

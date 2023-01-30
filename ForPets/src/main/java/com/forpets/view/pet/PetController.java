@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,14 +37,13 @@ import com.forpets.biz.pet.impl.PetDAO;
 import com.forpets.biz.user.UserVO;
 
 @Controller
-@RequestMapping(value = "/myInfo")
 @SessionAttributes("UserPet")
 public class PetController{
 	@Autowired
 	private PetService petService;
 
 	//pet정보를 등록한다.
-	@RequestMapping(value = "/my-petReg", method = RequestMethod.POST)
+	@RequestMapping(value = "/myInfo/my-petReg", method = RequestMethod.POST)
 	public String insertPet(PetVO vo, PetDAO petDAO) {
 		System.out.println("==>pet insert start");
 		System.out.println(vo.toString());
@@ -52,14 +53,14 @@ public class PetController{
 	}
 	
 	//pet등록jsp를 View.
-	@RequestMapping(value="/my-petView")
+	@RequestMapping(value="/myInfo/my-petView")
 	public String myPetView() {
 		return "myInfo/mypet";
 	}
 	
 	
 	//pet_work 등록jsp를 View.
-	@RequestMapping(value="/create-roadMap")
+	@RequestMapping(value="/myInfo/create-roadMap")
 	public String myPetWorkView() {
 		return "myInfo/my_pet_work";
 	}
@@ -67,7 +68,7 @@ public class PetController{
 	
 	
 	//main화면에 들어올때 pet등록정보를 가져온다.
-	@RequestMapping(value="/main")
+	@RequestMapping(value="/myInfo/main")
 	public String getPetInfo(PetVO vo, PetDAO petDAO, HttpSession session) {
 		System.out.println("===>pet get start");
 		
@@ -83,7 +84,7 @@ public class PetController{
 		
 	}
 
-	@RequestMapping(value = "/my-petImgUpload", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestMapping(value = "/myInfo/my-petImgUpload", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<PetVO> uploadPetImageActionPOST(MultipartFile uploadFile) throws IllegalStateException, IOException {
 		System.out.println("uploadAjaxActionPOST..........");
 		
@@ -135,7 +136,7 @@ public class PetController{
 		
 	}
 	
-	@RequestMapping("/display")
+	@RequestMapping("/myInfo/display")
 	public ResponseEntity<byte[]>getImage(String fileName){
 		System.out.println("getImage()....." + fileName);
 		
@@ -153,7 +154,7 @@ public class PetController{
 		return result;
 	}
 	
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/myInfo/delete", method = RequestMethod.POST)
 	public ResponseEntity<String> DeleteImage(String fileName) {
 		System.out.println("deleteImage()...."+fileName);
 		File file = null;
@@ -167,5 +168,20 @@ public class PetController{
 		return new ResponseEntity<String>("success", HttpStatus.OK);
 	}
 	
-
+	@RequestMapping(value="getPet")
+	@ResponseBody
+	public void getPet(PetVO vo, PetDAO petDAO, HttpSession session, HttpServletRequest request) {
+		System.out.println("---> getPet.do 실행");
+		session.setAttribute("pet_info", petService.getPet(vo, request.getParameter("pet_id")));
+		System.out.println("---> getPet.do 완료");
+	}
+	
+	@RequestMapping(value="getPetList")
+	public String getPetList(PetVO pvo, PetDAO petDAO, Model model) {
+		System.out.println("---> getPetList 실행");
+		model.addAttribute("getPetList", petService.getPetList(pvo, "abc123"));	// Model 정보 저장
+		System.out.println("---> getPetList 완료");
+		return "./Service/getPetList";
+	}
+	
 }

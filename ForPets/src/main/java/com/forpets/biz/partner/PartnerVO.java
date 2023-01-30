@@ -21,7 +21,8 @@ public class PartnerVO {
 	private String part_nick; //닉네임
 	private String part_add; //주소
 	private char gender; //성별
-	private Date birth; //핸드폰번호
+	private String part_phnumber; //핸드폰번호
+	private Date birth;
 	private int war; //경고횟수
 	private int part_no; //회원번호
 	private Date data_create; //가입날짜

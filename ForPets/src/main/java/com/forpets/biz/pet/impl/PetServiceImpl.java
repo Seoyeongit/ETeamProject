@@ -1,5 +1,7 @@
 package com.forpets.biz.pet.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +24,15 @@ public class PetServiceImpl implements PetService {
 	public PetVO getPetInfo(PetVO vo) {
 		return petDAO.getPetInfo(vo);
 	}
-
+	
+	//230130 최지혁 - 펫 리스트
+	@Override
+	public List<PetVO> getPetList(PetVO vo, String user_id) {
+		return petDAO.getPetList(vo, user_id);
+	}
+	
+	@Override
+	public PetVO getPet(PetVO pvo, String user_id) {
+		return petDAO.getPet(pvo, user_id);
+	}
 }

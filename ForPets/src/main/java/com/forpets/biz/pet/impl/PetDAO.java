@@ -55,8 +55,8 @@ public class PetDAO {
 		newPet.setId(resultSet.getInt("PET_ID"));
 		newPet.setName(resultSet.getString("PET_NAME"));
 		newPet.setType(resultSet.getString("PET_TYPE"));
+		newPet.setImg(resultSet.getString("PET_IMG"));
 		newPet.setAge(resultSet.getInt("PET_AGE"));
-		newPet.setWark(resultSet.getString("PET_WORK"));
 		newPet.setGender(resultSet.getString("PET_GENDER").charAt(0));
 		newPet.setUser_id(resultSet.getString("USER_ID"));
 		return newPet;
@@ -70,8 +70,8 @@ public class PetDAO {
 					PetVO newPet = new PetVO();
 					newPet.setName(resultSet.getString("PET_NAME"));
 					newPet.setType(resultSet.getString("PET_TYPE"));
+					newPet.setImg(resultSet.getString("PET_IMG"));
 					newPet.setAge(resultSet.getInt("PET_AGE"));
-					newPet.setWark(resultSet.getString("PET_WORK"));
 					newPet.setGender(resultSet.getString("PET_GENDER").charAt(0));
 					newPet.setUser_id(resultSet.getString("USER_ID"));
 					return newPet;

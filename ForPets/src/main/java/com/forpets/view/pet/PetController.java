@@ -4,7 +4,6 @@ package com.forpets.view.pet;
 import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,8 +12,6 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -23,8 +20,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,7 +28,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.forpets.biz.pet.PetService;
 import com.forpets.biz.pet.PetVO;
+import com.forpets.biz.pet.WorkVO;
 import com.forpets.biz.pet.impl.PetDAO;
+import com.forpets.biz.pet.impl.WorkDAO;
+import com.forpets.biz.user.UserVO;
 
 @Controller
 @SessionAttributes("UserPet")
@@ -61,6 +59,7 @@ public class PetController{
 	//pet_work 등록jsp를 View.
 	@RequestMapping(value="/myInfo/create-roadMap")
 	public String myPetWorkView() {
+		System.out.println("==>myPetWorkView() start");
 		return "myInfo/my_pet_work";
 	}
 	
@@ -68,10 +67,18 @@ public class PetController{
 	
 	//main화면에 들어올때 pet등록정보를 가져온다.
 	@RequestMapping(value="/myInfo/main")
-	public String getPetInfo(PetVO vo, PetDAO petDAO, HttpSession session) {
+	public String getPetInfo(PetVO vo, PetDAO petDAO, HttpSession session,WorkVO voW, WorkDAO workDAO,Model model) {
 		System.out.println("===>pet get start");
+		
+		UserVO voP = new UserVO();
+		voP.setUser_id("abc123");
+		voP.setUser_pw("123");
+		
+		vo.setVoU(voP);
 		session.setAttribute("userPet", petService.getPetInfo(vo));
-		return "myInfo/main";
+		
+		voW.setUser_id("abc123");
+		return "forward:/myInfo/selectWork";
 		
 		
 	}

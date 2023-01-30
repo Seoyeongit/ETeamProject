@@ -11,9 +11,9 @@
 </head>
 <body>
 	<ul>
-		<li><a href="./Service/choice.jsp">서비스 예약</a></li>
-		<li><a href="./FindHospital/findHospital.jsp">근처 병원 찾기</a></li>
-		<li><a href="getTipList.do">Tip 게시판</a></li>
+		<li><a href="${pageContext.request.contextPath}/Service/choice">서비스 예약</a></li>
+		<li><a href="${pageContext.request.contextPath}/FindHospital/findHospital">근처 병원 찾기</a></li>
+		<li><a href="${pageContext.request.contextPath}/Tip/getTipList">Tip 게시판</a></li>
 	</ul>
 	<center>
 		<table border="1" cellpadding="0" cellspacing="0" width="700">
@@ -27,7 +27,7 @@
 			<c:forEach items="${tipList }" var="tip">
 				<tr>
 					<td>${ tip.tip_seq }</td>
-					<td align="left"><a href="getTip.do?tip_seq=${ tip.tip_seq }">
+					<td align="left"><a href="getTip?tip_seq=${ tip.tip_seq }">
 							${ tip.tip_title }</a></td>
 					<td>관리자</td>
 					<td><fmt:formatDate value="${ tip.tip_create_date }" pattern="yyyy-MM-dd" /></td>
@@ -36,7 +36,7 @@
 			</c:forEach>
 		</table>
 		<br>
-		<a href="./Tip/insertTip.jsp">새 글 작성</a>
+		<a href="${pageContext.request.contextPath}/Tip/insertTip">새 글 작성</a>
 	</center>
 </body>
 </html>

@@ -8,8 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="./script/juso.js" type="text/javascript"></script>
-<script src="./script/pet_partner.js" type="text/javascript"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/juso.js" ></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/pet_partner.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <script>
@@ -23,12 +23,12 @@ $(document).ready(function(){
 </head>
 <body>
 	<ul>
-		<li><a href="choice.jsp">서비스 예약</a></li>
-		<li><a href="../FindHospital/findHospital.jsp">근처 병원 찾기</a></li>
-		<li><a href="../getTipList.do">Tip 게시판</a></li>
+		<li><a href="${pageContext.request.contextPath}/Service/choice">서비스 예약</a></li>
+		<li><a href="${pageContext.request.contextPath}/FindHospital/findHospital">근처 병원 찾기</a></li>
+		<li><a href="${pageContext.request.contextPath}/Tip/getTipList">Tip 게시판</a></li>
 	</ul>
 	<center>
-		<form action="http://localhost:8000/biz/reserve.do" method="post">
+		<form action="reserve" method="post">
 			<input type="hidden" value="abc123" name="user_id">
 			<input type="hidden" id="pet_id" name="pet_id">
 			<input type="hidden" value="1" id="s_num" name="s_num">

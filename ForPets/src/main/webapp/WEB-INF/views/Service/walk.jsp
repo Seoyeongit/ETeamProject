@@ -9,9 +9,9 @@
 </head>
 <body>
 	<ul>
-		<li><a href="choice.jsp">서비스 예약</a></li>
-		<li><a href="../FindHospital/findHospital.jsp">근처 병원 찾기</a></li>
-		<li><a href="../getTipList.do">Tip 게시판</a></li>
+		<li><a href="${pageContext.request.contextPath}/Service/choice">서비스 예약</a></li>
+		<li><a href="${pageContext.request.contextPath}/FindHospital/findHospital">근처 병원 찾기</a></li>
+		<li><a href="${pageContext.request.contextPath}/Tip/getTipList">Tip 게시판</a></li>
 	</ul>
 	<center>
 		<button type="button" onclick="location.href='normal.jsp'">기본</button>

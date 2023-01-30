@@ -91,13 +91,23 @@
 			<version>1</version>
 		</dependency>
 
-		<!-- Servlet -->
+		<!-- Servlet 
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
 			<scope>provided</scope>
+		</dependency> -->
+		
+		<!-- 파일업로드로 api업그레이드가 필요해서 수정합니다. -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
 		</dependency>
+		
+		
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
@@ -150,9 +160,27 @@
 			<version>1.18.24</version>
 			<scope>provided</scope>
 		</dependency>
+		
+		
+		<!-- eunbi add dependency -->
+	
+		<!-- JSON타입의 데이터로 변환하여 뷰로 전송하기위한 추가 -->
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.12.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.dataformat</groupId>
+		    <artifactId>jackson-dataformat-xml</artifactId>
+		    <version>2.12.1</version>
+		</dependency>
+		
 
 
-
+		<!-- done -->
 		<dependency>
 			<groupId>oracle</groupId>
 			<artifactId>ojdbc6</artifactId>

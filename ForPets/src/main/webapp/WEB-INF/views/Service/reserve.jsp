@@ -6,17 +6,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="${pageContext.request.contextPath}/resources/js/kakaopay.js" type="text/javascript"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.js"></script>
 </head>
 <body>
 	<ul>
-		<li><a href="../choice.jsp">서비스 예약</a></li>
-		<li><a href="../FindHospital/findHospital.jsp">근처 병원 찾기</a></li>
-		<li><a href="../getTipList.do">Tip 게시판</a></li>
+		<li><a href="${pageContext.request.contextPath}/Service/choice">서비스 예약</a></li>
+		<li><a href="${pageContext.request.contextPath}/FindHospital/findHospital">근처 병원 찾기</a></li>
+		<li><a href="${pageContext.request.contextPath}/Tip/getTipList">Tip 게시판</a></li>
 	</ul>
 	<center>
-		<p>예약이 완료 되었습니다.</p>
-		<table>
+		<p>반려동물 정보</p>
+		<form action="reserveInsert" method="post">
+			<table>
 				<tr>
 					<td>펫 아이디 : <span>${reserve.pet_id }</span></td>
 				</tr>
@@ -59,6 +63,9 @@
 					<td align="center"><span>${serv.s_price }</span></td>
 				</tr>
 			</table>
+		</form>
+		<hr>
+		<button type="button" onclick="pay('${serv.s_name}', ${serv.s_price})">결제하기</button>
 	</center>
 </body>
 </html>

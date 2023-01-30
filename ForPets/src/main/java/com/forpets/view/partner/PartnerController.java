@@ -23,7 +23,7 @@ public class PartnerController {
 		System.out.println("---> getPartnerList.do 실행");
 		model.addAttribute("getPartnerList", partnerService.getPartnerList(partvo));	// Model 정보 저장
 		System.out.println("---> getPartnerList.do 완료");
-		return "./Service/getPartnerList.jsp";
+		return "./Service/getPartnerList";
 	}
 	
 	@RequestMapping(value="getPartner.do")

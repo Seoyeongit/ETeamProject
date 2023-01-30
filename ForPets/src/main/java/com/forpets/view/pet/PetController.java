@@ -31,6 +31,6 @@ public class PetController {
 		System.out.println("---> getPetList.do 실행");
 		model.addAttribute("getPetList", petService.getPetList(pvo, "abc123"));	// Model 정보 저장
 		System.out.println("---> getPetList.do 완료");
-		return "./Service/getPetList.jsp";
+		return "./Service/getPetList";
 	}
 }

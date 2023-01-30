@@ -31,7 +31,7 @@ public class UserController {
 		System.out.println("회원 정보 수정 처리");
 		System.out.println(vo.toString());
 		userService.updateUser(vo);
-		return "../myInfo/edit-Profile";
+		return "forward:/myInfo/edit-Profile";
 	}
 	
 }

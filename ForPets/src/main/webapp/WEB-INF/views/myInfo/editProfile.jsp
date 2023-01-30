@@ -117,8 +117,11 @@ function execution_kakao_address() {
 }
     
     $('form').submit(function(){
+    	if(addr !== '' ){
     	addr += ' ' + $("#address_input_3").val();
         $("#result_userAdd").val(addr);
+    	}
+    	
     	
     	if($('input[name=user_pw]').val()!==$('input[id=pwChk]').val()){
     		alert("암호가 일치하지 않습니다 한번더 확인해주세요.");

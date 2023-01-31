@@ -170,9 +170,9 @@ public class PetController{
 	@RequestMapping(value="getPet")
 	@ResponseBody
 	public void getPet(PetVO vo, PetDAO petDAO, HttpSession session, HttpServletRequest request) {
-		System.out.println("---> getPet.do 실행");
+		System.out.println("---> getPet 실행");
 		session.setAttribute("pet_info", petService.getPet(vo, request.getParameter("pet_id")));
-		System.out.println("---> getPet.do 완료");
+		System.out.println("---> getPet 완료");
 	}
 	
 	@RequestMapping(value="getPetList")
@@ -181,6 +181,22 @@ public class PetController{
 		model.addAttribute("getPetList", petService.getPetList(pvo, "abc123"));	// Model 정보 저장
 		System.out.println("---> getPetList 완료");
 		return "./Service/getPetList";
+	}
+	
+	@RequestMapping(value="findPetWork")
+	public String choicePetInfo(PetVO vo, PetDAO petDAO, HttpSession session,WorkVO voW, WorkDAO workDAO,Model model) {
+		System.out.println("===>pet get start");
+		
+		UserVO voP = new UserVO();
+		voP.setUser_id("abc123");
+		voP.setUser_pw("123");
+		
+		vo.setVoU(voP);
+		session.setAttribute("userPet", petService.getPetInfo(vo));
+		
+		voW.setUser_id("abc123");
+		return "forward:/Service/showPetWork";
+		
 	}
 	
 }

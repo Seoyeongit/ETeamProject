@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +14,13 @@
 $(document).ready(function(){
 	$("#set_pet").hide();
 	$("#set_partner").hide();
-});	
+});
+function showPetWorkPopUp() {
+	var url = "http://localhost:8000/biz/findPetWork";
+	var name = "showPetWork"
+	var option = "width = 540, height = 440, top = 100, left = 200, location = no";
+	window.open(url, name, option);
+}
 </script>
 </head>
 <body>
@@ -29,7 +33,7 @@ $(document).ready(function(){
 		<form action="reserve" method="post">
 			<input type="hidden" value="abc123" name="user_id">
 			<input type="hidden" id="pet_id" name="pet_id">
-			<input type="hidden" value="1" id="s_num" name="s_num">
+			<input type="hidden" value="2" id="s_num" name="s_num">
 			<p>반려동물 정보</p>
 			<table id="set_pet">
 				<tr>
@@ -41,12 +45,15 @@ $(document).ready(function(){
 				<tr>
 					<td>나이 : <input type="text" id="pet_age" name="pet_age" readonly></td>
 				</tr>
+				<tr>
+					<td><input type="button" value="산책로보기" onclick="showPetWorkPopUp()"></td>
+				</tr>
 			</table>
 			<br>
 			<input type="button" value="선택" onclick="getPetListPopUp()">
 			<hr>
 			<p>추가 서비스</p>
-			<p>산책 / 실내 놀이 등 추가 예정</p>
+			<p>기본 돌봄 등 추가 예정</p>
 			<hr>
 			<p>날짜 및 시간</p>
 			<label for="date"><input type="date" id="date" name="reserve_day"></label>
@@ -84,7 +91,6 @@ $(document).ready(function(){
 			<input type="button" value="파트너선택" onclick="getPartnerListPopUp()">
 			<hr>
 			<input type="button" value="다음" onclick="reserveMake()">
-		</form>
 	</center>
 </body>
 </html>

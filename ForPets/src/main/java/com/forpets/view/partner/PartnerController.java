@@ -20,7 +20,7 @@ public class PartnerController {
 	@Autowired
 	private PartnerService partnerService;
 	
-	@RequestMapping(value="getPartnerList.do")
+	@RequestMapping(value="getPartnerList")
 	public String getPartnerList(PartnerVO partvo, PartnerDAO partnerDAO, Model model) {
 		System.out.println("---> getPartnerList.do 실행");
 		model.addAttribute("getPartnerList", partnerService.getPartnerList(partvo));	// Model 정보 저장
@@ -28,12 +28,12 @@ public class PartnerController {
 		return "./Service/getPartnerList";
 	}
 	
-	@RequestMapping(value="getPartner.do")
+	@RequestMapping(value="getPartner")
 	@ResponseBody
 	public void getPartner(PartnerVO vo, PartnerDAO partnerDAO, HttpSession session, HttpServletRequest request) {
-		System.out.println("---> getPartner.do 실행");
+		System.out.println("---> getPartner 실행");
 		session.setAttribute("part_info", partnerService.getPartner(vo, request.getParameter("part_id")));
-		System.out.println("---> getPartner.do 완료");
+		System.out.println("---> getPartner 완료");
 	}
 	
 }

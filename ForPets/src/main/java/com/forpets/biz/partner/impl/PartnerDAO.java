@@ -16,8 +16,8 @@ public class PartnerDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	private final String PARTNER_LIST = "select * from PART_SIGNUP order by part_id desc";
-	private final String PARTNER_GET = "select * from PART_SIGNUP where part_id = ?";
+	private final String PARTNER_LIST = "select * from PARTNERS order by part_id desc";
+	private final String PARTNER_GET = "select * from PARTNERS where part_id = ?";
 	
 	private final RowMapper<PartnerVO> PetRowMapper = (resultSet, rowNum) -> {		
 		PartnerVO newPartner = new PartnerVO();

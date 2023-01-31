@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title> ﻿
+<title>반려동물등록하기</title> ﻿
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 ﻿
 <style type="text/css">

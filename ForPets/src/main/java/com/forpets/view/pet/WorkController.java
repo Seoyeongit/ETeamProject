@@ -63,9 +63,9 @@ public class WorkController {
 	}
 	
 	@RequestMapping(value = "/modify-roadMap")
-	public String modifyWork(WorkVO vo) {
+	public String modifyWork(WorkVO vo, String userId) {
 		System.out.println("=>deleteWork start");
-		vo.setUser_id("abc123");
+		vo.setUser_id(userId);
 		workservice.DeleteWork(vo);
 		return "myInfo/my_pet_work";
 	}

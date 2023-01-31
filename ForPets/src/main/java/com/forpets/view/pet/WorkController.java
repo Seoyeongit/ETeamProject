@@ -16,14 +16,13 @@ import com.forpets.biz.pet.WorkVO;
 import com.forpets.biz.pet.impl.WorkDAO;
 
 @Controller
-@RequestMapping(value = "/myInfo")
 @SessionAttributes("Petwork")
 public class WorkController {
 	@Autowired
 	private WorkService workservice;
 
 
-	@RequestMapping(value = "/createWork", method = RequestMethod.POST)
+	@RequestMapping(value = "/myInfo/createWork", method = RequestMethod.POST)
 	public  ResponseEntity<String>  insertWork(WorkVO vo, WorkDAO workDAO, float[] listX, float[] listY, String userId) {
 		float[] X = new float[listX.length];
 		float[] Y = new float[listY.length];
@@ -53,7 +52,7 @@ public class WorkController {
 	}
 	
 	
-	@RequestMapping(value = "/selectWork")
+	@RequestMapping(value = "/myInfo/selectWork")
 	public String selectWork(WorkVO vo, WorkDAO workDAO, Model model) {
 		System.out.println("=>selct work start");
 		vo.setUser_id("abc123");
@@ -62,7 +61,7 @@ public class WorkController {
 		
 	}
 	
-	@RequestMapping(value = "/modify-roadMap")
+	@RequestMapping(value = "/myInfo/modify-roadMap")
 	public String modifyWork(WorkVO vo) {
 		System.out.println("=>deleteWork start");
 		vo.setUser_id("abc123");
@@ -70,5 +69,12 @@ public class WorkController {
 		return "myInfo/my_pet_work";
 	}
 	
-	
+	@RequestMapping(value="/Service/showPetWork")
+	public String showPetWork(WorkVO vo, WorkDAO workDAO, Model model) {
+		System.out.println("=>show pet work start");
+		vo.setUser_id("abc123");
+		model.addAttribute("petWork",workservice.ListWork(vo));
+		System.out.println("=>show pet work end");
+		return "Service/showPetWork";
+	}
 }

@@ -15,7 +15,7 @@
 	</ul>
 	<center>
 		<button type="button" onclick="location.href='normal'">기본</button>
-		<button type="button" onclick="location.href='walk'">산책</button>
+		<button type="button" onclick="location.href='work'">산책</button>
 		<button type="button" onclick="location.href='pickup'">픽업</button>
 	</center>
 </body>

@@ -52,9 +52,13 @@ $(document).ready(function(){
 			<label for="date"><input type="date" id="date" name="reserve_day"></label>
 			<label for="time-select">
 				<select id = "time-select" name="reserve_time">
-					<option value="12:00">12:00</option>
-					<option value="13:00">13:00</option>
-					<option value="14:00">14:00</option>
+				<%
+					for(int i=12;i<=20;i++) {
+				%>
+					<option value="<%=i%>:00"><%=i%>:00</option>
+				<%
+					}
+				%>
 				</select>
 			</label>
 			<br>

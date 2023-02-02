@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/juso.js" ></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/pet_partner.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/pickup_add.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <style>
@@ -23,6 +24,9 @@
 </style>
 <script>
 $(document).ready(function(){
+	$("#set_pet").hide();
+	$("#set_partner").hide();
+	$("#set_pickup_add").hide();
 	$("#hospital").click(function() {
 		$(this).css("background-color","#99cc99");
 		$(this).css("color","white");
@@ -38,6 +42,7 @@ $(document).ready(function(){
 		$("#s_num").val("5")
 	});
 });
+
 </script>
 </head>
 <body>
@@ -69,10 +74,14 @@ $(document).ready(function(){
 			<p>서비스 선택</p>
 			<table id="choiceService">
 				<tr>
-					<td><input type="button" value="병원" id="hospital"></td>
+					<td><input type="button" value="병원" id="hospital" onclick="getPickupAddPopUp()"></td>
+					<td><input type="button" value="미용" id="beauty" onclick="getPickupAddPopUp()"></td>
 				</tr>
+			</table>
+			<table id="set_pickup_add">
 				<tr>
-					<td><input type="button" value="미용" id="beauty"></td>
+					<td><input type="text" id="road_add_view" size="45"></span></td>
+					<td><input type="hidden" id="pick_add" name="pick_add"></td>
 				</tr>
 			</table>
 			<hr>

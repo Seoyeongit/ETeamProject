@@ -31,4 +31,5 @@ public class ReServeVO {
 	private int status; //예약상태 1:매칭중 2:매칭완료/케어중 3:케어완료
 	private PetVO voPet;
 	private PartnerVO voP;
+	private String pick_add; // pickup 시 사용할 주소
 }

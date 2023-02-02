@@ -20,7 +20,7 @@ public class NoticeVO {
 	private int ntc_seq; //번호
 	private String ntc_title; //제목
 	private String ntc_ctnt; //내용
-	private Date ntc_createAt; //발행일
+	private Date ntc_cdate; //발행일
 	private int ntc_hit; //조회수
-	private Date ntc_updateAt; //수정일
+	private Date ntc_udate; //수정일
 }

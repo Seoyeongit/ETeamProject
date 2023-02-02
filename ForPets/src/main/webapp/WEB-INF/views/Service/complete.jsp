@@ -58,6 +58,11 @@
 					<td align="center"><span>${serv.s_name }</span></td>
 					<td align="center"><span>${serv.s_price }</span></td>
 				</tr>
+				<c:choose>
+					<c:when test="${not empty reserve.pick_add }">
+						<tr><td align="center" colspan="2"><span>픽업 주소 : ${reserve.pick_add }</span></td></tr>
+					</c:when>
+				</c:choose>
 			</table>
 	</center>
 </body>

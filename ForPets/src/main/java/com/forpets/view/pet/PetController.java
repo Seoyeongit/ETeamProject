@@ -75,9 +75,18 @@ public class PetController{
 		voP.setUser_pw("123");
 		
 		vo.setVoU(voP);
-		session.setAttribute("userPet", petService.getPetInfo(vo));
+		int result = petService.countPet(vo);
+		//유저의펫이 한마리라면 userpet을 session으로 
 		
-		voW.setUser_id("abc123");
+		System.out.println("result : "+result);
+		
+		if(result==1) {
+			System.out.println("result 1개");
+			session.setAttribute("userPet", petService.getPetInfo(vo));
+		}else if(result>1){
+			System.out.println("result 1개 이상");
+			session.setAttribute("userPetList", petService.getPetList(vo, vo.getUser_id()));
+		}
 		return "forward:/myInfo/selectWork";
 		
 		

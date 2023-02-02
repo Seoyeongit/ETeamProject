@@ -4,7 +4,6 @@
     <p>사이트 이용에 필요한 정보들을 입력합니다.</p>
 
     <div class="container-sm text-bg-light">
-    <form action="../myInfo/edit" method="POST">
         <div class="info">
             <div class="">
                 <label for="user_id" class="form-label" >아이디</label>
@@ -16,7 +15,7 @@
             <div class="col-sm-4">
                 <label for="inputPassword" class="col-form-label">비밀번호</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword" name="user_pw" value="${userInfo.user_pw }">
+				<input type="password" class="form-control" id="user_pw" name="user_pw" value="${userInfo.user_pw }">
                 </div>
             </div>
             <div class="col-sm-4">
@@ -63,9 +62,9 @@
         </div>
     </div>
     <div>
-        <input type="submit" value="수정하기" id="edituserInfo">
+        <input type="button" value="수정하기" id="edituserInfo">
+        <input type="button" value="돌아가기" id="backMainPage">
     </div>
-</form>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -94,9 +93,9 @@ function execution_kakao_address() {
             $("#address_input_3").focus();
 
             $("#result_userAdd").val(addr);
-        }
-    }).open();
-}
+        	}
+    	}).open();
+	}
     
     $('#edituserInfo').click(function(){
     	if(addr !== '' ){
@@ -110,7 +109,32 @@ function execution_kakao_address() {
     		return false;
     	}
     	
-
-    })
+    	$.ajax({
+    		url:"../myInfo/edit",
+    		data : {
+    			user_id:$("#user_id").val(),
+    			user_pw:$("#user_pw").val(),
+    			user_name:$("#user_name").val(),
+    			user_nick:$("#user_nick").val(),
+    			phnumber:Number($("#user_phnumber").val()),
+    			user_add:$("#result_userAdd").val()
+    		},
+    		dataType : "text",
+    		type : "GET",
+    		success : function(result){
+    			alert("회원정보수정 성공했습니다.")
+    			location.replace('../myInfo/main');								
+			},
+			error : function(result){
+				console.log(result);
+				
+				alert("오류가났습니다..");
+			}
+    	});    	
+    });
+    
+	$("div #backMainPage").on("click",function(){
+		location.replace('../myInfo/main');
+	});
 
  </script>

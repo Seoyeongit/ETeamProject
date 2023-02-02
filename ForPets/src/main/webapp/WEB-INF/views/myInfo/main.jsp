@@ -111,13 +111,17 @@
 
                             <div class="flex-fill pet-profile">
                                 <div class="team-list position-relative overflow-hidden shadow rounded">
-                                                                <c:choose>
+                            <c:choose>
                                 <c:when test="${not empty userPet.img}">
-                                    <img alt="" src="../myInfo/display?fileName=${userPet.img }">
+                                 		<img alt="" src="../myInfo/display?fileName=${userPet.img }">
                                 </c:when>
                             </c:choose>
                                     <div class="content float-right p-4">
-                                        <h5 class="title mb-0">${userPet.name }</h5>
+                                        <h5 class="title mb-0">${userPet.name }
+                                        <c:choose>
+                                        	<c:when test="${userPet.gender eq 'm'.charAt(0) }">♂️</c:when>
+                                        	<c:when test="${userPet.gender eq 'w'.charAt(0) }">♀️</c:when>
+                                        </c:choose>
                                         <p class="text-muted mt-3">${userPet.age }</p>
                                         <a href="${pageContext.request.contextPath}/myInfo/my-petView"
                             			onclick="window.open(this.href, '_blank', 'width=500, height=800'); return false;">
@@ -154,7 +158,7 @@
                             <table class="container">
                                 <tr>
                                     <td><a href="../myInfo/check-reservation">예약확인</a></td>
-                                    <td>돌봄일지</td>
+                                    <td><a href="../myInfo/viewCare">돌봄일지</a></td>
                                 </tr>
                                 <tr>
                                     <td>파트너와채팅</td>
@@ -186,10 +190,12 @@
 
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=037898d01be77d2487543d1d6ea4c210&libraries=services,drawing"></script>
 	<script type="text/javascript">
+	
+	//회원정보수정페이지로 넘어갑니다.
 	$("#edit-user-info").click(function(){
 		var _this = $(this);
 		var liurl = "../myInfo/edit-Profile";
-		$("card-body p-5").html('씨이발');
+		$("card-body p-5").html('');
 		
 		$.ajax({
 			type : 'POST',
@@ -617,7 +623,7 @@
 		polygon.setMap(map);
 		
 		var dkpos1 = new kakao.maps.LatLng(<c:out value="${petWork[0].x}"/>, <c:out value="${petWork[0].y}"/>);
-		var marker1 = new TooltipMarker(dkpos1, 'kakao 본사');
+		var marker1 = new TooltipMarker(dkpos1, '산책로마커');
 		marker1.setMap(map);
 		
 		var markerTracker1 = new MarkerTracker(map, marker1);

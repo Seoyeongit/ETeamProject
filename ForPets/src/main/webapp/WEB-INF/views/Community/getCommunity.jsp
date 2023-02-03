@@ -30,14 +30,14 @@
  	
 	<form action="insertcommunity.do" method="post" >
 <%-- 	<c:if test="com${date }-${listcount }" ></c:if> --%>
-	<input type="hidden" value="${date }" name="c_code">
+	<input type="hidden" value="com${date }" name="c_code">
 		<table>
 		<tr>
 			<th>제목 : <input type="text" name="c_title"></th>
 		</tr>
 		<tr>
 			<td>내용을 입력해 주세요</td>
-			<td><input type="button" value="설문지 만들기"/></td>
+			<td><a href="survey.do"><input type="button" value="설문지 만들기"/></a></td>
 		</tr>
 		<tr>	
 			<td><textarea rows="15" cols="65" name="c_content"></textarea></td>

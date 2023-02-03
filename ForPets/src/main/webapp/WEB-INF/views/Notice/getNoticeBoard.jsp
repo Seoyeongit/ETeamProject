@@ -11,27 +11,24 @@
 </head>
 <body>
  <form action="updateBoard.do" method="post">
-<input name="seq" type="hidden" value="${ notice.seq }"/>
+
+<input name="seq" type="hidden" value="${getNoticeBoard.ntc_seq }" />
 <table border="1" cellpadding="0" cellspacing="0">
 	<tr>
-		<td bgcolor="orange" width="70">제목</td>
-		<td align="left"><input name="title" type="text" value="${ notice.title }" /></td>
+		<td width="70">제목</td>
+		<td align="left"><input name="title" type="text" value="${getNoticeBoard.ntc_title}" /></td>
 	</tr>
 	<tr>
-		<td bgcolor="orange">작성자</td>
-		<td align="left">${ notice.writer }</td>
+		<td>내용</td>
+		<td align="left"><textarea name="content" cols="40" rows="10">${getNoticeBoard.ntc_ctnt}</textarea></td>
 	</tr>
 	<tr>
-		<td bgcolor="orange">내용</td>
-		<td align="left"><textarea name="content" cols="40" rows="10">${ notice.content }</textarea></td>
+		<td>등록일</td>
+		<td align="left">${getNoticeBoard.ntc_cdate }</td>
 	</tr>
 	<tr>
-		<td bgcolor="orange">등록일</td>
-		<td align="left">${ notice.regDate }</td>
-	</tr>
-	<tr>
-		<td bgcolor="orange">조회수</td>
-		<td align="left">${ notice.cnt }</td>
+		<td>조회수</td>
+		<td align="left">${getNoticeBoard.ntc_hit }</td>
 	</tr>
 	<tr>
 		<td colspan="2" align="center"><input type="submit" value="글 수정" /></td>
@@ -40,7 +37,7 @@
 </form>
 <hr>
 <a href="insertBoard.jsp">글등록</a>&nbsp;&nbsp;&nbsp;
-<a href="deleteBoard.do?seq=${ notice.seq }">글삭제</a>&nbsp;&nbsp;&nbsp;
+<a href="deleteBoard.do?seq=${getNoticeBoard.ntc_seq }">글삭제</a>&nbsp;&nbsp;&nbsp;
 <a href="noticeBoard">글목록</a>
 </body>
 </html>

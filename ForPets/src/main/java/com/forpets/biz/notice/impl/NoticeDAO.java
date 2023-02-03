@@ -16,7 +16,7 @@ public class NoticeDAO {
 	private JdbcTemplate jdbcTemplate;
 	
 	private final String NOTICE_LIST = "select * from NOTICE_BOARD order by ntc_seq DESC";
-	private final String GET_NOTICE = "select * from community where ntc_seq=?";
+	private final String GET_NOTICE = "select * from NOTICE_BOARD where ntc_seq=?";
 	
 	private final RowMapper<NoticeVO> noticeRowMapper = (resultSet, rowNum) -> {
 		NoticeVO newvo = new NoticeVO();
@@ -29,6 +29,7 @@ public class NoticeDAO {
 		return newvo;
 	};
 	
+	// 글 list
 	public List<NoticeVO> getNoticeList(NoticeVO vo) {
 		System.out.println("---> JDBC로 getNoticeList() 기능 처리");
 		return jdbcTemplate.query(NOTICE_LIST, noticeRowMapper);

@@ -34,16 +34,21 @@ public class NoticeController {
 	
 	
 	// 게시판 글 상세보기
-	@RequestMapping(value="getNoticeBoard/{ntc_seq}", method = RequestMethod.POST)
-	public String getNoticeBoard(NoticeVO vo, NoticeDAO noticeDAO, HttpSession session, @PathVariable int ntc_seq) {
+	@RequestMapping(value="/Notice/getNoticeBoard.do/{ntc_seq}", method = RequestMethod.GET)
+	public String getNoticeBoard(NoticeVO vo, NoticeDAO noticeDAO, HttpSession session, @PathVariable(value="ntc_seq") int ntc_seq) {
 
 		System.out.println("글 상세 조회 처리");
 //		logger.debug("[LOG] 글 상세 조회 처리");
 	
 		// 검색 결과를 세션에 저장하고 목록 화면으로 이동한다.
-		session.setAttribute("getNoticeBoard", notService.getNoticeBoard(vo, ntc_seq));
+		try {
+			session.setAttribute("getNoticeBoard", notService.getNoticeBoard(vo, ntc_seq));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		return "getNoticeBoard";
+		return "/Notice/getNoticeBoard";
 	} 
 	
 	

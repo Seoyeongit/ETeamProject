@@ -40,7 +40,7 @@
 	<c:forEach items="${noticeBoard }" var="notice">
 		<tr>
 			<td>${notice.ntc_seq }</td>
-			<td align="left"> <a href="getNoticeBoard.do?seq=${notice.ntc_seq }">${notice.ntc_title }</a> </td>
+			<td align="left"> <a href="getNoticeBoard.do/${notice.ntc_seq }">${notice.ntc_title }</a> </td>
 			<td>${notice.ntc_cdate }</td>
 			<td>${notice.ntc_hit }</td>
 		</tr>

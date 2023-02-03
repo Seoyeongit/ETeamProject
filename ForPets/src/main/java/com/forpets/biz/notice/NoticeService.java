@@ -14,6 +14,6 @@ public interface NoticeService {
 	public List<NoticeVO> getNoticeList(NoticeVO vo) throws Exception;
 
 	//게시판 보기
-	NoticeVO getNoticeBoard(NoticeVO vo, int ntc_seq);
+	NoticeVO getNoticeBoard(NoticeVO vo, int ntc_seq) throws Exception;
 	
 }

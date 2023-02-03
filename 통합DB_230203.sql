@@ -15,8 +15,6 @@ CREATE TABLE community
 ALTER TABLE community
     ADD CONSTRAINT c_code PRIMARY KEY (c_code);
 
-drop table survey;
-
 -- 설문지 생성
    CREATE TABLE survey
 (
@@ -26,11 +24,8 @@ drop table survey;
     s_regdate DATE NOT NULL             -- 날짜
 );
 
-
 ALTER TABLE survey
     ADD CONSTRAINT s_svcode PRIMARY KEY (s_svcode);
-
-drop table survey_detail;
 
 -- 설문지 질문
    CREATE TABLE survey_detail
@@ -52,9 +47,6 @@ CREATE SEQUENCE sd_seq
 ALTER TABLE survey_detail
     ADD CONSTRAINT sd_number PRIMARY KEY (sd_number);
 
-
-drop table survey_choice;
-
    -- 설문지 답변
    CREATE TABLE survey_choice
 (
@@ -74,10 +66,6 @@ CREATE SEQUENCE sc_seq
 
 ALTER TABLE survey_choice
     ADD CONSTRAINT sc_number PRIMARY KEY (sc_number);
-
-commit;
-
-select * from survey_choice;
 
 -- 230203 최지혁 SQL
 -- reserv table sequence

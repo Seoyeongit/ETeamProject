@@ -19,8 +19,8 @@ public class PetDAO {
 
 	
 	private final String GET_PETINFO =  "select * from user_pet,users  where user_pet.user_id = users.user_id and users.USER_ID = ?";
-//	private final String INSERT_PET = "INSERT INTO user_pet VALUES((user_pet_seq.NEXTVAL),?,?,?,?,NULL,?,?)";
-	private final String INSERT_PET = "INSERT INTO user_pet(pet_id,pet_name,pet_type,pet_age,user_id,pet_img) VALUES((user_pet_seq.NEXTVAL),?,?,?,?,?)";
+	private final String INSERT_PET = "INSERT INTO user_pet(pet_id,pet_name,pet_type,pet_age,user_id,pet_gender,pet_img) VALUES((user_pet_seq.NEXTVAL),?,?,?,'abc123',?,?)";
+	private final String COUNT_PET = "select count(*) from user_pet where user_id=?";
 	
 	//230130 최지혁
 	private final String PET_GET = "select * from USER_PET where pet_ID = ?";
@@ -39,6 +39,13 @@ public class PetDAO {
 	public PetVO getPetInfo(PetVO vo) {
 		Object[] orgs = {vo.getVoU().getUser_id()};
 		return jdbcTemplate.queryForObject(GET_PETINFO,orgs, new PetRowMapper());
+	}
+	
+	public int countPet(PetVO vo) {
+		int result = 0;
+		Object[] orgs = {vo.getVoU().getUser_id()};
+		result = jdbcTemplate.queryForObject(COUNT_PET,orgs,Integer.class);
+		return result;
 	}
 	
 

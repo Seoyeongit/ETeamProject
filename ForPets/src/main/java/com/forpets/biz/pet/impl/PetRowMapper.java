@@ -21,8 +21,7 @@ public class PetRowMapper implements RowMapper<PetVO> {
 		vo.setType(rs.getString("pet_type"));
 		vo.setImg(rs.getString("pet_img"));
 		vo.setAge(rs.getInt("pet_age"));
-//		vo.setWark(rs.get);
-//		vo.setGender(rs.getString("pet_gender").charAt(0)); //문자는 단일문자이므로 문자열의 첫번째 문자만 가져옵니다.
+		vo.setGender(rs.getString("PET_GENDER").charAt(0)); //문자는 단일문자이므로 문자열의 첫번째 문자만 가져옵니다.
 		vo.setVoU(voU);
 		
 		return vo;

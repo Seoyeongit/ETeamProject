@@ -2,14 +2,18 @@ package com.forpets.biz.notice;
 
 import java.util.List;
 
-import com.forpets.biz.community.CommunityVO;
+import org.springframework.stereotype.Service;
 
 /*
  *  공지사항관련 서비스는 여기서 추상메서드를 추가하세요.
  */
+@Service
 public interface NoticeService {
 
-	
+	//게시판 목록 보기
 	public List<NoticeVO> getNoticeList(NoticeVO vo) throws Exception;
+
+	//게시판 보기
+	NoticeVO getNoticeBoard(NoticeVO vo, int ntc_seq);
 	
 }

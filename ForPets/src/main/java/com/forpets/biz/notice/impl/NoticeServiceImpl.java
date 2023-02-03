@@ -23,4 +23,9 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDAO.getNoticeList(vo);
 	}
 
+	@Override
+	public NoticeVO getNoticeBoard(NoticeVO vo, int ntc_seq) {
+		return noticeDAO.getNoticeBoard(vo, ntc_seq);
+	}
+
 }

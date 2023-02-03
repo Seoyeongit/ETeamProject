@@ -1,9 +1,13 @@
 package com.forpets.view.notice;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,6 +31,20 @@ public class NoticeController {
 		System.out.println("---> getNoticeList 완료");
 		return "./Notice/noticeBoard";
 	}
+	
+	
+	// 게시판 글 상세보기
+	@RequestMapping(value="getNoticeBoard/{ntc_seq}", method = RequestMethod.POST)
+	public String getNoticeBoard(NoticeVO vo, NoticeDAO noticeDAO, HttpSession session, @PathVariable int ntc_seq) {
+
+		System.out.println("글 상세 조회 처리");
+//		logger.debug("[LOG] 글 상세 조회 처리");
+	
+		// 검색 결과를 세션에 저장하고 목록 화면으로 이동한다.
+		session.setAttribute("getNoticeBoard", notService.getNoticeBoard(vo, ntc_seq));
+		
+		return "getNoticeBoard";
+	} 
 	
 	
 //	@RequestMapping(value="noticeBoard")

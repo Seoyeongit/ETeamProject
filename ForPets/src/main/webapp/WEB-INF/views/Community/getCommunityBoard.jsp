@@ -24,6 +24,9 @@
 		 		<th>내용</th>
 		 		<td>${communityboard.c_content }</td>
 		 	</tr>
+		 	<tr>
+		 		<th>설문지 답변하기</th>
+		 	</tr>
 		</table>
 
 	<a href="../updatecommunity.do/${communityboard.c_code }"><input type="button" value="수정"></a>

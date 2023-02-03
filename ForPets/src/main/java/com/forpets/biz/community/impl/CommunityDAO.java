@@ -19,7 +19,7 @@ public class CommunityDAO {
 	private JdbcTemplate jdbcTemplate;
 
 	private final String COMMUNITY_LIST = "select * from community order by C_DATE DESC ";
-	private final String INSERT_COMMUNITY = "INSERT INTO COMMUNITY (C_CODE, C_TITLE, C_CONTENT, USER_ID) VALUES(?, ?, ?, ?)";
+	private final String INSERT_COMMUNITY = "INSERT INTO COMMUNITY (C_CODE, C_TITLE, C_CONTENT, USER_ID, C_DATE) VALUES(?, ?, ?, ?, sysdate)";
 	private final String GET_COMMUNITY = "select * from community where C_CODE=?";
 	private final String ALL_NUMBER = "select count(*) from community";
 	private final String UPDATE_COMMUNITY = "update community set C_TITLE=?, C_CONTENT=? where C_CODE=?";

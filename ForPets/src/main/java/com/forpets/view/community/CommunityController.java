@@ -24,7 +24,7 @@ public class CommunityController {
 	@RequestMapping("/communitylist.do")
 	public ModelAndView community() throws Exception {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/community");
+		mav.setViewName("/Community/community");
 		mav.addObject("communityList", comservice.getCommunityList());
 		// System.out.println("커뮤니티목록 생성");
 		return mav;
@@ -34,7 +34,7 @@ public class CommunityController {
 	@RequestMapping("/getcommunity.do")
 	public ModelAndView insertcommunity() throws Exception {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/getCommunity");
+		mav.setViewName("/Community/getCommunity");
 		mav.addObject("listcount", comservice.getlistcount());
 		mav.addObject("communityList", comservice.getCommunityList());
 		// System.out.println("커뮤니티목록 생성");
@@ -54,7 +54,7 @@ public class CommunityController {
 		svo.setUser_id("pow111");
 //		svo.setUser_id(vo.getUser_id());
 		comservice.insertCommunity(svo);
-		mav.setViewName("/community");
+		mav.setViewName("/Community/community");
 		mav.addObject("communityList", comservice.getCommunityList());
 		return mav;
 	}
@@ -64,7 +64,7 @@ public class CommunityController {
 	public ModelAndView getCommunityBoard(@PathVariable String c_code) {
 //		System.out.println(c_code);
 		ModelAndView mav = new ModelAndView(); 
-		mav.setViewName("getCommunityBoard");
+		mav.setViewName("/Community/getCommunityBoard");
 		mav.addObject("communityboard", comservice.getCommunityBoard(c_code));
 		return mav;
 	} 
@@ -74,7 +74,7 @@ public class CommunityController {
 	public ModelAndView updateCommunity(@PathVariable String c_code) {
 //		System.out.println(c_code);
 		ModelAndView mav = new ModelAndView(); 
-		mav.setViewName("updateCommunity"); // jsp로 연결
+		mav.setViewName("/Community/updateCommunity"); // jsp로 연결
 		mav.addObject("communityboard", comservice.getCommunityBoard(c_code));
 		return mav;
 	} 

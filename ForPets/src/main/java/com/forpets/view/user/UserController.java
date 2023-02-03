@@ -26,7 +26,7 @@ public class UserController {
 	}
 	
 	//회원정보수정처리
-	@RequestMapping(value="/myInfo/edit", method = RequestMethod.POST)
+	@RequestMapping(value="/myInfo/edit")
 	public String updateProfile(@ModelAttribute("userInfo")UserVO vo, UserDAO userDAO) {
 		System.out.println("회원 정보 수정 처리");
 		System.out.println(vo.toString());

@@ -21,6 +21,11 @@ public interface PetService {
 	 */
 	PetVO getPetInfo (PetVO vo);
 	
+	/**
+	 * 펫정보가 몇개인지 count한다.
+	 */
+	int countPet(PetVO vo);
+	
 	//230130 최지혁
 	List<PetVO> getPetList(PetVO vo, String user_id);
 	

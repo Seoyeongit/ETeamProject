@@ -18,6 +18,6 @@ public class CareDiaryController {
 	@RequestMapping(value="/myInfo/viewCare")
 	public String getCareDIA(CareDiaryVO vo, CareDiaryDAO careDiaryDAO, Model model) {
 		model.addAttribute("DIA",careDiaryService.getCareDiary(vo));
-		return "my_careDiary";
+		return "myInfo/my_careDiary";
 	}
 }

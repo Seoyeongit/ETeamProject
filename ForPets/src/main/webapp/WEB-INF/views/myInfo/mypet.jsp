@@ -70,8 +70,9 @@
 		<label for="pet_gender">성별</label> 
 		<input type="radio" name="gender" value="f" id="pet_gender">여자 
 		<input type="radio" name="gender" value="m" id="pet_gender">남자<br>
+		${userPet }
 		
-		<input type="text" name="user_id" value="${userPet.user_id }">
+		<input type="hidden" name="user_id" value="${userPet.voU.user_id}">
 
 		<input type="submit" value="제출하기">
 	</form>

@@ -88,10 +88,10 @@
                         <div class="personal-info">
                             <h3>Personal Information</h3>
                             <ul class="personal-list">
-                                <li><i class="fas fa-briefcase "></i><span>Web Designer</span></li>
-                                <li><i class="fas fa-map-marker-alt "></i><span> New York</span></li>
-                                <li><i class="far fa-envelope "></i><span>like @example.com</span></li>
-                                <li><i class="fas fa-mobile "></i><span>1234564343</span></li>
+                                <li><i class="fas fa-briefcase "></i><span>text</span></li>
+                                <li><i class="fas fa-map-marker-alt "></i><span> text</span></li>
+                                <li><i class="far fa-envelope "></i><span>text</span></li>
+                                <li><i class="fas fa-mobile "></i><span>text</span></li>
                             </ul>
                         </div>
 
@@ -173,8 +173,8 @@
                             <p><strong>나의 활동</strong></p>
                             <table class="container">
                                 <tr>
-                                    <td>예약확인</td>
-                                    <td>돌봄일지</td>
+                                    <td>공지사항</td>
+                                    <td>고객센터</td>
                                 </tr>
                             </table>
                         </div>

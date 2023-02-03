@@ -19,8 +19,6 @@ public class CareDiaryRowMapper implements RowMapper<CareDiaryVO> {
 	public CareDiaryVO mapRow(ResultSet rs, int rowNum) throws SQLException {
 		CareDiaryVO vo = new CareDiaryVO();
 		ReServeVO voR = new ReserveRowMapper().mapRow(rs, rowNum);
-		PetVO voP = new PetRowMapper().mapRow(rs, rowNum);
-		UserVO voU = new UserRowMapper().mapRow(rs, rowNum);
 		
 		
 		vo.setDia_id(rs.getInt("DIA_ID"));

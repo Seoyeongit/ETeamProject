@@ -196,8 +196,8 @@
 	        	        if (status === kakao.maps.services.Status.OK) {
 	        	            var detailAddr = !!result[0].road_address ? result[0].road_address.address_name : '';
 	        	            
-	        	            $("#road_add_view", opener.document).val(detailAddr);
-	        	            $("#pick_add", opener.document).val(detailAddr);
+	        	            $("#road_add_view", opener.document).val(detailAddr + " " + title);
+	        	            $("#pick_add", opener.document).val(detailAddr + " " + title);
 	        	            $(opener.location).attr("href", "javascript:show_pickup_add()");
 	        	        	self.close();
 	        	        }   

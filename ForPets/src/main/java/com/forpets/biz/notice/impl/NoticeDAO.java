@@ -17,6 +17,7 @@ public class NoticeDAO {
 	private JdbcTemplate jdbcTemplate;
 	
 	private final String NOTICE_LIST = "select * from NOTICE_BOARD order by ntc_seq DESC";
+	private final String GET_NOTICE = "select * from community where ntc_seq=?";
 	
 	private final RowMapper<NoticeVO> noticeRowMapper = (resultSet, rowNum) -> {
 		NoticeVO vo = new NoticeVO();
@@ -34,27 +35,21 @@ public class NoticeDAO {
 		return jdbcTemplate.query(NOTICE_LIST, noticeRowMapper);
 	}
 	
-//	public NoticeVO getNotice(NoticeVO vo, String part_id) {
-//		System.out.println("---> JDBC로 getPartner() 기능 처리");
-//		NoticeVO partner = jdbcTemplate.queryForObject(PARTNER_GET,
-//				(resultSet, rowNum) -> {
-//					NoticeVO newNotice = new NoticeVO();
-//					
-//					newNotice.set(resultSet.getString("PART_ID"));
-//					newNotice.setPart_name(resultSet.getString("PART_NAME"));
-//					newNotice.setPart_nick(resultSet.getString("PART_NICK"));
-//					newNotice.setPart_add(resultSet.getString("PART_ADD"));
-//					newNotice.setGender(resultSet.getString("GENDER").charAt(0));
-//					newNotice.setPart_phnumber(resultSet.getString("PART_PHNUMBER"));
-//					newNotice.setBirth(resultSet.getDate("BIRTH"));
-//					newNotice.setWar(resultSet.getInt("WAR"));
-//					newNotice.setPart_no(resultSet.getInt("PART_NO"));
-//					newNotice.setData_create(resultSet.getDate("DATA_CREATE"));
-//					newNotice.setSelf_infor(resultSet.getString("SELF_INFOR"));
-//					return newPartner;
-//				}
-//				, part_id);
-//		return partner;
-//	}
+	public NoticeVO getNotice(String ntc_seq) {
+		System.out.println("---> JDBC로 getPartner() 기능 처리");
+		NoticeVO vo = jdbcTemplate.queryForObject(GET_NOTICE,
+				(resultSet, rowNum) -> {
+					NoticeVO newvo = new NoticeVO();
+					
+					newvo.setNtc_seq(resultSet.getInt("ntc_seq"));
+					newvo.setNtc_title(resultSet.getString("ntc_title"));
+					newvo.setNtc_ctnt(resultSet.getString("ntc_ctnt"));
+					newvo.setNtc_cdate(resultSet.getDate("ntc_cdate"));
+					newvo.setNtc_hit(resultSet.getInt("ntc_hit"));
+					return newvo;
+				}
+				, ntc_seq);
+		return vo;
+	}
 
 }

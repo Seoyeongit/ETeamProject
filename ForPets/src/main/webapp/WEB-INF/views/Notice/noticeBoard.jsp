@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>    
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,12 +37,12 @@
 		<th width="100">조회수</th>
 	</tr>
 	
-	<c:forEach items="${noticeBoardList }" var="board">
+	<c:forEach items="${noticeBoard }" var="notice">
 		<tr>
-			<td>${board.seq }</td>
-			<td align="left"> <a href="noticeBoard.do?seq=${board.seq }">${board.title }</a> </td>
-			<td>${board.regDate }</td>
-			<td>${board.cnt }</td>
+			<td>${notice.ntc_seq }</td>
+			<td align="left"> <a href="noticeBoard.do?seq=${notice.ntc_seq }">${notice.ntc_title }</a> </td>
+			<td>${notice.ntc_cdate }</td>
+			<td>${notice.ntc_hit }</td>
 		</tr>
 	</c:forEach>
 </table>

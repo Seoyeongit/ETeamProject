@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +12,11 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.js"></script>
+<style>
+	#pickadd {
+		font-size : 5px;
+	}
+</style>
 </head>
 <body>
 	<ul>
@@ -62,6 +69,9 @@
 					<td align="center"><span>${serv.s_name }</span></td>
 					<td align="center"><span>${serv.s_price }</span></td>
 				</tr>
+				<c:if test="${reserve.pick_add != null && reserve.pick_add != '' }">
+						<tr><td align="center" colspan="2"><span id="pickadd">픽업 주소 : ${reserve.pick_add }</span></td></tr>
+				</c:if>
 			</table>
 		</form>
 		<hr>

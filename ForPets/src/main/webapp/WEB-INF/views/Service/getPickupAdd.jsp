@@ -90,7 +90,10 @@
         
     		displayMarker(locPosition);
 	}
-
+	
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+	
 	// 지도에 마커와 인포윈도우를 표시하는 함수입니다
 	function displayMarker(locPosition) {
 
@@ -188,6 +191,18 @@
 	            	var locPosition = new kakao.maps.LatLng(center.getLat(), center.getLng());
 	            	map.setCenter(locPosition);
 	                displayInfowindow(marker, title);
+	                
+	                searchDetailAddrFromCoords(center, function(result, status) {
+	        	        if (status === kakao.maps.services.Status.OK) {
+	        	            var detailAddr = !!result[0].road_address ? result[0].road_address.address_name : '';
+	        	            
+	        	            $("#road_add_view", opener.document).val(detailAddr + " " + title);
+	        	            $("#pick_add", opener.document).val(detailAddr + " " + title);
+	        	            $(opener.location).attr("href", "javascript:show_pickup_add()");
+	        	        	self.close();
+	        	        }   
+	        	    });
+	                
 	            });
 
 	            kakao.maps.event.addListener(marker, 'mouseout', function() {
@@ -331,6 +346,24 @@
 	    map.setCenter(locPosition);
 
 	});
+	
+	
+	
+	// 지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
+//	kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+//	    searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
+//	        if (status === kakao.maps.services.Status.OK) {
+//	            var detailAddr = !!result[0].road_address ? result[0].road_address.address_name : '';
+//	            
+//	            $("#road_add").val(detailAddr);
+//	        }   
+//	    });
+//	});
+	
+	function searchDetailAddrFromCoords(coords, callback) {
+	    // 좌표로 상세 주소 정보를 요청합니다
+	    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+	}
 </script>
 </body>
 </html>

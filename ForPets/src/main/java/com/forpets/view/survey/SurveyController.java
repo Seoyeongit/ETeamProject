@@ -40,52 +40,51 @@ public class SurveyController {
 
 	// 설문지 등록
 	@RequestMapping(value="/insertsurvey.do", method = RequestMethod.POST)
-	public @ResponseBody ModelAndView insertSurvey(@RequestParam String sd_svcode, HttpServletRequest req) throws Exception {
+	public @ResponseBody ModelAndView insertSurvey(@RequestParam String c_code, HttpServletRequest req) throws Exception {
 		System.out.println("========= insertSurvey Controller Start ========= ");
 		ModelAndView mav = new ModelAndView();
+		int survey_count = Integer.parseInt(req.getParameter("survey_count"));
 		
-		String[] sd_title = req.getParameterValues("sd_title");
-		String[] sd_type = req.getParameterValues("sd_type");
+		for(int k=1;k<=survey_count;k++) {
 		
-		String[] sc_answer = req.getParameterValues("sc_answer");
-		String[] sc_ascode = req.getParameterValues("sc_ascode");
+			String sd_title = req.getParameter("sd_title"+k);
+			String sd_type = req.getParameter("sd_type"+k);
 		
+			String[] sc_answer = req.getParameterValues("sc_answer"+k);
+			String[] sc_ascode = req.getParameterValues("sc_ascode");
 		
-		
-		System.out.println(sd_svcode);
-		SurveyDetailVO vo = new SurveyDetailVO();
-		SurveyChoiceVO cvo = new SurveyChoiceVO();
-		
-		for(int i=0; i<sd_title.length; i++) {
+			System.out.println(c_code);
+			SurveyDetailVO vo = new SurveyDetailVO();
+			SurveyChoiceVO cvo = new SurveyChoiceVO();
+			
 			System.out.println(sd_title);
-			vo.setSd_svcode(sd_svcode);
-			vo.setSd_title(sd_title[i]);
-			vo.setSd_type(sd_type[i]);
-			String od = "order"+(i+1);
+			vo.setC_code(c_code);
+			vo.setSd_title(sd_title);
+			vo.setSd_type(sd_type);
+			String od = "order"+(k);
 			vo.setSd_order(od);
 			System.out.println(vo);
 			surdservice.insertSurvey(vo);
 		
 		
-			 for(int j=0; j<sc_answer.length; j++) {
+			for(int j=0; j<sc_answer.length; j++) {
 				 System.out.println(sd_title);
-					cvo.setSc_svcode(sd_svcode);
-					cvo.setSc_order("od");
-					 String asc = sd_type[j].substring(0,1)+(j+1);
-					cvo.setSc_ascode("asc");
-					cvo.setSc_answer(sc_answer[j]);
-					surdservice.insertServey2(cvo);
-				}	// for end
+				 cvo.setC_code(c_code);
+				 cvo.setSc_order("od");
+				 //String asc = sd_type[j].substring(0,1)+(j+1);					
+				 cvo.setSc_ascode("asc");
+				 cvo.setSc_answer(sc_answer[j]);
+				 surdservice.insertServey2(cvo);
+			}	// for end
 				
-			} // for end
+		} // for end
 		
-
 		mav.setViewName("/Survey/getSurvey");
 		return mav;
 	} // 설문지 등록 end
 	
 	
-	// 설문지 목록 불러오기
+	// 설문지 리스트
 	@RequestMapping("/surveylist.do")
 	public ModelAndView SurveyList() throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -96,11 +95,11 @@ public class SurveyController {
 	
 
 	// 설문지 불러오기
-	@RequestMapping(value="/surveyboard.do/{sd_svcode}", method=RequestMethod.GET)
-	public ModelAndView getSurveyboard(@PathVariable String sd_svcode) {
+	@RequestMapping(value="/surveyboard.do/{c_code}", method=RequestMethod.GET)
+	public ModelAndView getSurveyboard(@PathVariable String c_code) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/Survey/ViewSurvey");
-		mav.addObject("surveyboard", surdservice.getSurveyBoard(sd_svcode));
+		mav.addObject("surveyboard", surdservice.getSurveyBoard(c_code));
 		return mav;
 	}
 	

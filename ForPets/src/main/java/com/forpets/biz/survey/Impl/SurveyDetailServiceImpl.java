@@ -36,7 +36,7 @@ public class SurveyDetailServiceImpl implements SurveyDetailService {
 	}
 	
 	@Override
-	public SurveyDetailVO getSurveyBoard(String c_code) {
-		return surdDAO.getSurveyBoard(c_code);
+	public SurveyDetailVO getSurveyBoard(String sd_svcode) {
+		return surdDAO.getSurveyBoard(sd_svcode);
 	}
 }

@@ -40,7 +40,7 @@ public class SurveyController {
 
 	// 설문지 등록
 	@RequestMapping(value="/insertsurvey.do", method = RequestMethod.POST)
-	public @ResponseBody ModelAndView insertSurvey(@RequestParam String c_code, HttpServletRequest req) throws Exception {
+	public @ResponseBody ModelAndView insertSurvey(@RequestParam String sd_svcode, HttpServletRequest req) throws Exception {
 		System.out.println("========= insertSurvey Controller Start ========= ");
 		ModelAndView mav = new ModelAndView();
 		
@@ -52,13 +52,13 @@ public class SurveyController {
 		
 		
 		
-		System.out.println(c_code);
+		System.out.println(sd_svcode);
 		SurveyDetailVO vo = new SurveyDetailVO();
 		SurveyChoiceVO cvo = new SurveyChoiceVO();
 		
 		for(int i=0; i<sd_title.length; i++) {
 			System.out.println(sd_title);
-			vo.setC_code(c_code);
+			vo.setSd_svcode(sd_svcode);
 			vo.setSd_title(sd_title[i]);
 			vo.setSd_type(sd_type[i]);
 			String od = "order"+(i+1);
@@ -69,7 +69,7 @@ public class SurveyController {
 		
 			 for(int j=0; j<sc_answer.length; j++) {
 				 System.out.println(sd_title);
-					cvo.setC_code(c_code);
+					cvo.setSc_svcode(sd_svcode);
 					cvo.setSc_order("od");
 					 String asc = sd_type[j].substring(0,1)+(j+1);
 					cvo.setSc_ascode("asc");
@@ -85,7 +85,7 @@ public class SurveyController {
 	} // 설문지 등록 end
 	
 	
-	// 설문지 리스트
+	// 설문지 목록 불러오기
 	@RequestMapping("/surveylist.do")
 	public ModelAndView SurveyList() throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -96,11 +96,11 @@ public class SurveyController {
 	
 
 	// 설문지 불러오기
-	@RequestMapping(value="/surveyboard.do/{c_code}", method=RequestMethod.GET)
-	public ModelAndView getSurveyboard(@PathVariable String c_code) {
+	@RequestMapping(value="/surveyboard.do/{sd_svcode}", method=RequestMethod.GET)
+	public ModelAndView getSurveyboard(@PathVariable String sd_svcode) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/Survey/ViewSurvey");
-		mav.addObject("surveyboard", surdservice.getSurveyBoard(c_code));
+		mav.addObject("surveyboard", surdservice.getSurveyBoard(sd_svcode));
 		return mav;
 	}
 	

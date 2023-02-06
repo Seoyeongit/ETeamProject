@@ -17,15 +17,13 @@
 			<tr>
 				<th>글 번호</th>
 				<th>설문지 제목</th>
-				<th>작성자</th>
 				<th>작성날짜</th>
 			</tr>
 			<c:forEach items="${surveyList }" var="surv">
 			<tr>
-				<td>${surv.c_code}</td>
-				<td><a href="surveyboard.do/${ surv.c_code}">클릭</a></td>
-				<td>${ surv.c_code}</td>
-				<td>..</td>
+				<td>${surv.s_code}</td>
+				<td><a href="surveyboard.do/${ surv.s_code}">${ surv.s_title}</a></td>
+				<td>${ surv.s_date }</td>
 			</tr>
 			</c:forEach>
 		</table>

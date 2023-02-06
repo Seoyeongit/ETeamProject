@@ -30,7 +30,7 @@
  	
 	<form action="insertcommunity.do" method="post" >
 <%-- 	<c:if test="com${date }-${listcount }" ></c:if> --%>
-	<input type="hidden" value="com${date }" name="c_code">
+	<input type="hidden" value="c${date }" name="c_code">
 		<table>
 		<tr>
 			<th>제목 : <input type="text" name="c_title"></th>

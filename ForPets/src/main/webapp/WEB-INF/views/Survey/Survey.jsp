@@ -90,10 +90,10 @@
 	
 	<h1>설문지 작성하기</h1>
 
-<form action="insertsurvey.do" method="post">
+<form action="insertsurvey.do" method="post" onsubmit="alert('작성완료 되었습니다.')">
 
-	<input type="hidden" value="sur${date}" name="c_code">
-	<p>설문지 제목 : <input type="text" placeholder="설문지 제목을 입력하세요." size=80></p>
+	<input type="hidden" value="s${date}" name="sd_svcode">
+	<p>설문지 제목 : <input type="text" placeholder="설문지 제목을 입력하세요." size=80 name="s_title"></p>
 	
 	<table id="survey">
 		<tr>

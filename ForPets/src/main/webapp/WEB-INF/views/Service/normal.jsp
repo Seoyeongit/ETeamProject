@@ -47,7 +47,7 @@ $(document).ready(function(){
 			<input type="button" value="선택" onclick="getPetListPopUp()">
 			<hr>
 			<p>추가 서비스</p>
-			<p>산책 / 실내 놀이 등 추가 예정</p>
+			
 			<hr>
 			<p>날짜 및 시간</p>
 			<label for="date"><input type="date" id="date" name="reserve_day"></label>

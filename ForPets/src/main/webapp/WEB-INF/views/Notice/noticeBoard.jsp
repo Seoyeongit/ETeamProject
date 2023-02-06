@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지 사항</title>
 </head>
 <body>
 <h1>공지 사항</h1>
@@ -47,6 +47,6 @@
 	</c:forEach>
 </table>
 <br>
-<button onclick="location.href ='noticeWriteForm.jsp'">글쓰기</button>
+<button onclick="location.href ='insertNotice.do'">글쓰기</button>
 </body>
 </html>

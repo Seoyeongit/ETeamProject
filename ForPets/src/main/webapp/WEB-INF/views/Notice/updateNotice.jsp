@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>글 상세보기</title>
+<title>글 수정</title>
 </head>
 <body>
  <form action="updateBoard.do" method="post">

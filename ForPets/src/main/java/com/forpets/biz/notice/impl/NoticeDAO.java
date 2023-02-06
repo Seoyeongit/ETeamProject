@@ -53,5 +53,10 @@ public class NoticeDAO {
 		return ntcvo;
 	}
 
+	public void insertNotice(NoticeVO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

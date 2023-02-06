@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.forpets.biz.community.CommunityVO;
 import com.forpets.biz.notice.NoticeService;
 import com.forpets.biz.notice.NoticeVO;
 
@@ -28,4 +29,9 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDAO.getNoticeBoard(vo, ntc_seq);
 	}
 
+	@Override
+	public void insertNotice(NoticeVO vo) {
+		noticeDAO.insertNotice(vo);
+	}
+	
 }

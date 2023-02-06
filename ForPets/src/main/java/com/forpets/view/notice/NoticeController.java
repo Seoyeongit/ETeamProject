@@ -51,6 +51,12 @@ public class NoticeController {
 		return "/Notice/getNoticeBoard";
 	} 
 	
+	// 글 작성폼 보기
+	@RequestMapping(value="/Notice/insertNotice")
+	public String insertNotice() throws Exception {
+		System.out.println("---> insertNotice 실행");
+		return "/Notice/insertNotice";
+	}
 	
 //	@RequestMapping(value="noticeBoard")
 //	public ModelAndView noticeBoard() throws Exception {

@@ -22,13 +22,13 @@ public class ReserveServiceImpl implements ReserveService{
 	}
 
 	@Override
-	public int selectCount() {
-		return reserveDAO.selectCount();
+	public int selectCount(ReServeVO vo) {
+		return reserveDAO.selectCount(vo);
 	}
 
 	@Override
-	public int selectCompleteCount() {
-		return reserveDAO.selectCompleteCount();
+	public int selectCompleteCount(ReServeVO vo) {
+		return reserveDAO.selectCompleteCount(vo);
 	}
 	
 	//230130 최지혁

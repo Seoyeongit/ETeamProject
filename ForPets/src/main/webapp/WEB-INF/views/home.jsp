@@ -35,8 +35,18 @@
                         <li class="nav-item"><a class="nav-link" href="communitylist.do">소모임</a></li>
                         <li class="nav-item"><a class="nav-link" href="#review">리뷰보기</a></li>
                         <li class="nav-item"><a class="nav-link" href="#customer">고객센터</a></li>
+                       
+                        <c:choose>
+                        <c:when test="${empty user.user_id }"><li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/login">로그인</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/login">회원가입</a></li></c:when>
+                        <c:when test="${not empty user.user_id }">
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/myInfo/main">마이페이지</a></li>
                         <li class="nav-item"><a class="nav-link" href="#logout">로그아웃</a></li>
+                        </c:when>
+                        </c:choose>
+                        
+                        <li>${member}</li>
+                   
                     </ul>
                 </div>
             </div>

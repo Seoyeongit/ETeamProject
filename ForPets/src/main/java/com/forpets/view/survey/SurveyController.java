@@ -71,7 +71,7 @@ public class SurveyController {
 				 System.out.println(sd_title);
 					cvo.setC_code(c_code);
 					cvo.setSc_order("od");
-					 String asc = sd_type[j].substring(0,1)+(j+1);
+//					 String asc = sd_type[j].substring(0,1)+(j+1);
 					cvo.setSc_ascode("asc");
 					cvo.setSc_answer(sc_answer[j]);
 					surdservice.insertServey2(cvo);

@@ -19,7 +19,7 @@ public class PetDAO {
 
 	
 	private final String GET_PETINFO =  "select * from user_pet,users  where user_pet.user_id = users.user_id and users.USER_ID = ?";
-	private final String INSERT_PET = "INSERT INTO user_pet(pet_id,pet_name,pet_type,pet_age,user_id,pet_gender,pet_img) VALUES((user_pet_seq.NEXTVAL),?,?,?,'abc123',?,?)";
+	private final String INSERT_PET = "INSERT INTO user_pet(pet_id,pet_name,pet_type,pet_age,user_id,pet_gender,pet_img) VALUES((user_pet_seq.NEXTVAL),?,?,?,?,?,?)";
 	private final String COUNT_PET = "select count(*) from user_pet where user_id=?";
 	
 	//230130 최지혁
@@ -28,7 +28,7 @@ public class PetDAO {
 	public void insertPet(PetVO vo) {
 		System.out.println("--->insert pet start.....");
 		try{
-			Object[] obj = {vo.getName(),vo.getType(),vo.getAge(),vo.getUser_id(),vo.getImg()};
+			Object[] obj = {vo.getName(),vo.getType(),vo.getAge(),vo.getUser_id(),vo.getGender(),vo.getImg()};
 			jdbcTemplate.update(INSERT_PET,obj);
 		}catch (Exception e) {
 			System.out.println(e);

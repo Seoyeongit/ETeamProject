@@ -72,7 +72,7 @@
 		<input type="radio" name="gender" value="m" id="pet_gender">남자<br>
 		${userPet }
 		
-		<input type="hidden" name="user_id" value="${userPet.voU.user_id}">
+		<input type="text" name="user_id" value="${member.user_id}">
 
 		<input type="submit" value="제출하기">
 	</form>

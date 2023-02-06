@@ -14,6 +14,7 @@ import com.forpets.biz.pet.PetVO;
 import com.forpets.biz.reserve.ReServeVO;
 import com.forpets.biz.reserve.ReserveService;
 import com.forpets.biz.reserve.impl.ReserveDAO;
+import com.forpets.biz.user.UserVO;
 
 @Controller
 @SessionAttributes("Reserve")
@@ -27,12 +28,15 @@ public class ReserveController {
 	 */
 	
 	@RequestMapping(value = "/myInfo/check-reservation")
-	public String viewReserveList (ReServeVO vo, ReserveDAO reserveDAO, Model model) {
+	public String viewReserveList (ReServeVO vo, ReserveDAO reserveDAO, Model model,HttpSession session) {
 		System.out.println("--->Enter in Reserve-check page....");
 		
+		UserVO SessionVO = (UserVO) session.getAttribute("member");
+		vo.setUser_id(SessionVO.getUser_id());
+		
 		try {
-			model.addAttribute("resultCnt", reserveService.selectCount());
-			model.addAttribute("resultCP", reserveService.selectCompleteCount());
+			model.addAttribute("resultCnt", reserveService.selectCount(vo));
+			model.addAttribute("resultCP", reserveService.selectCompleteCount(vo));
 			model.addAttribute("reserveList", reserveService.getReserveList(vo));
 			
 			System.out.println(model.toString());

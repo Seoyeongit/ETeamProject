@@ -17,8 +17,8 @@ public class ReserveDAO {
 	private JdbcTemplate jdbcTemplate;
 	private final String RESERVE_LIST = "SELECT * FROM RESERVE,PARTNERS,USER_PET WHERE RESERVE.PART_ID= PARTNERS.PART_ID and reserve.pet_id = user_pet.pet_id AND reserve.USER_ID=? ORDER BY RESERVE.STATUS";
 	private final String GET_PETNAME = "select user_pet.pet_name from reserve,user_pet where reserve.pet_id = user_pet.pet_id;";
-	private final String COUNT_RESERVE = "select count(*) from reserve,users where reserve.user_id = users.user_id and reserve.status in(1,2) and reserve.user_id='abc123'";
-	private final String COUNT_COMPLETE_RESERVE = "select count(*) from reserve,users where reserve.user_id = users.user_id and reserve.status=3 and reserve.user_id='abc123'";
+	private final String COUNT_RESERVE = "select count(*) from reserve,users where reserve.user_id = users.user_id and reserve.status in(1,2) and reserve.user_id=?";
+	private final String COUNT_COMPLETE_RESERVE = "select count(*) from reserve,users where reserve.user_id = users.user_id and reserve.status=3 and reserve.user_id=?";
 	
 	//230130 최지혁
 	private final String RESERVE_INSERT = "insert into reserve(reserve_num,"
@@ -37,18 +37,20 @@ public class ReserveDAO {
 	/*
 	 * 예약내역수를 조회하는 메서드
 	 */
-	public int selectCount() {
+	public int selectCount(ReServeVO vo) {
 		int result = 0;
-		result = jdbcTemplate.queryForObject(COUNT_RESERVE, Integer.class);
+		Object[] obj = {vo.getUser_id()};
+		result = jdbcTemplate.queryForObject(COUNT_RESERVE,obj, Integer.class);
 		return result;
 	}
 	
 	/*
 	 * 예약완료내역수를 조회하는 메서드
 	 */
-	public int selectCompleteCount() {
+	public int selectCompleteCount(ReServeVO vo) {
 		int resultCP = 0;
-		resultCP = jdbcTemplate.queryForObject(COUNT_COMPLETE_RESERVE, Integer.class);
+		Object[] obj = {vo.getUser_id()};
+		resultCP = jdbcTemplate.queryForObject(COUNT_COMPLETE_RESERVE,obj, Integer.class);
 		return resultCP;
 	}
 	

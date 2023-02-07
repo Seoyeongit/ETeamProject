@@ -106,7 +106,7 @@
 	<h1>설문지 작성하기</h1>
 
 <form action="insertsurvey.do" method="post">
-	<input type="hidden" value="" id="survey_count" name="survey_count">
+	<input type="hidden" value="1" id="survey_count" name="survey_count">
 	<input type="hidden" value="sur${date}" name="c_code">
 	<p>설문지 제목 : <input type="text" placeholder="설문지 제목을 입력하세요." size=80></p>
 	

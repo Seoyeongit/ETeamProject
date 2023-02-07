@@ -20,6 +20,7 @@
 </head>
 <body>
 	<ul>
+		<li><a href="${pageContext.request.contextPath}/">홈</a></li>
 		<li><a href="${pageContext.request.contextPath}/Service/choice">서비스 예약</a></li>
 		<li><a href="${pageContext.request.contextPath}/FindHospital/findHospital">근처 병원 찾기</a></li>
 		<li><a href="${pageContext.request.contextPath}/Tip/getTipList">Tip 게시판</a></li>
@@ -69,9 +70,11 @@
 					<td align="center"><span>${serv.s_name }</span></td>
 					<td align="center"><span>${serv.s_price }</span></td>
 				</tr>
-				<c:if test="${reserve.pick_add != null && reserve.pick_add != '' }">
-						<tr><td align="center" colspan="2"><span id="pickadd">픽업 주소 : ${reserve.pick_add }</span></td></tr>
-				</c:if>
+				<c:choose>
+					<c:when test="${reserve.pick_add != null && reserve.pick_add != '' }">
+							<tr><td align="center" colspan="2"><span id="pickadd">픽업 주소 : ${reserve.pick_add }</span></td></tr>
+					</c:when>
+				</c:choose>
 			</table>
 		</form>
 		<hr>

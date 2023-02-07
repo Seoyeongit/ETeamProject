@@ -14,6 +14,7 @@ import com.forpets.biz.pet.PetVO;
 import com.forpets.biz.reserve.ReServeVO;
 import com.forpets.biz.reserve.ReserveService;
 import com.forpets.biz.reserve.impl.ReserveDAO;
+import com.forpets.biz.user.UserVO;
 
 @Controller
 @SessionAttributes("Reserve")
@@ -44,22 +45,35 @@ public class ReserveController {
 		return "myInfo/my_reserve";
 	}	
 	
+	@RequestMapping(value="/Service/choice")
+	public String choice(UserVO vo, HttpSession session) {
+		System.out.println("---> choice 실행");
+		if(session.getAttribute("member") == null) {
+			System.out.println("---> choice 완료, login 이동");
+			return "member/login";
+		}
+		else {
+			System.out.println("---> choice 완료, choice 이동");
+			return "Service/choice";
+		}
+		
+	}
 	
 	@RequestMapping(value="/Service/reserve")
 	public String reserve(ReServeVO vo, ReserveDAO reserveDAO, HttpSession session, HttpServletRequest request) {
-		System.out.println("---> reserve.do 실행");
+		System.out.println("---> reserve 실행");
 		session.setAttribute("reserve", reserveService.makeReserve(vo, request));
-		System.out.println("---> reservo.do 완료");
+		System.out.println("---> reservo 완료");
 		return "Service/reserve";
 	}
 	
 	@RequestMapping(value="/Service/reserveInsert")
 	public String insertReserve(ReServeVO vo, PetVO pvo, Model model, HttpSession session) {
-		System.out.println("---> reserveInsert.do 실행");
+		System.out.println("---> reserveInsert 실행");
 		pvo = (PetVO) session.getAttribute("pet_info");
 		vo = (ReServeVO) session.getAttribute("reserve");
 		reserveService.insertReserve(vo, pvo);
-		System.out.println("---> reserveInsert.do 완료");
+		System.out.println("---> reserveInsert 완료");
 		return "Service/complete";
 	}
 	

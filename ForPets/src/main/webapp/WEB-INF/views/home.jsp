@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -35,8 +34,16 @@
                         <li class="nav-item"><a class="nav-link" href="communitylist.do">소모임</a></li>
                         <li class="nav-item"><a class="nav-link" href="#review">리뷰보기</a></li>
                         <li class="nav-item"><a class="nav-link" href="#customer">고객센터</a></li>
+                       
+                        <c:choose>
+                        <c:when test="${memeber.user_id eq '' || member.user_id eq null }"><li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/login">로그인</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/login">회원가입</a></li></c:when>
+                        <c:otherwise>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/myInfo/main">마이페이지</a></li>
                         <li class="nav-item"><a class="nav-link" href="#logout">로그아웃</a></li>
+                        </c:otherwise>
+                        </c:choose>
+                   
                     </ul>
                 </div>
             </div>
@@ -279,3 +286,4 @@
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>
+

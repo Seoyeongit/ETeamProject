@@ -7,7 +7,7 @@
         <div class="info">
             <div class="">
                 <label for="user_id" class="form-label" >아이디</label>
-                <input type="text" class="form-control" id="user_id" value="${userInfo.user_id}" name="user_id" readonly="readonly">
+                <input type="text" class="form-control" id="user_id" value="${member.user_id}" name="user_id" readonly="readonly">
             </div>
         </div>
 
@@ -15,7 +15,7 @@
             <div class="col-sm-4">
                 <label for="inputPassword" class="col-form-label">비밀번호</label>
                 <div class="col-sm-10">
-				<input type="password" class="form-control" id="user_pw" name="user_pw" value="${userInfo.user_pw }">
+				<input type="password" class="form-control" id="user_pw" name="user_pw" value="${member.user_pw }">
                 </div>
             </div>
             <div class="col-sm-4">
@@ -31,13 +31,13 @@
             <div class="col-sm-4">
                 <label for="user_name" class="col-form-label">이름</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="user_name" value="${userInfo.user_name}" name="user_name">
+                    <input type="text" class="form-control" id="user_name" value="${member.user_name}" name="user_name">
                 </div>
             </div>
             <div class="col-sm-4">
                 <label for="user_nick" class="col-form-label">닉네임</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="user_nick" value="${userInfo.user_nick}" name="user_nick">
+                    <input type="text" class="form-control" id="user_nick" value="${member.user_nick}" name="user_nick">
                 </div>
             </div>
         </div>
@@ -45,19 +45,19 @@
         <div class="info">
             <div class="">
                 <label for="user_phnumber" class="form-label" >전화번호</label>
-                <input type="text" class="form-control" id="user_phnumber" value="${userInfo.phnumber}" name="phnumber">
+                <input type="text" class="form-control" id="user_phnumber" value="${member.phnumber}" name="phnumber">
             </div>
         </div>
 
         <div class="info">
             <div class="">
                 <label for="exampleFormControlInput1" class="form-label" >주소</label>
-                <p>현재주소 : ${userInfo.user_add}</p>
+                <p>현재주소 : ${member.user_add}</p>
                 <input type="text"class="form-control" id="address_input_1" readonly="readonly" placeholder="우편번호">
                 <input type="button" onclick="execution_kakao_address()" value="우편번호 찾기"><br>
                 <input type="text" class="form-control"  id="address_input_2" readonly="readonly" placeholder="주소"><br>
                 <input type="text" class="form-control"  id="address_input_3" readonly="readonly" placeholder="상세주소"><br>
-                <input type="hidden" id="result_userAdd" value="${userInfo.user_add}" name="user_add">
+                <input type="hidden" id="result_userAdd" value="${member.user_add}" name="user_add">
             </div>
         </div>
     </div>

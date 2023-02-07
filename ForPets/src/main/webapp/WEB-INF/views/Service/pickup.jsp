@@ -54,7 +54,7 @@ $(document).ready(function(){
 	</ul>
 	<center>
 		<form action="reserve" method="post">
-			<input type="hidden" value="abc123" name="user_id">
+			<input type="hidden" value="${member.user_id }" name="user_id">
 			<input type="hidden" id="pet_id" name="pet_id">
 			<input type="hidden" value="1" id="s_num" name="s_num">
 			<p>반려동물 정보</p>
@@ -70,7 +70,7 @@ $(document).ready(function(){
 				</tr>
 			</table>
 			<br>
-			<input type="button" value="선택" onclick="getPetListPopUp()">
+			<input type="button" value="선택" onclick="getPetListPopUp('${member.user_id}')">
 			<hr>
 			<p>서비스 선택</p>
 			<table id="choiceService">
@@ -88,17 +88,24 @@ $(document).ready(function(){
 			<hr>
 			<p>날짜 및 시간</p>
 			<label for="date"><input type="date" id="date" name="reserve_day"></label>
-			<label for="time-select">
-				<select id = "time-select" name="reserve_time">
-				<%
-					for(int i=12;i<=20;i++) {
-				%>
-					<option value="<%=i%>:00"><%=i%>:00</option>
-				<%
-					}
-				%>
-				</select>
-			</label>
+			<select name="reserve_start">
+			<%
+				for(int i=12;i<=20;i++) {
+			%>
+				<option value="<%=i%>:00"><%=i%>:00</option>
+			<%
+				}
+			%>
+			</select>부터
+			<select name="reserve_end">
+			<%
+				for(int i=12;i<=20;i++) {
+			%>
+				<option value="<%=i%>:00"><%=i%>:00</option>
+			<%
+				}
+			%>
+			</select>까지
 			<br>
 			<p>주소</p>
 			<table>

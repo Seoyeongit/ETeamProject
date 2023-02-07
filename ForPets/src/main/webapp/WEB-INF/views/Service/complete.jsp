@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
@@ -64,9 +65,11 @@
 					<td align="center"><span>${serv.s_name }</span></td>
 					<td align="center"><span>${serv.s_price }</span></td>
 				</tr>
-				<c:if test="${reserve.pick_add != null && reserve.pick_add != '' }">
-						<tr><td align="center" colspan="2"><span id="pickadd">픽업 주소 : ${reserve.pick_add }</span></td></tr>
-				</c:if>
+				<c:choose>
+					<c:when test="${reserve.pick_add != null && reserve.pick_add != '' }">
+							<tr><td align="center" colspan="2"><span id="pickadd">픽업 주소 : ${reserve.pick_add }</span></td></tr>
+					</c:when>
+				</c:choose>
 			</table>
 	</center>
 </body>

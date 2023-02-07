@@ -15,10 +15,11 @@ import com.forpets.biz.reserve.ReServeVO;
 public class ReserveDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	private final String RESERVE_LIST = "SELECT * FROM RESERVE,PARTNERS,USER_PET WHERE RESERVE.PART_ID= PARTNERS.PART_ID and reserve.pet_id = user_pet.pet_id AND reserve.USER_ID=?";
+	private final String RESERVE_LIST = "SELECT * FROM RESERVE,PARTNERS,USER_PET WHERE RESERVE.PART_ID= PARTNERS.PART_ID and reserve.pet_id = user_pet.pet_id AND reserve.USER_ID=? ORDER BY RESERVE.STATUS";
+	private final String RESERVE_COMPLETELIST = "SELECT * FROM RESERVE,PARTNERS,USER_PET WHERE RESERVE.PART_ID= PARTNERS.PART_ID and reserve.pet_id = user_pet.pet_id AND reserve.USER_ID=? ORDER BY RESERVE_NUM DESC";
 	private final String GET_PETNAME = "select user_pet.pet_name from reserve,user_pet where reserve.pet_id = user_pet.pet_id;";
-	private final String COUNT_RESERVE = "select count(*) from reserve,users where reserve.user_id = users.user_id and reserve.status in(1,2) and reserve.user_id='abc123'";
-	private final String COUNT_COMPLETE_RESERVE = "select count(*) from reserve,users where reserve.user_id = users.user_id and reserve.status=3 and reserve.user_id='abc123'";
+	private final String COUNT_RESERVE = "select count(*) from reserve,users where reserve.user_id = users.user_id and reserve.status in(1,2) and reserve.user_id=?";
+	private final String COUNT_COMPLETE_RESERVE = "select count(*) from reserve,users where reserve.user_id = users.user_id and reserve.status=3 and reserve.user_id=?";
 	
 	//230130 최지혁
 	private final String RESERVE_INSERT = "insert into reserve(reserve_num,"
@@ -29,26 +30,34 @@ public class ReserveDAO {
 	public List<ReServeVO> getReserveList(ReServeVO vo){
 		System.out.println("---> jdbcTemplate로 getReserveList() 기능 처리");
 		
-		vo.setUser_id("abc123");
 		Object[] orgs = {vo.getUser_id()};		
 		return jdbcTemplate.query(RESERVE_LIST,orgs,new ReserveRowMapper());
+	}
+	
+	public List<ReServeVO> getCPTReserveList(ReServeVO vo) {
+		System.out.println("---> jdbcTemplate로 getCPTReserveList() 기능 처리");
+		
+		Object[] orgs = {vo.getUser_id()};		
+		return jdbcTemplate.query(RESERVE_COMPLETELIST,orgs,new ReserveRowMapper());
 	}
 	
 	/*
 	 * 예약내역수를 조회하는 메서드
 	 */
-	public int selectCount() {
+	public int selectCount(ReServeVO vo) {
 		int result = 0;
-		result = jdbcTemplate.queryForObject(COUNT_RESERVE, Integer.class);
+		Object[] obj = {vo.getUser_id()};
+		result = jdbcTemplate.queryForObject(COUNT_RESERVE,obj, Integer.class);
 		return result;
 	}
 	
 	/*
 	 * 예약완료내역수를 조회하는 메서드
 	 */
-	public int selectCompleteCount() {
+	public int selectCompleteCount(ReServeVO vo) {
 		int resultCP = 0;
-		resultCP = jdbcTemplate.queryForObject(COUNT_COMPLETE_RESERVE, Integer.class);
+		Object[] obj = {vo.getUser_id()};
+		resultCP = jdbcTemplate.queryForObject(COUNT_COMPLETE_RESERVE,obj, Integer.class);
 		return resultCP;
 	}
 	
@@ -63,7 +72,7 @@ public class ReserveDAO {
 	public ReServeVO makeReserve(ReServeVO vo, HttpServletRequest request) {
 		ReServeVO reserve = new ReServeVO();
 		reserve.setReserve_day(request.getParameter("reserve_day"));
-		reserve.setReserve_time(request.getParameter("reserve_time"));
+		reserve.setReserve_time(request.getParameter("reserve_start")+"~"+request.getParameter("reserve_end"));
 		reserve.setReserve_add(request.getParameter("address") + " " + request.getParameter("detailAddress"));
 		reserve.setS_num(Integer.parseInt(request.getParameter("s_num")));
 		reserve.setUser_id(request.getParameter("user_id"));

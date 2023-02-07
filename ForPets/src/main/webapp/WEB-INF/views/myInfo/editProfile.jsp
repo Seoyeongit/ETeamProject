@@ -1,32 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-
-</head>
-
-<body>
     <h2>회원 정보 수정</h2>
     <p>사이트 이용에 필요한 정보들을 입력합니다.</p>
 
     <div class="container-sm text-bg-light">
-    <form action="../myInfo/edit" method="POST">
         <div class="info">
             <div class="">
                 <label for="user_id" class="form-label" >아이디</label>
-                <input type="text" class="form-control" id="user_id" value="${userInfo.user_id}" name="user_id" readonly="readonly">
+                <input type="text" class="form-control" id="user_id" value="${member.user_id}" name="user_id" readonly="readonly">
             </div>
         </div>
 
@@ -34,7 +15,7 @@
             <div class="col-sm-4">
                 <label for="inputPassword" class="col-form-label">비밀번호</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword" name="user_pw" value="${userInfo.user_pw }">
+				<input type="password" class="form-control" id="user_pw" name="user_pw" value="${member.user_pw }">
                 </div>
             </div>
             <div class="col-sm-4">
@@ -50,13 +31,13 @@
             <div class="col-sm-4">
                 <label for="user_name" class="col-form-label">이름</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="user_name" value="${userInfo.user_name}" name="user_name">
+                    <input type="text" class="form-control" id="user_name" value="${member.user_name}" name="user_name">
                 </div>
             </div>
             <div class="col-sm-4">
                 <label for="user_nick" class="col-form-label">닉네임</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="user_nick" value="${userInfo.user_nick}" name="user_nick">
+                    <input type="text" class="form-control" id="user_nick" value="${member.user_nick}" name="user_nick">
                 </div>
             </div>
         </div>
@@ -64,26 +45,26 @@
         <div class="info">
             <div class="">
                 <label for="user_phnumber" class="form-label" >전화번호</label>
-                <input type="text" class="form-control" id="user_phnumber" value="${userInfo.phnumber}" name="phnumber">
+                <input type="text" class="form-control" id="user_phnumber" value="${member.phnumber}" name="phnumber">
             </div>
         </div>
 
         <div class="info">
             <div class="">
                 <label for="exampleFormControlInput1" class="form-label" >주소</label>
-                <p>현재주소 : ${userInfo.user_add}</p>
+                <p>현재주소 : ${member.user_add}</p>
                 <input type="text"class="form-control" id="address_input_1" readonly="readonly" placeholder="우편번호">
                 <input type="button" onclick="execution_kakao_address()" value="우편번호 찾기"><br>
                 <input type="text" class="form-control"  id="address_input_2" readonly="readonly" placeholder="주소"><br>
                 <input type="text" class="form-control"  id="address_input_3" readonly="readonly" placeholder="상세주소"><br>
-                <input type="hidden" id="result_userAdd" value="${userInfo.user_add}" name="user_add">
+                <input type="hidden" id="result_userAdd" value="${member.user_add}" name="user_add">
             </div>
         </div>
     </div>
     <div>
-        <input type="submit" value="수정하기">
+        <input type="button" value="수정하기" id="edituserInfo">
+        <input type="button" value="돌아가기" id="backMainPage">
     </div>
-</form>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -112,11 +93,11 @@ function execution_kakao_address() {
             $("#address_input_3").focus();
 
             $("#result_userAdd").val(addr);
-        }
-    }).open();
-}
+        	}
+    	}).open();
+	}
     
-    $('form').submit(function(){
+    $('#edituserInfo').click(function(){
     	if(addr !== '' ){
     	addr += ' ' + $("#address_input_3").val();
         $("#result_userAdd").val(addr);
@@ -128,13 +109,32 @@ function execution_kakao_address() {
     		return false;
     	}
     	
-
-    })
-
-
-
+    	$.ajax({
+    		url:"../myInfo/edit",
+    		data : {
+    			user_id:$("#user_id").val(),
+    			user_pw:$("#user_pw").val(),
+    			user_name:$("#user_name").val(),
+    			user_nick:$("#user_nick").val(),
+    			phnumber:Number($("#user_phnumber").val()),
+    			user_add:$("#result_userAdd").val()
+    		},
+    		dataType : "text",
+    		type : "GET",
+    		success : function(result){
+    			alert("회원정보수정 성공했습니다.")
+    			location.replace('../myInfo/main');								
+			},
+			error : function(result){
+				console.log(result);
+				
+				alert("오류가났습니다..");
+			}
+    	});    	
+    });
     
-</script>
-</body>
+	$("div #backMainPage").on("click",function(){
+		location.replace('../myInfo/main');
+	});
 
-</html>
+ </script>

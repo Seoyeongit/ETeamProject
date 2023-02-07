@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>Kakao 지도 시작하기</title>
+<title>반려동물산책로등록</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
@@ -42,7 +42,7 @@
 		var geocoder = new kakao.maps.services.Geocoder();
 
 		// 유저의주소값을 가져온다
-		var userAdd = '<c:out value="${userPet.voU.user_add}"/>';
+		var userAdd = '<c:out value="${member.user_add}"/>';
 
 		// 주소로 좌표를 검색합니다
 		geocoder.addressSearch(userAdd, function (result, status) {
@@ -213,7 +213,7 @@
 		
 		$("#create").click(function(){
 			
-			var userId = '<c:out value="${userPet.voU.user_id}"/>';
+			var userId = '<c:out value="${member.user_id}"/>';
 			
 			//필터를통해서 empty를 삭제합니다.
 			let newWorkX = workX.filter(()=>true);

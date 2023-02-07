@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+<title>예약확인하기</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <style>
     body{
@@ -61,7 +61,7 @@
 <body>
     <div>
         <header>
-        <h5>안녕하세요 ${userPet.voU.user_nick}님 <a href="#">로그아웃</a></h5>
+        <h5>안녕하세요 ${member.user_nick}님 <a href="#">로그아웃</a></h5>
         </header>
     </div>
 <div class="row container my-5 rounded">

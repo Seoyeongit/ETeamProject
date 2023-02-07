@@ -120,9 +120,9 @@
                                         <h5 class="title mb-0">${userPet.name }
                                         <c:choose>
                                         	<c:when test="${userPet.gender eq 'm'.charAt(0) }">♂️</c:when>
-                                        	<c:when test="${userPet.gender eq 'w'.charAt(0) }">♀️</c:when>
+                                        	<c:when test="${userPet.gender eq 'f'.charAt(0) }">♀️</c:when>
                                         </c:choose>
-                                        <p class="text-muted mt-3">${userPet.age }</p>
+                                        <p class="text-muted mt-3">나이 : ${userPet.age }살</p>
                                         <a href="${pageContext.request.contextPath}/myInfo/my-petView"
                             			onclick="window.open(this.href, '_blank', 'width=500, height=800'); return false;">
 										<input type="button" id="register_pet" value="반려동물 등록하기"></a>
@@ -162,7 +162,9 @@
                                 </tr>
                                 <tr>
                                     <td>파트너와채팅</td>
-                                    <td>후기작성</td>
+                                    <td> <a href="${pageContext.request.contextPath}/myInfo/review"
+                                    onclick="window.open(this.href, '_blank', 'width=620, height=700'); return false;">
+                                    	후기작성하기</a></td>
                                 </tr>
                             </table>
                         </div>

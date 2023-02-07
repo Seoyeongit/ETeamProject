@@ -52,7 +52,7 @@ public class WorkController {
 		return new ResponseEntity<String>("success", HttpStatus.OK);
 		
 	}
-	
+	 
 	
 	@RequestMapping(value = "/myInfo/selectWork")
 	public String selectWork(WorkVO vo, WorkDAO workDAO, Model model, HttpSession session) {

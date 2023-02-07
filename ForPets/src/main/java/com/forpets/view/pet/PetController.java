@@ -34,7 +34,6 @@ import com.forpets.biz.pet.impl.WorkDAO;
 import com.forpets.biz.user.UserVO;
 
 @Controller
-@SessionAttributes("UserPet")
 public class PetController{
 	@Autowired
 	private PetService petService;
@@ -44,7 +43,6 @@ public class PetController{
 	@RequestMapping(value = "/myInfo/my-petReg", method = RequestMethod.POST)
 	public String insertPet(PetVO vo, PetDAO petDAO) {
 		System.out.println("==>pet insert start");
-		System.out.println(vo.toString());
 		
 		petService.insertPet(vo);
 		return "myInfo/main";
@@ -68,13 +66,11 @@ public class PetController{
 	
 	//main화면에 들어올때 pet등록정보를 가져온다.
 	@RequestMapping(value="/myInfo/main")
-	public String getPetInfo(PetVO vo, PetDAO petDAO, HttpSession session,WorkVO voW, WorkDAO workDAO,Model model) {
+	public String getPetInfo(PetVO vo, PetDAO petDAO, HttpSession session,Model model) {
 		System.out.println("===>pet get start");
 		
 		UserVO SessionVO = (UserVO) session.getAttribute("member");
-		System.out.println(SessionVO.toString());
-		
-		vo.setVoU(SessionVO);
+		vo.setUser_id(SessionVO.getUser_id());
 		
 		int result = petService.countPet(vo);
 		//유저의펫이 한마리라면 userpet을 session으로 
@@ -199,7 +195,7 @@ public class PetController{
 		
 		UserVO SessionVO = (UserVO) session.getAttribute("member");
 		
-		vo.setVoU(SessionVO);
+//		vo.setVoU(SessionVO);
 		session.setAttribute("userPet", petService.getPetInfo(vo));
 		
 		voW.setUser_id(SessionVO.getUser_id());

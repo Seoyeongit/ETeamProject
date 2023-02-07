@@ -61,7 +61,7 @@
 <body>
     <div>
         <header>
-        <h5>안녕하세요 ${userPet.voU.user_nick}님 <a href="#">로그아웃</a></h5>
+        <h5>안녕하세요 ${member.user_nick}님 <a href="#">로그아웃</a></h5>
         </header>
     </div>
 <div class="row container my-5 rounded">

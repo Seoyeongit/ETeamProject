@@ -70,15 +70,41 @@
 		<label for="pet_gender">성별</label> 
 		<input type="radio" name="gender" value="f" id="pet_gender">여자 
 		<input type="radio" name="gender" value="m" id="pet_gender">남자<br>
-		${userPet }
 		
-		<input type="text" name="user_id" value="${member.user_id}">
+		<input type="text" name="user_id" value="${member.user_id}" id="user_id">
 
 		<input type="submit" value="제출하기">
 	</form>
 
 
 	<script type="text/javascript">
+		$('form').submit(function(){
+			
+			$.ajax({
+				url:"../myInfo/my-petReg",
+				dataType:text,
+				type:'POST',
+				data : {
+					img : $('#imgSrc').val(),
+					name : $('#pet_name').val(),
+					age : $('#pet_age').val(),
+					type : $('#pet_type').val(),
+					gender : $('#pet_gender').val(),
+					user_id : $('#user_id').val()
+				},
+				success : function(){
+					alert("등록되었습니다.")
+					opener.parent.location.reload();
+					window.close();
+				},
+				error : function(){
+					alert("등록에 실패했습니다.")
+					location.reload();
+				}
+			});
+		});
+	
+	
 		/* 이미지 업로드 */
 		$("input[type='file']").on("change", function(e) {
 			
@@ -134,7 +160,7 @@
 			str += "<div id='result_card'>";
 			str += "<img src=../myInfo/display?fileName=" + fileCallPath + ">";
 			str += "<div class = 'imgDeleteBtn' data-file='"+fileCallPath+"'>x</div>";
-			str += "<input type='text' name='img' value='"+fileCallPath+"'>";
+			str += "<input type='text' name='img' id='imgSrc' value='"+fileCallPath+"'>";
 			str += "</div>";
 
 			uploadResult.html(str);

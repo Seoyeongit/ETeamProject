@@ -279,11 +279,11 @@ CREATE TABLE tip_board
 ALTER TABLE tip_board ADD CONSTRAINT tip_seq PRIMARY KEY (tip_seq);
 
 -- tip_board table 초기값
-INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tb_seq.NEXTVAL),'꿀팁','꿀팁입니당',NULL,NULL,1,NULL);
-INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tb_seq.NEXTVAL),'전수','전수입니당',NULL,NULL,1,NULL);
-INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tb_seq.NEXTVAL),'강아지','꿀팁입니당',NULL,NULL,1,NULL);
-INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tb_seq.NEXTVAL),'고양이','꿀팁입니당',NULL,NULL,1,NULL);
-INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tb_seq.NEXTVAL),'애들','꿀팁입니당',NULL,NULL,1,NULL);
+INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tip_board_seq.NEXTVAL),'꿀팁','꿀팁입니당',NULL,NULL,1,NULL);
+INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tip_board_seq.NEXTVAL),'전수','전수입니당',NULL,NULL,1,NULL);
+INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tip_board_seq.NEXTVAL),'강아지','꿀팁입니당',NULL,NULL,1,NULL);
+INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tip_board_seq.NEXTVAL),'고양이','꿀팁입니당',NULL,NULL,1,NULL);
+INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tip_board_seq.NEXTVAL),'애들','꿀팁입니당',NULL,NULL,1,NULL);
 
 
 --230203 연은비 DB수정리스트
@@ -375,7 +375,7 @@ CREATE TABLE user_pet
     pet_id NUMBER NOT NULL,
     pet_name VARCHAR2(20) NULL,
     pet_type VARCHAR2(20) NULL,
-    pet_img VARCHAR2(100) NULL,
+    pet_img VARCHAR2(2000) NULL,
     pet_age NUMBER(8) NULL,
     pet_gender CHAR(1) NULL,
     user_id VARCHAR2(20) NOT NULL

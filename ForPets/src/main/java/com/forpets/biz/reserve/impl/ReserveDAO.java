@@ -29,7 +29,6 @@ public class ReserveDAO {
 	public List<ReServeVO> getReserveList(ReServeVO vo){
 		System.out.println("---> jdbcTemplate로 getReserveList() 기능 처리");
 		
-		vo.setUser_id("abc123");
 		Object[] orgs = {vo.getUser_id()};		
 		return jdbcTemplate.query(RESERVE_LIST,orgs,new ReserveRowMapper());
 	}

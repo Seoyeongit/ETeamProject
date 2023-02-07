@@ -27,11 +27,24 @@ public class UserController {
 	
 	//회원정보수정처리
 	@RequestMapping(value="/myInfo/edit")
-	public String updateProfile(@ModelAttribute("member")UserVO vo, UserDAO userDAO) {
+	public String updateProfile(@ModelAttribute("member")UserVO vo, UserDAO userDAO,HttpServletRequest request) {
 		System.out.println("회원 정보 수정 처리");
 		System.out.println("member : " + vo.toString());
-		userService.updateUser(vo);
-		return "redirect:/myInfo/main";
+		
+		
+		//새로운 세션생성을 방지한다.
+		HttpSession session = request.getSession(false);
+		
+		//1.session이 있고 + 2.session정보가 있으면 
+		if(session != null && session.getAttribute("member") != null) { 
+		//updateform에있는 정보를 받아와 수정한다.
+			userService.updateUser(vo);
+			session.setAttribute("member", userService.getUser(vo));
+			return "redirect:/myInfo/main";
+		}
+		
+		return  "/";
+		
 	}
 	
 	//임시 >> 로그인.jsp View
@@ -47,7 +60,6 @@ public class UserController {
 		
 		if(userService.getUser(vo) != null) {
 			session.setAttribute("member", userService.getUser(vo));
-			System.out.println(session.getAttribute("member").toString());
 			return "redirect:/";
 		}else {
 			return "member/login";

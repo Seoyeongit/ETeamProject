@@ -18,8 +18,12 @@ public class PetDAO {
 	private JdbcTemplate jdbcTemplate;
 
 	
-	private final String GET_PETINFO =  "select * from user_pet,users  where user_pet.user_id = users.user_id and users.USER_ID = ?";
-	private final String INSERT_PET = "INSERT INTO user_pet(pet_id,pet_name,pet_type,pet_age,user_id,pet_gender,pet_img) VALUES((user_pet_seq.NEXTVAL),?,?,?,?,?,?)";
+	private final String GET_PETINFO =  "SELECT * FROM USER_PET WHERE USER_ID = ?";
+	private final String INSERT_PET = "INSERT INTO user_pet VALUES((user_pet_seq.NEXTVAL),?,?,?,?,?,?)";
+	
+	private final String INSERT_PET2 = "INSERT INTO user_pet(pet_id,PET_NAME,PET_TYPE,PET_IMG,PET_AGE,PET_GENDER,USER_ID) VALUES((user_pet_seq.NEXTVAL),?,?,?,?,chr(?),?)";
+	
+	
 	private final String COUNT_PET = "select count(*) from user_pet where user_id=?";
 	
 	//230130 최지혁
@@ -28,8 +32,9 @@ public class PetDAO {
 	public void insertPet(PetVO vo) {
 		System.out.println("--->insert pet start.....");
 		try{
-			Object[] obj = {vo.getName(),vo.getType(),vo.getAge(),vo.getUser_id(),vo.getGender(),vo.getImg()};
-			jdbcTemplate.update(INSERT_PET,obj);
+			char gender = vo.getGender();
+			int genderCode = gender;
+			jdbcTemplate.update(INSERT_PET2,vo.getName(),vo.getType(),vo.getImg(),vo.getAge(),genderCode,vo.getUser_id());
 		}catch (Exception e) {
 			System.out.println(e);
 			System.out.println("오류임");
@@ -37,13 +42,13 @@ public class PetDAO {
 	}
 	
 	public PetVO getPetInfo(PetVO vo) {
-		Object[] orgs = {vo.getVoU().getUser_id()};
+		Object[] orgs = {vo.getUser_id()};
 		return jdbcTemplate.queryForObject(GET_PETINFO,orgs, new PetRowMapper());
 	}
 	
 	public int countPet(PetVO vo) {
 		int result = 0;
-		Object[] orgs = {vo.getVoU().getUser_id()};
+		Object[] orgs = {vo.getUser_id()};
 		result = jdbcTemplate.queryForObject(COUNT_PET,orgs,Integer.class);
 		return result;
 	}

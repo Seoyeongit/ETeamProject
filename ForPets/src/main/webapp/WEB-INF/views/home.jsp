@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -37,15 +35,13 @@
                         <li class="nav-item"><a class="nav-link" href="#customer">고객센터</a></li>
                        
                         <c:choose>
-                        <c:when test="${empty user.user_id }"><li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/login">로그인</a></li>
+                        <c:when test="${member.user_id eq '' || member.user_id eq null}"><li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/login">로그인</a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/login">회원가입</a></li></c:when>
-                        <c:when test="${not empty user.user_id }">
+                        <c:otherwise>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/myInfo/main">마이페이지</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#logout">로그아웃</a></li>
-                        </c:when>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
+                        </c:otherwise>
                         </c:choose>
-                        
-                        <li>${member}</li>
                    
                     </ul>
                 </div>

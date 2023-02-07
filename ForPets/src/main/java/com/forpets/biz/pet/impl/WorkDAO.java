@@ -19,9 +19,9 @@ public class WorkDAO {
 								"SDO_ELEM_INFO_ARRAY(1,1003,3), " + 
 								"SDO_ORDINATE_ARRAY(";
 	
-	private final String SELECT_WORKLIST ="SELECT str_user_id, x, y, id\r\n" + 
-											"FROM user_work, TABLE(SDO_UTIL.GETVERTICES(user_work.geom))\r\n" + 
-											"WHERE STR_USER_ID=?\r\n" + 
+	private final String SELECT_WORKLIST ="SELECT str_user_id, x, y, id " + 
+											"FROM user_work, TABLE(SDO_UTIL.GETVERTICES(user_work.geom)) " + 
+											"WHERE STR_USER_ID=? " + 
 											"order by id";
 	
 	private final String DELETE_WORK = "delete from user_work where str_user_id=?"; 

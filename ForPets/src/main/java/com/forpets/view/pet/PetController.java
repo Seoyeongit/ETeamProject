@@ -67,14 +67,12 @@ public class PetController{
 	
 	//main화면에 들어올때 pet등록정보를 가져온다.
 	@RequestMapping(value="/myInfo/main")
-	public String getPetInfo(PetVO vo, PetDAO petDAO, HttpSession session,WorkVO voW, WorkDAO workDAO,Model model) {
+	public String getPetInfo(PetVO vo, PetDAO petDAO, HttpSession session,Model model) {
 		System.out.println("===>pet get start");
 		
-		UserVO voP = new UserVO();
-		voP.setUser_id("abc123");
-		voP.setUser_pw("123");
+		UserVO SessionVO = (UserVO) session.getAttribute("member");
+		vo.setUser_id(SessionVO.getUser_id());
 		
-		vo.setVoU(voP);
 		int result = petService.countPet(vo);
 		//유저의펫이 한마리라면 userpet을 session으로 
 		
@@ -199,7 +197,7 @@ public class PetController{
 		
 		UserVO voP = (UserVO) session.getAttribute("member");
 		
-		vo.setVoU(voP);
+//		vo.setVoU(voP);
 		session.setAttribute("userPet", petService.getPetInfo(vo));
 		
 		voW.setUser_id(voP.getUser_id());

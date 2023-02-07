@@ -11,11 +11,14 @@ public interface ReserveService {
 	//예약내역조회
 	List<ReServeVO> getReserveList(ReServeVO vo);
 	
+	//완료된예약내역조회
+	List<ReServeVO> getCPTReserveList(ReServeVO vo);
+	
 	//예약내역 수 조회
-	int selectCount();	
+	int selectCount(ReServeVO vo);	
 	
 	//예약완료 수 조회
-	int selectCompleteCount();
+	int selectCompleteCount(ReServeVO vo);
 	
 	//230130 최지혁
 	//Reserve Table에 데이터 추가

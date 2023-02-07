@@ -5,12 +5,13 @@ function show_pet() {
 function show_partner() {
 	$("#set_partner").show();
 }
-function getPetListPopUp(){
+function getPetListPopUp(user_id){
 	var url = "http://localhost:8000/biz/getPetList";
 	var name = "getPetList"
 	var option = "width = 500, height = 500, top = 100, left = 200, location = no";
 	window.open(url, name, option);
 }
+
 function getPartnerListPopUp() {
 	var url = "http://localhost:8000/biz/getPartnerList";
 	var name = "getPartnerList"

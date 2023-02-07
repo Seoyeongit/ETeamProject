@@ -25,13 +25,14 @@ function showPetWorkPopUp() {
 </head>
 <body>
 	<ul>
+		<li><a href="${pageContext.request.contextPath}/">홈</a></li>
 		<li><a href="${pageContext.request.contextPath}/Service/choice">서비스 예약</a></li>
 		<li><a href="${pageContext.request.contextPath}/FindHospital/findHospital">근처 병원 찾기</a></li>
 		<li><a href="${pageContext.request.contextPath}/Tip/getTipList">Tip 게시판</a></li>
 	</ul>
 	<center>
 		<form action="reserve" method="post">
-			<input type="hidden" value="abc123" name="user_id">
+			<input type="hidden" value="${member.user_id }" name="user_id">
 			<input type="hidden" id="pet_id" name="pet_id">
 			<input type="hidden" value="2" id="s_num" name="s_num">
 			<p>반려동물 정보</p>
@@ -50,24 +51,31 @@ function showPetWorkPopUp() {
 				</tr>
 			</table>
 			<br>
-			<input type="button" value="선택" onclick="getPetListPopUp()">
+			<input type="button" value="선택" onclick="getPetListPopUp('${member.user_id}')">
 			<hr>
 			<p>추가 서비스</p>
 			<p>기본 돌봄 등 추가 예정</p>
 			<hr>
 			<p>날짜 및 시간</p>
 			<label for="date"><input type="date" id="date" name="reserve_day"></label>
-			<label for="time-select">
-				<select id = "time-select" name="reserve_time">
-				<%
-					for(int i=12;i<=20;i++) {
-				%>
-					<option value="<%=i%>:00"><%=i%>:00</option>
-				<%
-					}
-				%>
-				</select>
-			</label>
+			<select name="reserve_start">
+			<%
+				for(int i=12;i<=20;i++) {
+			%>
+				<option value="<%=i%>:00"><%=i%>:00</option>
+			<%
+				}
+			%>
+			</select>부터
+			<select name="reserve_end">
+			<%
+				for(int i=12;i<=20;i++) {
+			%>
+				<option value="<%=i%>:00"><%=i%>:00</option>
+			<%
+				}
+			%>
+			</select>까지
 			<br>
 			<p>주소</p>
 			<table>

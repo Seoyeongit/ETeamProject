@@ -12,7 +12,7 @@
 	<center>
 		<div id="map" style="width: 500px; height: 400px;"></div>
 	</center>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=037898d01be77d2487543d1d6ea4c210&libraries=services,drawing"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=037898d01be77d2487543d1d6ea4c210&libraries=services,drawing,clusterer"></script>
 	<script type="text/javascript">
 		var mapContainer = document.getElementById('map'); // 지도를 표시할 div 
 		
@@ -30,8 +30,6 @@
 		
 		// 지도를 생성합니다    
 		var map = new kakao.maps.Map(mapContainer, mapOption);
-		
-		
 		
 		// 주소로 좌표를 검색합니다
 		geocoder.addressSearch(userAdd, function (result, status) {
@@ -54,8 +52,7 @@
 
 			// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 			map.setCenter(coords);
-
-			
+		
 		});
 		
 		// 다각형을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 다각형을 표시합니다
@@ -75,14 +72,48 @@
 		    strokeStyle: 'longdash', // 선의 스타일입니다
 		    fillColor: '#A2FF99', // 채우기 색깔입니다
 		    fillOpacity: 0.7 // 채우기 불투명도 입니다
+	        
 		});
 
 		// 지도에 다각형을 표시합니다
 		polygon.setMap(map);
 		
+		var WorkmarkerPosition  = polygonPath[0];
 		
-	
-	
+		 // 마커를 생성합니다
+	    var Workmarker = new kakao.maps.Marker({  
+	        map: map, 
+	        position: WorkmarkerPosition
+	    });
+		
+	    Workmarker.setMap(map);
+	    
+	    function searchDetailAddrFromCoords(coords, callback) {
+		    // 좌표로 상세 주소 정보를 요청합니다
+		    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+		}
+	    
+	    function displayInfowindow(marker) {	    
+		    searchDetailAddrFromCoords(marker.getPosition(), function(result, status) {
+		        if (status === kakao.maps.services.Status.OK) {
+		            var Addr = result[0].address.address_name;
+
+		            var iwContent = '<div style="padding:5px;">'+ Addr +'</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+
+			        // 인포윈도우를 생성합니다
+			        var infowindow = new kakao.maps.InfoWindow({
+			            position : WorkmarkerPosition, 
+			            content : iwContent 
+			        });
+		          
+		        // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+		        infowindow.open(map, marker); 
+		        }   
+		    });
+	    }
+	    
+	    displayInfowindow(Workmarker);
+		
 	</script>
 </body>
 </html>

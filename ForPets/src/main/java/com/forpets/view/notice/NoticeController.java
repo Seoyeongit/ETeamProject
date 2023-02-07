@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -52,10 +53,26 @@ public class NoticeController {
 	} 
 	
 	// 글 작성폼 보기
+	@RequestMapping(value="/Notice/noticeForm")
+	public String noticeForm() throws Exception {
+		System.out.println("---> noticeForm 이동");
+		return "/Notice/noticeForm";
+	}
+	
+	// 글 작성
 	@RequestMapping(value="/Notice/insertNotice")
-	public String insertNotice() throws Exception {
-		System.out.println("---> insertNotice 실행");
+	@ResponseBody
+	public String insertNotice(NoticeVO vo, NoticeDAO noticeDAO) throws Exception {
+		System.out.println("---> insertNotice 완료");
+		notService.insertNotice(vo);
 		return "/Notice/insertNotice";
+	}
+	
+	// 글 수정
+	@RequestMapping(value="/Notice/updateNotice")
+	public String updateNotice() throws Exception {
+		System.out.println("---> updateNotice 이동");
+		return "/Notice/updateNotice";
 	}
 	
 //	@RequestMapping(value="noticeBoard")

@@ -11,16 +11,15 @@
 </head>
 <body>
  <form action="updateBoard.do" method="post">
-
 <input name="seq" type="hidden" value="${getNoticeBoard.ntc_seq }" />
-<table border="1" cellpadding="0" cellspacing="0">
+<table>
 	<tr>
 		<td width="70">제목</td>
-		<td align="left"><input name="title" type="text" value="${getNoticeBoard.ntc_title}" /></td>
+		<td align="left"><input name="title" type="text" size="74" value="${getNoticeBoard.ntc_title}" /></td>
 	</tr>
 	<tr>
 		<td>내용</td>
-		<td align="left"><textarea name="content" cols="40" rows="10">${getNoticeBoard.ntc_ctnt}</textarea></td>
+		<td align="left"><textarea name="content" cols="70" rows="10">${getNoticeBoard.ntc_ctnt}</textarea></td>
 	</tr>
 	<tr>
 		<td>등록일</td>
@@ -31,13 +30,10 @@
 		<td align="left">${getNoticeBoard.ntc_hit }</td>
 	</tr>
 	<tr>
-		<td colspan="2" align="center"><input type="submit" value="글 수정" /></td>
+		<td colspan="2" align="right"><input type="submit" value="확인" /></td>
 	</tr>
 </table>
 </form>
 <hr>
-<a href="insertBoard.jsp">글등록</a>&nbsp;&nbsp;&nbsp;
-<a href="deleteBoard.do?seq=${getNoticeBoard.ntc_seq }">글삭제</a>&nbsp;&nbsp;&nbsp;
-<a href="noticeBoard">글목록</a>
 </body>
 </html>

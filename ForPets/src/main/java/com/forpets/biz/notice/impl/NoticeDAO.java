@@ -17,6 +17,11 @@ public class NoticeDAO {
 	
 	private final String NOTICE_LIST = "select * from NOTICE_BOARD order by ntc_seq DESC";
 	private final String GET_NOTICE = "select * from NOTICE_BOARD where ntc_seq=?";
+	private final String INSERT_NOTICE = "insert into NOTICE_BOARD(ntc_seq, ntc_title, ntc_ctnt, ntc_hit) "
+			+ "VALUES((ntc_seq.NEXTVAL), ?, ?, ?)";
+	
+	private final String HIT_NOTICE = "update NOTICE_BOARD set ntc_hit=?"
+			+ "where ntc_seq = ?";
 	
 	private final RowMapper<NoticeVO> noticeRowMapper = (resultSet, rowNum) -> {
 		NoticeVO newvo = new NoticeVO();
@@ -31,13 +36,19 @@ public class NoticeDAO {
 	
 	// 글 list
 	public List<NoticeVO> getNoticeList(NoticeVO vo) {
-		System.out.println("---> JDBC로 getNoticeList() 기능 처리");
+//		System.out.println("---> getNoticeList()");
 		return jdbcTemplate.query(NOTICE_LIST, noticeRowMapper);
 	}
 	
+	// 조회수
+	public void noticeHit(NoticeVO vo) {
+		jdbcTemplate.update(HIT_NOTICE, vo.getNtc_hit()+1, vo.getNtc_seq());
+	}
+	
+	
 	// 글 상세 조회
 	public NoticeVO getNoticeBoard(NoticeVO vo, int ntc_seq) {
-		System.out.println("---> JDBC로 getPartner() 기능 처리");
+//		System.out.println("---> getNoticeBoard()");
 		NoticeVO ntcvo = jdbcTemplate.queryForObject(GET_NOTICE,
 				(resultSet, rowNum) -> {
 					NoticeVO newvo = new NoticeVO();
@@ -47,15 +58,18 @@ public class NoticeDAO {
 					newvo.setNtc_ctnt(resultSet.getString("ntc_ctnt"));
 					newvo.setNtc_cdate(resultSet.getDate("ntc_cdate"));
 					newvo.setNtc_hit(resultSet.getInt("ntc_hit"));
+					newvo.setNtc_udate(resultSet.getDate("ntc_udate"));
 					return newvo;
 				}
 				, ntc_seq);
+			noticeHit(ntcvo);
 		return ntcvo;
 	}
 
+	// 글쓰기
 	public void insertNotice(NoticeVO vo) {
-		// TODO Auto-generated method stub
-		
+		jdbcTemplate.update(INSERT_NOTICE, vo.getNtc_title(), vo.getNtc_ctnt(), 0);
+//		System.out.println("---> insertNotice()");
 	}
 
 

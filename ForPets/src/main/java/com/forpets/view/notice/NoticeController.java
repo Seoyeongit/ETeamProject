@@ -17,7 +17,7 @@ import com.forpets.biz.notice.NoticeVO;
 import com.forpets.biz.notice.impl.NoticeDAO;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/Notice")
 @SessionAttributes("noticeBoard")
 public class NoticeController {
 
@@ -25,7 +25,7 @@ public class NoticeController {
 	private NoticeService notService;
 	
 	// 게시판 목록
-	@RequestMapping(value="/Notice/noticeBoard")
+	@RequestMapping(value="/noticeBoard")
 	public String noticeBoard(NoticeVO notvo, NoticeDAO noticeDAO, Model model) throws Exception {
 		System.out.println("---> getNoticeList 실행");
 		model.addAttribute("noticeBoard", notService.getNoticeList(notvo));	// Model 정보 저장
@@ -35,7 +35,7 @@ public class NoticeController {
 	
 	
 	// 게시판 글 상세보기
-	@RequestMapping(value="/Notice/getNoticeBoard.do/{ntc_seq}", method = RequestMethod.GET)
+	@RequestMapping(value="/getNoticeBoard.do/{ntc_seq}", method = RequestMethod.GET)
 	public String getNoticeBoard(NoticeVO vo, NoticeDAO noticeDAO, HttpSession session, @PathVariable(value="ntc_seq") int ntc_seq) {
 
 		System.out.println("글 상세 조회 처리");
@@ -53,14 +53,14 @@ public class NoticeController {
 	} 
 	
 	// 글 작성폼 보기
-	@RequestMapping(value="/Notice/noticeForm")
+	@RequestMapping(value="/noticeForm")
 	public String noticeForm() throws Exception {
 		System.out.println("---> noticeForm 이동");
 		return "/Notice/noticeForm";
 	}
 	
 	// 글 작성
-	@RequestMapping(value="/Notice/insertNotice")
+	@RequestMapping(value="/insertNotice")
 	@ResponseBody
 	public String insertNotice(NoticeVO vo, NoticeDAO noticeDAO) throws Exception {
 		System.out.println("---> insertNotice 완료");
@@ -69,7 +69,7 @@ public class NoticeController {
 	}
 	
 	// 글 수정
-	@RequestMapping(value="/Notice/updateNotice")
+	@RequestMapping(value="/updateNotice")
 	public String updateNotice() throws Exception {
 		System.out.println("---> updateNotice 이동");
 		return "/Notice/updateNotice";

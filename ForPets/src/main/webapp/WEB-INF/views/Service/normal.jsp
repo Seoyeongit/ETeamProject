@@ -27,7 +27,7 @@ $(document).ready(function(){
 		<li><a href="${pageContext.request.contextPath}/Tip/getTipList">Tip 게시판</a></li>
 	</ul>
 	<center>
-		<form action="reserve" method="post">
+		<form action="getService" method="post">
 			<input type="hidden" value="${member.user_id }" name="user_id">
 			<input type="hidden" id="pet_id" name="pet_id">
 			<input type="hidden" value="1" id="s_num" name="s_num">
@@ -47,7 +47,11 @@ $(document).ready(function(){
 			<input type="button" value="선택" onclick="getPetListPopUp('${member.user_id}')">
 			<hr>
 			<p>추가 서비스</p>
-			<p>산책 / 실내 놀이 등 추가 예정</p>
+			<label><input type="checkbox" name="s_num" value="21">샤워</label>
+			<label><input type="checkbox" name="s_num" value="22">훈련</label>
+			<hr>
+			<p>요청사항</p>
+			<input type="text" name="reserve_request" size="45">
 			<hr>
 			<p>날짜 및 시간</p>
 			<label for="date"><input type="date" id="date" name="reserve_day"></label>

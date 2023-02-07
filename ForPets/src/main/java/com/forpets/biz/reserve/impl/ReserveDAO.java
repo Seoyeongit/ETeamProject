@@ -24,8 +24,8 @@ public class ReserveDAO {
 	//230130 최지혁
 	private final String RESERVE_INSERT = "insert into reserve(reserve_num,"
 			+ " pet_name, pet_type, pet_age,"
-			+ " reserve_day, reserve_time, reserve_add, s_num, user_id, part_id, pick_add)"
-					+ "values((reserve_seq.NEXTVAL), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			+ " reserve_day, reserve_time, reserve_add, s_num, user_id, part_id, pick_add, reserve_request)"
+					+ "values((reserve_seq.NEXTVAL), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	
 	public List<ReServeVO> getReserveList(ReServeVO vo){
 		System.out.println("---> jdbcTemplate로 getReserveList() 기능 처리");
@@ -64,7 +64,7 @@ public class ReserveDAO {
 	//230130 최지혁
 	//Reserve Table에 데이터 추가
 	public void insertReserve(ReServeVO vo, PetVO pvo) {
-		jdbcTemplate.update(RESERVE_INSERT, pvo.getName(), pvo.getType(), pvo.getAge(), vo.getReserve_day(), vo.getReserve_time(), vo.getReserve_add(), vo.getS_num(), vo.getUser_id(), vo.getPart_id(), vo.getPick_add());
+		jdbcTemplate.update(RESERVE_INSERT, pvo.getName(), pvo.getType(), pvo.getAge(), vo.getReserve_day(), vo.getReserve_time(), vo.getReserve_add(), vo.getS_num(), vo.getUser_id(), vo.getPart_id(), vo.getPick_add(), vo.getReserve_request());
 	}
 	
 	//230130 최지혁
@@ -74,11 +74,12 @@ public class ReserveDAO {
 		reserve.setReserve_day(request.getParameter("reserve_day"));
 		reserve.setReserve_time(request.getParameter("reserve_start")+"~"+request.getParameter("reserve_end"));
 		reserve.setReserve_add(request.getParameter("address") + " " + request.getParameter("detailAddress"));
-		reserve.setS_num(Integer.parseInt(request.getParameter("s_num")));
+		//reserve.setS_num(Integer.parseInt(request.getParameter("s_num")));
 		reserve.setUser_id(request.getParameter("user_id"));
 		reserve.setPart_id(request.getParameter("part_id"));
 		reserve.setPet_id(Integer.parseInt(request.getParameter("pet_id")));
 		reserve.setPick_add(request.getParameter("pick_add"));
+		reserve.setReserve_request(request.getParameter("reserve_request"));
 		return reserve;
 	}
 

@@ -1,6 +1,10 @@
 package com.forpets.view.reserve;
 
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +18,7 @@ import com.forpets.biz.pet.PetVO;
 import com.forpets.biz.reserve.ReServeVO;
 import com.forpets.biz.reserve.ReserveService;
 import com.forpets.biz.reserve.impl.ReserveDAO;
+import com.forpets.biz.service.ServiceVO;
 import com.forpets.biz.user.UserVO;
 
 @Controller
@@ -90,7 +95,14 @@ public class ReserveController {
 		System.out.println("---> reserveInsert 실행");
 		pvo = (PetVO) session.getAttribute("pet_info");
 		vo = (ReServeVO) session.getAttribute("reserve");
-		reserveService.insertReserve(vo, pvo);
+		ArrayList<ServiceVO> svoList = (ArrayList) session.getAttribute("servList");
+		int count = svoList.toArray().length;
+		for(int i=0;i<count;i++) {
+			ServiceVO svo = svoList.get(i);
+			System.out.println(i+ "번째 s_num : " + svo.getS_num());
+			vo.setS_num(svo.getS_num());
+			reserveService.insertReserve(vo, pvo);
+		}
 		System.out.println("---> reserveInsert 완료");
 		return "Service/complete";
 	}

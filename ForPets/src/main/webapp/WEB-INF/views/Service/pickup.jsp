@@ -86,6 +86,9 @@ $(document).ready(function(){
 				</tr>
 			</table>
 			<hr>
+			<p>요청사항</p>
+			<input type="text" name="reserve_request" size="45">
+			<hr>
 			<p>날짜 및 시간</p>
 			<label for="date"><input type="date" id="date" name="reserve_day"></label>
 			<select name="reserve_start">

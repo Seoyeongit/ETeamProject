@@ -16,6 +16,7 @@ public class ReserveDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	private final String RESERVE_LIST = "SELECT * FROM RESERVE,PARTNERS,USER_PET WHERE RESERVE.PART_ID= PARTNERS.PART_ID and reserve.pet_id = user_pet.pet_id AND reserve.USER_ID=? ORDER BY RESERVE.STATUS";
+	private final String RESERVE_COMPLETELIST = "SELECT * FROM RESERVE,PARTNERS,USER_PET WHERE RESERVE.PART_ID= PARTNERS.PART_ID and reserve.pet_id = user_pet.pet_id AND reserve.USER_ID=? ORDER BY RESERVE_NUM DESC";
 	private final String GET_PETNAME = "select user_pet.pet_name from reserve,user_pet where reserve.pet_id = user_pet.pet_id;";
 	private final String COUNT_RESERVE = "select count(*) from reserve,users where reserve.user_id = users.user_id and reserve.status in(1,2) and reserve.user_id=?";
 	private final String COUNT_COMPLETE_RESERVE = "select count(*) from reserve,users where reserve.user_id = users.user_id and reserve.status=3 and reserve.user_id=?";
@@ -31,6 +32,13 @@ public class ReserveDAO {
 		
 		Object[] orgs = {vo.getUser_id()};		
 		return jdbcTemplate.query(RESERVE_LIST,orgs,new ReserveRowMapper());
+	}
+	
+	public List<ReServeVO> getCPTReserveList(ReServeVO vo) {
+		System.out.println("---> jdbcTemplate로 getCPTReserveList() 기능 처리");
+		
+		Object[] orgs = {vo.getUser_id()};		
+		return jdbcTemplate.query(RESERVE_COMPLETELIST,orgs,new ReserveRowMapper());
 	}
 	
 	/*

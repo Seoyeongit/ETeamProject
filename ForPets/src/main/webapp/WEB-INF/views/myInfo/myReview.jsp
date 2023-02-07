@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>  
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -132,31 +133,18 @@
     <div>
         <div  id="surviceContainer">
             <ol>
+            	<c:forEach items="{reserveList}" var="reserve">
                 <li>
-                    <h4>'춘장이'의 병원방문</h4>
-                    <p>'홍길동'펫트너님이 케어하신 서비스예요</p>
+                    <h4>'${reserve.voPet.name}'의 
+                       <c:choose>
+                        <c:when test="${reserve.s_num eq 1}"><text>병원방문</text></c:when>
+                        <c:when test="${reserve.s_num eq 2}"><text>산책케어</text></c:when>
+                        <c:when test="${reserve.s_num eq 3}"><text>픽업</text></c:when>
+                       </c:choose></h4>
+                
+                    <p>'${reserve.voP.part_name}'펫트너님이 케어하신 서비스예요</p>
                 </li>
-                <li>
-                    <h4>'춘장이'의 병원방문</h4>
-                    <p>'홍길동'펫트너님이 케어하신 서비스예요</p>
-                </li>
-                <li>
-                    <h4>'춘장이'의 병원방문</h4>
-                    <p>'홍길동'펫트너님이 케어하신 서비스예요</p>
-                </li>
-                <li>
-                    <h4>'춘장이'의 병원방문</h4>
-                    <p>'홍길동'펫트너님이 케어하신 서비스예요</p>
-                </li>
-                <li>
-                    <h4>'춘장이'의 병원방문</h4>
-                    <p>'홍길동'펫트너님이 케어하신 서비스예요</p>
-                </li>
-                <li>
-                    <h4>'춘장이'의 병원방문</h4>
-                    <p>'홍길동'펫트너님이 케어하신 서비스예요</p>
-                </li>
-
+                </c:forEach>
             </ol>
         </div>
     </div>

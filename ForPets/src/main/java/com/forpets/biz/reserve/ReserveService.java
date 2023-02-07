@@ -11,6 +11,9 @@ public interface ReserveService {
 	//예약내역조회
 	List<ReServeVO> getReserveList(ReServeVO vo);
 	
+	//완료된예약내역조회
+	List<ReServeVO> getCPTReserveList(ReServeVO vo);
+	
 	//예약내역 수 조회
 	int selectCount(ReServeVO vo);	
 	

@@ -7,8 +7,5 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ReviewController {
 	
-	@RequestMapping(value = "/myInfo/review", method = RequestMethod.GET)
-	public String review() {
-		return "myInfo/myReview";
-	}
+
 }

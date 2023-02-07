@@ -31,6 +31,11 @@ public class ReserveServiceImpl implements ReserveService{
 		return reserveDAO.selectCompleteCount(vo);
 	}
 	
+	@Override
+	public List<ReServeVO> getCPTReserveList(ReServeVO vo) {
+		return reserveDAO.getCPTReserveList(vo);
+	}
+	
 	//230130 최지혁
 	//Reserve Table에 데이터 추가
 	@Override
@@ -44,5 +49,7 @@ public class ReserveServiceImpl implements ReserveService{
 	public ReServeVO makeReserve(ReServeVO vo, HttpServletRequest request) {
 		return reserveDAO.makeReserve(vo, request);
 	}
+
+
 
 }

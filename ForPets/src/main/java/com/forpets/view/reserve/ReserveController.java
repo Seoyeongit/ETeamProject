@@ -39,7 +39,6 @@ public class ReserveController {
 			model.addAttribute("resultCP", reserveService.selectCompleteCount(vo));
 			model.addAttribute("reserveList", reserveService.getReserveList(vo));
 			
-			System.out.println(model.toString());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -47,6 +46,22 @@ public class ReserveController {
 		}
 		return "myInfo/my_reserve";
 	}	
+	
+	
+	//예약내역데이터를 가져온 뒤 . 리뷰작성view로 넘어가는 메서드
+	@RequestMapping(value = "/myInfo/review")
+	public String viewReviewReserveList (ReServeVO vo, ReserveDAO reserveDAO, Model model, HttpServletRequest request) {
+		HttpSession session= request.getSession(false);
+		
+		UserVO voU = (UserVO) session.getAttribute("member");
+		vo.setUser_id(voU.getUser_id());
+		model.addAttribute("reserveList", reserveService.getCPTReserveList(vo));
+		
+		return "myInfo/myReview";
+		
+	}
+	
+	
 	
 	@RequestMapping(value="/Service/choice")
 	public String choice(UserVO vo, HttpSession session) {

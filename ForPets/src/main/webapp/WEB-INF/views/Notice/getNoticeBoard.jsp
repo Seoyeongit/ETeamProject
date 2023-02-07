@@ -19,7 +19,7 @@
 	</tr>
 	<tr>
 		<td>내용</td>
-		<td align="left" width="700" height="100">${getNoticeBoard.ntc_ctnt}</td>
+		<td align="left" width="700" height="100"><pre>${getNoticeBoard.ntc_ctnt}</pre></td>
 	</tr>
 	<tr>
 		<td>등록일</td>

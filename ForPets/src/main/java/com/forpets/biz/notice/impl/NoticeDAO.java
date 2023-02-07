@@ -17,8 +17,8 @@ public class NoticeDAO {
 	
 	private final String NOTICE_LIST = "select * from NOTICE_BOARD order by ntc_seq DESC";
 	private final String GET_NOTICE = "select * from NOTICE_BOARD where ntc_seq=?";
-	private final String INSERT_NOTICE = "insert into NOTICE_BOARD(ntc_seq, ntc_title, ntc_ctnt, ntc_hit) "
-			+ "VALUES((ntc_seq.NEXTVAL), ?, ?, ?)";
+	private final String INSERT_NOTICE = "insert into NOTICE_BOARD(ntc_seq, ntc_title, ntc_ctnt, ntc_imgurl, ntc_hit) "
+			+ "VALUES((ntc_seq.NEXTVAL), ?, ?, ?, ?)";
 	
 	private final String HIT_NOTICE = "update NOTICE_BOARD set ntc_hit=?"
 			+ "where ntc_seq = ?";
@@ -28,8 +28,10 @@ public class NoticeDAO {
 		newvo.setNtc_seq(resultSet.getInt("ntc_seq"));
 		newvo.setNtc_title(resultSet.getString("ntc_title"));
 		newvo.setNtc_ctnt(resultSet.getString("ntc_ctnt"));
+		newvo.setNtc_imgurl(resultSet.getString("ntc_imgurl"));
 		newvo.setNtc_cdate(resultSet.getDate("ntc_cdate"));
 		newvo.setNtc_hit(resultSet.getInt("ntc_hit"));
+		newvo.setNtc_udate(resultSet.getDate("ntc_udate"));
 		
 		return newvo;
 	};
@@ -56,6 +58,7 @@ public class NoticeDAO {
 					newvo.setNtc_seq(resultSet.getInt("ntc_seq"));
 					newvo.setNtc_title(resultSet.getString("ntc_title"));
 					newvo.setNtc_ctnt(resultSet.getString("ntc_ctnt"));
+					newvo.setNtc_imgurl(resultSet.getString("ntc_imgurl"));
 					newvo.setNtc_cdate(resultSet.getDate("ntc_cdate"));
 					newvo.setNtc_hit(resultSet.getInt("ntc_hit"));
 					newvo.setNtc_udate(resultSet.getDate("ntc_udate"));
@@ -68,7 +71,7 @@ public class NoticeDAO {
 
 	// 글쓰기
 	public void insertNotice(NoticeVO vo) {
-		jdbcTemplate.update(INSERT_NOTICE, vo.getNtc_title(), vo.getNtc_ctnt(), 0);
+		jdbcTemplate.update(INSERT_NOTICE, vo.getNtc_title(), vo.getNtc_ctnt(), vo.getNtc_imgurl(), 0);
 //		System.out.println("---> insertNotice()");
 	}
 

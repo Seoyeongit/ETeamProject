@@ -4,6 +4,8 @@ GRANT create view, create synonym to forpets;
 
 -- 2023.02.06 테이블 수정 (이서연)
 -- community 테이블 생성
+
+
 CREATE TABLE COMMUNITY 
 (
     C_CODE VARCHAR2(20) NOT NULL,           -- 소모임 코드
@@ -12,6 +14,7 @@ CREATE TABLE COMMUNITY
     USER_ID VARCHAR2(20) NOT NULL,          -- 회원 아이디
     C_DATE DATE DEFAULT SYSDATE             -- 날짜
 );
+
 
 INSERT INTO COMMUNITY VALUES('c0000000000','산책 좋아하시나요?',' 관악구에 사시는분 주말에 같이 산책 하실분 구합니다.','abc123',sysdate);
 INSERT INTO COMMUNITY VALUES('c0000000001','동안구 산책러 구합니다','동안구 범계역 근처 중앙공원에서 산책하실 분! 구해영','tjdus776',sysdate);
@@ -36,13 +39,13 @@ CREATE TABLE COMDAT
 );
 
 
-
 CREATE SEQUENCE CD_SEQ
   START WITH 1
   INCREMENT BY 1
   MAXVALUE 10000
   MINVALUE 1
   NOCYCLE;
+
 
 ALTER TABLE COMDAT
     ADD CONSTRAINT D_NUM_PK PRIMARY KEY (D_NUM);
@@ -58,6 +61,7 @@ INSERT INTO comdat VALUES((cd_seq.NEXTVAL),'c0000000005','ghost44','안사요', 
 
 SELECT * FROM comdat;
 DROP TABLE COMDAT;
+
 
 
 -- 설문지 생성 table 
@@ -96,6 +100,7 @@ CREATE SEQUENCE sd_seq
   MAXVALUE 10000
   MINVALUE 1
   NOCYCLE;
+  
 
 ALTER TABLE survey_detail
     ADD CONSTRAINT SD_NUMBER_PK PRIMARY KEY (sd_number);
@@ -109,7 +114,7 @@ INSERT INTO SURVEY_DETAIL VALUES((sd_seq.NEXTVAL),'s0000000002','gaek','사람�
 INSERT INTO SURVEY_DETAIL VALUES((sd_seq.NEXTVAL),'s0000000002','ju','인간 존재 가치에 대해서 자신의 의견을 서술해주세요.', 'od02');
 INSERT INTO SURVEY_DETAIL VALUES((sd_seq.NEXTVAL),'s0000000002','schedule','저의 생일은 언제일까요?', 'od03');
 
-DROP TABLE SURVEY_DETAIL ;
+DROP TABLE SURVEY_DETAIL;
 SELECT * FROM SURVEY_DETAIL;
 
 -- 설문지 문제 답변 table (문제에 따른 답변 생성)
@@ -128,6 +133,7 @@ CREATE SEQUENCE sc_seq
   MAXVALUE 10000
   MINVALUE 1
   NOCYCLE;
+  
 
 ALTER TABLE survey_choice
     ADD CONSTRAINT SC_NUMBER_PK PRIMARY KEY (SC_number);
@@ -169,6 +175,8 @@ CREATE SEQUENCE sa_seq
   MAXVALUE 10000
   MINVALUE 1
   NOCYCLE;
+  
+
 
 ALTER TABLE survey_answer
     ADD CONSTRAINT SA_NUMBER_PK PRIMARY KEY (sa_number);
@@ -186,10 +194,9 @@ INSERT INTO SURVEY_ANSWER VALUES((sa_seq.NEXTVAL),'s0000000002','od01','g02','gh
 INSERT INTO SURVEY_ANSWER VALUES((sa_seq.NEXTVAL),'s0000000002','od02','j01','ghost44','지구멸망');
 INSERT INTO SURVEY_ANSWER VALUES((sa_seq.NEXTVAL),'s0000000002','od03','s01','ghost44','1892-12-24');
 
+
 DROP TABLE survey_answer;
 SELECT * FROM survey_answer;
-
-
 
 
 -- 230203 최지혁 SQL
@@ -200,6 +207,8 @@ CREATE SEQUENCE reserve_seq
   MAXVALUE 10000
   MINVALUE 1
   NOCYCLE;
+
+
 
 -- reserve table
 -- 예약확인페이지에서 구분하기위해서 status칼럼을 추가했습니다.
@@ -236,6 +245,7 @@ CREATE SEQUENCE serv_seq
   MINVALUE 1
   NOCYCLE;
 
+
 -- serv table
 CREATE TABLE serv
 (
@@ -261,7 +271,7 @@ CREATE SEQUENCE tip_board_seq
   MAXVALUE 10000
   MINVALUE 1
   NOCYCLE;
-
+  
 -- tip_board table
 CREATE TABLE tip_board
 (
@@ -322,6 +332,7 @@ INSERT INTO users VALUES('abc456','abc456','김명태','어부','경기도 과�
 INSERT INTO users VALUES('abc789','abc789','홍당무','채소가게','서울시 서초구 우면동 30-3', 'F','010-3412-5454','1977-07-07','0',(user_seq.NEXTVAL),'2023-01-14');
 
 
+
 --table이름 수정 partSignTup -> partners 
 --add byte크기 수정 50->200
 CREATE TABLE partners
@@ -339,6 +350,7 @@ CREATE TABLE partners
   data_create DATE NOT NULL,        -- 가입날짜
   self_infor VARCHAR2(500)          -- 자기소개
 );
+
 
 CREATE SEQUENCE part_seq
   START WITH 1
@@ -366,8 +378,6 @@ INSERT INTO partners VALUES('spp888','spp888','조선소','파트너','서울시
 
 
 
-
-
 -- **해당테이블은 테이블생성 -> sys로 메타데이터생성-> 인덱스생성후 -> 테이블drop삭제하고 -> 테이블 다시 생성하세요**
 -- 230120 pet_img 컬럼추가 pet_work컬럼삭제
 CREATE TABLE user_pet
@@ -387,6 +397,7 @@ CREATE SEQUENCE user_pet_seq
   MAXVALUE 10000
   MINVALUE 1
   NOCYCLE;
+  
 
 ALTER TABLE user_pet
     ADD CONSTRAINT pet_id PRIMARY KEY (pet_id);
@@ -426,6 +437,8 @@ create index user_work_IDX
 on user_work(geom)
 indextype is MDSYS.SPATIAL_INDEX;
 
+
+
 --user_work  table 초기값
 INSERT INTO user_work (str_user_id,geom)
 VALUES ( 'abc123',
@@ -444,9 +457,26 @@ order by id;
 
 
 
+-- 230207 이도은 수정
 
+DROP TABLE NOTICE_BOARD;
 
+CREATE TABLE NOTICE_BOARD
+(
+    ntc_seq NUMBER(8) NOT NULL,             -- 번호 (자동증가) 시퀀스
+    ntc_title VARCHAR2(100) NOT NULL,       -- 제목
+    ntc_ctnt VARCHAR2(500) NOT NULL,     -- 내용
+    ntc_imgurl VARCHAR2(200) NULL,         -- 이미지
+    ntc_cdate DATE DEFAULT sysdate,          -- 발행일
+    ntc_hit NUMBER(10) NOT NULL,            -- 조회수
+    ntc_udate DATE NULL               -- 수정일
+);
 
-
-
-
+CREATE SEQUENCE ntc_seq
+  START WITH 1
+  INCREMENT BY 1
+  MAXVALUE 10000
+  MINVALUE 1
+  NOCYCLE;
+  
+commit;

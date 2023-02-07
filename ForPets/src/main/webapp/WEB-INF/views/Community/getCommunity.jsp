@@ -13,10 +13,10 @@
 	<h1>소모임 생성</h1>
 	<h5>자신의 소모임을 만들어 보세요</h5>
 	
-	<!-- ** 경환 : 설문지코드 자동생성 : s + 날짜(yyyymmdd) + 커뮤니티코드 -->
  	<c:set var="now" value="<%=new java.util.Date()%>" />
 	<c:set var="date"><fmt:formatDate value="${now}" pattern="yyMMddmmss" /></c:set>
 	<c:set var="min"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></c:set>  
+	<c:set var="c_code" value="c${date }"></c:set>
 <%-- 	<c:set var="sv_code" value="s${date}-${c_code}"></c:set> --%>
 <%-- 	<!-- count 생성 -->
 	<c:set var="c" value='${c+1}'></c:set>
@@ -37,7 +37,7 @@
 		</tr>
 		<tr>
 			<td>내용을 입력해 주세요</td>
-			<td><a href="survey.do"><input type="button" value="설문지 만들기"/></a></td>
+			<td><a href="survey.do/${c_code }"><input type="button" value="설문지 만들기"/></a></td>
 		</tr>
 		<tr>	
 			<td><textarea rows="15" cols="65" name="c_content"></textarea></td>

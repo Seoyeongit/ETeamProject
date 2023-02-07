@@ -23,8 +23,13 @@ public class SurveyDetailServiceImpl implements SurveyDetailService {
 		surdDAO.insertSurvey(vo);
 	}
 	@Override
-	public void insertServey2(SurveyChoiceVO vo) {
+	public void insertSurvey2(SurveyChoiceVO vo) {
 		surdDAO.insertSurvey2(vo);
+		
+	}
+	@Override
+	public void insertsurvey3(SurveyVO vo) {
+		surdDAO.insertSurvey3(vo);
 		
 	}
 	
@@ -35,8 +40,19 @@ public class SurveyDetailServiceImpl implements SurveyDetailService {
 		return  surdDAO.getSurveyList();
 	}
 	
+	// 설문지 상세 보기
 	@Override
-	public SurveyDetailVO getSurveyBoard(String sd_svcode) {
+	public List<SurveyDetailVO> getSurveyBoard(String sd_svcode) {
 		return surdDAO.getSurveyBoard(sd_svcode);
 	}
+	
+	@Override
+	public List<SurveyChoiceVO> getSurveyBoard2(String sc_svcode) {
+		return surdDAO.getSurveyBoard2(sc_svcode);
+	}
+	@Override
+	public SurveyVO getSurveyBoard3(String s_svcode) {
+		return surdDAO.getSurveyBoard3(s_svcode);
+	}
+	
 }

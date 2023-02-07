@@ -22,7 +22,7 @@
 			<c:forEach items="${surveyList }" var="surv">
 			<tr>
 				<td>${surv.s_code}</td>
-				<td><a href="surveyboard.do/${ surv.s_code}">${ surv.s_title}</a></td>
+				<td><a href="surveyboard.do/${ surv.s_svcode}">${ surv.s_title}</a></td>
 				<td>${ surv.s_date }</td>
 			</tr>
 			</c:forEach>

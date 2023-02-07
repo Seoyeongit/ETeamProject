@@ -13,11 +13,14 @@ public interface SurveyDetailService {
 
 	// 설문지 작성
 	public void insertSurvey(SurveyDetailVO vo);
-	public void insertServey2(SurveyChoiceVO vo);
+	public void insertSurvey2(SurveyChoiceVO vo);
+	public void insertsurvey3(SurveyVO vo);
 	
 	// 설문지 리스트 불러오기
 	public List<SurveyVO> getSurveyList() throws Exception;
 	
 	// 설문지 상세 보기
-	public SurveyDetailVO getSurveyBoard(String c_code);
+	public List<SurveyDetailVO> getSurveyBoard(String sd_svcode);
+	public List<SurveyChoiceVO> getSurveyBoard2(String sc_svcode);
+	public SurveyVO getSurveyBoard3(String s_svcode);
 }

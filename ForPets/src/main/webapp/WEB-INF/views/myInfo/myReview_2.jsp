@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -145,8 +146,13 @@
     <div>
         <h3>후기작성하기</h3>
         <hr>
-        <h4>'춘장이'동물병원</h4>
-        <p>'홍길동'펫트너님이 케어하신 서비스 입니다.</p>
+        <h4>'${reserve.voPet.name}'
+        <c:choose>
+           <c:when test="${reserve.s_num eq 1}"><text>병원방문</text></c:when>
+           <c:when test="${reserve.s_num eq 2}"><text>산책케어</text></c:when>
+           <c:when test="${reserve.s_num eq 3}"><text>픽업</text></c:when>
+        </c:choose></h4>
+        <p>'${reserve.voP.part_name}'펫트너님이 케어하신 서비스 입니다.</p>
         <hr>
         <label for="star-rating">서비스는 어떠셨나요?</label>
         <P id="star"> <!-- 부모 -->
@@ -163,9 +169,9 @@
         솔직한  리뷰를 남겨주세요
         <div  id="surviceContainer">
             <form action="">
-                <input type="text" placeholder="한 줄 요약을 남겨주세요."><br>
+                <input type="text" id="review-header" placeholder="한 줄 요약을 남겨주세요."><br>
                 <div id="textareaWrrap">
-                    <textarea name="" id="" cols="50" rows="10" placeholder="다른 고객님들에게 도움이 되도록 서비스에 대한 솔직한 평가를 남겨주세요."></textarea>
+                    <textarea name="" id="review-body" cols="50" rows="10" placeholder="다른 고객님들에게 도움이 되도록 서비스에 대한 솔직한 평가를 남겨주세요."></textarea>
                     <div class="textLengthWrap">
                         <p class="textCount">0</p>
                         <p class="textTotal">/2000</p>
@@ -180,10 +186,16 @@
         </center>
     </div>
     <script>
+    
+    	//별점초기화할 변수입니다.
+   		 var star_rating;
+    
         $('#star a').click(function(){ 
             $(this).parent().children("a").removeClass("on");    
             $(this).addClass("on").prevAll("a").addClass("on");
             console.log($(this).attr("value"));
+            
+            star_rating = $(this).attr("value");
         });
 
         $('textarea').keyup(function (e) {
@@ -204,6 +216,34 @@
             alert('글자수는 2000자까지 입력 가능합니다.');
         };
         });
+        
+        
+        
+        $('div .w-btn-outline').click(function(){
+        	var r_title = $('#review-header').val();
+        	var r_content = $('#review-body').val();
+        	var reserv_num = '<c:out value="${reserve.reserve_num}"/>';
+        	
+        	$.ajax({
+        		url : "../myInfo/writeReview_go",
+        		dataType : 'text',
+        		type : 'POST',
+        		data : {
+        			star_rating : star_rating,
+        			r_content : r_content,
+        			r_title : r_title,
+        			reserv_num : reserv_num
+        		},
+    			success : function(){
+    				alert("리뷰가 등록되었습니다.");
+    				window.close();
+    			},
+    			error : function(result) {
+    				alert("리뷰등록에 실패했습니다.");
+    			}
+        	});
+        });
+        
     </script>
 </body>
 </html>

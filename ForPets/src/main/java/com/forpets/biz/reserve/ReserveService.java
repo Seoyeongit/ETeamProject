@@ -8,6 +8,9 @@ import com.forpets.biz.pet.PetVO;
 
 public interface ReserveService {
 	
+	//특정예약내역조회
+	ReServeVO getReserve(ReServeVO vo);
+	
 	//예약내역조회
 	List<ReServeVO> getReserveList(ReServeVO vo);
 	

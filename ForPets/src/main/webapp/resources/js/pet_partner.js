@@ -32,17 +32,7 @@ function call_info() {
 					url : "http://localhost:8000/biz/getPartner",
 					data : {part_id : $("#part_id").val()},
 					success : function(){
-						$.ajax({
-							type : "POST",
-							url : "http://localhost:8000/biz/getService",
-							data : {s_num : $("#s_num").val()},
-							success : function(data){
-								$("form").submit();
-							},
-							error : function(){
-								alert("Serv_info error");
-							}
-						});
+						$("form").submit();
 					},
 					error : function(){
 						alert("Partner_info error");

@@ -217,7 +217,9 @@ CREATE TABLE reserve
     -- 예약상태 230126
     status number(2) DEFAULT 1, --예약상태 1:매칭중 2:매칭완료/케어중 3:케어완료
     -- pickup 서비스 사용할 주소
-    pick_add varchar2(200) NULL
+    pick_add varchar2(200) NULL,
+    -- 요청사항
+    reserve_request VARCHAR2(2000) NULL
 );
 
 -- reserve table primary key
@@ -253,6 +255,10 @@ INSERT INTO serv VALUES((serv_seq.NEXTVAL), '산책', 30000);
 INSERT INTO serv VALUES((serv_seq.NEXTVAL), '픽업', 50000);
 INSERT INTO serv VALUES((serv_seq.NEXTVAL), '병원', 50000);
 INSERT INTO serv VALUES((serv_seq.NEXTVAL), '미용', 50000);
+INSERT INTO serv VALUES((serv_seq.NEXTVAL), '샤워', 50000);
+INSERT INTO serv VALUES((serv_seq.NEXTVAL), '훈련', 50000);
+
+select * from serv;
 
 -- tip_board sequence
 CREATE SEQUENCE tip_board_seq
@@ -444,9 +450,6 @@ order by id;
 
 
 
-
-
-
-
+commit;
 
 

@@ -23,6 +23,5 @@ Admin id</p>
 <td><button onclick="location.href='${pageContext.request.contextPath}/Report/reportList'">신고 관리</button></td>
 </tr>
 </table>
-
 </body>
 </html>

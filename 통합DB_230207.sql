@@ -469,14 +469,21 @@ CREATE TABLE NOTICE_BOARD
     ntc_imgurl VARCHAR2(200) NULL,         -- 이미지
     ntc_cdate DATE DEFAULT sysdate,          -- 발행일
     ntc_hit NUMBER(10) NOT NULL,            -- 조회수
-    ntc_udate DATE NULL               -- 수정일
+    ntc_udate DATE DEFAULT sysdate       -- 수정일
 );
 
+DROP SEQUENCE ntc_seq;
+
+-- 시퀀스 삭제 후 재생성 (nocache)
 CREATE SEQUENCE ntc_seq
   START WITH 1
   INCREMENT BY 1
   MAXVALUE 10000
   MINVALUE 1
-  NOCYCLE;
+  NOCYCLE
+  NOCACHE;
   
-commit;
+INSERT INTO NOTICE_BOARD VALUES((ntc_seq.NEXTVAL), '공지사항 TEST 입니다.', '공지사항 TEST 입니다.', null, DEFAULT, '0', DEFAULT);
+INSERT INTO NOTICE_BOARD VALUES((ntc_seq.NEXTVAL), '공지사항 수정 TEST 입니다.', '공지사항 수정 TEST 입니다.', null, DEFAULT, '0', DEFAULT);
+
+COMMIT;

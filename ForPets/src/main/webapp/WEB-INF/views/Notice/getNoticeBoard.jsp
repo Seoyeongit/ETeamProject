@@ -28,6 +28,10 @@
 		<td align="left">${getNoticeBoard.ntc_cdate }</td>
 	</tr>
 	<tr>
+		<td>수정일</td>
+		<td align="left">${getNoticeBoard.ntc_udate }</td>
+	</tr>
+	<tr>
 		<td>조회수</td>
 		<td align="left">${getNoticeBoard.ntc_hit }</td>
 	</tr>

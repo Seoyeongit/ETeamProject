@@ -19,7 +19,7 @@ public class NoticeDAO {
 	private final String GET_NOTICE = "select * from NOTICE_BOARD where ntc_seq=?";
 	private final String INSERT_NOTICE = "insert into NOTICE_BOARD(ntc_seq, ntc_title, ntc_ctnt, ntc_imgurl, ntc_hit) "
 			+ "VALUES((ntc_seq.NEXTVAL), ?, ?, ?, ?)";
-	private final String UPDATE_NOTICE = "update NOTICE_BOARD set ntc_title=?, ntc_ctnt=?, ntc_imgurl=?" 
+	private final String UPDATE_NOTICE = "update NOTICE_BOARD set ntc_title=?, ntc_ctnt=?, ntc_imgurl=?, ntc_udate=SYSDATE " 
 			+ "where ntc_seq=?";
 	private final String HIT_NOTICE = "update NOTICE_BOARD set ntc_hit=?"
 			+ "where ntc_seq=?";

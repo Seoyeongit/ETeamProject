@@ -191,7 +191,6 @@ SELECT * FROM survey_answer;
 
 
 
-
 -- 230203 최지혁 SQL
 -- reserv table sequence
 CREATE SEQUENCE reserve_seq
@@ -206,7 +205,8 @@ CREATE SEQUENCE reserve_seq
 -- pickup 서비스에서 사용할 주소 칼럼을 추가했습니다.
 CREATE TABLE reserve
 (   
-    reserve_num NUMBER(8) NOT NULL,     -- 예약 번호 -- 시퀀스
+    re_seq NUMBER(8) NOT NULL,          -- 시퀀스
+    reserve_num VARCHAR2(20) NOT NULL,  -- 예약 번호
     reserve_day VARCHAR2(20) NULL,      -- 예약 날짜 /// 데이트타입 고려
     reserve_time VARCHAR2(20) NULL,     -- 예약 시간 /// 데이트타입 고려
     reserve_add VARCHAR2(200) NULL,      -- 예약 주소
@@ -217,11 +217,13 @@ CREATE TABLE reserve
     -- 예약상태 230126
     status number(2) DEFAULT 1, --예약상태 1:매칭중 2:매칭완료/케어중 3:케어완료
     -- pickup 서비스 사용할 주소
-    pick_add varchar2(200) NULL
+    pick_add varchar2(200) NULL,
+    -- 요청사항
+    reserve_request VARCHAR2(2000) NULL
 );
 
 -- reserve table primary key
-ALTER TABLE reserve ADD CONSTRAINT reserve_num PRIMARY KEY (reserve_num);
+ALTER TABLE reserve ADD CONSTRAINT re_seq PRIMARY KEY (re_seq);
 
 -- reserve table 초기값
 INSERT INTO reserve(reserve_num, reserve_day, reserve_time, reserve_add, s_num, user_id, part_id, pet_id) VALUES((reserve_seq.NEXTVAL), '2023-01-14', '14:30', '경기도 안산시 단원구 선부광장 1로 81 1509동 111호', '1', 'abc123', 'ppp222', '1');
@@ -253,6 +255,10 @@ INSERT INTO serv VALUES((serv_seq.NEXTVAL), '산책', 30000);
 INSERT INTO serv VALUES((serv_seq.NEXTVAL), '픽업', 50000);
 INSERT INTO serv VALUES((serv_seq.NEXTVAL), '병원', 50000);
 INSERT INTO serv VALUES((serv_seq.NEXTVAL), '미용', 50000);
+INSERT INTO serv VALUES((serv_seq.NEXTVAL), '샤워', 50000);
+INSERT INTO serv VALUES((serv_seq.NEXTVAL), '훈련', 50000);
+
+select * from serv;
 
 -- tip_board sequence
 CREATE SEQUENCE tip_board_seq
@@ -279,11 +285,11 @@ CREATE TABLE tip_board
 ALTER TABLE tip_board ADD CONSTRAINT tip_seq PRIMARY KEY (tip_seq);
 
 -- tip_board table 초기값
-INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tb_seq.NEXTVAL),'꿀팁','꿀팁입니당',NULL,NULL,1,NULL);
-INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tb_seq.NEXTVAL),'전수','전수입니당',NULL,NULL,1,NULL);
-INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tb_seq.NEXTVAL),'강아지','꿀팁입니당',NULL,NULL,1,NULL);
-INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tb_seq.NEXTVAL),'고양이','꿀팁입니당',NULL,NULL,1,NULL);
-INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tb_seq.NEXTVAL),'애들','꿀팁입니당',NULL,NULL,1,NULL);
+INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tip_board_seq.NEXTVAL),'꿀팁','꿀팁입니당',NULL,NULL,1,NULL);
+INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tip_board_seq.NEXTVAL),'전수','전수입니당',NULL,NULL,1,NULL);
+INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tip_board_seq.NEXTVAL),'강아지','꿀팁입니당',NULL,NULL,1,NULL);
+INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tip_board_seq.NEXTVAL),'고양이','꿀팁입니당',NULL,NULL,1,NULL);
+INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tip_board_seq.NEXTVAL),'애들','꿀팁입니당',NULL,NULL,1,NULL);
 
 
 --230203 연은비 DB수정리스트
@@ -375,7 +381,7 @@ CREATE TABLE user_pet
     pet_id NUMBER NOT NULL,
     pet_name VARCHAR2(20) NULL,
     pet_type VARCHAR2(20) NULL,
-    pet_img VARCHAR2(100) NULL,
+    pet_img VARCHAR2(2000) NULL,
     pet_age NUMBER(8) NULL,
     pet_gender CHAR(1) NULL,
     user_id VARCHAR2(20) NOT NULL
@@ -443,10 +449,36 @@ WHERE STR_USER_ID='abc123'
 order by id;
 
 
+--230207 리뷰테이블
+--컬럼을 전체적으로 수정했습니다. (user_id 삭제, dia_num 삭제)
+--r_title 바이트를 30 ->100 으로 수정했습니다. 
+
+CREATE TABLE review
+(
+    r_id NUMBER(8) NOT NULL,                -- 리뷰 ID
+    star_rating NUMBER(5) NULL,             -- 별점
+    r_content VARCHAR2(2000) NULL,           -- 리뷰 내용
+    r_title VARCHAR2(100) NULL,              -- 리뷰 제목
+    r_date DATE NULL,                       -- 작성 날짜
+    reserv_num NUMBER(8) NOT NULL          -- 리뷰넘버
+);
+
+CREATE SEQUENCE r_seq
+  START WITH 1
+  INCREMENT BY 1
+  MAXVALUE 10000
+  MINVALUE 1
+  NOCYCLE;
+
+DROP TABLE review;
+
+ALTER TABLE review
+    ADD CONSTRAINT r_id PRIMARY KEY (r_id);
+
+ALTER TABLE review
+    ADD (CONSTRAINT G_8 FOREIGN KEY (reserv_num) REFERENCES reserve(reserve_num)on delete cascade);
 
 
 
-
-
-
+commit;
 

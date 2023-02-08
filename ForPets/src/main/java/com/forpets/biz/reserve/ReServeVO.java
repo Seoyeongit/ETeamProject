@@ -20,7 +20,8 @@ import lombok.ToString;
 @ToString
 @Getter @Setter
 public class ReServeVO {
-	private int reserve_num; //예약번호
+	private int re_seq;
+	private String reserve_num; //예약번호
 	private String reserve_day; //예약날짜
 	private String reserve_time; //예약시간
 	private String reserve_add; //예약주소
@@ -32,4 +33,5 @@ public class ReServeVO {
 	private PetVO voPet;
 	private PartnerVO voP;
 	private String pick_add; // pickup 시 사용할 주소
+	private String reserve_request;
 }

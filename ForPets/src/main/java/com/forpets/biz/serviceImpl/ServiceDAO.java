@@ -19,6 +19,7 @@ public class ServiceDAO {
 		ServiceVO serv = jdbcTemplate.queryForObject(SERV_GET, 
 				(resultSet, rowNum) -> {
 					ServiceVO newServ = new ServiceVO();
+					newServ.setS_num(s_num);
 					newServ.setS_name(resultSet.getString("S_NAME"));
 					newServ.setS_price(resultSet.getInt("S_PRICE"));
 					return newServ;

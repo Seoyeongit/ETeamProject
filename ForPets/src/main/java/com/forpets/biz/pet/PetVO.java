@@ -27,8 +27,6 @@ public class PetVO {
 	private MultipartFile pet_img;
 	private String img; //펫이미지
 	private int age; //펫나이
-	private String wark; //산책경로
 	private char gender; //성별
 	private String user_id; //유저아이디
-	private UserVO voU;
 }

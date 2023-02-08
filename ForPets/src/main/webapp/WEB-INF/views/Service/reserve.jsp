@@ -20,6 +20,7 @@
 </head>
 <body>
 	<ul>
+		<li><a href="${pageContext.request.contextPath}/">홈</a></li>
 		<li><a href="${pageContext.request.contextPath}/Service/choice">서비스 예약</a></li>
 		<li><a href="${pageContext.request.contextPath}/FindHospital/findHospital">근처 병원 찾기</a></li>
 		<li><a href="${pageContext.request.contextPath}/Tip/getTipList">Tip 게시판</a></li>
@@ -65,17 +66,25 @@
 					<td width="100" align="center">서비스명</td>
 					<td width="100" align="center">가격</td>
 				</tr>
+				<c:forEach items="${servList }" var="serv">
+					<tr>
+						<td align="center"><span>${serv.s_name }</span></td>
+						<td align="center"><span>${serv.s_price }</span></td>
+					</tr>
+				</c:forEach>
+				<c:choose>
+					<c:when test="${reserve.pick_add != null && reserve.pick_add != '' }">
+							<tr><td align="center" colspan="2"><span id="pickadd">픽업 주소 : ${reserve.pick_add }</span></td></tr>
+					</c:when>
+				</c:choose>
 				<tr>
-					<td align="center"><span>${serv.s_name }</span></td>
-					<td align="center"><span>${serv.s_price }</span></td>
+					<td align="center">총액 :</td>
+					<td align="center">${total_price }</td>
 				</tr>
-				<c:if test="${reserve.pick_add != null && reserve.pick_add != '' }">
-						<tr><td align="center" colspan="2"><span id="pickadd">픽업 주소 : ${reserve.pick_add }</span></td></tr>
-				</c:if>
 			</table>
 		</form>
 		<hr>
-		<button type="button" onclick="pay('${serv.s_name}', ${serv.s_price})">결제하기</button>
+		<button type="button" onclick="pay('${servList[0].s_name}', ${total_price})">결제하기</button>
 	</center>
 </body>
 </html>

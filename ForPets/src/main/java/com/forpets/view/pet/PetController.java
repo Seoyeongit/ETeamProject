@@ -67,14 +67,12 @@ public class PetController{
 	
 	//main화면에 들어올때 pet등록정보를 가져온다.
 	@RequestMapping(value="/myInfo/main")
-	public String getPetInfo(PetVO vo, PetDAO petDAO, HttpSession session,WorkVO voW, WorkDAO workDAO,Model model) {
+	public String getPetInfo(PetVO vo, PetDAO petDAO, HttpSession session,Model model) {
 		System.out.println("===>pet get start");
 		
-		UserVO voP = new UserVO();
-		voP.setUser_id("abc123");
-		voP.setUser_pw("123");
+		UserVO SessionVO = (UserVO) session.getAttribute("member");
+		vo.setUser_id(SessionVO.getUser_id());
 		
-		vo.setVoU(voP);
 		int result = petService.countPet(vo);
 		//유저의펫이 한마리라면 userpet을 session으로 
 		
@@ -185,9 +183,10 @@ public class PetController{
 	}
 	
 	@RequestMapping(value="getPetList")
-	public String getPetList(PetVO pvo, PetDAO petDAO, Model model) {
+	public String getPetList(PetVO pvo, PetDAO petDAO, Model model, HttpSession session) {
 		System.out.println("---> getPetList 실행");
-		model.addAttribute("getPetList", petService.getPetList(pvo, "abc123"));	// Model 정보 저장
+		UserVO uvo = (UserVO) session.getAttribute("member");
+		model.addAttribute("getPetList", petService.getPetList(pvo, uvo.getUser_id()));	// Model 정보 저장
 		System.out.println("---> getPetList 완료");
 		return "./Service/getPetList";
 	}
@@ -195,15 +194,9 @@ public class PetController{
 	@RequestMapping(value="findPetWork")
 	public String choicePetInfo(PetVO vo, PetDAO petDAO, HttpSession session,WorkVO voW, WorkDAO workDAO,Model model) {
 		System.out.println("===>pet get start");
-		
-		UserVO voP = new UserVO();
-		voP.setUser_id("abc123");
-		voP.setUser_pw("123");
-		
-		vo.setVoU(voP);
+		UserVO voP = (UserVO) session.getAttribute("member");
+		vo.setUser_id(voP.getUser_id());
 		session.setAttribute("userPet", petService.getPetInfo(vo));
-		
-		voW.setUser_id("abc123");
 		return "forward:/Service/showPetWork";
 		
 	}

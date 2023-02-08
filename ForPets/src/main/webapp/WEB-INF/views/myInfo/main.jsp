@@ -68,7 +68,7 @@
 
         <div class="col-md-12">
             <div class="top-breadcrumb">
-                <div>안녕하세요 ${userPet.voU.user_nick}님 <a href="#">로그아웃</a></div>
+                <div>안녕하세요 ${member.user_nick}(${member.user_id })님 <a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></div>
                 <br>
             </div>
         </div>
@@ -81,7 +81,7 @@
 
                         <div class="text-center">
 
-                            <h3>${userPet.voU.user_nick}님(${userPet.voU.user_id})</h3>
+                            <h3>${member.user_nick}(${member.user_id })님</h3>
                             <a id="edit-user-info"><p>회원정보수정</p></a>
                         </div>
 
@@ -120,12 +120,15 @@
                                         <h5 class="title mb-0">${userPet.name }
                                         <c:choose>
                                         	<c:when test="${userPet.gender eq 'm'.charAt(0) }">♂️</c:when>
-                                        	<c:when test="${userPet.gender eq 'w'.charAt(0) }">♀️</c:when>
+                                        	<c:when test="${userPet.gender eq 'f'.charAt(0) }">♀️</c:when>
                                         </c:choose>
-                                        <p class="text-muted mt-3">${userPet.age }</p>
+                                        <p class="text-muted mt-3">나이 : ${userPet.age }살</p>
+                                        
                                         <a href="${pageContext.request.contextPath}/myInfo/my-petView"
                             			onclick="window.open(this.href, '_blank', 'width=500, height=800'); return false;">
 										<input type="button" id="register_pet" value="반려동물 등록하기"></a>
+                                    
+                                    
                                     </div>
                                 </div>
                             </div>
@@ -162,7 +165,9 @@
                                 </tr>
                                 <tr>
                                     <td>파트너와채팅</td>
-                                    <td>후기작성</td>
+                                    <td> <a href="${pageContext.request.contextPath}/myInfo/review"
+                                    onclick="window.open(this.href, '_blank', 'width=620, height=700'); return false;">
+                                    	후기작성하기</a></td>
                                 </tr>
                             </table>
                         </div>
@@ -562,7 +567,7 @@
 		var geocoder = new kakao.maps.services.Geocoder();
 
 		// 유저의주소값을 가져온다
-		var userAdd = '<c:out value="${userPet.voU.user_add}"/>';
+		var userAdd = '<c:out value="${member.user_add}"/>';
 
 		//지도의옵션을 설정합니다.
 		mapOption = {
@@ -600,13 +605,15 @@
 			
 		});
 		
+		<c:choose>
+			<c:when test="${not empty petWork}">
 		// 다각형을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 다각형을 표시합니다
 		var polygonPath = [
-			
 			<c:forEach items="${petWork }" var="work">
-		    new kakao.maps.LatLng(<c:out value="${work.x}"/>, <c:out value="${work.y}"/>),
-			</c:forEach>
+		    	new kakao.maps.LatLng(<c:out value="${work.x}"/>, <c:out value="${work.y}"/>),
+		    </c:forEach>
 		];
+			
 
 		// 지도에 표시할 다각형을 생성합니다
 		var polygon = new kakao.maps.Polygon({
@@ -622,16 +629,23 @@
 		// 지도에 다각형을 표시합니다
 		polygon.setMap(map);
 		
+		
 		var dkpos1 = new kakao.maps.LatLng(<c:out value="${petWork[0].x}"/>, <c:out value="${petWork[0].y}"/>);
+		
+		
+		
 		var marker1 = new TooltipMarker(dkpos1, '산책로마커');
 		marker1.setMap(map);
 		
 		var markerTracker1 = new MarkerTracker(map, marker1);
 		markerTracker1.run();
 		
+		</c:when>
+		</c:choose>
+		
 		$("#register_wark").click(function(){
 			
-			var userId = '<c:out value="${userPet.voU.user_id}"/>';
+			var userId = '<c:out value="${member.user_id}"/>';
 		
 			$.ajax({
 				url : "../myInfo/modify-roadMap",

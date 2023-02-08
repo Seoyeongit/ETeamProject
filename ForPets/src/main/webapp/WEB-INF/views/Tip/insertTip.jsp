@@ -10,12 +10,13 @@
 </head>
 <body>
 	<ul>
+		<li><a href="${pageContext.request.contextPath}/">홈</a></li>
 		<li><a href="${pageContext.request.contextPath}/Service/choice">서비스 예약</a></li>
 		<li><a href="${pageContext.request.contextPath}/FindHospital/findHospital">근처 병원 찾기</a></li>
 		<li><a href="${pageContext.request.contextPath}/Tip/getTipList">Tip 게시판</a></li>
 	</ul>
 	<center>
-		<form action="/Tip/insertTip" method="post">
+		<form action="insertTip.do" method="post">
 			<table border="1" cellpadding="0" cellspacing="0">
 				<tr>
 					<td bgcolor="orange" width="70">제목</td>

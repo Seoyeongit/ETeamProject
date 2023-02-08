@@ -14,14 +14,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.forpets.biz.community.CommunityVO;
+import com.forpets.biz.survey.SurveyAnswerVO;
 import com.forpets.biz.survey.SurveyChoiceVO;
 import com.forpets.biz.survey.SurveyDetailService;
 import com.forpets.biz.survey.SurveyDetailVO;
 import com.forpets.biz.survey.SurveyVO;
+import com.forpets.biz.survey.Impl.SurveyDetailDAO;
 
 @Controller
 @RequestMapping("/")
@@ -50,7 +53,7 @@ public class SurveyController {
 		
 		int survey_count = Integer.parseInt(req.getParameter("survey_count"));
 		
-		// 설문ㄴ지 제목 생성
+		// 설문지 제목 생성
 		SurveyVO ssvo = new SurveyVO();
 		String s_title = req.getParameter("s_title");
 		 ssvo.setS_svcode(sd_svcode);
@@ -156,10 +159,46 @@ public class SurveyController {
 		return mav;
 	}
 	
-		
-		
-		
+	// 설문지 삭제
+	@RequestMapping("/deletesurvey.do/{sd_svcode}")
+	public String deleteSurvey(@PathVariable String sd_svcode) throws Exception {
+		surdservice.deleteSurvey(sd_svcode);
+		surdservice.deleteSurvey2(sd_svcode);
+		surdservice.deleteSurvey3(sd_svcode);
+		return "redirect:/surveylist.do";
 	}
+		
+	// 설문지 답변 저장
+	@RequestMapping(value="/insertanswer.do", method = RequestMethod.POST)
+	public ModelAndView insertAnswer(@RequestParam String sd_svcode, HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		
+		SurveyAnswerVO vo = new SurveyAnswerVO();
+		
+		
+		int count = Integer.parseInt(surdservice.count(sd_svcode));
+		
+		
+		// check 수정하기 
+		for(int i=1; i<=count; i++) {
+			vo.setSa_svcode(sd_svcode);
+			vo.setSa_order("od"+i+"");
+			String sc_ascode = req.getParameter("od"+i+"");
+			String sa_content = req.getParameter(sc_ascode);
+			vo.setSa_ascode(sc_ascode);
+			vo.setUser_id("pow123");
+			vo.setSa_contant(sa_content);
+			System.out.println(sd_svcode);
+			surdservice.insertAnswer(vo);
+			
+		}
+
+		
+		mav.setViewName("redirect:/surveylist.do");
+		return mav;
+	}
+
+}
 	
 	
 

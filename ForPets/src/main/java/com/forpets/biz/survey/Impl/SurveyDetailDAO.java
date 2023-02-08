@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.forpets.biz.community.CommunityVO;
+import com.forpets.biz.survey.SurveyAnswerVO;
 import com.forpets.biz.survey.SurveyChoiceVO;
 import com.forpets.biz.survey.SurveyDetailVO;
 import com.forpets.biz.survey.SurveyVO;
@@ -19,13 +20,32 @@ public class SurveyDetailDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+	// 설문지 등록
 	private final String INSERT_SURVEY = "insert into SURVEY_DETAIL(SD_NUMBER, SD_SVCODE, SD_TYPE, SD_TITLE, SD_ORDER) values ((sd_seq.NEXTVAL), ?, ?, ?, ?)";
 	private final String INSERT_SURVEY_CHOICE = "insert into SURVEY_CHOICE(SC_NUMBER, SC_SVCODE, SC_ORDER, SC_ASCODE, SC_ANSWER) values ((sc_seq.NEXTVAL), ?, ?, ?, ?)";
 	private final String INSERT_SURVEY_TITLE = "insert into SURVEY(S_SVCODE, S_CODE, S_TITLE, S_DATE) values (?, ?, ? , sysdate)";
+	
+	// 설문지 리스트 불러오기
 	private final String SURVEY_LIST = "select * from Survey order by s_date DESC";
+	
+	// 설문지 상세보기
 	private final String GET_SURVEYBOARD = "select * from survey_detail where sd_svcode=?";
 	private final String GET_SURVEYBOARD2 = "select * from survey_choice where sc_svcode=?";
 	private final String GET_SURVEYBOARD3 = "select * from survey where s_svcode=?";
+	
+	// 설문지 글 삭제
+	public final String DELETE_SURVEY_SD = "delete from Survey_detail where sd_svcode=?";
+	public final String DELETE_SURVEY_SC = "delete from survey_choice where sc_svcode=?";
+	public final String DELETE_SURVEY_S = "delete from survey where s_svcode=?";
+	
+	// 설문지 답변 내용 저장
+	public final String INSERT_ANSWER = "insert into SURVEY_ANSWER(SA_NUMBER, SA_SVCODE, SA_ORDER, SA_ASCODE, USER_ID, SA_CONTENT) values ((sa_seq.NEXTVAL), ?, ?, ?, ?, ?)";
+	public final String SD_NUMBER = "select count(*) from survey_detail where sd_svcode=?";
+	
+	// 설문지 답변 내용 보기
+	
+	// 설문지 답변 삭제
+	
 	
 	
 	
@@ -36,12 +56,12 @@ public class SurveyDetailDAO {
 	}
 	
 	public void insertSurvey2(SurveyChoiceVO vo) {
-		System.out.println(vo.toString());
+	//	System.out.println(vo.toString());
 		jdbcTemplate.update(INSERT_SURVEY_CHOICE, vo.getSc_svcode(), vo.getSc_order(), vo.getSc_ascode(), vo.getSc_answer());
 	} 
 	
 	public void insertSurvey3(SurveyVO vo) {
-		System.out.println(vo);
+	//	System.out.println(vo);
 		jdbcTemplate.update(INSERT_SURVEY_TITLE, vo.getS_svcode(), vo.getS_code(), vo.getS_title());
 	} // 설문지 등록 end
 	
@@ -110,6 +130,28 @@ public class SurveyDetailDAO {
 		return vo;
 	} // 설문지 상세보기 end
 	
+	// 설문지 삭제하기
+	public void deleteSurvey(String sd_svcode) {
+		jdbcTemplate.update(DELETE_SURVEY_SD, sd_svcode);
+	}
+	
+	public void deleteSurvey2(String sc_svcode) {
+		jdbcTemplate.update(DELETE_SURVEY_SC, sc_svcode);
+	}
+	
+	public void deleteSurvey3(String s_svcode) {
+		jdbcTemplate.update(DELETE_SURVEY_S, s_svcode);
+	} // 설문지 삭제하기 end
+	
+	// 설문지 답변 저장하기
+	public void insertAnswer(SurveyAnswerVO vo) {
+		jdbcTemplate.update(INSERT_ANSWER, vo.getSa_svcode(), vo.getSa_order(), vo.getSa_ascode(), vo.getUser_id(), vo.getSa_contant());
+	} 
+		// 설문지 문항 갯수 count
+	public String count(String sd_svcode) {
+		String count = jdbcTemplate.queryForObject(SD_NUMBER, String.class, sd_svcode);
+		return count;
+	}
 	
 	
 }

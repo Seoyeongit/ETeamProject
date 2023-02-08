@@ -24,6 +24,7 @@
 				<td>${surv.s_code}</td>
 				<td><a href="surveyboard.do/${ surv.s_svcode}">${ surv.s_title}</a></td>
 				<td>${ surv.s_date }</td>
+				<td><a href="deletesurvey.do/${surv.s_svcode }"><input type="button" value="삭제"></a></td>
 			</tr>
 			</c:forEach>
 		</table>

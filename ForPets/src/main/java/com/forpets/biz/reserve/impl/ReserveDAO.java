@@ -26,10 +26,13 @@ public class ReserveDAO {
 	private final String COUNT_RESERVE = "select count(*) from reserve,users where reserve.user_id = users.user_id and reserve.status in(1,2) and reserve.user_id=?";
 	private final String COUNT_COMPLETE_RESERVE = "select count(*) from reserve,users where reserve.user_id = users.user_id and reserve.status=3 and reserve.user_id=?";
 	
+	
 	//230130 최지혁
-	private final String RESERVE_INSERT = "insert into reserve(reserve_num,"
-			+ " reserve_day, reserve_time, reserve_add, s_num, user_id, part_id, pet_id, pick_add, reserve_request)"
-					+ "values((reserve_seq.NEXTVAL), ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private final String RESERVE_INSERT = "insert into reserve(re_seq,"
+			+ "reserve_num, reserve_day, reserve_time, reserve_add, s_num, user_id, part_id, pet_id, pick_add, reserve_request)"
+					+ "values((reserve_seq.NEXTVAL), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	
+	private final String RESERVE_LAST_SEQ = "select max(re_seq) FROM reserve";
 	
 	/*
 	 * 특정회원의 예약리스트중 특정예약정보를 조회하는 메서드
@@ -86,13 +89,16 @@ public class ReserveDAO {
 	//230130 최지혁
 	//Reserve Table에 데이터 추가
 	public void insertReserve(ReServeVO vo, PetVO pvo) {
-		jdbcTemplate.update(RESERVE_INSERT, vo.getReserve_day(), vo.getReserve_time(), vo.getReserve_add(), vo.getS_num(), vo.getUser_id(), vo.getPart_id(), vo.getPet_id(), vo.getPick_add(), vo.getReserve_request());
+		jdbcTemplate.update(RESERVE_INSERT,vo.getReserve_num(), vo.getReserve_day(), vo.getReserve_time(), vo.getReserve_add(), vo.getS_num(), vo.getUser_id(), vo.getPart_id(), vo.getPet_id(), vo.getPick_add(), vo.getReserve_request());
 	}
 	
 	//230130 최지혁
 	//Reserve Table에 데이터 추가를 위한 정보
 	public ReServeVO makeReserve(ReServeVO vo, HttpServletRequest request) {
+		int last = lastSeq() + 1;
+		System.out.println("last : " + last);
 		ReServeVO reserve = new ReServeVO();
+		reserve.setReserve_num("RN_" + last);
 		reserve.setReserve_day(request.getParameter("reserve_day"));
 		reserve.setReserve_time(request.getParameter("reserve_start")+"~"+request.getParameter("reserve_end"));
 		reserve.setReserve_add(request.getParameter("address") + " " + request.getParameter("detailAddress"));
@@ -104,5 +110,11 @@ public class ReserveDAO {
 		reserve.setReserve_request(request.getParameter("reserve_request"));
 		return reserve;
 	}
-
+	
+	public int lastSeq() {
+		int last_num = 0;
+		last_num = jdbcTemplate.queryForObject(RESERVE_LAST_SEQ, Integer.class);
+		return last_num;
+	}
+	
 }

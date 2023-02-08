@@ -449,5 +449,36 @@ WHERE STR_USER_ID='abc123'
 order by id;
 
 
+--230207 리뷰테이블
+--컬럼을 전체적으로 수정했습니다. (user_id 삭제, dia_num 삭제)
+--r_title 바이트를 30 ->100 으로 수정했습니다. 
+
+CREATE TABLE review
+(
+    r_id NUMBER(8) NOT NULL,                -- 리뷰 ID
+    star_rating NUMBER(5) NULL,             -- 별점
+    r_content VARCHAR2(2000) NULL,           -- 리뷰 내용
+    r_title VARCHAR2(100) NULL,              -- 리뷰 제목
+    r_date DATE NULL,                       -- 작성 날짜
+    reserv_num NUMBER(8) NOT NULL          -- 리뷰넘버
+);
+
+CREATE SEQUENCE r_seq
+  START WITH 1
+  INCREMENT BY 1
+  MAXVALUE 10000
+  MINVALUE 1
+  NOCYCLE;
+
+DROP TABLE review;
+
+ALTER TABLE review
+    ADD CONSTRAINT r_id PRIMARY KEY (r_id);
+
+ALTER TABLE review
+    ADD (CONSTRAINT G_8 FOREIGN KEY (reserv_num) REFERENCES reserve(reserve_num)on delete cascade);
+
+
 
 commit;
+

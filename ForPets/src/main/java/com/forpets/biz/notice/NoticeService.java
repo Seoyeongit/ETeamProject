@@ -23,5 +23,8 @@ public interface NoticeService {
 
 	//수정
 	public void updateNotice(NoticeVO vo) throws Exception;
+
+	//삭제
+	public void deleteNotice(NoticeVO vo);
 	
 }

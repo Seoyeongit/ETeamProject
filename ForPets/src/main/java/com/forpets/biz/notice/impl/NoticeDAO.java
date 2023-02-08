@@ -23,6 +23,7 @@ public class NoticeDAO {
 			+ "where ntc_seq=?";
 	private final String HIT_NOTICE = "update NOTICE_BOARD set ntc_hit=?"
 			+ "where ntc_seq=?";
+	private final String DELETE_NOTICE = "delete from NOTICE_BOARD where ntc_seq=?";
 	
 	private final RowMapper<NoticeVO> noticeRowMapper = (resultSet, rowNum) -> {
 		NoticeVO newvo = new NoticeVO();
@@ -81,7 +82,12 @@ public class NoticeDAO {
 	public void updateNotice(NoticeVO vo) {
 		jdbcTemplate.update(UPDATE_NOTICE, vo.getNtc_title(), vo.getNtc_ctnt(), vo.getNtc_imgurl(), vo.getNtc_seq());
 		System.out.println("---> updateNotice()");
-		System.out.println(vo.getNtc_title() + vo.getNtc_ctnt() + vo.getNtc_imgurl() + vo.getNtc_seq());
+//		System.out.println(vo.getNtc_title() + vo.getNtc_ctnt() + vo.getNtc_imgurl() + vo.getNtc_seq());
 	}
 	
+	// 글 삭제
+	public void deleteNotice(NoticeVO vo) {
+		jdbcTemplate.update(DELETE_NOTICE, vo.getNtc_seq());
+		System.out.println("---> deleteNotice()");
+	}
 }

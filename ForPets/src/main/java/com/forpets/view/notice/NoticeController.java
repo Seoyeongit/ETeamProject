@@ -77,13 +77,18 @@ public class NoticeController {
 	
 	// 글 작성
 	@RequestMapping(value="/insertNotice")
-	public String insertNotice(NoticeVO vo, NoticeDAO noticeDAO) throws Exception {
-		System.out.println("insertNotice 완료");
+	public String insertNotice(NoticeVO vo) throws Exception {
 		notService.insertNotice(vo);
+		System.out.println("insertNotice 완료");
 		return "redirect:/Notice/noticeBoard";
 	}
 	
-
-	
+	// 글 삭제
+	@RequestMapping(value="/deleteNotice")
+	public String deleteNotice(@ModelAttribute NoticeVO vo) throws Exception {
+		notService.deleteNotice(vo);
+		System.out.println("deleteNotice 완료");
+		return "redirect:/Notice/noticeBoard";
+	}
 	
 }

@@ -191,7 +191,6 @@ SELECT * FROM survey_answer;
 
 
 
-
 -- 230203 최지혁 SQL
 -- reserv table sequence
 CREATE SEQUENCE reserve_seq
@@ -206,7 +205,8 @@ CREATE SEQUENCE reserve_seq
 -- pickup 서비스에서 사용할 주소 칼럼을 추가했습니다.
 CREATE TABLE reserve
 (   
-    reserve_num NUMBER(8) NOT NULL,     -- 예약 번호 -- 시퀀스
+    re_seq NUMBER(8) NOT NULL,          -- 시퀀스
+    reserve_num VARCHAR2(20) NOT NULL,  -- 예약 번호
     reserve_day VARCHAR2(20) NULL,      -- 예약 날짜 /// 데이트타입 고려
     reserve_time VARCHAR2(20) NULL,     -- 예약 시간 /// 데이트타입 고려
     reserve_add VARCHAR2(200) NULL,      -- 예약 주소
@@ -223,7 +223,7 @@ CREATE TABLE reserve
 );
 
 -- reserve table primary key
-ALTER TABLE reserve ADD CONSTRAINT reserve_num PRIMARY KEY (reserve_num);
+ALTER TABLE reserve ADD CONSTRAINT re_seq PRIMARY KEY (re_seq);
 
 -- reserve table 초기값
 INSERT INTO reserve(reserve_num, reserve_day, reserve_time, reserve_add, s_num, user_id, part_id, pet_id) VALUES((reserve_seq.NEXTVAL), '2023-01-14', '14:30', '경기도 안산시 단원구 선부광장 1로 81 1509동 111호', '1', 'abc123', 'ppp222', '1');
@@ -451,5 +451,3 @@ order by id;
 
 
 commit;
-
-

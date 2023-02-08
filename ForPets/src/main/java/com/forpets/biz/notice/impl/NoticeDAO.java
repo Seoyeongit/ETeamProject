@@ -19,9 +19,10 @@ public class NoticeDAO {
 	private final String GET_NOTICE = "select * from NOTICE_BOARD where ntc_seq=?";
 	private final String INSERT_NOTICE = "insert into NOTICE_BOARD(ntc_seq, ntc_title, ntc_ctnt, ntc_imgurl, ntc_hit) "
 			+ "VALUES((ntc_seq.NEXTVAL), ?, ?, ?, ?)";
-	
+	private final String UPDATE_NOTICE = "update NOTICE_BOARD set ntc_title=?, ntc_ctnt=?, ntc_imgurl=?" 
+			+ "where ntc_seq=?";
 	private final String HIT_NOTICE = "update NOTICE_BOARD set ntc_hit=?"
-			+ "where ntc_seq = ?";
+			+ "where ntc_seq=?";
 	
 	private final RowMapper<NoticeVO> noticeRowMapper = (resultSet, rowNum) -> {
 		NoticeVO newvo = new NoticeVO();
@@ -72,8 +73,15 @@ public class NoticeDAO {
 	// 글쓰기
 	public void insertNotice(NoticeVO vo) {
 		jdbcTemplate.update(INSERT_NOTICE, vo.getNtc_title(), vo.getNtc_ctnt(), vo.getNtc_imgurl(), 0);
-//		System.out.println("---> insertNotice()");
+		System.out.println("---> insertNotice()");
 	}
 
 
+	// 글 수정
+	public void updateNotice(NoticeVO vo) {
+		jdbcTemplate.update(UPDATE_NOTICE, vo.getNtc_title(), vo.getNtc_ctnt(), vo.getNtc_imgurl(), vo.getNtc_seq());
+		System.out.println("---> updateNotice()");
+		System.out.println(vo.getNtc_title() + vo.getNtc_ctnt() + vo.getNtc_imgurl() + vo.getNtc_seq());
+	}
+	
 }

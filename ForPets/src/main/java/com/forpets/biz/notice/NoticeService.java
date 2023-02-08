@@ -12,13 +12,16 @@ import com.forpets.biz.community.CommunityVO;
 @Service
 public interface NoticeService {
 
-	//글 작성
+	//공지 작성
 	public void insertNotice(NoticeVO vo) throws Exception;
 	
-	//게시판 목록 보기
+	//목록 보기
 	public List<NoticeVO> getNoticeList(NoticeVO vo) throws Exception;
 
-	//게시판 보기
+	//공지사항 글 보기
 	NoticeVO getNoticeBoard(NoticeVO vo, int ntc_seq) throws Exception;
+
+	//수정
+	public void updateNotice(NoticeVO vo) throws Exception;
 	
 }

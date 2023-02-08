@@ -10,6 +10,7 @@
 <title>공지 사항</title>
 </head>
 <body>
+<button onclick="location.href='${pageContext.request.contextPath}/adminMain.jsp'">관리자 페이지 홈</button>
 <h1>공지 사항</h1>
 <!-- 검색 시작 -->
 <form action="getBoardList.do" method="post">

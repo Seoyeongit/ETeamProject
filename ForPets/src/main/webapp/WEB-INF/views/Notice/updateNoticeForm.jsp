@@ -10,16 +10,16 @@
 <title>글 수정</title>
 </head>
 <body>
- <form action="updateBoard.do" method="post">
-<input name="seq" type="hidden" value="${getNoticeBoard.ntc_seq }" />
+ <form action="../updateNotice.do" method="post">
+<input name="ntc_seq" type="hidden" value="${getNoticeBoard.ntc_seq }" />
 <table>
 	<tr>
 		<td width="70">제목</td>
-		<td align="left"><input name="title" type="text" size="74" value="${getNoticeBoard.ntc_title}" /></td>
+		<td align="left"><input name="ntc_title" type="text" size="74" value="${getNoticeBoard.ntc_title}" /></td>
 	</tr>
 	<tr>
 		<td>내용</td>
-		<td align="left"><textarea name="content" cols="70" rows="10">${getNoticeBoard.ntc_ctnt}</textarea></td>
+		<td align="left"><textarea name="ntc_ctnt" cols="70" rows="10">${getNoticeBoard.ntc_ctnt}</textarea></td>
 	</tr>
 	<tr>
 		<td>등록일</td>

@@ -32,7 +32,7 @@
 	<tr>
 		<td colspan="2" align="right">
 		<input type="button" value="목록" onclick="location.href= '../noticeBoard'" />
-		<input type="button" value="수정" onclick="location.href= '../updateNotice'" />
+		<input type="button" value="수정" onclick="location.href= '../updateNoticeForm.do/${getNoticeBoard.ntc_seq}'" />
 		<input type="button" value="삭제" id="deletNotice" />
 		</td>
 	</tr>

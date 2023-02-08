@@ -50,6 +50,11 @@ public class ReserveServiceImpl implements ReserveService{
 		return reserveDAO.makeReserve(vo, request);
 	}
 
+	@Override
+	public ReServeVO getReserve(ReServeVO vo) {
+		return reserveDAO.getReserve(vo);
+	}
+
 
 
 }

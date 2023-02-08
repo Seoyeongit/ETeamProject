@@ -15,6 +15,11 @@ import com.forpets.biz.reserve.ReServeVO;
 public class ReserveDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	private final String RESERVE_GET = "SELECT * FROM RESERVE,PARTNERS,USER_PET " + 
+			"WHERE RESERVE.PART_ID= PARTNERS.PART_ID " + 
+			"AND reserve.pet_id = user_pet.pet_id " + 
+			"AND reserve.USER_ID=? " + 
+			"AND reserve_num=?";
 	private final String RESERVE_LIST = "SELECT * FROM RESERVE,PARTNERS,USER_PET WHERE RESERVE.PART_ID= PARTNERS.PART_ID and reserve.pet_id = user_pet.pet_id AND reserve.USER_ID=? ORDER BY RESERVE.STATUS";
 	private final String RESERVE_COMPLETELIST = "SELECT * FROM RESERVE,PARTNERS,USER_PET WHERE RESERVE.PART_ID= PARTNERS.PART_ID and reserve.pet_id = user_pet.pet_id AND reserve.USER_ID=? ORDER BY RESERVE_NUM DESC";
 	private final String GET_PETNAME = "select user_pet.pet_name from reserve,user_pet where reserve.pet_id = user_pet.pet_id;";
@@ -29,12 +34,30 @@ public class ReserveDAO {
 	
 	private final String RESERVE_LAST_SEQ = "select max(re_seq) FROM reserve";
 	
+	/*
+	 * 특정회원의 예약리스트중 특정예약정보를 조회하는 메서드
+	 */
+	public ReServeVO getReserve(ReServeVO vo) {
+		System.out.println("--->jdbcTemplate로 getReserve() 기능 처리");
+		Object[] orgs = {vo.getUser_id(), vo.getReserve_num()};
+		return jdbcTemplate.queryForObject(RESERVE_GET,orgs, new ReserveRowMapper());
+		
+	}
+	
+	
+	/*
+	 * 특정회원의 예약내역리스트를 조회하는 메서드
+	 */
 	public List<ReServeVO> getReserveList(ReServeVO vo){
 		System.out.println("---> jdbcTemplate로 getReserveList() 기능 처리");
 		
 		Object[] orgs = {vo.getUser_id()};		
 		return jdbcTemplate.query(RESERVE_LIST,orgs,new ReserveRowMapper());
 	}
+	
+	/*
+	 * 서비스가완료된 예약내역리스트를 조회하는 메서드
+	 */
 	
 	public List<ReServeVO> getCPTReserveList(ReServeVO vo) {
 		System.out.println("---> jdbcTemplate로 getCPTReserveList() 기능 처리");

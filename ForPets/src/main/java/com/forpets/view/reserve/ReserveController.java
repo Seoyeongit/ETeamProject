@@ -55,12 +55,11 @@ public class ReserveController {
 	
 	//예약내역데이터를 가져온 뒤 . 리뷰작성view로 넘어가는 메서드
 	@RequestMapping(value = "/myInfo/review")
-	public String viewReviewReserveList (ReServeVO vo, ReserveDAO reserveDAO, Model model, HttpServletRequest request) {
-		HttpSession session= request.getSession(false);
+	public String viewReviewReserveList (ReServeVO vo, ReserveDAO reserveDAO, Model model,HttpSession session) {
 		
-		UserVO voU = (UserVO) session.getAttribute("member");
-		vo.setUser_id(voU.getUser_id());
-		model.addAttribute("reserveList", reserveService.getCPTReserveList(vo));
+			UserVO voU = (UserVO) session.getAttribute("member");
+			vo.setUser_id(voU.getUser_id());
+			model.addAttribute("reserveList", reserveService.getCPTReserveList(vo));
 		
 		return "myInfo/myReview";
 		

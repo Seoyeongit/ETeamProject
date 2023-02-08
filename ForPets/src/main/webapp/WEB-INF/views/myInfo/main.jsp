@@ -123,9 +123,12 @@
                                         	<c:when test="${userPet.gender eq 'f'.charAt(0) }">♀️</c:when>
                                         </c:choose>
                                         <p class="text-muted mt-3">나이 : ${userPet.age }살</p>
+                                        
                                         <a href="${pageContext.request.contextPath}/myInfo/my-petView"
                             			onclick="window.open(this.href, '_blank', 'width=500, height=800'); return false;">
 										<input type="button" id="register_pet" value="반려동물 등록하기"></a>
+                                    
+                                    
                                     </div>
                                 </div>
                             </div>

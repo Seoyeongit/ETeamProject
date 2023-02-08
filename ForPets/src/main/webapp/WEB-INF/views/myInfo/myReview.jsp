@@ -63,19 +63,19 @@
 
     /* Track */
     ::-webkit-scrollbar-track {
-    background: rgb(122, 165, 135);
+    background: rgb(157, 196, 169);
     }
 
     /* Handle */
     ::-webkit-scrollbar-thumb {
-    background: rgb(255, 255, 255);
-    border: 2px solid rgb(122, 165, 135);
+    background: rgb(122, 165, 135);
+    border: 2px solid rgb(157, 196, 169);
     border-radius: 10px;
     }
 
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-    background: rgb(232, 232, 232);
+    background: rgb(94, 132, 105);
     border-radius: 10px;
     }
 
@@ -133,8 +133,9 @@
     <div>
         <div  id="surviceContainer">
             <ol>
-            	<c:forEach items="{reserveList}" var="reserve">
+            	<c:forEach items="${reserveList}" var="reserve">
                 <li>
+                	<div>${reserve.reserve_num }</div>
                     <h4>'${reserve.voPet.name}'의 
                        <c:choose>
                         <c:when test="${reserve.s_num eq 1}"><text>병원방문</text></c:when>
@@ -159,6 +160,32 @@
             $(this).addClass('change_back');
             $(this).siblings().addClass('change_othewsie');
         })
+        
+        
+        $('center .w-btn-outline').click(function(){
+        	var reserveList = '<c:out value="${reserveList}"/>';
+    		var _this = $(this);
+    		var liurl = "../myInfo/writeReview";
+    		$("head").html('');
+    		
+    		$.ajax({
+    			type : 'POST',
+    			url : liurl,
+    			data : {
+    				
+    			},
+    			dataType : 'html',
+    			success : function(data){
+    				$('style').remove();
+    				$("body").html(data);
+    			},
+    			error : function(result) {
+    				alert(result);
+    			}
+    		});
+        })
+        
+        
     </script>
 </body>
 </html>

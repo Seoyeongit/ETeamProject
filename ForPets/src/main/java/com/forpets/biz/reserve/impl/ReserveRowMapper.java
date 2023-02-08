@@ -18,7 +18,7 @@ public class ReserveRowMapper implements RowMapper<ReServeVO> {
 		PetVO voPet = new PetVO();
 		
 		try {
-			vo.setReserve_num(rs.getInt("RESERVE_NUM"));
+			vo.setReserve_num(rs.getString("RESERVE_NUM"));
 			vo.setReserve_day(rs.getString("RESERVE_DAY"));
 			vo.setS_num(rs.getInt("S_NUM"));
 			vo.setPart_id(rs.getString("PART_ID"));

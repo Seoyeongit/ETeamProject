@@ -23,23 +23,26 @@ public class TipController {
 	
 	@RequestMapping(value="/{pageName}")
 	public String getServicePage(@PathVariable("pageName")String pageName) {
+		System.out.println("getServicePage 실행");
 		return "/Tip/" + pageName;
 	}
 	
 	@RequestMapping(value="insertTip.do")
 	public String insertTip(TipVO vo, TipDAO tipDAO, HttpServletRequest request) throws IOException {
-		System.out.println("---> insertTip 실행");
+		System.out.println("---> insertTip.do 실행");
 		tipService.insertTip(vo);
-		System.out.println("---> insertTip 완료");
-		return "/Tip/getTipList";
+		System.out.println("---> insertTip.do 완료");
+		return "redirect:/Tip/getTipList";
 	}
 	
 	@RequestMapping(value="updateTip")
-	public String updateTip(TipVO vo, TipDAO tipDAO) throws IOException {
+	public String updateTip(TipVO vo, TipDAO tipDAO, HttpServletRequest request) throws IOException {
 		System.out.println("---> updateTip 실행");
+		vo.setTip_title(request.getParameter("title"));
+		vo.setTip_content(request.getParameter("content"));
 		tipService.updateTip(vo);
 		System.out.println("---> updateTip 완료");
-		return "/Tip/getTipList";
+		return "redirect:/Tip/getTipList";
 	}
 	
 	@RequestMapping(value="deleteTip")
@@ -47,7 +50,7 @@ public class TipController {
 		System.out.println("---> deleteTip 실행");
 		tipService.deleteTip(vo);
 		System.out.println("---> deleteTip 완료");
-		return "/Tip/getTipList";
+		return "redirect:/Tip/getTipList";
 	}
 	
 	@RequestMapping(value="getTip")
@@ -65,4 +68,5 @@ public class TipController {
 		System.out.println("---> getTipList 완료");
 		return  "/Tip/getTipList";
 	}
+	
 }

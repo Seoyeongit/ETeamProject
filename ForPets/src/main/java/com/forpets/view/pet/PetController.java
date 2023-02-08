@@ -194,13 +194,9 @@ public class PetController{
 	@RequestMapping(value="findPetWork")
 	public String choicePetInfo(PetVO vo, PetDAO petDAO, HttpSession session,WorkVO voW, WorkDAO workDAO,Model model) {
 		System.out.println("===>pet get start");
-		
 		UserVO voP = (UserVO) session.getAttribute("member");
-		
-//		vo.setVoU(voP);
+		vo.setUser_id(voP.getUser_id());
 		session.setAttribute("userPet", petService.getPetInfo(vo));
-		
-		voW.setUser_id(voP.getUser_id());
 		return "forward:/Service/showPetWork";
 		
 	}

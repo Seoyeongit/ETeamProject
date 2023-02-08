@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /*
  *  리뷰게시판모듈입니다.
@@ -15,13 +16,12 @@ import lombok.Setter;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter @Setter
+@Getter @Setter @ToString
 public class ReviewVO {
-	private int r_num; //리뷰시퀀스
-	private String part_id; //파트너아이디
-	private String user_id; //유저아이디
-	private int r_star; //별점
-	private String r_title; //후기제목
+	private int r_id; //리뷰시퀀스
+	private int star_rating; //별점
 	private String r_content; //후기내용
+	private String r_title; //후기한줄평
 	private Date r_date; //작성날짜
+	private int reserv_num; //예약넘버
 }

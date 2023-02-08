@@ -20,7 +20,7 @@
 		var geocoder = new kakao.maps.services.Geocoder();
 
 		// 유저의주소값을 가져온다
-		var userAdd = '<c:out value="${userPet.voU.user_add}"/>';
+		var userAdd = '<c:out value="${member.user_add}"/>';
 
 		//지도의옵션을 설정합니다.
 		mapOption = {

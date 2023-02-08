@@ -4,8 +4,6 @@ GRANT create view, create synonym to forpets;
 
 -- 2023.02.06 테이블 수정 (이서연)
 -- community 테이블 생성
-
-
 CREATE TABLE COMMUNITY 
 (
     C_CODE VARCHAR2(20) NOT NULL,           -- 소모임 코드
@@ -14,7 +12,6 @@ CREATE TABLE COMMUNITY
     USER_ID VARCHAR2(20) NOT NULL,          -- 회원 아이디
     C_DATE DATE DEFAULT SYSDATE             -- 날짜
 );
-
 
 INSERT INTO COMMUNITY VALUES('c0000000000','산책 좋아하시나요?',' 관악구에 사시는분 주말에 같이 산책 하실분 구합니다.','abc123',sysdate);
 INSERT INTO COMMUNITY VALUES('c0000000001','동안구 산책러 구합니다','동안구 범계역 근처 중앙공원에서 산책하실 분! 구해영','tjdus776',sysdate);
@@ -39,13 +36,13 @@ CREATE TABLE COMDAT
 );
 
 
+
 CREATE SEQUENCE CD_SEQ
   START WITH 1
   INCREMENT BY 1
   MAXVALUE 10000
   MINVALUE 1
   NOCYCLE;
-
 
 ALTER TABLE COMDAT
     ADD CONSTRAINT D_NUM_PK PRIMARY KEY (D_NUM);
@@ -61,7 +58,6 @@ INSERT INTO comdat VALUES((cd_seq.NEXTVAL),'c0000000005','ghost44','안사요', 
 
 SELECT * FROM comdat;
 DROP TABLE COMDAT;
-
 
 
 -- 설문지 생성 table 
@@ -100,7 +96,6 @@ CREATE SEQUENCE sd_seq
   MAXVALUE 10000
   MINVALUE 1
   NOCYCLE;
-  
 
 ALTER TABLE survey_detail
     ADD CONSTRAINT SD_NUMBER_PK PRIMARY KEY (sd_number);
@@ -114,7 +109,7 @@ INSERT INTO SURVEY_DETAIL VALUES((sd_seq.NEXTVAL),'s0000000002','gaek','사람�
 INSERT INTO SURVEY_DETAIL VALUES((sd_seq.NEXTVAL),'s0000000002','ju','인간 존재 가치에 대해서 자신의 의견을 서술해주세요.', 'od02');
 INSERT INTO SURVEY_DETAIL VALUES((sd_seq.NEXTVAL),'s0000000002','schedule','저의 생일은 언제일까요?', 'od03');
 
-DROP TABLE SURVEY_DETAIL;
+DROP TABLE SURVEY_DETAIL ;
 SELECT * FROM SURVEY_DETAIL;
 
 -- 설문지 문제 답변 table (문제에 따른 답변 생성)
@@ -133,7 +128,6 @@ CREATE SEQUENCE sc_seq
   MAXVALUE 10000
   MINVALUE 1
   NOCYCLE;
-  
 
 ALTER TABLE survey_choice
     ADD CONSTRAINT SC_NUMBER_PK PRIMARY KEY (SC_number);
@@ -175,8 +169,6 @@ CREATE SEQUENCE sa_seq
   MAXVALUE 10000
   MINVALUE 1
   NOCYCLE;
-  
-
 
 ALTER TABLE survey_answer
     ADD CONSTRAINT SA_NUMBER_PK PRIMARY KEY (sa_number);
@@ -194,9 +186,9 @@ INSERT INTO SURVEY_ANSWER VALUES((sa_seq.NEXTVAL),'s0000000002','od01','g02','gh
 INSERT INTO SURVEY_ANSWER VALUES((sa_seq.NEXTVAL),'s0000000002','od02','j01','ghost44','지구멸망');
 INSERT INTO SURVEY_ANSWER VALUES((sa_seq.NEXTVAL),'s0000000002','od03','s01','ghost44','1892-12-24');
 
-
 DROP TABLE survey_answer;
 SELECT * FROM survey_answer;
+
 
 
 -- 230203 최지혁 SQL
@@ -208,14 +200,13 @@ CREATE SEQUENCE reserve_seq
   MINVALUE 1
   NOCYCLE;
 
-
-
 -- reserve table
 -- 예약확인페이지에서 구분하기위해서 status칼럼을 추가했습니다.
 -- pickup 서비스에서 사용할 주소 칼럼을 추가했습니다.
 CREATE TABLE reserve
 (   
-    reserve_num NUMBER(8) NOT NULL,     -- 예약 번호 -- 시퀀스
+    re_seq NUMBER(8) NOT NULL,          -- 시퀀스
+    reserve_num VARCHAR2(20) NOT NULL,  -- 예약 번호
     reserve_day VARCHAR2(20) NULL,      -- 예약 날짜 /// 데이트타입 고려
     reserve_time VARCHAR2(20) NULL,     -- 예약 시간 /// 데이트타입 고려
     reserve_add VARCHAR2(200) NULL,      -- 예약 주소
@@ -226,11 +217,13 @@ CREATE TABLE reserve
     -- 예약상태 230126
     status number(2) DEFAULT 1, --예약상태 1:매칭중 2:매칭완료/케어중 3:케어완료
     -- pickup 서비스 사용할 주소
-    pick_add varchar2(200) NULL
+    pick_add varchar2(200) NULL,
+    -- 요청사항
+    reserve_request VARCHAR2(2000) NULL
 );
 
 -- reserve table primary key
-ALTER TABLE reserve ADD CONSTRAINT reserve_num PRIMARY KEY (reserve_num);
+ALTER TABLE reserve ADD CONSTRAINT re_seq PRIMARY KEY (re_seq);
 
 -- reserve table 초기값
 INSERT INTO reserve(reserve_num, reserve_day, reserve_time, reserve_add, s_num, user_id, part_id, pet_id) VALUES((reserve_seq.NEXTVAL), '2023-01-14', '14:30', '경기도 안산시 단원구 선부광장 1로 81 1509동 111호', '1', 'abc123', 'ppp222', '1');
@@ -244,7 +237,6 @@ CREATE SEQUENCE serv_seq
   MAXVALUE 10000
   MINVALUE 1
   NOCYCLE;
-
 
 -- serv table
 CREATE TABLE serv
@@ -263,6 +255,10 @@ INSERT INTO serv VALUES((serv_seq.NEXTVAL), '산책', 30000);
 INSERT INTO serv VALUES((serv_seq.NEXTVAL), '픽업', 50000);
 INSERT INTO serv VALUES((serv_seq.NEXTVAL), '병원', 50000);
 INSERT INTO serv VALUES((serv_seq.NEXTVAL), '미용', 50000);
+INSERT INTO serv VALUES((serv_seq.NEXTVAL), '샤워', 50000);
+INSERT INTO serv VALUES((serv_seq.NEXTVAL), '훈련', 50000);
+
+select * from serv;
 
 -- tip_board sequence
 CREATE SEQUENCE tip_board_seq
@@ -271,7 +267,7 @@ CREATE SEQUENCE tip_board_seq
   MAXVALUE 10000
   MINVALUE 1
   NOCYCLE;
-  
+
 -- tip_board table
 CREATE TABLE tip_board
 (
@@ -332,7 +328,6 @@ INSERT INTO users VALUES('abc456','abc456','김명태','어부','경기도 과�
 INSERT INTO users VALUES('abc789','abc789','홍당무','채소가게','서울시 서초구 우면동 30-3', 'F','010-3412-5454','1977-07-07','0',(user_seq.NEXTVAL),'2023-01-14');
 
 
-
 --table이름 수정 partSignTup -> partners 
 --add byte크기 수정 50->200
 CREATE TABLE partners
@@ -350,7 +345,6 @@ CREATE TABLE partners
   data_create DATE NOT NULL,        -- 가입날짜
   self_infor VARCHAR2(500)          -- 자기소개
 );
-
 
 CREATE SEQUENCE part_seq
   START WITH 1
@@ -378,6 +372,8 @@ INSERT INTO partners VALUES('spp888','spp888','조선소','파트너','서울시
 
 
 
+
+
 -- **해당테이블은 테이블생성 -> sys로 메타데이터생성-> 인덱스생성후 -> 테이블drop삭제하고 -> 테이블 다시 생성하세요**
 -- 230120 pet_img 컬럼추가 pet_work컬럼삭제
 CREATE TABLE user_pet
@@ -397,7 +393,6 @@ CREATE SEQUENCE user_pet_seq
   MAXVALUE 10000
   MINVALUE 1
   NOCYCLE;
-  
 
 ALTER TABLE user_pet
     ADD CONSTRAINT pet_id PRIMARY KEY (pet_id);
@@ -437,8 +432,6 @@ create index user_work_IDX
 on user_work(geom)
 indextype is MDSYS.SPATIAL_INDEX;
 
-
-
 --user_work  table 초기값
 INSERT INTO user_work (str_user_id,geom)
 VALUES ( 'abc123',
@@ -456,27 +449,36 @@ WHERE STR_USER_ID='abc123'
 order by id;
 
 
+--230207 리뷰테이블
+--컬럼을 전체적으로 수정했습니다. (user_id 삭제, dia_num 삭제)
+--r_title 바이트를 30 ->100 으로 수정했습니다. 
 
--- 230207 이도은 수정
-
-DROP TABLE NOTICE_BOARD;
-
-CREATE TABLE NOTICE_BOARD
+CREATE TABLE review
 (
-    ntc_seq NUMBER(8) NOT NULL,             -- 번호 (자동증가) 시퀀스
-    ntc_title VARCHAR2(100) NOT NULL,       -- 제목
-    ntc_ctnt VARCHAR2(500) NOT NULL,     -- 내용
-    ntc_imgurl VARCHAR2(200) NULL,         -- 이미지
-    ntc_cdate DATE DEFAULT sysdate,          -- 발행일
-    ntc_hit NUMBER(10) NOT NULL,            -- 조회수
-    ntc_udate DATE NULL               -- 수정일
+    r_id NUMBER(8) NOT NULL,                -- 리뷰 ID
+    star_rating NUMBER(5) NULL,             -- 별점
+    r_content VARCHAR2(2000) NULL,           -- 리뷰 내용
+    r_title VARCHAR2(100) NULL,              -- 리뷰 제목
+    r_date DATE NULL,                       -- 작성 날짜
+    reserv_num NUMBER(8) NOT NULL          -- 리뷰넘버
 );
 
-CREATE SEQUENCE ntc_seq
+CREATE SEQUENCE r_seq
   START WITH 1
   INCREMENT BY 1
   MAXVALUE 10000
   MINVALUE 1
   NOCYCLE;
-  
+
+DROP TABLE review;
+
+ALTER TABLE review
+    ADD CONSTRAINT r_id PRIMARY KEY (r_id);
+
+ALTER TABLE review
+    ADD (CONSTRAINT G_8 FOREIGN KEY (reserv_num) REFERENCES reserve(reserve_num)on delete cascade);
+
+
+
 commit;
+

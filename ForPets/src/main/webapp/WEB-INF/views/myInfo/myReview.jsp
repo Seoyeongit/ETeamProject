@@ -63,19 +63,19 @@
 
     /* Track */
     ::-webkit-scrollbar-track {
-    background: rgb(122, 165, 135);
+    background: rgb(157, 196, 169);
     }
 
     /* Handle */
     ::-webkit-scrollbar-thumb {
-    background: rgb(255, 255, 255);
-    border: 2px solid rgb(122, 165, 135);
+    background: rgb(122, 165, 135);
+    border: 2px solid rgb(157, 196, 169);
     border-radius: 10px;
     }
 
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-    background: rgb(232, 232, 232);
+    background: rgb(94, 132, 105);
     border-radius: 10px;
     }
 
@@ -133,8 +133,9 @@
     <div>
         <div  id="surviceContainer">
             <ol>
-            	<c:forEach items="{reserveList}" var="reserve">
-                <li>
+            	<c:forEach items="${reserveList}" var="reserve">
+                <li onclick="getReserveNum(${reserve.reserve_num})">
+                	<div id="">${reserve.reserve_num }</div>
                     <h4>'${reserve.voPet.name}'의 
                        <c:choose>
                         <c:when test="${reserve.s_num eq 1}"><text>병원방문</text></c:when>
@@ -154,11 +155,45 @@
         </center>
     </div>
     <script>
+    
+    	var num;
+    
         $('li').click(function(){
             $(this).removeClass('change_othewsie');
             $(this).addClass('change_back');
             $(this).siblings().addClass('change_othewsie');
         })
+        
+        
+        $('center .w-btn-outline').click(function(){
+    		var _this = $(this);
+    		var liurl = "../myInfo/writeReview";
+    		$("head").html('');
+    		
+    		$.ajax({
+    			type : 'POST',
+    			url : liurl,
+    			data : {
+    				reserve_num : num
+    			},
+    			dataType : 'html',
+    			success : function(data){
+    				console.log(num);
+    				$('style').remove();
+    				$("body").html(data);
+    			},
+    			error : function(result) {
+    				alert(result);
+    			}
+    		});
+        });
+        
+        //변수에 누른 예약리스트 reserve_num이 초기화 됩니다.
+        function getReserveNum(Rnum){
+        	num = Rnum;
+        }
+        
+        
     </script>
 </body>
 </html>

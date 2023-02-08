@@ -23,9 +23,8 @@ public class ReserveDAO {
 	
 	//230130 최지혁
 	private final String RESERVE_INSERT = "insert into reserve(reserve_num,"
-			+ " pet_name, pet_type, pet_age,"
-			+ " reserve_day, reserve_time, reserve_add, s_num, user_id, part_id, pick_add, reserve_request)"
-					+ "values((reserve_seq.NEXTVAL), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			+ " reserve_day, reserve_time, reserve_add, s_num, user_id, part_id, pet_id, pick_add, reserve_request)"
+					+ "values((reserve_seq.NEXTVAL), ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	
 	public List<ReServeVO> getReserveList(ReServeVO vo){
 		System.out.println("---> jdbcTemplate로 getReserveList() 기능 처리");
@@ -64,7 +63,7 @@ public class ReserveDAO {
 	//230130 최지혁
 	//Reserve Table에 데이터 추가
 	public void insertReserve(ReServeVO vo, PetVO pvo) {
-		jdbcTemplate.update(RESERVE_INSERT, pvo.getName(), pvo.getType(), pvo.getAge(), vo.getReserve_day(), vo.getReserve_time(), vo.getReserve_add(), vo.getS_num(), vo.getUser_id(), vo.getPart_id(), vo.getPick_add(), vo.getReserve_request());
+		jdbcTemplate.update(RESERVE_INSERT, vo.getReserve_day(), vo.getReserve_time(), vo.getReserve_add(), vo.getS_num(), vo.getUser_id(), vo.getPart_id(), vo.getPet_id(), vo.getPick_add(), vo.getReserve_request());
 	}
 	
 	//230130 최지혁

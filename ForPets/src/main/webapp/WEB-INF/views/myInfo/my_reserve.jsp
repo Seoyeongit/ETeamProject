@@ -75,7 +75,7 @@
     </div>
     <div class="col-sm-4 card card-body">
         리뷰
-         <div>0건</div> 
+         <div>${resultR}건</div> 
     </div>
 </div>
 </div>
@@ -94,9 +94,11 @@
 
                             <h5 class="note-title text-truncate">'${reserve.voPet.name}'
                                 <c:choose>
-                                    <c:when test="${reserve.s_num eq 1}"><text>병원방문</text></c:when>
+                                    <c:when test="${reserve.s_num eq 1}"><text>기본케어</text></c:when>
                                     <c:when test="${reserve.s_num eq 2}"><text>산책케어</text></c:when>
                                     <c:when test="${reserve.s_num eq 3}"><text>픽업</text></c:when>
+                                    <c:when test="${reserve.s_num eq 4}"><text>병원진료</text></c:when>
+                                    <c:when test="${reserve.s_num eq 5}"><text>미용케어</text></c:when>
                                 </c:choose>
                                 <h5 class="note-title text-truncate">${reserve.reserve_day}<i
                                         class="point fa fa-circle ml-1 font-10"></i></h5>

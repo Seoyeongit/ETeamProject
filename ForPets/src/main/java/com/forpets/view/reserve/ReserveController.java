@@ -18,6 +18,7 @@ import com.forpets.biz.pet.PetVO;
 import com.forpets.biz.reserve.ReServeVO;
 import com.forpets.biz.reserve.ReserveService;
 import com.forpets.biz.reserve.impl.ReserveDAO;
+import com.forpets.biz.review.ReviewService;
 import com.forpets.biz.service.ServiceVO;
 import com.forpets.biz.user.UserVO;
 
@@ -26,6 +27,8 @@ import com.forpets.biz.user.UserVO;
 public class ReserveController {
 	@Autowired
 	private ReserveService reserveService;
+	@Autowired
+	private ReviewService reviewService;
 	
 	
 	/**
@@ -43,6 +46,7 @@ public class ReserveController {
 			model.addAttribute("resultCnt", reserveService.selectCount(vo));
 			model.addAttribute("resultCP", reserveService.selectCompleteCount(vo));
 			model.addAttribute("reserveList", reserveService.getReserveList(vo));
+			model.addAttribute("resultR", reviewService.countReview(vo) );
 			
 			
 		} catch (Exception e) {
@@ -59,6 +63,8 @@ public class ReserveController {
 		
 			UserVO voU = (UserVO) session.getAttribute("member");
 			vo.setUser_id(voU.getUser_id());
+			
+			List<ReServeVO> list = reserveService.getCPTReserveList(vo);			
 			model.addAttribute("reserveList", reserveService.getCPTReserveList(vo));
 		
 		return "myInfo/myReview";

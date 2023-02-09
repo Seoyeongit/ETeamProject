@@ -3,6 +3,7 @@ package com.forpets.biz.review.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.forpets.biz.reserve.ReServeVO;
 import com.forpets.biz.review.ReviewService;
 import com.forpets.biz.review.ReviewVO;
 
@@ -14,6 +15,11 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public void insertReview(ReviewVO vo) {
 		reviewDAO.insertReview(vo);
+	}
+
+	@Override
+	public int countReview(ReServeVO vo) {
+		return reviewDAO.countReview(vo);
 	}
 
 }

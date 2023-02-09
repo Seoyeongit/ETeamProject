@@ -23,6 +23,7 @@ public class PetDAO {
 	
 	private final String INSERT_PET2 = "INSERT INTO user_pet(pet_id,PET_NAME,PET_TYPE,PET_IMG,PET_AGE,PET_GENDER,USER_ID) VALUES((user_pet_seq.NEXTVAL),?,?,?,?,chr(?),?)";
 	
+	private final String UPDATE_PET = "UPDATE USER_PET SET PET_NAME=?, PET_TYPE=?, PET_IMG=?, PET_AGE=?, PET_GENDER=chr(?) WHERE PET_ID=?";
 	
 	private final String COUNT_PET = "select count(*) from user_pet where user_id=?";
 	
@@ -51,6 +52,13 @@ public class PetDAO {
 		Object[] orgs = {vo.getUser_id()};
 		result = jdbcTemplate.queryForObject(COUNT_PET,orgs,Integer.class);
 		return result;
+	}
+	
+	public void updatePet(PetVO vo) {
+		char gender = vo.getGender();
+		int genderCode = gender;
+		Object[] orgs = {vo.getName(),vo.getType(),vo.getImg(),vo.getAge(),genderCode,vo.getId()};
+		jdbcTemplate.update(UPDATE_PET,orgs);
 	}
 	
 

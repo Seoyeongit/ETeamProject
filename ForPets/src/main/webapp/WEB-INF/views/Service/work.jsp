@@ -51,7 +51,7 @@ function showPetWorkPopUp() {
 				</tr>
 			</table>
 			<br>
-			<input type="button" value="선택" onclick="getPetListPopUp('${member.user_id}')">
+			<input type="button" value="선택" onclick="getPetListPopUp()">
 			<hr>
 			<p>추가 서비스</p>
 			<label><input type="checkbox" name="s_num" value="6">샤워</label>

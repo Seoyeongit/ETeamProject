@@ -183,9 +183,10 @@ public class PetController{
 	}
 	
 	@RequestMapping(value="getPetList")
-	public String getPetList(PetVO pvo, PetDAO petDAO, Model model, HttpSession session) {
+	public String getPetList(PetVO pvo, PetDAO petDAO, HttpSession session, Model model) {
 		System.out.println("---> getPetList 실행");
 		UserVO uvo = (UserVO) session.getAttribute("member");
+		System.out.println("user_id : " + uvo.getUser_id());
 		model.addAttribute("getPetList", petService.getPetList(pvo, uvo.getUser_id()));	// Model 정보 저장
 		System.out.println("---> getPetList 완료");
 		return "./Service/getPetList";

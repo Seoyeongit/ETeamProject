@@ -61,6 +61,16 @@
         -webkit-transform-origin: 50% 34px;
         transform-origin: 50% 34px;
     }
+    
+    #edit-user-info:hover{
+    	cursor: pointer;
+    	color : red;
+    }
+    
+    a input[id=register_wark]{
+    	margin : 1em;
+    	float: right;
+    }
 	</style>
 </head>
 <body>
@@ -87,13 +97,6 @@
                         </div>
 
                         <div class="personal-info">
-                            <h3>Personal Information</h3>
-                            <ul class="personal-list">
-                                <li><i class="fas fa-briefcase "></i><span>text</span></li>
-                                <li><i class="fas fa-map-marker-alt "></i><span> text</span></li>
-                                <li><i class="far fa-envelope "></i><span>text</span></li>
-                                <li><i class="fas fa-mobile "></i><span>text</span></li>
-                            </ul>
                         </div>
 
                     </div>
@@ -125,10 +128,21 @@
                                         </c:choose>
                                         <p class="text-muted mt-3">나이 : ${userPet.age }살</p>
                                         
+                                        <c:choose>
+                                        	<c:when test="${empty userPet}">
                                         <a href="${pageContext.request.contextPath}/myInfo/my-petView"
                             			onclick="window.open(this.href, '_blank', 'width=500, height=800'); return false;">
 										<input type="button" id="register_pet" value="반려동물 등록하기"></a>
-                                    
+											</c:when>
+											<c:otherwise>
+											<a href="${pageContext.request.contextPath}/myInfo/my-petView"
+                            			onclick="window.open(this.href, '_blank', 'width=500, height=800'); return false;">
+										<input type="button" id="register_pet" value="정보수정하기"></a>
+											
+											
+											</c:otherwise>
+											
+                                    	</c:choose>
                                     
                                     </div>
                                 </div>
@@ -180,7 +194,7 @@
                             <table class="container">
                                 <tr>
                                     <td><a href="../Notice/noticeBoard">공지사항</a></td>
-                                    <td>고객센터</td>
+                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
                                 </tr>
                             </table>
                         </div>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,8 +44,14 @@
 	<h3>나의반려동물등록하기</h3>
 	<hr>
 	<div>케어서비스를 이용하려면 반려동물을 등록해 주세요</div>
-
+	<c:choose>
+		<c:when test="${empty userPet }">
 	<form action="../myInfo/my-petReg" method="POST" entype="multipart/form-data">
+		</c:when>
+		<c:otherwise>
+	<form action="../myInfo/my-petUpd" method="POST" entype="multipart/form-data">	
+		</c:otherwise>
+	</c:choose>
 		<br> <br>
 
 		<div>
@@ -68,11 +75,15 @@
 		</select><br> 
 		
 		<label for="pet_gender">성별</label> 
-		<input type="radio" name="gender" value="f" id="pet_gender">여자 
-		<input type="radio" name="gender" value="m" id="pet_gender">남자<br>
+		<input type="radio" name="gender" value="f" id="pet_gender" <c:if test ="${userPet.gender == 'f'.charAt(0)}">checked="checked"</c:if> />여자 
+		<input type="radio" name="gender" value="m" id="pet_gender" <c:if test ="${userPet.gender == 'm'.charAt(0)}">checked="checked"</c:if> />남자<br>
 		
-		<input type="text" name="user_id" value="${member.user_id}" id="user_id">
-
+		<input type="hidden" name="user_id" value="${member.user_id}" id="user_id">
+		<c:choose>
+		<c:when test="${not empty userPet }">
+		<input type="hidden" name="id" value="${userPet.id}" id="pet_id">
+		</c:when>
+		</c:choose>
 		<input type="submit" value="제출하기">
 	</form>
 

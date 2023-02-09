@@ -40,4 +40,10 @@ public class PetServiceImpl implements PetService {
 	public PetVO getPet(PetVO pvo, String user_id) {
 		return petDAO.getPet(pvo, user_id);
 	}
+
+
+	@Override
+	public void updatePet(PetVO vo) {
+		petDAO.updatePet(vo);
+	}
 }

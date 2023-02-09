@@ -51,7 +51,7 @@
 			</c:forEach>
 		</table>
 		<br>
-		<a href="${pageContext.request.contextPath}/Tip/insertTip">새 글 작성</a>
+		<a href="insertTip">새 글 작성</a>
 	</center>
 </body>
 </html>

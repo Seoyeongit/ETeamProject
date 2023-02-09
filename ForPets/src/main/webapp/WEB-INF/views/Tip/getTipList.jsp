@@ -17,6 +17,20 @@
 		<li><a href="${pageContext.request.contextPath}/Tip/getTipList">Tip 게시판</a></li>
 	</ul>
 	<center>
+		<form action="getTipList" method="post">
+		<table border="1" cellpadding="0" cellspacing="0" width="700">
+			<tr>
+				<td align="right">
+					<select name="searchCondition">
+							<option value="TITLE">제목</option>
+							<option value="CONTENT">내용</option>
+					</select>
+					<input name="searchKeyword" type="text" />
+					<input  type="submit" value="검색" />
+				</td>
+			</tr>
+		</table>
+		</form>
 		<table border="1" cellpadding="0" cellspacing="0" width="700">
 			<tr>
 				<th bgcolor="orange" width="100">번호</th>

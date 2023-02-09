@@ -85,6 +85,8 @@ public class ReserveController {
 	public String reserve(ReServeVO vo, ReserveDAO reserveDAO, HttpSession session, HttpServletRequest request) {
 		System.out.println("---> reserve 실행");
 		session.setAttribute("reserve", reserveService.makeReserve(vo, request));
+		String[] pa_List = request.getParameterValues("pick_add");
+		session.setAttribute("pa_List", pa_List);
 		System.out.println("---> reservo 완료");
 		return "Service/reserve";
 	}
@@ -94,12 +96,20 @@ public class ReserveController {
 		System.out.println("---> reserveInsert 실행");
 		pvo = (PetVO) session.getAttribute("pet_info");
 		vo = (ReServeVO) session.getAttribute("reserve");
+		boolean check = false;
+		if(session.getAttribute("pa_List") != null) check = true;
+		String[] pa_List = (String[]) session.getAttribute("pa_List");
 		ArrayList<ServiceVO> svoList = (ArrayList) session.getAttribute("servList");
 		int count = svoList.toArray().length;
 		for(int i=0;i<count;i++) {
 			ServiceVO svo = svoList.get(i);
 			System.out.println(i+ "번째 s_num : " + svo.getS_num());
 			vo.setS_num(svo.getS_num());
+			if(check) {
+				int j = i;
+				System.out.println(j + "번째 pick_add : " + pa_List[j]);
+				vo.setPick_add(pa_List[j]);
+			}
 			reserveService.insertReserve(vo, pvo);
 		}
 		System.out.println("---> reserveInsert 완료");

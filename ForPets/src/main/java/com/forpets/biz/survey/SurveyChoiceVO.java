@@ -18,7 +18,7 @@ import lombok.ToString;
 @Getter @Setter @ToString
 public class SurveyChoiceVO {
 	private int sc_number; //시퀀스
-	private String sc_svcode; //설문지코드
+	private String c_code; //설문지코드
 	private String sc_order; //순서코드
 	private String sc_ascode; //답변코드
 	private String sc_answer; //답변내용

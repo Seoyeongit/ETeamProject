@@ -25,9 +25,9 @@ public class TipDAO {
 	private final String BOARD_GET = "select * from tip_board where tip_seq=?";
 	private final String BOARD_LIST = "select * from tip_board order by tip_seq desc";
 	private final String BOARD_LIST_T = 
-			"select * from tip_board where tip_title like ? order by tip_seq desc";
+			"select * from tip_board where tip_title like ";
 	private final String BOARD_LIST_C = 
-			"select * from tip_board where tip_content like ? order by tip_seq desc";
+			"select * from tip_board where tip_content like ";
 	
 	private final RowMapper<TipVO> TipRowMapper = (resultSet, rowNum) -> {
 		TipVO newTip = new TipVO();
@@ -81,6 +81,13 @@ public class TipDAO {
 	}
 	
 	public List<TipVO> getTipList(TipVO vo) {
-		return jdbcTemplate.query(BOARD_LIST, TipRowMapper);
+		String sql = null;
+		if (vo.getSearchCondition().equals("TITLE")) {
+			sql = BOARD_LIST_T;
+		} else if (vo.getSearchCondition().equals("CONTENT")) {
+			sql = BOARD_LIST_C;
+		}
+		
+		return jdbcTemplate.query(sql +"'%" + vo.getSearchKeyword() +"%'" + " order by tip_seq desc", TipRowMapper);
 	}
 }

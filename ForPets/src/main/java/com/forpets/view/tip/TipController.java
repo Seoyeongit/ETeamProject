@@ -21,12 +21,6 @@ public class TipController {
 	@Autowired
 	private TipService tipService;
 	
-	@RequestMapping(value="/{pageName}")
-	public String getServicePage(@PathVariable("pageName")String pageName) {
-		System.out.println("getServicePage 실행");
-		return "/Tip/" + pageName;
-	}
-	
 	@RequestMapping(value="insertTip.do")
 	public String insertTip(TipVO vo, TipDAO tipDAO, HttpServletRequest request) throws IOException {
 		System.out.println("---> insertTip.do 실행");
@@ -64,6 +58,13 @@ public class TipController {
 	@RequestMapping(value="getTipList")
 	public String getTipList(TipVO vo, TipDAO tipDAO, Model model) {
 		System.out.println("---> getTipList 실행");
+		System.out.println("SearchCondition : " + vo.getSearchCondition());
+		System.out.println("SearchKeyword : " + vo.getSearchKeyword());
+		if (vo.getSearchCondition() == null) { vo.setSearchCondition("TITLE"); }
+		if (vo.getSearchKeyword() == null) { vo.setSearchKeyword(""); }
+		System.out.println("SearchCondition : " + vo.getSearchCondition());
+		System.out.println("SearchKeyword : " + vo.getSearchKeyword());
+		
 		model.addAttribute("tipList", tipService.getTipList(vo));
 		System.out.println("---> getTipList 완료");
 		return  "/Tip/getTipList";

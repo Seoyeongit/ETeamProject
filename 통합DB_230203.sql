@@ -509,7 +509,34 @@ CREATE SEQUENCE ntc_seq
 INSERT INTO NOTICE_BOARD VALUES((ntc_seq.NEXTVAL), '공지사항 TEST 입니다.', '공지사항 TEST 입니다.', null, DEFAULT, '0', DEFAULT);
 INSERT INTO NOTICE_BOARD VALUES((ntc_seq.NEXTVAL), '공지사항 수정 TEST 입니다.', '공지사항 수정 TEST 입니다.', null, DEFAULT, '0', DEFAULT);
 
-COMMIT;
+-- ADMIN, 시퀀스 드롭 후 다시 생성
+DROP TABLE ADMIN;
+DROP SEQUENCE ADM_NO;
 
-commit;
+CREATE TABLE ADMIN
+(
+    adm_id VARCHAR2(20) NOT NULL,
+    adm_pw VARCHAR2(100) NOT NULL,
+    adm_name VARCHAR2(50) NOT NULL,
+    adm_phone VARCHAR2(20) NOT NULL,
+    adm_email VARCHAR2(100) NOT NULL,
+    adm_no NUMBER(10) NOT NULL,
+    adm_date DATE DEFAULT SYSDATE
+);
+    
+ALTER TABLE ADMIN
+    ADD CONSTRAINT adm_id PRIMARY KEY (adm_id);
+
+CREATE SEQUENCE ADM_NO
+  START WITH 1
+  INCREMENT BY 1
+  MAXVALUE 10000
+  MINVALUE 1
+  NOCYCLE;
+
+INSERT INTO ADMIN VALUES('admin123', 'admin1234', '이도은', '010-1231-1231', 'admin1@gmail.com', (adm_no.NEXTVAL), DEFAULT);
+
+select * from admin;
+
+COMMIT;
 

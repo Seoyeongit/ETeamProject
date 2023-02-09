@@ -26,4 +26,6 @@ public class TipVO {
 	private Date tip_create_date; //발행일
 	private int tip_hit; //조회수
 	private Date tip_update_date; //수정일
+	private String searchCondition;
+	private String searchKeyword;
 }

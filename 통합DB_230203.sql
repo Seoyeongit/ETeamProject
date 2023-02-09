@@ -510,5 +510,3 @@ INSERT INTO NOTICE_BOARD VALUES((ntc_seq.NEXTVAL), '공지사항 수정 TEST 입
 
 COMMIT;
 
-commit;
-

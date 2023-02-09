@@ -7,7 +7,6 @@
 <title>관리자 페이지</title>
 </head>
 <body>
-
 <table>
 <tr>
 <td>

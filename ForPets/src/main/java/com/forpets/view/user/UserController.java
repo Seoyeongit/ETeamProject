@@ -61,7 +61,7 @@ public class UserController {
 		if(userService.getUser(vo) != null) {
 			session.setAttribute("member", userService.getUser(vo));
 			System.out.println(session.getAttribute("member").toString());
-			return "redirect:/";
+			return "forward://";
 		}else {
 			return "member/login";
 		}

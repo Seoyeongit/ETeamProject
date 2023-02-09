@@ -35,8 +35,8 @@ public class CommunityController {
 	public ModelAndView insertcommunity() throws Exception {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/Community/getCommunity");
-//		mav.addObject("listcount", comservice.getlistcount());
-//		mav.addObject("communityList", comservice.getCommunityList());
+		mav.addObject("listcount", comservice.getlistcount());
+		mav.addObject("communityList", comservice.getCommunityList());
 		// System.out.println("커뮤니티목록 생성");
 		return mav;
 	}

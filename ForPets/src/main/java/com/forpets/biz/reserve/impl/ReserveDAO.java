@@ -32,7 +32,7 @@ public class ReserveDAO {
 			+ "reserve_num, reserve_day, reserve_time, reserve_add, s_num, user_id, part_id, pet_id, pick_add, reserve_request)"
 					+ "values((reserve_seq.NEXTVAL), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	
-	private final String RESERVE_LAST_SEQ = "select max(re_seq) FROM reserve";
+	private final String RESERVE_LAST_SEQ = "select NVL(max(re_seq),1) FROM reserve";
 	
 	/*
 	 * 특정회원의 예약리스트중 특정예약정보를 조회하는 메서드
@@ -106,7 +106,7 @@ public class ReserveDAO {
 		reserve.setUser_id(request.getParameter("user_id"));
 		reserve.setPart_id(request.getParameter("part_id"));
 		reserve.setPet_id(Integer.parseInt(request.getParameter("pet_id")));
-		reserve.setPick_add(request.getParameter("pick_add"));
+		//reserve.setPick_add(request.getParameter("pick_add"));
 		reserve.setReserve_request(request.getParameter("reserve_request"));
 		return reserve;
 	}

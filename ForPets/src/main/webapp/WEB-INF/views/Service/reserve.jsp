@@ -72,11 +72,9 @@
 						<td align="center"><span>${serv.s_price }</span></td>
 					</tr>
 				</c:forEach>
-				<c:choose>
-					<c:when test="${reserve.pick_add != null && reserve.pick_add != '' }">
-							<tr><td align="center" colspan="2"><span id="pickadd">픽업 주소 : ${reserve.pick_add }</span></td></tr>
-					</c:when>
-				</c:choose>
+				<c:forEach items="${pa_List }" var="pick_add">
+					<tr><td align="center" colspan="2"><span id="pickadd">픽업 주소 : ${pick_add }</span></td></tr>
+				</c:forEach>
 				<tr>
 					<td align="center">총액 :</td>
 					<td align="center">${total_price }</td>

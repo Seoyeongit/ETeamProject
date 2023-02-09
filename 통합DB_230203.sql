@@ -257,6 +257,7 @@ INSERT INTO serv VALUES((serv_seq.NEXTVAL), '병원', 50000);
 INSERT INTO serv VALUES((serv_seq.NEXTVAL), '미용', 50000);
 INSERT INTO serv VALUES((serv_seq.NEXTVAL), '샤워', 50000);
 INSERT INTO serv VALUES((serv_seq.NEXTVAL), '훈련', 50000);
+INSERT INTO serv VALUES((serv_seq.NEXTVAL), '호텔', 70000);
 
 select * from serv;
 

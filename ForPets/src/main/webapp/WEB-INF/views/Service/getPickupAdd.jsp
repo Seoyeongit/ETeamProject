@@ -63,6 +63,8 @@
   		</div>
 	</div>
 	<script>
+	var pick_add = location.hash;
+	console.log("pick_add :" + pick_add);
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = { 
 	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -196,10 +198,17 @@
 	        	        if (status === kakao.maps.services.Status.OK) {
 	        	            var detailAddr = !!result[0].road_address ? result[0].road_address.address_name : '';
 	        	            
-	        	            $("#road_add_view", opener.document).val(detailAddr + " " + title);
-	        	            $("#pick_add", opener.document).val(detailAddr + " " + title);
-	        	            $(opener.location).attr("href", "javascript:show_pickup_add()");
-	        	        	self.close();
+	        	            //$("#road_add_view", opener.document).val(detailAddr + " " + title);
+	        	            //$("#pick_add", opener.document).val(detailAddr + " " + title);
+	        	            //$(opener.location).attr("href", "javascript:show_pickup_add()");
+	        	        	
+	        	            var input_add = document.createElement('input');
+	        	            input_add.setAttribute('type', 'text');
+	        	            input_add.setAttribute('name', 'pick_add');
+	        	            input_add.setAttribute('size', '45');
+	        	            input_add.setAttribute('value', detailAddr + " " + title);
+	        	            $(opener.document).find(pick_add).append(input_add);
+	        	            self.close();
 	        	        }   
 	        	    });
 	                

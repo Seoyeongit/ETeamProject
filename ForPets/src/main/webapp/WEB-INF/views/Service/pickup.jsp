@@ -67,7 +67,7 @@ $(document).ready(function(){
 			<div id="set_pickup">
 				<input type="checkbox" id="hospital_choice" name="s_num" value="4">
 				<input type="checkbox" id="beauty_choice" name="s_num" value="5">
-				<input type="checkbox" id="hotel_choice" name="s_num" value="23">
+				<input type="checkbox" id="hotel_choice" name="s_num" value="8">
 			</div>
 			<p>반려동물 정보</p>
 			<table id="set_pet">

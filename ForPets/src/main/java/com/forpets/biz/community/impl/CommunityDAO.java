@@ -77,7 +77,7 @@ public class CommunityDAO {
 	}
 
 	public void deleteCommunity(String c_code) {
-	// 	System.out.println(c_code);
+		System.out.println(c_code);
 		jdbcTemplate.update(DELETE_COMMUNITY, c_code);
 
 	}

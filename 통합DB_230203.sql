@@ -1018,6 +1018,29 @@ INSERT INTO customer VALUES ((cust_seq.NEXTVAL),'abc456','sho232','급합니다!
 
 select * from customer;
 
+--230210 연은비 review DB
+CREATE TABLE review
+(
+    r_id NUMBER(8) NOT NULL,                -- 리뷰 ID
+    star_rating NUMBER(5) NULL,             -- 별점
+    r_content VARCHAR2(2000) NULL,           -- 리뷰 내용
+    r_title VARCHAR2(100) NULL,              -- 리뷰 제목
+    r_date DATE NULL,                       -- 작성 날짜
+    reserve_num VARCHAR2(20) NOT NULL          -- 리뷰넘버
+);
+
+CREATE SEQUENCE r_seq
+  START WITH 1
+  INCREMENT BY 1
+  MAXVALUE 10000
+  MINVALUE 1
+  NOCYCLE;
+
+DROP TABLE review;
+
+ALTER TABLE review
+    ADD CONSTRAINT r_id PRIMARY KEY (r_id);
+
 
 COMMIT;
 

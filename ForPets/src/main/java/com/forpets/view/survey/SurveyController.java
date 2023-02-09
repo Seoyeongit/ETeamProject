@@ -1,7 +1,12 @@
 package com.forpets.view.survey;
 
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collector;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,8 +22,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndViewDefiningException;
 
-import com.forpets.biz.community.CommunityVO;
+
 import com.forpets.biz.survey.SurveyAnswerVO;
 import com.forpets.biz.survey.SurveyChoiceVO;
 import com.forpets.biz.survey.SurveyDetailService;
@@ -27,7 +33,7 @@ import com.forpets.biz.survey.SurveyVO;
 import com.forpets.biz.survey.Impl.SurveyDetailDAO;
 
 @Controller
-@RequestMapping("/")
+//@RequestMapping("/")
 public class SurveyController {
 	
 	@Autowired
@@ -153,9 +159,9 @@ public class SurveyController {
 		mav.addObject("surveyboard", surdservice.getSurveyBoard(sd_svcode));
 		mav.addObject("surveyboard2", surdservice.getSurveyBoard2(sd_svcode));
 		mav.addObject("surveyboard3", surdservice.getSurveyBoard3(sd_svcode));
-		System.out.println(surdservice.getSurveyBoard(sd_svcode));
-		System.out.println(surdservice.getSurveyBoard2(sd_svcode));
-		System.out.println(surdservice.getSurveyBoard3(sd_svcode));
+//		System.out.println(surdservice.getSurveyBoard(sd_svcode));
+//		System.out.println(surdservice.getSurveyBoard2(sd_svcode));
+//		System.out.println(surdservice.getSurveyBoard3(sd_svcode));
 		return mav;
 	}
 	
@@ -172,12 +178,9 @@ public class SurveyController {
 	@RequestMapping(value="/insertanswer.do", method = RequestMethod.POST)
 	public ModelAndView insertAnswer(@RequestParam String sd_svcode, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		
 		SurveyAnswerVO vo = new SurveyAnswerVO();
 		
-		
 		int count = Integer.parseInt(surdservice.count(sd_svcode));
-		
 		
 		// check 수정하기 
 		for(int i=1; i<=count; i++) {
@@ -187,17 +190,39 @@ public class SurveyController {
 			String sa_content = req.getParameter(sc_ascode);
 			vo.setSa_ascode(sc_ascode);
 			vo.setUser_id("pow123");
-			vo.setSa_contant(sa_content);
+			vo.setSa_content(sa_content);
 			System.out.println(sd_svcode);
-			surdservice.insertAnswer(vo);
-			
+			surdservice.insertAnswer(vo);		
 		}
 
-		
 		mav.setViewName("redirect:/surveylist.do");
 		return mav;
 	}
+	
+	
+	// 답변 리스트 불러오기
+	@RequestMapping("/answerlist.do")
+	public ModelAndView answerList() throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/Survey/AnswerList");
+		mav.addObject("answerList",surdservice.getAnswerList());
+		
+		return mav;
+	}
 
+	// 질문 답변 불러오기 
+	@RequestMapping("/answerboard.do/{sd_svcode}&{user_id}")
+	public ModelAndView getAnswerBoard(@PathVariable String sd_svcode, @PathVariable String user_id) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/Survey/ViewSurvey");
+		mav.addObject("answerboard", surdservice.getAnswerBoard(sd_svcode));
+		mav.addObject("answerboard2", surdservice.getAnswerBoard2(sd_svcode));
+		mav.addObject("answerboard3", surdservice.getAnswerBoard3(sd_svcode));
+		mav.addObject("answerboard4", surdservice.getAnswerBoard4(sd_svcode, user_id));
+		System.out.println(surdservice.getAnswerBoard4(sd_svcode, user_id));
+	//	mav.addObject("answerboard4", surdservice.getAnswerBoard4());
+		return mav;
+	}
 }
 	
 	

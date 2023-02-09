@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>View Survey</title>
+<title>설문지 상세보기</title>
 </head>
 <body>
 	

@@ -32,4 +32,15 @@ public interface SurveyDetailService {
 	// 설문지 답변 저장
 	public void insertAnswer(SurveyAnswerVO vo);
 	public String count(String sd_svcode);
+	
+	// 답변 리스트 불러오기
+	public List<SurveyAnswerVO> getAnswerList() throws Exception;
+	
+	// 설문지 답변 내용 보기
+	public List<SurveyDetailVO> getAnswerBoard(String sd_svcode);
+	public List<SurveyChoiceVO> getAnswerBoard2(String sc_svcode);
+	public SurveyVO getAnswerBoard3(String s_svcode);
+	public List<SurveyAnswerVO> getAnswerBoard4(String sa_svcode, String user_id);
+
+	
 }

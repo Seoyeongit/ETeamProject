@@ -23,24 +23,32 @@
 	}
 </style>
 <script>
+function choice_service(this_id) {
+	var id = this_id;
+	var add = "#" + id + "_add";
+	var choice = "#" + id + "_choice";
+	var check = $(choice).is('[checked]');
+	console.log("id : " + id);
+	console.log("add : " + add);
+	console.log("check : " + check);
+	if(check) {
+		$("#"+id).css("background-color","white");
+		$("#"+id).css("color","#99cc99");
+		$(add).remove();
+		$(choice).attr('checked', false);
+	}
+	else {
+		$("#"+id).css("background-color","#99cc99");
+		$("#"+id).css("color","white");
+		$(choice).attr('checked', true);
+		getPickupAddPopUp(add);
+	}
+}
+
 $(document).ready(function(){
 	$("#set_pet").hide();
 	$("#set_partner").hide();
-	$("#set_pickup_add").hide();
-	$("#hospital").click(function() {
-		$(this).css("background-color","#99cc99");
-		$(this).css("color","white");
-		$("#beauty").css("background-color","white");
-		$("#beauty").css("color","#99cc99");
-		$("#s_num").val("4")
-	});
-	$("#beauty").click(function() {
-		$(this).css("background-color","#99cc99");
-		$(this).css("color","white");
-		$("#hospital").css("background-color","white");
-		$("#hospital").css("color","#99cc99");
-		$("#s_num").val("5")
-	});
+	$("#set_pickup").hide();
 });
 
 </script>
@@ -56,7 +64,11 @@ $(document).ready(function(){
 		<form action="reserve" method="post">
 			<input type="hidden" value="${member.user_id }" name="user_id">
 			<input type="hidden" id="pet_id" name="pet_id">
-			<input type="hidden" value="1" id="s_num" name="s_num">
+			<div id="set_pickup">
+				<input type="checkbox" id="hospital_choice" name="s_num" value="4">
+				<input type="checkbox" id="beauty_choice" name="s_num" value="5">
+				<input type="checkbox" id="beauty_choice" name="s_num" value="23">
+			</div>
 			<p>반려동물 정보</p>
 			<table id="set_pet">
 				<tr>
@@ -70,19 +82,21 @@ $(document).ready(function(){
 				</tr>
 			</table>
 			<br>
-			<input type="button" value="선택" onclick="getPetListPopUp('${member.user_id}')">
+			<input type="button" value="선택" onclick="getPetListPopUp()">
 			<hr>
 			<p>서비스 선택</p>
 			<table id="choiceService">
 				<tr>
-					<td><input type="button" value="병원" id="hospital" onclick="getPickupAddPopUp()"></td>
-					<td><input type="button" value="미용" id="beauty" onclick="getPickupAddPopUp()"></td>
+					<td><input type="button" value="병원" id="hospital" onclick="choice_service(this.id)" ></td>
+					<td id="hospital_add"></td>
 				</tr>
-			</table>
-			<table id="set_pickup_add">
 				<tr>
-					<td><input type="text" id="road_add_view" size="45"></span></td>
-					<td><input type="hidden" id="pick_add" name="pick_add"></td>
+					<td><input type="button" value="미용" id="beauty" onclick="choice_service(this.id)" ></td>
+					<td id="beauty_add"></td>
+				</tr>
+				<tr>
+					<td><input type="button" value="호텔" id="hotel" onclick="choice_service(this.id)" ></td>
+					<td id="beauty_add"></td>
 				</tr>
 			</table>
 			<hr>

@@ -21,7 +21,7 @@ public class ReserveDAO {
 			"AND reserve.USER_ID=? " + 
 			"AND reserve_num=?";
 	private final String RESERVE_LIST = "SELECT * FROM RESERVE,PARTNERS,USER_PET WHERE RESERVE.PART_ID= PARTNERS.PART_ID and reserve.pet_id = user_pet.pet_id AND reserve.USER_ID=? ORDER BY RESERVE.STATUS";
-	private final String RESERVE_COMPLETELIST = "SELECT * FROM RESERVE,PARTNERS,USER_PET WHERE RESERVE.PART_ID= PARTNERS.PART_ID and reserve.pet_id = user_pet.pet_id AND reserve.USER_ID=? ORDER BY RESERVE_NUM DESC";
+	private final String RESERVE_COMPLETELIST = "SELECT * FROM RESERVE,PARTNERS,USER_PET WHERE RESERVE.PART_ID= PARTNERS.PART_ID and reserve.pet_id = user_pet.pet_id AND reserve.USER_ID=? AND reserve.status=3 ORDER BY RESERVE_NUM DESC";
 	private final String GET_PETNAME = "select user_pet.pet_name from reserve,user_pet where reserve.pet_id = user_pet.pet_id;";
 	private final String COUNT_RESERVE = "select count(*) from reserve,users where reserve.user_id = users.user_id and reserve.status in(1,2) and reserve.user_id=?";
 	private final String COUNT_COMPLETE_RESERVE = "select count(*) from reserve,users where reserve.user_id = users.user_id and reserve.status=3 and reserve.user_id=?";
@@ -32,7 +32,7 @@ public class ReserveDAO {
 			+ "reserve_num, reserve_day, reserve_time, reserve_add, s_num, user_id, part_id, pet_id, pick_add, reserve_request)"
 					+ "values((reserve_seq.NEXTVAL), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	
-	private final String RESERVE_LAST_SEQ = "select max(re_seq) FROM reserve";
+	private final String RESERVE_LAST_SEQ = "select NVL(max(re_seq),0) FROM reserve";
 	
 	/*
 	 * 특정회원의 예약리스트중 특정예약정보를 조회하는 메서드

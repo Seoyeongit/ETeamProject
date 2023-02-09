@@ -68,7 +68,8 @@
 
         <div class="col-md-12">
             <div class="top-breadcrumb">
-                <div>안녕하세요 ${member.user_nick}(${member.user_id })님 <a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></div>
+                <div>안녕하세요 ${member.user_nick}(${member.user_id })님 <a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
+                 | <a href="${pageContext.request.contextPath}/">홈으로</a></div>
                 <br>
             </div>
         </div>
@@ -178,7 +179,7 @@
                             <p><strong>나의 활동</strong></p>
                             <table class="container">
                                 <tr>
-                                    <td>공지사항</td>
+                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
                                     <td>고객센터</td>
                                 </tr>
                             </table>

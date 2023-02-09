@@ -31,7 +31,7 @@ function showPetWorkPopUp() {
 		<li><a href="${pageContext.request.contextPath}/Tip/getTipList">Tip 게시판</a></li>
 	</ul>
 	<center>
-		<form action="reserve" method="post">
+		<form action="getService" method="post">
 			<input type="hidden" value="${member.user_id }" name="user_id">
 			<input type="hidden" id="pet_id" name="pet_id">
 			<input type="hidden" value="2" name="s_num">
@@ -54,8 +54,8 @@ function showPetWorkPopUp() {
 			<input type="button" value="선택" onclick="getPetListPopUp('${member.user_id}')">
 			<hr>
 			<p>추가 서비스</p>
-			<label><input type="checkbox" name="s_num" value="21">샤워</label>
-			<label><input type="checkbox" name="s_num" value="22">훈련</label>
+			<label><input type="checkbox" name="s_num" value="6">샤워</label>
+			<label><input type="checkbox" name="s_num" value="7">훈련</label>
 			<hr>
 			<p>요청사항</p>
 			<input type="text" name="reserve_request" size="45">

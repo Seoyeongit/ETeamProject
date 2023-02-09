@@ -190,10 +190,9 @@ DROP TABLE survey_answer;
 SELECT * FROM survey_answer;
 
 
-
 -- 230203 최지혁 SQL
 -- reserv table sequence
-CREATE SEQUENCE reserve_seq
+CREATE SEQUENCE re_seq
   START WITH 1
   INCREMENT BY 1
   MAXVALUE 10000
@@ -225,10 +224,6 @@ CREATE TABLE reserve
 -- reserve table primary key
 ALTER TABLE reserve ADD CONSTRAINT re_seq PRIMARY KEY (re_seq);
 
--- reserve table 초기값
-INSERT INTO reserve(reserve_num, reserve_day, reserve_time, reserve_add, s_num, user_id, part_id, pet_id) VALUES((reserve_seq.NEXTVAL), '2023-01-14', '14:30', '경기도 안산시 단원구 선부광장 1로 81 1509동 111호', '1', 'abc123', 'ppp222', '1');
-INSERT INTO reserve(reserve_num, reserve_day, reserve_time, reserve_add, s_num, user_id, part_id, pet_id) VALUES((reserve_seq.NEXTVAL), '2023-01-14', '14:30', '경기도 안산시 단원구 선부광장 1로 81 1503동 111호', '2', 'abc456', 'bpb222', '2');
-INSERT INTO reserve(reserve_num, reserve_day, reserve_time, reserve_add, s_num, user_id, part_id, pet_id, pick_add) VALUES((reserve_seq.NEXTVAL), '2023-01-14', '14:30', '경기도 안산시 단원구 선부광장 1로 81 1507동 111호', '4', 'abc789', 'bow444', '3', '경기도 안산시 단원구 선부광장 1로 81 동네병원');
 
 -- serv table sequence
 CREATE SEQUENCE serv_seq

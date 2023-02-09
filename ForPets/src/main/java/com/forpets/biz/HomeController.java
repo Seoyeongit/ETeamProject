@@ -22,10 +22,16 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/")
 	public String home(HttpServletRequest request) {
 		request.getSession(false);
 		return "home";
 	}
+	
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public String home(HttpServletRequest request) {
+//		request.getSession(false);
+//		return "home";
+//	}
 	
 }

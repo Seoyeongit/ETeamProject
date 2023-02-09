@@ -61,13 +61,13 @@ $(document).ready(function(){
 		<li><a href="${pageContext.request.contextPath}/Tip/getTipList">Tip 게시판</a></li>
 	</ul>
 	<center>
-		<form action="reserve" method="post">
+		<form action="getService" method="post">
 			<input type="hidden" value="${member.user_id }" name="user_id">
 			<input type="hidden" id="pet_id" name="pet_id">
 			<div id="set_pickup">
 				<input type="checkbox" id="hospital_choice" name="s_num" value="4">
 				<input type="checkbox" id="beauty_choice" name="s_num" value="5">
-				<input type="checkbox" id="beauty_choice" name="s_num" value="23">
+				<input type="checkbox" id="hotel_choice" name="s_num" value="23">
 			</div>
 			<p>반려동물 정보</p>
 			<table id="set_pet">
@@ -96,7 +96,7 @@ $(document).ready(function(){
 				</tr>
 				<tr>
 					<td><input type="button" value="호텔" id="hotel" onclick="choice_service(this.id)" ></td>
-					<td id="beauty_add"></td>
+					<td id="hotel_add"></td>
 				</tr>
 			</table>
 			<hr>

@@ -31,7 +31,7 @@ function showPetWorkPopUp() {
 		<li><a href="${pageContext.request.contextPath}/Tip/getTipList">Tip 게시판</a></li>
 	</ul>
 	<center>
-		<form action="reserve" method="post">
+		<form action="getService" method="post">
 			<input type="hidden" value="${member.user_id }" name="user_id">
 			<input type="hidden" id="pet_id" name="pet_id">
 			<input type="hidden" value="2" name="s_num">

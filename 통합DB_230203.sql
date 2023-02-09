@@ -984,6 +984,7 @@ INSERT INTO ADMIN VALUES('admin123', 'admin1234', '이도은', '010-1231-1231', 
 
 select * from admin;
 
+-- 230210 영현님
 -- 고객 센터 테이블
 
 CREATE SEQUENCE cust_seq
@@ -1020,7 +1021,5 @@ select * from customer;
 
 COMMIT;
 
-
-commit;
 
 

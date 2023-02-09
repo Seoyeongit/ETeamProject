@@ -17,8 +17,8 @@ import lombok.Setter;
 @Getter @Setter
 public class SurveyVO {
 	private String s_svcode; //설문지코드
-	private String c_code; //소모임코드
+	private String s_code; //소모임코드
 	private String s_title; //제목
-	private Date s_regDate; //날짜
+	private Date s_date; //날짜
 
 }

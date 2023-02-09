@@ -31,5 +31,6 @@
 		</table>
 	</form>
 	<a href="getcommunity.do"><input type="button" value="글 작성하기"></a>
+	<a href="surveylist.do">설문지 보러가기</a>
 </body>
 </html>

@@ -17,9 +17,9 @@ import lombok.Setter;
 @Getter @Setter
 public class SurveyAnswerVO {
 	private int sa_number; //시퀀스
-	private String c_code; //설문지코드
+	private String sa_svcode; //설문지코드
 	private String sa_order; //순서코드
 	private String sa_ascode; //답변코드
 	private String user_id; //회원아이디
-	private String sa_contant; //답변내용
+	private String sa_content; //답변내용
 }

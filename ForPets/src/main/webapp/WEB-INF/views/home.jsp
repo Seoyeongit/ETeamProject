@@ -32,7 +32,7 @@
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/Service/service">서비스</a></li>
                         <li class="nav-item"><a class="nav-link" href="communitylist.do">소모임</a></li>
                         <li class="nav-item"><a class="nav-link" href="#review">리뷰보기</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#customer">고객센터</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/customer.do">고객센터</a></li>
                        
                         <c:choose>
                         <c:when test="${member.user_id eq '' || member.user_id eq null}"><li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/login">로그인</a></li>

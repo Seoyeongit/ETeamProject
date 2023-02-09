@@ -134,7 +134,7 @@
         <div  id="surviceContainer">
             <ol>
             	<c:forEach items="${reserveList}" var="reserve">
-                <li onclick="getReserveNum(${reserve.reserve_num})">
+                <li onclick="getReserveNum('${reserve.reserve_num}')">
                 	<div id="">${reserve.reserve_num }</div>
                     <h4>'${reserve.voPet.name}'의 
                        <c:choose>
@@ -191,6 +191,7 @@
         //변수에 누른 예약리스트 reserve_num이 초기화 됩니다.
         function getReserveNum(Rnum){
         	num = Rnum;
+        	console.log(num);
         }
         
         

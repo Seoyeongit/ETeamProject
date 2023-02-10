@@ -14,6 +14,21 @@
 <h1>고객센터 문의 목록</h1>
 <hr>
 <br>
+
+<form action="getCustomerList" method="post">
+		<table border="1" cellpadding="0" cellspacing="0" width="700">
+			<tr>
+				<td align="right">
+					<select name="searchCondition">
+							<option value="TITLE">제목</option>
+							<option value="CONTENT">내용</option>
+					</select>
+					<input name="searchKeyword" type="text" />
+					<input  type="submit" value="검색" />
+				</td>
+			</tr>
+		</table>
+		</form>
 	<table>
 			<tr>
 				<th>번호</th>

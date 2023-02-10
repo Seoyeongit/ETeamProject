@@ -12,10 +12,8 @@
 	<h2>ForPets 고객센터</h2>
 	<hr>
 	
+		<a href="/biz">홈으로</a>
 	<h4>자주 묻는 질문</h4>
-	
-	
-	<div>검색<input type="text"></div>
 	
 	<br>
 	<hr>

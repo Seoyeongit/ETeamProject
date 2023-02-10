@@ -1040,8 +1040,11 @@ DROP TABLE review;
 ALTER TABLE review
     ADD CONSTRAINT r_id PRIMARY KEY (r_id);
 
+select * from user_pet;
+
+delete from user_pet where user_id='abc123';
 
 COMMIT;
 
-
+select * from CUSTOMER where cust_title like '%%' order by cust_no desc;
 

@@ -21,5 +21,6 @@ public class CustomerVO {
 	private String cust_title;
 	private String cust_content;
 	private Date cust_date;
-	private MultipartFile uploadFile;
+	private String searchCondition;
+	private String searchKeyword;
 }

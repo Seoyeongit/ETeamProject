@@ -17,6 +17,8 @@ public class CustomerDAO {
 	private final String GET_CUSTOMER = "select * from CUSTOMER WHERE CUST_NO = ?";
 	private final String MYCUSTOMER_BOARD = "select * from CUSTOMER where USER_ID = ";
 	private final String CUSTOMER_LIST = "select * from CUSTOMER order by CUST_NO DESC ";
+	private final String CUSTOMER_LIST_T = "select * from CUSTOMER where cust_title like ";
+	private final String CUSTOMER_LIST_C = "select * from CUSTOMER where cust_content like ";
 	private final String INSERT_CUSTOMER = "INSERT INTO CUSTOMER (CUST_NO, USER_ID, PART_ID, CUST_TITLE, CUST_CONTENT) VALUES((cust_seq.NEXTVAL),?,?,?,?)";
 	private final String DELETE_CUSTOMER = "DELETE FROM CUSTOMER where CUST_NO=? ";
 	private final String UPDATE_CUSTOMER = "UPDATE CUSTOMER set CUST_TITLE=?, CUST_CONTENT=? where CUST_NO=?";
@@ -28,7 +30,7 @@ public class CustomerDAO {
 		vo.setUser_id(resultSet.getString("USER_ID"));
 		vo.setPart_id(resultSet.getString("PART_ID"));
 		vo.setCust_title(resultSet.getString("CUST_TITLE"));
-		vo.setCust_content(resultSet.getString("C_CONTENT"));
+		vo.setCust_content(resultSet.getString("CUST_CONTENT"));
 		vo.setCust_date(resultSet.getDate("CUST_DATE"));
 		
 		return vo;
@@ -51,7 +53,14 @@ public class CustomerDAO {
 	} 
 	
 	public List<CustomerVO> getCustomerList(CustomerVO vo) {
-		return jdbcTemplate.query(CUSTOMER_LIST, new CustomerRowMapper());
+		String sql = null;
+		if (vo.getSearchCondition().equals("TITLE")) {
+			sql = CUSTOMER_LIST_T;
+		} else if (vo.getSearchCondition().equals("CONTENT")) {
+			sql = CUSTOMER_LIST_C;
+		}
+		
+		return jdbcTemplate.query(sql +"'%" + vo.getSearchKeyword() +"%'" + " order by cust_no desc", customerRowMapper);
 	}
 	
 	public void insertCustomer(CustomerVO vo) {

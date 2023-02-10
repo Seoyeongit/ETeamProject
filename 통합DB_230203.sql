@@ -278,7 +278,7 @@ CREATE TABLE tip_board
     tip_video VARCHAR2(200) NULL,           -- 영상
     tip_create_date DATE DEFAULT sysdate,          -- 발행일
     tip_hit NUMBER(10) NOT NULL,            -- 조회수
-    tip_update_date DATE NULL               -- 수정일
+    tip_update_date DATE DEFAULT sysdate NULL   -- 수정일
 );
 
 -- tip_board primary key
@@ -290,7 +290,6 @@ INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, t
 INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tip_board_seq.NEXTVAL),'강아지','꿀팁입니당',NULL,NULL,1,NULL);
 INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tip_board_seq.NEXTVAL),'고양이','꿀팁입니당',NULL,NULL,1,NULL);
 INSERT INTO tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit, tip_update_date) VALUES ((tip_board_seq.NEXTVAL),'애들','꿀팁입니당',NULL,NULL,1,NULL);
-
 
 --230203 연은비 DB수정리스트
 --table이름 수정 signUp -> users

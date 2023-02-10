@@ -24,7 +24,7 @@
 				</tr>
 				<tr>
 					<td bgcolor="orange">유튜브 URL</td>
-					<td align="left"><input type="text" name="tip_video" size="10"/></td>
+					<td align="left"><input type="text" name="tip_video" size="10"/> *Youtube 동영상 우클릭 후 동영상 URL 복사 한 것을 넣어주세요</td>
 				</tr>
 				<tr>
 					<td bgcolor="orange">내용</td>

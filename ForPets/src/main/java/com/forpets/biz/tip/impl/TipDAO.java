@@ -16,7 +16,7 @@ public class TipDAO {
 	
 	private final String BOARD_INSERT = "insert into tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit) "
 			+ "values((tb_seq.NEXTVAL), ?, ?, ?, ?, ?)";
-	private final String BOARD_UPDATE = "update tip_board set tip_title=?, tip_content=?, tip_img_url=?, tip_video=? " 
+	private final String BOARD_UPDATE = "update tip_board set tip_title=?, tip_content=?, tip_img_url=?, tip_video=?, tip_update_date= sysdate " 
 			+ "where tip_seq = ?";
 	private final String BOARD_UPDATE_HIT = "update tip_board set tip_hit=? " 
 			+ "where tip_seq = ?";
@@ -77,6 +77,8 @@ public class TipDAO {
 				}
 				, vo.getTip_seq());
 		updateTip_Hit(tip);
+		System.out.println("tip_create_date : " + tip.getTip_create_date());
+		System.out.println("tip_update_date : " + tip.getTip_update_date());
 		return tip;
 	}
 	

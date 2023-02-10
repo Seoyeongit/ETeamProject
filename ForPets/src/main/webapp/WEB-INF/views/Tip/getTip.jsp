@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
@@ -33,10 +34,21 @@
 					<iframe width="300" height="150" src="${tip.tip_video }" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 					</td>
 				</tr>
-				<tr>
-					<td bgcolor="orange">등록일</td>
-					<td align="left">${ tip.tip_create_date }</td>
-				</tr>
+				<c:choose>
+                        <c:when test="${tip.tip_create_date eq tip.tip_update_date || tip.tip_update_date eq null}">
+                        	<tr>
+								<td bgcolor="orange">등록일</td>
+								<td align="left">${ tip.tip_create_date }</td>
+							</tr>
+                        </c:when>
+                        <c:otherwise>
+                        	<tr>
+								<td bgcolor="orange">수정일</td>
+								<td align="left">${ tip.tip_update_date }</td>
+							</tr>
+                        </c:otherwise>
+                </c:choose>
+				
 				<tr>
 					<td bgcolor="orange">조회수</td>
 					<td align="left">${ tip.tip_hit +1 }</td>

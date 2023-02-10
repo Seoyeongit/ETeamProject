@@ -33,7 +33,7 @@
 		</form>
 		<table border="1" cellpadding="0" cellspacing="0" width="700">
 			<tr>
-				<th bgcolor="orange" width="100">번호</th>
+				<th bgcolor="orange" width="100"></th>
 				<th bgcolor="orange" width="200">제목</th>
 				<th bgcolor="orange" width="150">작성자</th>
 				<th bgcolor="orange" width="150">작성일</th>
@@ -41,7 +41,7 @@
 			</tr>
 			<c:forEach items="${tipList }" var="tip">
 				<tr>
-					<td>${ tip.tip_seq }</td>
+					<td><img src="${ tip.tip_img_url }" onclick="location.href='getTip?tip_seq=${ tip.tip_seq }'"></td>
 					<td align="left"><a href="getTip?tip_seq=${ tip.tip_seq }">
 							${ tip.tip_title }</a></td>
 					<td>관리자</td>
@@ -51,7 +51,7 @@
 			</c:forEach>
 		</table>
 		<br>
-		<a href="${pageContext.request.contextPath}/Tip/insertTip">새 글 작성</a>
+		<a href="insertTip">새 글 작성</a>
 	</center>
 </body>
 </html>

@@ -222,7 +222,7 @@
         $('div .w-btn-outline').click(function(){
         	var r_title = $('#review-header').val();
         	var r_content = $('#review-body').val();
-        	var reserv_num = '<c:out value="${reserve.reserve_num}"/>';
+        	var reserve_num = '<c:out value="${reserve.reserve_num}"/>';
         	
         	$.ajax({
         		url : "../myInfo/writeReview_go",
@@ -232,7 +232,7 @@
         			star_rating : star_rating,
         			r_content : r_content,
         			r_title : r_title,
-        			reserv_num : reserv_num
+        			reserve_num : reserve_num
         		},
     			success : function(){
     				alert("리뷰가 등록되었습니다.");

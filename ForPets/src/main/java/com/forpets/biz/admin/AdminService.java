@@ -6,7 +6,7 @@ package com.forpets.biz.admin;
 
 public interface AdminService {
 	
-	AdminVO getAdminInfo(AdminVO vo) throws Exception;
+	AdminVO getAdmin(AdminVO vo) throws Exception;
 	
 	public void updateAdmin(AdminVO vo);
 	

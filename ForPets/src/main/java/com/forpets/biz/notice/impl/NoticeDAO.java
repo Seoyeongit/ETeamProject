@@ -53,19 +53,19 @@ public class NoticeDAO {
 	// 글 상세 조회
 	public NoticeVO getNoticeBoard(NoticeVO vo, int ntc_seq) {
 //		System.out.println("---> getNoticeBoard()");
-		NoticeVO ntcvo = jdbcTemplate.queryForObject(GET_NOTICE,
-				(resultSet, rowNum) -> {
-					NoticeVO newvo = new NoticeVO();
-					
-					newvo.setNtc_seq(resultSet.getInt("ntc_seq"));
-					newvo.setNtc_title(resultSet.getString("ntc_title"));
-					newvo.setNtc_ctnt(resultSet.getString("ntc_ctnt"));
-					newvo.setNtc_imgurl(resultSet.getString("ntc_imgurl"));
-					newvo.setNtc_cdate(resultSet.getDate("ntc_cdate"));
-					newvo.setNtc_hit(resultSet.getInt("ntc_hit"));
-					newvo.setNtc_udate(resultSet.getDate("ntc_udate"));
-					return newvo;
-				}
+		NoticeVO ntcvo = jdbcTemplate.queryForObject(GET_NOTICE, noticeRowMapper
+//				(resultSet, rowNum) -> {
+//					NoticeVO newvo = new NoticeVO();
+//					
+//					newvo.setNtc_seq(resultSet.getInt("ntc_seq"));
+//					newvo.setNtc_title(resultSet.getString("ntc_title"));
+//					newvo.setNtc_ctnt(resultSet.getString("ntc_ctnt"));
+//					newvo.setNtc_imgurl(resultSet.getString("ntc_imgurl"));
+//					newvo.setNtc_cdate(resultSet.getDate("ntc_cdate"));
+//					newvo.setNtc_hit(resultSet.getInt("ntc_hit"));
+//					newvo.setNtc_udate(resultSet.getDate("ntc_udate"));
+//					return newvo;
+//				}
 				, ntc_seq);
 			noticeHit(ntcvo);
 		return ntcvo;

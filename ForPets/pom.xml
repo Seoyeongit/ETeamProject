@@ -180,20 +180,8 @@
 		
 
 
-		<!-- done -->
-		<dependency>
-			<groupId>oracle</groupId>
-			<artifactId>ojdbc6</artifactId>
-			<version>11.2.0.3</version>
-		</dependency>
+
 	</dependencies>
-	<repositories>
-		<repository>
-			<id>oracle</id>
-			<name>ORACLE JDBC Repository</name>
-			<url>http://www.datanucleus.org/downloads/maven2/</url>
-		</repository>
-	</repositories>
 	<build>
 		<plugins>
 			<plugin>

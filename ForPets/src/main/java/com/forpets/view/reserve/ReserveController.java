@@ -64,8 +64,27 @@ public class ReserveController {
 			UserVO voU = (UserVO) session.getAttribute("member");
 			vo.setUser_id(voU.getUser_id());
 			
-			List<ReServeVO> list = reserveService.getCPTReserveList(vo);			
-			model.addAttribute("reserveList", reserveService.getCPTReserveList(vo));
+			List<ReServeVO> list = reserveService.getCPTReserveList(vo);
+			List<ReServeVO> newList = new ArrayList<ReServeVO>();
+			int[] s_numList = new int[3];
+			int index = 0;
+			String number = "";
+			int count = list.toArray().length;
+			for(int i = 0; i<count;i++) {
+				ReServeVO rvo = list.get(i);
+				if(rvo.getReserve_num().equals(number)) {
+					
+					System.out.println("같은 예약번호이므로 넘어갑니다.");
+					continue;
+				}
+				System.out.println("다른 예약번호이므로 저장합니다.");
+				number = rvo.getReserve_num();
+				newList.add(rvo);
+			}
+			for(ReServeVO list2 : newList) {
+				System.out.println(list2);
+			}
+			model.addAttribute("reserveList", newList);
 		
 		return "myInfo/myReview";
 		

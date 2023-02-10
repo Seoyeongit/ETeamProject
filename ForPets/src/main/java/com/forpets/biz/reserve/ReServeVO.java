@@ -34,4 +34,5 @@ public class ReServeVO {
 	private PartnerVO voP;
 	private String pick_add; // pickup 시 사용할 주소
 	private String reserve_request;
+	private int[] s_numArr;
 }

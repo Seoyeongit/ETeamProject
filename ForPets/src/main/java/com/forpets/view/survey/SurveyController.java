@@ -223,6 +223,14 @@ public class SurveyController {
 	//	mav.addObject("answerboard4", surdservice.getAnswerBoard4());
 		return mav;
 	}
+	
+	// 설문지 답변 삭제하기 
+	@RequestMapping("/deleteanswer.do/{sd_svcode}&{user_id}")
+	public String deleteAnswer(@PathVariable String sd_svcode, @PathVariable String user_id) throws Exception{
+		surdservice.deleteAnswer(sd_svcode, user_id);
+		
+		return "redirect:/answerlist.do";
+	}
 }
 	
 	

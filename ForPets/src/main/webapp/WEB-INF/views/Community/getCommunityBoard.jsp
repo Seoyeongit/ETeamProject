@@ -24,10 +24,39 @@
 		 		<th>내용</th>
 		 		<td>${communityboard.c_content }</td>
 		 	</tr>
-		 	<tr>
-		 		<th>설문지 답변하기</th>
-		 	</tr>
+		 </table>
+		 		
+		 		
+		
+		
+		<c:forEach items="${getdat }" var="gd">
+		
+		<hr>
+		
+		<table>
+			<tr>
+				<th>작성자 : </th>
+				<th>${gd.user_id } / ${gd.d_date }</th>
+			</tr>
+			<tr>
+				<td>댓글 내용 : </td>
+				<td>${gd.d_content }</td>
+			</tr>
 		</table>
+		</c:forEach>
+	
+	<form action="../insertcomdat.do" method="post">
+		<input type="hidden" name="d_code" value="${communityboard.c_code }">
+		<input type="hidden" name="user_id">
+		<table>
+			<tr>
+				<td><textarea rows="5" cols="50" name="d_content"></textarea></td>
+				<td><input type="submit" value="댓글 작성하기">
+			</tr>
+		</table>
+	</form>
+
+		
 
 	<a href="../updatecommunity.do/${communityboard.c_code }"><input type="button" value="수정"></a>
 	<a href="../deletecommunity.do/${communityboard.c_code }"><input type="button" value="삭제"></a>

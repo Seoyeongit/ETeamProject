@@ -10,15 +10,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.forpets.biz.comdat.ComdatService;
 import com.forpets.biz.community.CommunityService;
 import com.forpets.biz.community.CommunityVO;
 
 @Controller
-@RequestMapping("/")
 public class CommunityController {
 
 	@Autowired
 	CommunityService comservice;
+	
+	@Autowired
+	ComdatService datservice;
 	
 	// 게시판 목록 불러오기
 	@RequestMapping("/communitylist.do")
@@ -61,11 +64,12 @@ public class CommunityController {
 	
 	// 커뮤니티 글 상세보기
 	@RequestMapping(value = "/getcommunityboard.do/{c_code}", method = RequestMethod.GET) 
-	public ModelAndView getCommunityBoard(@PathVariable String c_code) {
+	public ModelAndView getCommunityBoard(@PathVariable String c_code) throws Exception {
 //		System.out.println(c_code);
 		ModelAndView mav = new ModelAndView(); 
 		mav.setViewName("/Community/getCommunityBoard");
 		mav.addObject("communityboard", comservice.getCommunityBoard(c_code));
+		mav.addObject("getdat", datservice.getComdat(c_code));
 		return mav;
 	} 
 	
@@ -100,5 +104,6 @@ public class CommunityController {
 		comservice.deleteCommunity(c_code);
 		return "redirect:/communitylist.do";
 	}
+	
 
 }

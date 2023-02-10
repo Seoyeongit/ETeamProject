@@ -20,7 +20,7 @@ import com.forpets.biz.customer.impl.CustomerDAO;
 import com.forpets.biz.user.UserVO;
 
 @Controller	// 컨트롤러 bean으로 등록
-@SessionAttributes("customer")
+//@SessionAttributes("customer")
 
 public class CustomerController {
 	
@@ -36,7 +36,15 @@ public class CustomerController {
 	// http://localhost/forpets
 	@RequestMapping(value="/getCustomerList")	//url 과 method 매핑
 	public String getCustomerList(CustomerVO vo,CustomerDAO dao, Model model) throws IOException {
-		System.out.println("--->getCustomerList실행");
+		
+		System.out.println("---> getCustomerList 실행");
+		System.out.println("SearchCondition : " + vo.getSearchCondition());
+		System.out.println("SearchKeyword : " + vo.getSearchKeyword());
+		if (vo.getSearchCondition() == null) { vo.setSearchCondition("TITLE"); }
+		if (vo.getSearchKeyword() == null) { vo.setSearchKeyword(""); }
+		System.out.println("SearchCondition : " + vo.getSearchCondition());
+		System.out.println("SearchKeyword : " + vo.getSearchKeyword());
+	
 		model.addAttribute("CustList", custservice.getCustomerList(vo));
 		System.out.println("--->getCustomerList완료");
 		return  "/customer/getCustomerList";

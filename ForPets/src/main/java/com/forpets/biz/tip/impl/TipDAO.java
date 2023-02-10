@@ -45,6 +45,11 @@ public class TipDAO {
 	
 	
 	public void insertTip(TipVO vo) {
+		String[] url = vo.getTip_video().split("be/");
+		String url_id = url[1];
+		vo.setTip_img_url("https://img.youtube.com/vi/"+url_id+"/mqdefault.jpg");
+		vo.setTip_video("https://www.youtube.com/embed/"+url_id);
+		
 		jdbcTemplate.update(BOARD_INSERT, vo.getTip_title(), vo.getTip_content(), vo.getTip_img_url(), vo.getTip_video(), 0);
 	}
 	

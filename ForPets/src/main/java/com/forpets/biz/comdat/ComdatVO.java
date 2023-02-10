@@ -16,7 +16,7 @@ import lombok.Setter;
 @Getter @Setter
 public class ComdatVO {
 	private int d_num; //댓글시퀀스
-	private String c_code; //소모임코드
+	private String d_code; //소모임코드
 	private String user_id; //유저아이디
 	private String d_content; //댓글내용
 	private Date d_date; //작성날짜

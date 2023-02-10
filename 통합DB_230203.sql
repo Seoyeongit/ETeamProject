@@ -924,6 +924,9 @@ ALTER TABLE review
 ALTER TABLE review
     ADD (CONSTRAINT G_8 FOREIGN KEY (reserv_num) REFERENCES reserve(reserve_num)on delete cascade);
 
+update reserve set status = 3 where reserve_num = '예약넘버';
+
+commit;
 
 -- 230208 이도은 db수정 (NoticeBoard)
 -- 테이블, 시퀀스 drop 후 재생성

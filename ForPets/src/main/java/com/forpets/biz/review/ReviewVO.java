@@ -23,5 +23,5 @@ public class ReviewVO {
 	private String r_content; //후기내용
 	private String r_title; //후기한줄평
 	private Date r_date; //작성날짜
-	private int reserv_num; //예약넘버
+	private String reserve_num; //예약번호
 }

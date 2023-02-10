@@ -26,6 +26,14 @@ public interface PetService {
 	 */
 	int countPet(PetVO vo);
 	
+	/**
+	 * 펫정보를 수정한다.
+	 * @param vo
+	 * @param user_id
+	 * @return
+	 */
+	void updatePet(PetVO vo);
+	
 	//230130 최지혁
 	List<PetVO> getPetList(PetVO vo, String user_id);
 	

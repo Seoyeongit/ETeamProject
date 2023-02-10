@@ -38,6 +38,15 @@ import com.forpets.biz.user.UserVO;
 public class PetController{
 	@Autowired
 	private PetService petService;
+	
+	//pet정보를 수정한다.
+	@RequestMapping(value = "/myInfo/my-petUpd", method = RequestMethod.POST)
+	public String updatePet(PetVO vo, PetDAO petDAO) {
+		System.out.println("==>pet udpate start");
+		
+		petService.updatePet(vo);
+		return "myInfo/main";
+	}
 
 	//pet정보를 등록한다.
 	@RequestMapping(value = "/myInfo/my-petReg", method = RequestMethod.POST)
@@ -62,6 +71,8 @@ public class PetController{
 		System.out.println("==>myPetWorkView() start");
 		return "myInfo/my_pet_work";
 	}
+	
+	
 	
 	
 	

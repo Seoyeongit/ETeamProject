@@ -21,6 +21,11 @@ public class TipController {
 	@Autowired
 	private TipService tipService;
 	
+	@RequestMapping(value="insertTip")
+	public String insert() {
+		return "/Tip/insertTip";
+	}
+	
 	@RequestMapping(value="insertTip.do")
 	public String insertTip(TipVO vo, TipDAO tipDAO, HttpServletRequest request) throws IOException {
 		System.out.println("---> insertTip.do 실행");

@@ -47,7 +47,7 @@
 			</table>
 		</form>
 		<hr>
-		<a href="insertTip.do">글등록</a>&nbsp;&nbsp;&nbsp;
+		<a href="insertTip">글등록</a>&nbsp;&nbsp;&nbsp;
 		<a href="deleteTip?tip_seq=${ tip.tip_seq }">글삭제</a>&nbsp;&nbsp;&nbsp;
 		<a href="getTipList">글목록</a>
 	</center>

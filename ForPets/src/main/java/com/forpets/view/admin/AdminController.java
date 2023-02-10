@@ -1,12 +1,22 @@
 package com.forpets.view.admin;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.forpets.biz.admin.AdminService;
+import com.forpets.biz.admin.AdminVO;
 
 @Controller
 @RequestMapping("/Admin")
 public class AdminController {
 
+	@Autowired
+	private AdminService admService;
+	
+	// 관리자 정보 보기
 	@RequestMapping(value="/adminInfo")
 	public String adminInfo() throws Exception {
 //		System.out.println("---> adminInfo 이동");
@@ -30,5 +40,8 @@ public class AdminController {
 //		System.out.println("---> mgmtUser 이동");
 		return "/Admin/mgmtUser";
 	}
+	
+
+	
 	
 }

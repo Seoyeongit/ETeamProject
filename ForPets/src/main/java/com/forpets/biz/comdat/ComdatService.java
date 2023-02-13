@@ -15,4 +15,11 @@ public interface ComdatService {
 	
 	// 댓글 작성하기 
 	public void insertComdat(ComdatVO vo);
+	
+	// 댓글 수정하기
+	public void updateComdat(ComdatVO vo);
+	
+	// 댓글 삭제하기
+	public void deleteComdat(ComdatVO vo);
 }
+

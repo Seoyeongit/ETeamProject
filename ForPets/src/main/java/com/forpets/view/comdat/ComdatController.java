@@ -33,4 +33,32 @@ public class ComdatController {
 
 		return mav;
 	}
+	
+
+	@RequestMapping(value = "/updatedat.do", method = RequestMethod.POST)
+	public ModelAndView updateComdat(@ModelAttribute ComdatVO vo) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		ComdatVO cvo = new ComdatVO();
+		cvo.setD_content(vo.getD_content());
+		cvo.setD_code(vo.getD_code());
+		cvo.setD_num(vo.getD_num());
+		datservice.updateComdat(cvo);
+		mav.setViewName("redirect:/getcommunityboard.do/"+vo.getD_code()+"");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/deletedat.do")
+	public ModelAndView deleteComdat(@ModelAttribute ComdatVO vo) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		ComdatVO cvo = new ComdatVO();
+		cvo.setD_code(vo.getD_code());
+		cvo.setD_num(vo.getD_num());
+		datservice.deleteComdat(cvo);
+		mav.setViewName("redirect:/getcommunityboard.do/"+vo.getD_code()+"");
+		
+		return mav;
+	}
+	
+	
 }

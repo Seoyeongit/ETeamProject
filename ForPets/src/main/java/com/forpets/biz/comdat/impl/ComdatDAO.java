@@ -17,6 +17,8 @@ public class ComdatDAO {
 	
 	private final String GET_DAT = "select * from comdat where d_code=?";
 	private final String INSERT_DAT = "insert into comdat (D_NUM, D_CODE, USER_ID, D_CONTENT, D_DATE) VALUES ((cd_seq.NEXTVAL), ?, ?, ? , sysdate)";
+	private final String UPDATE_DAT = "update comdat set D_CONTENT=? where d_code=? and d_num=?";
+	private final String DELETE_DAT = "delete from comdat where d_code =? and d_num = ?";
 	
 	
 	// 댓글 조회
@@ -39,4 +41,16 @@ public class ComdatDAO {
 	public void insertComdat(ComdatVO vo) {
 		jdbcTemplate.update(INSERT_DAT, vo.getD_code(), vo.getUser_id(), vo.getD_content());
 	}
+	
+	// 댓글 수정
+	public void updateComdat(ComdatVO vo) {
+		jdbcTemplate.update(UPDATE_DAT, vo.getD_content(), vo.getD_code(), vo.getD_num());
+	}
+	
+	// 댓글 삭제
+	public void deleteComdat(ComdatVO vo) {
+		jdbcTemplate.update(DELETE_DAT, vo.getD_code(), vo.getD_num());
+	}
+		
+		
 }

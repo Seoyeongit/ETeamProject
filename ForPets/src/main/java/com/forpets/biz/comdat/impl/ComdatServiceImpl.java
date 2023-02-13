@@ -22,7 +22,17 @@ public class ComdatServiceImpl implements ComdatService {
 	@Override
 	public void insertComdat(ComdatVO vo) {
 		comdatDAO.insertComdat(vo);
+	}
+	
+	@Override
+	public void updateComdat(ComdatVO vo) {
+		comdatDAO.updateComdat(vo);
 		
+	}
+	
+	@Override
+	public void deleteComdat(ComdatVO vo) {
+		comdatDAO.deleteComdat(vo);
 		
 	}
 }

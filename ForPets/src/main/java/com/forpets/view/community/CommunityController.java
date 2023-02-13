@@ -75,7 +75,7 @@ public class CommunityController {
 	
 	// 글 수정 -> read
 	@RequestMapping("/updatecommunity.do/{c_code}") 
-	public ModelAndView updateCommunity(@PathVariable String c_code) {
+	public ModelAndView updateCommunity(@PathVariable String c_code) throws Exception {
 //		System.out.println(c_code);
 		ModelAndView mav = new ModelAndView(); 
 		mav.setViewName("/Community/updateCommunity"); // jsp로 연결

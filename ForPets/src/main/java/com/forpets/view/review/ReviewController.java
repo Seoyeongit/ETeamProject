@@ -1,5 +1,9 @@
 package com.forpets.view.review;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +31,9 @@ public class ReviewController {
 	public String writeReviewView(ReServeVO vo, Model model, HttpSession session) {
 		
 		UserVO sessionVO = (UserVO) session.getAttribute("member");
-
 		vo.setUser_id(sessionVO.getUser_id());
 		model.addAttribute("reserve",reserveService.getReserve(vo));
+		System.out.println(reserveService.getReserve(vo).toString());
 		return "myInfo/myReview_2";
 	}
 	

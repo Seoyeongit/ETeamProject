@@ -27,11 +27,11 @@ public class ReserveRowMapper implements RowMapper<ReServeVO> {
 			
 			
 			voP.setPart_name(rs.getString("PART_NAME"));
-			vo.setVoPet(voPet);
+			vo.setVoP(voP);
 			
 			
 			voPet.setName(rs.getString("pet_name"));
-			vo.setVoP(voP);
+			vo.setVoPet(voPet);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

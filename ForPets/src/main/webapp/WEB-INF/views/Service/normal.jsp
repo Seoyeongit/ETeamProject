@@ -16,6 +16,7 @@
 $(document).ready(function(){
 	$("#set_pet").hide();
 	$("#set_partner").hide();
+	
 });	
 </script>
 </head>
@@ -33,6 +34,11 @@ $(document).ready(function(){
 			<input type="hidden" value="1" id="s_num" name="s_num">
 			<p>반려동물 정보</p>
 			<table id="set_pet">
+				<tr>
+					<td>
+						<img id="pet_img" name="pet_img">
+					</td>
+				</tr>
 				<tr>
 					<td>이름 : <input type="text" id="pet_name" name="pet_name" readonly></td>
 				</tr>

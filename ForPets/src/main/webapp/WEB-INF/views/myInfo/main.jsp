@@ -176,7 +176,7 @@
                             <table class="container">
                                 <tr>
                                     <td><a href="../myInfo/check-reservation">예약확인</a></td>
-                                    <td><a href="../myInfo/viewCare">돌봄일지</a></td>
+                                    <td><a href="../partners/writeCare">돌봄일지</a></td>
                                 </tr>
                                 <tr>
                                     <td>파트너와채팅</td>

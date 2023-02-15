@@ -19,4 +19,9 @@ public class CareDiaryServiceImpl implements CareDiaryService{
 		return careDiaryDAO.getCareDiary(vo);
 	}
 
+	@Override
+	public void insertCareDiary(CareDiaryVO vo) {
+		careDiaryDAO.insertCareDiary(vo);
+	}
+
 }

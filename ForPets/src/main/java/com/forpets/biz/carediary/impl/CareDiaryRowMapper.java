@@ -21,10 +21,6 @@ public class CareDiaryRowMapper implements RowMapper<CareDiaryVO> {
 		ReServeVO voR = new ReserveRowMapper().mapRow(rs, rowNum);
 		
 		
-		vo.setDia_id(rs.getInt("DIA_ID"));
-		vo.setReserve_num(rs.getInt("RESERVE_NUM"));
-		vo.setCare_content(rs.getString("CARE_CONTENT"));
-		vo.setVoR(voR);
 		return vo;
 	}
 

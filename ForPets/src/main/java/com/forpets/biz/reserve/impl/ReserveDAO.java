@@ -55,12 +55,16 @@ public class ReserveDAO {
 		vo.setStatus(listvo.getStatus());
 		vo.setVoPet(listvo.getVoPet());
 		vo.setVoP(listvo.getVoP());
+		vo.setReserve_time(listvo.getReserve_time());
+		vo.setReserve_add(listvo.getReserve_add());
+		vo.setReserve_request(listvo.getReserve_request());
+		vo.setPick_add(listvo.getPick_add());
 		
 		//중복된 리뷰넘버의 서로다른 서비스넘버를 리스트로 받아옵니다.
 		List<Integer> snumList = new ArrayList<Integer>();
 		
 		for(ReServeVO snum : list) {
-			if(snum.getS_num()==2) {
+			if(snum.getS_num()==2 || snum.getS_num()==1 || snum.getS_num()==3 || snum.getS_num()==4 || snum.getS_num()==5 || snum.getS_num()==8) {
 				continue;
 			}
 			snumList.add(snum.getS_num());

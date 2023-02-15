@@ -14,5 +14,10 @@ public interface CareDiaryService {
 	 * @return List<CareDiaryVO>
 	 */
 	List<CareDiaryVO> getCareDiary (CareDiaryVO vo);
+	
+	/**
+	 * 돌봄일지를 등록합니다.
+	 */
+	 void insertCareDiary(CareDiaryVO vo);
 
 }

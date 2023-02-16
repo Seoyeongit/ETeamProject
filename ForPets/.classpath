@@ -40,5 +40,9 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/ojdbc8.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/oraclepki.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/osdt_cert.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/osdt_core.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

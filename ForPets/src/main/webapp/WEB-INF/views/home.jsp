@@ -30,7 +30,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/Service/service">서비스</a></li>
-                        <li class="nav-item"><a class="nav-link" href="communitylist.do">소모임</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/communitylist.do">소모임</a></li>
                         <li class="nav-item"><a class="nav-link" href="#review">리뷰보기</a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/customer.do">고객센터</a></li>
                        

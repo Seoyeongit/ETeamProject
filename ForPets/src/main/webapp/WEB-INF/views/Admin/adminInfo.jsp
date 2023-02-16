@@ -12,38 +12,42 @@
 		페이지 홈</button>
 	<h1>관리자 정보</h1>
 
-<form action="MemberUpdateProc.jsp" method="post">
-	<table width="400" border="1">
+	<form action="updateAdmin.do" method="post">
+		<table width="400" border="1">
 			<tr height="50">
 				<td align="center" width="150">아이디</td>
-				<td width="250">${bean.user_id}</td>
+				<td width="250">${bean.adm_id}</td>
 			</tr>
+			
+			<tr height="50">
+				<td align="center" width="150">이름</td>
+				<td width="250">${bean.adm_name}</td>
+			</tr>
+
 
 			<tr height="50">
 				<td align="center" width="150">이메일</td>
-				<td width="250"><input type="email" name="email"
-					value="${bean.user_id}"></td>
+				<td width="250"><input type="email" name="adm_email"
+					value="${bean.adm_email}"></td>
 			</tr>
 
 			<tr height="50">
-				<td align="center" width="150">전화</td>
-				<td width="250"><input type="tel" name="tel"
-					value="${bean.user_id}"></td>
+				<td align="center" width="150">전화번호</td>
+				<td width="250"><input type="tel" name="adm_phone"
+					value="${bean.adm_phone}"></td>
 			</tr>
 
 			<tr height="50">
 				<td align="center" width="150">패스워드</td>
-				<td width="250"><input type="password" name="pass1"></td>
+				<td width="250"><input type="password" name="adm_pw"></td>
 			</tr>
 
 			<tr height="50">
-				<td align="center" colspan="2">
-				<input type="hidden" name="id" value="${bean.user_id}"> 
-				<input type="submit" value="회원 수정하기">&nbsp;&nbsp;
-		<button onclick="location.href='MemberList.jsp'">회원 전체 보기</button>
-		</td>
-		</tr>
-	</table>
-</form>
+				<td align="center" colspan="2"><input type="hidden" name="id"
+					value="${bean.adm_id}"> <input type="submit" value="수정하기">&nbsp;&nbsp;
+				</td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>

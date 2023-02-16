@@ -114,7 +114,7 @@
 
 	</table>
 	
-	<input type="submit" value="제출하기">
+	<a href="../deleteanswer.do/${sd_svcode }&${user_id}"><input type="button" value="삭제하기"></a>
 	
 </body>
 </html>

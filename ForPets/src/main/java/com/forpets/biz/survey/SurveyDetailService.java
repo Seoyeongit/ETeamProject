@@ -42,5 +42,7 @@ public interface SurveyDetailService {
 	public SurveyVO getAnswerBoard3(String s_svcode);
 	public List<SurveyAnswerVO> getAnswerBoard4(String sa_svcode, String user_id);
 
+	// 설문지 답변 내용 삭제
+	void deleteAnswer(String sa_svcode, String user_id);
 	
 }

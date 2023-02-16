@@ -113,5 +113,9 @@ public class SurveyDetailServiceImpl implements SurveyDetailService {
 		return surdDAO.getAnswerBoard4(sa_svcode, user_id);
 	}
 	
+	@Override
+	public void deleteAnswer(String sa_svcode, String user_id) {
+		surdDAO.deleteAnswer(sa_svcode, user_id);
+	}
 
 }

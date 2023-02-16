@@ -96,7 +96,6 @@
                                 <c:choose>
                                     <c:when test="${reserve.s_num eq 1}"><text>기본케어</text></c:when>
                                     <c:when test="${reserve.s_num eq 2}"><text>산책케어</text></c:when>
-                                    <c:when test="${reserve.s_num eq 3}"><text>픽업</text></c:when>
                                     <c:when test="${reserve.s_num eq 4}"><text>병원진료</text></c:when>
                                     <c:when test="${reserve.s_num eq 5}"><text>미용케어</text></c:when>
                                 </c:choose>

@@ -36,4 +36,5 @@ public class PartnerController {
 		System.out.println("---> getPartner 완료");
 	}
 	
+	
 }

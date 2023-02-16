@@ -20,11 +20,22 @@ public class CareDiaryRowMapper implements RowMapper<CareDiaryVO> {
 		CareDiaryVO vo = new CareDiaryVO();
 		ReServeVO voR = new ReserveRowMapper().mapRow(rs, rowNum);
 		
-		
-		vo.setDia_id(rs.getInt("DIA_ID"));
-		vo.setReserve_num(rs.getInt("RESERVE_NUM"));
-		vo.setCare_content(rs.getString("CARE_CONTENT"));
+		vo.setDiary_id(rs.getInt("DIARY_ID"));
+		vo.setPet_condition(rs.getString("PET_CONDITION"));
+		vo.setCare_review(rs.getString("CARE_REVIEW"));
+		vo.setMedi_result(rs.getString("MEDI_RESULT"));
+		vo.setBeauty_list(rs.getString("BEAUTY_LIST"));
+		vo.setWalk_time(rs.getString("WALK_TIME"));
+		vo.setShower_serv(rs.getString("SHOWER_SERV"));
+		vo.setTraining_serv(rs.getString("TRAINING_SERV"));
+		vo.setMeal(rs.getString("MEAL"));
+		vo.setSnak(rs.getString("SNACK"));
+		vo.setPet_play(rs.getString("PET_PLAY"));
+		vo.setComplete_day(rs.getString("COMPLETE_DAY"));
+		vo.setComplete_time(rs.getString("COMPLETE_TIME"));
+		vo.setReserve_num(rs.getString("RESERVE_NUM"));
 		vo.setVoR(voR);
+		
 		return vo;
 	}
 

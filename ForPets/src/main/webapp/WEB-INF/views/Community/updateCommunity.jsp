@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>make community</title>
+<title>글 수정하기</title>
 </head>
 <body>
 	<h1>소모임 수정</h1>

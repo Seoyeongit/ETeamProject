@@ -156,6 +156,7 @@
             <button class="w-btn-outline w-btn-green-outline">다음으로</button>
         </center>
     </div>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/common.js"></script>
     <script>
     
     	var num;

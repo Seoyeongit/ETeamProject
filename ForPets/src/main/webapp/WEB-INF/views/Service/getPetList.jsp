@@ -10,12 +10,13 @@
 <title></title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <script>
-function sendPet(pet_id) {
+function sendPet(pet_id, pet_img) {
 	
 	$("#pet_id", opener.document).val($("#"+pet_id+"_id").val());
 	$("#pet_name", opener.document).val($("#"+pet_id+"_name").val());
 	$("#pet_type", opener.document).val($("#"+pet_id+"_type").val());
 	$("#pet_age", opener.document).val($("#"+pet_id+"_age").val());
+	$("#pet_img", opener.document).attr("src", "."+$("#"+pet_id+"_img").attr("src"));
 	
 	$(opener.location).attr("href", "javascript:show_pet();");
 	self.close();
@@ -26,6 +27,11 @@ function sendPet(pet_id) {
 	<center>
 		<c:forEach items="${getPetList }" var="pet">
 			<table border="1" cellpadding="0" cellspacing="0" width="300">
+				<tr>
+					<td colspan="2">
+						<img src="./myInfo/display?fileName=${pet.img }" id="${pet.id }_img">
+					</td>
+				</tr>
 				<tr>
 					<td>펫 ID</td>
 					<td><input type="text" value="${ pet.id }" id="${pet.id }_id"></td>

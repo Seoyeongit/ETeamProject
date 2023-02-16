@@ -32,6 +32,7 @@
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/Service/service">서비스</a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/communitylist.do">소모임</a></li>
                         <li class="nav-item"><a class="nav-link" href="#review">리뷰보기</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/partnerlist.do">펫트너</a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/customer.do">고객센터</a></li>
                        
                         <c:choose>

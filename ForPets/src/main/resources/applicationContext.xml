@@ -12,22 +12,23 @@
 
 	<context:component-scan base-package="com.forpets.biz"></context:component-scan>
 	
-	<!-- Datasource 설정 : JDBCUTil.java를 대체목적 -->
-	<!-- oracle의 forpets계정 연결하기 -->
-	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-		<property name="username" value="ForPets"/>
-		<property name="password" value="pets"/>
-	</bean>
-	-->
-	
+	<!-- 오라클클라우드DB로 접속합니다. -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
    		 <property name="url" value="jdbc:oracle:thin:@forpets_high?TNS_ADMIN=C:\\Wallet_forpets"/>
   		  <property name="username" value="ADMIN"/>
   		  <property name="password" value="Eschg2885@6948"/>
 	</bean>
+	
+	<!-- Datasource 설정 : JDBCUTil.java를 대체목적 
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="ForPets"/>
+		<property name="password" value="pets"/>
+	</bean>
+	-->
 	
 	<!-- Spring JDBC 설정 -->
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" >

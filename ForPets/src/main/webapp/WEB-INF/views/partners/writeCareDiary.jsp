@@ -104,7 +104,7 @@
             
 			<div>
 				<h3>돌봄목록</h3>
-				<form action="../partners/writeCare" method="post">
+				<form action="../partner/writeCare" method="post">
 				<div>
 				 케어완료 날짜/시간 : <input type="text" name="complete_day" value="${now}"><input type="time" name="complete_time">
 				</div>

@@ -122,4 +122,10 @@ public class ReserveController {
 		return "Service/complete";
 	}
 	
+	@RequestMapping(value="/partner/getReserve")
+	public String getReserveListPart(ReServeVO vo, ReserveDAO dao, Model model){
+		model.addAttribute("reserveList", reserveService.getReserveListPart(vo));
+		return "/partner/getReserve";
+	}
+	
 }

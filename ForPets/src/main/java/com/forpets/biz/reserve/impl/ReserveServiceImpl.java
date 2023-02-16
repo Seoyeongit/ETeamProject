@@ -55,6 +55,9 @@ public class ReserveServiceImpl implements ReserveService{
 		return reserveDAO.getReserve(vo);
 	}
 
-
+	@Override
+	public List<ReServeVO> getReserveListPart(ReServeVO vo){
+		return reserveDAO.getReserveListPart(vo);
+	}
 
 }

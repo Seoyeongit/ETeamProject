@@ -7,7 +7,6 @@
 <title>파트너 정보 수정</title>
 </head>
 <body>
-	<form action="/partner/partnerGet" method="post">
 	<table>
 		<tr>
 			<td>아이디</td>
@@ -15,7 +14,7 @@
 		</tr>
 		<tr>
 			<td>비밀번호</td>
-			<td><input type="password" value="${ partners.part_pw }"></td>
+			<td><input type="password" name="pw" value="${ partners.part_pw }"></td>
 		</tr>
 		<tr>
 			<td>이름</td>
@@ -23,11 +22,11 @@
 		</tr>
 		<tr>
 			<td>닉네임</td>
-			<td><input type="text" value="${ partners.part_nick }"></td>
+			<td>${ partners.part_nick }</td>
 		</tr>
 		<tr>
 			<td>주소</td>
-			<td><input type="text" value="${ partners.part_add }"></td>
+			<td>${ partners.part_add }</td>
 		</tr>
 		<tr>
 			<td>성별</td>
@@ -35,19 +34,20 @@
 		</tr>
 		<tr>
 			<td>핸드폰 번호</td>
-			<td><input type="text" value="${ partners.part_phnumber }"></td>
+			<td>${ partners.part_phnumber }</td>
 		</tr>
 		<tr>
 			<td>생년월일</td>
-			<td>${ partners.part_id }</td>
+			<td>${ partners.birth }</td>
 		</tr>
 		<tr>
 			<td>자기소개</td>
-			<td><textarea name="self_infor" cols="40" rows="10">${ partners.self_infor }</textarea></td>
+			<td><textarea name="self" cols="40" rows="10">${ partners.self_infor }</textarea></td>
+		</tr>
+		<tr>
+			<td><input type="submit" onclick="location.href='modify'" value="정보 수정 하기"/></td>
+			<td><input type="button" onclick="location.href='partner';" value="뒤로가기"/></td>
 		</tr>
 	</table>
-	</form>
-		<input type="submit" value="확인">
-		<input type="button" value="취소">
 </body>
 </html>

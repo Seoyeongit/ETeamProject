@@ -4,12 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.forpets.biz.partner.PartnerVO;
-import com.forpets.biz.user.UserVO;
-import com.forpets.biz.user.impl.UserRowMapper;
 
 @Repository("partnerDAO")
 public class PartnerDAO {
@@ -20,8 +17,7 @@ public class PartnerDAO {
 	
 	private final String PARTNER_LIST = "select * from PARTNERS order by part_id desc";
 	private final String PARTNER_GET = "select * from PARTNERS where part_id = ?";
-	private final String PARTNER_UPDATE = "UPDATE PARTNERS SET PART_PW=?, PART_NICK=?, PART_ADD=?, PART_PHNUMBER=?, SELF_INFOR=? WHERE PART_ID=?";
-	
+	private final String PARTNER_UPDATE = "UPDATE PARTNERS SET PART_PW=?, PART_NICK=?, PART_ADD=?, PART_PHNUMBER=?, SELF_INFOR=?" + " WHERE PART_ID=?";
 	
 	public List<PartnerVO> getPartnerList(PartnerVO vo) {
 		System.out.println("---> JDBC로 getPartnerList() 기능 처리");
@@ -57,7 +53,9 @@ public class PartnerDAO {
 	}
 	
 	public void updatePartner(PartnerVO vo) {
-		jdbcTemplate.update(PARTNER_UPDATE, vo.getPart_pw(), vo.getPart_nick(), vo.getPart_add(), vo.getPart_phnumber(), vo.getSelf_infor(), vo.getPart_id());
+		Object[] obj = {vo.getPart_pw(), vo.getPart_nick(), vo.getPart_add(), vo.getPart_phnumber(), vo.getSelf_infor(), vo.getPart_id()};
+		jdbcTemplate.update(PARTNER_UPDATE, obj);
 	}
+	
 	
 }

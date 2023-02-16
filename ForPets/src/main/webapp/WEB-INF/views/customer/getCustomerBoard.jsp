@@ -11,7 +11,7 @@
 	<table>
 		<tr>
 			<td>게시글 번호</td>
-			<td><input name="cust_no" type="hidden" value="${ customer.cust_no }"/></td>
+			<td><input type="text" name="number" value="${ customer.cust_no}" readonly /></td>
 		</tr>
 		<tr>
 			<td>제목</td>
@@ -22,7 +22,7 @@
 			<td><textarea name="content" cols="40" rows="10">${ customer.cust_content }</textarea></td>
 		</tr>
 			<td>작성자</td>
-			<td>${ customer.user_id}</td>
+			<td><input type="text" name="id" value="${customer.user_id }" readonly/></td>
 		<tr>
 			<td>날짜</td>
 			<td>${ customer.cust_date}</td>

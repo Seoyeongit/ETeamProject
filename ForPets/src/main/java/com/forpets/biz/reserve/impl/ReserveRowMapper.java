@@ -20,6 +20,10 @@ public class ReserveRowMapper implements RowMapper<ReServeVO> {
 		try {
 			vo.setReserve_num(rs.getString("RESERVE_NUM"));
 			vo.setReserve_day(rs.getString("RESERVE_DAY"));
+			vo.setReserve_time(rs.getString("RESERVE_TIME"));
+			vo.setReserve_add(rs.getString("RESERVE_ADD"));
+			vo.setPick_add(rs.getString("PICK_ADD"));
+			vo.setReserve_request(rs.getString("RESERVE_REQUEST"));
 			vo.setS_num(rs.getInt("S_NUM"));
 			vo.setPart_id(rs.getString("PART_ID"));
 			vo.setPet_id(rs.getInt("PET_ID"));
@@ -27,11 +31,11 @@ public class ReserveRowMapper implements RowMapper<ReServeVO> {
 			
 			
 			voP.setPart_name(rs.getString("PART_NAME"));
-			vo.setVoPet(voPet);
+			vo.setVoP(voP);
 			
 			
 			voPet.setName(rs.getString("pet_name"));
-			vo.setVoP(voP);
+			vo.setVoPet(voPet);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -7,7 +7,7 @@
 <title>문의 글 보기</title>
 </head>
 <body>
-	<form action="updateCustomer" method="post">
+	<form action="updateCustomer.do" method="post">
 	<table>
 		<tr>
 			<td>게시글 번호</td>

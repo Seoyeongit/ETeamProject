@@ -23,7 +23,7 @@
 					<td>${ customer.user_id }</td>
 					<td><fmt:formatDate value="${ customer.cust_date }" pattern="yyyy-MM-dd" /></td>
 				</tr>
-				<td><a href="updateCustomer.do">글수정</a></td>
+				<td><a href="getCustomerBoard?cust_no=${ customer.cust_no }">글수정</a></td>
 			<td><a href="deleteCustomer?cust_no=${ customer.cust_no }">글삭제</a></td>
 			</c:forEach>
 	</table>

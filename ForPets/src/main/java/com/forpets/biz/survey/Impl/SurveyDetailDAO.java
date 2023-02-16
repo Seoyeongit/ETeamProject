@@ -1,6 +1,6 @@
 package com.forpets.biz.survey.Impl;
 
-import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.forpets.biz.community.CommunityVO;
 import com.forpets.biz.survey.SurveyAnswerVO;
 import com.forpets.biz.survey.SurveyChoiceVO;
 import com.forpets.biz.survey.SurveyDetailVO;
@@ -52,7 +51,7 @@ public class SurveyDetailDAO {
 	public final String GET_ANSWER4 = "select * from survey_answer where sa_svcode=? and user_id=?";
 	
 	// 설문지 답변 삭제
-	
+	public final String DELETE_ANSWER = "delete from survey_answer where sa_svcode=? and user_id=?";
 	
 	
 	
@@ -182,18 +181,22 @@ public class SurveyDetailDAO {
 	
 	public List<SurveyAnswerVO> getAnswerList() {
 		List<SurveyAnswerVO> voList = jdbcTemplate.query(ANSWER_LIST, answerRowMapper);
+		List<SurveyAnswerVO> newList = new ArrayList<SurveyAnswerVO>();
 		String id = "";
 		int count = voList.toArray().length;
 		for(int i=0;i<count;i++) {
 			SurveyAnswerVO svo = voList.get(i);
 			System.out.println("id : " + id);
 			System.out.println("user_id : " + svo.getUser_id());
-			if(id == svo.getUser_id()) {
-				voList.remove(i);
+			if(svo.getUser_id().equals(id)) {
+				System.out.println("같은 id 이므로 넘어갑니다. ");
+				continue;
 			}
+			System.out.println("다른 Id 이므로 저장합니다.");
 			id = svo.getUser_id();
+			newList.add(svo);
 		}
-		return voList;
+		return newList;
 	} // 설문지 리스트 end
 	
 	
@@ -258,6 +261,14 @@ public class SurveyDetailDAO {
 	public List<SurveyAnswerVO> getAnswerBoard4(String sa_svcode, String user_id) {
 		 Object[] obj = {sa_svcode, user_id};
 		return jdbcTemplate.query(GET_ANSWER4, obj, ansRowMapper);
+	} // 설문지 상세 불러오기 END
+	
+
+	// 설문지 답변 삭제 
+	public void deleteAnswer(String sa_svcode, String user_id) {
+		jdbcTemplate.update(DELETE_ANSWER, sa_svcode, user_id);
 	}
+	
+	
 	
 }

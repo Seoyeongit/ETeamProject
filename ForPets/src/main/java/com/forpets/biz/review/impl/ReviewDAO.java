@@ -13,7 +13,7 @@ public class ReviewDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	private final String INSERT_REVIEW = "insert into review values(r_seq.nextval,?,?,?,sysdate,?)";
-	private final String COUNT_REVIEW = "select count(r_id) from review,reserve where review.reserve_num = reserve.reserve_num and reserve.user_id = ?";
+	private final String COUNT_REVIEW = "select count(distinct review.reserve_num) from review,reserve where review.reserve_num = reserve.reserve_num and reserve.user_id = ?";
 	
 	public void insertReview(ReviewVO vo) {
 		Object[] obj = {vo.getStar_rating(),vo.getR_content(),vo.getR_title(),vo.getReserve_num()};

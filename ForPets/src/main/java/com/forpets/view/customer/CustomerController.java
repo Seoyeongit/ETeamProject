@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.forpets.biz.customer.CustomerService;
 import com.forpets.biz.customer.CustomerVO;
 import com.forpets.biz.customer.impl.CustomerDAO;
+import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.user.UserVO;
 
 @Controller	// 컨트롤러 bean으로 등록
@@ -53,9 +54,17 @@ public class CustomerController {
 	
 	
 	@RequestMapping(value="/insertCustomer.do")
-	public String insertCustomer(CustomerVO vo, CustomerDAO dao, HttpServletRequest request) throws IOException {
+	public String insertCustomer(CustomerVO vo, CustomerDAO dao, HttpServletRequest request, HttpSession session) throws IOException {
 		vo.setCust_title(request.getParameter("title"));
 		vo.setCust_content(request.getParameter("content"));
+		if(session.getAttribute("member") != null) {
+			UserVO uvo = (UserVO) session.getAttribute("member");
+			vo.setUser_id(uvo.getUser_id());
+		}
+		if(session.getAttribute("partners") != null) {
+			PartnerVO pvo = (PartnerVO) session.getAttribute("partners");
+			vo.setPart_id(pvo.getPart_id());
+		}
 		custservice.insertCustomer(vo);
 		
 		return "forward:/getCustomerList";

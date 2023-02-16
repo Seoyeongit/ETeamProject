@@ -11408,7 +11408,7 @@ p {
 header.masthead {
   padding-top: 12.5rem;
   padding-bottom: 4rem;
-  text-align: center;
+  text-align: left;
   color: #fff;
   background-color: #99cc99;
   background-image: url("../assets/img/main3.png");

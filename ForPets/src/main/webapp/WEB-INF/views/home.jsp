@@ -32,11 +32,24 @@
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/Service/service">서비스</a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/communitylist.do">소모임</a></li>
                         <li class="nav-item"><a class="nav-link" href="#review">리뷰보기</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/partnerlist.do">펫트너</a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/customer.do">고객센터</a></li>
                        
                         <c:choose>
-                        <c:when test="${member.user_id eq '' || member.user_id eq null}"><li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/login">로그인</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}//member/join">회원가입</a></li></c:when>
+                        <c:when test="${role eq 'partners' }">
+                        	<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/partner/partner">파트너 페이지</a></li>
+                        	<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
+                        </c:when>
+                        
+                        <c:when test="${role eq 'admin' }">
+                        	<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/Admin/login">관리자 페이지</a></li>
+                        	<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
+                        </c:when>
+                        
+                        <c:when test="${member.user_id eq '' || member.user_id eq null}">
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/login">로그인</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/join">회원가입</a></li></c:when>
+                        
                         <c:otherwise>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/myInfo/main">마이페이지</a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>

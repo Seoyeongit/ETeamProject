@@ -7,7 +7,7 @@
 <title>게시판 관리</title>
 </head>
 <body>
-<button onclick="location.href='${pageContext.request.contextPath}/adminMain.jsp'">관리자 페이지 홈</button>
+<button onclick="location.href='${pageContext.request.contextPath}/Admin/main'">관리자 페이지 홈</button>
 <h1>게시판 관리</h1>
 </body>
 </html>

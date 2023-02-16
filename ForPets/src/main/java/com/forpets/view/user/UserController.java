@@ -80,4 +80,10 @@ public class UserController {
 		return "redirect:/";
 	}
 	
+	//회원가입페이지를 VIEW합니다.
+	@RequestMapping(value="/member/join")
+	public String viewSignUp() {
+		return "member/join";
+	}
+	
 }

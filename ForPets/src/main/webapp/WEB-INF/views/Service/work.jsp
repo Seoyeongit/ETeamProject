@@ -38,6 +38,11 @@ function showPetWorkPopUp() {
 			<p>반려동물 정보</p>
 			<table id="set_pet">
 				<tr>
+					<td>
+						<img id="pet_img" name="pet_img">
+					</td>
+				</tr>
+				<tr>
 					<td>이름 : <input type="text" id="pet_name" name="pet_name" readonly></td>
 				</tr>
 				<tr>

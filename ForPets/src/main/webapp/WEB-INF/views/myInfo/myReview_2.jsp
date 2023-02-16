@@ -152,7 +152,19 @@
            <c:when test="${reserve.s_num eq 2}"><text>산책케어</text></c:when>
            <c:when test="${reserve.s_num eq 3}"><text>픽업</text></c:when>
         </c:choose></h4>
+        <c:if test="${not empty reserve.s_numArr}">
+        	<ul>추가서비스 내역
+        	<c:forEach items="${reserve.s_numArr }" var="sNum">
+        		<c:choose>
+        			<c:when test="${sNum eq 6 }"><li>샤워케어서비스</li></c:when>
+        			<c:when test="${sNum eq 7 }"><li>훈련케어서비스</li></c:when>
+        		</c:choose>
+        	</c:forEach>
+        	</ul>
+        </c:if>
         <p>'${reserve.voP.part_name}'펫트너님이 케어하신 서비스 입니다.</p>
+
+        
         <hr>
         <label for="star-rating">서비스는 어떠셨나요?</label>
         <P id="star"> <!-- 부모 -->

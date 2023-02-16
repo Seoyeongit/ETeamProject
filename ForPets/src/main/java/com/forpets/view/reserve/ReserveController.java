@@ -64,7 +64,7 @@ public class ReserveController {
 			UserVO voU = (UserVO) session.getAttribute("member");
 			vo.setUser_id(voU.getUser_id());
 			
-			List<ReServeVO> list = reserveService.getCPTReserveList(vo);			
+
 			model.addAttribute("reserveList", reserveService.getCPTReserveList(vo));
 		
 		return "myInfo/myReview";

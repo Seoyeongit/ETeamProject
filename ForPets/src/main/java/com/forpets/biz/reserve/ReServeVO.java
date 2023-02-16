@@ -1,5 +1,6 @@
 package com.forpets.biz.reserve;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import com.forpets.biz.partner.PartnerVO;
@@ -34,4 +35,5 @@ public class ReServeVO {
 	private PartnerVO voP;
 	private String pick_add; // pickup 시 사용할 주소
 	private String reserve_request;
+	private ArrayList<Integer> s_numArr;
 }

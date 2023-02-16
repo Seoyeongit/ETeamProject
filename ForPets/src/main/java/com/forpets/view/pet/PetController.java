@@ -116,7 +116,7 @@ public class PetController{
 			return new ResponseEntity<PetVO>(check, HttpStatus.BAD_REQUEST);
 		}
 		
-		String uploadFolder = "C:\\upload";
+		String uploadFolder = "C:\\DevSpace\\springSpace\\ETeamProject\\ForPets\\src\\main\\webapp\\resources\\assets\\upload";
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
@@ -157,7 +157,7 @@ public class PetController{
 	public ResponseEntity<byte[]>getImage(String fileName){
 		System.out.println("getImage()....." + fileName);
 		
-		File file = new File("c:\\upload\\" + fileName);
+		File file = new File("C:\\DevSpace\\springSpace\\ETeamProject\\ForPets\\src\\main\\webapp\\resources\\assets\\upload" + fileName);
 		
 		ResponseEntity<byte[]> result = null;
 		
@@ -176,7 +176,7 @@ public class PetController{
 		System.out.println("deleteImage()...."+fileName);
 		File file = null;
 		try {
-			file = new File("c:\\upload\\" + URLDecoder.decode(fileName, "UTF-8"));
+			file = new File("C:\\DevSpace\\springSpace\\ETeamProject\\ForPets\\src\\main\\webapp\\resources\\assets\\upload" + URLDecoder.decode(fileName, "UTF-8"));
 			file.delete();
 		}catch (Exception e) {
 			e.printStackTrace();

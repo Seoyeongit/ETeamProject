@@ -164,7 +164,7 @@
 			let str = "";
 
 			let fileCallPath = encodeURIComponent(result.img
-					.replace(/\\/g, '/').replace("C:/upload/", ''));
+					.replace(/\\/g, '/').replace("C:/DevSpace/springSpace/ETeamProject/ForPets/src/main/webapp/resources/assets/upload", ''));
 
 			console.log(fileCallPath);
 

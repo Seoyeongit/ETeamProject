@@ -9,7 +9,7 @@
 <body>
 <h1>관리자 로그인</h1>
 <hr>
-<form action="${pageContext.request.contextPath}/Admin/mgmt" method="post">
+<form action="${pageContext.request.contextPath}/Admin/login" method="post">
 <table border="1" cellpadding="0" cellspacing="0">
 
 	<tr>

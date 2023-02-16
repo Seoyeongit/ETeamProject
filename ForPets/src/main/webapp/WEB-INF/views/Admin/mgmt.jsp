@@ -4,16 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 페이지</title>
 </head>
 <body>
 	<table>
 		<tr>
 			<td>
-				<h3>Admin id</h3>
+				<h3>${admin.adm_id}</h3>
 				</p>
 				<button
-					onclick="location.href='${pageContext.request.contextPath}/Admin/adminInfo'">관리자
+					onclick="location.href='${pageContext.request.contextPath}/Admin/adminInfo/${admin.adm_id}'">관리자
 					정보 수정</button>
 			</td>
 		</tr>

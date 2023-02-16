@@ -13,4 +13,7 @@ public interface PartnerService {
 	//230130 최지혁
 	PartnerVO getPartner(PartnerVO vo, String part_id);
 	
+	PartnerVO partnerGet(PartnerVO vo);
+	
+	void updatePartner(PartnerVO vo);
 }

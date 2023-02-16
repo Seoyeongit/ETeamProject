@@ -64,7 +64,16 @@ public class CustomerDAO {
 	}
 	
 	public void insertCustomer(CustomerVO vo) {
-		jdbcTemplate.update(INSERT_CUSTOMER, "abc123", "bpb222", vo.getCust_title(), vo.getCust_content());
+		System.out.println("user_id : " + vo.getUser_id());
+		System.out.println("part_id : " + vo.getPart_id());
+		if(vo.getUser_id()==null) {
+			vo.setUser_id(" ");
+			System.out.println("user_id : " + vo.getUser_id());
+		}if(vo.getPart_id()==null){
+			vo.setPart_id(" ");
+			System.out.println("part_id : " + vo.getPart_id());
+		}
+		jdbcTemplate.update(INSERT_CUSTOMER, vo.getUser_id(), vo.getPart_id(), vo.getCust_title(), vo.getCust_content());
 	}
 	
 	public void updateCustomer(CustomerVO vo) {

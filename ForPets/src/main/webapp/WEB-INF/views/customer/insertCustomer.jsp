@@ -1,3 +1,6 @@
+<%@page import="com.forpets.biz.customer.CustomerVO"%>
+<%@page import="com.forpets.biz.partner.PartnerVO"%>
+<%@page import="com.forpets.biz.user.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,7 +30,7 @@
 		</tr>
 		<tr>
 			<td>사용자</td>
-			<td>${ customer.user_id }</td>
+			<td>${customer.user_id }</td>
 		</tr>
 		<tr>
 			<td>날짜</td>

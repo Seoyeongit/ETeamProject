@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.forpets.biz.partner.PartnerVO;
+import com.forpets.biz.user.UserVO;
+import com.forpets.biz.user.impl.UserRowMapper;
 
 @Repository("partnerDAO")
 public class PartnerDAO {
@@ -18,27 +20,12 @@ public class PartnerDAO {
 	
 	private final String PARTNER_LIST = "select * from PARTNERS order by part_id desc";
 	private final String PARTNER_GET = "select * from PARTNERS where part_id = ?";
+	private final String PARTNER_UPDATE = "UPDATE PARTNERS SET PART_PW=?, PART_NICK=?, PART_ADD=?, PART_PHNUMBER=?, SELF_INFOR=? WHERE PART_ID=?";
 	
-	private final RowMapper<PartnerVO> PetRowMapper = (resultSet, rowNum) -> {		
-		PartnerVO newPartner = new PartnerVO();
-		newPartner.setPart_id(resultSet.getString("PART_ID"));
-		newPartner.setPart_pw(resultSet.getString("PART_PW"));
-		newPartner.setPart_name(resultSet.getString("PART_NAME"));
-		newPartner.setPart_nick(resultSet.getString("PART_NICK"));
-		newPartner.setPart_add(resultSet.getString("PART_ADD"));
-		newPartner.setGender(resultSet.getString("GENDER").charAt(0));
-		newPartner.setPart_phnumber(resultSet.getString("PART_PHNUMBER"));
-		newPartner.setBirth(resultSet.getDate("BIRTH"));
-		newPartner.setWar(resultSet.getInt("WAR"));
-		newPartner.setPart_no(resultSet.getInt("PART_NO"));
-		newPartner.setData_create(resultSet.getDate("DATA_CREATE"));
-		newPartner.setSelf_infor(resultSet.getString("SELF_INFOR"));
-		return newPartner;
-	};
 	
 	public List<PartnerVO> getPartnerList(PartnerVO vo) {
 		System.out.println("---> JDBC로 getPartnerList() 기능 처리");
-		return jdbcTemplate.query(PARTNER_LIST,PetRowMapper);
+		return jdbcTemplate.query(PARTNER_LIST,new PartnerRowMapper());
 	}
 	
 	public PartnerVO getPartner(PartnerVO vo, String part_id) {
@@ -61,6 +48,16 @@ public class PartnerDAO {
 				}
 				, part_id);
 		return partner;
+	}
+	
+	public PartnerVO partnerGet(PartnerVO vo) {
+		Object[] obj = {vo.getPart_id()};
+		return jdbcTemplate.queryForObject(PARTNER_GET,obj, new PartnerRowMapper());
+		
+	}
+	
+	public void updatePartner(PartnerVO vo) {
+		jdbcTemplate.update(PARTNER_UPDATE, vo.getPart_pw(), vo.getPart_nick(), vo.getPart_add(), vo.getPart_phnumber(), vo.getSelf_infor(), vo.getPart_id());
 	}
 	
 }

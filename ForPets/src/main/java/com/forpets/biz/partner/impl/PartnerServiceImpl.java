@@ -28,5 +28,14 @@ public class PartnerServiceImpl implements PartnerService {
 	public PartnerVO getPartner(PartnerVO vo, String part_id) {
 		return partnerDAO.getPartner(vo, part_id);
 	}
+	
+	@Override
+	public PartnerVO partnerGet(PartnerVO vo) {
+		return partnerDAO.partnerGet(vo);
+	}
 
+	
+	public void updatePartner(PartnerVO vo) {
+		partnerDAO.updatePartner(vo);
+	}
 }

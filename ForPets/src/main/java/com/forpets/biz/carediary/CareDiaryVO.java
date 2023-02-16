@@ -41,4 +41,6 @@ public class CareDiaryVO {
 	private String reserve_num; //예약번호
 	private String complete_day; //돌봄케어가 완료된 날짜입니다.
 	private String complete_time; //돌봄케어가 완료된 시간입니다.
+	
+	private ReServeVO voR; 
 }

@@ -121,7 +121,6 @@
         		</c:forEach>
         		<input type="hidden" name="reserve_num" value="${reserve.reserve_num }">
 				<input type="submit" value="작성하기"> 
-				<button type="button">호에에에에엥</button>
     			</form>
     		</div>
     		
@@ -129,9 +128,6 @@
     			
     		var snum = <c:out value="${reserve.s_num}"/>;
     		
-    		$('button').click(function(){
-    			console.log(snum==2);
-    		});
     		
     			$('form').submit(function(){
     				console.log(snum);

@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,7 @@ import com.forpets.biz.pet.PetService;
 import com.forpets.biz.pet.PetVO;
 import com.forpets.biz.reserve.ReServeVO;
 import com.forpets.biz.reserve.ReserveService;
+import com.forpets.biz.user.UserVO;
 
 @Controller
 public class CareDiaryController {
@@ -30,9 +33,20 @@ public class CareDiaryController {
 	
 	//돌봄일지데이터를 가져옵니다.
 	@RequestMapping(value="/myInfo/viewCare")
-	public String getCareDIA(CareDiaryVO vo, CareDiaryDAO careDiaryDAO, Model model) {
-		model.addAttribute("DIA",careDiaryService.getCareDiary(vo));
+	public String getCareDIAList(CareDiaryVO vo, Model model, HttpSession session) {
+		UserVO sessionVO = (UserVO) session.getAttribute("member");
+		model.addAttribute("careDIA", careDiaryService.getCareDiary(vo, sessionVO.getUser_id()));
 		return "myInfo/my_careDiary";
+	}
+	
+	//돌봄일지중 특정돌봄일지를 봅니다.
+	@RequestMapping(value="/myInfo/my_careDiary_detail")
+	public String getCareDIA(HttpSession session,@RequestParam(value = "diary_id")int diary_id,Model model) {
+		UserVO sessionVO = (UserVO) session.getAttribute("member");
+		
+		model.addAttribute("careDIA", careDiaryService.getCareDiaryDetail(diary_id, sessionVO.getUser_id()));
+		return "myInfo/my_careDiary2";
+		
 	}
 	
 	
@@ -75,4 +89,6 @@ public class CareDiaryController {
 		careDiaryService.insertCareDiary(vo);
 		return "redirect:/";
 	}
+	
+
 }

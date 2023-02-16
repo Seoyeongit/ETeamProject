@@ -15,13 +15,18 @@ public class CareDiaryServiceImpl implements CareDiaryService{
 	private CareDiaryDAO careDiaryDAO;
 
 	@Override
-	public List<CareDiaryVO> getCareDiary(CareDiaryVO vo) {
-		return careDiaryDAO.getCareDiary(vo);
+	public List<CareDiaryVO> getCareDiary(CareDiaryVO vo, String user_id) {
+		return careDiaryDAO.getCareDiary(vo, user_id);
 	}
 
 	@Override
 	public void insertCareDiary(CareDiaryVO vo) {
 		careDiaryDAO.insertCareDiary(vo);
+	}
+
+	@Override
+	public CareDiaryVO getCareDiaryDetail(int diary_id, String user_id) {
+		return careDiaryDAO.getCareDiaryDetail(diary_id, user_id);
 	}
 
 }

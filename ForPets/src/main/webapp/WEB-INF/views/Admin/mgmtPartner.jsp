@@ -7,11 +7,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>파트너 관리</title>
+<title>펫트너 관리</title>
 </head>
 <body>
 <button onclick="location.href='${pageContext.request.contextPath}/Admin/main'">관리자 페이지 홈</button>
-<h1>파트너 관리</h1>
+<h1>펫트너 관리</h1>
 	<form action="getPartnerList.do" method="post">
 		<table cellpadding="0" width="800">
 			<tr>

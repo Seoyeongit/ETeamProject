@@ -26,8 +26,8 @@ public class ReserveDAO {
 	private final String GET_PETNAME = "select user_pet.pet_name from reserve,user_pet where reserve.pet_id = user_pet.pet_id;";
 	private final String COUNT_RESERVE = "select count(*) from reserve,users where reserve.user_id = users.user_id and reserve.status in(1,2) and reserve.user_id=?";
 	private final String COUNT_COMPLETE_RESERVE = "select count(distinct reserve.reserve_num) from reserve,users where reserve.user_id = users.user_id and reserve.status=3 and reserve.user_id=?";
-	
-	
+	//230217 정영현
+	private final String GETRESERVE_LIST = "select * from reserve where part_id=?";
 	//230130 최지혁
 	private final String RESERVE_INSERT = "insert into reserve(re_seq,"
 			+ "reserve_num, reserve_day, reserve_time, reserve_add, s_num, user_id, part_id, pet_id, pick_add, reserve_request)"
@@ -182,5 +182,12 @@ public class ReserveDAO {
 		last_num = jdbcTemplate.queryForObject(RESERVE_LAST_SEQ, Integer.class);
 		return last_num;
 	}
+
+	// 230217 정영현
+	public List<ReServeVO> getReserveListPart(ReServeVO vo){
+		Object[] obj = {vo.getUser_id()};
+		return jdbcTemplate.query(GETRESERVE_LIST,obj, new ReserveRowMapper());
+	}
 	
+
 }

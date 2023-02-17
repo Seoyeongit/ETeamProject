@@ -60,4 +60,14 @@ public class ReserveServiceImpl implements ReserveService{
 		return reserveDAO.getReserveListPart(vo);
 	}
 
+	@Override
+	public ReServeVO getReserveDetail(ReServeVO vo) {
+		return reserveDAO.getReserveDetail(vo);
+	}
+	
+	@Override
+	public List<ReServeVO> getReserveListCare(ReServeVO vo){
+		return reserveDAO.getReserveListCare(vo);
+		
+	}
 }

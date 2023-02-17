@@ -51,7 +51,7 @@ public class CareDiaryController {
 	
 	
 	//돌봄일지작성하기 페이지를 불러옵니다.
-	@RequestMapping(value="../partners/viewWriteCare", method = RequestMethod.GET)
+	@RequestMapping(value="/partners/viewWriteCare", method = RequestMethod.GET)
 	public String ViewWriteCareDiary(Model model,ReServeVO voR,PetVO voP) {
 		
 		voR.setReserve_num("RN_27");

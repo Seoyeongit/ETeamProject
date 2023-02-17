@@ -1,5 +1,7 @@
 package com.forpets.view.comdat;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.forpets.biz.comdat.ComdatService;
 import com.forpets.biz.comdat.ComdatVO;
 import com.forpets.biz.community.CommunityService;
+import com.forpets.biz.user.UserVO;
 
 @Controller
 public class ComdatController {
@@ -21,11 +24,13 @@ public class ComdatController {
 	
 	// 댓글 작성하기
 	@RequestMapping(value = "/insertcomdat.do", method = RequestMethod.POST)
-	public ModelAndView insertcomdat(@ModelAttribute ComdatVO vo) throws Exception {
+	public ModelAndView insertcomdat(@ModelAttribute ComdatVO vo, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		ComdatVO cvo = new ComdatVO();
+		UserVO SessionVO = (UserVO) session.getAttribute("member");
+		
 		cvo.setD_code(vo.getD_code());
-		cvo.setUser_id("pow111");
+		cvo.setUser_id(SessionVO.getUser_id());
 		cvo.setD_content(vo.getD_content());
 		mav.setViewName("redirect:/getcommunityboard.do/"+vo.getD_code()+"");
 		datservice.insertComdat(cvo);

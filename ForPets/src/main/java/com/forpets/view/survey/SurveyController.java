@@ -9,6 +9,7 @@ import java.util.stream.Collector;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,7 @@ import com.forpets.biz.survey.SurveyDetailService;
 import com.forpets.biz.survey.SurveyDetailVO;
 import com.forpets.biz.survey.SurveyVO;
 import com.forpets.biz.survey.Impl.SurveyDetailDAO;
+import com.forpets.biz.user.UserVO;
 
 @Controller
 //@RequestMapping("/")
@@ -176,9 +178,10 @@ public class SurveyController {
 		
 	// 설문지 답변 저장
 	@RequestMapping(value="/insertanswer.do", method = RequestMethod.POST)
-	public ModelAndView insertAnswer(@RequestParam String sd_svcode, HttpServletRequest req) {
+	public ModelAndView insertAnswer(@RequestParam String sd_svcode, HttpServletRequest req, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		SurveyAnswerVO vo = new SurveyAnswerVO();
+		UserVO SessionVO = (UserVO) session.getAttribute("member");
 		
 		int count = Integer.parseInt(surdservice.count(sd_svcode));
 		
@@ -189,7 +192,7 @@ public class SurveyController {
 			String sc_ascode = req.getParameter("od"+i+"");
 			String sa_content = req.getParameter(sc_ascode);
 			vo.setSa_ascode(sc_ascode);
-			vo.setUser_id("pow123");
+			vo.setUser_id(SessionVO.getUser_id());
 			vo.setSa_content(sa_content);
 			System.out.println(sd_svcode);
 			surdservice.insertAnswer(vo);		

@@ -12,8 +12,9 @@
 <body>
 	<h1>파트너 리뷰 수정 </h1>
 
-	<form action="../updatepr.do" method="post" >
-		<input type="hidden" name="part_id">
+	<form action="../updateprboard.do" method="post" >
+		<input type="hidden" name="pr_num" value="${prboard.pr_num }">
+		<input type="hidden" name="part_id" value="${prboard.part_id }">
 		<input type="hidden" name="user_id">
 		<table>
 		<tr>
@@ -36,4 +37,4 @@
 	</form>
 	<a href="partnerlist.do">펫트너 목록으로 돌아가기</a>
 </body>
-</html>>
+</html>

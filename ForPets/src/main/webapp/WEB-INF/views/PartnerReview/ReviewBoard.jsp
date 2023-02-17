@@ -22,6 +22,10 @@
 		 		<td>${prboard.pr_title }</td>
 		 	</tr>
 		 	<tr>
+		 		<th>평점</th>
+		 		<td>${prboard.pr_avg }</td>
+		 	</tr>
+		 	<tr>
 		 		<th>내용</th>
 		 		<td>${prboard.pr_content }</td>
 		 	</tr>

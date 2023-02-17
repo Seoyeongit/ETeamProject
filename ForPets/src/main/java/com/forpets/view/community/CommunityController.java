@@ -1,5 +1,7 @@
 package com.forpets.view.community;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.forpets.biz.comdat.ComdatService;
 import com.forpets.biz.community.CommunityService;
 import com.forpets.biz.community.CommunityVO;
+import com.forpets.biz.user.UserVO;
 
 @Controller
 public class CommunityController {
@@ -48,13 +51,15 @@ public class CommunityController {
 	// 소모임 글 등록
 	@RequestMapping("/insertcommunity.do")
 	@ResponseBody
-	public ModelAndView insertBoard(@ModelAttribute CommunityVO vo) throws Exception {
+	public ModelAndView insertBoard(@ModelAttribute CommunityVO vo, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		CommunityVO svo = new CommunityVO();
+		UserVO SessionVO = (UserVO) session.getAttribute("member");
+		
 		svo.setC_code(vo.getC_code());
 		svo.setC_title(vo.getC_title());
 		svo.setC_content(vo.getC_content());
-		svo.setUser_id("pow111");
+		svo.setUser_id(SessionVO.getUser_id());
 //		svo.setUser_id(vo.getUser_id());
 		comservice.insertCommunity(svo);
 		mav.setViewName("/Community/community");

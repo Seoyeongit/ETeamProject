@@ -65,6 +65,11 @@ public class PartnerController {
 		
 	}
 	
+	@RequestMapping(value="/partner/modifyyy")
+	public String modifyView() {
+		return "partner/modify";
+	}
+	
 	@RequestMapping(value="/partner/modify")
 	public String updatePartner(PartnerVO vo, PartnerDAO dao, HttpServletRequest request) throws IOException{
 		
@@ -78,6 +83,7 @@ public class PartnerController {
 			return "redirect:/partner/partnerGet";
 		}
 	
+
 	@RequestMapping(value="/partner/login", method = RequestMethod.POST)
 	public String login(PartnerVO vo,HttpServletRequest request) {
 		HttpSession session = request.getSession();

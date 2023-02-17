@@ -21,6 +21,12 @@ public class ReserveDAO {
 			"AND reserve.pet_id = user_pet.pet_id " + 
 			"AND reserve.USER_ID=? " + 
 			"AND reserve_num=?";
+	private final String RESERVE_GETTO = "SELECT * FROM RESERVE,USERS,USER_PET " + 
+			"WHERE RESERVE.USER_ID= USERS.USER_ID " + 
+			"AND reserve.pet_id = user_pet.pet_id " + 
+			"AND reserve.USER_ID=? " + 
+			"AND reserve_num=?";
+	
 	private final String RESERVE_LIST = "SELECT * FROM RESERVE,PARTNERS,USER_PET WHERE RESERVE.PART_ID= PARTNERS.PART_ID and reserve.pet_id = user_pet.pet_id AND reserve.USER_ID=? ORDER BY RESERVE.STATUS, RE_SEQ asc";
 	private final String RESERVE_COMPLETELIST = "SELECT * FROM RESERVE,PARTNERS,USER_PET WHERE RESERVE.PART_ID= PARTNERS.PART_ID and reserve.pet_id = user_pet.pet_id AND reserve.USER_ID=? AND reserve.status=3 ORDER BY RESERVE_NUM DESC";
 	private final String GET_PETNAME = "select user_pet.pet_name from reserve,user_pet where reserve.pet_id = user_pet.pet_id;";
@@ -28,6 +34,10 @@ public class ReserveDAO {
 	private final String COUNT_COMPLETE_RESERVE = "select count(distinct reserve.reserve_num) from reserve,users where reserve.user_id = users.user_id and reserve.status=3 and reserve.user_id=?";
 	//230217 정영현
 	private final String GETRESERVE_LIST = "select * from reserve where part_id=?";
+	private final String GETRESERVE_LISTCAREBEFORE = "select * from reserve where part_id=? and status=1";
+	private final String GETRESERVE_LISTCARE = "select * from reserve where part_id=? and status=2";
+	private final String GETRESERVE_LISTCAREAFTER = "select * from reserve where part_id=? and status=3";
+	
 	//230130 최지혁
 	private final String RESERVE_INSERT = "insert into reserve(re_seq,"
 			+ "reserve_num, reserve_day, reserve_time, reserve_add, s_num, user_id, part_id, pet_id, pick_add, reserve_request)"
@@ -185,9 +195,86 @@ public class ReserveDAO {
 
 	// 230217 정영현
 	public List<ReServeVO> getReserveListPart(ReServeVO vo){
-		Object[] obj = {vo.getUser_id()};
-		return jdbcTemplate.query(GETRESERVE_LIST,obj, new ReserveRowMapper());
+		Object[] obj = {vo.getPart_id()};
+		List<ReServeVO> list =  jdbcTemplate.query(GETRESERVE_LIST,obj, new ReserveRowMapper());
+		List<ReServeVO> newList = new ArrayList<ReServeVO>();
+		String number = "";
+		
+		int count = list.toArray().length;
+		for(int i = 0; i<count;i++) {
+			ReServeVO rvo = list.get(i);
+			if(rvo.getReserve_num().equals(number)) {
+				
+				System.out.println("같은 예약번호이므로 넘어갑니다.");
+				continue;
+			}
+			System.out.println("다른 예약번호이므로 저장합니다.");
+			number = rvo.getReserve_num();
+			newList.add(rvo);
+		}
+
+		return newList;
+		
 	}
+	
+	public List<ReServeVO> getReserveListCare(ReServeVO vo){
+		Object[] obj = {vo.getPart_id()};
+		List<ReServeVO> list =  jdbcTemplate.query(GETRESERVE_LISTCARE,obj, new ReserveRowMapper());
+		List<ReServeVO> newList = new ArrayList<ReServeVO>();
+		String number = "";
+		
+		int count = list.toArray().length;
+		for(int i = 0; i<count;i++) {
+			ReServeVO rvo = list.get(i);
+			if(rvo.getReserve_num().equals(number)) {
+				
+				System.out.println("같은 예약번호이므로 넘어갑니다.");
+				continue;
+			}
+			System.out.println("다른 예약번호이므로 저장합니다.");
+			number = rvo.getReserve_num();
+			newList.add(rvo);
+		}
+
+		return newList;
+	}
+	// 예약 일정 관리 확인
+	public ReServeVO getReserveDetail(ReServeVO vo) {
+		System.out.println("--->jdbcTemplate로 getReserve() 기능 처리");
+		Object[] orgs = {vo.getUser_id(), vo.getReserve_num()};
+		
+		List<ReServeVO> list =  jdbcTemplate.query(RESERVE_GETTO,orgs, new ReserveRowMapper());
+		
+		//중복되는 리뷰넘버는 서비스넘버빼고는 모두 동일하니 인덱스0의 데이터를 셋팅합니다.
+		ReServeVO listvo = list.get(0);
+		
+		vo.setPart_id(listvo.getPart_id());
+		vo.setS_num(listvo.getS_num());
+		vo.setReserve_day(listvo.getReserve_day());
+		vo.setPart_id(listvo.getPart_id());
+		vo.setPet_id(listvo.getPet_id());
+		vo.setStatus(listvo.getStatus());
+		vo.setVoPet(listvo.getVoPet());
+		vo.setReserve_time(listvo.getReserve_time());
+		vo.setReserve_add(listvo.getReserve_add());
+		vo.setReserve_request(listvo.getReserve_request());
+		vo.setPick_add(listvo.getPick_add());
+		vo.setVoU(listvo.getVoU());
+		
+		//중복된 리뷰넘버의 서로다른 서비스넘버를 리스트로 받아옵니다.
+		List<Integer> snumList = new ArrayList<Integer>();
+		
+		for(ReServeVO snum : list) {
+			if(snum.getS_num()==2 || snum.getS_num()==1 || snum.getS_num()==3 || snum.getS_num()==4 || snum.getS_num()==5 || snum.getS_num()==8) {
+				continue;
+			}
+			snumList.add(snum.getS_num());
+		}
+		vo.setS_numArr((ArrayList<Integer>) snumList);
+		
+		return vo;
+	}
+	
 	
 
 }

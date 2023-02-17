@@ -51,11 +51,9 @@ public class CareDiaryController {
 	
 	
 	//돌봄일지작성하기 페이지를 불러옵니다.
-	@RequestMapping(value="../partners/viewWriteCare", method = RequestMethod.GET)
+	@RequestMapping(value="/partner/viewWriteCare", method = RequestMethod.GET)
 	public String ViewWriteCareDiary(Model model,ReServeVO voR,PetVO voP) {
 		
-		voR.setReserve_num("RN_27");
-		voR.setUser_id("abc123");
 		
 		voR = reserveService.getReserve(voR);
 		
@@ -70,12 +68,12 @@ public class CareDiaryController {
 		model.addAttribute("now", strNowDate );
 		model.addAttribute("reserve",reserveService.getReserve(voR));
 		model.addAttribute("pet", petService.getPet(voP, pet_id.toString()));
-		return "/partners/writeCareDiary";
+		return "/partner/writeCareDiary";
 	}
 	
 	
 	//돌봄일지를 작성합니다.
-	@RequestMapping(value="/partners/writeCare", method = RequestMethod.POST)
+	@RequestMapping(value="/partner/writeCare", method = RequestMethod.POST)
 	public String WriteCareDiary(CareDiaryVO vo, @RequestParam(value = "hiddenVal", required = false)String[] list) {
 		System.out.println(vo.toString());
 		if(list!=null) {
@@ -87,7 +85,7 @@ public class CareDiaryController {
 			vo.setBeauty_list(sb.toString());
 		}
 		careDiaryService.insertCareDiary(vo);
-		return "redirect:/";
+		return "partner/careDiaryList";
 	}
 	
 

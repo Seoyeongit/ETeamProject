@@ -33,5 +33,9 @@ public interface ReserveService {
 	
 	// 230217 정영현
 	public List<ReServeVO> getReserveListPart(ReServeVO vo);
+	
+	public ReServeVO getReserveDetail(ReServeVO vo);
+	
+	public List<ReServeVO> getReserveListCare(ReServeVO vo);
 
 }

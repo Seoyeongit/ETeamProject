@@ -5,6 +5,7 @@ import java.util.Date;
 
 import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.pet.PetVO;
+import com.forpets.biz.user.UserVO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,4 +37,5 @@ public class ReServeVO {
 	private String pick_add; // pickup 시 사용할 주소
 	private String reserve_request;
 	private ArrayList<Integer> s_numArr;
+	private UserVO voU;
 }

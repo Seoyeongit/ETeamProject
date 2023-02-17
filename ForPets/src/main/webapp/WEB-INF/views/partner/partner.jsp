@@ -13,11 +13,11 @@
 	<table>
 		<tr>
 			<td><input type="submit"  onclick="location.href='partnerGet';" value="나의 정보"></td>
-			<td><input type="button" onclick="location.href='../partners/viewWriteCare';" value="돌봄 일지 작성"></td>
+			<td><input type="button" onclick="location.href='../partner/careDiaryList';" value="돌봄 일지 목록"></td>
 			<td><input type="submit" onclick="location.href='../partnerlist.do';" value="별점 및 리뷰 보기"></td>
 			<td><input type="submit" onclick="location.href='getReserve';" value="예약 일정 관리"></td>
 		</tr>
 	</table>
-	<p><input type="button" onclick="location.href='/';" value="홈으로"></p>
+	<p><input type="button" onclick="location.href='../';" value="홈으로"></p>
 </body>
 </html>

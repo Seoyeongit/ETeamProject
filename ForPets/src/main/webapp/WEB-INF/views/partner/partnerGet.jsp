@@ -45,7 +45,7 @@
 			<td><textarea name="self" cols="40" rows="10">${ partners.self_infor }</textarea></td>
 		</tr>
 		<tr>
-			<td><input type="submit" onclick="location.href='modify'" value="정보 수정 하기"/></td>
+			<td><input type="button" onclick="location.href='../partner/modifyyy'" value="정보 수정 하기"/></td>
 			<td><input type="button" onclick="location.href='partner';" value="뒤로가기"/></td>
 		</tr>
 	</table>

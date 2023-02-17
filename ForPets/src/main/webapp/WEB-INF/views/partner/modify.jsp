@@ -1,15 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    
     <h2>회원 정보 수정</h2>
     <p>사이트 이용에 필요한 정보들을 입력합니다.</p>
 
     <div class="container-sm text-bg-light">
         <div class="info">
             <div class="">
-                <label for="user_id" class="form-label" >아이디</label>
+                <label for="part_id" class="form-label" >아이디</label>
                 <input type="text" class="form-control" id="part_id" value="${partners.part_id}" name="part_id" readonly="readonly">
             </div>
         </div>
@@ -100,7 +98,7 @@ function execution_kakao_address() {
     	}).open();
 	}
     
-    $('#Modify').click(function(){
+    $('#edituserInfo').click(function(){
     	if(addr !== '' ){
     	addr += ' ' + $("#address_input_3").val();
         $("#result_partAdd").val(addr);

@@ -7,8 +7,8 @@
     <div class="container-sm text-bg-light">
         <div class="info">
             <div class="">
-                <label for="user_id" class="form-label" >아이디</label>
-                <input type="text" class="form-control" id="user_id" value="${member.user_id}" name="user_id" readonly="readonly">
+                <label for="part_id" class="form-label" >아이디</label>
+                <input type="text" class="form-control" id="part_id" value="${partners.part_id}" name="part_id" readonly="readonly">
             </div>
         </div>
 
@@ -16,7 +16,7 @@
             <div class="col-sm-4">
                 <label for="inputPassword" class="col-form-label">비밀번호</label>
                 <div class="col-sm-10">
-				<input type="password" class="form-control" id="user_pw" name="user_pw" value="${member.user_pw }">
+				<input type="password" class="form-control" id="part_pw" name="part_pw" value="${partners.part_pw }">
                 </div>
             </div>
             <div class="col-sm-4">
@@ -30,35 +30,35 @@
         
         <div class="mb-3 row">
             <div class="col-sm-4">
-                <label for="user_name" class="col-form-label">이름</label>
+                <label for="part_name" class="col-form-label">이름</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="user_name" value="${member.user_name}" name="user_name">
+                    <input type="text" class="form-control" id="part_name" value="${partners.part_name}" name="part_name">
                 </div>
             </div>
             <div class="col-sm-4">
-                <label for="user_nick" class="col-form-label">닉네임</label>
+                <label for="part_nick" class="col-form-label">닉네임</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="user_nick" value="${member.user_nick}" name="user_nick">
+                    <input type="text" class="form-control" id="part_nick" value="${partners.part_nick}" name="part_nick">
                 </div>
             </div>
         </div>
 
         <div class="info">
             <div class="">
-                <label for="user_phnumber" class="form-label" >전화번호</label>
-                <input type="text" class="form-control" id="user_phnumber" value="${member.phnumber}" name="phnumber">
+                <label for="part_phnumber" class="form-label" >전화번호</label>
+                <input type="text" class="form-control" id="part_phnumber" value="${partners.part_phnumber}" name="part_phnumber">
             </div>
         </div>
 
         <div class="info">
             <div class="">
                 <label for="exampleFormControlInput1" class="form-label" >주소</label>
-                <p>현재주소 : ${member.user_add}</p>
+                <p>현재주소 : ${partners.part_add}</p>
                 <input type="text"class="form-control" id="address_input_1" readonly="readonly" placeholder="우편번호">
                 <input type="button" onclick="execution_kakao_address()" value="우편번호 찾기"><br>
                 <input type="text" class="form-control"  id="address_input_2" readonly="readonly" placeholder="주소"><br>
                 <input type="text" class="form-control"  id="address_input_3" readonly="readonly" placeholder="상세주소"><br>
-                <input type="hidden" id="result_userAdd" value="${member.user_add}" name="user_add">
+                <input type="hidden" id="result_partAdd" value="${partners.part_add}" name="part_add">
             </div>
         </div>
     </div>
@@ -67,7 +67,7 @@
         <input type="button" value="돌아가기" id="backMainPage">
     </div>
 
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+ <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 
 var addr = ''; // 주소 변수
@@ -93,7 +93,7 @@ function execution_kakao_address() {
             $("#address_input_3").attr("readonly", false);
             $("#address_input_3").focus();
 
-            $("#result_userAdd").val(addr);
+            $("#result_partAdd").val(addr);
         	}
     	}).open();
 	}
@@ -101,30 +101,30 @@ function execution_kakao_address() {
     $('#edituserInfo').click(function(){
     	if(addr !== '' ){
     	addr += ' ' + $("#address_input_3").val();
-        $("#result_userAdd").val(addr);
+        $("#result_partAdd").val(addr);
     	}
     	
     	
-    	if($('input[name=user_pw]').val()!==$('input[id=pwChk]').val()){
+    	if($('input[name=part_pw]').val()!==$('input[id=pwChk]').val()){
     		alert("암호가 일치하지 않습니다 한번더 확인해주세요.");
     		return false;
     	}
     	
     	$.ajax({
-    		url:"../myInfo/edit",
+    		url:"../partner/modify",
     		data : {
-    			user_id:$("#user_id").val(),
-    			user_pw:$("#user_pw").val(),
-    			user_name:$("#user_name").val(),
-    			user_nick:$("#user_nick").val(),
-    			phnumber:Number($("#user_phnumber").val()),
-    			user_add:$("#result_userAdd").val()
+    			part_id:$("#part_id").val(),
+    			part_pw:$("#part_pw").val(),
+    			part_name:$("#part_name").val(),
+    			part_nick:$("#part_nick").val(),
+    			part_phnumber:Number($("#part_phnumber").val()),
+    			part_add:$("#result_partAdd").val()
     		},
     		dataType : "text",
     		type : "GET",
     		success : function(result){
     			alert("회원정보수정 성공했습니다.")
-    			location.replace('../myInfo/main');								
+    			location.replace('../partner/partnerGet');								
 			},
 			error : function(result){
 				console.log(result);
@@ -135,7 +135,7 @@ function execution_kakao_address() {
     });
     
 	$("div #backMainPage").on("click",function(){
-		location.replace('../myInfo/main');
+		location.replace('../partner/partnerGet');
 	});
 
  </script>

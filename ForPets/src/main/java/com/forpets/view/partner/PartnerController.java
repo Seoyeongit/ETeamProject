@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.forpets.biz.partner.PartnerService;
 import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.partner.impl.PartnerDAO;
-import com.forpets.biz.user.UserVO;
+import com.forpets.biz.reserve.ReServeVO;
+import com.forpets.biz.reserve.ReserveService;
+import com.forpets.biz.reserve.impl.ReserveDAO;
+import com.forpets.biz.reserve.impl.ReserveServiceImpl;
+
 
 @Controller
 public class PartnerController {
@@ -23,6 +27,8 @@ public class PartnerController {
 	//230130 최지혁
 	@Autowired
 	private PartnerService partnerService;
+	@Autowired
+	private ReserveService reserveService;
 	
 	@RequestMapping(value="/partner/partner")
 	public String partner(PartnerVO vo, PartnerDAO dao) {
@@ -59,11 +65,25 @@ public class PartnerController {
 		
 	}
 	
-	@RequestMapping(value="/partner/Modify.do")
-	public String updatePartner(PartnerVO vo, PartnerDAO dao) throws IOException{
-		return "/partner/partnerModify";
+	@RequestMapping(value="/partner/modifyyy")
+	public String modifyView() {
+		return "partner/modify";
 	}
 	
+	@RequestMapping(value="/partner/modify")
+	public String updatePartner(PartnerVO vo, PartnerDAO dao, HttpServletRequest request) throws IOException{
+		
+			vo.setPart_pw(request.getParameter("pw"));
+			vo.setPart_nick(request.getParameter("nick"));
+			vo.setPart_add(request.getParameter("add"));
+			vo.setPart_phnumber(request.getParameter("phnumber"));
+			vo.setSelf_infor(request.getParameter("self"));
+			partnerService.updatePartner(vo);
+			
+			return "redirect:/partner/partnerGet";
+		}
+	
+
 	@RequestMapping(value="/partner/login", method = RequestMethod.POST)
 	public String login(PartnerVO vo,HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -76,9 +96,10 @@ public class PartnerController {
 			System.out.println(session.getAttribute("partners").toString());
 			return "forward://";
 		}else {
-			return "partner/login";
+			return "/";
 		}
 		
 	}	
+	
 	
 }

@@ -1063,5 +1063,10 @@ CREATE TABLE customer_re
 ALTER TABLE customer_re
     ADD CONSTRAINT re_title PRIMARY KEY (re_title);
     
+select * from partners;
+    
 COMMIT;
 
+UPDATE PARTNERS SET PART_PW='bpb222', PART_NICK='파트너222', PART_ADD='?', PART_PHNUMBER='?', SELF_INFOR='?' WHERE PART_ID='?';
+
+SELECT * FROM RESERVE where part_id='bpb222';

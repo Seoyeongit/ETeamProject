@@ -13,6 +13,7 @@ import com.forpets.biz.admin.AdminVO;
 import com.forpets.biz.notice.NoticeVO;
 import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.partner.impl.PartnerDAO;
+import com.forpets.biz.tip.TipVO;
 import com.forpets.biz.user.UserVO;
 import com.forpets.biz.user.impl.UserRowMapper;
 
@@ -28,6 +29,7 @@ public class AdminDAO {
 	private final String PARTNER_LIST = "select * from PARTNERS order by part_no";
 	private final String UPDATE_ADMIN = "update ADMIN set adm_name=?, adm_phone=?, adm_email=?, adm_pw=?"
 			+ "where adm_id=?";
+	private final String TIP_PREV = "select tip_title, tip_img_url from TIP_BOARD where rownum<=3 order by tip_seq desc";
 	
 	private final RowMapper<AdminVO> adminRowMapper = (resultSet, rowNum) -> {
 		AdminVO newvo = new AdminVO();
@@ -51,6 +53,13 @@ public class AdminDAO {
 		pvo.setData_create(resultSet.getDate("data_create"));
 		pvo.setPart_phnumber(resultSet.getString("part_phnumber"));
 		return pvo;
+	};
+	
+	private final RowMapper<TipVO> tipRowMapper = (resultSet, rowNum) -> {
+		TipVO tvo = new TipVO();
+		tvo.setTip_title(resultSet.getString("tip_title"));
+		tvo.setTip_img_url(resultSet.getString("tip_img_url"));
+		return tvo;
 	};
 	
 	//관리자 정보
@@ -78,16 +87,15 @@ public class AdminDAO {
 		return jdbcTemplate.query(USER_LIST, new UserRowMapper());
 	}
 
+	// 파트너 목록
 	public List<PartnerVO> getPartList(PartnerVO pvo) {
 		return jdbcTemplate.query(PARTNER_LIST, partRowMapper);
 	}
-	
-	// 파트너 목록
-	
-	
-	
+
 	// 팁 게시판 미리보기
-	
+	public List<TipVO> getTipPrev(TipVO tvo) {
+		return jdbcTemplate.query(TIP_PREV, tipRowMapper);
+	}
 	
 	
 	// 소모임 게시판 미리보기

@@ -29,7 +29,7 @@ public class AdminController {
 
 	@Autowired
 	private AdminService admService;
-	
+
 	// 관리자 로그인
 	@RequestMapping(value = "/Admin/login", method = RequestMethod.POST)
 	public String login(AdminVO vo, HttpServletRequest request) throws Exception {
@@ -44,9 +44,9 @@ public class AdminController {
 			return "redirect:/adminLogin.jsp";
 		}
 	}
-	
+
 	// 관리자 메인 이동
-	@RequestMapping(value="/Admin/main")
+	@RequestMapping(value = "/Admin/main")
 	public String adminMain(AdminVO vo) {
 		System.out.println("---> 관리자 메인 이동");
 		return "/Admin/mgmt";
@@ -56,66 +56,75 @@ public class AdminController {
 	@RequestMapping(value = "/Admin/adminInfo/{adm_id}")
 	public String adminInfo(AdminVO vo, AdminDAO adminDAO, HttpServletRequest request) throws Exception {
 		System.out.println("---> adminInfo 이동");
-		
+
 //		새로운 세션 생성 방지
 		HttpSession session = request.getSession(false);
 		admService.getAdmin(vo);
-		if(session != null && session.getAttribute("admin")!=null) {
+		if (session != null && session.getAttribute("admin") != null) {
 			admService.getAdmin(vo);
 		}
 		return "/Admin/adminInfo";
 	}
-	
+
 	// 관리자 정보 수정
-	@RequestMapping(value = "/Admin/modInfo", method=RequestMethod.POST)
+	@RequestMapping(value = "/Admin/modInfo", method = RequestMethod.POST)
 	public String modInfo(AdminVO vo, AdminDAO adminDAO, HttpServletRequest request) throws Exception {
 		System.out.println("---> adminInfo update");
-		
-		//새로운 세션 생성 방지
+
+		// 새로운 세션 생성 방지
 		HttpSession session = request.getSession(false);
-		if(session != null && session.getAttribute("admin")!=null) {
+		if (session != null && session.getAttribute("admin") != null) {
 			admService.updateAdmin(vo);
 			session.setAttribute("admin", admService.getAdmin(vo));
 			System.out.println("updateAdmin 성공");
 		}
-		if(session == null ) {
-		System.out.println("updateAdmin 실패");
-		return "세션이 없습니다";	
+		if (session == null) {
+			System.out.println("updateAdmin 실패");
+			return "세션이 없습니다";
 		}
 		return "redirect:/Admin/main";
 	}
-	
-	
+
 	// 회원 관리
 	@RequestMapping(value = "/Admin/mgmtUser")
 	public String getUserList(UserVO uvo, UserDAO udao, Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
-		
+
 		model.addAttribute("getUser", admService.getUserList(uvo));
 		System.out.println("getUserList");
 		return "/Admin/mgmtUser";
 	}
-	
-	
+
 	// 파트너 관리
-	@RequestMapping(value="/Admin/mgmtPartner")
+	@RequestMapping(value = "/Admin/mgmtPartner")
 	public String getPartList(PartnerVO pvo, PartnerDAO pdao, Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
-		
-		model.addAttribute("getPartner", admService.getPartList(pvo));	// Model 정보 저장
+
+		model.addAttribute("getPartner", admService.getPartList(pvo)); // Model 정보 저장
 		System.out.println("getPartnerList");
 		return "/Admin/mgmtPartner";
 	}
 
-	// 페이지 이동
+	// 게시판 관리 view
 	@RequestMapping(value = "/Admin/mgmtBoard")
-	public String mgmtBoard(TipVO vo,TipDAO tipdao, Model model) throws Exception {
-//		System.out.println("---> mgmtBoard 이동");
-		
-		if (vo.getSearchCondition() == null) { vo.setSearchCondition("TITLE"); }
-		if (vo.getSearchKeyword() == null) { vo.setSearchKeyword(""); }
-		model.addAttribute("tipList", tipdao.getTipList(vo));
-		return "/Admin/mgmtBoard";
+	public String mgmtBoard() {
+		return "Admin/mgmtBoard";
+	}
+	
+	
+	// tip preview
+	@RequestMapping(value = "/Admin/tipPrev")
+	public String tipPrev(TipVO tvo, TipDAO tdao, Model model) throws Exception {
+		model.addAttribute("tipList", admService.getTipPrev(tvo));
+		System.out.println("getTipPreview");
+		return "/Admin/tipPrev";
+	}
+
+	// 소모임 preview
+	@RequestMapping(value = "/Admin/communityPrev")
+	public String communityPrev() {
+		System.out.println("getComPreview");
+		return "/Admin/communityPrev";
 	}
 
 }

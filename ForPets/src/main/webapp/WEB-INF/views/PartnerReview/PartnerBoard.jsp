@@ -37,7 +37,7 @@
 			</c:forEach>
 		</table>
 
-	<a href="../getpr.do"><input type="button" value="글 작성하기"></a>
+	<a href="../getpr.do/${part_id }"><input type="button" value="글 작성하기"></a>
 	<a href="surveylist.do">설문지 보러가기</a>
 </body>
 </html>

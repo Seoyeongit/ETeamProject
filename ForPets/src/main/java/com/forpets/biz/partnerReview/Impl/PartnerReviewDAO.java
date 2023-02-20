@@ -35,7 +35,7 @@ public class PartnerReviewDAO {
 	private final String DELETE_PRBOARD = "delete from partner_review where pr_num=?";
 	
 	// 리뷰 글 수정하기
-	private final String UPDATE_PRBOARD = "update partner_review set pr_avg=?, pr_title=?, pr_content=? where pr_num=?";
+	private final String UPDATE_PRBOARD = "update partner_review set PR_AVG=?, PR_TITLE=?, PR_CONTENT=? where PR_NUM=?";
 	
 	
 	
@@ -122,6 +122,7 @@ public class PartnerReviewDAO {
 	// 리뷰 글 수정하기 
 	public void updatePRBoard(PartnerReviewVO vo) {
 		jdbcTemplate.update(UPDATE_PRBOARD, vo.getPr_avg(), vo.getPr_title(), vo.getPr_content(), vo.getPr_num());
+		System.out.println(vo.getPr_avg()+vo.getPr_title()+vo.getPr_content()+vo.getPr_num());
 	}
 }
 

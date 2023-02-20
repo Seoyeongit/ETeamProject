@@ -1,5 +1,7 @@
 package com.forpets.view.PartnerReview;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.forpets.biz.partnerReview.PartnerReviewService;
 import com.forpets.biz.partnerReview.PartnerReviewVO;
+import com.forpets.biz.user.UserVO;
 
 @Controller
 public class PartnerReviewController {
@@ -35,6 +38,7 @@ public class PartnerReviewController {
 			 mav.addObject("prList", prservice.partName(part_id));
 			 mav.addObject("reviewList", prservice.getprReviewList(part_id));
 			 mav.addObject("avg",prservice.avg(part_id));
+			 mav.addObject("part_id", part_id);
 			return mav;
 			
 		 }
@@ -49,26 +53,27 @@ public class PartnerReviewController {
 			 return mav;
 		 }
 		 
-		 @RequestMapping("/getpr.do")
-		 public ModelAndView getPRBoard() {
+		 @RequestMapping("/getpr.do/{part_id}")
+		 public ModelAndView getPRBoard(@PathVariable String part_id) {
 			 ModelAndView mav = new ModelAndView();
 			 mav.setViewName("/PartnerReview/getPRBoard");
-			 
+			 mav.addObject("part_id", part_id);
 			 return mav;
 		 }
 		 
 		 @RequestMapping("/insertpr.do")
-		 public ModelAndView insertPRBoard(@ModelAttribute PartnerReviewVO vo) throws Exception {
+		 public ModelAndView insertPRBoard(@ModelAttribute PartnerReviewVO vo, HttpSession session) throws Exception {
 			 ModelAndView mav = new ModelAndView();
 			 PartnerReviewVO pvo = new PartnerReviewVO();
-			 pvo.setPart_id("ang1004");
-			 pvo.setUser_id("a123334");
+			 UserVO SessionVO = (UserVO) session.getAttribute("member");
+			 pvo.setPart_id(vo.getPart_id());
+			 pvo.setUser_id(SessionVO.getUser_id());
 			 pvo.setPr_avg(vo.getPr_avg());
 			 pvo.setPr_title(vo.getPr_title());
 			 pvo.setPr_content(vo.getPr_content());
 			 prservice.insertPRBoard(pvo);
-			 mav.setViewName("/PartnerReview/PartnerBoard");
-			
+			 mav.setViewName("redirect:/prlist.do/"+vo.getPart_id()+"");
+			 
 			 return mav;
 		 }
 		 
@@ -86,18 +91,20 @@ public class PartnerReviewController {
 			  return mav;
 		  }
 		  
-
+		  // 수정 
 		  @RequestMapping(value="/updateprboard.do", method = RequestMethod.POST)
-		  public ModelAndView updatePRBoard(@ModelAttribute PartnerReviewVO vo) {
+		  public ModelAndView updatePRBoard(@ModelAttribute PartnerReviewVO vo) throws Exception{
+			  
 			  ModelAndView mav = new ModelAndView();
 			  PartnerReviewVO pvo = new PartnerReviewVO();
 			  pvo.setPr_avg(vo.getPr_avg());
 			  pvo.setPr_title(vo.getPr_title());
 			  pvo.setPr_content(vo.getPr_content());
 			  pvo.setPr_num(vo.getPr_num());
+			  System.out.println(vo.getPr_avg()+vo.getPr_title()+vo.getPr_content()+vo.getPr_num());
 			  prservice.updatePRBoard(pvo);
-			  mav.setViewName("redirect:/prlist.do/{part_id}");
-			
+			  mav.setViewName("redirect:/prlist.do/"+vo.getPart_id()+"");
+			  
 			  return mav;
 		  }
 	}

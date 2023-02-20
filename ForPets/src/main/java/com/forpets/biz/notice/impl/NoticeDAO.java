@@ -16,6 +16,8 @@ public class NoticeDAO {
 	private JdbcTemplate jdbcTemplate;
 	
 	private final String NOTICE_LIST = "select * from NOTICE_BOARD order by ntc_seq DESC";
+	private final String NOTICE_LIST_T = "select * from NOTICE_BOARD where ntc_title like ";
+	private final String NOTICE_LIST_C = "select * from NOTICE_BOARD where ntc_ctnt like ";
 	private final String GET_NOTICE = "select * from NOTICE_BOARD where ntc_seq=?";
 	private final String INSERT_NOTICE = "insert into NOTICE_BOARD(ntc_seq, ntc_title, ntc_ctnt, ntc_imgurl, ntc_hit) "
 			+ "VALUES((ntc_seq.NEXTVAL), ?, ?, ?, ?)";
@@ -24,6 +26,8 @@ public class NoticeDAO {
 	private final String HIT_NOTICE = "update NOTICE_BOARD set ntc_hit=?"
 			+ "where ntc_seq=?";
 	private final String DELETE_NOTICE = "delete from NOTICE_BOARD where ntc_seq=?";
+	
+	
 	
 	private final RowMapper<NoticeVO> noticeRowMapper = (resultSet, rowNum) -> {
 		NoticeVO newvo = new NoticeVO();
@@ -41,6 +45,13 @@ public class NoticeDAO {
 	// 글 list
 	public List<NoticeVO> getNoticeList(NoticeVO vo) {
 //		System.out.println("---> getNoticeList()");
+		String sql = null;
+		if (vo.getSearchCondition().equals("TITLE")) {
+			sql = NOTICE_LIST_T;
+		} else if (vo.getSearchCondition().equals("CONTENT")) {
+			sql = NOTICE_LIST_C;
+		}
+		
 		return jdbcTemplate.query(NOTICE_LIST, noticeRowMapper);
 	}
 	
@@ -90,4 +101,5 @@ public class NoticeDAO {
 		jdbcTemplate.update(DELETE_NOTICE, vo.getNtc_seq());
 		System.out.println("---> deleteNotice()");
 	}
+	
 }

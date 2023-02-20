@@ -3,6 +3,7 @@ package com.forpets.biz.admin;
 import java.util.List;
 
 import com.forpets.biz.partner.PartnerVO;
+import com.forpets.biz.tip.TipVO;
 import com.forpets.biz.user.UserVO;
 
 /*
@@ -22,5 +23,8 @@ public interface AdminService {
 
 	// 파트너 목록
 	public List<PartnerVO> getPartList(PartnerVO pvo);
+
+	// 팁게목록
+	public List<TipVO> getTipPrev(TipVO tvo);
 	
 }

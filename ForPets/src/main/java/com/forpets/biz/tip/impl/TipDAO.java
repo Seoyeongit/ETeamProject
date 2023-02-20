@@ -29,7 +29,7 @@ public class TipDAO {
 	private final String BOARD_LIST_C = 
 			"select * from tip_board where tip_content like ";
 	
-	private final RowMapper<TipVO> TipRowMapper = (resultSet, rowNum) -> {
+	public RowMapper<TipVO> TipRowMapper = (resultSet, rowNum) -> {
 		TipVO newTip = new TipVO();
 		newTip.setTip_seq(resultSet.getInt("TIP_SEQ"));
 		newTip.setTip_title(resultSet.getString("TIP_TITLE"));
@@ -88,6 +88,7 @@ public class TipDAO {
 	}
 	
 	public List<TipVO> getTipList(TipVO vo) {
+		System.out.println("getTipList 실행");
 		String sql = null;
 		if (vo.getSearchCondition().equals("TITLE")) {
 			sql = BOARD_LIST_T;

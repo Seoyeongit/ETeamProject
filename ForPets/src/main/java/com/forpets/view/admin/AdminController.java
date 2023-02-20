@@ -15,18 +15,21 @@ import com.forpets.biz.admin.impl.AdminDAO;
 import com.forpets.biz.partner.PartnerService;
 import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.partner.impl.PartnerDAO;
+import com.forpets.biz.tip.TipService;
+import com.forpets.biz.tip.TipVO;
+import com.forpets.biz.tip.impl.TipDAO;
+import com.forpets.biz.tip.impl.TipServiceImpl;
 import com.forpets.biz.user.UserVO;
 import com.forpets.biz.user.impl.UserDAO;
 
 @Controller
-@RequestMapping("/Admin")
 public class AdminController {
 
 	@Autowired
 	private AdminService admService;
 	
 	// 관리자 로그인
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/Admin/login", method = RequestMethod.POST)
 	public String login(AdminVO vo, HttpServletRequest rq) throws Exception {
 		HttpSession session = rq.getSession();
 
@@ -41,14 +44,14 @@ public class AdminController {
 	}
 	
 	// 관리자 메인 이동
-	@RequestMapping(value="/main")
+	@RequestMapping(value="/Admin/main")
 	public String adminMain(AdminVO vo) {
 		System.out.println("---> 관리자 메인 이동");
 		return "/Admin/mgmt";
 	}
 
 	// 관리자 정보 보기
-	@RequestMapping(value = "/adminInfo/{adm_id}")
+	@RequestMapping(value = "/Admin/adminInfo/{adm_id}")
 	public String adminInfo(AdminVO vo, AdminDAO adminDAO, HttpServletRequest request) throws Exception {
 		System.out.println("---> adminInfo 이동");
 		
@@ -62,7 +65,7 @@ public class AdminController {
 	}
 	
 	// 회원 관리
-	@RequestMapping(value = "/mgmtUser")
+	@RequestMapping(value = "/Admin/mgmtUser")
 	public String getUserList(UserVO uvo, UserDAO udao, Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		
@@ -72,7 +75,7 @@ public class AdminController {
 	}
 	
 	// 파트너 관리
-	@RequestMapping(value="/mgmtPartner")
+	@RequestMapping(value="/Admin/mgmtPartner")
 	public String getPartList(PartnerVO pvo, PartnerDAO pdao, Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		
@@ -82,9 +85,13 @@ public class AdminController {
 	}
 
 	// 페이지 이동
-	@RequestMapping(value = "/mgmtBoard")
-	public String mgmtBoard() throws Exception {
+	@RequestMapping(value = "/Admin/mgmtBoard")
+	public String mgmtBoard(TipVO vo,TipDAO tipdao, Model model) throws Exception {
 //		System.out.println("---> mgmtBoard 이동");
+		
+		if (vo.getSearchCondition() == null) { vo.setSearchCondition("TITLE"); }
+		if (vo.getSearchKeyword() == null) { vo.setSearchKeyword(""); }
+		model.addAttribute("tipList", tipdao.getTipList(vo));
 		return "/Admin/mgmtBoard";
 	}
 

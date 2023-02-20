@@ -11,6 +11,7 @@
 <link href="${pageContext.request.contextPath}/resources/css/Tip/style.css" rel="stylesheet" />
 </head>
 <body>
+	<jsp:include page="../nav.jsp" />
 	<!-- ======= Sidebar ======= -->
 	<aside id="sidebar" class="sidebar">
 		<ul class="sidebar-nav" id="sidebar-nav">
@@ -40,8 +41,7 @@
 	<main id="main" class="main">
 			<section class="section">
 				<div class="row align-items-top">
-					<div class="col-lg-6">
-						<center>
+					<div class="col-lg-10">
 							<form action="getTipList" method="post">
 							<table border="1" cellpadding="0" cellspacing="0" width="700">
 								<tr>
@@ -56,13 +56,12 @@
 								</tr>
 							</table>
 							</form>
-						</center>
 						<c:forEach items="${tipList }" var="tip">
 							<!-- Card with an image on left -->
-							<div class="card mb-3">
+							<div class="card mb-3" onclick="location.href='getTip?tip_seq=${ tip.tip_seq }'">
 								<div class="row g-0">
 									<div class="col-md-4">
-										<img src="${ tip.tip_img_url }" onclick="location.href='getTip?tip_seq=${ tip.tip_seq }'" class="img-fluid rounded-start" alt="...">
+										<img src="${ tip.tip_img_url }"  class="img-fluid rounded-start" alt="...">
 									</div>
 									<div class="col-md-8">
 										<div class="card-body">
@@ -79,5 +78,6 @@
 				</div>
 			</section>
 	</main><!-- End #main -->
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

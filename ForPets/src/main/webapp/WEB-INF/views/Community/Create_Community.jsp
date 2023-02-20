@@ -28,7 +28,7 @@
 	</c:if> --%>
 
  	
-	<form action="insertcommunity.do" method="post" >
+	<form action="insertcommunity" method="post" >
 <%-- 	<c:if test="com${date }-${listcount }" ></c:if> --%>
 	<input type="hidden" value="c${date }" name="c_code">
 		<table>
@@ -48,6 +48,6 @@
 		</tr>
 	</table>
 	</form>
-	<a href="communitylist.do">글 목록 가기</a>
+	<a href="communitylist">글 목록 가기</a>
 </body>
 </html>

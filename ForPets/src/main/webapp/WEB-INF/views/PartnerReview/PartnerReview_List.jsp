@@ -30,14 +30,13 @@
 			<tr>
 				<td>${rl.pr_num }</td>
 				<td>${rl.pr_avg }</td>
-				<td><a href="../prboard.do/${rl.pr_num }">${rl.pr_title }</a></td>
+				<td><a href="../viewpartreview/${rl.pr_num }">${rl.pr_title }</a></td>
 				<td>${rl.user_id }</td>
 				<td>${rl.pr_date }</td>
 			</tr>
 			</c:forEach>
 		</table>
 
-	<a href="../getpr.do"><input type="button" value="글 작성하기"></a>
-	<a href="surveylist.do">설문지 보러가기</a>
+	<a href="../createpartreview/${part_id }"><input type="button" value="글 작성하기"></a>
 </body>
 </html>

@@ -8,16 +8,14 @@ import org.springframework.jdbc.core.RowMapper;
 import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.pet.PetVO;
 import com.forpets.biz.reserve.ReServeVO;
-import com.forpets.biz.user.UserVO;
 
-public class ReserveRowMapper implements RowMapper<ReServeVO> {
+public class RserveRowMapper_2 implements RowMapper<ReServeVO> {
 
 	@Override
 	public ReServeVO mapRow(ResultSet rs, int rowNum){
 		ReServeVO vo = new ReServeVO();
 		PartnerVO voP = new PartnerVO();
 		PetVO voPet = new PetVO();
-		UserVO voU = new UserVO();
 		
 		try {
 			vo.setReserve_num(rs.getString("RESERVE_NUM"));
@@ -32,19 +30,8 @@ public class ReserveRowMapper implements RowMapper<ReServeVO> {
 			vo.setPet_id(rs.getInt("PET_ID"));
 			vo.setStatus(rs.getInt("STATUS"));
 			
-			
-			voU.setUser_name(rs.getString("USER_NAME"));
-			voU.setUser_add(rs.getString("USER_ADD"));
-			voU.setPhnumber(Integer.parseInt(rs.getString("PHNUMBER")));
-			vo.setVoU(voU);
-			
-
-			
-			
 			voPet.setName(rs.getString("pet_name"));
 			vo.setVoPet(voPet);
-			
-			
 			
 			voP.setPart_name(rs.getString("PART_NAME"));
 			vo.setVoP(voP);

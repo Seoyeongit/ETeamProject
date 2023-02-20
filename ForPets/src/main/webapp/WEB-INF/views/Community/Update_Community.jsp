@@ -47,6 +47,6 @@
 	</table>
 		
 	</form>
-	<a href="communitylist.do">글 목록 가기</a>
+	<a href="communitylist">글 목록 가기</a>
 </body>
 </html>

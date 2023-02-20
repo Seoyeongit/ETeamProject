@@ -1,5 +1,7 @@
 package com.forpets.view.comdat;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.forpets.biz.comdat.ComdatService;
 import com.forpets.biz.comdat.ComdatVO;
 import com.forpets.biz.community.CommunityService;
+import com.forpets.biz.user.UserVO;
 
 @Controller
 public class ComdatController {
@@ -20,14 +23,16 @@ public class ComdatController {
 	
 	
 	// 댓글 작성하기
-	@RequestMapping(value = "/insertcomdat.do", method = RequestMethod.POST)
-	public ModelAndView insertcomdat(@ModelAttribute ComdatVO vo) throws Exception {
+	@RequestMapping(value = "/insertcomdat", method = RequestMethod.POST)
+	public ModelAndView insertcomdat(@ModelAttribute ComdatVO vo, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		ComdatVO cvo = new ComdatVO();
+		UserVO SessionVO = (UserVO) session.getAttribute("member");
+		
 		cvo.setD_code(vo.getD_code());
-		cvo.setUser_id("pow111");
+		cvo.setUser_id(SessionVO.getUser_id());
 		cvo.setD_content(vo.getD_content());
-		mav.setViewName("redirect:/getcommunityboard.do/"+vo.getD_code()+"");
+		mav.setViewName("redirect:/viewcommunityboard/"+vo.getD_code()+"");
 		datservice.insertComdat(cvo);
 
 
@@ -35,7 +40,7 @@ public class ComdatController {
 	}
 	
 
-	@RequestMapping(value = "/updatedat.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/updatedat", method = RequestMethod.POST)
 	public ModelAndView updateComdat(@ModelAttribute ComdatVO vo) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		ComdatVO cvo = new ComdatVO();
@@ -43,19 +48,19 @@ public class ComdatController {
 		cvo.setD_code(vo.getD_code());
 		cvo.setD_num(vo.getD_num());
 		datservice.updateComdat(cvo);
-		mav.setViewName("redirect:/getcommunityboard.do/"+vo.getD_code()+"");
+		mav.setViewName("redirect:/viewcommunityboard/"+vo.getD_code()+"");
 		
 		return mav;
 	}
 	
-	@RequestMapping(value="/deletedat.do")
+	@RequestMapping(value="/deletedat")
 	public ModelAndView deleteComdat(@ModelAttribute ComdatVO vo) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		ComdatVO cvo = new ComdatVO();
 		cvo.setD_code(vo.getD_code());
 		cvo.setD_num(vo.getD_num());
 		datservice.deleteComdat(cvo);
-		mav.setViewName("redirect:/getcommunityboard.do/"+vo.getD_code()+"");
+		mav.setViewName("redirect:/viewcommunityboard/"+vo.getD_code()+"");
 		
 		return mav;
 	}

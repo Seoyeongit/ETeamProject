@@ -15,9 +15,16 @@ public class ComdatDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+	// 댓글 조회
 	private final String GET_DAT = "select * from comdat where d_code=?";
+	
+	// 댓글 등록
 	private final String INSERT_DAT = "insert into comdat (D_NUM, D_CODE, USER_ID, D_CONTENT, D_DATE) VALUES ((cd_seq.NEXTVAL), ?, ?, ? , sysdate)";
+	
+	// 댓글 수정
 	private final String UPDATE_DAT = "update comdat set D_CONTENT=? where d_code=? and d_num=?";
+	
+	// 댓글 삭제
 	private final String DELETE_DAT = "delete from comdat where d_code =? and d_num = ?";
 	
 	

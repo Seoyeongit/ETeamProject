@@ -14,16 +14,18 @@
 		페이지 홈</button>
 	<h1>관리자 정보</h1>
 
-	<form action="updateAdmin.do" method="post">
+	<form action="../updateAdmin.do" method="post">
 		<table width="400" border="1">
 			<tr height="50">
 				<td align="center" width="150">아이디</td>
-				<td width="250">${admin.adm_id}</td>
+				<td width="250"><input type="text" name="adm_id" value="${admin.adm_id}" readonly="readonly" 
+				onfocus="this.blur();" tabindex="-1" style="background-color: #ffffff;" /></td>
 			</tr>
 			
 			<tr height="50">
 				<td align="center" width="150">이름</td>
-				<td width="250">${admin.adm_name}</td>
+				<td width="250"><input type="text" size="30" name="adm_name"
+					value="${admin.adm_name}"></td>
 			</tr>
 
 

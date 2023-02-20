@@ -24,7 +24,7 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public void updateAdmin(AdminVO vo) {
-
+		adminDAO.updateAdmin(vo);
 	}
 
 	@Override

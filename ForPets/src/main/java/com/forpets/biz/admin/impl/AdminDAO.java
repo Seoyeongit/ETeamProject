@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.forpets.biz.admin.AdminVO;
+import com.forpets.biz.notice.NoticeVO;
 import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.partner.impl.PartnerDAO;
 import com.forpets.biz.user.UserVO;
@@ -23,7 +24,10 @@ public class AdminDAO {
 
 	private final String GET_ADMIN = "select * from ADMIN where adm_id=? and adm_pw=?";
 	private final String USER_LIST = "select * from USERS order by user_id";
+	private final String DELETE_USER = "delete from USERS where user_id=?";
 	private final String PARTNER_LIST = "select * from PARTNERS order by part_no";
+	private final String UPDATE_ADMIN = "update ADMIN set adm_name=?, adm_phone=?, adm_email=?"
+			+ "where adm_id=?";
 	
 	private final RowMapper<AdminVO> adminRowMapper = (resultSet, rowNum) -> {
 		AdminVO newvo = new AdminVO();
@@ -60,6 +64,13 @@ public class AdminDAO {
 		}
 //		AdminVO admvo = jdbcTemplate.queryForObject(GET_ADMIN, adm, adminRowMapper);
 //		return admvo;
+	}
+	
+	// 관리자 수정
+	public void updateAdmin(AdminVO vo) {
+		jdbcTemplate.update(UPDATE_ADMIN, vo.getAdm_name(), vo.getAdm_phone(), vo.getAdm_email(), vo.getAdm_id());
+		System.out.println("---> updateAdmin()");
+		System.out.println(vo.getAdm_name() + vo.getAdm_phone() + vo.getAdm_email() + vo.getAdm_id());
 	}
 	
 	// 회원 목록

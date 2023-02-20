@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -52,17 +53,39 @@ public class AdminController {
 
 	// 관리자 정보 보기
 	@RequestMapping(value = "/Admin/adminInfo/{adm_id}")
-	public String adminInfo(AdminVO vo, AdminDAO adminDAO, HttpServletRequest request) throws Exception {
+	public String adminInfo(@ModelAttribute AdminVO vo, AdminDAO adminDAO, HttpServletRequest request) throws Exception {
 		System.out.println("---> adminInfo 이동");
 		
-		//새로운 세션 생성 방지
+//		새로운 세션 생성 방지
 		HttpSession session = request.getSession(false);
-		
+		admService.getAdmin(vo);
 		if(session != null && session.getAttribute("admin")!=null) {
 			admService.getAdmin(vo);
 		}
 		return "/Admin/adminInfo";
 	}
+	
+	// 관리자 정보 수정
+	@RequestMapping(value = "/Admin/updateAdmin", method=RequestMethod.POST)
+	public String adminUpdate(AdminVO vo, AdminDAO adminDAO, HttpServletRequest request) throws Exception {
+		System.out.println("---> adminInfo update");
+		
+		//새로운 세션 생성 방지
+		HttpSession session = request.getSession(false);
+		if(session != null && session.getAttribute("admin")!=null) {
+			admService.updateAdmin(vo);
+			session.setAttribute("admin", admService.getAdmin(vo));
+		}
+		
+		if (session == null) {
+	        return "세션이 없습니다";
+	    }
+		
+		System.out.println("updateAdmin 완료");
+		return "redirect:/Admin/main";
+		
+	}
+	
 	
 	// 회원 관리
 	@RequestMapping(value = "/Admin/mgmtUser")

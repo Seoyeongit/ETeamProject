@@ -12,7 +12,7 @@ import com.forpets.biz.tip.TipVO;
 @Repository("tipDAO")
 public class TipDAO {
 	@Autowired
-	private JdbcTemplate jdbcTemplate;
+	public JdbcTemplate jdbcTemplate;
 	
 	private final String BOARD_INSERT = "insert into tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit) "
 			+ "values((tb_seq.NEXTVAL), ?, ?, ?, ?, ?)";
@@ -24,9 +24,9 @@ public class TipDAO {
 	private final String BOARD_DELETE = "delete from tip_board where tip_seq = ?";
 	private final String BOARD_GET = "select * from tip_board where tip_seq=?";
 	private final String BOARD_LIST = "select * from tip_board order by tip_seq desc";
-	private final String BOARD_LIST_T = 
+	public final String BOARD_LIST_T = 
 			"select * from tip_board where tip_title like ";
-	private final String BOARD_LIST_C = 
+	public final String BOARD_LIST_C = 
 			"select * from tip_board where tip_content like ";
 	
 	public RowMapper<TipVO> TipRowMapper = (resultSet, rowNum) -> {

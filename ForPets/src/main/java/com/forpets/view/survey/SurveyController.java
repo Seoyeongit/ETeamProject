@@ -49,14 +49,14 @@ public class SurveyController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/Survey/Survey");
 		mav.addObject("c_code", c_code);
-		System.out.println(c_code);
+	//	System.out.println(c_code);
 		return mav;
 	}
 
 	// 설문지 등록
 	@RequestMapping(value="/insertsurvey.do", method = RequestMethod.POST)
 	public @ResponseBody ModelAndView insertSurvey(@RequestParam String sd_svcode, HttpServletRequest req, @RequestParam String c_code) throws Exception {
-		System.out.println("========= insertSurvey Controller Start ========= ");
+	//	System.out.println("========= insertSurvey Controller Start ========= ");
 		ModelAndView mav = new ModelAndView();
 		
 		int survey_count = Integer.parseInt(req.getParameter("survey_count"));
@@ -66,7 +66,7 @@ public class SurveyController {
 		String s_title = req.getParameter("s_title");
 		 ssvo.setS_svcode(sd_svcode);
 		 ssvo.setS_code(c_code);  // 소모임에서 코드 가져오기
-		 System.out.println(c_code);
+		 // System.out.println(c_code);
 		 ssvo.setS_title(s_title);
 		 surdservice.insertsurvey3(ssvo);
 		 
@@ -80,22 +80,22 @@ public class SurveyController {
 			String[] sc_answer = req.getParameterValues("sc_answer"+k);
 			String[] sc_ascode = req.getParameterValues("sc_ascode");
 		
-			System.out.println(sd_svcode);
+			// System.out.println(sd_svcode);
 			SurveyDetailVO vo = new SurveyDetailVO();
 			SurveyChoiceVO cvo = new SurveyChoiceVO();
 			
-			System.out.println(sd_title);
+			// System.out.println(sd_title);
 			vo.setSd_svcode(sd_svcode);
 			vo.setSd_title(sd_title);
 			vo.setSd_type(sd_type);
 			String od = "od"+(k);
 			vo.setSd_order(od);
-			System.out.println(vo);
+			// System.out.println(vo);
 			surdservice.insertSurvey(vo);
 		
 		
 			for(int j=0; j<sc_answer.length; j++) {
-				 System.out.println(sd_title);
+				// System.out.println(sd_title);
 				 cvo.setSc_svcode(sd_svcode);
 				 cvo.setSc_order(od);
 				 String asc = sd_type.substring(0,1)+(j+1);					
@@ -156,7 +156,7 @@ public class SurveyController {
 	@RequestMapping(value="/surveyboard.do/{sd_svcode}", method=RequestMethod.GET)
 	public ModelAndView getSurveyboard(@PathVariable String sd_svcode) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println(sd_svcode);
+		// System.out.println(sd_svcode);
 		mav.setViewName("/Survey/getSurvey");
 		mav.addObject("surveyboard", surdservice.getSurveyBoard(sd_svcode));
 		mav.addObject("surveyboard2", surdservice.getSurveyBoard2(sd_svcode));
@@ -194,7 +194,7 @@ public class SurveyController {
 			vo.setSa_ascode(sc_ascode);
 			vo.setUser_id(SessionVO.getUser_id());
 			vo.setSa_content(sa_content);
-			System.out.println(sd_svcode);
+			// System.out.println(sd_svcode);
 			surdservice.insertAnswer(vo);		
 		}
 
@@ -222,7 +222,7 @@ public class SurveyController {
 		mav.addObject("answerboard2", surdservice.getAnswerBoard2(sd_svcode));
 		mav.addObject("answerboard3", surdservice.getAnswerBoard3(sd_svcode));
 		mav.addObject("answerboard4", surdservice.getAnswerBoard4(sd_svcode, user_id));
-		System.out.println(surdservice.getAnswerBoard4(sd_svcode, user_id));
+	//	System.out.println(surdservice.getAnswerBoard4(sd_svcode, user_id));
 	//	mav.addObject("answerboard4", surdservice.getAnswerBoard4());
 		return mav;
 	}

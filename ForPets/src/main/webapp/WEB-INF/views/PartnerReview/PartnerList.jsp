@@ -17,7 +17,7 @@
 			</tr>
 			<c:forEach items="${prList }" var="pl">
 			<tr>
-				<td><a href="prlist.do/${pl.part_id }">${pl.part_name }</a></td>
+				<td><a href="partnerreviewlist/${pl.part_id }">${pl.part_name }</a></td>
 
 				<td>${pl.self_infor }</td>
 

@@ -27,9 +27,9 @@
 		 	</tr>
 		 </table>
 		 		
-	<a href="../updatecommunity.do/${communityboard.c_code }"><input type="button" value="수정"></a>
-	<a href="../deletecommunity.do/${communityboard.c_code }"><input type="button" value="삭제"></a>
-	<a href="../communitylist.do">글 목록 가기</a>		
+	<a href="../updatecommunity/${communityboard.c_code }"><input type="button" value="수정"></a>
+	<a href="../deletecommunity/${communityboard.c_code }"><input type="button" value="삭제"></a>
+	<a href="../communitylist">글 목록 가기</a>		
 		
 		
 		<c:forEach items="${getdat }" var="gd">
@@ -51,7 +51,7 @@
 				</tr>
 			</table>
 			<div id="b${gd.d_num }" style="float:left"><input type="button" value="수정" onclick="update(${gd.d_num })"></div>
-			<input type="submit" value="삭제" onclick="javascript : frm${gd.d_num }.action='../deletedat.do';">
+			<input type="submit" value="삭제" onclick="javascript : frm${gd.d_num }.action='../deletedat';">
 		</form>
 		
 		</c:forEach>
@@ -62,7 +62,7 @@
  				$('#'+data).children().remove();
  				$('#'+data).append('<td><input type="text" name="d_content"></td>');
  				$('#b'+data).children().remove();
- 				$('#b'+data).append("<input type='submit' value='수정' onclick='javascript : frm"+data+".action=\"../updatedat.do\";'>");
+ 				$('#b'+data).append("<input type='submit' value='수정' onclick='javascript : frm"+data+".action=\"../updatedat\";'>");
  				/* $('#b'+data).attr("onclick", "updatedat("+data+")"); */
  			}
  			
@@ -82,7 +82,7 @@
 		</script> 
    
 	
-	<form action="../insertcomdat.do" method="post">
+	<form action="../insertcomdat" method="post">
 		<input type="hidden" name="d_code" value="${communityboard.c_code }">
 		<input type="hidden" name="user_id">
 		<table>

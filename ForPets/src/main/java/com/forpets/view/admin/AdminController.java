@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.forpets.biz.admin.AdminService;
 import com.forpets.biz.admin.AdminVO;
@@ -31,8 +32,8 @@ public class AdminController {
 	
 	// 관리자 로그인
 	@RequestMapping(value = "/Admin/login", method = RequestMethod.POST)
-	public String login(AdminVO vo, HttpServletRequest rq) throws Exception {
-		HttpSession session = rq.getSession();
+	public String login(AdminVO vo, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
 
 		if (admService.getAdmin(vo) != null) {
 			session.setAttribute("admin", admService.getAdmin(vo));
@@ -53,7 +54,7 @@ public class AdminController {
 
 	// 관리자 정보 보기
 	@RequestMapping(value = "/Admin/adminInfo/{adm_id}")
-	public String adminInfo(@ModelAttribute AdminVO vo, AdminDAO adminDAO, HttpServletRequest request) throws Exception {
+	public String adminInfo(AdminVO vo, AdminDAO adminDAO, HttpServletRequest request) throws Exception {
 		System.out.println("---> adminInfo 이동");
 		
 //		새로운 세션 생성 방지
@@ -66,8 +67,8 @@ public class AdminController {
 	}
 	
 	// 관리자 정보 수정
-	@RequestMapping(value = "/Admin/updateAdmin", method=RequestMethod.POST)
-	public String adminUpdate(AdminVO vo, AdminDAO adminDAO, HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "/Admin/modInfo", method=RequestMethod.POST)
+	public String modInfo(AdminVO vo, AdminDAO adminDAO, HttpServletRequest request) throws Exception {
 		System.out.println("---> adminInfo update");
 		
 		//새로운 세션 생성 방지
@@ -75,15 +76,13 @@ public class AdminController {
 		if(session != null && session.getAttribute("admin")!=null) {
 			admService.updateAdmin(vo);
 			session.setAttribute("admin", admService.getAdmin(vo));
+			System.out.println("updateAdmin 성공");
 		}
-		
-		if (session == null) {
-	        return "세션이 없습니다";
-	    }
-		
-		System.out.println("updateAdmin 완료");
+		if(session == null ) {
+		System.out.println("updateAdmin 실패");
+		return "세션이 없습니다";	
+		}
 		return "redirect:/Admin/main";
-		
 	}
 	
 	
@@ -96,6 +95,7 @@ public class AdminController {
 		System.out.println("getUserList");
 		return "/Admin/mgmtUser";
 	}
+	
 	
 	// 파트너 관리
 	@RequestMapping(value="/Admin/mgmtPartner")
@@ -117,17 +117,5 @@ public class AdminController {
 		model.addAttribute("tipList", tipdao.getTipList(vo));
 		return "/Admin/mgmtBoard";
 	}
-
-//	@RequestMapping(value = "/mgmtPartner")
-//	public String mgmtPartner() throws Exception {
-////		System.out.println("---> mgmtPartner 이동");
-//		return "/Admin/mgmtPartner";
-//	}
-
-//	@RequestMapping(value = "/mgmtUser")
-//	public String mgmtUser() throws Exception {
-////		System.out.println("---> mgmtUser 이동");
-//		return "/Admin/mgmtUser";
-//	}
 
 }

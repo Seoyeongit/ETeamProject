@@ -14,7 +14,7 @@
 		페이지 홈</button>
 	<h1>관리자 정보</h1>
 
-	<form action="../updateAdmin.do" method="post">
+	<form action="../modInfo.do" method="post">
 		<table width="400" border="1">
 			<tr height="50">
 				<td align="center" width="150">아이디</td>
@@ -41,9 +41,10 @@
 					value="${admin.adm_phone}"></td>
 			</tr>
 
+			
 			<tr height="50">
 				<td align="center" width="150">패스워드</td>
-				<td width="250"><input type="password" name="adm_pw"></td>
+				<td width="250"><input type="hidden" id="adm_pw" name="adm_pw" value="${admin.adm_pw}"></td>
 			</tr>
 
 			<tr height="50">

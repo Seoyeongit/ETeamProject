@@ -26,7 +26,7 @@ public class AdminDAO {
 	private final String USER_LIST = "select * from USERS order by user_id";
 	private final String DELETE_USER = "delete from USERS where user_id=?";
 	private final String PARTNER_LIST = "select * from PARTNERS order by part_no";
-	private final String UPDATE_ADMIN = "update ADMIN set adm_name=?, adm_phone=?, adm_email=?"
+	private final String UPDATE_ADMIN = "update ADMIN set adm_name=?, adm_phone=?, adm_email=?, adm_pw=?"
 			+ "where adm_id=?";
 	
 	private final RowMapper<AdminVO> adminRowMapper = (resultSet, rowNum) -> {
@@ -68,9 +68,9 @@ public class AdminDAO {
 	
 	// 관리자 수정
 	public void updateAdmin(AdminVO vo) {
-		jdbcTemplate.update(UPDATE_ADMIN, vo.getAdm_name(), vo.getAdm_phone(), vo.getAdm_email(), vo.getAdm_id());
+		jdbcTemplate.update(UPDATE_ADMIN, vo.getAdm_name(), vo.getAdm_phone(), vo.getAdm_email(), vo.getAdm_pw(), vo.getAdm_id());
 		System.out.println("---> updateAdmin()");
-		System.out.println(vo.getAdm_name() + vo.getAdm_phone() + vo.getAdm_email() + vo.getAdm_id());
+		System.out.println(vo.getAdm_name() + vo.getAdm_phone() + vo.getAdm_email() + vo.getAdm_pw() +  vo.getAdm_id());
 	}
 	
 	// 회원 목록
@@ -83,6 +83,15 @@ public class AdminDAO {
 	}
 	
 	// 파트너 목록
+	
+	
+	
+	// 팁 게시판 미리보기
+	
+	
+	
+	// 소모임 게시판 미리보기
+	
 	
 	
 }

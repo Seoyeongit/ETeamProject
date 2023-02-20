@@ -13,8 +13,8 @@
 	<h1>파트너 리뷰 작성 페이지</h1>
 	<h5>파트너 평가를 해주세요!</h5>
 
-	<form action="insertpr.do" method="post" >
-		<input type="hidden" name="part_id">
+	<form action="../insertpr.do" method="post" >
+		<input type="hidden" name="part_id" value="${part_id }">
 		<input type="hidden" name="user_id">
 		<table>
 		<tr>

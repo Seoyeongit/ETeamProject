@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.pet.PetVO;
 import com.forpets.biz.reserve.ReServeVO;
 import com.forpets.biz.reserve.ReserveService;
@@ -120,6 +121,29 @@ public class ReserveController {
 		}
 		System.out.println("---> reserveInsert 완료");
 		return "Service/complete";
+	}
+	
+	@RequestMapping(value="/partner/getReserve")
+	public String getReserveListPart(ReServeVO vo, ReserveDAO dao, Model model,HttpSession session){
+		PartnerVO sessionvo = (PartnerVO) session.getAttribute("partners");
+		vo.setPart_id(sessionvo.getPart_id());
+		model.addAttribute("reserveList", reserveService.getReserveListPart(vo));
+		return "/partner/getReserve";
+	}
+	
+	// 파트너 페이지 예약일정 관리
+	@RequestMapping(value="/partner/detail")
+	public String getReserve(ReServeVO vo, Model model) {
+		model.addAttribute("reserve",reserveService.getReserveDetail(vo));
+		return "partner/getReserveDetail";
+	}
+	
+	@RequestMapping(value="partner/careDiaryList")
+	public String getReserveListCare(ReServeVO vo, Model model, HttpSession session) {
+		PartnerVO sessionvo = (PartnerVO) session.getAttribute("partners");
+		vo.setPart_id(sessionvo.getPart_id());
+		model.addAttribute("reserveListCare", reserveService.getReserveListCare(vo));
+		return "/partner/careDiaryList";
 	}
 	
 }

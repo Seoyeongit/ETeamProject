@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.forpets.biz.partner.PartnerService;
 import com.forpets.biz.partner.PartnerVO;
 
@@ -28,5 +27,16 @@ public class PartnerServiceImpl implements PartnerService {
 	public PartnerVO getPartner(PartnerVO vo, String part_id) {
 		return partnerDAO.getPartner(vo, part_id);
 	}
+	
+	@Override
+	public PartnerVO partnerGet(PartnerVO vo) {
+		return partnerDAO.partnerGet(vo);
+	}
 
+	@Override
+	public void updatePartner(PartnerVO vo) {
+		partnerDAO.updatePartner(vo);
+	}
+	
+	
 }

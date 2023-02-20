@@ -1051,3 +1051,22 @@ COMMIT;
 
 select * from CUSTOMER where cust_title like '%%' order by cust_no desc;
 
+
+-- 고객 센터 문의 답글 DB
+CREATE TABLE customer_re
+(
+    re_title VARCHAR2(50) NOT NULL,
+    re_content VARCHAR2(500) NOT NULL,
+    re_date DATE NOT NULL
+);
+
+ALTER TABLE customer_re
+    ADD CONSTRAINT re_title PRIMARY KEY (re_title);
+    
+select * from partners;
+    
+COMMIT;
+
+UPDATE PARTNERS SET PART_PW='bpb222', PART_NICK='파트너222', PART_ADD='?', PART_PHNUMBER='?', SELF_INFOR='?' WHERE PART_ID='?';
+
+SELECT * FROM RESERVE where part_id='bpb222';

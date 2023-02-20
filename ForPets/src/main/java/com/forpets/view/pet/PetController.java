@@ -131,7 +131,7 @@ public class PetController{
 		
 		String datePath = str.replace("-", File.separator);
 		/* 폴더 생성 */
-		File uploadPath = new File(uploadFolder, datePath);
+		File uploadPath = new File("C:/DevSpace/springSpace/ETeamProject/ForPets/src/main/webapp/resources/assets/upload", datePath);
 		
 		if(uploadPath.exists() == false) {
 			uploadPath.mkdirs();
@@ -160,13 +160,15 @@ public class PetController{
 	}
 	
 	@RequestMapping("/myInfo/display")
-	public ResponseEntity<byte[]>getImage(String fileName){
+	public ResponseEntity<byte[]>getImage(String fileName, HttpServletRequest request){
 		System.out.println("getImage()....." + fileName);
 		
-		String resourcePath = servletContext.getRealPath("/resource");
-		String path = resourcePath + "/assts/upload";
+		String applicationPath = request.getServletContext().getRealPath("/");
+		String[] personalPath = applicationPath.split("\\.metadata");
+		String pet_img_path = personalPath[0] + "ForPets\\src\\main\\webapp\\resources\\assets\\upload";
 		
-		File file = new File(path + fileName);
+		
+		File file = new File(pet_img_path + fileName);
 		
 		ResponseEntity<byte[]> result = null;
 		
@@ -187,7 +189,7 @@ public class PetController{
 		String path = resourcePath + "/assts/upload";
 		File file = null;
 		try {
-			file = new File(path + URLDecoder.decode(fileName, "UTF-8"));
+			file = new File("C:/DevSpace/springSpace/ETeamProject/ForPets/src/main/webapp/resources/assets/upload" + URLDecoder.decode(fileName, "UTF-8"));
 			file.delete();
 		}catch (Exception e) {
 			e.printStackTrace();

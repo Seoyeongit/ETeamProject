@@ -11,6 +11,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<link href="${pageContext.request.contextPath}/resources/css/myInfo_main.css" rel="stylesheet" />
+	
 	<title>마이페이지</title>
 	<style type="text/css">
 	   .node {
@@ -74,8 +75,11 @@
 	</style>
 </head>
 <body>
-    <div class="">
+	<header>
+		<div>	 <jsp:include page="../nav.jsp"/> </div>
+	</header>
 
+    <div class="">
         <div class="col-md-12">
             <div class="top-breadcrumb">
                 <div>안녕하세요 ${member.user_nick}(${member.user_id })님 <a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
@@ -196,6 +200,60 @@
                                     <td><a href="../Notice/noticeBoard">공지사항</a></td>
                                     <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
                                 </tr>
+                                                                <tr>
+                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
+                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
+                                </tr>
+                                                                <tr>
+                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
+                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
+                                </tr>
+                                                                <tr>
+                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
+                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
+                                </tr>
+                                                                <tr>
+                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
+                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
+                                </tr>
+                                                                <tr>
+                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
+                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
+                                </tr>
+                                                                <tr>
+                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
+                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
+                                </tr>
+                                                                <tr>
+                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
+                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
+                                </tr>
+                                                                <tr>
+                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
+                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
+                                </tr>
+                                                                <tr>
+                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
+                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
+                                </tr>
+                                                                <tr>
+                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
+                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
+                                </tr>
+		
+		                                <tr>
+                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
+                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
+                                </tr>
+                                                                <tr>
+                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
+                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
+                                </tr>
+                                                                <tr>
+                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
+                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
+                                </tr>                                
+                              
                             </table>
                         </div>
                         
@@ -206,6 +264,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div id="footer">
+    	<jsp:include page="../footer.jsp"></jsp:include>
     </div>
 
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=037898d01be77d2487543d1d6ea4c210&libraries=services,drawing"></script>

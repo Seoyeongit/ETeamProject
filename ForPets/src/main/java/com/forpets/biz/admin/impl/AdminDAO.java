@@ -10,8 +10,10 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.forpets.biz.admin.AdminVO;
+import com.forpets.biz.notice.NoticeVO;
 import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.partner.impl.PartnerDAO;
+import com.forpets.biz.tip.TipVO;
 import com.forpets.biz.user.UserVO;
 import com.forpets.biz.user.impl.UserRowMapper;
 
@@ -23,7 +25,11 @@ public class AdminDAO {
 
 	private final String GET_ADMIN = "select * from ADMIN where adm_id=? and adm_pw=?";
 	private final String USER_LIST = "select * from USERS order by user_id";
+	private final String DELETE_USER = "delete from USERS where user_id=?";
 	private final String PARTNER_LIST = "select * from PARTNERS order by part_no";
+	private final String UPDATE_ADMIN = "update ADMIN set adm_name=?, adm_phone=?, adm_email=?, adm_pw=?"
+			+ "where adm_id=?";
+	private final String TIP_PREV = "select tip_title, tip_img_url from TIP_BOARD where rownum<=3 order by tip_seq desc";
 	
 	private final RowMapper<AdminVO> adminRowMapper = (resultSet, rowNum) -> {
 		AdminVO newvo = new AdminVO();
@@ -49,6 +55,13 @@ public class AdminDAO {
 		return pvo;
 	};
 	
+	private final RowMapper<TipVO> tipRowMapper = (resultSet, rowNum) -> {
+		TipVO tvo = new TipVO();
+		tvo.setTip_title(resultSet.getString("tip_title"));
+		tvo.setTip_img_url(resultSet.getString("tip_img_url"));
+		return tvo;
+	};
+	
 	//관리자 정보
 	public AdminVO getAdmin(AdminVO vo) {
 		Object[] adm = {vo.getAdm_id(), vo.getAdm_pw()};
@@ -62,16 +75,31 @@ public class AdminDAO {
 //		return admvo;
 	}
 	
+	// 관리자 수정
+	public void updateAdmin(AdminVO vo) {
+		jdbcTemplate.update(UPDATE_ADMIN, vo.getAdm_name(), vo.getAdm_phone(), vo.getAdm_email(), vo.getAdm_pw(), vo.getAdm_id());
+		System.out.println("---> updateAdmin()");
+		System.out.println(vo.getAdm_name() + vo.getAdm_phone() + vo.getAdm_email() + vo.getAdm_pw() +  vo.getAdm_id());
+	}
+	
 	// 회원 목록
 	public List<UserVO> getUserList(UserVO uvo) {
 		return jdbcTemplate.query(USER_LIST, new UserRowMapper());
 	}
 
+	// 파트너 목록
 	public List<PartnerVO> getPartList(PartnerVO pvo) {
 		return jdbcTemplate.query(PARTNER_LIST, partRowMapper);
 	}
+
+	// 팁 게시판 미리보기
+	public List<TipVO> getTipPrev(TipVO tvo) {
+		return jdbcTemplate.query(TIP_PREV, tipRowMapper);
+	}
 	
-	// 파트너 목록
+	
+	// 소모임 게시판 미리보기
+	
 	
 	
 }

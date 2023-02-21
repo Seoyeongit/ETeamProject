@@ -12,10 +12,10 @@
 <h1>게시판 관리</h1>
 
 <h3>반려인 팁</h3>
-<iframe name="tipPrev" id="tipPrev" src="./tipPrev"></iframe>
+<iframe name="tipPrev" id="tipPrev" width="100%" height="300" src="./tipPrev"></iframe>
 
 <h3>소모임</h3>
-<iframe name="communityPrev" id="communityPrev" src="./communityPrev"></iframe>
+<iframe name="communityPrev" id="communityPrev" width="700" src="./communityPrev"></iframe>
 	
 </body>
 </html>

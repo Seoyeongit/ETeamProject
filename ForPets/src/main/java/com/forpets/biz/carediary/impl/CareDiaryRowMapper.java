@@ -10,6 +10,7 @@ import com.forpets.biz.pet.PetVO;
 import com.forpets.biz.pet.impl.PetRowMapper;
 import com.forpets.biz.reserve.ReServeVO;
 import com.forpets.biz.reserve.impl.ReserveRowMapper;
+import com.forpets.biz.reserve.impl.RserveRowMapper_2;
 import com.forpets.biz.user.UserVO;
 import com.forpets.biz.user.impl.UserRowMapper;
 
@@ -18,7 +19,7 @@ public class CareDiaryRowMapper implements RowMapper<CareDiaryVO> {
 	@Override
 	public CareDiaryVO mapRow(ResultSet rs, int rowNum) throws SQLException {
 		CareDiaryVO vo = new CareDiaryVO();
-		ReServeVO voR = new ReserveRowMapper().mapRow(rs, rowNum);
+		ReServeVO voR = new RserveRowMapper_2().mapRow(rs, rowNum);
 		
 		vo.setDiary_id(rs.getInt("DIARY_ID"));
 		vo.setPet_condition(rs.getString("PET_CONDITION"));

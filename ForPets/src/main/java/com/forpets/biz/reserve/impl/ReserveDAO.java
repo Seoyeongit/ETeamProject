@@ -52,7 +52,7 @@ public class ReserveDAO {
 		System.out.println("--->jdbcTemplate로 getReserve() 기능 처리");
 		Object[] orgs = {vo.getUser_id(), vo.getReserve_num()};
 		
-		List<ReServeVO> list =  jdbcTemplate.query(RESERVE_GET,orgs, new ReserveRowMapper());
+		List<ReServeVO> list =  jdbcTemplate.query(RESERVE_GET,orgs, new RserveRowMapper_2());
 		
 		//중복되는 리뷰넘버는 서비스넘버빼고는 모두 동일하니 인덱스0의 데이터를 셋팅합니다.
 		ReServeVO listvo = list.get(0);
@@ -92,7 +92,7 @@ public class ReserveDAO {
 		System.out.println("---> jdbcTemplate로 getReserveList() 기능 처리");
 		
 		Object[] orgs = {vo.getUser_id()};		
-		List<ReServeVO> list =  jdbcTemplate.query(RESERVE_LIST,orgs,new ReserveRowMapper());
+		List<ReServeVO> list =  jdbcTemplate.query(RESERVE_LIST,orgs,new RserveRowMapper_2());
 		List<ReServeVO> newList = new ArrayList<ReServeVO>();
 		String number = "";
 		
@@ -121,7 +121,7 @@ public class ReserveDAO {
 		System.out.println("---> jdbcTemplate로 getCPTReserveList() 기능 처리");
 		
 		Object[] orgs = {vo.getUser_id()};		
-		List<ReServeVO> list =  jdbcTemplate.query(RESERVE_COMPLETELIST,orgs,new ReserveRowMapper());
+		List<ReServeVO> list =  jdbcTemplate.query(RESERVE_COMPLETELIST,orgs,new RserveRowMapper_2());
 		List<ReServeVO> newList = new ArrayList<ReServeVO>();
 		String number = "";
 		

@@ -30,9 +30,9 @@ public class PartnerController {
 	@Autowired
 	private ReserveService reserveService;
 	
-	@RequestMapping(value="/partner/partner")
+	@RequestMapping(value="/partner/partnerMain")
 	public String partner(PartnerVO vo, PartnerDAO dao) {
-		return "/partner/partner";
+		return "/partner/partnerMain";
 	}
 	
 	@RequestMapping(value="getPartnerList")

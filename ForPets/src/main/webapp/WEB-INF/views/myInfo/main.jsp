@@ -75,6 +75,10 @@
     	float: right;
     }
 	</style>
+	
+	        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="${pageContext.request.contextPath}/resources/css/partner.css" rel="stylesheet" />
+        <script src="${pageContext.request.contextPath}/resources/css/partner.css"></script>
 </head>
 <body>
 
@@ -87,26 +91,25 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-3 ">
-                <div class="card left-profile-card">
-
-                    <div class="card-body">
-
-                        <div class="text-center">
-
-                            <h3>${member.user_nick}(${member.user_id })님</h3>
-                            <a id="edit-user-info"><p>회원정보수정</p></a>
-                        </div>
-
-                        <div class="personal-info">
-                        </div>
-
-                    </div>
-                </div>
+        
+        <nav class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                <span class="d-block d-lg-none">${partners.part_name }</span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="..." /></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partner/modifyyy">정보 수정</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partner/careDiaryList">돌봄 일지 목록</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partnerlist.do">별점 및 리뷰보기</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partner/getReserve">예약 일정 관리</a></li>
+                </ul>
             </div>
+        </nav>
 
 
-            <div class="col-lg-9 right-content">
+            <div class="col-lg-12 right-content">
                 <div class="card right-profile-card">
                     <div class="card-body p-5" id="my-message-sibal">
 
@@ -198,7 +201,7 @@
                             <p><strong>나의 서비스</strong></p>
                             <table class="container">
                                 <tr>
-                                    <td><a href="../myInfo/check-reservation">예약확인</a></td>
+                                    <td><a href="../myInfo/check-reservation" id="myInfo-reserve-check">예약확인</a></td>
                                     <td><a href="../myInfo/viewCare">돌봄일지</a></td>
                                 </tr>
                                 <tr>
@@ -258,6 +261,7 @@
 		});
 		
 	});
+
 	
 	
 	/**

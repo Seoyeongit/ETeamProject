@@ -1002,10 +1002,12 @@ create table customer(
     part_id VARCHAR2(20) NOT NULL,
     cust_title VARCHAR2(100) NOT NULL,
     cust_content VARCHAR2(1000) NOT NULL,
+    cust_img VARCHAR2(500) NULL,
     cust_date DATE DEFAULT SYSDATE NOT NULL
 );
 
 ALTER TABLE customer modify cust_date DATE default sysdate;
+ALTER TABLE customer ADD cust_img VARCHAR(500);
 
 commit;
 
@@ -1070,3 +1072,5 @@ COMMIT;
 UPDATE PARTNERS SET PART_PW='bpb222', PART_NICK='파트너222', PART_ADD='?', PART_PHNUMBER='?', SELF_INFOR='?' WHERE PART_ID='?';
 
 SELECT * FROM RESERVE where part_id='bpb222';
+
+select*from customer;

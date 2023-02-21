@@ -22,7 +22,16 @@
 			<td><textarea name="content" cols="40" rows="10">${ customer.cust_content }</textarea></td>
 		</tr>
 			<td>작성자</td>
-			<td><input type="text" name="id" value="${customer.user_id }" readonly/></td>
+			<td>
+				<c:choose>
+	                    <c:when test="${customer.user_id == ' '}">
+	                    	<div>${customer.part_id }</div>
+	                    </c:when>
+	                    <c:otherwise>
+	                    	<div>${customer.user_id }</div>
+	                    </c:otherwise>
+	            </c:choose>
+			</td>
 		<tr>
 			<td>날짜</td>
 			<td>${ customer.cust_date}</td>

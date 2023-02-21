@@ -9,9 +9,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 <link href="${pageContext.request.contextPath}/resources/css/Tip/style.css" rel="stylesheet" />
+<style>
+	#main_content {
+		display : table;
+		width : 100%;
+	}
+	#sidebar, #main {
+		display : table-cell;
+	}
+</style>
 </head>
 <body>
 	<jsp:include page="../nav.jsp" />
+	<div id="main_content">
 	<!-- ======= Sidebar ======= -->
 	<aside id="sidebar" class="sidebar">
 		<ul class="sidebar-nav" id="sidebar-nav">
@@ -78,6 +88,9 @@
 				</div>
 			</section>
 	</main><!-- End #main -->
-	<jsp:include page="../footer.jsp" />
+	</div>
+	<div id="footer_div" style="background-color : white;">
+		<jsp:include page="../footer.jsp" />
+	</div>
 </body>
 </html>

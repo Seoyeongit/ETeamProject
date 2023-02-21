@@ -20,7 +20,16 @@
 					<td>${ customer.cust_no }</td>
 					<td align="left">
 							${ customer.cust_title }</td>
-					<td>${ customer.user_id }</td>
+					<td>
+					<c:choose>
+	                    <c:when test="${customer.user_id == ' '}">
+	                    	<div>${customer.part_id }</div>
+	                    </c:when>
+	                    <c:otherwise>
+	                    	<div>${customer.user_id }</div>
+	                    </c:otherwise>
+	                </c:choose>
+	                </td>
 					<td><fmt:formatDate value="${ customer.cust_date }" pattern="yyyy-MM-dd" /></td>
 				</tr>
 				<td><a href="getCustomerBoard?cust_no=${ customer.cust_no }">글수정</a></td>

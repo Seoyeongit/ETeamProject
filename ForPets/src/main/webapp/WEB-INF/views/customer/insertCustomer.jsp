@@ -30,7 +30,16 @@
 		</tr>
 		<tr>
 			<td>사용자</td>
-			<td>${customer.user_id }</td>
+			<td>
+			<c:choose>
+	             <c:when test="${customer.user_id == ' '}">
+	                 <div>${customer.part_id }</div>
+	             </c:when>
+	             <c:otherwise>
+	                 <div>${customer.user_id }</div>
+	             </c:otherwise>
+	         </c:choose>
+	         </td>
 		</tr>
 		<tr>
 			<td>날짜</td>

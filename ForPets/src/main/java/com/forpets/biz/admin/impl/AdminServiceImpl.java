@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.forpets.biz.admin.AdminService;
 import com.forpets.biz.admin.AdminVO;
 import com.forpets.biz.partner.PartnerVO;
+import com.forpets.biz.tip.TipVO;
 import com.forpets.biz.user.UserVO;
 
 @Service("adminService")
@@ -24,7 +25,7 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public void updateAdmin(AdminVO vo) {
-
+		adminDAO.updateAdmin(vo);
 	}
 
 	@Override
@@ -36,4 +37,11 @@ public class AdminServiceImpl implements AdminService {
 	public List<PartnerVO> getPartList(PartnerVO pvo) {
 		return adminDAO.getPartList(pvo);
 	}
+
+	@Override
+	public List<TipVO> getTipPrev(TipVO tvo) {
+		return adminDAO.getTipPrev(tvo);
+	}
+	
+	
 }

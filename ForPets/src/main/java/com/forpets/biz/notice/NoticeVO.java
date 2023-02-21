@@ -24,4 +24,7 @@ public class NoticeVO {
 	private Date ntc_cdate; //발행일
 	private int ntc_hit; //조회수
 	private Date ntc_udate; //수정일
+	
+	private String searchCondition;
+	private String searchKeyword;
 }

@@ -7,12 +7,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<link href="${pageContext.request.contextPath}/resources/css/myInfo_main.css" rel="stylesheet" />
 	
 	<title>마이페이지</title>
+	
+	<jsp:include page="../favicon.jsp"></jsp:include>
+	
+	
 	<style type="text/css">
 	   .node {
         position: absolute;
@@ -73,90 +75,110 @@
     	float: right;
     }
 	</style>
+	
+	        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="${pageContext.request.contextPath}/resources/css/partner.css" rel="stylesheet" />
+        <script src="${pageContext.request.contextPath}/resources/css/partner.css"></script>
 </head>
 <body>
-	<header>
-		<div>	 <jsp:include page="../nav.jsp"/> </div>
-	</header>
 
-    <div class="">
+	<div><jsp:include page="../nav.jsp"/> </div>
+	
+    <div class="container">
         <div class="col-md-12">
             <div class="top-breadcrumb">
-                <div>안녕하세요 ${member.user_nick}(${member.user_id })님 <a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
-                 | <a href="${pageContext.request.contextPath}/">홈으로</a></div>
-                <br>
-            </div>
+                <div>안녕하세요 ${member.user_nick}(${member.user_id })님</div>
         </div>
 
         <div class="row">
-            <div class="col-lg-3 ">
-                <div class="card left-profile-card">
-
-                    <div class="card-body">
-
-                        <div class="text-center">
-
-                            <h3>${member.user_nick}(${member.user_id })님</h3>
-                            <a id="edit-user-info"><p>회원정보수정</p></a>
-                        </div>
-
-                        <div class="personal-info">
-                        </div>
-
-                    </div>
-                </div>
+        
+        <nav class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                <span class="d-block d-lg-none">${partners.part_name }</span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="..." /></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partner/modifyyy">정보 수정</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partner/careDiaryList">돌봄 일지 목록</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partnerlist.do">별점 및 리뷰보기</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partner/getReserve">예약 일정 관리</a></li>
+                </ul>
             </div>
+        </nav>
 
 
-            <div class="col-lg-9 right-content">
+            <div class="col-lg-12 right-content">
                 <div class="card right-profile-card">
                     <div class="card-body p-5" id="my-message-sibal">
 
 
                         <p class="pb-3"><strong>마이페이지</strong></p>
 
-                        <div class="d-flex pb-5">
-
-                            <div class="flex-fill pet-profile">
-                                <div class="team-list position-relative overflow-hidden shadow rounded">
-                            <c:choose>
-                                <c:when test="${not empty userPet.img}">
-                                 		<img alt="" src="../myInfo/display?fileName=${userPet.img }">
-                                </c:when>
-                            </c:choose>
-                                    <div class="content float-right p-4">
-                                        <h5 class="title mb-0">${userPet.name }
-                                        <c:choose>
-                                        	<c:when test="${userPet.gender eq 'm'.charAt(0) }">♂️</c:when>
-                                        	<c:when test="${userPet.gender eq 'f'.charAt(0) }">♀️</c:when>
-                                        </c:choose>
-                                        <p class="text-muted mt-3">나이 : ${userPet.age }살</p>
-                                        
-                                        <c:choose>
-                                        	<c:when test="${empty userPet}">
-                                        <a href="${pageContext.request.contextPath}/myInfo/my-petView"
-                            			onclick="window.open(this.href, '_blank', 'width=500, height=800'); return false;">
-										<input type="button" id="register_pet" value="반려동물 등록하기"></a>
-											</c:when>
-											<c:otherwise>
-											<a href="${pageContext.request.contextPath}/myInfo/my-petView"
-                            			onclick="window.open(this.href, '_blank', 'width=500, height=800'); return false;">
-										<input type="button" id="register_pet" value="정보수정하기"></a>
-											
-											
-											</c:otherwise>
-											
-                                    	</c:choose>
-                                    
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="flex-fill pet-work rounded shadow" id="map" style="width: 100%; background-color: rgb(249, 249, 249);"></div>
-							
-							
-
-                        </div>
+					    <div class="d-flex pb-5">
+					
+					        <div id="slide" class="flex-fill pet-profile shadow-myinfo carousel slide" data-bs-touch="false"
+					            data-bs-interval="false">
+					            <div class="carousel-inner">
+					            	
+					            	<c:forEach items="${userPet}" var="userPet" varStatus="status">
+					            	
+					            	<c:choose>
+					            	<c:when test="${status.first }"><div class="carousel-item active"></c:when>
+					            	<c:otherwise><div class="carousel-item"></c:otherwise>
+					                </c:choose>
+									
+					                    <div class="d-flex team-list position-relative overflow-hidden rounded">
+					                        <div class="flex-fill col-md-auto">
+					                            <c:choose>
+					                                <c:when test="${not empty userPet.img}">
+					                                    <img alt="" src="../myInfo/display?fileName=${userPet.img }">
+					                                </c:when>
+					                            </c:choose>
+					                        </div>
+					                        <div class="flex-fill content float-right p-4">
+					                            <h5 class="title mb-0">${userPet.name }
+					                                <c:choose>
+					                                    <c:when test="${userPet.gender eq 'm'.charAt(0) }">♂️</c:when>
+					                                    <c:when test="${userPet.gender eq 'f'.charAt(0) }">♀️</c:when>
+					                                </c:choose>
+					                                <p class="text-muted mt-3">나이 : ${userPet.age }살</p>
+					
+					                                <a href="${pageContext.request.contextPath}/myInfo/my-petView?id=${userPet.id}"
+					                                  onclick="window.open(this.href, '_blank', 'width=500, height=800'); return false;">
+					                                  <input type="button" id="register_pet" value="정보수정하기"></a>
+					                        </div>
+					                    </div>
+					                </div>
+					                </c:forEach>
+					                
+					                <div class="carousel-item">
+               						 <div>
+               						 	<a href="${pageContext.request.contextPath}/myInfo/my-petView"
+					                    onclick="window.open(this.href, '_blank', 'width=500, height=800'); return false;">
+					                    <input type="button" id="register_pet" value="펫등록하기"></a>
+               						 
+               						 </div>
+            						</div>
+					                
+					                
+					            </div>
+					            <button class="carousel-control-prev" type="button" data-bs-target="#slide" data-bs-slide="prev">
+					                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					                <span class="visually-hidden">Previous</span>
+					            </button>
+					            <button class="carousel-control-next" type="button" data-bs-target="#slide" data-bs-slide="next">
+					                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+					                <span class="visually-hidden">Next</span>
+					            </button>
+					        </div>
+					
+					        <div class="flex-fill col-md-auto pet-work rounded shadow-myinfo" id="map" style="width: 100%; background-color: rgb(249, 249, 249);"></div>
+					
+					
+					
+					    </div>
 
 							                            
                             <c:choose>
@@ -179,7 +201,7 @@
                             <p><strong>나의 서비스</strong></p>
                             <table class="container">
                                 <tr>
-                                    <td><a href="../myInfo/check-reservation">예약확인</a></td>
+                                    <td><a href="../myInfo/check-reservation" id="myInfo-reserve-check">예약확인</a></td>
                                     <td><a href="../myInfo/viewCare">돌봄일지</a></td>
                                 </tr>
                                 <tr>
@@ -200,60 +222,6 @@
                                     <td><a href="../Notice/noticeBoard">공지사항</a></td>
                                     <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
                                 </tr>
-                                                                <tr>
-                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
-                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
-                                </tr>
-                                                                <tr>
-                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
-                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
-                                </tr>
-                                                                <tr>
-                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
-                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
-                                </tr>
-                                                                <tr>
-                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
-                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
-                                </tr>
-                                                                <tr>
-                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
-                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
-                                </tr>
-                                                                <tr>
-                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
-                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
-                                </tr>
-                                                                <tr>
-                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
-                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
-                                </tr>
-                                                                <tr>
-                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
-                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
-                                </tr>
-                                                                <tr>
-                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
-                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
-                                </tr>
-                                                                <tr>
-                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
-                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
-                                </tr>
-		
-		                                <tr>
-                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
-                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
-                                </tr>
-                                                                <tr>
-                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
-                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
-                                </tr>
-                                                                <tr>
-                                    <td><a href="../Notice/noticeBoard">공지사항</a></td>
-                                    <td><a href="${pageContext.request.contextPath}/customer.do">고객센터</a></td>
-                                </tr>                                
-                              
                             </table>
                         </div>
                         
@@ -265,6 +233,7 @@
             </div>
         </div>
     </div>
+    </main>
     <div id="footer">
     	<jsp:include page="../footer.jsp"></jsp:include>
     </div>
@@ -292,6 +261,7 @@
 		});
 		
 	});
+
 	
 	
 	/**

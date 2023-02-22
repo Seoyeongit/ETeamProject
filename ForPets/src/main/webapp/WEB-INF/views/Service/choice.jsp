@@ -4,20 +4,59 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="../favicon.jsp"></jsp:include>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="${pageContext.request.contextPath}/resources/css/Tip/tip.css" rel="stylesheet" />
+<style>
+	#main_content {
+		display : table;
+		width : 100%;
+	}
+	#sideNav, #main {
+		display : table-cell;
+	}
+	main {
+		padding-left : 50px;
+	}
+	#footer_div {
+		position : relative;
+		z-index : 900;
+	}
+	.navbar_forpets{
+		padding-top : 9rem;
+		position : absolute;
+	}
+</style>
 </head>
 <body>
-	<ul>
-		<li><a href="${pageContext.request.contextPath}/">홈</a></li>
-		<li><a href="${pageContext.request.contextPath}/Service/choice">서비스 예약</a></li>
-		<li><a href="${pageContext.request.contextPath}/FindHospital/findHospital">근처 병원 찾기</a></li>
-		<li><a href="${pageContext.request.contextPath}/Tip/getTipList">Tip 게시판</a></li>
-	</ul>
-	<center>
-		<button type="button" onclick="location.href='normal'">기본</button>
-		<button type="button" onclick="location.href='work'">산책</button>
-		<button type="button" onclick="location.href='pickup'">픽업</button>
-	</center>
+	<jsp:include page="../nav.jsp" />
+	<div id="main_content">
+	
+		<nav class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav">
+            <div class="collapse navbar-collapse navbar_forpets" id="navbarResponsive">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/choice">서비스 예약</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/FindHospital/findHospital">근처 병원 찾기</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Tip/getTipList">팁 게시판</a></li>
+                </ul>
+            </div>
+		</nav>
+		
+		<main id="main" class="main">
+			<section class="section">
+				<div class="row align-items-top">
+					<div class="col-lg-10">
+						<button type="button" onclick="location.href='normal'">기본</button>
+						<button type="button" onclick="location.href='work'">산책</button>
+						<button type="button" onclick="location.href='pickup'">픽업</button>
+					</div>
+				</div>
+			</section>
+		</main><!-- End #main -->
+	</div>
+	<div id="footer_div" style="background-color : white;">
+		<jsp:include page="../footer.jsp" />
+	</div>
 </body>
 </html>

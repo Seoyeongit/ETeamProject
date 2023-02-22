@@ -1,12 +1,12 @@
 @charset "UTF-8";
 
 body {
-	background: #ebebeb;
+	background: #FFFFFF;
 	font-family: "Open Sans", sans-serif;
 }
 .carousel {
 	margin: 30px auto 60px;
-	padding: 0 80px;
+	padding: 0 60px;
 }
 .carousel .carousel-item {
 	text-align: center;
@@ -25,7 +25,7 @@ body {
 	text-transform: uppercase;
 	font-weight: bold;
 	border: none;
-	background: #a177ff;
+	background: #8bda8b;
 	padding: 6px 15px;
 	margin-top: 5px;
 }
@@ -41,7 +41,7 @@ body {
 	margin: 5px;
 	text-align: left;
 	background: #fff;
-	box-shadow: 0px 2px 2px rgba(0,0,0,0.1);   
+	box-shadow: 0px 2px 2px rgba(0,0,0,0.2);   
 }
 .carousel .thumb-content {
 	padding: 15px;

@@ -93,7 +93,9 @@ public class CustomerController {
 	
 	@RequestMapping(value="/myCustBoard")
 	public String myCustBoard(CustomerVO vo, CustomerDAO dao, Model model, HttpSession session) throws IOException {
+		PartnerVO pvo = (PartnerVO) session.getAttribute("partners");
 		UserVO uvo = (UserVO) session.getAttribute("member");
+		vo.setPart_id(pvo.getPart_id());
 		vo.setUser_id(uvo.getUser_id());
 		model.addAttribute("myCustBoard", custservice.myCustBoard(vo));
 		return "/customer/myCustBoard";

@@ -29,6 +29,6 @@ public class PartnerVO {
 	private int part_no; //회원번호
 	private Date data_create; //가입날짜
 	private String self_infor; //자기소개
-
+	private String part_img;
 
 }

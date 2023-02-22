@@ -30,7 +30,7 @@
 								<option value="TITLE">제목</option>
 								<option value="CONTENT">내용</option>
 						</select> 
-						<input name="searchKeyword" type="text"/> 
+						<input name="searchKeyword" type="text" value="Search"/> 
 						<input type="submit" value="검색"/></td>
 					</tr>
 				</table>

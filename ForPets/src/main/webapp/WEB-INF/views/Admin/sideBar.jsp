@@ -18,7 +18,7 @@
 	rel="stylesheet">
 </head>
 <!-- Sidebar-->
-<div class="border-end bg-white" id="sidebar-wrapper">
+<div class="border-end" id="sidebar-wrapper">
 	<div class="sidebar-heading border-bottom bg-light">
 		<img
 			src="${pageContext.request.contextPath}/resources/assets/img/logo_gr.png"

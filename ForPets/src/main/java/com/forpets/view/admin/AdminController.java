@@ -115,7 +115,7 @@ public class AdminController {
 	// tip preview
 	@RequestMapping(value = "/Admin/tipPrev")
 	public String tipPrev(TipVO tvo, TipDAO tdao, Model model) throws Exception {
-		model.addAttribute("tipList", admService.getTipPrev(tvo));
+		model.addAttribute("tipPrev", admService.getTipPrev(tvo));
 		System.out.println("getTipPreview");
 		return "/Admin/tipPrev";
 	}

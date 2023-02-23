@@ -52,7 +52,7 @@ public class NoticeDAO {
 			sql = NOTICE_LIST_C;
 		}
 		
-		return jdbcTemplate.query(NOTICE_LIST, noticeRowMapper);
+		return jdbcTemplate.query(sql + "'%" + vo.getSearchKeyword() + "%'" + "order by ntc_seq DESC", noticeRowMapper);
 	}
 	
 	// 조회수

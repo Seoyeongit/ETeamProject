@@ -19,16 +19,15 @@
 	}
 	
 	.list {
-		width: 980px;
-		justify-content: center;
+		width: auto;
 	}
 	
 	.container-rapper {
-		display: flex;
+	    display: flex;
 	    grid-gap: 27px;
 	    gap: 27px;
-	    padding-left: 20%;
-	    flex-wrap: nowrap;
+	    flex-wrap: wrap;
+	    justify-content: center;
 	}
 	
 	.page-content {

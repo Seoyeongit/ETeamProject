@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: YH
 Build-Jdk: 1.8.0_341
+=======
+Built-By: dusdm
+Build-Jdk: 1.8.0_351
+>>>>>>> parent of f4bfb39 (Merge pull request #78 from Seoyeongit/add/admin)
 Created-By: Maven Integration for Eclipse
 

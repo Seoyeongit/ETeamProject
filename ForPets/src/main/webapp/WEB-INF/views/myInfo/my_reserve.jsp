@@ -9,16 +9,12 @@
 <title>예약확인하기</title>
 <jsp:include page="../favicon.jsp"></jsp:include>
 <link
-	href="${pageContext.request.contextPath}/resources/css/myInfo_main.css"
-	rel="stylesheet" />
-<link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
 <style>
 body {
-	background: #edf1f5;
 	margin-top: 20px;
 }
 
@@ -83,35 +79,10 @@ body {
 </head>
 <body>
 
-	<div><jsp:include page="../nav.jsp" />
-	</div>
 
 	<div class="container">
-		<div class="col-md-12">
-			<div class="top-breadcrumb">
-				<div>안녕하세요 ${member.user_nick}(${member.user_id })님</div>
-			</div>
-
 			<div class="row">
-				<div class="col-lg-3 ">
-					<div class="card left-profile-card">
-
-						<div class="card-body">
-
-							<div class="text-center">
-
-								<h3>${member.user_nick}(${member.user_id })님</h3>
-								<a id="edit-user-info"><p>회원정보수정</p></a>
-							</div>
-
-							<div class="personal-info"></div>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-9 right-content">
-
+				<div class="col-lg-10 mx-auto mb-4">
 					<div class="row container my-5 rounded">
 						<div class="col-sm-4 card card-body">
 							예약내역
@@ -159,9 +130,7 @@ body {
 													<text>미용케어</text>
 												</c:when>
 											</c:choose>
-											<h5 class="note-title text-truncate">${reserve.reserve_day}<i
-													class="point fa fa-circle ml-1 font-10"></i>
-											</h5>
+											<h5 class="note-title text-truncate">${reserve.reserve_day}</h5>
 											<c:choose>
 												<c:when test="${reserve.status eq 1 }">
 													<p class="note-date font-12 text-muted">펫트너와 매칭중입니다.</p>
@@ -200,9 +169,6 @@ body {
 	</div>
 	</main>
 	
-	<div id="footer">
-		<jsp:include page="../footer.jsp"></jsp:include>
-	</div>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

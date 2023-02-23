@@ -65,7 +65,7 @@
         transform-origin: 50% 34px;
     }
     
-    #edit-user-info:hover{
+	a:hover{
     	cursor: pointer;
     	color : red;
     }
@@ -74,6 +74,12 @@
     	margin : 1em;
     	float: right;
     }
+    
+    .navbar_forpets{
+    	position : absolute;
+    }
+    
+
 	</style>
 	
 	        <!-- Core theme CSS (includes Bootstrap)-->
@@ -84,32 +90,27 @@
 
 	<div><jsp:include page="../nav.jsp"/> </div>
 	
-    <div class="container">
-        <div class="col-md-12">
-            <div class="top-breadcrumb">
-                <div>안녕하세요 ${member.user_nick}(${member.user_id })님</div>
-        </div>
+    <div class="container" id="main_content">
 
-        <div class="row">
-        
-        <nav class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">
-                <span class="d-block d-lg-none">${partners.part_name }</span>
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="..." /></span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
+
+		<div class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav">
+            <div class="collapse navbar-collapse navbar_forpets" id="navbarResponsive">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partner/modifyyy">정보 수정</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partner/careDiaryList">돌봄 일지 목록</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partnerlist.do">별점 및 리뷰보기</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partner/getReserve">예약 일정 관리</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" id="edit-user-info">정보 수정</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" id="check-user-reserve">예약확인</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" id="check-user-careDiary">돌봄일지</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/myInfo/review"
+                                    onclick="window.open(this.href, '_blank', 'width=620, height=700'); return false;">후기작성하기</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../Notice/noticeBoard">공지사항</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/customer.do">고객센터</a></li>
                 </ul>
             </div>
-        </nav>
+        </div>
+			
+			
 
-
-            <div class="col-lg-12 right-content">
+		<main class="main" id="main">
+            <div class="right-content">
                 <div class="card right-profile-card">
                     <div class="card-body p-5" id="my-message-sibal">
 
@@ -173,10 +174,9 @@
 					                <span class="visually-hidden">Next</span>
 					            </button>
 					        </div>
-					
+					        <!-- 
 					        <div class="flex-fill col-md-auto pet-work rounded shadow-myinfo" id="map" style="width: 100%; background-color: rgb(249, 249, 249);"></div>
-					
-					
+							 -->
 					
 					    </div>
 
@@ -224,19 +224,25 @@
                                 </tr>
                             </table>
                         </div>
-                        
+                        </div>
+                     </main>  
                        
 
 
-                    </div>
+                    
                 </div>
             </div>
-        </div>
-    </div>
-    </main>
+    
+    
     <div id="footer">
     	<jsp:include page="../footer.jsp"></jsp:include>
     </div>
+    
+    
+    
+    
+    
+    
 
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=037898d01be77d2487543d1d6ea4c210&libraries=services,drawing"></script>
 	<script type="text/javascript">
@@ -245,6 +251,8 @@
 	$("#edit-user-info").click(function(){
 		var _this = $(this);
 		var liurl = "../myInfo/edit-Profile";
+		var newUrl = 'http://localhost:8000/biz/myInfo/edit-Profile';
+		
 		$("card-body p-5").html('');
 		
 		$.ajax({
@@ -252,8 +260,9 @@
 			url : liurl,
 			dataType : 'html',
 			success : function(data){
-				console.log(data);
+				window.history.pushState({},'',newUrl);
 				$("#my-message-sibal").html(data);
+				
 			},
 			error : function(result) {
 				alert(result);
@@ -261,6 +270,79 @@
 		});
 		
 	});
+	
+	
+	//예약정보확인페이지로 넘어갑니다.
+	$('#check-user-reserve').click(function(){
+		var _this = $(this);
+		var liurl = "../myInfo/check-reservation";
+		var newUrl = 'http://localhost:8000/biz/myInfo/check-reservation';
+		
+		$("card-body p-5").html('');
+		
+		$.ajax({
+			type : 'POST',
+			url : liurl,
+			dataType : 'html',
+			success : function(data){
+				window.history.pushState({},'',newUrl);
+				$("#my-message-sibal").html(data);
+				
+			},
+			error : function(result) {
+				alert(result);
+			}
+		});
+	});
+	
+	//돌봄일지 페이지로 넘어갑니다.
+	$('#check-user-careDiary').click(function(){
+		var _this = $(this);
+		var liurl = "../myInfo/viewCare";
+		var newUrl = 'http://localhost:8000/biz/myInfo/viewCare';
+		
+		$("card-body p-5").html('');
+		
+		$.ajax({
+			type : 'POST',
+			url : liurl,
+			dataType : 'html',
+			success : function(data){
+				window.history.pushState({},'',newUrl);
+				$("#my-message-sibal").html(data);
+				
+			},
+			error : function(result) {
+				alert(result);
+			}
+		});
+	});
+	
+	
+	//특정돌봄일지 페이지로 넘어갑니다.
+	        function getID(id){
+        	var liurl = "../myInfo/my_careDiary_detail";
+        	var diary_id = id;
+        	var newUrl = 'http://localhost:8000/biz/myInfo/viewCare_detail';
+        	
+        	$.ajax({
+        		url : liurl,
+        		type : "GET",
+        		data : {
+        			diary_id : diary_id
+        		},
+        		success:function(data){
+        			window.history.pushState({},'',newUrl);
+        			$("#my-message-sibal").html(data);
+        		},
+        		error : function(result){
+        			alert(result);
+        		}
+        	});
+        }
+	
+	
+	
 
 	
 	

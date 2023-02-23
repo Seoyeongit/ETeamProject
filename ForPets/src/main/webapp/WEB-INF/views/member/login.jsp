@@ -5,6 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="${pageContext.request.contextPath}/resources/css/login.css" rel="stylesheet" />
+<style>
+	.footer {
+  text-align: center;
+  }
+</style>
 <title>회원 로그인</title>
 </head>
 <body>
@@ -20,5 +25,6 @@
 </div>
 </form>
 </center>
+<%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

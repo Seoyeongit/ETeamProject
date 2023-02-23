@@ -25,10 +25,6 @@ public class NoticeController {
 	// 게시판 목록
 	@RequestMapping(value="/noticeBoard")
 	public String noticeBoard(NoticeVO notvo, NoticeDAO noticeDAO, Model model) throws Exception {
-		if (notvo.getSearchCondition() == null) {notvo.setSearchCondition("TITLE"); }
-		if (notvo.getSearchKeyword() == null) {notvo.setSearchKeyword(""); }
-		System.out.println("SearchCondition : " + notvo.getSearchCondition());
-		System.out.println("SearchKeyword : " + notvo.getSearchKeyword());
 		model.addAttribute("noticeBoard", notService.getNoticeList(notvo));	// Model 정보 저장
 		System.out.println("getNoticeList");
 		return "./Notice/noticeBoard";

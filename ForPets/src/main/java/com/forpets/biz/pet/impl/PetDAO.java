@@ -42,9 +42,9 @@ public class PetDAO {
 		}
 	}
 	
-	public List<PetVO> getPetInfo(PetVO vo) {
+	public PetVO getPetInfo(PetVO vo) {
 		Object[] orgs = {vo.getUser_id()};
-		return jdbcTemplate.query(GET_PETINFO,orgs, new PetRowMapper());
+		return jdbcTemplate.queryForObject(GET_PETINFO,orgs, new PetRowMapper());
 	}
 	
 	public int countPet(PetVO vo) {

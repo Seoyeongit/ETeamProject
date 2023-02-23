@@ -37,7 +37,7 @@ public class AdminController {
 
 		if (admService.getAdmin(vo) != null) {
 			session.setAttribute("admin", admService.getAdmin(vo));
-			System.out.println("로그인 후 메인 이동");
+			System.out.println("로그인 후 mgmt로 이동");
 			return "/Admin/mgmt";
 		} else {
 			System.out.println("로그인 실패");
@@ -47,17 +47,9 @@ public class AdminController {
 
 	// 관리자 메인 이동
 	@RequestMapping(value = "/Admin/main")
-	public String adminMain(AdminVO vo, HttpServletRequest request) throws Exception {
-
+	public String adminMain(AdminVO vo) {
 		System.out.println("---> 관리자 메인 이동");
-		HttpSession session = request.getSession(false);
-		if (session != null && session.getAttribute("admin") != null) {
-			System.out.println("관리자 세션 검증 후 main 이동");
-			return "/Admin/mgmt";
-		} else {
-			System.out.println("관리자 페이지 접근 불가");
-			return "redirect:/";
-		}
+		return "/Admin/mgmt";
 	}
 
 	// 관리자 정보 보기
@@ -118,11 +110,12 @@ public class AdminController {
 	public String mgmtBoard() {
 		return "Admin/mgmtBoard";
 	}
-
+	
+	
 	// tip preview
 	@RequestMapping(value = "/Admin/tipPrev")
 	public String tipPrev(TipVO tvo, TipDAO tdao, Model model) throws Exception {
-		model.addAttribute("tipPrev", admService.getTipPrev(tvo));
+		model.addAttribute("tipList", admService.getTipPrev(tvo));
 		System.out.println("getTipPreview");
 		return "/Admin/tipPrev";
 	}

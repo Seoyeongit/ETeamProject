@@ -1,37 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<title>관리자 대시보드</title>
-<jsp:include page="../favicon.jsp"></jsp:include>
-<!-- Core theme CSS (includes Bootstrap)-->
-<link
-	href="${pageContext.request.contextPath}/resources/css/admin/sideBar.css"
-	rel="stylesheet" />
-<link
-	href="${pageContext.request.contextPath}/resources/css/admin/mgmt.css"
-	rel="stylesheet" />
+<title>관리자 페이지</title>
 </head>
 <body>
-	<div class="d-flex" id="wrapper">
-		<jsp:include page="sideBar.jsp" />
-		<!-- Page content wrapper-->
-		<div id="page-content-wrapper">
-			<jsp:include page="top.jsp" />
-			<table>
-				<center>DashBoard Content</center>
-			</table>
-		</div>
-	</div>
+	<table>
+		<tr>
+			<td>
+				<h3>${admin.adm_id}</h3>
+				</p>
+				<button
+					onclick="location.href='${pageContext.request.contextPath}/Admin/adminInfo/${admin.adm_id}'">관리자
+					정보 수정</button>
+			</td>
+		</tr>
+		<tr>
+			<td><button
+					onclick="location.href='${pageContext.request.contextPath}/Admin/mgmtUser'">회원관리</button></td>
+			<td><button
+					onclick="location.href='${pageContext.request.contextPath}/Admin/mgmtPartner'">파트너관리</button></td>
+			<td><button
+					onclick="location.href='${pageContext.request.contextPath}/Admin/mgmtBoard'">게시판관리</button></td>
+		</tr>
+		<tr>
+			<td><button
+					onclick="location.href='${pageContext.request.contextPath}/Notice/noticeBoard'">공지사항</button></td>
+			<td><button
+					onclick="location.href='${pageContext.request.contextPath}/customer.do'">고객센터</button></td>
+			<td><button
+					onclick="location.href='${pageContext.request.contextPath}/Report/reportList'">신고관리</button></td>
+		</tr>
+	</table>
 </body>
-<!-- Bootstrap core JS-->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
-<script
-	src="${pageContext.request.contextPath}/resources/js/admin/sideBar.js"></script>
 </html>

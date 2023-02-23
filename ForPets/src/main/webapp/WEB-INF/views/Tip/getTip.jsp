@@ -7,82 +7,61 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath}/resources/css/Tip/style.css" rel="stylesheet" />
-<style>
-	#main_content {
-		display : table;
-		width : 100%;
-	}
-	#sidebar, #main {
-		display : table-cell;
-	}
-	#tip_title {
-		font-size : 30px;
-	}
-</style>
 </head>
 <body>
-	<jsp:include page="../nav.jsp" />
-	<div id="main_content">
-	<!-- ======= Sidebar ======= -->
-	<aside id="sidebar" class="sidebar">
-		<ul class="sidebar-nav" id="sidebar-nav">
-			<li class="nav-item">
-				<a class="nav-link collapsed" href="${pageContext.request.contextPath}/Service/choice">
-					<i class="bi bi-grid"></i>
-					<span>서비스 예약</span>
-				</a>
-			</li><!-- End Reserve Nav -->
-			
-			<li class="nav-item">
-				<a class="nav-link collapsed" href="${pageContext.request.contextPath}/FindHospital/findHospital">
-					<i class="bi bi-grid"></i>
-          			<span>근처 병원 찾기</span>
-        		</a>
-      		</li><!-- End Hospital Nav -->
-
-			<li class="nav-item">
-				<a class="nav-link collapsed" href="${pageContext.request.contextPath}/Tip/getTipList">
-					<i class="bi bi-grid"></i>
-					<span>팁 게시판</span>
-				</a>
-			</li><!-- End Tip Board Nav -->
-		</ul>
-	</aside><!-- End Sidebar-->
-	<main id="main" class="main">
-			<section class="section">
-				<div class="row align-items-top">
-					<div class="col-lg-10">
-						<form action="updateTip" method="post">
-							<input name="tip_seq" type="hidden" value="${ tip.tip_seq }"/>
-							<iframe width="800" height="450" src="${tip.tip_video }" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-							<div>
-								<span id="tip_title"><b>${ tip.tip_title }</b></span><br>
-								<span>조회수 : ${ tip.tip_hit +1 }회</span><br>
-								<c:choose>
-					                        <c:when test="${tip.tip_create_date eq tip.tip_update_date || tip.tip_update_date eq null}">
-													<span>등록일 : ${ tip.tip_create_date }</span><br>
-					                        </c:when>
-					                        <c:otherwise>
-													<span>수정일 : ${ tip.tip_update_date }</span><br>
-					                        </c:otherwise>
-					            </c:choose>
-								
-								<span id="tip_content">${ tip.tip_content }</span><br>
-							</div>
-							<input type="submit" value="글 수정" />
-						</form>
-						<hr>
-						<a href="insertTip">글등록</a>&nbsp;&nbsp;&nbsp;
-						<a href="deleteTip?tip_seq=${ tip.tip_seq }">글삭제</a>&nbsp;&nbsp;&nbsp;
-						<a href="getTipList">글목록</a>
-						</div>
-				</div>
-			</section>
-	</main><!-- End #main -->
-	</div>
-	<div id="footer_div" style="background-color : white;">
-		<jsp:include page="../footer.jsp" />
-	</div>
+	<ul>
+		<li><a href="${pageContext.request.contextPath}/">홈</a></li>
+		<li><a href="${pageContext.request.contextPath}/Service/choice">서비스 예약</a></li>
+		<li><a href="${pageContext.request.contextPath}/FindHospital/findHospital">근처 병원 찾기</a></li>
+		<li><a href="${pageContext.request.contextPath}/Tip/getTipList">Tip 게시판</a></li>
+	</ul>
+	<center>
+		<form action="updateTip" method="post">
+		<input name="tip_seq" type="hidden" value="${ tip.tip_seq }"/>
+			<table border="1" cellpadding="0" cellspacing="0">
+				<tr>
+					<td bgcolor="orange" width="70">제목</td>
+					<td align="left"><input name="title" type="text" value="${ tip.tip_title }" /></td>
+				</tr>
+				<tr>
+					<td bgcolor="orange">작성자</td>
+					<td align="left">관리자</td>
+				</tr>
+				<tr>
+					<td bgcolor="orange">내용</td>
+					<td align="left"><textarea name="content" cols="40" rows="10">${ tip.tip_content }</textarea>
+					<br>
+					<iframe width="300" height="150" src="${tip.tip_video }" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+					</td>
+				</tr>
+				<c:choose>
+                        <c:when test="${tip.tip_create_date eq tip.tip_update_date || tip.tip_update_date eq null}">
+                        	<tr>
+								<td bgcolor="orange">등록일</td>
+								<td align="left">${ tip.tip_create_date }</td>
+							</tr>
+                        </c:when>
+                        <c:otherwise>
+                        	<tr>
+								<td bgcolor="orange">수정일</td>
+								<td align="left">${ tip.tip_update_date }</td>
+							</tr>
+                        </c:otherwise>
+                </c:choose>
+				
+				<tr>
+					<td bgcolor="orange">조회수</td>
+					<td align="left">${ tip.tip_hit +1 }</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center"><input type="submit" value="글 수정" /></td>
+				</tr>
+			</table>
+		</form>
+		<hr>
+		<a href="insertTip">글등록</a>&nbsp;&nbsp;&nbsp;
+		<a href="deleteTip?tip_seq=${ tip.tip_seq }">글삭제</a>&nbsp;&nbsp;&nbsp;
+		<a href="getTipList">글목록</a>
+	</center>
 </body>
 </html>

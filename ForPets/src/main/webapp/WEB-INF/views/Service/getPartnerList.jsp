@@ -13,7 +13,7 @@
 function sendPart(part_id) {
 	
 	$("#part_id", opener.document).val($("#"+part_id+"_id").val());
-	$("#part_name", opener.document).val($("#"+part_id+"_name").val());
+	$("#part_info_title", opener.document).append("<span>"+ $("#"+part_id+"_name").val() +"</span><br>")
 	
 	$(opener.location).attr("href", "javascript:show_partner();");
 	self.close();

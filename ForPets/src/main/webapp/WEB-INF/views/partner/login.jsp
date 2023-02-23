@@ -6,6 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="${pageContext.request.contextPath}/resources/css/login.css" rel="stylesheet" />
 <title>파트너 로그인</title>
+<style>
+	.footer {
+  text-align: center;
+  }
+</style>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/nav.jsp" %>
@@ -20,5 +25,6 @@
 </div>
 </form>
 </center>
+<%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

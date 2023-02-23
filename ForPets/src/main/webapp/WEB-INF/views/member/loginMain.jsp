@@ -6,6 +6,11 @@
 <meta charset="UTF-8">
 <link href="${pageContext.request.contextPath}/resources/css/login.css" rel="stylesheet" />
 <title>로그인 선택화면</title>
+<style>	
+	.footer {
+  text-align: center;
+  }
+  </style>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/nav.jsp" %>
@@ -20,5 +25,6 @@
 </div>
 </form>
 </center>
+<%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

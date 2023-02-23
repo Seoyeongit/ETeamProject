@@ -8,6 +8,11 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>파트너 페이지</title>
+        <style>
+		.footer {
+ 		 text-align: center;
+ 		 }
+		</style>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -52,6 +57,7 @@
             <!-- Experience-->
             
         </div>
+        <%@ include file="/WEB-INF/views/footer.jsp" %>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>

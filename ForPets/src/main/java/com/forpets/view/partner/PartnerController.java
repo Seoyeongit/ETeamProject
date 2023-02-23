@@ -24,11 +24,8 @@ import com.forpets.biz.reserve.impl.ReserveServiceImpl;
 @Controller
 public class PartnerController {
 	
-	//230130 최지혁
 	@Autowired
 	private PartnerService partnerService;
-	@Autowired
-	private ReserveService reserveService;
 	
 	@RequestMapping(value="/partner/partnerMain")
 	public String partner(PartnerVO vo, PartnerDAO dao) {
@@ -51,11 +48,6 @@ public class PartnerController {
 		System.out.println("---> getPartner 완료");
 	}
 	
-	@RequestMapping(value="/partner/login",method = RequestMethod.GET)
-	public String loginForm() {
-		return "partner/login";
-	}
-	
 	@RequestMapping(value="/partner/partnerGet")
 	public String partnerGet(PartnerVO vo, PartnerDAO dao, HttpSession session) throws IOException{
 		PartnerVO sessionVO = (PartnerVO) session.getAttribute("partners");
@@ -65,24 +57,28 @@ public class PartnerController {
 		
 	}
 	
-	@RequestMapping(value="/partner/modifyyy")
+	@RequestMapping(value="/partner/modifyyy", method = RequestMethod.GET)
 	public String modifyView() {
-		return "partner/modify";
+		return "/partner/modify";
 	}
 	
-	@RequestMapping(value="/partner/modify")
+	@RequestMapping(value="/partner/modifyyy", method = RequestMethod.POST)
 	public String updatePartner(PartnerVO vo, PartnerDAO dao, HttpServletRequest request) throws IOException{
 		
-			vo.setPart_pw(request.getParameter("pw"));
-			vo.setPart_nick(request.getParameter("nick"));
-			vo.setPart_add(request.getParameter("add"));
-			vo.setPart_phnumber(request.getParameter("phnumber"));
-			vo.setSelf_infor(request.getParameter("self"));
+			vo.setPart_pw(request.getParameter("part_pw"));
+			vo.setPart_nick(request.getParameter("part_nick"));
+			vo.setPart_add(request.getParameter("part_add"));
+			vo.setPart_phnumber(request.getParameter("part_phnumber"));
+			vo.setSelf_infor(request.getParameter("self_infor"));
 			partnerService.updatePartner(vo);
 			
-			return "redirect:/partner/partnerGet";
+			return "redirect:/partner/partnerMain";
 		}
 	
+	@RequestMapping(value="/partner/login",method = RequestMethod.GET)
+	public String loginForm() {
+		return "partner/login";
+	}
 
 	@RequestMapping(value="/partner/login", method = RequestMethod.POST)
 	public String login(PartnerVO vo,HttpServletRequest request) {

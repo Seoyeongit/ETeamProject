@@ -30,7 +30,7 @@
 	<button type="button"  onclick="location.href='customerBoard.do'" name="customerBoard" >문의 글 쓰기</button>
 	</span>
 	</h5>
-	<form action="/customer.do" method="post">
+	<form action="/customerMain" method="post">
 	<table class="qs-box font">
 		<tr>
 			<td><button type="button" onclick="location.href='getCustomerList';">매칭시간이 오래 걸리지는 않나요?</button></td>

@@ -12,17 +12,16 @@
 <h1>게시판 관리</h1>
 
 <h3>반려인 팁</h3>
-<<<<<<< HEAD
+
 <iframe name="tipPrev" id="tipPrev" src="./tipPrev"></iframe>
 
 <h3>소모임</h3>
 <iframe name="communityPrev" id="communityPrev" src="./communityPrev"></iframe>
-=======
+
 <iframe name="tipPrev" id="tipPrev" style="width:100%; height:300px; border: 0px" src="./tipPrev"></iframe>
 
 <h3>소모임</h3>
 <iframe name="communityPrev" id="communityPrev" style="width:100%; height:300px; border: 0px" src="./communityPrev"></iframe>
->>>>>>> parent of f4bfb39 (Merge pull request #78 from Seoyeongit/add/admin)
-	
+
 </body>
 </html>

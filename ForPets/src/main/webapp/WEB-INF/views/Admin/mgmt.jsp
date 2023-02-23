@@ -4,16 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<<<<<<< HEAD
-<title>관리자 페이지</title>
-</head>
-<body>
-	<table>
-		<tr>
-			<td>
-				<h3>${admin.adm_id}</h3>
-				</p>
-=======
 <title>관리자 대시보드</title>
 </head>
 <body>
@@ -23,7 +13,6 @@
 	<table>
 		<tr>
 			<td>
->>>>>>> parent of f4bfb39 (Merge pull request #78 from Seoyeongit/add/admin)
 				<button
 					onclick="location.href='${pageContext.request.contextPath}/Admin/adminInfo/${admin.adm_id}'">관리자
 					정보 수정</button>

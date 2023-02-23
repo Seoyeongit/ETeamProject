@@ -2,8 +2,9 @@
     body {
         background: #F5F5F5;
         padding-top: 100px;
-        margin-top: 20px;
+        margin-top: 50px;
         margin: 5rem;
+        padding-left: 0;
     }
     
     
@@ -39,7 +40,17 @@
         border-radius: 50px !important;
     }
     
-    
+       #main_content {
+		display : table;
+		width : 100%;
+	}
+	#sideNav, #main {
+		display : table-cell; !important;
+	}
+	
+	#sideNav{
+		padding-top: 100px;
+	}
 
 
 

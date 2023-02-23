@@ -6,6 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+body {
+	padding-top : 20px;
+	margin-top: 20px;
+}
+</style>
+
 </head>
 <body>
 	<c:choose>

@@ -48,6 +48,7 @@
 		</tr>
 	</table>
 	</form>
+	<br><br><br><br><br><br>
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

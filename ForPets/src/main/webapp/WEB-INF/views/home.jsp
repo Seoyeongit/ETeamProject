@@ -8,9 +8,8 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Forpets</title>
-        
-		<jsp:include page="favicon.jsp"></jsp:include>
-        
+        <!-- Favicon-->
+        <link rel="icon" type="image" href="${pageContext.request.contextPath}/resources/assets/img/dogicon2.png" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -20,9 +19,6 @@
         <link href="${pageContext.request.contextPath}/resources/css/home.css" rel="stylesheet" />
     </head>
     <body id="page-top">
-    
-
-    
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
             <div class="container">
@@ -41,7 +37,7 @@
                        
                         <c:choose>
                         <c:when test="${role eq 'partners' }">
-                        	<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/partner/partner">파트너 페이지</a></li>
+                        	<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/partner/partnerMain">파트너 페이지</a></li>
                         	<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
                         </c:when>
                         
@@ -51,8 +47,8 @@
                         </c:when>
                         
                         <c:when test="${member.user_id eq '' || member.user_id eq null}">
-                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/login">로그인</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/join">회원가입</a></li></c:when>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/loginMain">로그인</a></li>
+                        </c:when>
                         
                         <c:otherwise>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/myInfo/main">마이페이지</a></li>

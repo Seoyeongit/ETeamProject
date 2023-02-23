@@ -15,7 +15,9 @@
 		margin-left:62px;
 		padding-left:10px;
 		width:25%;
-		height:30px;
+		height:36px;
+		border-radius:6px;
+		border:1px solid rgb(128,128,128, 0.7);
 	}
 	</style>
 </head>

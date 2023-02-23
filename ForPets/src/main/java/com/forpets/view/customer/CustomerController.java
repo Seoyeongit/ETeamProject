@@ -34,6 +34,12 @@ public class CustomerController {
 		return "/customer/customer";
 	}
 	
+	@RequestMapping(value="/customer.do")
+	public String customer2(CustomerVO vo, CustomerDAO dao, Model model) throws IOException {
+
+		return "/customer/customer2";
+	}
+	
 	// http://localhost/forpets
 	@RequestMapping(value="/getCustomerList")	//url 과 method 매핑
 	public String getCustomerList(CustomerVO vo,CustomerDAO dao, Model model) throws IOException {

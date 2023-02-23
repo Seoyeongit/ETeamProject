@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.forpets.biz.comdat.ComdatService;
 import com.forpets.biz.community.CommunityService;
 import com.forpets.biz.community.CommunityVO;
+import com.forpets.biz.survey.SurveyDetailService;
 import com.forpets.biz.user.UserVO;
 
 @Controller
@@ -26,12 +27,16 @@ public class CommunityController {
 	@Autowired
 	ComdatService datservice;
 	
+	@Autowired
+	SurveyDetailService svservice;
+	
 	// 게시판 목록 불러오기
 	@RequestMapping("/communitylist")
 	public ModelAndView community() throws Exception {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/Community/Community_List");
 		mav.addObject("communityList", comservice.getCommunityList());
+		mav.addObject("svcode", svservice.getSurveyList());	
 		// System.out.println("커뮤니티목록 생성");
 		return mav;
 	}
@@ -110,5 +115,17 @@ public class CommunityController {
 		return "redirect:/communitylist";
 	}
 	
+
+//	// 값 불러오기
+//	@RequestMapping(value="/surveyboard/{sd_svcode}", method=RequestMethod.GET)
+//	public ModelAndView getSurveyboard(@PathVariable String sd_svcode) {
+//		ModelAndView mav = new ModelAndView();
+//		// System.out.println(sd_svcode);
+//		mav.setViewName("/Survey/getSurvey");
+//		mav.addObject("surveyboard", svservice.getSurveyBoard(sd_svcode));
+//		mav.addObject("surveyboard2", svservice.getSurveyBoard2(sd_svcode));
+//		mav.addObject("surveyboard3", svservice.getSurveyBoard3(sd_svcode));
+//		return mav;
+//	}
 
 }

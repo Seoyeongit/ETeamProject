@@ -29,6 +29,9 @@
 		padding-top : 9rem;
 		position : absolute;
 	}
+	.footer {
+		text-align : center; !important;
+	}
 </style>
 </head>
 <body>

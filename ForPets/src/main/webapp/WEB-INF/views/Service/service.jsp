@@ -27,6 +27,9 @@
 		padding-top : 9rem;
 		position : absolute;
 	}
+	.footer {
+		text-align : center; !important;
+	}
 </style>
 </head>
 <body>
@@ -54,12 +57,21 @@
 					<div class="col-lg-10 row text-center">
 						<div class="col-md-4">
 	                        <span class="fa-stack fa-4x">
+	                            <img src="${pageContext.request.contextPath}/resources/assets/free-icon-speech-bubble-1078011.png" alt="대화 아이콘" style="width: 80%" height="80%">
+	                        </span>
+	                        <h4 class="my-3">방문</h4>
+	                        <div class="text-muted">바쁜 당신과 혼자 남겨지는 당신의 아이.</div>
+	                        <div class="text-muted">ForPets가 해결 해드리겠습니다.</div>
+	                        <div class="text-muted">믿을 수 있는 파트너가 함께 합니다.</div>
+	                    </div>
+						<div class="col-md-4">
+	                        <span class="fa-stack fa-4x">
 	                            <img src="${pageContext.request.contextPath}/resources/assets/free-icon-dog-6381349.png" alt="산책 아이콘" style="width:80%" height="80%">
 	                        </span>
 	                        <h4 class="my-3">산책</h4>
 	                        <div class="text-muted">바쁜 당신과 혼자 남겨지는 당신의 아이.</div>
-	                        <div class="text-muted">ForPets가 해결 해드리겠습니다. 평소 자주 다니던</div>
-	                        <div class="text-muted">친숙한 산책 경로로 기분좋은 산책을 맡겨보세요</div>
+	                        <div class="text-muted">ForPets가 해결 해드리겠습니다.</div>
+	                        <div class="text-muted">친숙한 산책 경로로 기분 좋은 산책을 맡겨보세요</div>
 	                    </div>
 	                    <div class="col-md-4">
 	                        <span class="fa-stack fa-4x">
@@ -68,12 +80,27 @@
 	                        <h4 class="my-3">병원 방문</h4>
 	                        <p class="text-muted">언제 아플지 모르는 우리 아이. 평일엔 시간을 내지 못하는 당신을 위해 ForPets에서 대신 병원 방문 , 진료, 치료 과정 하나하나 실시간으로 남겨드립니다.</p>
 	                    </div>
-	                    <div class="col-md-4">
+					</div>
+					<div class="col-lg-10 row text-center">
+						<div class="col-md-12">
 	                        <span class="fa-stack fa-4x">
 	                            <img src="${pageContext.request.contextPath}/resources/assets/free-icon-speech-bubble-1078011.png" alt="대화 아이콘" style="width: 80%" height="80%">
 	                        </span>
-	                        <h4 class="my-3">소모임</h4>
-	                        <p class="text-muted">당신과 비슷한 걱정, 고민을 가진 사람들과 대화하며 위로받고 타인의 아이도 구경하고 당신의 아이를 자랑하는 소모임 커뮤니티를 이용해보세요.</p>
+	                        <h4 class="my-3">방문</h4>
+	                        <div class="text-muted">바쁜 당신과 혼자 남겨지는 당신의 아이.</div>
+	                        <div class="text-muted">ForPets가 해결 해드리겠습니다.</div>
+	                        <div class="text-muted">믿을 수 있는 파트너가 함께 합니다.</div>
+	                    </div>
+					</div>
+					<div class="col-lg-10 row text-center">
+						<div class="col-md-12">
+	                        <span class="fa-stack fa-4x">
+	                            <img src="${pageContext.request.contextPath}/resources/assets/free-icon-speech-bubble-1078011.png" alt="대화 아이콘" style="width: 80%" height="80%">
+	                        </span>
+	                        <h4 class="my-3">반려인을 위한 정보</h4>
+	                        <div class="text-muted">바쁜 당신과 혼자 남겨지는 당신의 아이.</div>
+	                        <div class="text-muted">ForPets가 해결 해드리겠습니다.</div>
+	                        <div class="text-muted">믿을 수 있는 파트너가 함께 합니다.</div>
 	                    </div>
 					</div>
 				</div>

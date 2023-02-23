@@ -38,6 +38,9 @@
 		background-color : #F5F5F5;
 		color : #8bda8b;
 	}
+	.footer {
+		text-align : center; !important;
+	}
 </style>
 
 <script>

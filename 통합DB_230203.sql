@@ -338,7 +338,6 @@ CREATE TABLE partners
   part_add VARCHAR2(200) NOT NULL,   -- 주소
   gender CHAR(1) NOT NULL,          -- 성별
   part_phnumber VARCHAR2(20) NULL,  -- 핸드폰번호
-  part_img VARCHAR2(500) NULL,
   birth DATE NULL,                  -- 생년월일
   war NUMBER NULL,                  -- 경고 횟수
   part_no NUMBER NULL,              -- 회원 번호
@@ -355,7 +354,6 @@ CREATE SEQUENCE part_seq
 
 ALTER TABLE partners
     ADD CONSTRAINT part_id PRIMARY KEY (part_id);
-select * from partners;
 
 DROP TABLE partners;
 

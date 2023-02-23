@@ -5,43 +5,46 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="${pageContext.request.contextPath}/resources/css/customer.css" rel="stylesheet" />
-<title>ForPets 고객센터</title>
+<title>forpets 고객센터</title>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/nav.jsp" %>
-	<fieldset>
-		<div class="mainBanner">
-		<h2 class="mainText">ForPets 고객센터</h2>
-			<div class="top-search-form">도움말 검색&nbsp;
-				<i class="element-svg icon-search size-24"></i>
-				<input type="text" class="element-input" id="searchKey" placeholder="검색어를 입력하세요." data-game="2017090003">
-			</div>
-		</div>
-	</fieldset>
-	<h5 class="qs-text">자주 묻는 질문
-	<span class="qs-text-bt">
-	<button type="button"  onclick="location.href='myCustBoard.do'" name="myCust">내 문의 내역</button>
-	<button type="button"  onclick="location.href='customerBoard.do'" name="customerBoard" >문의 글 쓰기</button>
-	</span>
-	</h5>
+<center>
+	<h2>ForPets 고객센터</h2>
+	<hr>
+	
+		<a href="/biz">홈으로</a>
+	<h4>자주 묻는 질문</h4>
+	
+	<br>
+	<hr>
 	<form action="/customer.do" method="post">
-	<table class="qs-box font">
+	<table>
 		<tr>
-			<td><button type="button" onclick="location.href='getCustomerList';">매칭시간이 오래 걸리지는 않나요?</button></td>
-			<td><button type="button" onclick="location.href='getCustomerList';">매칭시간이 오래 걸리지는 않나요?</button></td>
-			<td><button type="button" onclick="location.href='getCustomerList';">매칭시간이 오래 걸리지는 않나요?</button></td>
-			<td><button type="button" onclick="location.href='getCustomerList';">매칭시간이 오래 걸리지는 않나요?</button></td>
-			<td><button type="button" onclick="location.href='getCustomerList';">매칭시간이 오래 걸리지는 않나요?</button></td>
+			<th>회원</th>
+			<th>파트너</th>
+		</tr>
+		<br>
+		<tr>
+			<td><a href="getCustomerList">질문글</a></td>
+			<td><a href="getCustomerList">질문글</a></td>
 		</tr>
 		<tr>
-			<td><button type="button" onclick="location.href='getCustomerList';">매칭시간이 오래 걸리지는 않나요?</button></td>
-			<td><button type="button" onclick="location.href='getCustomerList';">매칭시간이 오래 걸리지는 않나요?</button></td>
-			<td><button type="button" onclick="location.href='getCustomerList';">매칭시간이 오래 걸리지는 않나요?</button></td>
-			<td><button type="button" onclick="location.href='getCustomerList';">매칭시간이 오래 걸리지는 않나요?</button></td>
-			<td><button type="button" onclick="location.href='getCustomerList';">매칭시간이 오래 걸리지는 않나요?</button></td>
+			<td><a href="getCustomerList">질문글</a></td>
+			<td><a href="getCustomerList">질문글</a></td>
 		</tr>
+		<tr>
+			<td><a href="getCustomerList">질문글</a></td>
+			<td><a href="getCustomerList">질문글</a></td>
+		</tr>
+		<tr>
+			<td><a href="getCustomerList">질문글</a></td>
+			<td><a href="getCustomerList">질문글</a></td>
+		</tr>
+		
 	</table>
 	</form>
+	<button type="submit" onclick="location.href='myCustBoard.do'" name="myCust">내 문의 내역</button>
+	<button type="submit" onclick="location.href='customerBoard.do'" name="customerBoard" >문의 글 쓰기</button>
+</center>
 </body>
 </html>

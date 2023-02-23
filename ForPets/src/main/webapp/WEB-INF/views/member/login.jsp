@@ -4,21 +4,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="${pageContext.request.contextPath}/resources/css/login.css" rel="stylesheet" />
-<title>회원 로그인</title>
+<title>로그인</title>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/nav.jsp" %>
 <center>
-<button type="button" class="loginimg" onclick="location.href='${pageContext.request.contextPath}/member/loginMain';"></button>
+<h1>로그인</h1>
+<hr>
 <form action="${pageContext.request.contextPath}/member/login" method="post">
-<div class="userlog-tx">회원 로그인</div>
-<div class="loginform">
-  	<div><input type="text" class="idbox" name="user_id" placeholder="아이디"/></div>
-    <div><input type="password" class="pwbox" name="user_pw" placeholder="비밀번호"/></div>
-    <div class="login-con"><input type="submit" class="loginbox" value="로그인" /></div>
-</div>
+<table border="1" cellpadding="0" cellspacing="0">
+
+    <tr>
+        <td bgcolor="orange">아이디</td>
+        <td><input type="text" name="user_id" /></td>
+    </tr>
+    <tr>
+        <td bgcolor="orange">비밀번호</td>
+        <td><input type="password" name="user_pw" /></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">
+            <input type="submit" value="로그인" />
+        </td>
+    </tr>
+
+</table>
 </form>
+<a href="../partner/login">파트너 로그인</a>
 </center>
 </body>
 </html>

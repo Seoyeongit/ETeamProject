@@ -16,7 +16,7 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="${pageContext.request.contextPath}/resources/css/partner.css" rel="stylesheet" />
-        <script src="${pageContext.request.contextPath}/resources/js/partner_page.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/css/partner.css"></script>
     </head>
     <body id="page-top">
     	<%@ include file="/WEB-INF/views/nav.jsp" %>
@@ -54,5 +54,7 @@
         </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
     </body>
 </html>

@@ -22,41 +22,40 @@
 		<div id="page-content-wrapper">
 			<jsp:include page="top.jsp" />
 
-			<button
-				onclick="location.href='${pageContext.request.contextPath}/Admin/main'">관리자
-				페이지 홈</button>
-			<h1>회원 관리</h1>
-			<form action="getUserList.do" method="post">
-				<table cellpadding="0" width="800">
-					<tr>
-						<td><select name="orderCondition">
-								<option value="">정렬</option>
-								<option value="ID">아이디
-								<option value="REGDATE">가입일
-						</select></td>
-						<td align="right"><input name="searchkeyword" type="text"
-							value="Search"> <input type="submit" value="검색"></td>
-					</tr>
-				</table>
-				<br>
-			</form>
-			<table width="800" border="1" bordercolors="gray">
-				<tr height="40">
-					<td align="center" width="300">회원</td>
-					<td align="center" width="150">가입일</td>
-					<td align="center" width="100">경고횟수</td>
-					<td align="center" width="100"></td>
-				</tr>
-				<c:forEach var="user" items="${getUser}">
+			<div class="container">
+				<h1>회원 관리</h1>
+				<form action="getUserList.do" method="post">
+					<table cellpadding="0" width="800">
+						<tr>
+							<td><select name="orderCondition">
+									<option value="">정렬</option>
+									<option value="ID">아이디
+									<option value="REGDATE">가입일
+							</select></td>
+							<td align="right"><input name="searchkeyword" type="text"
+								value="Search"> <input type="submit" value="검색"></td>
+						</tr>
+					</table>
+					<br>
+				</form>
+				<table width="800" border="1" bordercolors="gray">
 					<tr height="40">
-						<td width="300">${user.user_id}<br>${user.user_nick}</td>
-						<td align="center" width="150">${user.data_create}</td>
-						<td align="center" width="100">${user.war}</td>
-						<td align="center" width="100"><button type="button"
-								onclick="">탈퇴</button></td>
+						<td align="center" width="300">회원</td>
+						<td align="center" width="150">가입일</td>
+						<td align="center" width="100">경고횟수</td>
+						<td align="center" width="100"></td>
 					</tr>
-				</c:forEach>
-			</table>
+					<c:forEach var="user" items="${getUser}">
+						<tr height="40">
+							<td width="300">${user.user_id}<br>${user.user_nick}</td>
+							<td align="center" width="150">${user.data_create}</td>
+							<td align="center" width="100">${user.war}</td>
+							<td align="center" width="100"><button type="button"
+									onclick="">탈퇴</button></td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
 		</div>
 	</div>
 </body>

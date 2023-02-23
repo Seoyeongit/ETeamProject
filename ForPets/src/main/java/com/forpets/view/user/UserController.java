@@ -48,6 +48,11 @@ public class UserController {
 	}
 	
 	//임시 >> 로그인.jsp View
+	@RequestMapping(value="/member/loginMain",method = RequestMethod.GET)
+	public String loginChoice() {
+		return "member/loginMain";
+	}
+	
 	@RequestMapping(value="/member/login",method = RequestMethod.GET)
 	public String loginForm() {
 		return "member/login";

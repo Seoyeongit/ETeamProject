@@ -40,13 +40,12 @@
 				<!-- 검색 결과 조회 테이블 -->
 				<table border="1" cellpadding="0" width="700">
 					<tr>
-
 						<th width="100">번호</th>
 						<th width="300">제목</th>
 						<th width="100">작성일</th>
 						<th width="100">조회수</th>
-
 					</tr>
+
 					<c:forEach items="${noticeBoard }" var="notice">
 						<tr>
 							<td>${notice.ntc_seq }</td>

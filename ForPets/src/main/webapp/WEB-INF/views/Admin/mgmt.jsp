@@ -22,14 +22,9 @@
 		<!-- Page content wrapper-->
 		<div id="page-content-wrapper">
 			<jsp:include page="top.jsp" />
-
-			<div class="container">
-				<h2>Dash board</h2>
-				<div class="row">
-					<table>
-					</table>
-				</div>
-			</div>
+			<table>
+				<center>DashBoard Content</center>
+			</table>
 		</div>
 	</div>
 </body>

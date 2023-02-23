@@ -19,18 +19,17 @@
 		<div id="page-content-wrapper">
 			<jsp:include page="top.jsp" />
 
-			<div class="container">
-				<h1>게시판 관리</h1>
+			<h1>게시판 관리</h1>
 
-				<h3>반려인 팁</h3>
-				<iframe name="tipPrev" id="tipPrev"
-					style="width: 100%; height: 300px; border: 0px" src="./tipPrev"></iframe>
+			<h3>반려인 팁</h3>
+			<iframe name="tipPrev" id="tipPrev"
+				style="width: 100%; height: 300px; border: 0px" src="./tipPrev"></iframe>
 
-				<h3>소모임</h3>
-				<iframe name="communityPrev" id="communityPrev"
-					style="width: 100%; height: 300px; border: 0px"
-					src="./communityPrev"></iframe>
-			</div>
+			<h3>소모임</h3>
+			<iframe name="communityPrev" id="communityPrev"
+				style="width: 100%; height: 300px; border: 0px"
+				src="./communityPrev"></iframe>
+
 		</div>
 	</div>
 </body>

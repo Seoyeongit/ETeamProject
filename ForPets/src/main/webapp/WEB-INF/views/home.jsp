@@ -9,7 +9,7 @@
         <meta name="author" content="" />
         <title>Forpets</title>
         <!-- Favicon-->
-        <link rel="icon" type="image" href="${pageContext.request.contextPath}/resources/assets/img/dogicon2.png" />
+        <jsp:include page="./favicon.jsp"></jsp:include>
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->

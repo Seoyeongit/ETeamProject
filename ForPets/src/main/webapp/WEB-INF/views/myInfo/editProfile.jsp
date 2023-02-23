@@ -1,13 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<head>
-<style>
-body {
-	padding-top : 20px;
-	margin-top: 20px;
-}
-</style>
-</head>
     
     <h2>회원 정보 수정</h2>
     <p>사이트 이용에 필요한 정보들을 입력합니다.</p>

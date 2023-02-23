@@ -13,7 +13,6 @@
     <style>
             body{
         background:#f5f5f5;
-        padding-top : 20px;
         margin-top:20px;}
     
 
@@ -139,7 +138,7 @@
                                     </div>
                                 </div>
                                 <div class="job-right my-4 flex-shrink-0">
-                                    <a id="check-user-careDiary-detail" class="btn d-block w-100 d-sm-inline-block btn-light" onclick="getID(${dia.diary_id})">돌봄일지보기</a>
+                                    <a href="../myInfo/my_careDiary_detail?diary_id=${dia.diary_id}" class="btn d-block w-100 d-sm-inline-block btn-light">돌봄일지보기</a>
                                 </div>
                             </div>
 						</c:forEach>
@@ -150,6 +149,5 @@
             </div>
 
         </div>
-        
 </body>
 </html>

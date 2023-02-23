@@ -94,6 +94,7 @@ public class AdminDAO {
 
 	// 팁 게시판 미리보기
 	public List<TipVO> getTipPrev(TipVO tvo) {
+		System.out.println(tvo.getTip_title() + tvo.getTip_img_url() + tvo.getTip_seq());
 		return jdbcTemplate.query(TIP_PREV, tipRowMapper);
 	}
 	

@@ -1,16 +1,28 @@
 @charset "UTF-8";
     body {
         background: #F5F5F5;
+        padding-top: 100px;
         margin-top: 20px;
         margin: 5rem;
     }
-
+    
+    
+    td a {
+  	text-decoration-line: none;
+  	color:#333333;
+    }
+    
+    tr a:hover{
+     text-decoration:underline;
+     color:#333333;
+    }
+    
     .pet-profile {
         margin-right: 2rem;
     }
 
     .team-list img {
-        width: 50%;
+        width: 100%;
     }
 
     .team-list .content {
@@ -18,7 +30,7 @@
     }
 
 
-    .shadow {
+    .shadow-myinfo {
         -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15) !important;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.15) !important;
     }
@@ -26,6 +38,8 @@
     .rounded {
         border-radius: 50px !important;
     }
+    
+    
 
 
 

@@ -23,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -63,7 +64,12 @@ public class PetController{
 	
 	//pet등록jsp를 View.
 	@RequestMapping(value="/myInfo/my-petView")
-	public String myPetView() {
+	public String myPetView(@RequestParam(value="id", required=false)int pet_id, Model model, PetVO pvo) {
+		if(pet_id > 0) {
+			String id_str = Integer.toString(pet_id);
+			model.addAttribute("userPet", petService.getPet(pvo, id_str));
+		}
+
 		return "myInfo/mypet";
 	}
 	
@@ -87,18 +93,8 @@ public class PetController{
 		UserVO SessionVO = (UserVO) session.getAttribute("member");
 		vo.setUser_id(SessionVO.getUser_id());
 		
-		int result = petService.countPet(vo);
-		//유저의펫이 한마리라면 userpet을 session으로 
-		
-		System.out.println("result : "+result);
-		
-		if(result==1) {
-			System.out.println("result 1개");
-			session.setAttribute("userPet", petService.getPetInfo(vo));
-		}else if(result>1){
-			System.out.println("result 1개 이상");
-			session.setAttribute("userPetList", petService.getPetList(vo, vo.getUser_id()));
-		}
+		session.setAttribute("userPet", petService.getPetInfo(vo));
+
 		return "forward:/myInfo/selectWork";
 		
 		

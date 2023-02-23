@@ -21,7 +21,7 @@ public class PetServiceImpl implements PetService {
 
 
 	@Override
-	public PetVO getPetInfo(PetVO vo) {
+	public List<PetVO> getPetInfo(PetVO vo) {
 		return petDAO.getPetInfo(vo);
 	}
 	
@@ -37,8 +37,8 @@ public class PetServiceImpl implements PetService {
 	}
 	
 	@Override
-	public PetVO getPet(PetVO pvo, String user_id) {
-		return petDAO.getPet(pvo, user_id);
+	public PetVO getPet(PetVO pvo, String pet_id) {
+		return petDAO.getPet(pvo, pet_id);
 	}
 
 

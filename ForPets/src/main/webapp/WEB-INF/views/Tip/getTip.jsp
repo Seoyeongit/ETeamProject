@@ -87,8 +87,8 @@
 												<div class="col-sm-3 flex-fill" style="float:right;">
 													<input type="submit" class="form-control btn" 
 													style="background-color:#8bda8b; color:white;" value="글 수정">
+												</div>
 											</div>
-										</div>
 								        </div>
 									</c:when>
 									

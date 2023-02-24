@@ -61,7 +61,7 @@
 						<div class="col-md-12 row">
 							<div class="col-md-5" style="float:left;">
 		                        <div class="col-12">
-		                            <img class="img-thumbnail rounded-circle" src="${pageContext.request.contextPath}/resources/assets/free-icon-speech-bubble-1078011.png" alt="대화 아이콘" style="width: 80%" height="80%">
+		                            <img class="img-thumbnail rounded-circle" src="${pageContext.request.contextPath}/resources/assets/dog-normal.jpg" alt="normal" style="width: 80%" height="80%">
 		                        </div>
 		                    </div>
 		                    <div class="col-md-5 align-self-center">
@@ -86,7 +86,7 @@
 		                    </div>
 							<div class="col-md-5" style="float:right;">
 		                        <div class="col-12">
-		                            <img class="img-thumbnail rounded-circle" src="${pageContext.request.contextPath}/resources/assets/free-icon-dog-6381349.png" alt="산책 아이콘" style="width:80%" height="80%">
+		                            <img class="img-thumbnail rounded-circle" src="${pageContext.request.contextPath}/resources/assets/dog-walking.jpg" alt="walking" style="width:80%" height="80%">
 		                        </div>
 		                    </div>
 	                    </div>
@@ -95,7 +95,7 @@
 	                    <div class="col-md-12 row">
 							<div class="col-md-5" style="float:left;">
 		                        <div class="col-12">
-		                            <img class="img-thumbnail rounded-circle" src="${pageContext.request.contextPath}/resources/assets/free-icon-hospital-5217248.png" alt="병원 아이콘" style="width: 80%" height="80%">
+		                            <img class="img-thumbnail rounded-circle" src="${pageContext.request.contextPath}/resources/assets/dog-pickup.png" alt="pickup" style="width: 80%" height="80%">
 		                        </div>
 		                    </div>
 		                    <div class="col-md-5 align-self-center">

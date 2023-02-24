@@ -8,56 +8,144 @@
 <head>
 <meta charset="UTF-8">
 <style>
-@charset "UTF-8";
+ .canvas {
+		max-width: none;
+   		min-width: 1046px;
+	   	background-color: #f9f9f9; 
+	}
+	
+	.content_guide {
+		/* position: absolute; */
+	    top: 0;
+	    right: 0;
+	    bottom: 0;
+	    left: 0;
+	    width: 100%;
+	    max-width: 1000px;
+	    min-height: 100%;
+	    margin: auto;
+	    background-color: #fff;
+	    border: solid #e8e8e8;
+	    /* border-width: 0 1px; */
+	    -webkit-box-sizing: content-box;
+	    box-sizing: content-box;
+	}
+	
+	.info {
+		margin: 0 0 -6px;
+	    text-align: left;
+	    font-size: 14px;
+	    line-height: 30px;
+	    padding-right: 100px;
+    	padding-left: 100px;
+	}
+	
+	.title_board {
+		position: relative;
+	    padding-top: 20px;
+	    padding-bottom: 32px;
+	}
+	
+	hr {
+ 	 background: #d3d3d3;
+	 height:1px;
+	 border: 0;
+	 padding-right: 100px; 
+	 padding-left: 100px;
 
-#myform fieldset{
-    display: inline-block;
-    direction: rtl;
-    border:0;
-}
-#myform fieldset legend{
-    text-align: right;
-}
-#myform input[type=radio]{
-    display: none;
-}
-#myform label{
-    font-size: 3em;
-    color: transparent;
-    text-shadow: 0 0 0 #f0f0f0;
-}
+	}
+	
+	.title_area {
+		border:none; 
+		text-align:center; 
+		width:1000px; 
+		padding-right: 100px; 
+		padding-left: 100px; 
+		font-size: 2.5em; 
+		text-align: left;
+	}
+	
+	.text_area {
+		border:none; 
+		text-align:center; 
+		width:1000px; 
+		height:100px; 
+		padding-right: 100px; 
+		padding-left: 100px; 
+		font-size: 1.2em; 
+		text-align: left; 
+		resize: vertical; 
+		height: fit-content;
+	}
+	
+	.comment_area {
+		width: 100%;
+	    max-width: 1000px;
+	    min-height: 100%;
+	    margin: auto;
+	    padding-right: 100px;
+  		padding-left: 100px;
+	}
+	
+	.comment {
+		width: 100%;
+	    max-width: 1000px;
+	    min-height: 100%;
+	    margin: auto;
+	    padding-right: 100px;
+  		padding-left: 100px;
+	}
+	
+	.comment_board{
+		position: relative;
+	    height: 60px;
+    	width: 800px;
+    	resize: none;
+	}
+	
+	.btn {
+  	background-color: #19CE60;
+  	color : white;
+ 
+	}
 
-#myform input[type=radio]:checked ~ label{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-#reviewContents {
-    width: 100%;
-    height: 150px;
-    padding: 10px;
-    box-sizing: border-box;
-    border: solid 1.5px #D3D3D3;
-    border-radius: 5px;
-    font-size: 16px;
-    resize: none;
-}
+	.btn:hover {
+	background-color: green;
+	color : white;
+	}
+	
+	.buttons {
+	text-align: center
+	}
+    
+
 </style>
+<link href="${pageContext.request.contextPath}/resources/css/partner_review/star.css" rel="stylesheet">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 <title>PartnerReview board</title>
+<jsp:include page="/WEB-INF/views/nav.jsp"/>
+<jsp:include page="/WEB-INF/views/favicon.jsp" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
 </head>
 <body>
-	<h1>파트너 리뷰 상세보기</h1>
+<br><br><br>
+<div class="canvas">
+	<h1 style="text-align: center;">파트너 리뷰 상세보기</h1>
+	<h5 style="text-align: center;">파트너에 대한 칭찬글이나 평가를 확인해 보세요!</h5>
 	
-	<h4>파트너에 대한 칭찬글이나 평가를 확인해 보세요!</h4>
-	
+	<div class="content_guide">
+		<div class = "title_board">
 	<form class="mb-3" name="myform" id="myform" method="post" >
-		<table>
-		 	<tr>
-		 		<th>제목</th>
-		 		<td>${prboard.pr_title }</td>
-		 	</tr>
-		 	<tr>
-		 		<th>평점</th>
-				<td>
+		
+		 		<p class="title_area">${prboard.pr_title }</p>
+		 		<div class="info">
+						<p class="writer"> <b>${prboard.user_id }</b> | ${prboard.pr_date }</p>
+		 			</div>		
+		 		<hr>
+		 		
+		 		<p style="text-align: center;">파트너 별점</p>	
 					<fieldset>
 						<input type="radio" name="pr_avg" value="5" id="rate5" onclick="return(false);"><label
 							for="rate1">★</label>
@@ -73,16 +161,21 @@
 					<script type="text/javascript">
 						$('input#rate${prboard.pr_avg}').prop("checked", true);
 					</script>
-				</td>
-		 	</tr>
-		 	<tr>
-		 		<th>내용</th>
-		 		<td>${prboard.pr_content }</td>
-		 	</tr>
-		 </table>
+				<hr><br>
+		 		
+		 		<div class="text_area" style="white-space:pre;">${prboard.pr_content }</div>
+		 	
+		 
 	</form>
-	<a href="../updatepartreview/${prboard.pr_num }"><input type="button" value="수정"></a>
-	<a href="../deletepartreview/${prboard.pr_num}"><input type="button" value="삭제"></a>		
+	</div>
+	<div class="buttons"> 
+		<a href="../updatepartreview/${prboard.pr_num }"><input type="button" value="수정" class="btn" style="background-color:#19CE60; color:white;"></a>
+		<a href="../deletepartreview/${prboard.pr_num}"><input type="button" value="삭제" class="btn" style="background-color:#19CE60; color:white;"></a>		
+	</div>
+	<br><br>
+	</div>
+	</div>
+
 
 </body>
 </html>

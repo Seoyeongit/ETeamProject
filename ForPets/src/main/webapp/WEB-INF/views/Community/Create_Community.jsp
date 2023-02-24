@@ -98,6 +98,7 @@
 
 <body>
 <br><br><br>
+	<div class="canvas">
 	<h1 style="text-align: center;">소모임 생성</h1>
 	<h5 style="text-align: center;">자신의 소모임을 만들어 보세요</h5>
 
@@ -116,7 +117,7 @@
 	</c:if> --%>
 
 <form action="insertcommunity" method="post" >
- 	<div class="canvas">
+ 
  		<div class="content_guide">
 			<input type="hidden" value="c${date }" name="c_code">
 				<div class = "title_board">
@@ -132,10 +133,10 @@
 			<input type="submit" value="작성하기" class="btn" style="background-color:#19CE60; color:white ">
 			<a href="communitylist"><input type="button" value="취소" class="btn" style="background-color:#19CE60; color:white "></a>
 			</div>
-	
-
-	</div>
-	</div>
+			</div>
+		
 	</form>
+</div>
+	
 </body>
 </html>

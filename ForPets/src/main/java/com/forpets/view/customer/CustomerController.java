@@ -28,10 +28,16 @@ public class CustomerController {
 	@Autowired
 	CustomerService custservice;
 	
-	@RequestMapping(value="/customer.do")
+	@RequestMapping(value="/customerMain")
 	public String customer(CustomerVO vo, CustomerDAO dao, Model model) throws IOException {
 
 		return "/customer/customer";
+	}
+	
+	@RequestMapping(value="/customer.do")
+	public String customer2(CustomerVO vo, CustomerDAO dao, Model model) throws IOException {
+
+		return "/customer/customer2";
 	}
 	
 	// http://localhost/forpets

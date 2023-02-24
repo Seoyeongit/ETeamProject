@@ -58,8 +58,8 @@ public class ReserveController {
 	}	
 	
 	
-	//예약내역데이터를 가져온 뒤 . 리뷰작성view로 넘어가는 메서드
-	@RequestMapping(value = "/myInfo/review")
+	//예약내역데이터를 가져와서 
+	@RequestMapping(value = "/myInfo/getCptReserve")
 	public String viewReviewReserveList (ReServeVO vo, ReserveDAO reserveDAO, Model model,HttpSession session) {
 		
 			UserVO voU = (UserVO) session.getAttribute("member");
@@ -84,6 +84,48 @@ public class ReserveController {
 		else {
 			System.out.println("---> choice 완료, choice 이동");
 			return "Service/choice";
+		}
+		
+	}
+	
+	@RequestMapping(value="/Service/normal")
+	public String normal(UserVO vo, HttpSession session) {
+		System.out.println("---> normal 실행");
+		if(session.getAttribute("member") == null) {
+			System.out.println("---> normal 완료, login 이동");
+			return "member/login";
+		}
+		else {
+			System.out.println("---> normal 완료, normal 이동");
+			return "Service/normal";
+		}
+		
+	}
+	
+	@RequestMapping(value="/Service/work")
+	public String work(UserVO vo, HttpSession session) {
+		System.out.println("---> work 실행");
+		if(session.getAttribute("member") == null) {
+			System.out.println("---> work 완료, login 이동");
+			return "member/login";
+		}
+		else {
+			System.out.println("---> work 완료, work 이동");
+			return "Service/work";
+		}
+		
+	}
+	
+	@RequestMapping(value="/Service/pickup")
+	public String pickup(UserVO vo, HttpSession session) {
+		System.out.println("---> pickup 실행");
+		if(session.getAttribute("member") == null) {
+			System.out.println("---> pickup 완료, login 이동");
+			return "member/login";
+		}
+		else {
+			System.out.println("---> pickup 완료, pickup 이동");
+			return "Service/pickup";
 		}
 		
 	}

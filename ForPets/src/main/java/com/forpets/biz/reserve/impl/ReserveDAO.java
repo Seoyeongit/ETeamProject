@@ -28,7 +28,15 @@ public class ReserveDAO {
 			"AND reserve_num=?";
 	
 	private final String RESERVE_LIST = "SELECT * FROM RESERVE,PARTNERS,USER_PET WHERE RESERVE.PART_ID= PARTNERS.PART_ID and reserve.pet_id = user_pet.pet_id AND reserve.USER_ID=? ORDER BY RESERVE.STATUS, RE_SEQ asc";
-	private final String RESERVE_COMPLETELIST = "SELECT * FROM RESERVE,PARTNERS,USER_PET WHERE RESERVE.PART_ID= PARTNERS.PART_ID and reserve.pet_id = user_pet.pet_id AND reserve.USER_ID=? AND reserve.status=3 ORDER BY RESERVE_NUM DESC";
+	private final String RESERVE_COMPLETELIST = "select reserve.*, partners.part_name, user_pet.pet_name " + 
+			"from reserve " + 
+			"join partners on reserve.part_id = partners.part_id " + 
+			"join user_pet on reserve.pet_id = user_pet.pet_id " + 
+			"left outer join review on reserve.reserve_num = review.reserve_num " + 
+			"where review.reserve_num IS NULL " + 
+			"and reserve.USER_ID= ? " + 
+			"and reserve.status = '3' " + 
+			"ORDER BY reserve.reserve_num DESC";
 	private final String GET_PETNAME = "select user_pet.pet_name from reserve,user_pet where reserve.pet_id = user_pet.pet_id;";
 	private final String COUNT_RESERVE = "select count(*) from reserve,users where reserve.user_id = users.user_id and reserve.status in(1,2) and reserve.user_id=?";
 	private final String COUNT_COMPLETE_RESERVE = "select count(distinct reserve.reserve_num) from reserve,users where reserve.user_id = users.user_id and reserve.status=3 and reserve.user_id=?";
@@ -176,7 +184,7 @@ public class ReserveDAO {
 		ReServeVO reserve = new ReServeVO();
 		reserve.setReserve_num("RN_" + last);
 		reserve.setReserve_day(request.getParameter("reserve_day"));
-		reserve.setReserve_time(request.getParameter("reserve_start")+"~"+request.getParameter("reserve_end"));
+		reserve.setReserve_time(request.getParameter("reserve_time"));
 		reserve.setReserve_add(request.getParameter("address") + " " + request.getParameter("detailAddress"));
 		//reserve.setS_num(Integer.parseInt(request.getParameter("s_num")));
 		reserve.setUser_id(request.getParameter("user_id"));

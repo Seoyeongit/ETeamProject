@@ -4,51 +4,54 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="../favicon.jsp"></jsp:include>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath}/resources/css/Tip/style.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/css/Tip/tip.css" rel="stylesheet" />
 <style>
 	#main_content {
 		display : table;
 		width : 100%;
 	}
-	#sidebar, #main {
+	#sideNav, #main {
 		display : table-cell;
 	}
-	#tip_title {
-		font-size : 30px;
+	main {
+		padding-left : 50px;
+	}
+	#footer_div {
+		position : relative;
+		z-index : 900;
+	}
+	.navbar_forpets{
+		padding-top : 9rem;
+		position : absolute;
+	}
+	.footer {
+		text-align : center; !important;
 	}
 </style>
 </head>
 <body>
 	<jsp:include page="../nav.jsp" />
 	<div id="main_content">
-	<!-- ======= Sidebar ======= -->
-	<aside id="sidebar" class="sidebar">
-		<ul class="sidebar-nav" id="sidebar-nav">
-			<li class="nav-item">
-				<a class="nav-link collapsed" href="${pageContext.request.contextPath}/Service/choice">
-					<i class="bi bi-grid"></i>
-					<span>서비스 예약</span>
-				</a>
-			</li><!-- End Dashboard Nav -->
-			
-			<li class="nav-item">
-				<a class="nav-link collapsed" href="${pageContext.request.contextPath}/FindHospital/findHospital">
-					<i class="bi bi-grid"></i>
-          			<span>근처 병원 찾기</span>
-        		</a>
-      		</li><!-- End Tip Board Nav -->
-
-			<li class="nav-item">
-				<a class="nav-link collapsed" href="${pageContext.request.contextPath}/Tip/getTipList">
-					<i class="bi bi-grid"></i>
-					<span>팁 게시판</span>
-				</a>
-			</li><!-- End Tip Board Nav -->
-		</ul>
-	</aside><!-- End Sidebar-->
-	<main id="main" class="main">
+		
+		<nav class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav">
+            <div class="collapse navbar-collapse navbar_forpets" id="navbarResponsive">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/choice">서비스 예약</a></li>
+                    	<ul class="navbar-nav">
+                    		<li class="nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/normal">- 기본</a></span></li>
+	                    	<li class="nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/work">- 산책</a></span></li>
+    	                	<li class="nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/pickup">- 픽업</a></span></li>
+                    	</ul>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/FindHospital/findHospital">근처 병원 찾기</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Tip/getTipList">팁 게시판</a></li>
+                </ul>
+            </div>
+		</nav>
+		
+		<main id="main" class="main">
 			<section class="section">
 				<div class="row align-items-top">
 					<div class="col-lg-10">
@@ -56,6 +59,8 @@
 					</div>
 				</div>
 			</section>
+		</main>
+	</div>
 	<div id="footer_div" style="background-color : white;">
 		<jsp:include page="../footer.jsp" />
 	</div>

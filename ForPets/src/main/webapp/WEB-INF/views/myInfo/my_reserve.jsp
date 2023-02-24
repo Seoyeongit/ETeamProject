@@ -8,17 +8,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>예약확인하기</title>
 <jsp:include page="../favicon.jsp"></jsp:include>
-<link
-	href="${pageContext.request.contextPath}/resources/css/myInfo_main.css"
-	rel="stylesheet" />
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-	crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
 <style>
 body {
-	background: #edf1f5;
 	margin-top: 20px;
 }
 
@@ -59,7 +53,9 @@ body {
 }
 
 .note-has-grid .single-note-item .card {
-	border-radius: 10px
+	border: 1px solid rgba(82, 95, 127, .5);
+	border-radius: 10px;
+	min-height: 260px;
 }
 
 .note-has-grid .single-note-item .favourite-note {
@@ -78,58 +74,56 @@ body {
 	color: rgba(82, 95, 127, .5)
 }
 
+.state-content{
+	text-align: center;
+	margin-top: 20px;
+	box-shadow: 0 1px 3px 0 #dbdbdb;
+	height: 130px;
+	border-radius: 4px;
+	padding: 20px;
+}
+
+#result-count{
+	color:#19CE60;
+}
+
+#count-col{
+	border-right: 1px dotted rgba(82, 95, 127, .5);
+}
 
 </style>
+
 </head>
+
 <body>
-
-	<div><jsp:include page="../nav.jsp" />
-	</div>
-
 	<div class="container">
-		<div class="col-md-12">
-			<div class="top-breadcrumb">
-				<div>안녕하세요 ${member.user_nick}(${member.user_id })님</div>
-			</div>
 
 			<div class="row">
-				<div class="col-lg-3 ">
-					<div class="card left-profile-card">
+				<div class="col-lg-10 mx-auto mb-4">
 
-						<div class="card-body">
-
-							<div class="text-center">
-
-								<h3>${member.user_nick}(${member.user_id })님</h3>
-								<a id="edit-user-info"><p>회원정보수정</p></a>
-							</div>
-
-							<div class="personal-info"></div>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-9 right-content">
-
-					<div class="row container my-5 rounded">
-						<div class="col-sm-4 card card-body">
+					<div class="row container rounded state-content">
+						<div class="col-lg-2 col-1 card-body" id="count-col">
 							예약내역
-							<div>${resultCnt}건</div>
+							<div id="result-count">${resultCnt}건</div>
 						</div>
-						<div class="col-sm-4 card card-body">
+						<div class="col-lg-2 col-1 card-body" id="count-col">
+							케어전
+							<div id="result-count">${resultCnt}건</div>
+						</div>
+						<div class="col-lg-2 col-1 card-body" id="count-col">
+							케어중
+							<div id="result-count">${resultCnt}건</div>
+						</div>
+						<div class="col-lg-2 col-1 card-body">
 							케어완료
-							<div>${resultCP}건</div>
-						</div>
-						<div class="col-sm-4 card card-body">
-							리뷰
-							<div>${resultR}건</div>
+							<div id="result-count">${resultCP}건</div>
 						</div>
 					</div>
 
-				<div class="container-rapper container-md row">
+				<div class="container-rapper container-md row pt-5">
+				
 					<c:forEach items="${reserveList}" var="reserve">
-						<div class="page-content note-has-grid p-4 col-sm-4">
+						<div class="page-content note-has-grid p-3 col-sm-4">
 							<div class="tab-content bg-transparent ">
 								<div id="note-full-container" class="note-has-grid row">
 									<div class="single-note-item all-category">
@@ -159,9 +153,7 @@ body {
 													<text>미용케어</text>
 												</c:when>
 											</c:choose>
-											<h5 class="note-title text-truncate">${reserve.reserve_day}<i
-													class="point fa fa-circle ml-1 font-10"></i>
-											</h5>
+											<h5 class="note-title text-truncate">${reserve.reserve_day}</h5>
 											<c:choose>
 												<c:when test="${reserve.status eq 1 }">
 													<p class="note-date font-12 text-muted">펫트너와 매칭중입니다.</p>
@@ -200,9 +192,6 @@ body {
 	</div>
 	</main>
 	
-	<div id="footer">
-		<jsp:include page="../footer.jsp"></jsp:include>
-	</div>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

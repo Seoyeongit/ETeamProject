@@ -268,30 +268,6 @@ a input[id=register_wark] {
 
 		});
 		
-		
-		$(".card-body").click(function(){
-			var status = $(this).attr("param");
-			var liurl = "../myInfo/check-reservation";
-			
-			$("card-body p-5").html('');
-			
-			$.ajax({
-				type : 'POST',
-				url : liurl,
-				data:{
-					status : status
-				},
-				dataType : 'html',
-				success : function(data) {
-					$("#my-message-sibal").html(data);
-
-				},
-				error : function(result) {
-					alert(result);
-				}
-			});
-		});
-		
 
 		
 		//산책경로수정페이지가 popup창으로 열립니다.

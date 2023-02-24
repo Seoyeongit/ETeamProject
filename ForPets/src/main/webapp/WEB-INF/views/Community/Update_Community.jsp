@@ -6,47 +6,122 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+	.canvas {
+		max-width: none;
+   		min-width: 1046px;
+   		background-color: #f9f9f9; 
+	}
+	
+	.content_guide {
+		/* position: absolute; */
+	    top: 0;
+	    right: 0;
+	    bottom: 0;
+	    left: 0;
+	    width: 100%;
+	    max-width: 1000px;
+	    min-height: 100%;
+	    margin: auto;
+	    background-color: #fff;
+	    border: solid #e8e8e8;
+	    /* border-width: 0 1px; */
+	    -webkit-box-sizing: content-box;
+	    box-sizing: content-box;
+	}
+	
+	.title_board {
+		max-width: 886px;
+		position: relative;
+	    padding-top: 15px;
+	}
+	
+	hr {
+ 	 background: #d3d3d3;
+	 height:1px;
+	 border: 0;
+	 padding-right: 100px; 
+	 padding-left: 100px;
+	 margin-right: 80px;
+     margin-left: 80px;
+	}
+	
+	.title_area {
+		border:none; 
+		text-align:center; 
+		width:1000px; 
+		height:100px; 
+		padding-right: 100px; 
+		padding-left: 100px; 
+		font-size: 2.5em; 
+		text-align: left;
+	}
+	
+	.text_area {
+		border: none;
+	    text-align: center;
+	    width: 1000px;
+	    height: 100px;
+	    padding-right: 100px;
+	    padding-left: 100px;
+	    font-size: 1.2em;
+	    text-align: left;
+	    height: fit-content;
+	}
+	
+	.btn {
+  	background-color: #19CE60;
+  	color : #19CE60;
+ 
+	}
+
+	.btn:hover {
+	background-color: green;
+	color : white;
+	}
+	
+	.buttons {
+	text-align: center
+	}
+
+</style>
 <meta charset="UTF-8">
 <title>글 수정하기</title>
+<jsp:include page="/WEB-INF/views/nav.jsp"/>
+<jsp:include page="/WEB-INF/views/favicon.jsp" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
 </head>
 <body>
-	<h1>소모임 수정</h1>
-	
-	<!-- ** 경환 : 설문지코드 자동생성 : s + 날짜(yyyymmdd) + 커뮤니티코드 -->
-<%-- 	<c:set var="now" value="<%=new java.util.Date()%>" />
-	<c:set var="date"><fmt:formatDate value="${now}" pattern="yyyyMMdd" /></c:set>
-	<c:set var="min"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></c:set>  
-	<c:set var="sv_code" value="s${date}-${c_code}"></c:set>
-	<!-- count 생성 -->
-	<c:set var="c" value='${c+1}'></c:set>
-	<c:if test="${c<10}">
-		<c:set var="anscodeno" value="od0${j}"></c:set>
-	</c:if>
-	<c:if test="${c>=10}">
-		<c:set var="anscodeno" value="od${j}"></c:set>
-	</c:if> --%>
+
+<br><br><br>
+<div class="canvas">
+	<h1 style="text-align: center;">소모임 수정</h1>
+
 
  	
 	<form action="../updateboard.do" method="post" >
-	<input type="hidden" name="c_code" value="${communityboard.c_code }">
-		<table>
-		<tr>
-			<th>제목 : <input type="text" name="c_title" value="${communityboard.c_title }"></th>
-		</tr>
-		<tr>
-			<td>내용을 입력해 주세요</td>
-			<td><input type="button" value="설문지 만들기"/></td>
-		</tr>
-		<tr>	
-			<td><textarea rows="15" cols="65" name="c_content" >${communityboard.c_content }</textarea></td>
-		</tr>
-		<tr>	
-			<td colspan="2"><input type="submit" value="수정하기"></td>
-			<td colspan="2"><input type="reset" value="취소"></td>
-		</tr>
-	</table>
-		
+		<div class="content_guide">
+			<input type="hidden" name="c_code" value="${communityboard.c_code }">
+			<div class = "title_board">
+				<input class="title_area" type="text" name="c_title" value="${communityboard.c_title }">
+			</div>
+			
+			<hr>
+			
+			<textarea class="text_area" name="c_content" >${communityboard.c_content }</textarea>
+			
+			<div class="buttons">
+				<input type="submit" value="수정하기" class="btn" style="background-color:#19CE60; color:white ">
+				<a href="../communitylist"><input type="reset" value="취소" class="btn" style="background-color:#19CE60; color:white "></a>
+			</div>
+			<br>
+		</div>
 	</form>
-	<a href="communitylist">글 목록 가기</a>
+</div>
+
+	
+
 </body>
 </html>

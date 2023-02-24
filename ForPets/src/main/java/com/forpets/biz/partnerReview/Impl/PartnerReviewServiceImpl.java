@@ -32,7 +32,7 @@ public class PartnerReviewServiceImpl implements PartnerReviewService {
 	}
 	
 	@Override
-		public Double avg(String part_id) {
+		public int avg(String part_id) {
 			return prDAO.avg(part_id);
 	}
 	

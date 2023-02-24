@@ -2,6 +2,7 @@ package com.forpets.view.reserve;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -43,11 +44,16 @@ public class ReserveController {
 		UserVO SessionVO = (UserVO) session.getAttribute("member");
 		vo.setUser_id(SessionVO.getUser_id());
 		
+		HashMap<String, Integer> state = new HashMap<String, Integer>();
+		
+		state.put("reserveCnt", reserveService.selectCount(vo));
+		state.put("BeforeCnt", reserveService.selectBeforeCount(vo));
+		state.put("IngCnt", reserveService.selectIngCount(vo));
+		state.put("CpleteCnt", reserveService.selectCompleteCount(vo));
+		
 		try {
-			model.addAttribute("resultCnt", reserveService.selectCount(vo));
-			model.addAttribute("resultCP", reserveService.selectCompleteCount(vo));
 			model.addAttribute("reserveList", reserveService.getReserveList(vo));
-			model.addAttribute("resultR", reviewService.countReview(vo) );
+			model.addAttribute("state", state);
 			
 			
 		} catch (Exception e) {

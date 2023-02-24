@@ -32,6 +32,16 @@ public class ReserveServiceImpl implements ReserveService{
 	}
 	
 	@Override
+	public int selectIngCount(ReServeVO vo) {
+		return reserveDAO.selectIngCount(vo);
+	}
+	
+	@Override
+	public int selectBeforeCount(ReServeVO vo) {
+		return reserveDAO.selectBeforeCount(vo);
+	}
+	
+	@Override
 	public List<ReServeVO> getCPTReserveList(ReServeVO vo) {
 		return reserveDAO.getCPTReserveList(vo);
 	}

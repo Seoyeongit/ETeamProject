@@ -10,6 +10,21 @@
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link href="${pageContext.request.contextPath}/resources/css/nav.css" rel="stylesheet" />
 
+<style>
+    .dropdown:hover .dropdown-menu {
+   		display: block;
+   		margin-top: 0;
+	}
+	.dropdown-item:hover, .dropdown-item:focus {
+	  color: #8bda8b;
+	  background-color: white;
+	}
+	.dropdown-item.active, .dropdown-item:active {
+	  color: #8bda8b;
+	  background-color: white;
+	}
+</style>
+
 </head>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg fixed-top navbar-shrink" id="mainNav">
@@ -21,7 +36,14 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/Service/service">서비스</a></li>
+                    	<div class="dropdown">
+                        	<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/Service/service">서비스</a></li>
+                        	<ul class="dropdown-menu">
+		                        	<li class="dropdown-item nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/normal">- 기본</a></span></li>
+		                    		<li class="dropdown-item nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/work">- 산책</a></span></li>
+	    	                		<li class="dropdown-item nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/pickup">- 픽업</a></span></li>
+	                        </ul>
+                        </div>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/communitylist">소모임</a></li>
                         <li class="nav-item"><a class="nav-link" href="#review">리뷰보기</a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/partnerlist">펫트너</a></li>

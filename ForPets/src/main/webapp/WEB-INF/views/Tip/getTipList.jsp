@@ -48,7 +48,7 @@
     	                	<li class="nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/pickup">- 픽업</a></span></li>
                     	</ul>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/FindHospital/findHospital">근처 병원 찾기</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Tip/getTipList">팁 게시판</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger active" href="${pageContext.request.contextPath}/Tip/getTipList">팁 게시판</a></li>
                 </ul>
             </div>
 		</nav>
@@ -57,7 +57,7 @@
 				<section class="section">
 					<div class="align-items-top">
 						<div class="col-lg-10">
-							<div class="col-lg-12 row">
+							<div class="col-lg-12">
 								<form action="getTipList" method="post">
 									<input type="submit" class="btn" style="float:right; background-color:#8bda8b; color:white;" value="검색">
 									<input name="searchKeyword" type="text" class="btn" style="float:right; border-color:#8bda8b;" />
@@ -66,7 +66,7 @@
 										<option class="text-center" value="CONTENT">내용</option>
 									</select>
 								</form>
-							</div>
+							</div><br><br><br>
 							
 							<div class="col-lg-12">
 								<c:forEach items="${tipList }" var="tip">

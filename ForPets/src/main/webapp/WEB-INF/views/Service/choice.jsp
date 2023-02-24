@@ -63,7 +63,7 @@ $(document).ready(function(){
 		<nav class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav">
             <div class="collapse navbar-collapse navbar_forpets" id="navbarResponsive">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/choice">서비스 예약</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger active" href="${pageContext.request.contextPath}/Service/choice">서비스 예약</a></li>
                     	<ul class="navbar-nav">
                     		<li class="nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/normal">- 기본</a></span></li>
 	                    	<li class="nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/work">- 산책</a></span></li>
@@ -84,7 +84,7 @@ $(document).ready(function(){
 								<div class="card">
 	            					<img height="200px;" src="${pageContext.request.contextPath}/resources/assets/dog-normal.jpg" alt="normal" class="card-img-top">
 	            					<div class="card-body">
-	              						<h5 class="card-title">기본돌봄</h5>
+	              						<h5 class="card-title">기본 돌봄</h5>
 	            					</div>
 	          					</div><!-- End Card with an image on top -->
 	          				</a>
@@ -98,7 +98,7 @@ $(document).ready(function(){
 								<div class="card">
 	            					<img height="200px;" src="${pageContext.request.contextPath}/resources/assets/dog-walking.jpg" alt="walking" class="card-img-top">
 	            					<div class="card-body">
-	              						<h5 class="card-title">산책돌봄</h5>
+	              						<h5 class="card-title">산책 돌봄</h5>
 	            					</div>
 	          					</div><!-- End Card with an image on top -->
 							</a>
@@ -112,7 +112,7 @@ $(document).ready(function(){
 								<div class="card">
 	            					<img height="200px;" src="${pageContext.request.contextPath}/resources/assets/dog-pickup.png" alt="pickup" class="card-img-top">
 	            					<div class="card-body">
-	              						<h5 class="card-title">픽업돌봄</h5>
+	              						<h5 class="card-title">픽업 돌봄</h5>
 	            					</div>
 	          					</div><!-- End Card with an image on top -->
 							</a>

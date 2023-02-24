@@ -20,7 +20,6 @@
 
 	<div id="Lat"></div> 
 	
-	<div id="gabojago"></div>
 
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=037898d01be77d2487543d1d6ea4c210&libraries=services,drawing"></script>
 	<script>
@@ -139,13 +138,10 @@
 					resultDiv.innerHTML = message;
 
 
-					$("#gabojago").append('<div name="gabojago' + i + '">' + message + '</div>');
 
 					workX[i] = latlng.getLat();
 					workY[i] = latlng.getLng();
 
-					console.log(workX);
-					console.log(workY);
 
 					i++;
 

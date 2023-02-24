@@ -121,11 +121,12 @@
 			<input type="hidden" value="c${date }" name="c_code">
 				<div class = "title_board">
 					<input class="title_area" type="text" name="c_title" placeholder="제목">
+
 						
 						</div>
 						<hr>
 						<div style="white-space:pre;"><textarea class="text_area" name="c_content" placeholder="내용을 입력해 주세요."></textarea></div>
-	
+
 			<br>
 			<div class="buttons">
 			<a href="survey.do/${c_code }"><input type="button" class="btn" value="설문지 만들기" style="background-color:#19CE60; color:white "/></a>

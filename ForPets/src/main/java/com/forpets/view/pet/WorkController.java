@@ -60,7 +60,7 @@ public class WorkController {
 		UserVO SessionVO = (UserVO) session.getAttribute("member");
 		vo.setUser_id(SessionVO.getUser_id());
 		model.addAttribute("petWork",workservice.ListWork(vo));
-		return "myInfo/main";
+		return "myInfo/mainContent";
 		
 	}
 	

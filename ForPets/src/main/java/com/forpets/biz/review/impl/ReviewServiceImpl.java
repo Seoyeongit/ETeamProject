@@ -1,5 +1,7 @@
 package com.forpets.biz.review.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,11 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public int countReview(ReServeVO vo) {
 		return reviewDAO.countReview(vo);
+	}
+	
+	@Override
+	public List<ReviewVO> getReviewList(ReviewVO vo,String user_id) {
+		return reviewDAO.getReviewList(vo,user_id);
 	}
 
 }

@@ -27,14 +27,19 @@ public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
 	
+	
+	@RequestMapping(value="/myInfo/review")
+	public String viewReviewMain() {
+		return "myInfo/myReview_main";
+	}
+	
 	@RequestMapping(value = "/myInfo/writeReview")
 	public String writeReviewView(ReServeVO vo, Model model, HttpSession session) {
-		
 		UserVO sessionVO = (UserVO) session.getAttribute("member");
 		vo.setUser_id(sessionVO.getUser_id());
 		model.addAttribute("reserve",reserveService.getReserve(vo));
 		System.out.println(reserveService.getReserve(vo).toString());
-		return "myInfo/myReview_2";
+		return "myInfo/myReview_modal";
 	}
 	
 	@RequestMapping(value ="/myInfo/writeReview_go")
@@ -42,5 +47,16 @@ public class ReviewController {
 	public void writeReviewGo(ReviewVO vo) {
 		reviewService.insertReview(vo);
 	}
+	
+	//특정회원의 리뷰리스트를 가져옵니다.
+	@RequestMapping(value="/myInfo/getwrittenReview")
+	public String writtenReviewView(ReviewVO vo, Model model, HttpSession session) {
+		UserVO sessionVO = (UserVO) session.getAttribute("member");
+		String user_id = sessionVO.getUser_id();
+		model.addAttribute("myReview",reviewService.getReviewList(vo, user_id));
+		return "myInfo/myReview2";
+	}
+	
+	
 
 }

@@ -85,7 +85,7 @@ public class ReserveController {
 		System.out.println("---> choice 실행");
 		if(session.getAttribute("member") == null) {
 			System.out.println("---> choice 완료, login 이동");
-			return "member/login";
+			return "member/loginMain";
 		}
 		else {
 			System.out.println("---> choice 완료, choice 이동");
@@ -99,7 +99,7 @@ public class ReserveController {
 		System.out.println("---> normal 실행");
 		if(session.getAttribute("member") == null) {
 			System.out.println("---> normal 완료, login 이동");
-			return "member/login";
+			return "member/loginMain";
 		}
 		else {
 			System.out.println("---> normal 완료, normal 이동");
@@ -113,7 +113,7 @@ public class ReserveController {
 		System.out.println("---> work 실행");
 		if(session.getAttribute("member") == null) {
 			System.out.println("---> work 완료, login 이동");
-			return "member/login";
+			return "member/loginMain";
 		}
 		else {
 			System.out.println("---> work 완료, work 이동");
@@ -127,7 +127,7 @@ public class ReserveController {
 		System.out.println("---> pickup 실행");
 		if(session.getAttribute("member") == null) {
 			System.out.println("---> pickup 완료, login 이동");
-			return "member/login";
+			return "member/loginMain";
 		}
 		else {
 			System.out.println("---> pickup 완료, pickup 이동");

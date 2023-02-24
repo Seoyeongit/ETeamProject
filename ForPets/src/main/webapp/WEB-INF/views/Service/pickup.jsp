@@ -50,13 +50,13 @@ function choice_service(this_id) {
 	console.log("add : " + add);
 	console.log("check : " + check);
 	if(check) {
-		$("#"+id).css("background-color","white");
-		$("#"+id).css("color","#99cc99");
+		$("#"+id).css("background-color","#F5F5F5");
+		$("#"+id).css("color","black");
 		$(add).remove();
 		$(choice).attr('checked', false);
 	}
 	else {
-		$("#"+id).css("background-color","#99cc99");
+		$("#"+id).css("background-color","#8bda8b");
 		$("#"+id).css("color","white");
 		$(choice).attr('checked', true);
 		getPickupAddPopUp(add);

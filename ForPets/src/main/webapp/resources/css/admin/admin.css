@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+#page-content {
+	min-width: 100vw;
+}
+
+@media ( min-width : 768px) {
+	#page-content {
+		min-width: 0;
+		width: 100%;
+	}
+}
+
+#admin-content {
+	margin-left: 1.5rem;
+	margin-right: 1.5rem;
+}

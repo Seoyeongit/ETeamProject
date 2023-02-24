@@ -4035,6 +4035,7 @@ textarea.form-control-lg {
   justify-content: space-between;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 .navbar > .container,
 .navbar > .container-fluid,
@@ -11331,3 +11332,5 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
     margin-left: -15rem;
   }
 }
+
+

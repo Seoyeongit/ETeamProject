@@ -13,15 +13,21 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/admin/sideBar.css"
 	rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath}/resources/css/admin/admin.css?after"
+	rel="stylesheet" type="text/css" />
+<link
+	href="${pageContext.request.contextPath}/resources/css/admin/notice.css?after"
+	rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<div class="d-flex" id="wrapper">
 		<jsp:include page="../Admin/sideBar.jsp" />
 		<!-- Page content wrapper-->
-		<div id="page-content-wrapper">
+		<div id="page-content">
 			<jsp:include page="../Admin/top.jsp" />
 
-			<div class="container">
+			<div class="container-fluid" id="admin-content">
 				<h1>공지 사항</h1>
 				<!-- 검색 시작 -->
 				<form action="noticeBoard" method="post">

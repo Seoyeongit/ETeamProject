@@ -61,31 +61,62 @@
 								<div class="col-sm-12">
 									<iframe width="100%" height="500" src="${tip.tip_video }" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 								</div>
-								<div class="col-sm-12 rounded" style="background-color : #F5F5F5;">
-									<h5><b><span id="tip_title">${ tip.tip_title }</span></b></h5>
-									<span class="align-top" style="font-size:15px;">조회수 : ${ tip.tip_hit +1 }회</span>
-									<c:choose>
-				                        <c:when test="${tip.tip_create_date eq tip.tip_update_date || tip.tip_update_date eq null}">
-												<span class="align-top" style="font-size:15px;">등록일 : ${ tip.tip_create_date }</span><br>
-				                        </c:when>
-				                        <c:otherwise>
-												<span class="align-top" style="font-size:15px;">수정일 : ${ tip.tip_update_date }</span><br>
-				                        </c:otherwise>
-						            </c:choose>
+								<c:choose>
+									<c:when test="${role eq 'admin' }">
+										<!-- 관리자의 경우 -->
+										<div class="mb-3 row">
+								            <h5><b>제목</b></h5>
+								            <div class="col-sm-12 pb-1">
+								            	<div class="col-sm-12">
+								                	<input type="text" name="tip_title" value="${tip.tip_title }" class="form-control">
+								            	</div>
+								            </div>
+								            <div class="col-sm-12 pb-1">
+								            	<h5><b>동영상 URL</b></h5>
+								            	<div class="col-sm-12">
+								                	<input type="text" name="tip_video" value="${tip.tip_video }" class="form-control">
+								            	</div>
+								            </div>
+								            <div class="col-sm-12 pb-1">
+								            	<h5><b>내용</b></h5>
+								            	<div class="col-sm-12">
+								                	<textarea name="tip_content" class="form-control col-sm-12" rows="10" style="resize:none;">${tip.tip_content }</textarea>
+								            	</div>
+								            </div>
+								            <div class="col-12">
+												<div class="col-sm-3 flex-fill" style="float:right;">
+													<input type="submit" class="form-control btn" 
+													style="background-color:#8bda8b; color:white;" value="글 수정">
+											</div>
+										</div>
+								        </div>
+									</c:when>
 									
-									<span id="tip_content">${ tip.tip_content }</span><br>
-								</div>
-								<div class="col-12">
-									<input type="submit" value="글 수정" style="float:right;">
-								</div>
+									<c:otherwise>
+										<!-- 회원 및 비회원의 경우 -->
+										<div class="col-sm-12">
+											<h5><b><span id="tip_title">${ tip.tip_title }</span></b></h5>
+											<span class="align-top" style="font-size:15px;">조회수 : ${ tip.tip_hit +1 }회</span>
+											<c:choose>
+						                        <c:when test="${tip.tip_create_date eq tip.tip_update_date || tip.tip_update_date eq null}">
+														<span class="align-top" style="font-size:15px;">등록일 : ${ tip.tip_create_date }</span><br>
+						                        </c:when>
+						                        <c:otherwise>
+														<span class="align-top" style="font-size:15px;">수정일 : ${ tip.tip_update_date }</span><br>
+						                        </c:otherwise>
+								            </c:choose>
+											<span id="tip_content">${ tip.tip_content }</span>
+										</div>
+										<div class="col-12">
+											<div class="col-sm-3 flex-fill" style="float:right;">
+												<input type="button" class="form-control btn" 
+												style="background-color:#8bda8b; color:white;" onclick="location.href='getTipList'" value="글 목록">
+											</div>
+										</div>	
+									</c:otherwise>
+								</c:choose>
 							</form>
 						</div>						
-						<div class="col-lg-12">
-							<hr>
-							<a href="insertTip">글등록</a>&nbsp;&nbsp;&nbsp;
-							<a href="deleteTip?tip_seq=${ tip.tip_seq }">글삭제</a>&nbsp;&nbsp;&nbsp;
-							<a href="getTipList">글목록</a>
-						</div>
 					</div>
 				</section>
 		</main><!-- End #main -->

@@ -27,7 +27,7 @@
     box-shadow: 0px 0px 12px 0px rgb(0 0 0 / 7%);
     position: relative;
     align-items: center;
-    margin-top: 75px;
+    margin-top: 20px;
     background-color: white;
   }
   
@@ -81,7 +81,7 @@
 
 </head>
 <body>
-
+ <div class="background">
 <br><br><br><br>
 	<h1 style="text-align: center;">포펫츠의 펫트너즈를 소개합니다!</h1>
 	<h5 style="text-align: center;">원하는 펫트너즈를 클릭하면 리뷰보기로 이동합니다!</h5>
@@ -101,7 +101,7 @@
             </div>
         </nav> --%>
 
-        <div class="background">
+       
       
        	  <c:forEach items="${prList }" var="pl">
         	<div class="box">

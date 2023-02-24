@@ -86,7 +86,7 @@
 	text-align: center
 	}
 </style>
-<link href="${pageContext.request.contextPath}/resources/css/partner_review/star.css" rel="stylesheet">s
+<link href="${pageContext.request.contextPath}/resources/css/partner_review/star.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>make community</title>
 <jsp:include page="/WEB-INF/views/nav.jsp"/>
@@ -96,6 +96,8 @@
 </head>
 
 <body>
+
+<div class="canvas">
  	<br><br><br>
 	<h1 style="text-align: center;">파트너 리뷰 작성 페이지</h1>
 	<h5 style="text-align: center;">파트너 평가를 해주세요!</h5>
@@ -103,7 +105,7 @@
 	<form action="../insertpartreview" class="mb-3" name="myform" id="myform" method="post" >
 		<input type="hidden" name="part_id" value="${part_id }">
 		<input type="hidden" name="user_id">
-	<div class="canvas">
+	
  		<div class="content_guide">
 			<input type="hidden" value="c${date }" name="c_code">
 				<div class = "title_board">
@@ -140,12 +142,10 @@
 			<input type="submit" value="작성하기" class="btn" style="background-color:#19CE60; color:white ">
 			<a href="partnerlist"><input type="button" value="취소" class="btn" style="background-color:#19CE60; color:white "></a>
 			</div>
-			<br>
-		</div>
-		</div>
 		
+		</div>
 	</form>
-
+</div>
 
 </body>
 </html>

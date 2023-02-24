@@ -18,7 +18,7 @@ public interface PartnerReviewService {
 	// 리뷰 리스트 불러오기 
 	public String partName(String part_name);
 	public List<PartnerReviewVO> getprReviewList(String part_id) throws Exception;
-	public Double avg(String part_id);
+	public int avg(String part_id);
 	
 	// 리뷰 글 불러오기
 	public PartnerReviewVO PRBoard(int pr_num);

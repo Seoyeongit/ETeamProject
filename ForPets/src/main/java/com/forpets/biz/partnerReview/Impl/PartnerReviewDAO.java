@@ -87,8 +87,8 @@ public class PartnerReviewDAO {
 		return jdbcTemplate.query(PT_REVIEW, previewRowMapper, part_id);
 	}
 	
-	public Double avg(String part_id) {
-		Double avg = jdbcTemplate.queryForObject(AVG, double.class, part_id);
+	public int avg(String part_id) {
+		int avg = jdbcTemplate.queryForObject(AVG, Integer.class, part_id);
 		return avg;
 	}
 	

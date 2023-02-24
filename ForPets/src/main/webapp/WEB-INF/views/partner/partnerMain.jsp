@@ -8,6 +8,11 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>파트너 페이지</title>
+        <style>
+		.footer {
+ 		 text-align: center;
+ 		 }
+		</style>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -16,7 +21,7 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="${pageContext.request.contextPath}/resources/css/partner.css" rel="stylesheet" />
-        <script src="${pageContext.request.contextPath}/resources/css/partner.css"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/partner_page.js"></script>
     </head>
     <body id="page-top">
     	<%@ include file="/WEB-INF/views/nav.jsp" %>
@@ -52,9 +57,8 @@
             <!-- Experience-->
             
         </div>
+        <%@ include file="/WEB-INF/views/footer.jsp" %>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
     </body>
 </html>

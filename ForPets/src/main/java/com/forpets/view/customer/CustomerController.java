@@ -28,10 +28,16 @@ public class CustomerController {
 	@Autowired
 	CustomerService custservice;
 	
-	@RequestMapping(value="/customer.do")
+	@RequestMapping(value="/customerMain")
 	public String customer(CustomerVO vo, CustomerDAO dao, Model model) throws IOException {
 
 		return "/customer/customer";
+	}
+	
+	@RequestMapping(value="/customer.do")
+	public String customer2(CustomerVO vo, CustomerDAO dao, Model model) throws IOException {
+
+		return "/customer/customer2";
 	}
 	
 	// http://localhost/forpets
@@ -93,10 +99,13 @@ public class CustomerController {
 	
 	@RequestMapping(value="/myCustBoard")
 	public String myCustBoard(CustomerVO vo, CustomerDAO dao, Model model, HttpSession session) throws IOException {
-		PartnerVO pvo = (PartnerVO) session.getAttribute("partners");
-		UserVO uvo = (UserVO) session.getAttribute("member");
-		vo.setPart_id(pvo.getPart_id());
-		vo.setUser_id(uvo.getUser_id());
+		if(session.getAttribute("partners") != null) {
+			PartnerVO pvo = (PartnerVO) session.getAttribute("partners");
+			vo.setPart_id(pvo.getPart_id());
+		}else {
+			UserVO uvo = (UserVO) session.getAttribute("member");
+			vo.setUser_id(uvo.getUser_id());
+		}
 		model.addAttribute("myCustBoard", custservice.myCustBoard(vo));
 		return "/customer/myCustBoard";
 	}

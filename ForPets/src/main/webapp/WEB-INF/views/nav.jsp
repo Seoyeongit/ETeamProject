@@ -39,7 +39,7 @@
                         </c:when>
                         
                         <c:when test="${member.user_id eq '' || member.user_id eq null}">
-                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/login">로그인</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/loginMain">로그인</a></li>
                       	</c:when>
                         
                         <c:otherwise>

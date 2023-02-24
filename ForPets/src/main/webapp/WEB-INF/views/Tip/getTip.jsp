@@ -47,7 +47,7 @@
     	                	<li class="nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/pickup">- 픽업</a></span></li>
                     	</ul>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/FindHospital/findHospital">근처 병원 찾기</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Tip/getTipList">팁 게시판</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger active" href="${pageContext.request.contextPath}/Tip/getTipList">팁 게시판</a></li>
                 </ul>
             </div>
 		</nav>
@@ -87,8 +87,8 @@
 												<div class="col-sm-3 flex-fill" style="float:right;">
 													<input type="submit" class="form-control btn" 
 													style="background-color:#8bda8b; color:white;" value="글 수정">
+												</div>
 											</div>
-										</div>
 								        </div>
 									</c:when>
 									

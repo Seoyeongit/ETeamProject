@@ -20,9 +20,10 @@
 <!-- Top navigation-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
 	<div class="container-fluid">
-		<button class="btn btn-primary" id="sidebarToggle">
+		<button class="btn btn-light" id="sidebarToggle"
+			style="background-color: transparent;">
 			<img
-				src="${pageContext.request.contextPath}/resources/assets/img/admin/angle-circle-left.png"
+				src="${pageContext.request.contextPath}/resources/assets/img/admin/free-icon-font-list.png"
 				width=28>
 		</button>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -35,13 +36,14 @@
 			<ul class="navbar-nav ms-auto mt-2 mt-lg-0">
 				<li class="nav-item active"><a class="nav-link" href="#!"></a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="${pageContext.request.contextPath}/"><img
+					href="${pageContext.request.contextPath}/"
+					style="color: #8bda8b; font-weight: 700;"><img
 						src="${pageContext.request.contextPath}/resources/assets/img/logo_gr.png"
-						width="80" alt="..." />&nbsp;</a></li>
+						width="90" alt="..." />&nbsp;홈&nbsp;</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 					role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false" style="font-weight:600;">${admin.adm_id}&nbsp;</a>
+					aria-expanded="false" style="font-weight: 600;">${admin.adm_id}&nbsp;님&nbsp;</a>
 					<div class="dropdown-menu dropdown-menu-end"
 						aria-labelledby="navbarDropdown">
 						<a class="dropdown-item"

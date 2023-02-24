@@ -205,8 +205,9 @@
 	        	            var input_add = document.createElement('input');
 	        	            input_add.setAttribute('type', 'text');
 	        	            input_add.setAttribute('name', 'pick_add');
-	        	            input_add.setAttribute('size', '45');
+	        	            input_add.setAttribute('class', 'form-control');
 	        	            input_add.setAttribute('value', detailAddr + " " + title);
+	        	            input_add.setAttribute('style', 'font-size:12px;');
 	        	            $(opener.document).find(pick_add).append(input_add);
 	        	            self.close();
 	        	        }   

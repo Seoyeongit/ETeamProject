@@ -184,7 +184,7 @@ public class ReserveDAO {
 		ReServeVO reserve = new ReServeVO();
 		reserve.setReserve_num("RN_" + last);
 		reserve.setReserve_day(request.getParameter("reserve_day"));
-		reserve.setReserve_time(request.getParameter("reserve_start")+"~"+request.getParameter("reserve_end"));
+		reserve.setReserve_time(request.getParameter("reserve_time"));
 		reserve.setReserve_add(request.getParameter("address") + " " + request.getParameter("detailAddress"));
 		//reserve.setS_num(Integer.parseInt(request.getParameter("s_num")));
 		reserve.setUser_id(request.getParameter("user_id"));

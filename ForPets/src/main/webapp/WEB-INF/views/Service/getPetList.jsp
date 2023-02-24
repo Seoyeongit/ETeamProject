@@ -13,10 +13,10 @@
 function sendPet(pet_id, pet_img) {
 	
 	$("#pet_id", opener.document).val($("#"+pet_id+"_id").val());
-	$("#pet_name", opener.document).val($("#"+pet_id+"_name").val());
-	$("#pet_type", opener.document).val($("#"+pet_id+"_type").val());
-	$("#pet_age", opener.document).val($("#"+pet_id+"_age").val());
 	$("#pet_img", opener.document).attr("src", "."+$("#"+pet_id+"_img").attr("src"));
+	$("#pet_info_title", opener.document).append("<span>"+ $("#"+pet_id+"_name").val() +"</span>")
+	$("#pet_info", opener.document).append("<span>종류 : "+ $("#"+pet_id+"_type").val() +"</span><br>")
+	$("#pet_info", opener.document).append("<span>나이 : "+ $("#"+pet_id+"_age").val() +"</span><br>")
 	
 	$(opener.location).attr("href", "javascript:show_pet();");
 	self.close();

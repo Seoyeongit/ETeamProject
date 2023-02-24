@@ -25,7 +25,7 @@
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/communitylist">소모임</a></li>
                         <li class="nav-item"><a class="nav-link" href="#review">리뷰보기</a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/partnerlist">펫트너</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/customer.do">고객센터</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/customerMain">고객센터</a></li>
                        
                         <c:choose>
                         <c:when test="${role eq 'partners' }">
@@ -39,8 +39,8 @@
                         </c:when>
                         
                         <c:when test="${member.user_id eq '' || member.user_id eq null}">
-                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/loginMain">로그인</a></li>
-                        </c:when>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/login">로그인</a></li>
+                      	</c:when>
                         
                         <c:otherwise>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/myInfo/main">마이페이지</a></li>

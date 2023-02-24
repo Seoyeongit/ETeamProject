@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="../favicon.jsp"></jsp:include>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/juso.js" ></script>
@@ -13,15 +14,32 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/pickup_add.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.js"></script>
+
+<link href="${pageContext.request.contextPath}/resources/css/Tip/tip.css" rel="stylesheet" />
 <style>
-	#choiceService input[type="button"] {
-		width : 100px;
-		heigth : 100px;
-		border : 1px solid #99cc99;
-		color : #99c99;
-		background-color : white;
+	#main_content {
+		display : table;
+		width : 100%;
+	}
+	#sideNav, #main {
+		display : table-cell;
+	}
+	main {
+		padding-left : 50px;
+	}
+	#footer_div {
+		position : relative;
+		z-index : 900;
+	}
+	.navbar_forpets{
+		padding-top : 9rem;
+		position : absolute;
+	}
+	.footer {
+		text-align : center; !important;
 	}
 </style>
+
 <script>
 function choice_service(this_id) {
 	var id = this_id;
@@ -54,108 +72,169 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<ul>
-		<li><a href="${pageContext.request.contextPath}/">홈</a></li>
-		<li><a href="${pageContext.request.contextPath}/Service/choice">서비스 예약</a></li>
-		<li><a href="${pageContext.request.contextPath}/FindHospital/findHospital">근처 병원 찾기</a></li>
-		<li><a href="${pageContext.request.contextPath}/Tip/getTipList">Tip 게시판</a></li>
-	</ul>
-	<center>
-		<form action="getService" method="post">
-			<input type="hidden" value="${member.user_id }" name="user_id">
-			<input type="hidden" id="pet_id" name="pet_id">
-			<div id="set_pickup">
-				<input type="checkbox" id="hospital_choice" name="s_num" value="4">
-				<input type="checkbox" id="beauty_choice" name="s_num" value="5">
-				<input type="checkbox" id="hotel_choice" name="s_num" value="8">
-			</div>
-			<p>반려동물 정보</p>
-			<table id="set_pet">
-				<tr>
-					<td>
-						<img id="pet_img" name="pet_img">
-					</td>
-				</tr>
-				<tr>
-					<td>이름 : <input type="text" id="pet_name" name="pet_name" readonly></td>
-				</tr>
-				<tr>
-					<td>종류 : <input type="text" id="pet_type" name="pet_type" readonly></td>
-				</tr>
-				<tr>
-					<td>나이 : <input type="text" id="pet_age" name="pet_age" readonly></td>
-				</tr>
-			</table>
-			<br>
-			<input type="button" value="선택" onclick="getPetListPopUp()">
-			<hr>
-			<p>서비스 선택</p>
-			<table id="choiceService">
-				<tr>
-					<td><input type="button" value="병원" id="hospital" onclick="choice_service(this.id)" ></td>
-					<td id="hospital_add"></td>
-				</tr>
-				<tr>
-					<td><input type="button" value="미용" id="beauty" onclick="choice_service(this.id)" ></td>
-					<td id="beauty_add"></td>
-				</tr>
-				<tr>
-					<td><input type="button" value="호텔" id="hotel" onclick="choice_service(this.id)" ></td>
-					<td id="hotel_add"></td>
-				</tr>
-			</table>
-			<hr>
-			<p>요청사항</p>
-			<input type="text" name="reserve_request" size="45">
-			<hr>
-			<p>날짜 및 시간</p>
-			<label for="date"><input type="date" id="date" name="reserve_day"></label>
-			<select name="reserve_start">
-			<%
-				for(int i=12;i<=20;i++) {
-			%>
-				<option value="<%=i%>:00"><%=i%>:00</option>
-			<%
-				}
-			%>
-			</select>부터
-			<select name="reserve_end">
-			<%
-				for(int i=12;i<=20;i++) {
-			%>
-				<option value="<%=i%>:00"><%=i%>:00</option>
-			<%
-				}
-			%>
-			</select>까지
-			<br>
-			<p>주소</p>
-			<table>
-				<tr>
-					<td colspan="2"><input type="text" id="sample6_address" name="address" placeholder="주소" readonly size="45"></td>
-				</tr>
-				<tr>
-					<td><input type="text" id="sample6_detailAddress" name="detailAddress" placeholder="상세주소"></td>
-					<td><input type="text" id="sample6_extraAddress" placeholder="참고항목" readonly></td>
-				</tr>
-			</table>
-			<br>
-			<input type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기">
-			<hr>
-			<p>파트너 정보</p>
-			<table id="set_partner">
-				<tr>
-					<td>파트너 아이디 : <input type="text" id="part_id" name="part_id" readonly></td>
-				</tr>
-				<tr>
-					<td>파트너 이름 : <input type="text" id="part_name" readonly></td>
-				</tr>
-			</table>
-			<br>
-			<input type="button" value="파트너선택" onclick="getPartnerListPopUp()">
-			<hr>
-			<input type="button" value="다음" onclick="reserveMake()">
-		</form>
-	</center>
+	<jsp:include page="../nav.jsp" />
+	<div id="main_content">
+		
+		<nav class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav">
+            <div class="collapse navbar-collapse navbar_forpets" id="navbarResponsive">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/choice">서비스 예약</a></li>
+                    	<ul class="navbar-nav">
+                    		<li class="nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/normal">- 기본</a></span></li>
+	                    	<li class="nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/work">- 산책</a></span></li>
+    	                	<li class="nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/pickup">- 픽업</a></span></li>
+                    	</ul>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/FindHospital/findHospital">근처 병원 찾기</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Tip/getTipList">팁 게시판</a></li>
+                </ul>
+            </div>
+		</nav>
+		
+		<main id="main" class="main">
+			<section class="section">
+				<div class="row align-items-top">
+					<div class="col-lg-10">
+						<form action="getService" method="post">
+							<input type="hidden" value="${member.user_id }" name="user_id">
+							<input type="hidden" id="pet_id" name="pet_id">
+							<input type="hidden" id="part_id" name="part_id">
+							
+							<div id="set_pickup">
+								<input type="checkbox" id="hospital_choice" name="s_num" value="4">
+								<input type="checkbox" id="beauty_choice" name="s_num" value="5">
+								<input type="checkbox" id="hotel_choice" name="s_num" value="8">
+							</div>
+							
+							<h5><b>반려동물 정보</b></h5>
+							<!-- Card with an image on left -->
+							<div class="card mb-3 col-6" id="set_pet">
+								<div class="row g-0">
+									<div class="col-md-4">
+										<img width="100%" id="pet_img" name="pet_img">
+									</div>
+									<div class="col-8 row">
+										<div class="card-body align-self-center">
+											<h5 class="card-title" id="pet_info_title"></h5>
+											<p class="card-text" id="pet_info"></p>
+										</div>
+									</div>
+								</div>
+							</div><!-- End Card with an image on left -->
+							<br>
+							<input type="button" value="내 반려동물 보기" onclick="getPetListPopUp()">
+							
+							<hr>
+							<div class="mb-3 row">
+								<h5><b>서비스 선택</b></h5>
+					            <div class="col-sm-12">
+					            	<div class="row">
+						                <div class="col-sm-4 flex-fill">
+											<input type="button" id="hospital" class="form-control add_service btn" 
+											style="background-color : #F5F5F5;" onclick="choice_service(this.id)" value="병원">
+											<span id="hospital_add"></span>
+						                </div>
+						                <div class="col-sm-4 flex-fill">
+						                    <input type="button" id="beauty" class="form-control add_service btn"
+						                    style="background-color : #F5F5F5;" onclick="choice_service(this.id)" value="미용">
+						                    <span id="beauty_add"></span>
+						                </div>
+						                <div class="col-sm-4 flex-fill">
+											<input type="button" id="hotel" class="form-control add_service btn" 
+											style="background-color : #F5F5F5;" onclick="choice_service(this.id)" value="호텔">
+											<span id="hotel_add"></span>
+						                </div>
+						            </div>
+					            </div>
+					        </div>
+							
+							<hr>
+							
+							<div class="mb-3 row">
+					            <h5><b>요청사항</b></h5>
+					            <div class="col-sm-12">
+										<input type="text" class="form-control" name="reserve_request" >
+					            </div>
+					        </div>
+							
+							<hr>
+							
+							<div class="mb-3 row">
+					            <div class="col-sm-6">
+					            	<h5><b>날짜</b></h5>
+					                <div class="col-sm-12">
+										<input type="date" id="date" class="form-control" name="reserve_day">
+					                </div>
+					            </div>
+					            <div class="col-sm-6">
+					                <h5><b>시간</b></h5>
+					                <div class="col-sm-12">
+										<select name="reserve_time" class="form-select">
+											<%
+												for(int i=12;i<=20;i++) {
+											%>
+												<option value="<%=i%>:00&#32;&#126;&#32;<%=i+2%>:00"><%=i%>:00&#32;&#126;&#32;<%=i+2%>:00</option>
+											<%
+												}
+											%>
+										</select>
+					                </div>
+					            </div>
+					        </div>
+					        
+					        <hr>
+					        
+							<div class="mb-3 row">
+					            <h5><b>주소</b></h5>
+					            <div class="col-sm-12 pb-1">
+					            	<div class="col-sm-12">
+					                	<input type="text" id="sample6_address" name="address" placeholder="주소"  class="form-control" readonly size="45">
+					            	</div>
+					            </div>
+					            <div class="col-sm-6">
+					            	<div class="col-sm-12">
+					                	<input type="text" id="sample6_detailAddress" name="detailAddress"  class="form-control" placeholder="상세주소">
+					            	</div>
+					            </div>
+					            <div class="col-sm-6">
+					            	<div class="col-sm-12">
+					                	<input type="text" id="sample6_extraAddress" placeholder="참고항목"  class="form-control" readonly>
+					            	</div>
+					            </div>
+					        </div>
+					        <input type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기">
+							
+							<hr>
+							
+							<h5><b>파트너 정보</b></h5>
+							<!-- Card with an image on left -->
+							<div class="card mb-3 col-6" id="set_partner">
+								<div class="row g-0">
+									<div class="col-md-4">
+										<img width="100%" id="part_img" name="part_img">
+									</div>
+									<div class="col-8 row">
+										<div class="card-body align-self-center">
+											<h5 class="card-title" id="part_info_title"></h5>
+											<p class="card-text" id="part_info"></p>
+										</div>
+									</div>
+								</div>
+							</div><!-- End Card with an image on left -->
+							<br>
+							<input type="button" value="파트너선택" onclick="getPartnerListPopUp()">
+							
+							<hr>
+							<div class="col-12">
+								<input type="button" value="다음" onclick="reserveMake()" style="float:right;">
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+		</main><!-- End #main -->
+	</div>
+	<div id="footer_div" style="background-color : white;">
+		<jsp:include page="../footer.jsp" />
+	</div>
 </body>
 </html>

@@ -88,6 +88,48 @@ public class ReserveController {
 		
 	}
 	
+	@RequestMapping(value="/Service/normal")
+	public String normal(UserVO vo, HttpSession session) {
+		System.out.println("---> normal 실행");
+		if(session.getAttribute("member") == null) {
+			System.out.println("---> normal 완료, login 이동");
+			return "member/login";
+		}
+		else {
+			System.out.println("---> normal 완료, normal 이동");
+			return "Service/normal";
+		}
+		
+	}
+	
+	@RequestMapping(value="/Service/work")
+	public String work(UserVO vo, HttpSession session) {
+		System.out.println("---> work 실행");
+		if(session.getAttribute("member") == null) {
+			System.out.println("---> work 완료, login 이동");
+			return "member/login";
+		}
+		else {
+			System.out.println("---> work 완료, work 이동");
+			return "Service/work";
+		}
+		
+	}
+	
+	@RequestMapping(value="/Service/pickup")
+	public String pickup(UserVO vo, HttpSession session) {
+		System.out.println("---> pickup 실행");
+		if(session.getAttribute("member") == null) {
+			System.out.println("---> pickup 완료, login 이동");
+			return "member/login";
+		}
+		else {
+			System.out.println("---> pickup 완료, pickup 이동");
+			return "Service/pickup";
+		}
+		
+	}
+	
 	@RequestMapping(value="/Service/reserve")
 	public String reserve(ReServeVO vo, ReserveDAO reserveDAO, HttpSession session, HttpServletRequest request) {
 		System.out.println("---> reserve 실행");

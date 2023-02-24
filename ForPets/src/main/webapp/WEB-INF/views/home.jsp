@@ -8,9 +8,8 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Forpets</title>
-        <jsp:include page="favicon.jsp"></jsp:include>
-        
-        
+        <!-- Favicon-->
+        <jsp:include page="./favicon.jsp"></jsp:include>
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -34,7 +33,7 @@
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/communitylist">소모임</a></li>
                         <li class="nav-item"><a class="nav-link" href="#review">리뷰보기</a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/partnerlist">펫트너</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/customer.do">고객센터</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/customerMain">고객센터</a></li>
                        
                         <c:choose>
                         <c:when test="${role eq 'partners' }">

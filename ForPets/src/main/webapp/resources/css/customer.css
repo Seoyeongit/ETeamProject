@@ -188,3 +188,66 @@ body .qs-box{
 	 font-family: "Noto Sans CJK","Malgun Gothic",arial;
 	 font-size:15px;
 }
+.bagr {
+	background-color:#ffffff;
+	height:300px;
+}
+.footer{
+	margin-top:200px;
+	text-align: center;
+  	font-size: 0.9rem;
+  	font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+.main-tb{
+	margin-top:3%;
+	margin-left:25%;
+}
+.tb-ins-id,.tb-ins-sel,.tb-ins-tit,.tb-ins-con{
+	margin-left:5%;
+}
+.insert-line {
+	color:black;
+	width:70%;
+	border:2px solid black;
+}
+hr {
+	margin-left:auto;
+	margin-right:auto;
+	width:70%;
+}
+.cid{
+	margin-left:83px;
+	width:25%;
+	height:36px;
+	border-radius:6px;
+	border:1px solid rgb(128,128,128, 0.7);
+}
+.ctitle, .ccontent {
+	margin-left:62px;
+	width:56%;
+	border:1px solid rgb(128,128,128, 0.7);
+	border-radius:6px;
+}
+.ctitle{
+	height:36px;
+}
+.tb-ins-con {
+}
+.ccontent {
+	height:500px;
+}
+
+.check-in{
+	color:white;
+	margin-left:56%;
+	width:75px;
+	background-color: rgba(139, 218, 139, 0.7);
+	border-radius:5px;
+	border:1px solid rgb(128,128,128, 0.7);
+}
+.cancle-out {
+	width:75px;
+	background-color: rgba(255,255,255, 0.7);
+	border-radius:5px;
+	border:1px solid rgb(128,128,128, 0.7);
+}

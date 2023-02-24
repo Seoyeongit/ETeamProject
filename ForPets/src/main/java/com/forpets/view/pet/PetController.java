@@ -85,20 +85,25 @@ public class PetController{
 	
 	
 	
-	//main화면에 들어올때 pet등록정보를 가져온다.
+	//main화면에 들어간다.
 	@RequestMapping(value="/myInfo/main")
-	public String getPetInfo(PetVO vo, PetDAO petDAO, HttpSession session,Model model) {
-		System.out.println("===>pet get start");
-		
+	public String viewMain() {
+		return "myInfo/main";
+	}
+	
+	//pet등록정보를 가져온다.
+	@RequestMapping(value="/myInfo/getPetInfo")
+	public String getPetInfo(PetVO vo, HttpSession session,Model model) {
+
 		UserVO SessionVO = (UserVO) session.getAttribute("member");
 		vo.setUser_id(SessionVO.getUser_id());
 		
 		session.setAttribute("userPet", petService.getPetInfo(vo));
 
 		return "forward:/myInfo/selectWork";
-		
-		
 	}
+	
+	
 
 	@RequestMapping(value = "/myInfo/my-petImgUpload", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<PetVO> uploadPetImageActionPOST(MultipartFile uploadFile) throws IllegalStateException, IOException {

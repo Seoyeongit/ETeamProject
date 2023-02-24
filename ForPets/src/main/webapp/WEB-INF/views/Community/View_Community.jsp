@@ -22,11 +22,11 @@
 		 		<td>${communityboard.c_title }</td>
 		 	</tr>
 		 	<tr>
-		 		<th>내용</th>
-		 		<td>${communityboard.c_content }</td>
+		 		
 		 	</tr>
 		 </table>
-		 		
+		 		내용
+		 		<div style="white-space:pre;">${communityboard.c_content }</div>
 	<a href="../updatecommunity/${communityboard.c_code }"><input type="button" value="수정"></a>
 	<a href="../deletecommunity/${communityboard.c_code }"><input type="button" value="삭제"></a>
 	<a href="../communitylist">글 목록 가기</a>		

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 #myform fieldset{
-    display: inline-block;
+	text-align: center;
     direction: rtl;
     border:0;
 }

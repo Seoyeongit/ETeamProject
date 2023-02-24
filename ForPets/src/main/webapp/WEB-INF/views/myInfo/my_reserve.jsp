@@ -8,11 +8,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>예약확인하기</title>
 <jsp:include page="../favicon.jsp"></jsp:include>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-	crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
 <style>
 body {
 	margin-top: 20px;
@@ -55,7 +53,9 @@ body {
 }
 
 .note-has-grid .single-note-item .card {
-	border-radius: 10px
+	border: 1px solid rgba(82, 95, 127, .5);
+	border-radius: 10px;
+	min-height: 260px;
 }
 
 .note-has-grid .single-note-item .favourite-note {
@@ -74,35 +74,56 @@ body {
 	color: rgba(82, 95, 127, .5)
 }
 
+.state-content{
+	text-align: center;
+	margin-top: 20px;
+	box-shadow: 0 1px 3px 0 #dbdbdb;
+	height: 130px;
+	border-radius: 4px;
+	padding: 20px;
+}
+
+#result-count{
+	color:#19CE60;
+}
+
+#count-col{
+	border-right: 1px dotted rgba(82, 95, 127, .5);
+}
 
 </style>
+
 </head>
+
 <body>
-
-
 	<div class="container">
 
 			<div class="row">
 				<div class="col-lg-10 mx-auto mb-4">
 
-					<div class="row container my-5 rounded">
-						<div class="col-sm-4 card card-body">
+					<div class="row container rounded state-content">
+						<div class="col-lg-2 col-1 card-body" id="count-col">
 							예약내역
-							<div>${resultCnt}건</div>
+							<div id="result-count">${resultCnt}건</div>
 						</div>
-						<div class="col-sm-4 card card-body">
+						<div class="col-lg-2 col-1 card-body" id="count-col">
+							케어전
+							<div id="result-count">${resultCnt}건</div>
+						</div>
+						<div class="col-lg-2 col-1 card-body" id="count-col">
+							케어중
+							<div id="result-count">${resultCnt}건</div>
+						</div>
+						<div class="col-lg-2 col-1 card-body">
 							케어완료
-							<div>${resultCP}건</div>
-						</div>
-						<div class="col-sm-4 card card-body">
-							리뷰
-							<div>${resultR}건</div>
+							<div id="result-count">${resultCP}건</div>
 						</div>
 					</div>
 
-				<div class="container-rapper container-md row">
+				<div class="container-rapper container-md row pt-5">
+				
 					<c:forEach items="${reserveList}" var="reserve">
-						<div class="page-content note-has-grid p-4 col-sm-4">
+						<div class="page-content note-has-grid p-3 col-sm-4">
 							<div class="tab-content bg-transparent ">
 								<div id="note-full-container" class="note-has-grid row">
 									<div class="single-note-item all-category">

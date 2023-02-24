@@ -1,15 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원가입 페이지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user/join.css">
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 
@@ -87,8 +83,8 @@
 	</form>
 </div>
 
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+
 var code = "";				//이메일전송 인증번호 저장위한 코드
  /* 유효성 검사 통과유무 변수 */
  var idCheck = false;			// 아이디
@@ -100,10 +96,13 @@ var code = "";				//이메일전송 인증번호 저장위한 코드
  var mailCheck = false;			// 이메일
  var mailnumCheck = false;		// 이메일 인증번호 확인
  var addressCheck = false 		// 주소
-$(document).ready(function(){
+
+ $(document).ready(function(){
+	 
+	 console.log("이벤트체크");
+	 
 	//회원가입 버튼(회원가입 기능 작동)
 	$(".join_button").click(function(){
-		
 		/* 입력값 변수 */
 		var id = $('.id_input').val(); 				// id 입력란
 		var pw = $('.pw_input').val();				// 비밀번호 입력란

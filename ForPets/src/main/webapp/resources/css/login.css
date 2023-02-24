@@ -138,6 +138,7 @@ button.partlog{
 	font-family:Noto Sans KR;
 }
 .footer {
+  margin-top:200px;
   text-align: center;
   font-size: 0.9rem;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";

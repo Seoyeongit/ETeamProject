@@ -121,9 +121,10 @@
 			<input type="hidden" value="c${date }" name="c_code">
 				<div class = "title_board">
 					<input class="title_area" type="text" name="c_title" placeholder="제목">
+						
 						</div>
 						<hr>
-						<textarea class="text_area" name="c_content" placeholder="내용을 입력해 주세요."></textarea>
+						<div style="white-space:pre;"><textarea class="text_area" name="c_content" placeholder="내용을 입력해 주세요."></textarea></div>
 	
 			<br>
 			<div class="buttons">

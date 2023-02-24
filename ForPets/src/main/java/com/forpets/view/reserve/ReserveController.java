@@ -58,8 +58,8 @@ public class ReserveController {
 	}	
 	
 	
-	//예약내역데이터를 가져온 뒤 . 리뷰작성view로 넘어가는 메서드
-	@RequestMapping(value = "/myInfo/review")
+	//예약내역데이터를 가져와서 
+	@RequestMapping(value = "/myInfo/getCptReserve")
 	public String viewReviewReserveList (ReServeVO vo, ReserveDAO reserveDAO, Model model,HttpSession session) {
 		
 			UserVO voU = (UserVO) session.getAttribute("member");

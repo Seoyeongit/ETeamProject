@@ -33,23 +33,23 @@
 <script>
 $(document).ready(function(){
 	$("#Service_normal_notice").hide();
-	$("#Service_work_notice").hide();
+	$("#Service_walk_notice").hide();
 	$("#Service_pickup_notice").hide();
 	
 	$("#Service_normal").hover(function(){
-		$("#Service_work_notice").hide();
+		$("#Service_walk_notice").hide();
 		$("#Service_pickup_notice").hide();
 		$("#Service_normal_notice").show();
 	});
 
-	$("#Service_work").hover(function(){
+	$("#Service_walk").hover(function(){
 		$("#Service_normal_notice").hide();
 		$("#Service_pickup_notice").hide();
-		$("#Service_work_notice").show();
+		$("#Service_walk_notice").show();
 	});
 
 	$("#Service_pickup").hover(function(){
-		$("#Service_work_notice").hide();
+		$("#Service_walk_notice").hide();
 		$("#Service_normal_notice").hide();
 		$("#Service_pickup_notice").show();
 	});
@@ -63,7 +63,7 @@ $(document).ready(function(){
 		<nav class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav">
             <div class="collapse navbar-collapse navbar_forpets" id="navbarResponsive">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/choice">서비스 예약</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger active" href="${pageContext.request.contextPath}/Service/choice">서비스 예약</a></li>
                     	<ul class="navbar-nav">
                     		<li class="nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/normal">- 기본</a></span></li>
 	                    	<li class="nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/work">- 산책</a></span></li>
@@ -79,35 +79,46 @@ $(document).ready(function(){
 			<section class="section">
 				<div class="row align-items-top">
 					<div class="col-lg-12 d-flex justify-content-center">
-						<div class="col-lg-3 ">
-							<div class="card" id="Service_normal">
-            					<img src="" alt="기본 돌봄" class="card-img-top">
-            					<div class="card-body">
-              						<h5 class="card-title">기본돌봄</h5>
-            					</div>
-          					</div><!-- End Card with an image on top -->
+						<div class="col-lg-3" id="Service_normal">
+							<a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/normal">
+								<div class="card">
+	            					<img height="200px;" src="${pageContext.request.contextPath}/resources/assets/dog-normal.jpg" alt="normal" class="card-img-top">
+	            					<div class="card-body">
+	              						<h5 class="card-title">기본 돌봄</h5>
+	            					</div>
+	          					</div><!-- End Card with an image on top -->
+	          				</a>
 						</div>
+						
 						<div class="col-lg-1">
 						</div>
-						<div class="col-lg-3" id="Service_work">
-							<div class="card">
-            					<img src="" alt="산책" class="card-img-top">
-            					<div class="card-body">
-              						<h5 class="card-title">산책돌봄</h5>
-            					</div>
-          					</div><!-- End Card with an image on top -->
+						
+						<div class="col-lg-3" id="Service_walk">
+							<a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/work">
+								<div class="card">
+	            					<img height="200px;" src="${pageContext.request.contextPath}/resources/assets/dog-walking.jpg" alt="walking" class="card-img-top">
+	            					<div class="card-body">
+	              						<h5 class="card-title">산책 돌봄</h5>
+	            					</div>
+	          					</div><!-- End Card with an image on top -->
+							</a>
 						</div>
+						
 						<div class="col-lg-1">
 						</div>
+						
 						<div class="col-lg-3" id="Service_pickup">
-							<div class="card">
-            					<img src="" alt="픽업 돌봄" class="card-img-top">
-            					<div class="card-body">
-              						<h5 class="card-title">픽업돌봄</h5>
-            					</div>
-          					</div><!-- End Card with an image on top -->
+							<a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/pickup">
+								<div class="card">
+	            					<img height="200px;" src="${pageContext.request.contextPath}/resources/assets/dog-pickup.png" alt="pickup" class="card-img-top">
+	            					<div class="card-body">
+	              						<h5 class="card-title">픽업 돌봄</h5>
+	            					</div>
+	          					</div><!-- End Card with an image on top -->
+							</a>
 						</div>
 					</div>
+					
 					<div class="col-lg-12 pt-5 text-center">
 						<div class="col-lg-12" id="Service_normal_notice">
 							<p>기본 돌봄은 블라블라블라</p>
@@ -115,7 +126,7 @@ $(document).ready(function(){
 							<p>기본 돌봄은 블라블라블라</p>
 						</div>
 						
-						<div class="col-lg-12" id="Service_work_notice">
+						<div class="col-lg-12" id="Service_walk_notice">
 							<p>산책 돌봄은 블라블라블라</p>
 							<p>산책 돌봄은 블라블라블라</p>
 							<p>산책 돌봄은 블라블라블라</p>

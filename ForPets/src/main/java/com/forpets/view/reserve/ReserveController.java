@@ -83,14 +83,8 @@ public class ReserveController {
 	@RequestMapping(value="/Service/choice")
 	public String choice(UserVO vo, HttpSession session) {
 		System.out.println("---> choice 실행");
-		if(session.getAttribute("member") == null) {
-			System.out.println("---> choice 완료, login 이동");
-			return "member/loginMain";
-		}
-		else {
-			System.out.println("---> choice 완료, choice 이동");
-			return "Service/choice";
-		}
+		System.out.println("---> choice 완료, choice 이동");
+		return "Service/choice";
 		
 	}
 	

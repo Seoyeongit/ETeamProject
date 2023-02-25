@@ -61,12 +61,12 @@
 						<div class="col-md-12 row">
 							<div class="col-md-5" style="float:left;">
 		                        <div class="col-12">
-		                            <img class="img-thumbnail rounded-circle" src="${pageContext.request.contextPath}/resources/assets/free-icon-speech-bubble-1078011.png" alt="대화 아이콘" style="width: 80%" height="80%">
+		                            <img height="200px;" class="img-thumbnail rounded-circle" src="${pageContext.request.contextPath}/resources/assets/dog-normal.jpg" alt="normal" style="width: 80%">
 		                        </div>
 		                    </div>
 		                    <div class="col-md-5 align-self-center">
 			                    <div style="float:right;">
-			                        <h4 class="my-3">방문</h4>
+			                        <h4 class="my-3">기본</h4>
 			                        <div class="text-muted">바쁜 당신과 혼자 남겨지는 당신의 아이.</div>
 			                        <div class="text-muted">ForPets가 해결 해드리겠습니다.</div>
 			                        <div class="text-muted">믿을 수 있는 파트너가 함께 합니다.</div>
@@ -86,7 +86,7 @@
 		                    </div>
 							<div class="col-md-5" style="float:right;">
 		                        <div class="col-12">
-		                            <img class="img-thumbnail rounded-circle" src="${pageContext.request.contextPath}/resources/assets/free-icon-dog-6381349.png" alt="산책 아이콘" style="width:80%" height="80%">
+		                            <img height="200px;" class="img-thumbnail rounded-circle" src="${pageContext.request.contextPath}/resources/assets/dog-walking.jpg" alt="walking" style="width:80%">
 		                        </div>
 		                    </div>
 	                    </div>
@@ -95,7 +95,7 @@
 	                    <div class="col-md-12 row">
 							<div class="col-md-5" style="float:left;">
 		                        <div class="col-12">
-		                            <img class="img-thumbnail rounded-circle" src="${pageContext.request.contextPath}/resources/assets/free-icon-hospital-5217248.png" alt="병원 아이콘" style="width: 80%" height="80%">
+		                            <img height="200px;" class="img-thumbnail rounded-circle" src="${pageContext.request.contextPath}/resources/assets/dog-pickup.png" alt="pickup" style="width: 80%">
 		                        </div>
 		                    </div>
 		                    <div class="col-md-5 align-self-center">
@@ -121,9 +121,9 @@
 					<div class="col-lg-12 row">
 						<div class="col-md-12">
 							<h4 class="my-3">반려인을 위한 정보</h4>
-	                        <div class="text-muted"></div>
+							<div class="text-muted">반려인을 위한 정보를 동영상을 통해 알아보세요.</div>
 	                        <span class="col-md-12">
-	                            <img src="${pageContext.request.contextPath}/resources/assets/free-icon-speech-bubble-1078011.png" alt="팁 사진" style="width: 80%" height="80%">
+	                            <img src="${pageContext.request.contextPath}/resources/assets/Tip.JPG" alt="팁 사진" style="width: 80%" height="80%">
 	                        </span>
 	                        
 	                    </div>

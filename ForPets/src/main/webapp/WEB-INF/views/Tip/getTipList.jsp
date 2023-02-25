@@ -48,47 +48,54 @@
     	                	<li class="nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/pickup">- 픽업</a></span></li>
                     	</ul>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/FindHospital/findHospital">근처 병원 찾기</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Tip/getTipList">팁 게시판</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger active" href="${pageContext.request.contextPath}/Tip/getTipList">팁 게시판</a></li>
                 </ul>
             </div>
 		</nav>
 		
 		<main id="main" class="main">
 				<section class="section">
-					<div class="row align-items-top">
+					<div class="align-items-top">
 						<div class="col-lg-10">
+							<div class="col-lg-12">
 								<form action="getTipList" method="post">
-								<table border="1" cellpadding="0" cellspacing="0" width="700">
-									<tr>
-										<td align="right">
-											<select name="searchCondition">
-													<option value="TITLE">제목</option>
-													<option value="CONTENT">내용</option>
-											</select>
-											<input name="searchKeyword" type="text" />
-											<input  type="submit" value="검색" />
-										</td>
-									</tr>
-								</table>
+									<input type="submit" class="btn" style="float:right; background-color:#8bda8b; color:white;" value="검색">
+									<input name="searchKeyword" type="text" class="btn" style="float:right; border-color:#8bda8b;" />
+									<select name="searchCondition" style="float:right; border-color:#8bda8b;" class="btn">
+										<option class="text-center" value="TITLE">제목</option>
+										<option class="text-center" value="CONTENT">내용</option>
+									</select>
 								</form>
-							<c:forEach items="${tipList }" var="tip">
-								<!-- Card with an image on left -->
-								<div class="card mb-3" onclick="location.href='getTip?tip_seq=${ tip.tip_seq }'">
-									<div class="row g-0">
-										<div class="col-md-4">
-											<img src="${ tip.tip_img_url }"  class="img-fluid rounded-start" alt="...">
-										</div>
-										<div class="col-md-8">
-											<div class="card-body">
-												<h5 class="card-title">${ tip.tip_title }</h5>
-												<p class="card-text">${tip.tip_content }</p>
+							</div><br><br><br>
+							
+							<div class="col-lg-12">
+								<c:forEach items="${tipList }" var="tip">
+									<!-- Card with an image on left -->
+									<div class="card mb-3" onclick="location.href='getTip?tip_seq=${ tip.tip_seq }'">
+										<div class="row g-0">
+											<div class="col-md-4">
+												<img src="${ tip.tip_img_url }"  class="img-fluid rounded-start" alt="...">
+											</div>
+											<div class="col-md-8">
+												<div class="card-body">
+													<h5 class="card-title">${ tip.tip_title }</h5>
+													<p class="card-text">${tip.tip_content }</p>
+												</div>
 											</div>
 										</div>
+									</div><!-- End Card with an image on left -->
+								</c:forEach>
+							</div>
+							<c:choose>
+								<c:when test="${role eq 'admin' }">
+									<div class="col-12">
+										<div class="col-sm-3 flex-fill" style="float:right;">
+											<input type="button" class="form-control btn" 
+											style="background-color:#8bda8b; color:white;" onclick="location.href='insertTip'" value="새 글 작성">
+										</div>
 									</div>
-								</div><!-- End Card with an image on left -->
-							</c:forEach>
-							<br>
-							<a href="insertTip">새 글 작성</a>
+								</c:when>
+							</c:choose>
 						</div>
 					</div>
 				</section>

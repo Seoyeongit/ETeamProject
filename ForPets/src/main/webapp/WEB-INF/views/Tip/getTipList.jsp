@@ -91,7 +91,7 @@
 									<div class="col-12">
 										<div class="col-sm-3 flex-fill" style="float:right;">
 											<input type="button" class="form-control btn" 
-											style="background-color:#8bda8b; color:white;" onclick="insertTip" value="새 글 작성">
+											style="background-color:#8bda8b; color:white;" onclick="location.href='insertTip'" value="새 글 작성">
 										</div>
 									</div>
 								</c:when>

@@ -121,9 +121,9 @@
 					<div class="col-lg-12 row">
 						<div class="col-md-12">
 							<h4 class="my-3">반려인을 위한 정보</h4>
-	                        <div class="text-muted"></div>
+							<div class="text-muted">반려인을 위한 정보를 동영상을 통해 알아보세요.</div>
 	                        <span class="col-md-12">
-	                            <img src="${pageContext.request.contextPath}/resources/assets/free-icon-speech-bubble-1078011.png" alt="팁 사진" style="width: 80%" height="80%">
+	                            <img src="${pageContext.request.contextPath}/resources/assets/Tip.JPG" alt="팁 사진" style="width: 80%" height="80%">
 	                        </span>
 	                        
 	                    </div>

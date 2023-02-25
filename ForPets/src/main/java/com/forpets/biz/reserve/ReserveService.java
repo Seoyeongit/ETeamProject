@@ -23,6 +23,10 @@ public interface ReserveService {
 	//예약완료 수 조회
 	int selectCompleteCount(ReServeVO vo);
 	
+	int selectIngCount(ReServeVO vo);
+	
+	int selectBeforeCount(ReServeVO vo);
+	
 	//230130 최지혁
 	//Reserve Table에 데이터 추가
 	public void insertReserve(ReServeVO vo, PetVO pvo);

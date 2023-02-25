@@ -84,6 +84,10 @@
 								            	</div>
 								            </div>
 								            <div class="col-12">
+								            	<div class="col-sm-3 flex-fill" style="float:right;">
+													<input type="button" class="form-control btn" 
+													style="background-color:#8bda8b; color:white;" onclick="location.href='deleteTip?tip_seq=${ tip.tip_seq }'" value="글 삭제">
+												</div>
 												<div class="col-sm-3 flex-fill" style="float:right;">
 													<input type="submit" class="form-control btn" 
 													style="background-color:#8bda8b; color:white;" value="글 수정">

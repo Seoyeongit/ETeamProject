@@ -15,14 +15,14 @@ public class TipDAO {
 	public JdbcTemplate jdbcTemplate;
 	
 	private final String BOARD_INSERT = "insert into tip_board(tip_seq, tip_title, tip_content, tip_img_url, tip_video, tip_hit) "
-			+ "values((tb_seq.NEXTVAL), ?, ?, ?, ?, ?)";
+			+ "values((tip_board_seq.NEXTVAL), ?, ?, ?, ?, ?)";
 	private final String BOARD_UPDATE = "update tip_board set tip_title=?, tip_content=?, tip_img_url=?, tip_video=?, tip_update_date= sysdate " 
 			+ "where tip_seq = ?";
 	private final String BOARD_UPDATE_HIT = "update tip_board set tip_hit=? " 
 			+ "where tip_seq = ?";
 	
 	private final String BOARD_DELETE = "delete from tip_board where tip_seq = ?";
-	private final String BOARD_GET = "select * from tip_board where tip_seq=?";
+	private final String BOARD_GET = "select * from tip_board where tip_seq = ?";
 	private final String BOARD_LIST = "select * from tip_board order by tip_seq desc";
 	public final String BOARD_LIST_T = 
 			"select * from tip_board where tip_title like ";

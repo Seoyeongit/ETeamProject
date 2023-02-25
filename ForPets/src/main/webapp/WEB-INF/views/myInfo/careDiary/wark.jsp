@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>'${careDIA.voR.voPet.name }'산책돌봄서비스 돌봄일지 입니다.</h2>
+    <h2>📄'${careDIA.voR.voPet.name }'산책돌봄서비스 돌봄일지 입니다.</h2>
     <p>담당 펫트너 : ${careDIA.voR.voP.part_name }</p>
 
     <hr>

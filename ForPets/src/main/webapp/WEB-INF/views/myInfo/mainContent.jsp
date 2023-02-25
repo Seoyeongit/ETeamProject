@@ -1,18 +1,81 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<head>
+	<style type="text/css">
+		body{
+			margin-top: 80px;
+		}
+	
+		
+		.slide{
+			min-width: 520px;
+			min-height: 220px;
+			max-width: 520px;
+			max-height: 220px;
+		}
+		
+		#map{
+			position: relative;
+			width: 80%;
+		}
+		
+		.slide > .carousel-inner {
+			width : 100%;
+			height: 100%;
+		}
+		
+		.slide .carousel-item{
+			width : 100%;
+			height: 100%;
+		}
+		
+		.slide .carousel-item >*{
+			width : 100%;
+			height: 100%;
+		}
+		
+		.carousel-inner img{
+					width : 100%;
+			height: 100%;
+		}
+		
+		.hover-div-bk{
+			display:none;
+			width: inherit;
+			height : 100%;
+			background-color: black;
+			position: absolute;
+			z-index : 100;
+		}
+		
+		#register_wark{
+			position: absolute;
+			top:35%;
+			left:40%;
+			display:none;
+			z-index : 200;
+		}
+		
+		.drragle-after{
+			display:block;
+			width: inherit;
+			height : 100%;
+			background-color: black;
+			position: absolute;
+			opacity: 0.2;
+			z-index : 100;
+		}
+		
+	</style>
+</head>
 
 <body>
 	<div class="right-content">
 		<div class="card right-profile-card" style="border: none;">
 			<div class="card-body p-5" id="my-message-sibal">
-
-
-				<p class="pb-3">
-					<strong>마이페이지</strong>
-				</p>
-
-				<div class="d-flex pb-5">
+				<div class="d-flex pb-5" id="pet-info-container">
 
 					<div id="slide"
 						class="flex-fill pet-profile shadow-myinfo carousel slide"
@@ -37,6 +100,9 @@
 											<c:when test="${not empty userPet.img}">
 												<img alt="" src="../myInfo/display?fileName=${userPet.img }">
 											</c:when>
+											<c:otherwise>
+												<img src="${pageContext.request.contextPath}/resources/assets/img/myInfo/noImage.png">
+											</c:otherwise>
 										</c:choose>
 									</div>
 									<div class="flex-fill content float-right p-4">
@@ -79,30 +145,32 @@
 						<span class="carousel-control-next-icon" aria-hidden="true"></span>
 						<span class="visually-hidden">Next</span>
 					</button>
+					
+
 				</div>
 
-				<div class="flex-fill col-md-auto pet-work rounded shadow-myinfo"
-					id="map" style="width: 100%; background-color: rgb(249, 249, 249);"></div>
-
-
-
+				<div class="flex-fill col-md-auto pet-work rounded shadow-myinfo" id="map" style="width: 100%; background-color: rgb(249, 249, 249);">
+				
+					<div class="hover-div-bk">
+					</div>
+					
+					<div style="opacity: 1;">
+						<c:choose>
+						<c:when test="${empty petWork[0].x}">
+						<a href="${pageContext.request.contextPath}/myInfo/create-roadMap"
+						onclick="window.open(this.href, '_blank', 'width=500, height=800'); return false;">
+						<input type="button" id="register_wark" value="산책로 등록하기"></a></c:when>
+						<c:otherwise>
+						<a href="${pageContext.request.contextPath}/myInfo/modify-roadMap"
+						onclick="window.open(this.href, '_blank', 'width=500, height=800'); return false;">
+						<input type="button" id="register_wark" value="산책로 수정하기"></a></c:otherwise>
+						</c:choose>
+					</div>
+				
+				</div>
 			</div>
 
 
-			<c:choose>
-				<c:when test="${empty petWork[0].x}">
-					<a href="${pageContext.request.contextPath}/myInfo/create-roadMap"
-						onclick="window.open(this.href, '_blank', 'width=500, height=800'); return false;">
-						<input type="button" id="register_wark" value="산책로 등록하기">
-					</a>
-				</c:when>
-				<c:otherwise>
-					<a href="${pageContext.request.contextPath}/myInfo/modify-roadMap"
-						onclick="window.open(this.href, '_blank', 'width=500, height=800'); return false;">
-						<input type="button" id="register_wark" value="산책로 수정하기">
-					</a>
-				</c:otherwise>
-			</c:choose>
 
 
 			<hr>
@@ -113,13 +181,12 @@
 				</p>
 				<table class="container">
 					<tr>
-						<td><a href="../myInfo/check-reservation" id="myInfo-reserve-check">예약확인</a></td>
-						<td><a href="../myInfo/viewCare">돌봄일지</a></td>
+						<td><a id="check-user-reserve">예약확인</a></td>
+						<td><a id="check-user-careDiary">돌봄일지</a></td>
 					</tr>
 					<tr>
 						<td>파트너와채팅</td>
-						<td><a href="${pageContext.request.contextPath}/myInfo/review"
-							onclick="window.open(this.href, '_blank', 'width=620, height=700'); return false;">후기작성하기</a></td>
+						<td><a id="write-review">나의후기</a></td>
 					</tr>
 				</table>
 			</div>
@@ -142,7 +209,29 @@
 
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=037898d01be77d2487543d1d6ea4c210&libraries=services,drawing"></script>
 	<script type="text/javascript">
-                          
+	
+		const item = document.querySelector("#map");
+		
+		$("#map").hover(function(event){
+			$('.hover-div-bk').css({"display":"block","opacity": "0.2"});
+			 $('#register_wark').css("display","block");
+		},
+		function(){ 
+			$('.hover-div-bk').css("display","none");
+			$('#register_wark').css("display","none");}
+		)
+	
+	    item.onmousedown = function (event) {
+	        $('.hover-div-bk,#register_wark').css("display", "none");
+	        function onMouseMove(event) {
+	            $('.hover-div-bk,#register_wark').css("display", "none");
+	        }
+	    };
+	    
+
+	    
+	    item.ondragstart = function(){return false;};
+	
                       	/**
                       	 * AbstractOverlay를 상속받을 객체를 선언합니다.
                       	 */

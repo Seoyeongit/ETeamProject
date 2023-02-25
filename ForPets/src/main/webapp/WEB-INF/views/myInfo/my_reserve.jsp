@@ -12,9 +12,6 @@
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <style>
-body {
-	margin-top: 20px;
-}
 
 #chat-button{
 	background-color: #19CE60;
@@ -53,7 +50,7 @@ body {
 }
 
 .note-has-grid .single-note-item .card {
-	border: 1px solid rgba(82, 95, 127, .5);
+	border: 1px solid #dbdbdb;
 	border-radius: 10px;
 	min-height: 260px;
 }

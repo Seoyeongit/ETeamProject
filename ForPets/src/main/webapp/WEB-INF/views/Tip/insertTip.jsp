@@ -83,7 +83,10 @@
 							
 							<hr>
 							<div class="col-12">
-								<input type="submit" value="새 글 등록" style="float:right;">
+								<div class="col-sm-3 flex-fill" style="float:right;">
+									<input type="submit" class="form-control btn" 
+									style="background-color:#8bda8b; color:white;" value="새 글 등록">
+								</div>
 							</div>
 						</form>
 					</div>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.forpets.biz.tip.SearchCriteria;
 import com.forpets.biz.tip.TipService;
 import com.forpets.biz.tip.TipVO;
 
@@ -34,9 +35,26 @@ public class TipServiceImpl implements TipService {
 		return tipDAO.getTip(vo);
 	}
 
+	/*
 	@Override
 	public List<TipVO> getTipList(TipVO vo) {
 		return tipDAO.getTipList(vo);
+	}
+	*/
+	
+	@Override
+	public int getTotalPages(SearchCriteria cri) {
+		return tipDAO.getTotalPages(cri);
+	}
+
+	@Override
+	public List<TipVO> getTipListWithPaging(SearchCriteria cri) {
+		return tipDAO.getTipListWithPaging(cri);
+	}
+
+	@Override
+	public List<TipVO> getTipListWithDynamicPaging(SearchCriteria cri) {
+		return tipDAO.getTipListWithDynamicPaging(cri);
 	}
 
 }

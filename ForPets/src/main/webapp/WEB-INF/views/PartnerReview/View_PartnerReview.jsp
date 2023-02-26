@@ -47,11 +47,13 @@
 	}
 	
 	hr {
- 	 background: #d3d3d3;
-	 height:1px;
-	 border: 0;
-	 padding-right: 100px; 
-	 padding-left: 100px;
+ 	background: #d3d3d3;
+    height: 1px;
+    border: 0;
+    padding-right: 100px;
+    padding-left: 100px;
+    margin-left: 30px;
+    margin-right: 30px;
 
 	}
 	
@@ -129,9 +131,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
 </head>
-<body>
+<body style="background-color: #f9f9f9;" >
 <br><br><br>
-<div class="canvas">
+
 	<h1 style="text-align: center;">파트너 리뷰 상세보기</h1>
 	<h5 style="text-align: center;">파트너에 대한 칭찬글이나 평가를 확인해 보세요!</h5>
 	
@@ -148,15 +150,15 @@
 		 		<p style="text-align: center;">파트너 별점</p>	
 					<fieldset>
 						<input type="radio" name="pr_avg" value="5" id="rate5" onclick="return(false);"><label
-							for="rate1">★</label>
+							for="rate5">★</label>
 						<input type="radio" name="pr_avg" value="4" id="rate4"  onclick="return(false);"><label
-							for="rate2">★</label>
+							for="rate4">★</label>
 						<input type="radio" name="pr_avg" value="3" id="rate3"  onclick="return(false);"><label
 							for="rate3">★</label>
 						<input type="radio" name="pr_avg" value="2" id="rate2"  onclick="return(false);"><label
-							for="rate4">★</label>
+							for="rate2">★</label>
 						<input type="radio" name="pr_avg" value="1" id="rate1"  onclick="return(false);"><label
-							for="rate5">★</label>
+							for="rate1">★</label>
 					</fieldset>
 					<script type="text/javascript">
 						$('input#rate${prboard.pr_avg}').prop("checked", true);
@@ -174,8 +176,10 @@
 	</div>
 	<br><br>
 	</div>
-	</div>
 
+	<br><br>
 
+		<%@ include file="/WEB-INF/views/footer.jsp" %>	
+				
 </body>
 </html>

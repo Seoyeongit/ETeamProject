@@ -27,15 +27,15 @@
 				<fieldset>
 					<span class="text-bold">파트너 별점을 선택해주세요</span>
 					<input type="radio" name="pr_avg" value="5" id="rate5"><label
-						for="rate1">★</label>
+						for="rate5">★</label>
 					<input type="radio" name="pr_avg" value="4" id="rate4"><label
-						for="rate2">★</label>
+						for="rate4">★</label>
 					<input type="radio" name="pr_avg" value="3" id="rate3"><label
 						for="rate3">★</label>
 					<input type="radio" name="pr_avg" value="2" id="rate2"><label
-						for="rate4">★</label>
+						for="rate2">★</label>
 					<input type="radio" name="pr_avg" value="1" id="rate1"><label
-						for="rate5">★</label>
+						for="rate1">★</label>
 				</fieldset>
 				<script type="text/javascript">
 						$('input#rate${prboard.pr_avg}').prop("checked", true);

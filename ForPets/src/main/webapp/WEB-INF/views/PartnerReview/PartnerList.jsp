@@ -80,8 +80,10 @@
 <title>포펫츠 펫트너즈</title>
 
 </head>
+
 <body style= "background: #f9f9f9;">
 <div class="background">
+
 <br><br><br><br>
 	<h1 style="text-align: center;">포펫츠의 펫트너즈를 소개합니다!</h1>
 	<h5 style="text-align: center;">원하는 펫트너즈를 클릭하면 리뷰보기로 이동합니다!</h5>

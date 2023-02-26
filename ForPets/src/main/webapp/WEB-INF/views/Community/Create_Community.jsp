@@ -86,7 +86,9 @@
 
 <body style= "background: #f9f9f9;">
 <br><br><br>
+
 	
+
 	<h1 style="text-align: center;">소모임 생성</h1>
 	<h5 style="text-align: center;">자신의 소모임을 만들어 보세요</h5>
 
@@ -119,7 +121,9 @@
 		
 	</form>
 
+
 <br><br><br>
 <%@ include file="/WEB-INF/views/footer.jsp" %>	
+
 </body>
 </html>

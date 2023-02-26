@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.forpets.biz.tip.SearchCriteria;
+import com.forpets.biz.tip.TipPagingDTO;
 import com.forpets.biz.tip.TipService;
 import com.forpets.biz.tip.TipVO;
 import com.forpets.biz.tip.impl.TipDAO;
@@ -60,6 +62,7 @@ public class TipController {
 		return "/Tip/getTip";
 	}
 	
+	/*
 	@RequestMapping(value="getTipList")
 	public String getTipList(TipVO vo, TipDAO tipDAO, Model model) {
 		System.out.println("---> getTipList 실행");
@@ -71,6 +74,28 @@ public class TipController {
 		System.out.println("SearchKeyword : " + vo.getSearchKeyword());
 		
 		model.addAttribute("tipList", tipService.getTipList(vo));
+		System.out.println("---> getTipList 완료");
+		return  "/Tip/getTipList";
+	}
+	*/
+	
+	// paging 처리
+	@RequestMapping(value="getTipList")
+	public String getTipList(TipVO vo, TipDAO tipDAO, SearchCriteria cri, Model model) {
+		System.out.println("---> getTipList 실행");
+		System.out.println("SearchCondition : " + cri.getSearchCondition());
+		System.out.println("SearchKeyword : " + cri.getSearchKeyword());
+		if (cri.getSearchCondition() == null) { cri.setSearchCondition("TITLE"); }
+		if (cri.getSearchKeyword() == null) { cri.setSearchKeyword(""); }
+		System.out.println("SearchCondition : " + cri.getSearchCondition());
+		System.out.println("SearchKeyword : " + cri.getSearchKeyword());
+		
+		System.out.println("totalpages : " + tipService.getTotalPages(cri));
+		
+		TipPagingDTO pageMaker = new TipPagingDTO(cri, tipService.getTotalPages(cri));
+		
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("tipList", tipService.getTipListWithDynamicPaging(cri));
 		System.out.println("---> getTipList 완료");
 		return  "/Tip/getTipList";
 	}

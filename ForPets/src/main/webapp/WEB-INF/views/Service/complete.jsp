@@ -134,7 +134,9 @@
 				                <div class="col-sm-12">
 				                	<c:forEach items="${servList }" var="serv" varStatus="vs">
 										<span><b>${serv.s_name }</b></span><br>
-										<span>&#32;&#32;&#32;-&#32;${pa_List[vs.index] }</span><br>
+										<c:if test="${pa_List != null }">
+											<span>&#32;&#32;&#32;-&#32;${pa_List[vs.index] }</span><br>
+										</c:if>
 									</c:forEach>
 				                </div>
 				            </div>
@@ -142,7 +144,10 @@
 				                <h5><b>금액</b></h5>
 				                <div class="col-sm-12">
 									<c:forEach items="${servList }" var="serv">
-										<span>${serv.s_price }원</span><br><br>
+										<span>${serv.s_price }원</span><br>
+										<c:if test="${pa_List != null }">
+											<br>
+										</c:if>
 									</c:forEach>
 				                </div>
 				            </div>

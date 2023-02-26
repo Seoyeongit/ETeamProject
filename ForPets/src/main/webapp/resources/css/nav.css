@@ -13,6 +13,12 @@ p {
   line-height: 1.75;
 }
 
+nav{
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none
+}
 
 @media (min-width: 768px) {
   section {

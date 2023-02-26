@@ -50,13 +50,13 @@ function choice_service(this_id) {
 	console.log("add : " + add);
 	console.log("check : " + check);
 	if(check) {
-		$("#"+id).css("background-color","white");
-		$("#"+id).css("color","#99cc99");
+		$("#"+id).css("background-color","#F5F5F5");
+		$("#"+id).css("color","black");
 		$(add).remove();
 		$(choice).attr('checked', false);
 	}
 	else {
-		$("#"+id).css("background-color","#99cc99");
+		$("#"+id).css("background-color","#8bda8b");
 		$("#"+id).css("color","white");
 		$(choice).attr('checked', true);
 		getPickupAddPopUp(add);
@@ -82,7 +82,7 @@ $(document).ready(function(){
                     	<ul class="navbar-nav">
                     		<li class="nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/normal">- 기본</a></span></li>
 	                    	<li class="nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/work">- 산책</a></span></li>
-    	                	<li class="nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/pickup">- 픽업</a></span></li>
+    	                	<li class="nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger active" href="${pageContext.request.contextPath}/Service/pickup">- 픽업</a></span></li>
                     	</ul>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/FindHospital/findHospital">근처 병원 찾기</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Tip/getTipList">팁 게시판</a></li>

@@ -21,8 +21,8 @@ body {
 }
 
 .filter-result .job-box {
-	-webkit-box-shadow: 0 0 35px 0 rgba(130, 130, 130, 0.2);
-	box-shadow: 0 0 35px 0 rgba(130, 130, 130, 0.2);
+	-webkit-box-shadow: 0 1px 3px 0 #dbdbdb;
+	box-shadow: 0 1px 3px 0 #dbdbdb;
 	border-radius: 10px;
 	padding: 10px 35px;
 }

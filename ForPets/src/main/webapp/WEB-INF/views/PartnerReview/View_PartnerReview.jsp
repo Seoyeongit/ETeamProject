@@ -47,6 +47,7 @@
 	}
 	
 	hr {
+
  	background: #d3d3d3;
     height: 1px;
     border: 0;
@@ -111,11 +112,70 @@
  
 	}
 
-	.btn:hover {
-	background-color: green;
-	color : white;
+=======
+ 	 background: #d3d3d3;
+	 height:1px;
+	 border: 0;
+	 padding-right: 100px; 
+	 padding-left: 100px;
+
 	}
 	
+	.title_area {
+		border:none; 
+		text-align:center; 
+		width:1000px; 
+		padding-right: 100px; 
+		padding-left: 100px; 
+		font-size: 2.5em; 
+		text-align: left;
+	}
+	
+	.text_area {
+		border:none; 
+		text-align:center; 
+		width:1000px; 
+		height:100px; 
+		padding-right: 100px; 
+		padding-left: 100px; 
+		font-size: 1.2em; 
+		text-align: left; 
+		resize: vertical; 
+		height: fit-content;
+	}
+	
+	.comment_area {
+		width: 100%;
+	    max-width: 1000px;
+	    min-height: 100%;
+	    margin: auto;
+	    padding-right: 100px;
+  		padding-left: 100px;
+	}
+	
+	.comment {
+		width: 100%;
+	    max-width: 1000px;
+	    min-height: 100%;
+	    margin: auto;
+	    padding-right: 100px;
+  		padding-left: 100px;
+	}
+	
+	.comment_board{
+		position: relative;
+	    height: 60px;
+    	width: 800px;
+    	resize: none;
+	}
+	
+	.btn {
+  	background-color: #19CE60;
+  	color : white;
+ 
+	}
+
+
 	.buttons {
 	text-align: center
 	}
@@ -131,6 +191,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
 </head>
+
 <body style="background-color: #f9f9f9;" >
 <br><br><br>
 
@@ -177,7 +238,9 @@
 	<br><br>
 	</div>
 
+
 	<br><br>
+
 
 		<%@ include file="/WEB-INF/views/footer.jsp" %>	
 				

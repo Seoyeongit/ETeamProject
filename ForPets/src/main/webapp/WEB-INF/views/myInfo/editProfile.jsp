@@ -4,7 +4,7 @@
 <head>
 <style>
 body {
-	padding-top : 20px;
+	padding-top : 80px;
 	margin-top: 20px;
 }
 </style>

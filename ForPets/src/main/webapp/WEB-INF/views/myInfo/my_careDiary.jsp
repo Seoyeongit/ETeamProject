@@ -17,8 +17,8 @@
 
     
     .filter-result .job-box {
-      -webkit-box-shadow: 0 0 35px 0 rgba(130, 130, 130, 0.2);
-              box-shadow: 0 0 35px 0 rgba(130, 130, 130, 0.2);
+      -webkit-box-shadow: 0 1px 3px 0 #dbdbdb;
+              box-shadow: 0 1px 3px 0 #dbdbdb;
       border-radius: 10px;
       padding: 10px 35px;
     }
@@ -73,12 +73,14 @@
       opacity: 0.75;
       border-bottom: 1px solid #ccc;
       padding: 10px 5px;
+          margin-right: 5px;
     }
     
     @media (min-width: 768px) {
       .job-content ul li {
         border-bottom: 0;
         padding: 0;
+            margin-right: 5px;
       }
     }
     

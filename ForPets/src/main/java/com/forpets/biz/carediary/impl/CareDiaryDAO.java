@@ -80,6 +80,7 @@ public class CareDiaryDAO {
 		vo.setComplete_day(listvo.getComplete_day());
 		vo.setComplete_time(listvo.getComplete_time());
 		vo.setVoR(listvo.getVoR());
+		vo.setBeauty_list(listvo.getBeauty_list());
 		
 		//중복된 리뷰넘버의 서로다른 서비스넘버를 리스트로 받아옵니다.
 		List<Integer> snumList = new ArrayList<Integer>();

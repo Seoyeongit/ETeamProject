@@ -15,6 +15,17 @@ public interface TipService {
 	
 	public TipVO getTip(TipVO vo);
 	
+	/*
 	public List<TipVO> getTipList(TipVO vo);
+	*/
+	
+	// 글 목록 조회
+	int getTotalPages(SearchCriteria cri);
+
+	// 글 목록 조회 with paging
+	List<TipVO> getTipListWithPaging(SearchCriteria cri);
+
+	// 글 목록 조회 with dynamic(search condition) paging
+	List<TipVO> getTipListWithDynamicPaging(SearchCriteria cri);
 	
 }

@@ -222,6 +222,9 @@ hr {
 	border-radius:6px;
 	border:1px solid rgb(128,128,128, 0.7);
 }
+.cid{
+	padding-left:10px;
+}
 .ctitle, .ccontent {
 	margin-left:62px;
 	width:56%;
@@ -250,4 +253,62 @@ hr {
 	background-color: rgba(255,255,255, 0.7);
 	border-radius:5px;
 	border:1px solid rgb(128,128,128, 0.7);
+}
+.search-i {
+	padding-left:30px;
+}
+.main-ban{
+	text-align:center;
+	padding-top:80px;
+	background-color:#8bda8b;
+	color:white;
+	height:240px;
+}
+select.li-sel{
+	margin-left:62px;
+	padding-left:10px;
+	width:5%;
+	height:38px;
+	border-radius:6px;
+	border:1px solid rgb(128,128,128, 0.7);
+}
+.sel-sear {
+	width:25%;
+	height:40px;
+	border-radius:6px;
+	border:1px solid rgb(128,128,128, 0.7);
+}
+.sel-btn {
+	width:4%;
+	height:38px;
+	color:black;
+	background-color:#white;
+	border-radius:6px;
+	border:1px solid rgb(128,128,128, 0.7);
+}
+.list-sel {
+	margin-right:23%;
+}
+.list-tb {
+	margin-top:50px;
+	width:60%;
+	margin-right:auto;
+	margin-left:auto;
+	text-align:center;
+	
+}
+.back-bt {
+	width:6%;
+	height:30px;
+	color:black;
+	background-color:#white;
+	border-radius:6px;
+	border:1px solid rgb(128,128,128, 0.7);
+}
+.back-bt{
+	margin-top:3%;
+	margin-left:71%;
+}
+.cust-hd {
+	margin-left:30%;
 }

@@ -159,10 +159,10 @@ var addr = ''; // 주소 변수
     }
     $('#edituserInfo').click(function(){
     	if(addr !== '' ){
-    	addr += ' ' + $("#address_input_3").val();
+    	addr += ' ' + $("#sample6_address").val();
+    	addr += ' ' + $("#sample6_detailAddress").val();
         $("#result_partAdd").val(addr);
     	}
-    	
     	
     	if($('input[name=part_pw]').val()!==$('input[id=pwChk]').val()){
     		alert("암호가 일치하지 않습니다 한번더 확인해주세요.");
@@ -183,7 +183,7 @@ var addr = ''; // 주소 변수
     		type : "POST",
     		success : function(result){
     			alert("회원정보수정 성공했습니다.")
-    			location.replace('../partner/partnerMain');								
+    			location.reload();								
 			},
 			error : function(result){
 				console.log(result);

@@ -29,8 +29,9 @@ public class CustomerController {
 	CustomerService custservice;
 	
 	@RequestMapping(value="/customerMain")
-	public String customer(CustomerVO vo, CustomerDAO dao, Model model) throws IOException {
-
+	public String customer(CustomerVO vo, CustomerDAO dao) throws IOException {
+		
+		
 		return "/customer/customer";
 	}
 	
@@ -73,14 +74,14 @@ public class CustomerController {
 		}
 		custservice.insertCustomer(vo);
 		
-		return "forward:/getCustomerList";
+		return "forward:/myCustBoard";
 	}
 	
 	@RequestMapping(value="/deleteCustomer")
 	public String deleteCustomer(CustomerVO vo,CustomerDAO dao)throws IOException {
 		
 		custservice.deleteCustomer(vo);
-		return "forward:/getCustomerList";
+		return "forward:/myCustBoard";
 	}
 	
 	@RequestMapping(value="/updateCustomer")
@@ -88,12 +89,20 @@ public class CustomerController {
 		vo.setCust_title(request.getParameter("title"));
 		vo.setCust_content(request.getParameter("content"));
 		custservice.updateCustomer(vo);
-		return "forward:/getCustomerList";
+		return "forward:/getCustomerBoardView";
+	}
+	
+	@RequestMapping(value="/getCustomerBoardView")
+	public String getCustomerBoardView(CustomerVO vo, CustomerDAO dao, HttpSession session) throws IOException {
+		session.getAttribute("cust_no");
+		session.setAttribute("customer", custservice.getCustomerBoardView(vo));
+		return "/customer/getCustomerBoardView";
 	}
 	
 	@RequestMapping(value="/getCustomerBoard")
-	public String getCustomerBoard(CustomerVO vo, CustomerDAO dao, Model model) throws IOException {
-		model.addAttribute("customer", custservice.getCustomerBoard(vo));
+	public String getCustomerBoard(CustomerVO vo, CustomerDAO dao, HttpSession session, HttpServletRequest request) throws IOException {
+		session.getAttribute("cust_no");
+		session.setAttribute("customer", custservice.getCustomerBoard(vo));
 		return "/customer/getCustomerBoard";
 	}
 	
@@ -106,12 +115,22 @@ public class CustomerController {
 			UserVO uvo = (UserVO) session.getAttribute("member");
 			vo.setUser_id(uvo.getUser_id());
 		}
-		model.addAttribute("myCustBoard", custservice.myCustBoard(vo));
+		session.setAttribute("myCustBoard", custservice.myCustBoard(vo));
 		return "/customer/myCustBoard";
 	}
 	
-	@RequestMapping(value="/customerBoard")
-	public String customerBoard(CustomerVO vo, CustomerDAO dao) throws IOException {
+	@RequestMapping(value="/customerBoard.do")
+	public String customerBoard(CustomerVO vo, CustomerDAO dao, HttpSession session) throws IOException {
+		if(session.getAttribute("member") != null) {
+			UserVO uvo = (UserVO) session.getAttribute("member");
+			vo.setUser_id(uvo.getUser_id());
+			session.setAttribute("customer", vo);
+		}
+		if(session.getAttribute("partners") != null) {
+			PartnerVO pvo = (PartnerVO) session.getAttribute("partners");
+			vo.setPart_id(pvo.getPart_id());
+			session.setAttribute("customer", vo);
+		}
 		return "customer/insertCustomer";
 	}
 	

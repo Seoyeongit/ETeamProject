@@ -52,6 +52,9 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDAO.myCustBoard(vo);
 	}
 
-
+	@Override
+	public CustomerVO getCustomerBoardView(CustomerVO vo) {
+		return customerDAO.getCustomerBoardView(vo);
+	}
 
 }

@@ -25,5 +25,7 @@ public interface CustomerService {
 	
 	// 내 문의 내역 보기
 	public List<CustomerVO> myCustBoard(CustomerVO vo);
+
+	public CustomerVO getCustomerBoardView(CustomerVO vo);
 	
 }

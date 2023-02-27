@@ -63,7 +63,8 @@ public class PartnerController {
 	}
 	
 	@RequestMapping(value="/partner/modifyyy", method = RequestMethod.POST)
-	public String updatePartner(PartnerVO vo, PartnerDAO dao, HttpServletRequest request) throws IOException{
+	@ResponseBody
+	public void updatePartner(PartnerVO vo, PartnerDAO dao, HttpServletRequest request) throws IOException{
 		
 			vo.setPart_pw(request.getParameter("part_pw"));
 			vo.setPart_nick(request.getParameter("part_nick"));
@@ -72,7 +73,15 @@ public class PartnerController {
 			vo.setSelf_infor(request.getParameter("self_infor"));
 			partnerService.updatePartner(vo);
 			
-			return "redirect:/partner/partnerMain";
+			HttpSession session = request.getSession(false);
+			
+			//1.session이 있고 + 2.session정보가 있으면 
+			if(session != null && session.getAttribute("partners") != null) { 
+			//updateform에있는 정보를 받아와 수정한다.
+				partnerService.updatePartner(vo);
+				session.setAttribute("partners", partnerService.partnerGet(vo));
+			}
+
 		}
 	
 	@RequestMapping(value="/partner/login",method = RequestMethod.GET)

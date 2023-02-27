@@ -15,7 +15,7 @@ public class CustomerDAO {
 	private JdbcTemplate jdbcTemplate;
 	
 	private final String GET_CUSTOMER = "select * from CUSTOMER WHERE CUST_NO = ?";
-	private final String MYCUSTOMER_BOARD = "select * from CUSTOMER where USER_ID and PART_ID =";
+	private final String MYCUSTOMER_BOARD = "select * from CUSTOMER where USER_ID=? or PART_ID =?";
 	private final String CUSTOMER_LIST = "select * from CUSTOMER order by CUST_NO DESC ";
 	private final String CUSTOMER_LIST_T = "select * from CUSTOMER where cust_title like ";
 	private final String CUSTOMER_LIST_C = "select * from CUSTOMER where cust_content like ";
@@ -87,7 +87,12 @@ public class CustomerDAO {
 	
 	public CustomerVO getCustomerBoard(CustomerVO vo) {
 		Object[] orgs = {vo.getCust_no() };
-		return jdbcTemplate.queryForObject(GET_CUSTOMER,orgs, new CustomerRowMapper());
+		return jdbcTemplate.queryForObject(GET_CUSTOMER, orgs, new CustomerRowMapper());
+	}
+	
+	public CustomerVO getCustomerBoardView(CustomerVO vo) {
+		Object[] orgs = {vo.getCust_no() };
+		return jdbcTemplate.queryForObject(GET_CUSTOMER, orgs, new CustomerRowMapper());
 	}
 	
 	public List<CustomerVO> myCustBoard(CustomerVO vo) {

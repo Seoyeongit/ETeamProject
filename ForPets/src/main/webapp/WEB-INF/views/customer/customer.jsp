@@ -19,7 +19,7 @@
 		<div class="mainBanner">
 		<h2 class="mainText">ForPets 고객센터</h2>
 			<div class="top-search-form">도움말 검색&nbsp;
-				<i class="element-svg icon-search size-24"></i>
+				<i class="fas fa-search"></i>
 				<input type="text" class="element-input" id="searchKey" placeholder="검색어를 입력하세요." data-game="2017090003">
 			</div>
 		</div>

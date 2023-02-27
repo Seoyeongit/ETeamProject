@@ -9,6 +9,7 @@
 <jsp:include page="../favicon.jsp"></jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
+<script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/Tip/tip.css" rel="stylesheet" />
 <style>
 	#main_content {
@@ -31,6 +32,45 @@
 	}
 	.footer {
 		text-align : center; !important;
+	}
+	.pagination-forpets {
+		display: flex;
+		padding-left: 0;
+		list-style: none;
+	}
+	.page-link-forpets {
+		font-weight:bold;
+		text-decoration: none;
+		color: #8bda8b;
+		background-color: white;
+		border: 1px solid #8bda8b;
+		padding : 0.375rem 0.75rem
+	}
+	.page-item-forpets.active .page-link-forpets {
+		z-index: 1;
+		color: white;
+		font-weight:bold;
+		background-color: #8bda8b;
+		border-color: #8bda8b;
+	 
+	}
+	.page-link-forpets:focus, .page-link-forpets:hover {
+		color: #8bda8b;
+		background-color: white;
+		border-color: #8bda8b;
+	}
+	.page-item-forpets:first-child .page-link-forpets {
+		border-top-left-radius: 0.25rem;
+		border-bottom-left-radius: 0.25rem;
+	}
+	
+	.page-item-forpets:not(:first-child) .page-link-forpets {
+		margin-left: -1px;
+	}
+	
+	.page-item-forpets:last-child .page-link-forpets {
+		border-top-right-radius: 0.25rem;
+		border-bottom-right-radius: 0.25rem;
 	}
 </style>
 </head>
@@ -96,6 +136,34 @@
 									</div>
 								</c:when>
 							</c:choose>
+							
+							<!-- paging -->
+							<div class="text-center">
+								<ul class="pagination-forpets justify-content-center">
+									<c:if test="${pageMaker.prev}">
+										<li class="page-item-forpets paginate_button previous">
+											<a class=" page-link-forpets" href="${pageMaker.startPage -1}">Previous</a>
+										</li>
+									</c:if>
+									<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num" >
+										<li class="page-item-forpets paginate_button ${pageMaker.cri.pageNum == num ? "active":""} ">
+											<a class=" page-link-forpets" href="${num}">${num}</a>
+										</li>
+									</c:forEach>
+									<c:if test="${pageMaker.next}">
+										<li class="page-item-forpets paginate_button next">
+											<a class=" page-link-forpets" href="${pageMaker.endPage +1 }">Next</a>
+										</li>
+									</c:if>
+								</ul>
+							</div>
+							<form id='pageForm' action="getTipList" method="get">
+								<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+								<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+							
+								<input type='hidden' name='searchCondition' value='<c:out value="${ pageMaker.cri.searchCondition }"/>'> 
+								<input type='hidden' name='searchKeyword'	value='<c:out value="${ pageMaker.cri.searchKeyword }"/>'>
+							</form>
 						</div>
 					</div>
 				</section>
@@ -104,5 +172,16 @@
 	<div id="footer_div" style="background-color : white;">
 		<jsp:include page="../footer.jsp" />
 	</div>
+<script>
+	$(function(){
+		$(".paginate_button a").on("click",
+			function(e) {
+				e.preventDefault();
+				$("#pageForm").find("input[name='pageNum']").val($(this).attr("href"));
+				$("#pageForm").submit();
+			}
+		);
+	});
+</script>
 </body>
 </html>

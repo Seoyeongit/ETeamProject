@@ -9,14 +9,14 @@
 <meta charset="UTF-8">
  <jsp:include page="/WEB-INF/views/nav.jsp"/>
   <style>
-  .background {
+	.background {
   	width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #F7F8FA;
-  }
+    }
+
   
   .box {
   	width: 1000px;
@@ -27,7 +27,7 @@
     box-shadow: 0px 0px 12px 0px rgb(0 0 0 / 7%);
     position: relative;
     align-items: center;
-    margin-top: 75px;
+    margin-top: 20px;
     background-color: white;
   }
   
@@ -80,7 +80,9 @@
 <title>포펫츠 펫트너즈</title>
 
 </head>
-<body>
+
+<body style= "background: #f9f9f9;">
+<div class="background">
 
 <br><br><br><br>
 	<h1 style="text-align: center;">포펫츠의 펫트너즈를 소개합니다!</h1>
@@ -101,7 +103,7 @@
             </div>
         </nav> --%>
 
-        <div class="background">
+       
       
        	  <c:forEach items="${prList }" var="pl">
         	<div class="box">
@@ -119,7 +121,11 @@
 				</div>
 				
 			</c:forEach>
-		</div>
+	</div>
+		 
+		<br><br>
+		
+		<%@ include file="/WEB-INF/views/footer.jsp" %>	
 				
 </body>
 </html>

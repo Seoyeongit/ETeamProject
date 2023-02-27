@@ -21,7 +21,7 @@
 
     <div>
         <h4>미용 받은 내역</h4>
-        <div>${careDIA}</div>
+        <div>${careDIA.beauty_list}</div>
     </div>
 
     <div>

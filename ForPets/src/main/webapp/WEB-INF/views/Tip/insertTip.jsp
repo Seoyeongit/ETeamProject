@@ -68,13 +68,13 @@
 					            	</div>
 					            </div>
 					            <div class="col-sm-12 pb-1">
-					            <h5><b>동영상 URL</b></h5>
+					            	<h5><b>동영상 URL</b></h5>
 					            	<div class="col-sm-12">
 					                	<input type="text" name="tip_video" placeholder="동영상 URL" class="form-control">
 					            	</div>
 					            </div>
 					            <div class="col-sm-12 pb-1">
-					            <h5><b>내용</b></h5>
+					            	<h5><b>내용</b></h5>
 					            	<div class="col-sm-12">
 					                	<textarea name="tip_content" class="form-control col-sm-12" rows="10" style="resize:none;"></textarea>
 					            	</div>
@@ -83,7 +83,10 @@
 							
 							<hr>
 							<div class="col-12">
-								<input type="submit" value="새글 등록" style="float:right;">
+								<div class="col-sm-3 flex-fill" style="float:right;">
+									<input type="submit" class="form-control btn" 
+									style="background-color:#8bda8b; color:white;" value="새 글 등록">
+								</div>
 							</div>
 						</form>
 					</div>

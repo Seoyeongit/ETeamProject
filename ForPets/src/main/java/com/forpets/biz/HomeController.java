@@ -28,6 +28,12 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value ="/rofstep")
+	public String AdminLogin(HttpServletRequest request) {
+		request.getSession(false);
+		return "adminLogin";
+	}
+	
 //	@RequestMapping(value = "/", method = RequestMethod.GET)
 //	public String home(HttpServletRequest request) {
 //		request.getSession(false);

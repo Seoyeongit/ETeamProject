@@ -151,6 +151,14 @@ textarea{
 	outline: 4px solid #19CE60;
 }
 
+.modal-backdrop{
+	 --bs-backdrop-opacity: 0.1;
+}
+
+.modal-footer{
+	border-top: none;
+}
+
 
 </style>
 </head>

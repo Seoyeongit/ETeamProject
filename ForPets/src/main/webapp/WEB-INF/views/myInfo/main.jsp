@@ -5,8 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <link
 	href="${pageContext.request.contextPath}/resources/css/myInfo_main.css"
@@ -146,6 +144,7 @@ a input[id=register_wark] {
 			$.ajax({
 				url : location.pathname,
 				success : function(data) {
+					$(".right-profile-card").addClass("card");
 					//가져온 데이터를 현재 페이지에 업데이트합니다.
 					$("#my-message-sibal").html(data);
 				}
@@ -196,6 +195,10 @@ a input[id=register_wark] {
 				}
 			});
 		});
+		
+
+		
+		
 
 		//돌봄일지 페이지로 넘어갑니다.
 		$('#check-user-careDiary').click(function() {
@@ -233,6 +236,7 @@ a input[id=register_wark] {
 					diary_id : diary_id
 				},
 				success : function(data) {
+					$(".right-profile-card").removeClass("card");
 					window.history.pushState({}, '', newUrl);
 					$("#my-message-sibal").html(data);
 				},
@@ -264,10 +268,7 @@ a input[id=register_wark] {
 
 		});
 		
-		
-		
-		
-		
+
 		
 		//산책경로수정페이지가 popup창으로 열립니다.
 		$("#register_wark").click(function() {

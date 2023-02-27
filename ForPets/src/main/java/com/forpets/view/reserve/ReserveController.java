@@ -2,6 +2,7 @@ package com.forpets.view.reserve;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -43,11 +44,16 @@ public class ReserveController {
 		UserVO SessionVO = (UserVO) session.getAttribute("member");
 		vo.setUser_id(SessionVO.getUser_id());
 		
+		HashMap<String, Integer> state = new HashMap<String, Integer>();
+		
+		state.put("reserveCnt", reserveService.selectCount(vo));
+		state.put("BeforeCnt", reserveService.selectBeforeCount(vo));
+		state.put("IngCnt", reserveService.selectIngCount(vo));
+		state.put("CpleteCnt", reserveService.selectCompleteCount(vo));
+		
 		try {
-			model.addAttribute("resultCnt", reserveService.selectCount(vo));
-			model.addAttribute("resultCP", reserveService.selectCompleteCount(vo));
 			model.addAttribute("reserveList", reserveService.getReserveList(vo));
-			model.addAttribute("resultR", reviewService.countReview(vo) );
+			model.addAttribute("state", state);
 			
 			
 		} catch (Exception e) {
@@ -77,14 +83,8 @@ public class ReserveController {
 	@RequestMapping(value="/Service/choice")
 	public String choice(UserVO vo, HttpSession session) {
 		System.out.println("---> choice 실행");
-		if(session.getAttribute("member") == null) {
-			System.out.println("---> choice 완료, login 이동");
-			return "member/login";
-		}
-		else {
-			System.out.println("---> choice 완료, choice 이동");
-			return "Service/choice";
-		}
+		System.out.println("---> choice 완료, choice 이동");
+		return "Service/choice";
 		
 	}
 	
@@ -93,7 +93,7 @@ public class ReserveController {
 		System.out.println("---> normal 실행");
 		if(session.getAttribute("member") == null) {
 			System.out.println("---> normal 완료, login 이동");
-			return "member/login";
+			return "member/loginMain";
 		}
 		else {
 			System.out.println("---> normal 완료, normal 이동");
@@ -107,7 +107,7 @@ public class ReserveController {
 		System.out.println("---> work 실행");
 		if(session.getAttribute("member") == null) {
 			System.out.println("---> work 완료, login 이동");
-			return "member/login";
+			return "member/loginMain";
 		}
 		else {
 			System.out.println("---> work 완료, work 이동");
@@ -121,7 +121,7 @@ public class ReserveController {
 		System.out.println("---> pickup 실행");
 		if(session.getAttribute("member") == null) {
 			System.out.println("---> pickup 완료, login 이동");
-			return "member/login";
+			return "member/loginMain";
 		}
 		else {
 			System.out.println("---> pickup 완료, pickup 이동");

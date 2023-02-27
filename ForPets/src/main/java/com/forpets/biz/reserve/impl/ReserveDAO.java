@@ -27,7 +27,7 @@ public class ReserveDAO {
 			"AND reserve.USER_ID=? " + 
 			"AND reserve_num=?";
 	
-	private final String RESERVE_LIST = "SELECT * FROM RESERVE,PARTNERS,USER_PET WHERE RESERVE.PART_ID= PARTNERS.PART_ID and reserve.pet_id = user_pet.pet_id AND reserve.USER_ID=? ORDER BY RESERVE.STATUS, RE_SEQ asc";
+	private String RESERVE_LIST = "SELECT * FROM RESERVE,PARTNERS,USER_PET WHERE RESERVE.PART_ID= PARTNERS.PART_ID and reserve.pet_id = user_pet.pet_id AND reserve.USER_ID=?";
 	private final String RESERVE_COMPLETELIST = "select reserve.*, partners.part_name, user_pet.pet_name " + 
 			"from reserve " + 
 			"join partners on reserve.part_id = partners.part_id " + 
@@ -38,8 +38,13 @@ public class ReserveDAO {
 			"and reserve.status = '3' " + 
 			"ORDER BY reserve.reserve_num DESC";
 	private final String GET_PETNAME = "select user_pet.pet_name from reserve,user_pet where reserve.pet_id = user_pet.pet_id;";
-	private final String COUNT_RESERVE = "select count(*) from reserve,users where reserve.user_id = users.user_id and reserve.status in(1,2) and reserve.user_id=?";
-	private final String COUNT_COMPLETE_RESERVE = "select count(distinct reserve.reserve_num) from reserve,users where reserve.user_id = users.user_id and reserve.status=3 and reserve.user_id=?";
+	
+	
+	private final String COUNT_RESERVE = "select count(distinct reserve_num) from reserve where user_id = ?";
+	private final String COUNT_COMPLETE_RESERVE = "select count(distinct reserve_num) from reserve where user_id = ? and status = 3";
+	private final String COUNT_ING_RESERVE = "select count(distinct reserve_num) from reserve where user_id = ? and status = 2";
+	private final String COUNT_BEFORE_RESERVE = "select count(distinct reserve_num) from reserve where user_id = ? and status = 1";
+	
 	//230217 정영현
 	private final String GETRESERVE_LIST = "select * from reserve where part_id=?";
 	private final String GETRESERVE_LISTCAREBEFORE = "select * from reserve where part_id=? and status=1";
@@ -99,8 +104,22 @@ public class ReserveDAO {
 	public List<ReServeVO> getReserveList(ReServeVO vo){
 		System.out.println("---> jdbcTemplate로 getReserveList() 기능 처리");
 		
-		Object[] orgs = {vo.getUser_id()};		
-		List<ReServeVO> list =  jdbcTemplate.query(RESERVE_LIST,orgs,new RserveRowMapper_2());
+		Object[] orgs = null;
+		
+		if(vo.getStatus()!=0) {
+			RESERVE_LIST += "AND RESERVE.STATUS=? ORDER BY RESERVE.STATUS, RE_SEQ asc";
+			orgs = new Object[2];
+			orgs[0]= vo.getUser_id();
+			orgs[1]= vo.getStatus();		
+		}else {
+			RESERVE_LIST += "ORDER BY RESERVE.STATUS, RE_SEQ asc";
+			orgs = new Object[1];
+			orgs[0]= vo.getUser_id();	
+		}
+		
+		System.out.println(orgs[0].toString());
+
+		List<ReServeVO> list = jdbcTemplate.query(RESERVE_LIST,orgs,new RserveRowMapper_2());
 		List<ReServeVO> newList = new ArrayList<ReServeVO>();
 		String number = "";
 		
@@ -116,6 +135,8 @@ public class ReserveDAO {
 			number = rvo.getReserve_num();
 			newList.add(rvo);
 		}
+		
+		RESERVE_LIST = "SELECT * FROM RESERVE,PARTNERS,USER_PET WHERE RESERVE.PART_ID= PARTNERS.PART_ID and reserve.pet_id = user_pet.pet_id AND reserve.USER_ID=?";
 
 		return newList;
 		
@@ -156,6 +177,20 @@ public class ReserveDAO {
 		int result = 0;
 		Object[] obj = {vo.getUser_id()};
 		result = jdbcTemplate.queryForObject(COUNT_RESERVE,obj, Integer.class);
+		return result;
+	}
+	
+	public int selectIngCount(ReServeVO vo) {
+		int result = 0;
+		Object[] obj = {vo.getUser_id()};
+		result = jdbcTemplate.queryForObject(COUNT_ING_RESERVE,obj, Integer.class);
+		return result;
+	}
+	
+	public int selectBeforeCount(ReServeVO vo) {
+		int result = 0;
+		Object[] obj = {vo.getUser_id()};
+		result = jdbcTemplate.queryForObject(COUNT_BEFORE_RESERVE,obj, Integer.class);
 		return result;
 	}
 	

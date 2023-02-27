@@ -37,6 +37,7 @@ public class AdminController {
 
 		if (admService.getAdmin(vo) != null) {
 			session.setAttribute("admin", admService.getAdmin(vo));
+			session.setAttribute("role", "admin");
 			System.out.println("로그인 후 mgmt로 이동");
 			return "/Admin/mgmt";
 		} else {

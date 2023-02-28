@@ -19,7 +19,7 @@
 </head>
 <!-- Sidebar-->
 <div class="border-end bg-white" id="sidebar-wrapper">
-	<div class="sidebar-heading border-bottom bg-light">
+	<div class="sidebar-heading border-bottom bg-white">
 		<img
 			src="${pageContext.request.contextPath}/resources/assets/img/logo_gr.png"
 			width="120" style="margin-bottom: 1px" alt="..." /> 관리자

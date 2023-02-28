@@ -45,13 +45,13 @@
     transition: .2s ease-in;
 }
 
-	.btn {
+	.btn1 {
   	background-color: #19CE60;
   	color : white;
  
 }
 
-	.btn:hover {
+	.btn1:hover {
 	background-color: green;
 	color : white;
 	}
@@ -99,6 +99,7 @@
           </c:forEach>
         </div>
   	</form>
-
+  	
+<%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

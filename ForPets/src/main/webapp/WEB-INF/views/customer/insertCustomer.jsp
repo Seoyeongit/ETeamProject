@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+        <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +19,16 @@
 		height:36px;
 		border-radius:6px;
 		border:1px solid rgb(128,128,128, 0.7);
-	}
+		}
+		.cid{
+			padding-left:14px;
+		}
+		.ctitle{
+			padding-left:14px;
+		}
+		.ccontent{
+			padding-left:14px;
+		}
 	</style>
 </head>
 <body>
@@ -26,26 +36,20 @@
 	<fieldset>
 		<div class="mainBanner">
 		<h2 class="mainText">ForPets 고객센터</h2>
-			<div class="top-search-form">도움말 검색&nbsp;
-				<i class="element-svg icon-search size-24"></i>
+			<div class="top-search-form">도움말 검색&nbsp;<i class="fas fa-search"></i>
 				<input type="text" class="element-input" id="searchKey" placeholder="검색어를 입력하세요." data-game="2017090003">
 			</div>
 		</div>
 	</fieldset>
 	<br>
+	<form action="insertCustomer.do" method="post">
 	<div class="main-tb">
 		<h4 class="ins-ins">문의 글 쓰기</h4>
 		<hr class="insert-line"/>
 		<div class="tb-ins">
-			<div class="tb-ins-id">아이디<input type="text" class="cid" name="cid" value="
-				<c:choose>
-		             <c:when test="${customer.user_id == ' '}">
-		                 <div>${customer.part_id }</div>
-		             </c:when>
-		             <c:otherwise>
-		                 <div>${customer.user_id }</div>
-		             </c:otherwise>
-		         </c:choose>"/></div>
+			<div class="tb-ins-id">아이디<input type="text" class="cid" name="cid" 
+			value="<c:choose><c:when test="${customer.part_id ne null}">${customer.part_id }</c:when><c:otherwise>${customer.user_id }</c:otherwise></c:choose>" readonly/>
+			</div>
 			<div><hr/></div>
 			<div class="tb-ins-sel">문의 유형<select class="select">
 				<option value="service">서비스</option>
@@ -59,10 +63,11 @@
 		</div>
 		<hr/>
 		<div>
-		<button type="submit" class="check-in" id="cheke" onclick="location.href='insertCustomer.do';">확인</button>
+		<button type="submit" class="check-in" id="cheke">확인</button>
 		<button type="button" class="cancle-out" onclick="location.href='customerMain.do';">취소</button>
 		</div>
 	</div>
+	</form>
 	<br>
 </body>
 </html>

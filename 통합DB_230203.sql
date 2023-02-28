@@ -1073,4 +1073,6 @@ UPDATE PARTNERS SET PART_PW='bpb222', PART_NICK='파트너222', PART_ADD='?', PA
 
 SELECT * FROM RESERVE where part_id='bpb222';
 
+select * from partners;
+
 select*from customer;

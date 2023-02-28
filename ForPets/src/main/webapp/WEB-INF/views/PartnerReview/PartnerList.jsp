@@ -9,14 +9,14 @@
 <meta charset="UTF-8">
  <jsp:include page="/WEB-INF/views/nav.jsp"/>
   <style>
-  .background {
+	.background {
   	width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #F7F8FA;
-  }
+    }
+
   
   .box {
   	width: 1000px;
@@ -80,8 +80,10 @@
 <title>포펫츠 펫트너즈</title>
 
 </head>
-<body>
- <div class="background">
+
+<body style= "background: #f9f9f9;">
+<div class="background">
+
 <br><br><br><br>
 	<h1 style="text-align: center;">포펫츠의 펫트너즈를 소개합니다!</h1>
 	<h5 style="text-align: center;">원하는 펫트너즈를 클릭하면 리뷰보기로 이동합니다!</h5>
@@ -119,7 +121,11 @@
 				</div>
 				
 			</c:forEach>
-		</div>
+	</div>
+		 
+		<br><br>
+		
+		<%@ include file="/WEB-INF/views/footer.jsp" %>	
 				
 </body>
 </html>

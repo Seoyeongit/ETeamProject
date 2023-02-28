@@ -90,7 +90,8 @@
 			</div>
 		</div>
 	</fieldset>
-	<form action="updateCustomer.do" method="post">
+	<form action="updateCustomer" method="post">
+			<input type="hidden" value="${customer.cust_no}" name="cust_no">
 			<h4 class="head-tit"><b>문의 상세보기</b></h4>
 			<hr class="get-cus-line">
 			<input type="text" class="get-tit" name="title" value="${ customer.cust_title}"/>

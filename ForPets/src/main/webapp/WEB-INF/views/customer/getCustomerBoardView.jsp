@@ -59,7 +59,7 @@ div.get-con {
 	margin-left:305px;
 }
 .cust-lis{
-	margin-left:47.3%;
+	margin-left:51%;
 	margin-bottom:5%;
 }
 .cust-upd, .cust-del{
@@ -99,9 +99,22 @@ div.get-con {
 			<hr class="con-line">
 			<div class="get-con" id="content">${ customer.cust_content}</div>
 			<hr class="foot-line">
-		<input type="submit" class="cust-upd" value="수정" />
-		<input type="button" class="cust-del" onclick="location.href='deleteCustomer?cust_no=${ customer.cust_no }';" value="삭제"/>
+		
+		<input type="button" class="cust-upd cust-del" onclick="location.href='deleteCustomer?cust_no=${ customer.cust_no }';" value="삭제"/>
 		<input type="button" class="cust-lis" onclick="location.href='myCustBoard';" value="목록"/>
 		</form>
+			<div class="">${ customerRe.cust_content }</div>
+		<c:choose>
+			<c:when test="${role eq 'admin' }">
+				<div class="comment">
+					<form action="insertCustomerRe" method="post">
+						<input type="hidden" name="cust_no" value="${customer.cust_no }">
+						<input type="hidden" name="admin">
+						<input type="text" class="Re-box" name="content" placeholder="댓글을 입력해 주세요."/>
+						<input type="submit" value="댓글 작성하기" class="btn" style="background-color:#19CE60; color:white; float:right;">
+					</form>
+				</div>
+			</c:when>
+		</c:choose>
 </body>
 </html>

@@ -7,29 +7,28 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="${pageContext.request.contextPath}/resources/css/customer.css" rel="stylesheet" />
 <title>고객센터 문의 목록</title>
 </head>
 <body>
-<center>
-<h1>고객센터 문의 목록</h1>
-<hr>
+<%@ include file="/WEB-INF/views/nav.jsp" %>
+<div class="main-ban">
+<h2>고객센터 문의 목록</h2>
+</div>
 <br>
-
 <form action="getCustomerList" method="post">
-		<table border="1" cellpadding="0" cellspacing="0" width="700">
-			<tr>
-				<td align="right">
-					<select name="searchCondition">
-							<option value="TITLE">제목</option>
-							<option value="CONTENT">내용</option>
-					</select>
-					<input name="searchKeyword" type="text" />
-					<input  type="submit" value="검색" />
-				</td>
-			</tr>
-		</table>
+		<div>
+			<div class="list-sel" align="right">
+				<select class="li-sel" name="searchCondition">
+						<option value="TITLE">제목</option>
+						<option value="CONTENT">내용</option>
+				</select>
+				<input class="sel-sear" name="searchKeyword" type="text" />
+				<input class="sel-btn" type="submit" value="검색" />
+			</div>
+		</div>
 		</form>
-	<table>
+		<table class="list-tb">
 			<tr>
 				<th>번호</th>
 				<th>제목</th>
@@ -57,7 +56,6 @@
 			<tr>
 			</tr>
 		</table>
-		<a href="customer.do">뒤로가기</a>
-</center>
+		<button class="back-bt" type="button" onclick="location.href='customerMain';">뒤로가기</button>
 </body>
 </html>

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
+<head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -10,8 +10,8 @@
         <title>파트너 페이지</title>
         <style>
 		.footer {
- 		 text-align: center;
- 		 }
+		text-align : center; !important;
+		}
 		</style>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
@@ -22,8 +22,8 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="${pageContext.request.contextPath}/resources/css/partner.css" rel="stylesheet" />
         <script src="${pageContext.request.contextPath}/resources/js/partner_page.js"></script>
-    </head>
-    <body id="page-top">
+</head>
+<body id="page-top">
     	<%@ include file="/WEB-INF/views/nav.jsp" %>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav">
@@ -55,10 +55,11 @@
             </section>
             <hr class="m-0" />
             <!-- Experience-->
-            
         </div>
-        <%@ include file="/WEB-INF/views/footer.jsp" %>
+        <div id="footer_div" style="background-color : white;">
+		<jsp:include page="../footer.jsp" />
+		</div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
+</body>
 </html>

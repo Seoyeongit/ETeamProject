@@ -21,5 +21,32 @@ public class UserServiceImpl implements UserService {
 	public void updateUser(UserVO vo) {
 		userDAO.updateUser(vo);
 	}
+	
+	@Override
+	public void changePw(UserVO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void deleteUser(UserVO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	@Override
+	public void saveUser(UserVO vo) {
+		userDAO.saveUser(vo);
+	}
+	
+	//회원검색(ID)
+	@Override
+	public UserVO getUserById(UserVO vo) {
+		return userDAO.getUserById(vo);
+	}
+	
+	
+	
 
 }

@@ -1,0 +1,214 @@
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
+body {
+	font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+	height: 100%;
+	background-color: #f5f6f8;
+}
+
+#join-form{
+	padding-bottom: 60px
+}
+
+.join-form-wrap{
+	padding-top:40px;
+}
+
+.join-form-wrap a{
+	display: block;
+    box-sizing: border-box;
+    padding: 50px 0 50px 0;
+}
+
+.join-form-wrap  a img{
+	margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#form-body {
+	position: relative;
+	width: 500px;
+	padding: 0 29px 0 29px ;
+	margin-bottom: 10px;
+	background-color : #fff;
+	box-sizing: border-box;
+	margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #ddd;
+}
+
+.form-title{
+	position: relative;
+}
+
+.form-title .subTx{
+	position: absolute;
+	right: 0px;
+	top : -7px;
+	font-size: 13px;
+	color : #afb0b2;
+	
+}
+
+.form-title .subTx strong{
+	font-size: 16px;
+	color : #ff3333;
+}
+
+
+.int-area {
+	position: relative;
+	margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.int-area .col_1 i{
+	color : #ff3333;
+}
+
+
+.col_1{
+	z-index: 10;
+    position: absolute;
+    left: 12px;
+    top: 19px;
+    transition: all 0.2s ease-out;
+}
+
+.int-area .col_1 label {
+    color: #afb0b2;
+    font-size: 17px;
+    transition: all 0.2s ease-out;
+}
+
+.int-area .col_1.focus{
+	top: 3px;
+}
+
+.int-area .col_1.focus label{
+	font-size: 13px;
+}
+
+.int-area .col_2 {
+	position:relative;
+	width: 100%;
+	height: 62px;
+	padding: 0 12px;
+	box-sizing: border-box;
+	border: 1px solid #ddd;
+}
+
+.int-area .col_2.focus input{
+	padding-top: 10px;
+	
+}
+
+.int-area .col_2 #check-id, .int-area .col_2 #phoneChk, .int-area .col_2 #phoneChk2{
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 150px;
+	height: 100%;
+	border : 0;
+	border-left: 1px solid #ddd;
+	background-color: #f2f4f7;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+
+.int-area input[type=text], .int-area input[type=password]{
+	display: block;
+	width: 100%;
+	height: 60px;
+	border: 0;
+	outline: 0;
+	box-sizing: border-box;
+	font-size: 16px;
+	color: #333;
+	background: transparent;
+}
+
+.int-area:first-child {
+	margin-top: 0;
+}
+
+#form-bottom{
+	position: relative;
+	width: 500px;
+	background-color : #fff;
+	box-sizing: border-box;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+#form-body hr{
+	border-color: #EAEDEF;
+}
+
+#form-body .caption div{
+	margin-bottom: 15px;
+}
+
+#form-body .caption .allChkBtn label{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.btn-area{
+	margin-top: 20px;
+}
+
+.btn-area button.default {
+	width: 100%;
+	height: 50px;
+	background-color: rgba(35, 23, 1, .6);
+	color: #fff;
+	font-size: 20px;
+	border: none;
+	border-radius: 15px;
+	cursor: pointer;
+}
+
+.btn-area button.facebook {
+	width: 100%;
+	height: 50px;
+	background-color: #8bda8b;
+	color: #fff;
+	font-size: 20px;
+	border: none;
+	border-radius: 15px;
+	cursor: pointer;
+}
+
+.caption {
+	margin-top: 20px;
+}
+
+.caption a, div {
+	font-size: 15px;
+	color: green;
+	text-decoration: none;
+}
+
+.int-area .point{
+	display: inline-block;
+}
+
+.int-area span{
+	display: block;
+	font-size: 12px;
+}
+
+.css-1voj95g {
+	margin-top : 10px;
+    font-size: 14px;
+    line-height: 18px;
+    color: rgb(255, 119, 119);
+}
+
+._2Zb2k {
+    border: 1px solid #f77 !important;
+}

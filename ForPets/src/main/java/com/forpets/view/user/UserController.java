@@ -4,11 +4,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.forpets.biz.user.UserService;
 import com.forpets.biz.user.UserVO;
@@ -86,9 +91,53 @@ public class UserController {
 	}
 	
 	//회원가입페이지를 VIEW합니다.
-	@RequestMapping(value="/member/join")
+	@GetMapping(value="/member/join")
 	public String viewSignUp() {
 		return "member/join";
 	}
+	
+	//회원가입
+	@PostMapping(value="/member/join")
+	public String join(UserVO vo) {
+		userService.saveUser(vo);
+		return "member/loginMain";
+	}
+	
+	//아이디 중복 체크
+	@PostMapping(value="/member/checkId")
+	public @ResponseBody Object checkId(@RequestBody UserVO vo) {
+		UserVO existUser;
+		
+		try {
+			existUser = userService.getUserById(vo);
+			if(existUser == null) {
+				return 0;
+			}else {
+				return 1;
+			}
+		}catch(EmptyResultDataAccessException e) {
+			return 0;
+		}catch (Exception e) {
+			return 9;
+		}
+	}
+	
+	
+//    /**
+//     * 단일 메시지 발송 예제
+//     */
+//    @PostMapping("/send-one")
+//    public SingleMessageSentResponse sendOne() {
+//        Message message = new Message();
+//        // 발신번호 및 수신번호는 반드시 01012345678 형태로 입력되어야 합니다.
+//        message.setFrom("07045714043");
+//        message.setTo("수신번호 입력");
+//        message.setText("한글 45자, 영자 90자 이하 입력되면 자동으로 SMS타입의 메시지가 추가됩니다.");
+//
+//        SingleMessageSentResponse response = this.messageService.sendOne(new SingleMessageSendingRequest(message));
+//        System.out.println(response);
+//
+//        return response;
+//    }
 	
 }

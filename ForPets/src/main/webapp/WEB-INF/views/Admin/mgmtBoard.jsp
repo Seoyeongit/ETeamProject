@@ -17,7 +17,7 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link
-	href="${pageContext.request.contextPath}/resources/css/admin/mgmtBoard.css?after"
+	href="${pageContext.request.contextPath}/resources/css/admin/mgmtBoard.css?ver=1"
 	rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -33,7 +33,7 @@
 				</div>
 				<div class="card shadow mb-4">
 					<div class="card-header py-3" id="table-card-header">
-						<h5 class="m-0 text-gray">반려인 TIP</h5>
+						<h5 class="m-0 text-gray"><a href="${pageContext.request.contextPath}/Tip/getTipList" id="mgmt_board_link">반려인 TIP</a></h5>
 					</div>
 					<iframe name="tipPrev" id="tipPrev"
 						style="width: 100%; height: 350px; border: 0px" src="./tipPrev"></iframe>

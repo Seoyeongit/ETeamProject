@@ -1,2 +1,22 @@
 @charset "UTF-8";
 
+#mgmt_board_link:link {
+	text-decoration: none; 
+	color: #666;
+	font-weight: 700;
+}
+
+#mgmt_board_link:visited {
+	color: #666;
+}
+
+#mgmt_board_link:active {
+	color: #666;
+}
+
+#mgmt_board_link:hover {
+	color: #8bda8b;
+}
+
+
+

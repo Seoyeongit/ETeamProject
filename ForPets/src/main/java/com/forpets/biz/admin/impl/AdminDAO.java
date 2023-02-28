@@ -49,6 +49,7 @@ public class AdminDAO {
 		pvo.setPart_id(resultSet.getString("part_id"));
 		pvo.setPart_name(resultSet.getString("part_name"));
 		pvo.setPart_nick(resultSet.getString("part_nick"));
+		pvo.setPart_add(resultSet.getString("part_add"));
 		pvo.setPart_no(resultSet.getInt("part_no"));
 		pvo.setData_create(resultSet.getDate("data_create"));
 		pvo.setPart_phnumber(resultSet.getString("part_phnumber"));
@@ -91,6 +92,7 @@ public class AdminDAO {
 	public List<PartnerVO> getPartList(PartnerVO pvo) {
 		return jdbcTemplate.query(PARTNER_LIST, partRowMapper);
 	}
+
 
 	// 팁 게시판 미리보기
 	public List<TipVO> getTipPrev(TipVO tvo) {

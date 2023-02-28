@@ -2,18 +2,24 @@
 
 #page-content {
 	min-width: 100vw;
-	background-color: #f8f9fc;
+	background-color: #FAFDFB !important;
 }
 
 @media ( min-width : 768px) {
 	#page-content {
 		min-width: 0;
 		width: 100%;
-		background-color: #f8f9fc;
+		background-color: #FAFDFB;
 	}
 }
 
 #admin-content {
-	padding-left: 2.0rem;
-	padding-right: 2.0rem;
+	padding-left: 4.0rem;
+	padding-right: 4.0rem;
+	padding-top: 2.0rem;
+	padding-bottom: 2.0rem;
+}
+
+#table-card-header {
+	background-color: #f2f5f3;
 }

@@ -16,8 +16,10 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/admin/admin.css?after"
 	rel="stylesheet" type="text/css" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link
-	href="${pageContext.request.contextPath}/resources/css/admin/notice.css?after"
+	href="${pageContext.request.contextPath}/resources/css/admin/notice.css?ver=1.2"
 	rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -28,44 +30,88 @@
 			<jsp:include page="../Admin/top.jsp" />
 
 			<div class="container-fluid" id="admin-content">
-				<h1>공지 사항</h1>
-				<!-- 검색 시작 -->
-				<form action="noticeBoard" method="post">
-					<table cellpadding="0" width="700">
-						<tr>
-							<td align="right"><select name="searchCondition">
-									<option value="TITLE">제목</option>
-									<option value="CONTENT">내용</option>
-							</select> <input name="searchKeyword" type="text" value="Search" /> <input
-								type="submit" value="검색" /></td>
-						</tr>
-					</table>
-					<br>
-				</form>
+				<div
+					class="d-sm-flex align-items-center justify-content-between mb-4">
+					<h3 class="h3 mb-0 text-gray-800">공지사항</h3>
+				</div>
+				<!-- Datatables -->
+				<div class="card shadow mb-4">
+					<div class="card-header py-3" id="table-card-header">
+						<h5 class="m-0 text-gray">공지사항</h5>
+					</div>
+					<div class="table-responsive-xxl">
+						<div class="table-wrapper">
+							<div class="table-filter">
+								<div class="row">
+									<div class="col-sm-2 float-left">
+										<!-- 정렬 -->
+										<div class="col-sm-8"></div>
+									</div>
+									<div class="col-sm-5"></div>
+									<div class="col-sm-5 float-right" id="search-group">
+										<form action="noticeBoard" method="post">
+											<!-- 검색 -->
+											<div class="input-group">
+												<div class="col-sm-3">
+													<select class="form-select" name="searchCondition">
+														<option value="TITLE">제목</option>
+														<option value="CONTENT">내용</option>
+													</select>
+												</div>
+												<input name="searchKeyword" type="text" class="form-control"
+													placeholder="Search" />
+												<button type="submit" class="btn border">검색</button>
+											</div>
+										</form>
+									</div>
 
-				<!-- 검색 결과 조회 테이블 -->
-				<table border="1" cellpadding="0" width="700">
-					<tr>
-
-						<th width="100">번호</th>
-						<th width="300">제목</th>
-						<th width="100">작성일</th>
-						<th width="100">조회수</th>
-
-					</tr>
-					<c:forEach items="${noticeBoard }" var="notice">
-						<tr>
-							<td>${notice.ntc_seq }</td>
-							<td align="left"><a
-								href="getNoticeBoard.do/${notice.ntc_seq }">${notice.ntc_title }</a>
-							</td>
-							<td>${notice.ntc_cdate }</td>
-							<td>${notice.ntc_hit }</td>
-						</tr>
-					</c:forEach>
-				</table>
-				<br>
-				<button onclick="location.href ='noticeForm'">글쓰기</button>
+								</div>
+							</div>
+							<table class="table table-hover">
+								<thead>
+									<tr align="center">
+										<th>no</th>
+										<th>제목</th>
+										<th>작성일</th>
+										<th>조회수</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="notice" items="${noticeBoard }">
+										<tr align="center">
+											<td>${notice.ntc_seq }</td>
+											<td align="left"><a
+												href="getNoticeBoard.do/${notice.ntc_seq }">${notice.ntc_title }</a>
+											</td>
+											<td>${notice.ntc_cdate }</td>
+											<td>${notice.ntc_hit }</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+							<div class="row">
+								<div class="col-2 float-left" id="write-button">
+									<button onclick="location.href ='noticeForm'"
+										class="btn border float-left">글쓰기</button>
+								</div>
+								<div class="clearfix">
+									<ul class="pagination">
+										<li class="page-item disabled"><a class="page-link"
+											href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
+										<li class="page-item"><a href="#" class="page-link">1</a></li>
+										<li class="page-item"><a href="#" class="page-link">2</a></li>
+										<li class="page-item active"><a href="#"
+											class="page-link">3</a></li>
+										<li class="page-item"><a href="#" class="page-link">4</a></li>
+										<li class="page-item"><a href="#" class="page-link">5</a></li>
+										<li class="page-item"><a class="page-link" href="#"
+											aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

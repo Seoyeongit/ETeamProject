@@ -39,7 +39,7 @@
 					<div class="card-header py-3" id="table-card-header">
 						<h5 class="m-0 text-gray">펫트너 목록</h5>
 					</div>
-					<div class="table-responsive-xl">
+					<div class="table-responsive-xxl">
 						<div class="table-wrapper">
 							<div class="table-filter">
 								<div class="row">
@@ -83,7 +83,6 @@
 										<th>주소</th>
 										<th>등록일</th>
 										<th>연락처</th>
-										<th>예약</th>
 										<th>관리</th>
 									</tr>
 								</thead>
@@ -95,10 +94,9 @@
 													src="/examples/images/avatar/1.jpg" class="avatar"
 													alt="${partner.part_name}"></a>
 												${partner.part_name}(${partner.part_id})</td>
-											<td align="center">서울 강남구</td>
+											<td align="center">${partner.part_add}</td>
 											<td align="center">${partner.data_create}</td>
 											<td align="center">${partner.part_phnumber}</td>
-											<td align="center">54</td>
 											<td align="center"><a href="#" class="view"
 												title="View Details" data-toggle="tooltip"><i
 													class="material-icons">&#xE5C8;</i></a></td>
@@ -122,16 +120,11 @@
 							</div>
 						</div>
 						<br>
-
-
 					</div>
 				</div>
 				<br>
-
 			</div>
 		</div>
-	</div>
-	</div>
 	</div>
 </body>
 <!-- Bootstrap core JS-->

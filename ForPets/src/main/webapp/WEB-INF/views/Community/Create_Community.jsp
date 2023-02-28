@@ -7,13 +7,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<jsp:include page="/WEB-INF/views/nav.jsp"/>
+<jsp:include page="../favicon.jsp"/>
 <style>
 
 	body {
 		background: #f9f9f9; 
+		margin-top:100px;
 	}
 
-	
 	.content_guide {
 		/* position: absolute; */
 	    top: 0;
@@ -79,13 +81,9 @@
 
 </style>
 <title>make community</title>
-<jsp:include page="/WEB-INF/views/nav.jsp"/>
-<jsp:include page="/WEB-INF/views/favicon.jsp" />
-
 </head>
-
 <body style= "background: #f9f9f9;">
-<br><br><br>
+
 
 	
 
@@ -110,12 +108,12 @@
 						<hr>
 						<div style="white-space:pre;"><textarea class="text_area" name="c_content" placeholder="내용을 입력해 주세요."></textarea></div>
 
-			<br>
+			
 			<div class="buttons">
 			<a href="survey.do/${c_code }"><input type="button" class="btn" value="설문지 만들기" style="background-color:#19CE60; color:white "/></a>
 			<input type="submit" value="작성하기" class="btn" style="background-color:#19CE60; color:white ">
 			<a href="communitylist"><input type="button" value="취소" class="btn" style="background-color:#19CE60; color:white "></a>
-			<br><br>
+			
 			</div>
 			</div>
 		

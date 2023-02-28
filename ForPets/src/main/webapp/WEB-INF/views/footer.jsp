@@ -9,7 +9,6 @@
                         <a class="link-dark text-decoration-none me-3" href="#!">연은비</a>
                         <a class="link-dark text-decoration-none me-3" href="#!">이서연</a>
                         <a class="link-dark text-decoration-none me-3" href="#!">이도은</a>
-                        <a class="link-dark text-decoration-none me-3" href="#!">임동진</a>
                         <a class="link-dark text-decoration-none me-3" href="#!">최지혁</a>
                         <a class="link-dark text-decoration-none me-3" href="#!">정영현</a>
                     </div>

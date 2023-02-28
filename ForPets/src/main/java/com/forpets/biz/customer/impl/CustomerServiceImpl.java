@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.forpets.biz.customer.CustomerReVO;
 import com.forpets.biz.customer.CustomerService;
 import com.forpets.biz.customer.CustomerVO;
+import com.forpets.biz.customer.SearchCriteria;
 
 @Service("customerSerivce") 
 public class CustomerServiceImpl implements CustomerService {
@@ -52,6 +54,38 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDAO.myCustBoard(vo);
 	}
 
-
-
+	@Override
+	public CustomerVO getCustomerBoardView(CustomerVO vo) {
+		return customerDAO.getCustomerBoardView(vo);
+	}
+	
+	@Override
+	public List<CustomerVO> searchCustomerList(CustomerVO vo) {
+		return customerDAO.searchCustomerList(vo);
+	}
+	
+	@Override
+	public void insertCustomerRe(CustomerReVO vo) {
+		customerDAO.insertCustomerRe(vo);
+	}
+	
+	@Override
+	public void updateCustomerRe(CustomerReVO vo) {
+		customerDAO.updateCustomerRe(vo);
+	}
+	
+	@Override
+	public CustomerReVO getCustomerRe(CustomerReVO vo) {
+		return customerDAO.getCustomerRe(vo);
+	}
+	
+	@Override
+	public List<CustomerVO> getCustomerListWithDynamicPaging(SearchCriteria cri) {
+		return customerDAO.getCustomerListWithDynamicPaging(cri);
+	}
+	
+	@Override
+	public int getTotalPages(SearchCriteria cri) {
+		return customerDAO.getTotalPages(cri);
+	}
 }

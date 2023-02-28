@@ -35,11 +35,11 @@
 	margin-left:auto;
 	margin-right:auto;
 }
-.get-tit {
+div.get-tit {
 	margin-left:22%;
 	font-size:1.5em;
 }
-.get-con {
+div.get-con {
 	margin-left:22%;
 	margin-top:4%;
 }
@@ -59,7 +59,7 @@
 	margin-left:305px;
 }
 .cust-lis{
-	margin-left:47.3%;
+	margin-left:51%;
 	margin-bottom:5%;
 }
 .cust-upd, .cust-del{
@@ -90,18 +90,31 @@
 			</div>
 		</div>
 	</fieldset>
-	<form action="updateCustomer" method="post">
-			<input type="hidden" value="${customer.cust_no}" name="cust_no">
+		<form action="getCustomerBoard" method="post">
 			<h4 class="head-tit"><b>문의 상세보기</b></h4>
 			<hr class="get-cus-line">
-			<input type="text" class="get-tit" name="title" value="${ customer.cust_title}"/>
+			<div class="get-tit" id="title">${ customer.cust_title}</div>
 			<div class="wri-no">${customer.cust_no}</div><c:choose><c:when test="${customer.user_id == ' '}"><div class="wri-part">${customer.part_id }</div></c:when>
 			<c:otherwise><div class="wri-user">${customer.user_id }</div></c:otherwise></c:choose><div class="wri-date">${ customer.cust_date}</div><br>
 			<hr class="con-line">
-			<input type="text" class="get-con" name="content" value="${ customer.cust_content}"/>
+			<div class="get-con" id="content">${ customer.cust_content}</div>
 			<hr class="foot-line">
-		<input type="submit" class="cust-upd" value="완료" />
+		
+		<input type="button" class="cust-upd cust-del" onclick="location.href='deleteCustomer?cust_no=${ customer.cust_no }';" value="삭제"/>
 		<input type="button" class="cust-lis" onclick="location.href='myCustBoard';" value="목록"/>
-	</form>
+		</form>
+			<div class="">${ customerRe.cust_content }</div>
+		<c:choose>
+			<c:when test="${role eq 'admin' }">
+				<div class="comment">
+					<form action="insertCustomerRe" method="post">
+						<input type="hidden" name="cust_no" value="${customer.cust_no }">
+						<input type="hidden" name="admin">
+						<input type="text" class="Re-box" name="content" placeholder="댓글을 입력해 주세요."/>
+						<input type="submit" value="댓글 작성하기" class="btn" style="background-color:#19CE60; color:white; float:right;">
+					</form>
+				</div>
+			</c:when>
+		</c:choose>
 </body>
 </html>

@@ -1022,6 +1022,21 @@ INSERT INTO customer VALUES ((cust_seq.NEXTVAL),'abc456','sho232','급합니다!
 
 select * from customer;
 
+CREATE SEQUENCE custre_seq
+  START WITH 1
+  INCREMENT BY 1
+  MAXVALUE 10000
+  MINVALUE 1
+  NOCYCLE;
+
+create table customer_re(
+    cust_no number(8) not null,
+    cust_content varchar2(500) not null
+);
+    
+alter table customer_re
+    ADD CONSTRAINT cust_no PRIMARY KEY (cust_no);
+    
 --230210 연은비 review DB
 CREATE TABLE review
 (
@@ -1072,5 +1087,7 @@ COMMIT;
 UPDATE PARTNERS SET PART_PW='bpb222', PART_NICK='파트너222', PART_ADD='?', PART_PHNUMBER='?', SELF_INFOR='?' WHERE PART_ID='?';
 
 SELECT * FROM RESERVE where part_id='bpb222';
+
+select * from partners;
 
 select*from customer;

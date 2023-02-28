@@ -38,46 +38,48 @@
 					<form action="../modInfo.do" method="post">
 						<div class="table-responsive px-5">
 							<table class="table table-borderless align-middle">
-							<tbody>
-								<tr height="50">
-									<td class="align-middle">아이디</td>
-									<td style="width: 80%"><input type="text" class="form-control" name="adm_id"
-										value="${admin.adm_id}" readonly="readonly"
-										onfocus="this.blur();" tabindex="-1"
-										style="" /></td>
-								</tr>
+								<tbody>
+									<tr height="50">
+										<td class="align-middle">아이디</td>
+										<td style="width: 80%">
+										<input type="text"
+											class="form-control" name="adm_id" value="${admin.adm_id}"
+											readonly="readonly" onfocus="this.blur();" tabindex="-1"
+											style="background-color: #f2f5f3;" /></td>
+									</tr>
 
-								<tr height="50">
-									<td class="align-middle">이름</td>
-									<td style="width: 80%"><input type="text" class="form-control" size="30"
-										name="adm_name" value="${admin.adm_name}"></td>
-								</tr>
-
-
-								<tr height="50">
-									<td class="align-middle">이메일</td>
-									<td><input type="email" class="form-control"
-										name="adm_email" value="${admin.adm_email}"></td>
-								</tr>
-
-								<tr height="50">
-									<td class="align-middle">전화번호</td>
-									<td><input type="tel" class="form-control"
-										name="adm_phone" value="${admin.adm_phone}"></td>
-								</tr>
+									<tr height="50">
+										<td class="align-middle">이름</td>
+										<td style="width: 80%"><input type="text"
+											class="form-control" size="30" name="adm_name"
+											value="${admin.adm_name}"></td>
+									</tr>
 
 
-								<tr height="50">
-									<td class="align-middle">패스워드</td>
-									<td><input type="hidden" id="adm_pw" name="adm_pw"
-										value="${admin.adm_pw}"></td>
-								</tr>
+									<tr height="50">
+										<td class="align-middle">이메일</td>
+										<td><input type="email" class="form-control"
+											name="adm_email" value="${admin.adm_email}"></td>
+									</tr>
 
-								<tr height="50">
-									<td align="center" colspan="2"><input type="hidden"
-										name="id" value="${admin.adm_id}"> <input
-										type="submit" value="수정하기">&nbsp;&nbsp;</td>
-								</tr>
+									<tr height="50">
+										<td class="align-middle">전화번호</td>
+										<td><input type="tel" class="form-control"
+											name="adm_phone" value="${admin.adm_phone}"></td>
+									</tr>
+
+
+									<tr height="50">
+										<td class="align-middle">패스워드</td>
+										<td><input type="hidden" id="adm_pw" name="adm_pw"
+											value="${admin.adm_pw}"></td>
+									</tr>
+
+									<tr height="50">
+										<td align="center" colspan="2"><input type="hidden"
+											name="id" value="${admin.adm_id}"> <input
+											type="submit" value="수정하기">&nbsp;&nbsp;</td>
+									</tr>
 								</tbody>
 							</table>
 						</div>

@@ -49,6 +49,18 @@ public class AdminController {
 		}
 	}
 
+	// 관리자 로그아웃
+	@RequestMapping(value="/Admin/logout")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		
+		if(session != null) {
+			session.invalidate();
+			System.out.println("로그아웃");
+		}
+		return "redirect:/rofstep";
+	}
+
 	// 관리자 메인 이동
 	@RequestMapping(value = "/Admin/main")
 	public String adminMain(AdminVO vo, HttpServletRequest request) throws Exception {
@@ -110,19 +122,19 @@ public class AdminController {
 	@RequestMapping(value = "/Admin/mgmtPartner")
 	public String getPartList(PartnerVO pvo, ReServeVO rvo, PartnerDAO pdao, Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
-		
+
 		List<PartnerVO> mgmt = admService.getPartList(pvo);
 		// 주소 자르기
-		for(int i=0; i< mgmt.size(); i++) {
+		for (int i = 0; i < mgmt.size(); i++) {
 			String part_add = mgmt.get(i).getPart_add();
 			System.out.print(mgmt.get(i).getPart_add());
-			String [] arr = part_add.split(" ");
+			String[] arr = part_add.split(" ");
 			part_add = " ";
 			part_add += arr[0] + " " + arr[1];
 			System.out.print(part_add);
 			mgmt.get(i).setPart_add(part_add);
 		}
-		
+
 		model.addAttribute("getPartner", mgmt); // Model 정보 저장
 		System.out.println("getPartnerList");
 		return "/Admin/mgmtPartner";

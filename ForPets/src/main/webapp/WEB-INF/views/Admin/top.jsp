@@ -52,7 +52,8 @@
 								href="${pageContext.request.contextPath}/Admin/adminInfo/${admin.adm_id}">관리자
 								정보</a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#!">로그아웃</a>
+							<a class="dropdown-item"
+								href="${pageContext.request.contextPath}/Admin/logout">로그아웃</a>
 						</div></li>
 				</ul>
 			</div>

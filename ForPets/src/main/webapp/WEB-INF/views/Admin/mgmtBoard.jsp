@@ -14,6 +14,7 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/admin/admin.css?after"
 	rel="stylesheet" type="text/css" />
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link

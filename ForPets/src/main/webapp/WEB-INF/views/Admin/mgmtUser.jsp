@@ -14,7 +14,7 @@
 	href="${pageContext.request.contextPath}/resources/css/admin/sideBar.css"
 	rel="stylesheet" />
 <link
-	href="${pageContext.request.contextPath}/resources/css/admin/admin.css?after"
+	href="${pageContext.request.contextPath}/resources/css/admin/admin.css?ver=1"
 	rel="stylesheet" type="text/css" />
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -40,7 +40,7 @@
 					<div class="card-header py-3" id="table-card-header">
 						<h5 class="m-0 text-gray">회원 목록</h5>
 					</div>
-					<div class="table-responsive-xl">
+					<div class="table-responsive-xxl">
 						<div class="table-wrapper">
 							<div class="table-filter">
 								<div class="row">

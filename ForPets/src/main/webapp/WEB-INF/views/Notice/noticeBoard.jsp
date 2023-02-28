@@ -39,7 +39,7 @@
 					<div class="card-header py-3" id="table-card-header">
 						<h5 class="m-0 text-gray">공지사항</h5>
 					</div>
-					<div class="table-responsive-xl">
+					<div class="table-responsive-xxl">
 						<div class="table-wrapper">
 							<div class="table-filter">
 								<div class="row">

@@ -9,6 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.js"></script>
+<link href="${pageContext.request.contextPath}/resources/css/Tip/tip.css" rel="stylesheet" />
 <script>
 function sendPart(part_id) {
 	
@@ -21,30 +22,28 @@ function sendPart(part_id) {
 </script>
 </head>
 <body>
-	<center>
-		<c:forEach items="${getPartnerList }" var="partner">
-			<table border="1" cellpadding="0" cellspacing="0" width="300">
-				<tr>
-					<td>파트너 ID</td>
-					<td><input type="text" value="${ partner.part_id }" id="${partner.part_id }_id" readonly></td>
-				</tr>
-				<tr>
-					<td>파트너 이름</td>
-					<td><input type="text" value="${ partner.part_name }" id="${partner.part_id }_name" readonly></td>
-				</tr>
-				<tr>
-					<td>파트너 성별</td>
-					<td><input type="text"
-						<c:choose>
-							<c:when test="${fn:contains(partner.gender,'M')}" >value="남자"</c:when>
-							<c:when test="${fn:contains(partner.gender,'F')}" >value="여자"</c:when>
-						</c:choose>>
-					</td>
-				</tr>
-			</table>
-			<input type="button" value="선택" Onclick="sendPart('${partner.part_id}');">
-			<br>
-		</c:forEach>
-	</center>
+	<c:forEach items="${getPartnerList }" var="partner">
+		<input type="hidden" value="${ partner.part_id }" id="${partner.part_id }_id" readonly>
+		<input type="hidden" value="${ partner.part_name }" id="${partner.part_id }_name" readonly>
+		<!-- Card with an image on left -->
+		<div class="col-12">
+			<div class="card mb-3">
+				<div class="row g-0">
+					<div class="col-4">
+						<img width="100%" src="">
+					</div>
+					<div class="col-8 row">
+						<div class="card-body align-self-center">
+							<h5 class="card-title"><span>${ partner.part_name }</span></h5>
+							<p class="card-text">
+								<span>${ partner.part_id }</span>
+							</p>
+							<input type="button" style="float:right;" value="선택" Onclick="sendPart('${partner.part_id}');">
+						</div>
+					</div>
+				</div>
+			</div><!-- End Card with an image on left -->
+		</div>
+	</c:forEach>
 </body>
 </html>

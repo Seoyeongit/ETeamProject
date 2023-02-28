@@ -13,16 +13,22 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/admin/sideBar.css"
 	rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath}/resources/css/admin/admin.css?after"
+	rel="stylesheet" type="text/css" />
+<link
+	href="${pageContext.request.contextPath}/resources/css/admin/userList.css?after"
+	rel="stylesheet" type="text/css" />
 </head>
 <body>
 
 	<div class="d-flex" id="wrapper">
 		<jsp:include page="sideBar.jsp" />
 		<!-- Page content wrapper-->
-		<div id="page-content-wrapper">
+		<div id="page-content">
 			<jsp:include page="top.jsp" />
 
-			<div class="container">
+			<div class="container-fluid" id="admin-content">
 				<h1>회원 관리</h1>
 				<form action="getUserList.do" method="post">
 					<table cellpadding="0" width="800">

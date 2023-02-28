@@ -9,6 +9,11 @@
 <meta charset="UTF-8">
  <jsp:include page="/WEB-INF/views/nav.jsp"/>
   <style>
+  	body{
+	    background: #F5F5F5;
+	    margin-top:100px;
+	}
+	
 	.background {
   	width: 100%;
     display: flex;
@@ -81,10 +86,9 @@
 
 </head>
 
-<body style= "background: #f9f9f9;">
+<body>
 <div class="background">
 
-<br><br><br><br>
 	<h1 style="text-align: center;">포펫츠의 펫트너즈를 소개합니다!</h1>
 	<h5 style="text-align: center;">원하는 펫트너즈를 클릭하면 리뷰보기로 이동합니다!</h5>
 	

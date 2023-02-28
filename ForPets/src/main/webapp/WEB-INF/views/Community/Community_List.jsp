@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>community list</title>
 <jsp:include page="/WEB-INF/views/nav.jsp"/>
-<jsp:include page="/WEB-INF/views/favicon.jsp" />
+<jsp:include page="../favicon.jsp"/>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" 
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" >
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" 
@@ -18,11 +18,12 @@
 <style>
 	body{
 	    background: #F5F5F5;
-	    margin-top:20px;
+	    margin-top:100px;
 	}
 	
 	.list {
 		width: auto;
+		margin-bottom: 100px;
 	}
 	
 	.container-rapper {
@@ -70,7 +71,7 @@
 </style>
 </head>
 <body>
-<br><br><br>
+
 
 	<h1 style="text-align: center;">소모임 목록</h1>
 	<h5 style="text-align: center;">원하는 소모임을 찾아보세요 ! <a href="getcommunity"><input type="button" class="btn btn-sm btn-block" value="글 작성하러 가기"></a></h5>
@@ -78,7 +79,7 @@
 
 	
 		
-<div class="bg" style="justify-content: center;">
+	<div class="bg" style="justify-content: center;">
 	<form action="communitylist" method="post" class="list">
 		
 
@@ -114,7 +115,8 @@
         </div>
   	</form>
   </div>
-  <br><br>		
+
+		
 <%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

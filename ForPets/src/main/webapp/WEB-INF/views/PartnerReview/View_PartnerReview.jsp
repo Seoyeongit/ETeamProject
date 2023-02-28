@@ -210,19 +210,19 @@
 		 		
 		 		<p style="text-align: center;">파트너 별점</p>	
 					<fieldset>
-						<input type="radio" name="pr_avg" value="5" id="rate5" onclick="return(false);"><label
-							for="rate5">★</label>
-						<input type="radio" name="pr_avg" value="4" id="rate4"  onclick="return(false);"><label
-							for="rate4">★</label>
-						<input type="radio" name="pr_avg" value="3" id="rate3"  onclick="return(false);"><label
-							for="rate3">★</label>
-						<input type="radio" name="pr_avg" value="2" id="rate2"  onclick="return(false);"><label
-							for="rate2">★</label>
-						<input type="radio" name="pr_avg" value="1" id="rate1"  onclick="return(false);"><label
-							for="rate1">★</label>
+						<input type="radio" name="pr_avg" value="5" id="a5" onclick="return(false);"><label
+							for="a5">★</label>
+						<input type="radio" name="pr_avg" value="4" id="a4"  onclick="return(false);"><label
+							for="a4">★</label>
+						<input type="radio" name="pr_avg" value="3" id="a3"  onclick="return(false);"><label
+							for="a3">★</label>
+						<input type="radio" name="pr_avg" value="2" id="a2"  onclick="return(false);"><label
+							for="a2">★</label>
+						<input type="radio" name="pr_avg" value="1" id="a1"  onclick="return(false);"><label
+							for="a1">★</label>
 					</fieldset>
 					<script type="text/javascript">
-						$('input#rate${prboard.pr_avg}').prop("checked", true);
+						$('input#a${prboard.pr_avg}').prop("checked", true);
 					</script>
 				<hr><br>
 		 		

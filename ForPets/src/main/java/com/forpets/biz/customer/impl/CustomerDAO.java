@@ -6,7 +6,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.forpets.biz.customer.CustomerReVO;
 import com.forpets.biz.customer.CustomerVO;
+import com.forpets.biz.customer.SearchCriteria;
 
 @Repository("customerDAO")
 public class CustomerDAO {
@@ -22,7 +24,11 @@ public class CustomerDAO {
 	private final String INSERT_CUSTOMER = "INSERT INTO CUSTOMER (CUST_NO, USER_ID, PART_ID, CUST_TITLE, CUST_CONTENT) VALUES((cust_seq.NEXTVAL),?,?,?,?)";
 	private final String DELETE_CUSTOMER = "DELETE FROM CUSTOMER where CUST_NO=? ";
 	private final String UPDATE_CUSTOMER = "UPDATE CUSTOMER set CUST_TITLE=?, CUST_CONTENT=? where CUST_NO=?";
-	
+	private final String SEARCH_MAIN = "select * from customer where cust_title like ? or cust_content like ? order by cust_no desc";
+	private final String INSERT_CUSTOMERRE = "INSERT INTO CUSTOMER_RE (CUST_NO, CUST_CONTENT) VALUES(?,?)";
+	private final String UPDATE_CUSTOMERRE = "UPDATE CUSTOMER_RE set CUST_CONTENT=? where CUST_NO=?";
+	private final String GET_CUSTRE = "SELECT * FROM CUSTOMER_RE WHERE CUST_NO = ?";
+	private final String GETTOTALPAGES = "SELECT COUNT(*) FROM customer ";
 	
 	private final RowMapper<CustomerVO> customerRowMapper = (resultSet, rowNum) -> {
 		CustomerVO vo = new CustomerVO();
@@ -35,6 +41,13 @@ public class CustomerDAO {
 		
 		return vo;
 	};
+	
+	public List<CustomerVO> searchCustomerList(CustomerVO vo){
+		String title = vo.getSearchKeyword();
+		String content = vo.getSearchKeyword();
+		Object[] orgs = { title , content };
+		return jdbcTemplate.query(SEARCH_MAIN, orgs , customerRowMapper);
+	}
 	
 	public CustomerVO customer(CustomerVO vo) {
 		CustomerVO voo = jdbcTemplate.queryForObject(CUSTOMER_LIST,
@@ -62,6 +75,8 @@ public class CustomerDAO {
 		
 		return jdbcTemplate.query(sql +"'%" + vo.getSearchKeyword() +"%'" + " order by cust_no desc", customerRowMapper);
 	}
+	
+	
 	
 	public void insertCustomer(CustomerVO vo) {
 		System.out.println("user_id : " + vo.getUser_id());
@@ -100,6 +115,42 @@ public class CustomerDAO {
 		return jdbcTemplate.query(MYCUSTOMER_BOARD,orgs, new CustomerRowMapper());
 	}
 	
-
+	public void insertCustomerRe(CustomerReVO vo) {
+		jdbcTemplate.update(INSERT_CUSTOMERRE, vo.getCust_no(), vo.getCust_content());
+	}
 	
+	public void updateCustomerRe(CustomerReVO vo) {
+		jdbcTemplate.update(UPDATE_CUSTOMERRE, vo.getCust_content(), vo.getCust_no());
+	}
+	
+	public CustomerReVO getCustomerRe(CustomerReVO vo) {
+		Object[] orgs = {vo.getCust_no() };
+		return jdbcTemplate.queryForObject(GET_CUSTRE, orgs, new CustomerReRowMapper());
+	}
+	
+	public int getTotalPages(SearchCriteria cri) {
+	      String sql = GETTOTALPAGES;
+	      String title = cri.getSearchKeyword();
+		  String content = cri.getSearchKeyword();
+		  sql = sql + "where cust_title like '%"+title+ "%' or cust_content like '%"+content+"%'";
+	      return jdbcTemplate.queryForObject(sql, Integer.class);
+	   }
+	
+	public List<CustomerVO> getCustomerListWithDynamicPaging(SearchCriteria cri) {
+	      System.out.println("getCustomerListWithDynamicPaging...");
+	      System.out.println("Condition : " + cri.getSearchCondition());
+	      System.out.println("Keyword : " + cri.getSearchKeyword());
+	      String sql_in =
+	         "SELECT ROWNUM RN, CUST_NO, USER_ID, PART_ID, CUST_TITLE , CUST_CONTENT , CUST_DATE " +
+	         "FROM ( SELECT * FROM CUSTOMER where CUST_TITLE LIKE '%" + cri.getSearchKeyword()+ "%' OR CUST_CONTENT LIKE '%" + cri.getSearchKeyword()+ "%'";
+	      sql_in = sql_in + " ORDER BY CUST_NO DESC) WHERE ROWNUM <= " + cri.getPageNum() * cri.getAmount();
+	      
+	      String sql =
+	         "SELECT CUST_NO, USER_ID, PART_ID, CUST_TITLE , CUST_CONTENT , CUST_DATE " + 
+	         "FROM (" + sql_in + ") WHERE RN > " + (cri.getPageNum() - 1) * cri.getAmount();
+	      
+	      System.out.println("sql : " + sql);
+	      
+	      return jdbcTemplate.query(sql, new CustomerRowMapper());
+	   }
 }

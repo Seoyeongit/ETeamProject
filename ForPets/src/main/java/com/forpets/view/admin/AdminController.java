@@ -1,5 +1,7 @@
 package com.forpets.view.admin;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -17,6 +20,7 @@ import com.forpets.biz.admin.impl.AdminDAO;
 import com.forpets.biz.partner.PartnerService;
 import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.partner.impl.PartnerDAO;
+import com.forpets.biz.reserve.ReServeVO;
 import com.forpets.biz.tip.TipService;
 import com.forpets.biz.tip.TipVO;
 import com.forpets.biz.tip.impl.TipDAO;
@@ -44,6 +48,18 @@ public class AdminController {
 			System.out.println("로그인 실패");
 			return "redirect:/rofstep";
 		}
+	}
+
+	// 관리자 로그아웃
+	@RequestMapping(value="/Admin/logout")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		
+		if(session != null) {
+			session.invalidate();
+			System.out.println("로그아웃");
+		}
+		return "redirect:/rofstep";
 	}
 
 	// 관리자 메인 이동
@@ -102,13 +118,34 @@ public class AdminController {
 		System.out.println("getUserList");
 		return "/Admin/mgmtUser";
 	}
+	
+	// 회원 탈퇴
+	@RequestMapping(value = "/Admin/deleteUser/{user_id}")
+	public String deleteUser(UserVO uvo, @PathVariable("user_id") String user_id) {
+		admService.deleteUser(uvo, user_id);
+		System.out.println("deleteNotice 완료");
+		return "redirect:/Admin/mgmtUser";
+	}
+	
 
 	// 파트너 관리
 	@RequestMapping(value = "/Admin/mgmtPartner")
-	public String getPartList(PartnerVO pvo, PartnerDAO pdao, Model model, HttpServletRequest request) {
+	public String getPartList(PartnerVO pvo, ReServeVO rvo, PartnerDAO pdao, Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 
-		model.addAttribute("getPartner", admService.getPartList(pvo)); // Model 정보 저장
+		List<PartnerVO> mgmt = admService.getPartList(pvo);
+		// 주소 자르기
+		for (int i = 0; i < mgmt.size(); i++) {
+			String part_add = mgmt.get(i).getPart_add();
+			System.out.print(mgmt.get(i).getPart_add());
+			String[] arr = part_add.split(" ");
+			part_add = " ";
+			part_add += arr[0] + " " + arr[1];
+			System.out.print(part_add);
+			mgmt.get(i).setPart_add(part_add);
+		}
+
+		model.addAttribute("getPartner", mgmt); // Model 정보 저장
 		System.out.println("getPartnerList");
 		return "/Admin/mgmtPartner";
 	}

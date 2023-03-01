@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.forpets.biz.admin.AdminService;
 import com.forpets.biz.admin.AdminVO;
 import com.forpets.biz.partner.PartnerVO;
+import com.forpets.biz.reserve.ReServeVO;
 import com.forpets.biz.tip.TipVO;
 import com.forpets.biz.user.UserVO;
 
@@ -42,6 +43,10 @@ public class AdminServiceImpl implements AdminService {
 	public List<TipVO> getTipPrev(TipVO tvo) {
 		return adminDAO.getTipPrev(tvo);
 	}
-	
+
+	@Override
+	public void deleteUser(UserVO uvo, String user_id) {
+		adminDAO.deleteUser(uvo, user_id);
+	}
 	
 }

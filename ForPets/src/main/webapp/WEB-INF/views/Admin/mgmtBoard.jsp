@@ -14,8 +14,11 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/admin/admin.css?after"
 	rel="stylesheet" type="text/css" />
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link
-	href="${pageContext.request.contextPath}/resources/css/admin/mgmtBoard.css?after"
+	href="${pageContext.request.contextPath}/resources/css/admin/mgmtBoard.css?ver=1"
 	rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -25,16 +28,25 @@
 		<div id="page-content">
 			<jsp:include page="top.jsp" />
 			<div class="container-fluid" id="admin-content">
-				<h1>게시판 관리</h1>
-
-				<h3>반려인 팁</h3>
-				<iframe name="tipPrev" id="tipPrev"
-					style="width: 100%; height: 300px; border: 0px" src="./tipPrev"></iframe>
-
-				<h3>소모임</h3>
-				<iframe name="communityPrev" id="communityPrev"
-					style="width: 100%; height: 300px; border: 0px"
-					src="./communityPrev"></iframe>
+				<div
+					class="d-sm-flex align-items-center justify-content-between mb-4">
+					<h1 class="h3 mb-0 text-gray-800">게시판 관리</h1>
+				</div>
+				<div class="card shadow mb-4">
+					<div class="card-header py-3" id="table-card-header">
+						<h5 class="m-0 text-gray"><a href="${pageContext.request.contextPath}/Tip/getTipList" id="mgmt_board_link">반려인 TIP</a></h5>
+					</div>
+					<iframe name="tipPrev" id="tipPrev"
+						style="width: 100%; height: 350px; border: 0px" src="./tipPrev"></iframe>
+				</div>
+				<div class="card shadow mb-4">
+					<div class="card-header py-3" id="table-card-header">
+						<h5 class="m-0 text-gray">소모임</h5>
+					</div>
+					<iframe name="communityPrev" id="communityPrev"
+						style="width: 100%; height: 300px; border: 0px"
+						src="./communityPrev"></iframe>
+				</div>
 			</div>
 		</div>
 	</div>

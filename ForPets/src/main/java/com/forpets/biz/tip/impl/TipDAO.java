@@ -70,6 +70,17 @@ public class TipDAO {
 	}
 	
 	public void updateTip(TipVO vo) {
+		String[] url;
+		String url_id;
+		if(vo.getTip_video().contains("embed/")) {
+			url = vo.getTip_video().split("embed/");
+			url_id = url[1];
+		} else {
+			url = vo.getTip_video().split("be/");
+			url_id = url[1];
+		}
+		vo.setTip_img_url("https://img.youtube.com/vi/"+url_id+"/mqdefault.jpg");
+		vo.setTip_video("https://www.youtube.com/embed/"+url_id);
 		jdbcTemplate.update(BOARD_UPDATE,vo.getTip_title(), vo.getTip_content(), vo.getTip_img_url(), vo.getTip_video(), vo.getTip_seq());
 	}
 	

@@ -36,6 +36,7 @@
 	    -webkit-box-sizing: content-box;
 	    box-sizing: content-box;
 	    margin-bottom: 50px;
+
 	}
 	
 	.info {

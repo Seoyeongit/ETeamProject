@@ -72,6 +72,9 @@
 </head>
 <body>
 
+<c:set var="now" value="<%=new java.util.Date()%>" />
+<c:set var="min"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></c:set> 
+
 
 	<h1 style="text-align: center;">소모임 목록</h1>
 	<h5 style="text-align: center;">원하는 소모임을 찾아보세요 ! <a href="getcommunity"><input type="button" class="btn btn-sm btn-block" value="글 작성하러 가기"></a></h5>
@@ -91,10 +94,11 @@
 		            <div class="tab-content bg-transparent ">
 		                <div id="note-full-container" class="note-has-grid row">
 		                    <div class="single-note-item all-category">
-		                    	<h5 class="note-title text-truncate"><a href="viewcommunityboard/${ community.c_code}">${community.c_title }</a></h5>
-		                    		
-		                    		<c:set var="now" value="<%=new java.util.Date()%>" />
-		                    		<c:set var="min"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></c:set>  
+		                    	<h5 class="note-title text-truncate"><a href="viewcommunityboard/${ community.c_code}">${community.c_title }</a>
+		                    	<c:if test="${community.c_date eq min }">
+		                    	<span class="badge rounded-pill bg-light text-dark" style="font-size:0.5em; ">new</span>
+		                    	</c:if>	</h5>
+		                    		 
 		                    	 <h5 class="note">작성날짜 | ${community.c_date }</h5>
 		                    	
 		                    	<c:forEach items="${svcode }" var="scode">

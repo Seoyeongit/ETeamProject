@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -117,6 +118,15 @@ public class AdminController {
 		System.out.println("getUserList");
 		return "/Admin/mgmtUser";
 	}
+	
+	// 회원 탈퇴
+	@RequestMapping(value = "/Admin/deleteUser/{user_id}")
+	public String deleteUser(UserVO uvo, @PathVariable("user_id") String user_id) {
+		admService.deleteUser(uvo, user_id);
+		System.out.println("deleteNotice 완료");
+		return "redirect:/Admin/mgmtUser";
+	}
+	
 
 	// 파트너 관리
 	@RequestMapping(value = "/Admin/mgmtPartner")

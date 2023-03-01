@@ -13,8 +13,10 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/admin/admin.css?after"
 	rel="stylesheet" type="text/css" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link
-	href="${pageContext.request.contextPath}/resources/css/admin/notice.css?after"
+	href="${pageContext.request.contextPath}/resources/css/admin/notice.css?ver=1"
 	rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -25,29 +27,35 @@
 			<jsp:include page="../Admin/top.jsp" />
 
 			<div class="container-fluid" id="admin-content">
-				<form action="insertNotice.do" method="post">
-					<table align="center">
-						<tr>
-							<td colspan="2"><h1>공지사항 등록</h1></td>
-						</tr>
-						<tr>
-							<td width="70">제목</td>
-							<td align="left"><input name="ntc_title" type="text"
-								size="74" /></td>
-						</tr>
-						<tr>
-							<td>내용</td>
-							<td align="left"><textarea name="ntc_ctnt" cols="70"
-									rows="10"></textarea></td>
-						</tr>
-						<tr>
-							<td colspan="2" align="right"><input type="reset"
-								value="모두 삭제" /> <input type="button" value="목록"
-								onclick="location.href= 'noticeBoard';"> <input
-								type="submit" value="작성" /></td>
-						</tr>
-					</table>
-				</form>
+				<div
+					class="d-sm-flex align-items-center justify-content-between mb-4">
+					<h3 class="h3 mb-0 text-gray-800">공지사항 등록</h3>
+				</div>
+				<div class="card shadow mb-4">
+					<form action="insertNotice.do" method="post">
+						<div class="table-responsive px-5">
+							<table class="table table-borderless align-middle">
+								<tr>
+									<td>제목</td>
+									<td align="left" style="width: 90%"><input
+										name="ntc_title" type="text" class="form-control" /></td>
+								</tr>
+								<tr>
+									<td>내용</td>
+									<td align="left" style="width: 90%"><textarea
+											name="ntc_ctnt" class="form-control" cols="70"></textarea></td>
+								</tr>
+								<tr>
+									<td colspan="2" align="right"><input type="reset"
+										class="btn border" value="모두 삭제" /> <input type="button"
+										class="btn border" value="목록"
+										onclick="location.href= 'noticeBoard';"> <input
+										type="submit" class="btn border" value="작성" /></td>
+								</tr>
+							</table>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>

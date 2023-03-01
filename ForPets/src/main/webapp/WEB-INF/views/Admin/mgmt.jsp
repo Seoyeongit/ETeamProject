@@ -18,10 +18,12 @@
 	href="${pageContext.request.contextPath}/resources/css/admin/sideBar.css"
 	rel="stylesheet" />
 <link
-	href="${pageContext.request.contextPath}/resources/css/admin/admin.css?after"
+	href="${pageContext.request.contextPath}/resources/css/admin/admin.css?ver=1"
 	rel="stylesheet" type="text/css" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link
-	href="${pageContext.request.contextPath}/resources/css/admin/mgmt.css?after"
+	href="${pageContext.request.contextPath}/resources/css/admin/mgmt.css?ver=1"
 	rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -31,17 +33,14 @@
 		<div id="page-content">
 			<jsp:include page="top.jsp" />
 			<div class="container-fluid" id="admin-content">
-				<div class="row align-items-center">
-					<div class="col align-items-center"></div>
-					<br>
-					<div
-						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1>Dashboard</h1>
-					</div>
+				<div
+					class="d-sm-flex align-items-center justify-content-between mb-4">
+					<h1 class="h3 mb-0 text-gray-800" style="color: #696969">대시보드</h1>
 				</div>
-				<div class="row align-items-center"></div>
+				<div class="card shadow mb-5 py-5 px-5"></div>
 			</div>
 		</div>
+	</div>
 	</div>
 </body>
 <!-- Bootstrap core JS-->

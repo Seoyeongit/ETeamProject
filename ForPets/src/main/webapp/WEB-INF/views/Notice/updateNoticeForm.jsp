@@ -16,8 +16,10 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/admin/admin.css?after"
 	rel="stylesheet" type="text/css" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link
-	href="${pageContext.request.contextPath}/resources/css/admin/notice.css?after"
+	href="${pageContext.request.contextPath}/resources/css/admin/notice.css?ver=1"
 	rel="stylesheet" type="text/css" />
 </head>
 <body>

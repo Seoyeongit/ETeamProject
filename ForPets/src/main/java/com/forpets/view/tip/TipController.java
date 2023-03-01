@@ -39,8 +39,9 @@ public class TipController {
 	@RequestMapping(value="updateTip")
 	public String updateTip(TipVO vo, TipDAO tipDAO, HttpServletRequest request) throws IOException {
 		System.out.println("---> updateTip 실행");
-		vo.setTip_title(request.getParameter("title"));
-		vo.setTip_content(request.getParameter("content"));
+//		vo.setTip_title(request.getParameter("tip_title"));
+//		vo.setTip_content(request.getParameter("tip_content"));
+//		vo.setTip_video("tip_video");
 		tipService.updateTip(vo);
 		System.out.println("---> updateTip 완료");
 		return "redirect:/Tip/getTipList";

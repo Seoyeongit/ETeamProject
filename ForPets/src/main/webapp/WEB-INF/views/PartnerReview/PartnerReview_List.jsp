@@ -84,6 +84,7 @@
 	color : white;
 	}
 	
+
 	.btns {
 		border: none; 
 		background-color:transparent;
@@ -123,7 +124,6 @@
     resize: none;  
 }
 
-
 </style>
 
 <title>펫트너 리뷰</title>
@@ -131,6 +131,7 @@
 <body>
 	<h1 style="text-align: center;">펫트너 리뷰</h1>
 	<h5 style="text-align: center;">펫트너를 평가해주세요! <a href="../createpartreview/${part_id }"><input type="button" class="btn btn-sm btn-block" value="글 작성하기"></a></h5>
+
 
 
 <div class="content_guide">
@@ -142,6 +143,7 @@
 	    <img src = "${pageContext.request.contextPath}/resources/assets/img/commu/rabbitcomm.webp" style="width: 200px; height: 150px;">
 		<h2>${prList } 펫트너</h2>
 		<input type="hidden" name="part_id" value="${part_id}">
+
 		<form class="mb-3" name="myform" id="myform" method="post" >
 		<h6>파트너 평균 평점 ${avg }점</h6>
 				<fieldset>
@@ -168,7 +170,9 @@
 	
 	<c:forEach items="${reviewList }" var="rl" varStatus="vs"> 
 		<div class="review_board">
+
 			<input type="hidden" value="${rl.pr_num }">
+
 				<h5>${rl.pr_title }</h5>
 				<p style="font-size: 12px;">${rl.user_id } | ${rl.pr_date }</p>
 				
@@ -194,6 +198,7 @@
 					</script>
 				
 				</form>
+
 				
 
 				<p>${rl.pr_content }</p>
@@ -203,6 +208,7 @@
 			<a href="../deletepartreview/${rl.pr_num}&${part_id}"><input type="submit" value="삭제" style="border: none; background-color:transparent; float: right;" ></a>
 		</c:if>
 		</div>
+
 		</div>
 			</c:forEach>
 			

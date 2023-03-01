@@ -27,6 +27,7 @@
 			var last = $("#survey tr:last").attr("class").replace("item","");
 			var newitem = $("#survey tr:eq(1)").clone();
 
+
 			newitem.removeClass();
 			newitem.find("td:eq(0)").attr("rowspan", "1");
 			

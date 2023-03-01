@@ -1,6 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %> 
+<head>
+	<style>
+		#review-header{
+			border-radius : 5px;
+			border: 1px solid #e5e5e5;
+		}
+	
+		
+		textarea{
+			resize: none;
+			border-radius : 5px;
+			border: 1px solid #e5e5e5;
+		}
+		
+		#review-header:focus{
+			outline: none;
+			border: 1px solid #0CC7B8;
+			transition: border .3s;
+		}
+		
+		textarea:focus {
+			outline: none;
+        	border: 1px solid #0CC7B8;
+       		transition: border .3s;
+		}
+		
+		#review-header::placeholder{
+  			font-size: 13px;
+		}
+		
+		textarea::placeholder {
+		  font-size: 13px;
+		}
+	</style>
+</head>
     <div>
         <h4>'${reserve.voPet.name}'
         <c:choose>
@@ -23,7 +58,7 @@
 
         
         <hr>
-        <span class="text-bold">서비스는 어떠셨나요</span>
+        <span class="text-bold">서비스만족도를 알려주세요</span>
         <div id="myform">
         <fieldset>
 					<input type="radio" name="star_rating" value="5" id="rate1"><label

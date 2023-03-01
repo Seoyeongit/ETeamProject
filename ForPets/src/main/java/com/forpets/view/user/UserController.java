@@ -4,11 +4,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.forpets.biz.user.UserService;
 import com.forpets.biz.user.UserVO;
@@ -86,9 +92,44 @@ public class UserController {
 	}
 	
 	//회원가입페이지를 VIEW합니다.
-	@RequestMapping(value="/member/join")
+	@GetMapping(value="/member/join")
 	public String viewSignUp() {
 		return "member/join";
 	}
+	
+	//회원가입
+	@PostMapping(value="/member/join")
+	public String join(UserVO vo) {
+		userService.saveUser(vo);
+		return "member/loginMain";
+	}
+	
+	//아이디 중복 체크
+	@PostMapping(value="/member/checkId")
+	public @ResponseBody Object checkId(@RequestBody UserVO vo) {
+		UserVO existUser;
+		
+		try {
+			existUser = userService.getUserById(vo);
+			if(existUser == null) {
+				return 0;
+			}else {
+				return 1;
+			}
+		}catch(EmptyResultDataAccessException e) {
+			return 0;
+		}catch (Exception e) {
+			return 9;
+		}
+	}
+	
+	@GetMapping(value="/member/phoneCheck")
+	@ResponseBody
+	public String sendSMS(@RequestParam("phone")String userPhoneNumber) {
+		int randomNumber = (int)((Math.random()*(9999-1000+1))+1000);
+		userService.certifiedPhoneNumber(userPhoneNumber, randomNumber);
+		return Integer.toString(randomNumber);
+	}
+	
 	
 }

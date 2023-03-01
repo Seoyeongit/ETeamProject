@@ -27,7 +27,7 @@
 <body>
 	<div class="container-xl">
 		<div class="row">
-			<div class="col-md-10 mx-auto">
+			<div class="col-md-11 mx-auto">
 				<div id="myCarousel" class="carousel slide" data-ride="carousel"
 					data-interval="0">
 					<!-- Carousel indicators -->
@@ -41,23 +41,23 @@
 					<div class="carousel-inner">
 						<div class="carousel-item active">
 							<div class="row">
-								<div class="col-sm-4">
+								<div class="col-sm-3">
 									<div class="thumb-wrapper">
 										<div class="img-box">
 											<img src="${ tipPrev[0].tip_img_url }"
-												onclick="location.href='getTip?tip_seq=${ tipPrev[0].tip_seq }'"
+												onclick="location.href='${pageContext.request.contextPath}/Tip/getTip?tip_seq=${ tipPrev[0].tip_seq }'"
 												class="img-fluid" alt="">
 										</div>
 										<div class="thumb-content">
-											<h4>${ tipPrev[0].tip_title }</h4>
+											<h5>${ tipPrev[0].tip_title }</h5>
 											<p></p>
 											<a href="getTip?tip_seq=${ tipPrev[0].tip_seq }"
-												class="btn btn-primary">More <i
+												class="btn btn-primary">상세보기 <i
 												class="fa fa-angle-right"></i></a>
 										</div>
 									</div>
 								</div>
-								<div class="col-sm-4">
+								<div class="col-sm-3">
 									<div class="thumb-wrapper">
 										<div class="img-box">
 											<img src="${ tipPrev[1].tip_img_url }"
@@ -65,15 +65,15 @@
 												class="img-fluid" alt="">
 										</div>
 										<div class="thumb-content">
-											<h4>${ tipPrev[1].tip_title }</h4>
+											<h5>${ tipPrev[1].tip_title }</h5>
 											<p></p>
 											<a href="getTip?tip_seq=${ tipPrev[1].tip_seq }"
-												class="btn btn-primary">More <i
+												class="btn btn-primary">상세보기 <i
 												class="fa fa-angle-right"></i></a>
 										</div>
 									</div>
 								</div>
-								<div class="col-sm-4">
+								<div class="col-sm-3">
 									<div class="thumb-wrapper">
 										<div class="img-box">
 											<img src="${ tipPrev[2].tip_img_url }"
@@ -81,10 +81,162 @@
 												class="img-fluid" alt="">
 										</div>
 										<div class="thumb-content">
-											<h4>${ tipPrev[2].tip_title }</h4>
+											<h5>${ tipPrev[2].tip_title }</h5>
 											<p></p>
 											<a href="getTip?tip_seq=${ tipPrev[2].tip_seq }"
-												class="btn btn-primary">More <i
+												class="btn btn-primary">상세보기 <i
+												class="fa fa-angle-right"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="thumb-wrapper">
+										<div class="img-box">
+											<img src="${ tipPrev[3].tip_img_url }"
+												onclick="location.href='getTip?tip_seq=${ tipPrev[3].tip_seq }'"
+												class="img-fluid" alt="">
+										</div>
+										<div class="thumb-content">
+											<h5>${ tipPrev[3].tip_title }</h5>
+											<p></p>
+											<a href="getTip?tip_seq=${ tipPrev[3].tip_seq }"
+												class="btn btn-primary">상세보기 <i
+												class="fa fa-angle-right"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="carousel-item">
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="thumb-wrapper">
+										<div class="img-box">
+											<img src="${ tipPrev[4].tip_img_url }"
+												onclick="location.href='${pageContext.request.contextPath}/Tip/getTip?tip_seq=${ tipPrev[4].tip_seq }'"
+												class="img-fluid" alt="">
+										</div>
+										<div class="thumb-content">
+											<h5>${ tipPrev[4].tip_title }</h5>
+											<p></p>
+											<a href="getTip?tip_seq=${ tipPrev[4].tip_seq }"
+												class="btn btn-primary">상세보기 <i
+												class="fa fa-angle-right"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="thumb-wrapper">
+										<div class="img-box">
+											<img src="${ tipPrev[5].tip_img_url }"
+												onclick="location.href='getTip?tip_seq=${ tipPrev[5].tip_seq }'"
+												class="img-fluid" alt="">
+										</div>
+										<div class="thumb-content">
+											<h5>${ tipPrev[5].tip_title }</h5>
+											<p></p>
+											<a href="getTip?tip_seq=${ tipPrev[5].tip_seq }"
+												class="btn btn-primary">상세보기 <i
+												class="fa fa-angle-right"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="thumb-wrapper">
+										<div class="img-box">
+											<img src="${ tipPrev[6].tip_img_url }"
+												onclick="location.href='getTip?tip_seq=${ tipPrev[6].tip_seq }'"
+												class="img-fluid" alt="">
+										</div>
+										<div class="thumb-content">
+											<h5>${ tipPrev[6].tip_title }</h5>
+											<p></p>
+											<a href="getTip?tip_seq=${ tipPrev[6].tip_seq }"
+												class="btn btn-primary">상세보기 <i
+												class="fa fa-angle-right"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="thumb-wrapper">
+										<div class="img-box">
+											<img src="${ tipPrev[7].tip_img_url }"
+												onclick="location.href='getTip?tip_seq=${ tipPrev[7].tip_seq }'"
+												class="img-fluid" alt="">
+										</div>
+										<div class="thumb-content">
+											<h5>${ tipPrev[7].tip_title }</h5>
+											<p></p>
+											<a href="getTip?tip_seq=${ tipPrev[7].tip_seq }"
+												class="btn btn-primary">상세보기 <i
+												class="fa fa-angle-right"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+										<div class="carousel-item">
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="thumb-wrapper">
+										<div class="img-box">
+											<img src="${ tipPrev[8].tip_img_url }"
+												onclick="location.href='${pageContext.request.contextPath}/Tip/getTip?tip_seq=${ tipPrev[8].tip_seq }'"
+												class="img-fluid" alt="">
+										</div>
+										<div class="thumb-content">
+											<h5>${ tipPrev[8].tip_title }</h5>
+											<p></p>
+											<a href="getTip?tip_seq=${ tipPrev[8].tip_seq }"
+												class="btn btn-primary">상세보기 <i
+												class="fa fa-angle-right"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="thumb-wrapper">
+										<div class="img-box">
+											<img src="${ tipPrev[9].tip_img_url }"
+												onclick="location.href='getTip?tip_seq=${ tipPrev[9].tip_seq }'"
+												class="img-fluid" alt="">
+										</div>
+										<div class="thumb-content">
+											<h5>${ tipPrev[9].tip_title }</h5>
+											<p></p>
+											<a href="getTip?tip_seq=${ tipPrev[9].tip_seq }"
+												class="btn btn-primary">상세보기 <i
+												class="fa fa-angle-right"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="thumb-wrapper">
+										<div class="img-box">
+											<img src="${ tipPrev[10].tip_img_url }"
+												onclick="location.href='getTip?tip_seq=${ tipPrev[10].tip_seq }'"
+												class="img-fluid" alt="">
+										</div>
+										<div class="thumb-content">
+											<h5>${ tipPrev[10].tip_title }</h5>
+											<p></p>
+											<a href="getTip?tip_seq=${ tipPrev[10].tip_seq }"
+												class="btn btn-primary">상세보기 <i
+												class="fa fa-angle-right"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="thumb-wrapper">
+										<div class="img-box">
+											<img src="${ tipPrev[11].tip_img_url }"
+												onclick="location.href='getTip?tip_seq=${ tipPrev[11].tip_seq }'"
+												class="img-fluid" alt="">
+										</div>
+										<div class="thumb-content">
+											<h5>${ tipPrev[11].tip_title }</h5>
+											<p></p>
+											<a href="getTip?tip_seq=${ tipPrev[11].tip_seq }"
+												class="btn btn-primary">상세보기 <i
 												class="fa fa-angle-right"></i></a>
 										</div>
 									</div>
@@ -93,15 +245,15 @@
 						</div>
 					</div>
 				</div>
+
+				<!-- Carousel controls -->
+				<a class="carousel-control-prev" href="#myCarousel"
+					data-slide="prev"> <i class="fa fa-angle-left"></i>
+				</a> <a class="carousel-control-next" href="#myCarousel"
+					data-slide="next"> <i class="fa fa-angle-right"></i>
+				</a>
 			</div>
 		</div>
 	</div>
-	<!-- Carousel controls -->
-	<a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-		<i class="fa fa-angle-left"></i>
-	</a>
-	<a class="carousel-control-next" href="#myCarousel" data-slide="next">
-		<i class="fa fa-angle-right"></i>
-	</a>
 </body>
 </html>

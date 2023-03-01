@@ -12,21 +12,20 @@
     <h2>📄'${careDIA.voR.voPet.name }'산책돌봄서비스 돌봄일지 입니다.</h2>
     <p>담당 펫트너 : ${careDIA.voR.voP.part_name }</p>
 
-    <hr>
 
     <div>
         <h4>'${careDIA.voR.voPet.name }'의 상태</h4>
-        <div>${careDIA.pet_condition }</div>
+        <div id="report" >${careDIA.pet_condition }</div>
     </div>
 
     <div>
         <h4>산책이행시간</h4>
-        <div>${careDIA.walk_time }</div>
+        <div id="report" >${careDIA.walk_time }</div>
     </div>
 
     <div>
         <h4>돌봄일지</h4>
-        <div>${careDIA.care_review }</div>
+        <div id="report" >${careDIA.care_review }</div>
     </div>
 
 </body>

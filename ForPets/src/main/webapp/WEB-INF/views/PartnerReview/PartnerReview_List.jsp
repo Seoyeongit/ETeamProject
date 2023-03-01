@@ -84,6 +84,12 @@
 	color : white;
 	}
 	
+	.btns {
+		border: none; 
+		background-color:transparent;
+		float: right;
+	}
+	
 @charset "UTF-8";
 
 #myform fieldset{
@@ -114,10 +120,9 @@
     border: solid 1.5px #D3D3D3;
     border-radius: 5px;
     font-size: 16px;
-    resize: none;
-    
-    
+    resize: none;  
 }
+
 
 </style>
 
@@ -136,6 +141,7 @@
 	<div class="ptinfo"  >
 	    <img src = "${pageContext.request.contextPath}/resources/assets/img/commu/rabbitcomm.webp" style="width: 200px; height: 150px;">
 		<h2>${prList } 펫트너</h2>
+		<input type="hidden" name="part_id" value="${part_id}">
 		<form class="mb-3" name="myform" id="myform" method="post" >
 		<h6>파트너 평균 평점 ${avg }점</h6>
 				<fieldset>
@@ -162,6 +168,7 @@
 	
 	<c:forEach items="${reviewList }" var="rl" varStatus="vs"> 
 		<div class="review_board">
+			<input type="hidden" value="${rl.pr_num }">
 				<h5>${rl.pr_title }</h5>
 				<p style="font-size: 12px;">${rl.user_id } | ${rl.pr_date }</p>
 				
@@ -187,10 +194,15 @@
 					</script>
 				
 				</form>
-				<a href="../viewpartreview/${rl.pr_num }"></a>
 				
-				
-				${rl.pr_content }
+
+				<p>${rl.pr_content }</p>
+		<div class="btns">
+		<c:if test="${member.user_id == rl.user_id }">
+			<a href="../updatepartreview/${rl.pr_num }"><input type="button" value="수정" style="border: none; background-color:transparent; float: right;"></a>
+			<a href="../deletepartreview/${rl.pr_num}&${part_id}"><input type="submit" value="삭제" style="border: none; background-color:transparent; float: right;" ></a>
+		</c:if>
+		</div>
 		</div>
 			</c:forEach>
 			

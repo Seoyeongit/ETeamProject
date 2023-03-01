@@ -35,7 +35,7 @@
 	    /* border-width: 0 1px; */
 	    -webkit-box-sizing: content-box;
 	    box-sizing: content-box;
-	    margin-bottom: 100px;
+	    margin-bottom: 50px;
 	}
 	
 	.info {
@@ -53,13 +53,13 @@
 	    padding-bottom: 32px;
 	}
 	
-	hr {
- 	 background: #d3d3d3;
+	.hr1 {
 	 height:1px;
 	 border: 0;
 	 padding-right: 100px; 
 	 padding-left: 100px;
-
+	 margin-right : 80px;
+	 margin-left : 80px;
 	}
 	
 	.title_area {
@@ -143,18 +143,21 @@
 						<p class="writer"> <b>${communityboard.user_id }</b> | ${communityboard.c_date }</p>
 		 			</div>
 		 			
-		 			<hr><br>
+		 			<hr class="hr1"><br>
 
 		 		
 		 		<div class="text_area" style="white-space:pre;">${communityboard.c_content }</div>
 		 		
-		 	
-
-		<div class="buttons"> 		
+		 	<br>
+	
+		<div class="buttons"> 
+	<c:if test="${member.user_id == communityboard.user_id }">		
 			<a href="../updatecommunity/${communityboard.c_code }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="수정"></a>
 			<a href="../deletecommunity/${communityboard.c_code }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="삭제"></a>
+	</c:if>
 			<a href="../communitylist"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="목록으로"></a>		
 		</div>
+	
 		</div>
 		</div>
 		
@@ -167,26 +170,26 @@
 		<form name="frm${gd.d_num }" method="post">
 			<input type="hidden" name="d_code" value="${gd.d_code }">
 			<input type="hidden" name="d_num" value="${gd.d_num }" id ="d_num">
-			
+			<input type="hidden" id="c${gd.d_num }" value="${gd.d_content}">
 				
 					<p><b>${gd.user_id }</b> | ${gd.d_date }</p> 
 					<p id="${gd.d_num }"><a>${gd.d_content }</a></p>
 			
-
+		<c:if test="${member.user_id == gd.user_id }">
 			<a id="b${gd.d_num }"><input type="button" value="수정" onclick="update(${gd.d_num})" style="border: none; background-color:transparent; float:right;" ></a>
 			<input type="submit" value="삭제" onclick="javascript : frm${gd.d_num }.action='../deletedat';" style="border: none; background-color:transparent; float:right;">
-
-		</form>
-		<br>
-		<hr>
+		</c:if>
+		</form><br>
+		<hr style="height:1px; border: 0; ">
 		</c:forEach>
 		
 	
  		<script>
  			
  			function update(data) {
+ 				
  				$('#'+data).children().remove();
- 				$('#'+data).append('<input type="text" name="d_content" class="comment_board">');
+ 				$('#'+data).append('<input type="text" name="d_content" class="comment_board" value="'+$('#c'+data).val()+'">');
  				$('#b'+data).children().remove();
  				$('#b'+data).append("<input type='submit' value='수정' style='border: none; background-color:transparent; float:right;' onclick='javascript : frm"+data+".action=\"../updatedat\";'>");
  				/* $('#b'+data).attr("onclick", "updatedat("+data+")"); */
@@ -224,9 +227,6 @@
 	
 
 	
-		
-	<br><br>
-		
 
 	
 <%@ include file="/WEB-INF/views/footer.jsp" %>	

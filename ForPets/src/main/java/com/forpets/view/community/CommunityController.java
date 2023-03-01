@@ -52,6 +52,14 @@ public class CommunityController {
 		return mav;
 	}
 	
+	@RequestMapping("/getcommunity/{c_code}")
+	public ModelAndView insertcomm(@PathVariable String c_code) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/Community/Create_Community");
+		mav.addObject("cscode", c_code);
+		return mav;
+	}
+	
 	
 	// 소모임 글 등록
 	@RequestMapping("/insertcommunity")

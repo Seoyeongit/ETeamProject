@@ -28,4 +28,7 @@ public interface AdminService {
 	// 팁게목록
 	public List<TipVO> getTipPrev(TipVO tvo);
 
+	// 유저 탈퇴
+	public void deleteUser(UserVO uvo, String user_id);
+
 }

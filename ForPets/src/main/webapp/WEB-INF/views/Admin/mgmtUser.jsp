@@ -97,7 +97,7 @@
 											<td>${user.user_add}</td>
 											<td>${user.data_create}</td>
 											<td>${user.war}</td>
-											<td><a href="#" class="view" title="탈퇴"
+											<td><a href="${pageContext.request.contextPath}/Admin/deleteUser/${user.user_id }" class="view" title="탈퇴"
 												data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a>
 											</td>
 										</tr>

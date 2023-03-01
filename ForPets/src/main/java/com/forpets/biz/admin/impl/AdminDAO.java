@@ -99,6 +99,10 @@ public class AdminDAO {
 		System.out.println(tvo.getTip_title() + tvo.getTip_img_url() + tvo.getTip_seq());
 		return jdbcTemplate.query(TIP_PREV, tipRowMapper);
 	}
+
+	public void deleteUser(UserVO uvo, String user_id) {
+		jdbcTemplate.update(DELETE_USER, user_id);
+	}
 	
 	
 	// 소모임 게시판 미리보기

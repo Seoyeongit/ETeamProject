@@ -43,5 +43,10 @@ public class AdminServiceImpl implements AdminService {
 	public List<TipVO> getTipPrev(TipVO tvo) {
 		return adminDAO.getTipPrev(tvo);
 	}
+
+	@Override
+	public void deleteUser(UserVO uvo, String user_id) {
+		adminDAO.deleteUser(uvo, user_id);
+	}
 	
 }

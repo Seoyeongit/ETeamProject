@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.forpets.biz.user.UserService;
@@ -122,22 +123,13 @@ public class UserController {
 		}
 	}
 	
+	@GetMapping(value="/member/phoneCheck")
+	@ResponseBody
+	public String sendSMS(@RequestParam("phone")String userPhoneNumber) {
+		int randomNumber = (int)((Math.random()*(9999-1000+1))+1000);
+		userService.certifiedPhoneNumber(userPhoneNumber, randomNumber);
+		return Integer.toString(randomNumber);
+	}
 	
-//    /**
-//     * 단일 메시지 발송 예제
-//     */
-//    @PostMapping("/send-one")
-//    public SingleMessageSentResponse sendOne() {
-//        Message message = new Message();
-//        // 발신번호 및 수신번호는 반드시 01012345678 형태로 입력되어야 합니다.
-//        message.setFrom("07045714043");
-//        message.setTo("수신번호 입력");
-//        message.setText("한글 45자, 영자 90자 이하 입력되면 자동으로 SMS타입의 메시지가 추가됩니다.");
-//
-//        SingleMessageSentResponse response = this.messageService.sendOne(new SingleMessageSendingRequest(message));
-//        System.out.println(response);
-//
-//        return response;
-//    }
 	
 }

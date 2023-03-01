@@ -19,4 +19,7 @@ public interface UserService {
 	
 	//아이디중복체크
 	UserVO getUserById(UserVO vo);
+	
+	//핸드폰인증번호체크
+	void certifiedPhoneNumber(String userPhoneNumber, int randomNumber);
 }

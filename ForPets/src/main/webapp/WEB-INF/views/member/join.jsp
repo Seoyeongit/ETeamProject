@@ -16,7 +16,7 @@
 	
 	<a><img src="${pageContext.request.contextPath}/resources/assets/img/logo_gr.png"></a>
 
-	<form method="post" action="join" id="join-form">
+	<form method="post" action="../member/join" id="join-form">
 	
 		<div id="form-body">
 			<div class="form-title">
@@ -50,8 +50,8 @@
 						<label id="int-label">패스워드 확인</label>
 						<i class="icon required" aria-hidden="hidde">*</i>
 					</div>
-					<div class="col_2">
-						<input type="password" id="pwCheck" autocomplete="off" required="required">
+					<div class="col_2" class="pwCheck">
+						<input type="password" id="pwCheck" autocomplete="off" required="required" onInput="checkPw(this)" >
 					</div>
 				</div>
 
@@ -103,19 +103,19 @@
 							
 				
 		<div id="form-body">
-				<div class="caption">
+				<div class="checkbox-group">
 					<div class="allChkBtn">
-						<label for="allChkBtn">전체동의 선택항목에 대한 동의 포함<label>
-						<input id="allChkBtn" class="remember" type="checkbox">
+						<label for="check_all">전체동의 선택항목에 대한 동의 포함</label>
+						<input id="check_all" type="checkbox">
 					</div>
 					<hr>
 					<div>
-						<label for="member">회원 약관에 동의합니다.</label>
-						<input id="member" class="remember" type="checkbox">
+						<label for="check_1"><stong>[필수] </stong>회원 약관에 동의합니다.</label>
+						<input id="check_1"" class="normal" type="checkbox">
 					</div>
 					<div>
-						<label for="individual">개인정보 약관에 동의합니다.</label>
-						<input id="individual" class="remember" type="checkbox">
+						<label for="check_2"><stong>[필수] </stong>개인정보 약관에 동의합니다.</label>
+						<input id="check_2" class="normal" type="checkbox">
 					</div>
 				</div>
 		</div>
@@ -126,7 +126,7 @@
 				</div>
 
 				<div class="btn-area">
-					<button class="default" type="button" onclick="location.href='/member/loginMain'">로그인으로 돌아가기</button>
+					<button class="default" type="button" onclick="location.href='../member/loginMain'">로그인으로 돌아가기</button>
 				</div>
 		</div>
 				

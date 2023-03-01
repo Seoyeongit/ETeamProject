@@ -118,6 +118,11 @@ body {
 	text-align: center;
 }
 
+.int-area .col_2 #check-id:hover, .int-area .col_2 #phoneChk:hover, .int-area .col_2 #phoneChk2:hover{
+	cursor: pointer;
+	background-color: #e8eaec;
+}
+
 
 .int-area input[type=text], .int-area input[type=password]{
 	display: block;
@@ -148,11 +153,11 @@ body {
 	border-color: #EAEDEF;
 }
 
-#form-body .caption div{
+#form-body .checkbox-group div{
 	margin-bottom: 15px;
 }
 
-#form-body .caption .allChkBtn label{
+#form-body .checkbox-group .allChkBtn label{
 	font-size: 20px;
 	font-weight: bold;
 }
@@ -183,11 +188,11 @@ body {
 	cursor: pointer;
 }
 
-.caption {
+.checkbox-group {
 	margin-top: 20px;
 }
 
-.caption a, div {
+.checkbox-group a, div {
 	font-size: 15px;
 	color: green;
 	text-decoration: none;

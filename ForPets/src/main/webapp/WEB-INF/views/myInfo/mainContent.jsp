@@ -222,7 +222,7 @@
 		)
 	
 	    item.onmousedown = function (event) {
-	        $('.hover-div-bk,#register_wark').css("display", "none");
+	        $('.hover-div-bk,#register_wark').hide(2000);
 	        function onMouseMove(event) {
 	            $('.hover-div-bk,#register_wark').css("display", "none");
 	        }

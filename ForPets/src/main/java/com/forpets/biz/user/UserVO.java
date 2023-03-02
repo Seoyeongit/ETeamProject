@@ -26,7 +26,7 @@ public class UserVO {
 	private String user_nick; //닉네임
 	private String user_add; //주소
 	private char gender; //성별
-	private int phnumber; //핸드폰번호
+	private String phnumber; //핸드폰번호
 	private Date birth; //생년월일
 	private int war; //경고횟수
 	private int user_no; //회원번호

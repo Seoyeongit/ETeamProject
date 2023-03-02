@@ -27,8 +27,13 @@
 			padding-left:14px;
 		}
 		.ccontent{
+			width:247%;
 			resize:none;
 			padding-left:14px;
+			margin-bottom:5%;
+		}
+		.qs-con-red, .qs-con-box {
+			float:left;
 		}
 	</style>
 </head>
@@ -63,9 +68,9 @@
 			<hr>
 			<div class="tb-ins-tit">문의 제목<input type="text" class="ctitle" id="title" name="title"/></div>
 			<div><hr/></div>
-			<div class="tb-ins-con">문의 내용<textarea class="ccontent" id="content" name="content"></textarea></div>
+			<div class="tb-ins-con"><div class="qs-con-red">문의 내용</div><div class="qs-con-box"><textarea class="ccontent" id="content" name="content"></textarea></div></div>
 		</div>
-		<hr/>
+		<hr>
 		<div>
 		<button type="submit" class="check-in" id="cheke">확인</button>
 		<button type="button" class="cancle-out" onclick="location.href='customerMain.do';">취소</button>

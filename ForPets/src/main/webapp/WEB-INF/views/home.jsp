@@ -224,64 +224,155 @@
             </div>
         </section>
         <!-- review-->
-        <section class="page-section" id="review">
-            <div class="container">
+	 <section class="page-section" id="review">
+            <div class="">
+        
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">review</h2>
-                    <h3 class="section-subheading text-muted">여러가지 후기들을 볼 수 있습니다.</h3>
+                    <h2 class="section-heading text-uppercase mb-4 ">실시간 포펫츠 후기</h2>
                 </div>
-                <ul class="timeline">
-                    <li>
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/review/dog1.jfif" alt="..." /></div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>2023년 1월 24일</h4>
-                                <h4 class="subheading">산책 서비스 후기</h4>
+        
+                <div class="card-wrap">
+                    <div class="card">
+                        <div class="review-content">
+                            <div class="reviewer-wrap">
+                                <div class="reviewer-img">
+                                    <img src="${pageContext.request.contextPath}/resources/assets/img/commu/catcomm2.jpg">
+                                </div>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">산책로 자동 지정 시스템과 매우 친절한 파트너 분 덕분에 하루 마음 편히 저의 시간을 가지는 날이었어요~ 처음엔 우리 아이를 다른사람 손에 맡긴다는게 조금 찝찝한 마음도 있었는데 한번 맡겨보고 나니 안심하게 되었어요 앞으로도 자주 이용 할것 같습니다.</p></div>
-                        </div>
-                    </li>
-                    <li class="timeline-inverted">
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/review/dog2.jfif" alt="..." /></div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>2023년 1월 26일</h4>
-                                <h4 class="subheading">병원 방문 서비스 후기</h4>
+                            <div class="review-text">
+                                <div>
+                                    <div class="review-simple-starRating">
+                                        <div>
+                                            한줄평
+                                        </div>
+                                        <div>
+                                            ⭐⭐⭐⭐⭐
+                                        </div>
+                                    </div>
+                                    <p>수고했습니다.</p>
+                                </div>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">병원 방문 서비스 후기 내용(대충 만족 한다는 글)</p></div>
                         </div>
-                    </li>
-                    <li>
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/review/cat1.jfif" alt="..." /></div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>2023년 1월 30일</h4>
-                                <h4 class="subheading">서비스 후기</h4>
+                    </div>
+        
+                    <div class="card">
+                        <div class="review-content">
+                            <div class="reviewer-wrap">
+                                <div class="reviewer-img">
+                                    <img src="./noImage.png">
+                                </div>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">서비스 후기 내용(대충 좋았다는 글)</p></div>
-                        </div>
-                    </li>
-                    <li class="timeline-inverted">
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/review/cat2.jfif" alt="..." /></div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>2023년 2월 10일</h4>
-                                <h4 class="subheading">병원 방문 서비스 후기</h4>
+                            <div class="review-text">
+                                <div>
+                                    <div class="review-simple-starRating">
+                                        <div>
+                                            한줄평
+                                        </div>
+                                        <div>
+                                            ⭐⭐⭐⭐⭐
+                                        </div>
+                                    </div>
+                                    <p>수고했습니다.</p>
+                                </div>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">병원 방문 서비스 후기 내용(너무 인상적이었다는 글)</p></div>
                         </div>
-                    </li>
-                    <li class="timeline-inverted">
-                        <div class="timeline-image">
-                            <h4>
-                                <a>review</br>
-                                 more</br>
-                                 ...
-                                </a>
-                             </h4>
+                    </div>
+        
+        
+                    <div class="card">
+                        <div class="review-content">
+                            <div class="reviewer-wrap">
+                                <div class="reviewer-img">
+                                    <img src="./noImage.png">
+                                </div>
+                            </div>
+                            <div class="review-text">
+                                <div>
+                                    <div class="review-simple-starRating">
+                                        <div>
+                                            한줄평
+                                        </div>
+                                        <div>
+                                            ⭐⭐⭐⭐⭐
+                                        </div>
+                                    </div>
+                                    <p>수고했습니다.</p>
+                                </div>
+                            </div>
                         </div>
-                    </li>
-                </ul>
+                    </div>
+        
+                    <div class="card">
+                        <div class="review-content">
+                            <div class="reviewer-wrap">
+                                <div class="reviewer-img">
+                                    <img src="./noImage.png">
+                                </div>
+                            </div>
+                            <div class="review-text">
+                                <div>
+                                    <div class="review-simple-starRating">
+                                        <div>
+                                            한줄평
+                                        </div>
+                                        <div>
+                                            ⭐⭐⭐⭐⭐
+                                        </div>
+                                    </div>
+                                    <p>수고했습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="card">
+                        <div class="review-content">
+                            <div class="reviewer-wrap">
+                                <div class="reviewer-img">
+                                    <img src="./noImage.png">
+                                </div>
+                            </div>
+                            <div class="review-text">
+                                <div>
+                                    <div class="review-simple-starRating">
+                                        <div>
+                                            한줄평
+                                        </div>
+                                        <div>
+                                            ⭐⭐⭐⭐⭐
+                                        </div>
+                                    </div>
+                                    <p>수고했습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="card">
+                        <div class="review-content">
+                            <div class="reviewer-wrap">
+                                <div class="reviewer-img">
+                                    <img src="./noImage.png">
+                                </div>
+                            </div>
+                            <div class="review-text">
+                                <div>
+                                    <div class="review-simple-starRating">
+                                        <div>
+                                            한줄평
+                                        </div>
+                                        <div>
+                                            ⭐⭐⭐⭐⭐
+                                        </div>
+                                    </div>
+                                    <p>수고했습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+        
             </div>
         </section>
        

@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.forpets.biz.partner.PartnerVO;
+import com.forpets.biz.pet.PetVO;
 
 @Repository("partnerDAO")
 public class PartnerDAO {
@@ -18,6 +19,7 @@ public class PartnerDAO {
 	private final String PARTNER_LIST = "select * from PARTNERS order by part_id desc";
 	private final String PARTNER_GET = "select * from PARTNERS where part_id = ?";
 	private final String PARTNER_UPDATE = "UPDATE PARTNERS SET PART_PW=?, PART_NICK=?, PART_ADD=?, PART_PHNUMBER=?, SELF_INFOR=?" + " WHERE PART_ID=?";
+	private final String INSERT_PartImg = "UPDATE partners SET PART_IMG=? WHERE PART_ID = ? ";
 	
 	public List<PartnerVO> getPartnerList(PartnerVO vo) {
 		System.out.println("---> JDBC로 getPartnerList() 기능 처리");
@@ -57,5 +59,23 @@ public class PartnerDAO {
 		jdbcTemplate.update(PARTNER_UPDATE, obj);
 	}
 	
+	public void insertPartnerImg(PartnerVO vo) {
+		System.out.println("--->insert partner start.....");
+		try{
+			jdbcTemplate.update(INSERT_PartImg, vo.getPart_img(), vo.getPart_id());
+		}catch (Exception e) {
+			System.out.println(e);
+			System.out.println("오류임");
+		}
+	}
 	
+	public void updatePartnerImg(PartnerVO vo) {
+		System.out.println("--->insert partner start.....");
+		try{
+			jdbcTemplate.update(INSERT_PartImg, vo.getPart_img(), vo.getPart_id());
+		}catch (Exception e) {
+			System.out.println(e);
+			System.out.println("오류임");
+		}
+	}
 }

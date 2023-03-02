@@ -44,6 +44,12 @@ public interface CustomerService {
 	// 페이징
 	int getTotalPages(SearchCriteria cri);
 	
+	// 내 문의내역 페이징
+	int getMyPages(SearchCriteria cri, CustomerVO vo);
+	
 	// 글 목록 조회 with dynamic(search condition) paging
 	List<CustomerVO> getCustomerListWithDynamicPaging(SearchCriteria cri);
+	
+	// 내 문의 내역 조회
+	List<CustomerVO> getMyListWithDynamicPaging(SearchCriteria cri);
 }

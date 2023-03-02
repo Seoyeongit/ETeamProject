@@ -11,6 +11,9 @@
 <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <title>고객센터 문의 목록</title>
 <style>
+	.text-center {
+		margin-top:4%;
+	}
 	.pagination-forpets {
       display: flex;
       padding-left: 0;
@@ -54,9 +57,17 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/nav.jsp" %>
-<div class="main-ban">
-<h2>고객센터 문의 목록</h2>
-</div>
+<form action="getCustomerList" method="post">
+	<fieldset>
+		<div class="mainBanner">
+		<h2 class="mainText">ForPets 고객센터</h2>
+			<div class="top-search-form">도움말 검색&nbsp;
+				<i class="fas fa-search"></i>
+				<input type="text" class="element-input" name="searchKeyword" placeholder="검색어를 입력하세요." data-game="2017090003">
+			</div>
+		</div>
+	</fieldset>
+	</form>
 <br>
 <form action="getCustomerList" method="post">
 		<div>

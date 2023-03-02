@@ -18,6 +18,7 @@ public class CustomerRowMapper implements RowMapper<CustomerVO> {
 		cvo.setCust_title(rs.getString("CUST_TITLE"));
 		cvo.setCust_content(rs.getString("CUST_CONTENT"));
 		cvo.setCust_date(rs.getDate("CUST_DATE"));
+		cvo.setStatus(rs.getInt("status"));
 		return cvo;
 	}
 

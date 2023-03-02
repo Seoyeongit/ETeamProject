@@ -23,12 +23,16 @@ public class CustomerDAO {
 	private final String CUSTOMER_LIST_C = "select * from CUSTOMER where cust_content like ";
 	private final String INSERT_CUSTOMER = "INSERT INTO CUSTOMER (CUST_NO, USER_ID, PART_ID, CUST_TITLE, CUST_CONTENT) VALUES((cust_seq.NEXTVAL),?,?,?,?)";
 	private final String DELETE_CUSTOMER = "DELETE FROM CUSTOMER where CUST_NO=? ";
-	private final String UPDATE_CUSTOMER = "UPDATE CUSTOMER set CUST_TITLE=?, CUST_CONTENT=? where CUST_NO=?";
+	private final String UPDATE_CUSTOMER = "UPDATE CUSTOMER set CUST_TITLE=?, CUST_CONTENT=?, where CUST_NO=?";
 	private final String SEARCH_MAIN = "select * from customer where cust_title like ? or cust_content like ? order by cust_no desc";
 	private final String INSERT_CUSTOMERRE = "INSERT INTO CUSTOMER_RE (CUST_NO, CUST_CONTENT) VALUES(?,?)";
 	private final String UPDATE_CUSTOMERRE = "UPDATE CUSTOMER_RE set CUST_CONTENT=? where CUST_NO=?";
 	private final String GET_CUSTRE = "SELECT * FROM CUSTOMER_RE WHERE CUST_NO = ?";
+	
 	private final String GETTOTALPAGES = "SELECT COUNT(*) FROM customer ";
+	private final String GETMYPAGES = "SELECT COUNT(*) FROM ";
+	
+	private final String CUSTOMER_STATUS = "UPDATE CUSTOMER set status = 2 WHERE cust_no = ? ";
 	
 	private final RowMapper<CustomerVO> customerRowMapper = (resultSet, rowNum) -> {
 		CustomerVO vo = new CustomerVO();
@@ -38,7 +42,7 @@ public class CustomerDAO {
 		vo.setCust_title(resultSet.getString("CUST_TITLE"));
 		vo.setCust_content(resultSet.getString("CUST_CONTENT"));
 		vo.setCust_date(resultSet.getDate("CUST_DATE"));
-		
+		vo.setStatus(resultSet.getInt("status"));
 		return vo;
 	};
 	
@@ -59,6 +63,7 @@ public class CustomerDAO {
 				cvo.setCust_title(resultSet.getString("CUST_TITLE"));
 				cvo.setCust_content(resultSet.getString("CUST_CONTENT"));
 				cvo.setCust_date(resultSet.getDate("CUST_DATE"));
+				cvo.setStatus(resultSet.getInt("status"));
 				return cvo;
 			}
 			, vo);
@@ -117,10 +122,12 @@ public class CustomerDAO {
 	
 	public void insertCustomerRe(CustomerReVO vo) {
 		jdbcTemplate.update(INSERT_CUSTOMERRE, vo.getCust_no(), vo.getCust_content());
+		jdbcTemplate.update(CUSTOMER_STATUS, vo.getCust_no());
 	}
 	
 	public void updateCustomerRe(CustomerReVO vo) {
 		jdbcTemplate.update(UPDATE_CUSTOMERRE, vo.getCust_content(), vo.getCust_no());
+		jdbcTemplate.update(CUSTOMER_STATUS, vo.getCust_no());
 	}
 	
 	public CustomerReVO getCustomerRe(CustomerReVO vo) {
@@ -141,12 +148,44 @@ public class CustomerDAO {
 	      System.out.println("Condition : " + cri.getSearchCondition());
 	      System.out.println("Keyword : " + cri.getSearchKeyword());
 	      String sql_in =
-	         "SELECT ROWNUM RN, CUST_NO, USER_ID, PART_ID, CUST_TITLE , CUST_CONTENT , CUST_DATE " +
+	         "SELECT ROWNUM RN, CUST_NO, USER_ID, PART_ID, CUST_TITLE , CUST_CONTENT , CUST_DATE, STATUS " +
 	         "FROM ( SELECT * FROM CUSTOMER where CUST_TITLE LIKE '%" + cri.getSearchKeyword()+ "%' OR CUST_CONTENT LIKE '%" + cri.getSearchKeyword()+ "%'";
 	      sql_in = sql_in + " ORDER BY CUST_NO DESC) WHERE ROWNUM <= " + cri.getPageNum() * cri.getAmount();
 	      
 	      String sql =
-	         "SELECT CUST_NO, USER_ID, PART_ID, CUST_TITLE , CUST_CONTENT , CUST_DATE " + 
+	         "SELECT CUST_NO, USER_ID, PART_ID, CUST_TITLE , CUST_CONTENT , CUST_DATE, STATUS " + 
+	         "FROM (" + sql_in + ") WHERE RN > " + (cri.getPageNum() - 1) * cri.getAmount();
+	      
+	      System.out.println("sql : " + sql);
+	      
+	      return jdbcTemplate.query(sql, new CustomerRowMapper());
+	   }
+	
+	public int getMyPages(SearchCriteria cri, CustomerVO vo) {
+	      String sql = GETMYPAGES;
+	      if(vo.getUser_id() == null) {
+	    	  sql = sql + "(SELECT * FROM CUSTOMER WHERE part_id = '" + vo.getPart_id() + "')";
+	      } else {
+	    	  sql = sql + "(SELECT * FROM CUSTOMER WHERE user_id = '" + vo.getUser_id() + "')";
+	      }
+	      
+	      String title = cri.getSearchKeyword();
+		  String content = cri.getSearchKeyword();
+		  sql = sql + " where cust_title like '%"+title+ "%' or cust_content like '%"+content+"%'";
+	      return jdbcTemplate.queryForObject(sql, Integer.class);
+	   }
+	
+	public List<CustomerVO> getMyListWithDynamicPaging(SearchCriteria cri) {
+	      System.out.println("getMyListWithDynamicPaging...");
+	      System.out.println("Condition : " + cri.getSearchCondition());
+	      System.out.println("Keyword : " + cri.getSearchKeyword());
+	      String sql_in =
+	         "SELECT ROWNUM RN, CUST_NO, USER_ID, PART_ID, CUST_TITLE , CUST_CONTENT , CUST_DATE, STATUS " +
+	         "FROM ( SELECT * FROM CUSTOMER where CUST_TITLE LIKE '%" + cri.getSearchKeyword()+ "%' OR CUST_CONTENT LIKE '%" + cri.getSearchKeyword()+ "%'";
+	      sql_in = sql_in + " ORDER BY CUST_NO DESC) WHERE ROWNUM <= " + cri.getPageNum() * cri.getAmount();
+	      
+	      String sql =
+	         "SELECT CUST_NO, USER_ID, PART_ID, CUST_TITLE , CUST_CONTENT , CUST_DATE, STATUS " + 
 	         "FROM (" + sql_in + ") WHERE RN > " + (cri.getPageNum() - 1) * cri.getAmount();
 	      
 	      System.out.println("sql : " + sql);

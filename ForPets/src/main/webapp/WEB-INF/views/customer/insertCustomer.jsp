@@ -27,20 +27,24 @@
 			padding-left:14px;
 		}
 		.ccontent{
+			resize:none;
 			padding-left:14px;
 		}
 	</style>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/nav.jsp" %>
+	<form action="getCustomerList" method="post">
 	<fieldset>
 		<div class="mainBanner">
 		<h2 class="mainText">ForPets 고객센터</h2>
-			<div class="top-search-form">도움말 검색&nbsp;<i class="fas fa-search"></i>
-				<input type="text" class="element-input" id="searchKey" placeholder="검색어를 입력하세요." data-game="2017090003">
+			<div class="top-search-form">도움말 검색&nbsp;
+				<i class="fas fa-search"></i>
+				<input type="text" class="element-input" name="searchKeyword" placeholder="검색어를 입력하세요." data-game="2017090003">
 			</div>
 		</div>
 	</fieldset>
+	</form>
 	<br>
 	<form action="insertCustomer.do" method="post">
 	<div class="main-tb">
@@ -59,7 +63,7 @@
 			<hr>
 			<div class="tb-ins-tit">문의 제목<input type="text" class="ctitle" id="title" name="title"/></div>
 			<div><hr/></div>
-			<div class="tb-ins-con">문의 내용<input type="text" class="ccontent" id="content" name="content"/></div>
+			<div class="tb-ins-con">문의 내용<textarea class="ccontent" id="content" name="content"></textarea></div>
 		</div>
 		<hr/>
 		<div>

@@ -17,9 +17,13 @@
 	href="${pageContext.request.contextPath}/resources/css/admin/admin.css?ver=1"
 	rel="stylesheet" type="text/css" />
 <link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link
-	href="${pageContext.request.contextPath}/resources/css/admin/userList.css?ver=1"
+	href="${pageContext.request.contextPath}/resources/css/admin/userList.css?ver=1.1"
 	rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -97,9 +101,10 @@
 											<td>${user.user_add}</td>
 											<td>${user.data_create}</td>
 											<td>${user.war}</td>
-											<td><a href="${pageContext.request.contextPath}/Admin/deleteUser/${user.user_id }" class="view" title="탈퇴"
-												data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a>
-											</td>
+											<td><a href="#myModal" class="trigger-btn" title="탈퇴"
+												data-toggle="modal"><i class="material-icons">&#xE5C8;</i></a>
+												<!-- <a href="${pageContext.request.contextPath}/Admin/deleteUser/${user.user_id }" class="view" title="탈퇴"
+												data-toggle="tooltip"></a> --></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -124,10 +129,40 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Modal HTML -->
+	<div id="myModal" class="modal fade">
+		<div class="modal-dialog modal-confirm">
+			<div class="modal-content">
+				<div class="modal-header flex-column">
+				<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title w-100">회원을 탈퇴하시겠습니까?</h4>
+					
+				</div>
+				<div class="modal-body">
+					<p>Do you really want to delete these records? This process
+						cannot be undone.</p>
+				</div>
+				<div class="modal-footer justify-content-center">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-danger">Delete</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 </body>
 <!-- Bootstrap core JS-->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <!-- Core theme JS-->
 <script
 	src="${pageContext.request.contextPath}/resources/js/admin/sideBar.js"></script>

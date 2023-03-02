@@ -123,7 +123,7 @@ public class AdminController {
 	@RequestMapping(value = "/Admin/deleteUser/{user_id}")
 	public String deleteUser(UserVO uvo, @PathVariable("user_id") String user_id) {
 		admService.deleteUser(uvo, user_id);
-		System.out.println("deleteNotice 완료");
+		System.out.println("deleteUser 완료");
 		return "redirect:/Admin/mgmtUser";
 	}
 	

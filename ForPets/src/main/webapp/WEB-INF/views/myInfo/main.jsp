@@ -164,6 +164,7 @@ a input[id=register_wark] {
 				dataType : 'html',
 				success : function(data) {
 					window.history.pushState({}, '', newUrl);
+					window.scrollTo(0,0);
 					$("#my-message-sibal").html(data);
 				},
 				error : function(result) {
@@ -187,6 +188,7 @@ a input[id=register_wark] {
 				dataType : 'html',
 				success : function(data) {
 					window.history.pushState({}, '', newUrl);
+					window.scrollTo(0,0);
 					$("#my-message-sibal").html(data);
 
 				},
@@ -214,6 +216,7 @@ a input[id=register_wark] {
 				dataType : 'html',
 				success : function(data) {
 					window.history.pushState({}, '', newUrl);
+					window.scrollTo(0,0);
 					$("#my-message-sibal").html(data);
 
 				},
@@ -238,6 +241,7 @@ a input[id=register_wark] {
 				success : function(data) {
 					$(".right-profile-card").removeClass("card");
 					window.history.pushState({}, '', newUrl);
+					window.scrollTo(0,0);
 					$("#my-message-sibal").html(data);
 				},
 				error : function(result) {
@@ -259,6 +263,7 @@ a input[id=register_wark] {
 				dataType : 'html',
 				success : function(data) {
 					window.history.pushState({}, '', newUrl);
+					window.scrollTo(0,0);
 					$("#my-message-sibal").html(data);
 				},
 				error : function(result) {

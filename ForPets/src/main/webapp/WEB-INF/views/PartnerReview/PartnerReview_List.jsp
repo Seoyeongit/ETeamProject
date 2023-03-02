@@ -7,7 +7,90 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<jsp:include page="/WEB-INF/views/nav.jsp"/>
+<jsp:include page="/WEB-INF/views/favicon.jsp" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 <style>
+
+  	body{
+	    background: #F5F5F5;
+	    margin-top:100px;
+	}
+	
+	.content_guide {
+		/* position: absolute; */
+	    top: 0;
+	    right: 0;
+	    bottom: 0;
+	    left: 0;
+	    width: 100%;
+	    max-width: 1200px;
+	    min-height: 100%;
+	    margin: auto;
+	    background-color: #fff;
+	    border: solid #e8e8e8;
+	    /* border-width: 0 1px; */
+	    -webkit-box-sizing: content-box;
+	    box-sizing: content-box;
+	    margin-bottom: 100px;
+	}
+	
+	.pt_guide {
+		float : left;
+	}
+	
+	.ptinfo {
+		text-align: center;
+		margin-top : 30px;
+		margin-bottom : 30px;
+		border-right : black;
+	}
+	
+	.review_guide {
+		float: right;
+	}
+
+	.review_list {
+		text-align: -webkit-center;
+		margin-top : 30px;
+		margin-bottom : 30px;
+	}
+
+	.review_board {
+	display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px 20px 20px;
+    max-width: 760px;
+    height: fit-content;
+    border: 1px solid #d1d1d1;
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: .2s ease-in;
+    margin-bottom: 15px;
+    align-content: flex-start;
+    text-align : left;
+}
+
+	.btn {
+  	background-color: #19CE60;
+  	color : white;
+ 
+}
+
+	.btn:hover {
+	background-color: green;
+	color : white;
+	}
+	
+
+	.btns {
+		border: none; 
+		background-color:transparent;
+		float: right;
+	}
+	
 @charset "UTF-8";
 
 #myform fieldset{
@@ -38,54 +121,106 @@
     border: solid 1.5px #D3D3D3;
     border-radius: 5px;
     font-size: 16px;
-    resize: none;
+    resize: none;  
 }
+
 </style>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+
 <title>펫트너 리뷰</title>
 </head>
 <body>
-<h1>펫트너 리뷰</h1>
-	<h5>펫트너를 평가해주세요!</h5>
+	<h1 style="text-align: center;">펫트너 리뷰</h1>
+	<h5 style="text-align: center;">펫트너를 평가해주세요! <a href="../createpartreview/${part_id }"><input type="button" class="btn btn-sm btn-block" value="글 작성하기"></a></h5>
 
-		<h3>${prList } 펫트너</h3>
+
+
+<div class="content_guide">
+	
+
+     <div class="row">
+     <div class="pt_guide col-4">
+	<div class="ptinfo"  >
+	    <img src = "${pageContext.request.contextPath}/resources/assets/img/commu/rabbitcomm.webp" style="width: 200px; height: 150px;">
+		<h2>${prList } 펫트너</h2>
+		<input type="hidden" name="part_id" value="${part_id}">
+
 		<form class="mb-3" name="myform" id="myform" method="post" >
-		<p>파트너 평균 평점 ${avg }점</p>
-			<fieldset>
-						<input type="radio" name="pr_avg" value="5" id="rate5" onclick="return(false);"><label
-							for="rate1">★</label>
-						<input type="radio" name="pr_avg" value="4" id="rate4"  onclick="return(false);"><label
+		<h6>파트너 평균 평점 ${avg }점</h6>
+				<fieldset>
+						<input type="radio" name="pr_avg" value="5" id="rate5" onclick="return(false);"><label 
+						for="rate1">★</label>
+						<input type="radio" name="pr_avg" value="4" id="rate4"  onclick="return(false);"><label 
 							for="rate2">★</label>
-						<input type="radio" name="pr_avg" value="3" id="rate3"  onclick="return(false);"><label
+						<input type="radio" name="pr_avg" value="3" id="rate3"  onclick="return(false);"><label 
 							for="rate3">★</label>
-						<input type="radio" name="pr_avg" value="2" id="rate2"  onclick="return(false);"><label
+						<input type="radio" name="pr_avg" value="2" id="rate2"  onclick="return(false);"><label 
 							for="rate4">★</label>
-						<input type="radio" name="pr_avg" value="1" id="rate1"  onclick="return(false);"><label
+						<input type="radio" name="pr_avg" value="1" id="rate1"  onclick="return(false);"><label 
 							for="rate5">★</label>
 					</fieldset>
 					<script type="text/javascript">
 						$('input#rate${avg }').prop("checked", true);
 					</script>
 		</form>
-		<table>
-			<tr>
-				<th>글 번호</th>
-				<th>평점</th>
-				<th>리뷰 제목</th>
-				<th>아이디</th>
-				<th>작성 날짜</th>
-			</tr>
-			<c:forEach items="${reviewList }" var="rl">
-			<tr>
-				<td>${rl.pr_num }</td>
-				<td>${rl.pr_avg }</td>
-				<td><a href="../viewpartreview/${rl.pr_num }">${rl.pr_title }</a></td>
-				<td>${rl.user_id }</td>
-				<td>${rl.pr_date }</td>
-			</tr>
-			</c:forEach>
-		</table>
+	</div>
+	</div>
+	
+	<div class="review_guide col-8">
+	<div class="review_list" style="border-left: solid 1.5px #D3D3D3; margin-left:-30px;">
+	
+	<c:forEach items="${reviewList }" var="rl" varStatus="vs"> 
+		<div class="review_board">
 
-	<a href="../createpartreview/${part_id }"><input type="button" value="글 작성하기"></a>
+			<input type="hidden" value="${rl.pr_num }">
+
+				<h5>${rl.pr_title }</h5>
+				<p style="font-size: 12px;">${rl.user_id } | ${rl.pr_date }</p>
+				
+				
+						
+				<form class="mb-3" name="myform" id="myform">
+	
+				<fieldset >
+						<input type="radio" name="pr_avg" value="5" id="${vs.count }rate5" onclick="return(false);"><label 
+							for="${vs.index }rate1" style=" font-size: 1em; " >★</label>
+						<input type="radio" name="pr_avg" value="4" id="${vs.count }rate4"  onclick="return(false);"><label 
+							for="${vs.index }rate2" style=" font-size: 1em; ">★</label>
+						<input type="radio" name="pr_avg" value="3" id="${vs.count }rate3"  onclick="return(false);"><label 
+							for="${vs.index }rate3" style=" font-size: 1em; ">★</label>
+						<input type="radio" name="pr_avg" value="2" id="${vs.count }rate2"  onclick="return(false);"><label
+							for="${vs.index }rate4" style=" font-size: 1em; ">★</label>
+						<input type="radio" name="pr_avg" value="1" id="${vs.count }rate1"  onclick="return(false);"><label
+						 	for="${vs.index }rate5" style=" font-size: 1em; ">★</label>
+					</fieldset>
+					
+					<script type="text/javascript">
+						$('input#${vs.count }rate${rl.pr_avg }').prop("checked", true);
+					</script>
+				
+				</form>
+
+				
+
+				<p>${rl.pr_content }</p>
+		<div class="btns">
+		<c:if test="${member.user_id == rl.user_id }">
+			<a href="../updatepartreview/${rl.pr_num }"><input type="button" value="수정" style="border: none; background-color:transparent; float: right;"></a>
+			<a href="../deletepartreview/${rl.pr_num}&${part_id}"><input type="submit" value="삭제" style="border: none; background-color:transparent; float: right;" ></a>
+		</c:if>
+		</div>
+
+		</div>
+			</c:forEach>
+			
+	
+		</div>
+		</div>
+	</div>
+		
+	</div>
+	
+	
+<%@ include file="/WEB-INF/views/footer.jsp" %>	
+	
 </body>
 </html>

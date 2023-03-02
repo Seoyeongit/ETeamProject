@@ -13,8 +13,10 @@
 	href="${pageContext.request.contextPath}/resources/css/admin/sideBar.css"
 	rel="stylesheet" />
 <link
-	href="${pageContext.request.contextPath}/resources/css/admin/admin.css?after"
+	href="${pageContext.request.contextPath}/resources/css/admin/admin.css?ver=1.1"
 	rel="stylesheet" type="text/css" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link
 	href="${pageContext.request.contextPath}/resources/css/admin/adminInfo.css?after"
 	rel="stylesheet" type="text/css" />
@@ -27,50 +29,62 @@
 			<jsp:include page="top.jsp" />
 
 			<div class="container-fluid" id="admin-content">
-				<h1>관리자 정보</h1>
-				<form action="../modInfo.do" method="post">
-					<table width="400" border="1">
-						<tr height="50">
-							<td align="center" width="150">아이디</td>
-							<td width="250"><input type="text" name="adm_id"
-								value="${admin.adm_id}" readonly="readonly"
-								onfocus="this.blur();" tabindex="-1"
-								style="background-color: #ffffff;" /></td>
-						</tr>
+				<div
+					class="d-sm-flex align-items-center justify-content-between mb-4">
+					<h1 class="h3 mb-0 text-gray-800" style="color: #696969">관리자
+						정보</h1>
+				</div>
+				<div class="card shadow mb-5 py-5 px-5">
+					<form action="../modInfo.do" method="post">
+						<div class="table-responsive px-5">
+							<table class="table table-borderless align-middle">
+								<tbody>
+									<tr height="50">
+										<td class="align-middle">아이디</td>
+										<td style="width: 80%">
+										<input type="text"
+											class="form-control" name="adm_id" value="${admin.adm_id}"
+											readonly="readonly" onfocus="this.blur();" tabindex="-1"
+											style="background-color: #f2f5f3;" /></td>
+									</tr>
 
-						<tr height="50">
-							<td align="center" width="150">이름</td>
-							<td width="250"><input type="text" size="30" name="adm_name"
-								value="${admin.adm_name}"></td>
-						</tr>
-
-
-						<tr height="50">
-							<td align="center" width="150">이메일</td>
-							<td width="250"><input type="email" name="adm_email"
-								value="${admin.adm_email}"></td>
-						</tr>
-
-						<tr height="50">
-							<td align="center" width="150">전화번호</td>
-							<td width="250"><input type="tel" name="adm_phone"
-								value="${admin.adm_phone}"></td>
-						</tr>
+									<tr height="50">
+										<td class="align-middle">이름</td>
+										<td style="width: 80%"><input type="text"
+											class="form-control" size="30" name="adm_name"
+											value="${admin.adm_name}"></td>
+									</tr>
 
 
-						<tr height="50">
-							<td align="center" width="150">패스워드</td>
-							<td width="250"><input type="hidden" id="adm_pw"
-								name="adm_pw" value="${admin.adm_pw}"></td>
-						</tr>
+									<tr height="50">
+										<td class="align-middle">이메일</td>
+										<td><input type="email" class="form-control"
+											name="adm_email" value="${admin.adm_email}"></td>
+									</tr>
 
-						<tr height="50">
-							<td align="center" colspan="2"><input type="hidden"
-								name="id" value="${admin.adm_id}"> <input type="submit"
-								value="수정하기">&nbsp;&nbsp;</td>
-						</tr>
-					</table>
-				</form>
+									<tr height="50">
+										<td class="align-middle">전화번호</td>
+										<td><input type="tel" class="form-control"
+											name="adm_phone" value="${admin.adm_phone}"></td>
+									</tr>
+
+
+									<tr height="50">
+										<td class="align-middle">패스워드</td>
+										<td><input type="hidden" id="adm_pw" name="adm_pw"
+											value="${admin.adm_pw}"></td>
+									</tr>
+
+									<tr height="50">
+										<td align="center" colspan="2"><input type="hidden"
+											name="id" value="${admin.adm_id}"> <input
+											type="submit" value="수정하기">&nbsp;&nbsp;</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>

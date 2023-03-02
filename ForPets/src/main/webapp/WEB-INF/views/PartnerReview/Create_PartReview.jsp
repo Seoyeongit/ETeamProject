@@ -6,13 +6,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="/WEB-INF/views/nav.jsp"/>
+<jsp:include page="/WEB-INF/views/favicon.jsp" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" 
+	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <style>
-	.canvas {
-		max-width: none;
-   		min-width: 1046px;
-   		background-color: #f9f9f9; 
+
+	body {
+		background: #f9f9f9; 
+		margin-top:100px;
 	}
-	
+
 	.content_guide {
 		/* position: absolute; */
 	    top: 0;
@@ -28,17 +34,16 @@
 	    /* border-width: 0 1px; */
 	    -webkit-box-sizing: content-box;
 	    box-sizing: content-box;
+	    margin-bottom: 40px;
 	}
 	
 	.title_board {
 		max-width: 886px;
 		position: relative;
-	    padding-top: 50px;
-	    padding-bottom: 32px;
+	    padding-top: 20px;
 	}
 	
 	hr {
- 	 background: #d3d3d3;
 	 height:1px;
 	 border: 0;
 	 padding-right: 100px; 
@@ -83,22 +88,18 @@
 	}
 	
 	.buttons {
-	text-align: center
+	text-align: center;
+	margin-bottom: 30px;
 	}
 </style>
 <link href="${pageContext.request.contextPath}/resources/css/partner_review/star.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>make community</title>
-<jsp:include page="/WEB-INF/views/nav.jsp"/>
-<jsp:include page="/WEB-INF/views/favicon.jsp" />
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
-<div class="canvas">
- 	<br><br><br>
+
 	<h1 style="text-align: center;">파트너 리뷰 작성 페이지</h1>
 	<h5 style="text-align: center;">파트너 평가를 해주세요!</h5>
 
@@ -145,7 +146,7 @@
 		
 		</div>
 	</form>
-</div>
 
+<%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

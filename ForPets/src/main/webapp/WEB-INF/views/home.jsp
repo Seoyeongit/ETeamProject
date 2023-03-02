@@ -63,7 +63,7 @@
                         </c:when>
                         
                         <c:when test="${role eq 'admin' }">
-                        	<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/Admin/login">관리자 페이지</a></li>
+                        	<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/Admin/main">관리자 페이지</a></li>
                         	<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
                         </c:when>
                         

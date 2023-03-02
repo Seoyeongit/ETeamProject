@@ -70,6 +70,17 @@ public class TipDAO {
 	}
 	
 	public void updateTip(TipVO vo) {
+		String[] url;
+		String url_id;
+		if(vo.getTip_video().contains("embed/")) {
+			url = vo.getTip_video().split("embed/");
+			url_id = url[1];
+		} else {
+			url = vo.getTip_video().split("be/");
+			url_id = url[1];
+		}
+		vo.setTip_img_url("https://img.youtube.com/vi/"+url_id+"/mqdefault.jpg");
+		vo.setTip_video("https://www.youtube.com/embed/"+url_id);
 		jdbcTemplate.update(BOARD_UPDATE,vo.getTip_title(), vo.getTip_content(), vo.getTip_img_url(), vo.getTip_video(), vo.getTip_seq());
 	}
 	
@@ -120,10 +131,10 @@ public class TipDAO {
 	// paging 처리
 	public int getTotalPages(SearchCriteria cri) {
 		String sql = GETTOTALPAGES;
-		if(cri.getSearchCondition() == "TITLE") {
+		if(cri.getSearchCondition().equals("TITLE")) {
 			sql += "AND TIP_TITLE LIKE '%" + cri.getSearchKeyword()+ "%'";
 		}
-		if(cri.getSearchCondition() == "CONTENT") {
+		if(cri.getSearchCondition().equals("CONTENT")) {
 			sql += "AND TIP_CONTENT LIKE '%" + cri.getSearchKeyword()+ "%'";
 		}
 		return jdbcTemplate.queryForObject(sql, Integer.class);
@@ -137,20 +148,25 @@ public class TipDAO {
 	
 	// 글 목록 조회 with paging
 	public List<TipVO> getTipListWithDynamicPaging(SearchCriteria cri) {
+		System.out.println("getTipListWithDynamicPaging...");
+		System.out.println("Condition : " + cri.getSearchCondition());
+		System.out.println("Keyword : " + cri.getSearchKeyword());
 		String sql_in =
 			"SELECT ROWNUM RN, TIP_SEQ, TIP_TITLE, TIP_CONTENT, TIP_IMG_URL, TIP_VIDEO, TIP_CREATE_DATE, TIP_HIT, TIP_UPDATE_DATE " +
 			"FROM ( SELECT * FROM TIP_BOARD WHERE 1 = 1 ";
-		if(cri.getSearchCondition() == "TITLE") {
-			sql_in += "AND TIP_TITLE LIKE '%" + cri.getSearchKeyword()+ "%'";
+		if(cri.getSearchCondition().equals("TITLE")) {
+			sql_in = sql_in + "AND TIP_TITLE LIKE '%" + cri.getSearchKeyword()+ "%'";
 		}
-		if(cri.getSearchCondition() == "CONTENT") {
-			sql_in += "AND TIP_CONTENT LIKE '%" + cri.getSearchKeyword()+ "%'";
+		if(cri.getSearchCondition().equals("CONTENT")) {
+			sql_in = sql_in + "AND TIP_CONTENT LIKE '%" + cri.getSearchKeyword()+ "%'";
 		}
-		sql_in += "ORDER BY TIP_SEQ DESC) WHERE ROWNUM <= " + cri.getPageNum() * cri.getAmount();
+		sql_in = sql_in + "ORDER BY TIP_SEQ DESC) WHERE ROWNUM <= " + cri.getPageNum() * cri.getAmount();
 		
 		String sql =
 			"SELECT TIP_SEQ,TIP_TITLE, TIP_CONTENT, TIP_IMG_URL, TIP_VIDEO, TIP_CREATE_DATE, TIP_HIT, TIP_UPDATE_DATE " + 
 			"FROM (" + sql_in + ") WHERE RN > " + (cri.getPageNum() - 1) * cri.getAmount();
+		
+		System.out.println("sql : " + sql);
 		
 		return jdbcTemplate.query(sql, TipRowMapper);
 	}

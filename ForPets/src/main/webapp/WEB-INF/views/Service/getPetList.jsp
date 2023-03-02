@@ -9,6 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.js"></script>
+<link href="${pageContext.request.contextPath}/resources/css/Tip/tip.css" rel="stylesheet" />
 <script>
 function sendPet(pet_id, pet_img) {
 	
@@ -24,43 +25,31 @@ function sendPet(pet_id, pet_img) {
 </script>
 </head>
 <body>
-	<center>
-		<c:forEach items="${getPetList }" var="pet">
-			<table border="1" cellpadding="0" cellspacing="0" width="300">
-				<tr>
-					<td colspan="2">
-						<img src="./myInfo/display?fileName=${pet.img }" id="${pet.id }_img">
-					</td>
-				</tr>
-				<tr>
-					<td>펫 ID</td>
-					<td><input type="text" value="${ pet.id }" id="${pet.id }_id"></td>
-				</tr>	
-				<tr>
-					<td>펫 이름</td>
-					<td><input type="text" value="${ pet.name }" id="${pet.id }_name"></td>
-				</tr>
-				<tr>
-					<td>펫 종류</td>
-					<td><input type="text" value="${ pet.type }" id="${pet.id }_type"></td>
-				</tr>
-				<tr>
-					<td>펫 나이</td>
-					<td><input type="text" value="${ pet.age }" id="${pet.id }_age"></td>
-				</tr>
-				<tr>
-					<td>펫 성별</td>
-					<td><input type="text"
-						<c:choose>
-							<c:when test="${fn:contains(pet.gender,'M') }" >value="수컷"</c:when>
-							<c:when test="${fn:contains(pet.gender,'F')}" >value="암컷"</c:when>
-						</c:choose>>
-					</td>
-				</tr>
-			</table>
-			<input type="button" value="선택" Onclick="sendPet(${pet.id });">
-			<br>
-		</c:forEach>
-	</center>
+	<c:forEach items="${getPetList }" var="pet">
+		<input type="hidden" value="${ pet.id }" id="${pet.id }_id">
+		<input type="hidden" value="${ pet.name }" id="${pet.id }_name">
+		<input type="hidden" value="${ pet.type }" id="${pet.id }_type">
+		<input type="hidden" value="${ pet.age }" id="${pet.id }_age">
+		<!-- Card with an image on left -->
+		<div class="col-12">
+			<div class="card mb-3">
+				<div class="row g-0">
+					<div class="col-4">
+						<img width="100%" src="./myInfo/display?fileName=${pet.img }" id="${pet.id }_img">
+					</div>
+					<div class="col-8 row">
+						<div class="card-body align-self-center">
+							<h5 class="card-title"><span>${ pet.name }</span></h5>
+							<p class="card-text">
+								<span>${ pet.type }</span><br>
+								<span>${ pet.age }</span>
+							</p>
+							<input type="button" style="float:right;" value="선택" Onclick="sendPet(${pet.id });">
+						</div>
+					</div>
+				</div>
+			</div><!-- End Card with an image on left -->
+		</div>
+	</c:forEach>
 </body>
 </html>

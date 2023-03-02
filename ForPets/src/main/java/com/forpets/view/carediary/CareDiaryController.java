@@ -44,7 +44,14 @@ public class CareDiaryController {
 	public String getCareDIA(HttpSession session,@RequestParam(value = "diary_id")int diary_id,Model model) {
 		UserVO sessionVO = (UserVO) session.getAttribute("member");
 		
-		model.addAttribute("careDIA", careDiaryService.getCareDiaryDetail(diary_id, sessionVO.getUser_id()));
+		CareDiaryVO result = careDiaryService.getCareDiaryDetail(diary_id, sessionVO.getUser_id());
+		
+		if(result.getBeauty_list() != null) {
+			String[] list = result.getBeauty_list().split(" ");
+			model.addAttribute("beauty_list", list);
+		}
+		
+		model.addAttribute("careDIA", result);
 		return "myInfo/my_careDiary2";
 		
 	}

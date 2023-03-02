@@ -29,7 +29,7 @@ public class AdminDAO {
 	private final String PARTNER_LIST = "select * from PARTNERS order by part_no";
 	private final String UPDATE_ADMIN = "update ADMIN set adm_name=?, adm_phone=?, adm_email=?, adm_pw=?"
 			+ "where adm_id=?";
-	private final String TIP_PREV = "select tip_title, tip_img_url from TIP_BOARD where rownum<=3 order by tip_seq desc";
+	private final String TIP_PREV = "select tip_title, tip_img_url from TIP_BOARD order by tip_seq desc";
 	
 	private final RowMapper<AdminVO> adminRowMapper = (resultSet, rowNum) -> {
 		AdminVO newvo = new AdminVO();
@@ -49,6 +49,7 @@ public class AdminDAO {
 		pvo.setPart_id(resultSet.getString("part_id"));
 		pvo.setPart_name(resultSet.getString("part_name"));
 		pvo.setPart_nick(resultSet.getString("part_nick"));
+		pvo.setPart_add(resultSet.getString("part_add"));
 		pvo.setPart_no(resultSet.getInt("part_no"));
 		pvo.setData_create(resultSet.getDate("data_create"));
 		pvo.setPart_phnumber(resultSet.getString("part_phnumber"));
@@ -92,10 +93,15 @@ public class AdminDAO {
 		return jdbcTemplate.query(PARTNER_LIST, partRowMapper);
 	}
 
+
 	// 팁 게시판 미리보기
 	public List<TipVO> getTipPrev(TipVO tvo) {
 		System.out.println(tvo.getTip_title() + tvo.getTip_img_url() + tvo.getTip_seq());
 		return jdbcTemplate.query(TIP_PREV, tipRowMapper);
+	}
+
+	public void deleteUser(UserVO uvo, String user_id) {
+		jdbcTemplate.update(DELETE_USER, user_id);
 	}
 	
 	

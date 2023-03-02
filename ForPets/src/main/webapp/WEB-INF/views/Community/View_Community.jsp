@@ -8,11 +8,18 @@
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 <jsp:include page="/WEB-INF/views/nav.jsp"/>
-<jsp:include page="/WEB-INF/views/favicon.jsp" />
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<jsp:include page="../favicon.jsp" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" 
+	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <style>
-
+	body{
+	    background: #F5F5F5;
+	    margin-top:100px;
+	}
+	
 	.content_guide {
 		/* position: absolute; */
 	    top: 0;
@@ -28,6 +35,8 @@
 	    /* border-width: 0 1px; */
 	    -webkit-box-sizing: content-box;
 	    box-sizing: content-box;
+	    margin-bottom: 50px;
+
 	}
 	
 	.info {
@@ -45,13 +54,13 @@
 	    padding-bottom: 32px;
 	}
 	
-	hr {
- 	 background: #d3d3d3;
+	.hr1 {
 	 height:1px;
 	 border: 0;
 	 padding-right: 100px; 
 	 padding-left: 100px;
-
+	 margin-right : 80px;
+	 margin-left : 80px;
 	}
 	
 	.title_area {
@@ -93,6 +102,7 @@
 	    margin: auto;
 	    padding-right: 100px;
   		padding-left: 100px;
+  		margin-bottom: 40px;
 	}
 	
 	.comment_board{
@@ -119,15 +129,9 @@
 
 </style>
 <meta charset="UTF-8">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
-<title>Community board</title>
-
-<meta charset="UTF-8">
-
 <title>Community board</title>
 </head>
-<body style= "background: #f9f9f9;">
-<br><br><br>
+<body>
 
 
 	<h1 style="text-align: center;">소모임 상세보기</h1>
@@ -140,22 +144,25 @@
 						<p class="writer"> <b>${communityboard.user_id }</b> | ${communityboard.c_date }</p>
 		 			</div>
 		 			
-		 			<hr><br>
+		 			<hr class="hr1"><br>
 
 		 		
 		 		<div class="text_area" style="white-space:pre;">${communityboard.c_content }</div>
 		 		
-		 		<br><br>
-
-		<div class="buttons"> 		
+		 	<br>
+	
+		<div class="buttons"> 
+	<c:if test="${member.user_id == communityboard.user_id }">		
 			<a href="../updatecommunity/${communityboard.c_code }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="수정"></a>
 			<a href="../deletecommunity/${communityboard.c_code }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="삭제"></a>
+	</c:if>
 			<a href="../communitylist"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="목록으로"></a>		
 		</div>
+	
 		</div>
 		</div>
 		
-		<br><br>
+		
 		
 		<div class="comment_area">
 		<c:forEach items="${getdat }" var="gd">
@@ -164,26 +171,26 @@
 		<form name="frm${gd.d_num }" method="post">
 			<input type="hidden" name="d_code" value="${gd.d_code }">
 			<input type="hidden" name="d_num" value="${gd.d_num }" id ="d_num">
-			
+			<input type="hidden" id="c${gd.d_num }" value="${gd.d_content}">
 				
 					<p><b>${gd.user_id }</b> | ${gd.d_date }</p> 
 					<p id="${gd.d_num }"><a>${gd.d_content }</a></p>
 			
-
+		<c:if test="${member.user_id == gd.user_id }">
 			<a id="b${gd.d_num }"><input type="button" value="수정" onclick="update(${gd.d_num})" style="border: none; background-color:transparent; float:right;" ></a>
 			<input type="submit" value="삭제" onclick="javascript : frm${gd.d_num }.action='../deletedat';" style="border: none; background-color:transparent; float:right;">
-
-		</form>
-		<br>
-		<hr>
+		</c:if>
+		</form><br>
+		<hr style="height:1px; border: 0; ">
 		</c:forEach>
 		
 	
  		<script>
  			
  			function update(data) {
+ 				
  				$('#'+data).children().remove();
- 				$('#'+data).append('<input type="text" name="d_content" class="comment_board">');
+ 				$('#'+data).append('<input type="text" name="d_content" class="comment_board" value="'+$('#c'+data).val()+'">');
  				$('#b'+data).children().remove();
  				$('#b'+data).append("<input type='submit' value='수정' style='border: none; background-color:transparent; float:right;' onclick='javascript : frm"+data+".action=\"../updatedat\";'>");
  				/* $('#b'+data).attr("onclick", "updatedat("+data+")"); */
@@ -221,9 +228,6 @@
 	
 
 	
-		
-	<br><br>
-		
 
 	
 <%@ include file="/WEB-INF/views/footer.jsp" %>	

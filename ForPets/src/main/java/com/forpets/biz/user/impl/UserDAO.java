@@ -27,7 +27,7 @@ public class UserDAO {
 	}
 	
 	public void saveUser(UserVO vo) {
-		Object[] obj = {vo.getUser_id(),vo.getUser_pw(),vo.getUser_name(),vo.getUser_nick(),vo.getUser_add(),vo.getGender(),vo.getPhnumber(),vo.getBirth()};
+		Object[] obj = {vo.getUser_id(),vo.getUser_pw(),vo.getUser_name(),vo.getUser_nick(),vo.getPhnumber()};
 		jdbcTemplate.update(INSERT_USER,obj);
 	}
 	

@@ -169,6 +169,38 @@
 		   margin-bottom: 30px;
 	}
 
+	.svinput {
+		border-left-width:0;
+		border-right-width:0;
+		border-top-width:0;
+		border-bottom-width:0.5px;
+	}
+	
+	.pl{
+	    width: 200px;
+	    border: 1px solid #C4C4C4;
+	    box-sizing: border-box;
+	    border-radius: 10px;
+	    padding: 12px 13px;
+	    font-family: 'Roboto';
+	    font-style: normal;
+	    font-weight: 400;
+	    font-size: 14px;
+	    line-height: 16px;
+	}
+	
+	.pl:focus{
+	    border: 1px solid #9B51E0;
+	    box-sizing: border-box;
+	    border-radius: 10px;
+	    outline: 3px solid #F8E4FF;
+	    border-radius: 10px;
+	}
+	
+	table {
+  border-spacing: 10px;
+  border-collapse: separate;
+}
 
 </style>
 <title>make community</title>
@@ -225,7 +257,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
+  <div class="modal-dialog modal-xl" style="width:1800px;">
     <div class="modal-content" >
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">설문지 생성하기</h5>
@@ -238,22 +270,22 @@
 	<input type="hidden" value="1" id="survey_count" name="survey_count">
 	<input type="hidden" value="s${date}" name="sd_svcode">
 	<input type="hidden" value="${c_code}" name="c_code">
-	<p>설문지 제목 : <input type="text" placeholder="설문지 제목을 입력하세요." size=80 name="s_title"></p>
+	<p style="text-align:center;"><b>설문지 제목 :</b> <input class="svinput" type="text" placeholder="설문지 제목을 입력하세요." size=80 name="s_title"></p>
 
 	
-	<table id="survey">
+	<table id="survey" >
 		<tr>
 			<th>질문 내용</th>
 			<th>질문 유형</th>
 			<th>옵션 추가</th>
-			<th><button type="button" id="addSurBtn">설문지 추가</button></th>
+			<th><button class="btn btn-sm" type="button" id="addSurBtn" style="border-color:#19CE60; color:#19CE60;">문항 추가</button></th>
 		</tr>
 		<tr class="item1">
 			<td>
 			<!-- 	<input type="hidden" name="sd_order"> -->
-				<input type="text" placeholder = "질문 내용을 입력해 주세요." size=60 name="sd_title1"></td>
-			<td><select id="surOpt" name="sd_type1">
-					<option value="">-- 설문지 유형을 선택해 주세요 --</option>
+				<input class="svinput" type="text" placeholder = "질문 내용을 입력해 주세요." size=60 name="sd_title1"></td>
+			<td><select id="surOpt" name="sd_type1" class="pl">
+					<option value="">-- 유형을 선택해 주세요 --</option>
 					<option value="gaek">객관식</option>
 					<option value="ju">주관식</option>
 					<option value="check">체크박스</option>
@@ -261,8 +293,9 @@
 					<option value="schedule">달력형</option>
 				</select>
 			</td>
-            <td><input type="hidden" name="sc_ascode" value=""><input type="text" name="sc_answer1"/><button type="button" class="addBtn">항목추가</button></td>
-            <td><button class="delBtn">삭제</button></td>
+            <td><input type="hidden" name="sc_ascode" value=""><input class="svinput" type="text" name="sc_answer1"/>      
+            	<button type="button" class="addBtn btn btn-sm" style="border-color:#19CE60; color:#19CE60;">항목추가</button></td>
+            <td><button class="delBtn btn btn-sm" style="border-color:#19CE60; color:#19CE60;">삭제</button></td>
 		</tr>
 	</table>
 	 

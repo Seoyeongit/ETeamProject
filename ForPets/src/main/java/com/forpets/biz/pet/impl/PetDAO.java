@@ -55,9 +55,12 @@ public class PetDAO {
 	}
 	
 	public void updatePet(PetVO vo) {
+		
+		
 		char gender = vo.getGender();
 		int genderCode = gender;
 		Object[] orgs = {vo.getName(),vo.getType(),vo.getImg(),vo.getAge(),genderCode,vo.getId()};
+		
 		jdbcTemplate.update(UPDATE_PET,orgs);
 	}
 	
@@ -87,6 +90,7 @@ public class PetDAO {
 		PetVO pet = jdbcTemplate.queryForObject(PET_GET, 
 				(resultSet, rowNum) -> {
 					PetVO newPet = new PetVO();
+					newPet.setId(resultSet.getInt("PET_ID"));
 					newPet.setName(resultSet.getString("PET_NAME"));
 					newPet.setType(resultSet.getString("PET_TYPE"));
 					newPet.setImg(resultSet.getString("PET_IMG"));

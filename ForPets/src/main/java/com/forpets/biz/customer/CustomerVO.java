@@ -23,5 +23,6 @@ public class CustomerVO {
 	private Date cust_date;
 	private String searchCondition;
 	private String searchKeyword;
+	private int status;
 }
 

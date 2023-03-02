@@ -38,5 +38,15 @@ public class PartnerServiceImpl implements PartnerService {
 		partnerDAO.updatePartner(vo);
 	}
 	
+	@Override
+	public void insertPartnerImg(PartnerVO vo) {
+		partnerDAO.insertPartnerImg(vo);
+		
+	}
 	
+	@Override
+	public void updatePartnerImg(PartnerVO vo) {
+		partnerDAO.updatePartnerImg(vo);
+		
+	}
 }

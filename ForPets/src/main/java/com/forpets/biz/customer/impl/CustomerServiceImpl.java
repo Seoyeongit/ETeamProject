@@ -88,4 +88,14 @@ public class CustomerServiceImpl implements CustomerService {
 	public int getTotalPages(SearchCriteria cri) {
 		return customerDAO.getTotalPages(cri);
 	}
+	
+	@Override
+	public int getMyPages(SearchCriteria cri, CustomerVO vo) {
+		return customerDAO.getMyPages(cri, vo);
+	}
+	
+	@Override
+	public List<CustomerVO> getMyListWithDynamicPaging(SearchCriteria cri) {
+		return customerDAO.getMyListWithDynamicPaging(cri);
+	}
 }

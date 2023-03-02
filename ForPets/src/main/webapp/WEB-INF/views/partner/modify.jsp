@@ -25,7 +25,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
                 <span class="d-block d-lg-none">${partners.part_name }</span>
-                <!-- <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="..." /></span> -->
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="..." /></span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -40,7 +40,23 @@
         <!-- Page Content-->
         <h2>회원 정보 수정</h2>
     <p>사이트 이용에 필요한 정보들을 입력합니다.</p>
+	<c:choose>
+		<c:when test="${empty partners.part_img }">
+		<form action="/partner/partImgIns" method="POST" entype="multipart/form-data">
+		</c:when>
+		<c:otherwise>
+		<form action="/partner/partImgUpd" method="POST" entype="multipart/form-data">	
+		</c:otherwise>
+	</c:choose>
+		<br> <br>
 
+		<div>
+			<div id="uploadResult"></div>
+			<label class="input-file-button" for="part_img">이미지업로드</label> 
+			<input type="file" id="part_img"><br>
+		</div>
+		
+		
     <div class="container-sm text-bg-light">
         <div class="info">
             <div class="">
@@ -196,6 +212,140 @@ var addr = ''; // 주소 변수
 	$("div #backMainPage").on("click",function(){
 		location.replace('../partner/partnerMain');
 	});
+	
+	
+	
+	
+	
+	
+	$('form').submit(function(){
+		
+		$.ajax({
+			url:"../partner/partImgIns",
+			dataType:text,
+			type:'POST',
+			data : {
+				img : $('#imgSrc').val(),
+				part_id : $('#part_id').val(),
+			},
+			success : function(){
+				alert("등록되었습니다.")
+				opener.parent.location.reload();
+				window.close();
+			},
+			error : function(){
+				alert("등록에 실패했습니다.")
+				location.reload();
+			}
+		});
+	});
+
+
+	/* 이미지 업로드 */
+	$("input[type='file']").on("change", function(e) {
+		
+		/* 이미지 존재시 삭제 */
+		if($(".imgDeleteBtn").length > 0){
+			deleteFile();
+		}
+
+		let formData = new FormData();
+		let fileInput = $("input[id='part_img']");
+		let fileList = fileInput[0].files;
+		let fileObj = fileList[0];
+
+		if (!fileCheck(fileObj.name, fileObj.size)) {
+			$("input[id='part_img']").val("");
+			return false;
+		}
+
+		formData.append("uploadFile", fileObj);
+
+		$.ajax({
+			url : '../partner/my-partnerImgUpload',
+			processData : false,
+			contentType : false,
+			data : formData,
+			type : 'POST',
+			dataType : 'json',
+			success : function(result) {
+				console.log(result);
+				showUploadImage(result);
+			},
+			error : function(result) {
+				alert("이미지 파일이 아닙니다.");
+			}
+		});
+	});
+
+	/* 이미지 출력 */
+	function showUploadImage(result) {
+		if (!result || result.length == 0) {
+			return
+		}
+
+		let uploadResult = $("#uploadResult");
+
+		let str = "";
+
+		let fileCallPath = encodeURIComponent(result.img
+				.replace(/\\/g, '/').replace("C:/DevSpace/springSpace/ETeamProject/ForPets/src/main/webapp/resources/assets/upload", ''));
+
+		console.log(fileCallPath);
+
+		str += "<div id='result_card'>";
+		str += "<img src=../partner/display?fileName=" + fileCallPath + ">";
+		str += "<div class = 'imgDeleteBtn' data-file='"+fileCallPath+"'>x</div>";
+		str += "<input type='text' name='img' id='imgSrc' value='"+fileCallPath+"'>";
+		str += "</div>";
+
+		uploadResult.html(str);
+	}
+	
+	$("#uploadResult").on("click", ".imgDeleteBtn", function(e){
+		deleteFile();
+	})
+	
+	
+	/* 파일 삭제 메서드  */
+	function deleteFile(){
+		let targetFile = $(".imgDeleteBtn").data("file");
+		let targetDiv = $("#result_card");
+		
+		$.ajax({
+			url : '../partner/delete',
+			data : {fileName : targetFile},
+			dataType : 'text',
+			type : 'POST',
+			success : function(result){
+				console.log(result);
+				
+				targetDiv.remove();
+				$("input[type='file']").val("");
+			},
+			error : function(result){
+				console.log(result);
+				
+				alert("파일을 삭제하지 못하였습니다.");
+			}
+		});
+	}
+	
+
+	let regex = new RegExp("(.*?)\.(jpg|png)$");
+	let maxSize = 1048576; //1MB
+
+	function fileCheck(fileName, fileSize) {
+		if (fileSize >= maxSize) {
+			alert("파일 크기가 너무 큽니다 다른 이미지를 선택해주세요");
+			return false;
+		}
+		if (!regex.test(fileName)) {
+			alert("이미지는 jpg,png만 업로드 가능합니다.");
+			return false;
+		}
+		return true;
+	}
 </script>
  <br>
 </body>

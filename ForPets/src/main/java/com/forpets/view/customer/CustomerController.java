@@ -113,16 +113,30 @@ public String searchCustomerList(CustomerVO vo,CustomerDAO dao, Model model) thr
 	}
 	
 	@RequestMapping(value="/getCustomerBoardView")
-	public String getCustomerBoardView(CustomerVO vo, CustomerDAO dao, CustomerReVO rvo, HttpSession session) throws IOException {
+	public String getCustomerBoardView(CustomerVO vo, CustomerDAO dao, CustomerReVO rvo, Model model, HttpSession session, HttpServletRequest request) throws IOException {
 		session.getAttribute("cust_no");
 		session.setAttribute("customer", custservice.getCustomerBoardView(vo));
 		rvo.setCust_no(vo.getCust_no());
 		try {
+			
 			CustomerReVO cvo = custservice.getCustomerRe(rvo);
 			session.setAttribute("customerRe", cvo);
+			
 		} catch(Exception e) {
 			
 		}
+		
+		session = request.getSession(false);
+		
+		if(session != null && session.getAttribute("customerRe") != null) { 
+			try {
+				CustomerReVO cvo = custservice.getCustomerRe(rvo);
+				session.setAttribute("customerRe", cvo);
+			} catch(Exception e) {
+				
+			}
+		}
+		
 		return "/customer/getCustomerBoardView";
 	}
 	
@@ -133,7 +147,7 @@ public String searchCustomerList(CustomerVO vo,CustomerDAO dao, Model model) thr
 	}
 	
 	@RequestMapping(value="/myCustBoard")
-	public String myCustBoard(CustomerVO vo, CustomerDAO dao, Model model, HttpSession session) throws IOException {
+	public String myCustBoard(CustomerVO vo, CustomerDAO dao, Model model, SearchCriteria cri, HttpSession session) throws IOException {
 		if(session.getAttribute("partners") != null) {
 			PartnerVO pvo = (PartnerVO) session.getAttribute("partners");
 			vo.setPart_id(pvo.getPart_id());
@@ -142,6 +156,22 @@ public String searchCustomerList(CustomerVO vo,CustomerDAO dao, Model model) thr
 			vo.setUser_id(uvo.getUser_id());
 		}
 		session.setAttribute("myCustBoard", custservice.myCustBoard(vo));
+		  
+		System.out.println("---> getCustomerList 실행");
+	      System.out.println("SearchCondition : " + cri.getSearchCondition());
+	      System.out.println("SearchKeyword : " + cri.getSearchKeyword());
+	      if (cri.getSearchCondition() == null) { cri.setSearchCondition("TITLE"); }
+	      if (cri.getSearchKeyword() == null) { cri.setSearchKeyword(""); }
+	      System.out.println("SearchCondition : " + cri.getSearchCondition());
+	      System.out.println("SearchKeyword : " + cri.getSearchKeyword());
+	      
+	      System.out.println("totalpages : " + custservice.getMyPages(cri, vo));
+	      
+	      CustomerPagingDTO pageMaker = new CustomerPagingDTO(cri, custservice.getMyPages(cri, vo));
+	      
+	      model.addAttribute("pageMaker", pageMaker);
+	      model.addAttribute("CustList", custservice.getMyListWithDynamicPaging(cri));
+	      System.out.println("---> getCustomerList 완료");
 		return "/customer/myCustBoard";
 	}
 	

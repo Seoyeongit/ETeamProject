@@ -101,7 +101,7 @@
 											<td>${user.user_add}</td>
 											<td>${user.data_create}</td>
 											<td>${user.war}</td>
-											<td><a href="#myModal" class="trigger-btn" title="탈퇴"
+											<td><a href="#userDeleteModal" class="trigger-btn" title="탈퇴"
 												data-toggle="modal"><i class="material-icons">&#xE5C8;</i></a>
 												<!-- <a href="${pageContext.request.contextPath}/Admin/deleteUser/${user.user_id }" class="view" title="탈퇴"
 												data-toggle="tooltip"></a> --></td>
@@ -131,23 +131,23 @@
 	</div>
 
 	<!-- Modal HTML -->
-	<div id="myModal" class="modal fade">
-		<div class="modal-dialog modal-confirm">
+	<div id="userDeleteModal" class="modal fade">
+		<div class="modal-dialog modal-confirm modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header flex-column">
-				<button type="button" class="close" data-dismiss="modal"
+					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
 					<h4 class="modal-title w-100">회원을 탈퇴하시겠습니까?</h4>
-					
+
 				</div>
 				<div class="modal-body">
-					<p>Do you really want to delete these records? This process
-						cannot be undone.</p>
+					<p>유저의 데이터를 삭제하시겠습니까?</p>
 				</div>
 				<div class="modal-footer justify-content-center">
 					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Cancel</button>
-					<button type="button" class="btn btn-danger">Delete</button>
+						data-dismiss="modal">취소</button>
+					<button type="button" class="btn btn-danger"
+						onclick="location.href='${pageContext.request.contextPath}/Admin/deleteUser/${user.user_id }'">탈퇴</button>
 				</div>
 			</div>
 		</div>

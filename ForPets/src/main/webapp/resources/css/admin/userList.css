@@ -256,11 +256,19 @@ table.table .avatar {
 	float: left;
 }
 
+/* modal */
+
 .modal {
 	text-align: center;
 }
 
-
+@media screen and (min-width: 768px) {
+	.modal:before {
+		display: inline-block;
+		vertical-align: middle;
+		content: " ";
+	}
+}
 
 .modal-confirm {
 	color: #636363;

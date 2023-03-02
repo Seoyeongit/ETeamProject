@@ -1,11 +1,7 @@
 package com.forpets.biz.pet;
 
-import java.util.Date;
 
 import org.springframework.web.multipart.MultipartFile;
-
-import com.forpets.biz.user.UserVO;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +14,7 @@ import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude ="pet_img")
 @Getter @Setter
 public class PetVO {
 	private int id; //펫아이디

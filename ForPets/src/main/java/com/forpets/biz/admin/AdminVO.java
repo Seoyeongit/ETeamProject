@@ -22,5 +22,8 @@ public class AdminVO {
 	private String adm_email; //관리자 이메일
 	private int adm_no;	//관리자 번호
 	private Date adm_date; //등록날짜
+	
+	private int earnings; //총수익
+	
 
 }

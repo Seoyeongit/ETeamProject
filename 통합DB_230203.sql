@@ -1008,7 +1008,7 @@ create table customer(
 
 ALTER TABLE customer modify cust_date DATE default sysdate;
 ALTER TABLE customer ADD cust_img VARCHAR(500);
-
+ALTER TABLE customer ADD status number(2) default 1;
 commit;
 
 ALTER TABLE customer
@@ -1034,8 +1034,9 @@ create table customer_re(
     cust_content varchar2(500) not null
 );
     
+    
 alter table customer_re
-    ADD CONSTRAINT cust_no PRIMARY KEY (cust_no);
+    ADD CONSTRAINT cust_no_re PRIMARY KEY (cust_no);
     
 --230210 연은비 review DB
 CREATE TABLE review
@@ -1091,3 +1092,7 @@ SELECT * FROM RESERVE where part_id='bpb222';
 select * from partners;
 
 select*from customer;
+
+SELECT COUNT(*) FROM customer where cust_title like '%%' or cust_content like '%%';
+
+select * from reserve;

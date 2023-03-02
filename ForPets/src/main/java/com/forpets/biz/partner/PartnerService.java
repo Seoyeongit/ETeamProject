@@ -19,5 +19,7 @@ public interface PartnerService {
 	
 	void updatePartner(PartnerVO vo);
 	
+	void insertPartnerImg(PartnerVO vo);
 	
+	void updatePartnerImg(PartnerVO vo);
 }

@@ -77,6 +77,40 @@ div.get-con {
 	width:4%;
 	height:40px;
 }
+.Re-box {
+	width:60%;
+	height:300px;
+	margin-left:20%;
+	resize:none;
+}
+.btn {
+	margin-top:1%;
+	margin-left:71.5%;
+	margin-bottom:5%;
+}
+.re-wri {
+	width:56%;
+	margin-top:2%;
+	margin-left:auto;
+	margin-right:auto;
+}
+.qs-re {
+	margin-top:5%;
+	margin-left:20%;
+	color:rgba(0,0,0,0.7);
+}
+.qs-line-h{
+	width:60%;
+	margin-left:auto;
+	margin-right:auto;
+	border:2px solid rgb(0,0,0);
+}
+.qs-line-f {
+	width:60%;
+	margin-top:2%;
+	margin-left:auto;
+	margin-right:auto;
+}
 </style>
 </head>
 <body>
@@ -99,22 +133,36 @@ div.get-con {
 			<hr class="con-line">
 			<div class="get-con" id="content">${ customer.cust_content}</div>
 			<hr class="foot-line">
-		
-		<input type="button" class="cust-upd cust-del" onclick="location.href='deleteCustomer?cust_no=${ customer.cust_no }';" value="삭제"/>
-		<input type="button" class="cust-lis" onclick="location.href='myCustBoard';" value="목록"/>
 		</form>
-			<div class="">${ customerRe.cust_content }</div>
+		<h4 class="qs-re"><b>문의 답변</b></h4>
+		<hr class="qs-line-h">
 		<c:choose>
 			<c:when test="${role eq 'admin' }">
 				<div class="comment">
 					<form action="insertCustomerRe" method="post">
 						<input type="hidden" name="cust_no" value="${customer.cust_no }">
 						<input type="hidden" name="admin">
-						<input type="text" class="Re-box" name="content" placeholder="댓글을 입력해 주세요."/>
-						<input type="submit" value="댓글 작성하기" class="btn" style="background-color:#19CE60; color:white; float:right;">
+						<textarea class="Re-box" name="content">${customerRe.cust_content}</textarea>
+						<br>
+						<input type="submit" value="답글 작성하기" class="btn" style="background-color:#8bda8b; color:white;">
 					</form>
 				</div>
 			</c:when>
+				<c:otherwise>
+						<input type="hidden" name="cust_no" value="${customer.cust_no }">
+						<input type="hidden" name="admin">
+						<div class="re-wri" id="content">${customerRe.cust_content}</div>
+				</c:otherwise>
+		</c:choose>
+		<hr class="qs-line-f">
+		<input type="button" class="cust-upd cust-del" onclick="location.href='deleteCustomer?cust_no=${ customer.cust_no }';" value="삭제"/>
+		<c:choose>
+		<c:when test="${role eq 'admin' }">
+			<input type="button" class="cust-lis" onclick="location.href='getCustomerList';" value="목록"/>
+		</c:when>
+		<c:otherwise>
+			<input type="button" class="cust-lis" onclick="location.href='myCustBoard';" value="목록"/>
+		</c:otherwise>
 		</c:choose>
 </body>
 </html>

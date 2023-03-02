@@ -57,6 +57,7 @@ public class SurveyController {
 	@RequestMapping(value="/insertsurvey.do", method = RequestMethod.POST)
 	public @ResponseBody ModelAndView insertSurvey(@RequestParam String sd_svcode, HttpServletRequest req, @RequestParam String c_code) throws Exception {
 	//	System.out.println("========= insertSurvey Controller Start ========= ");
+		System.out.println("???");
 		ModelAndView mav = new ModelAndView();
 		
 		int survey_count = Integer.parseInt(req.getParameter("survey_count"));
@@ -136,8 +137,8 @@ public class SurveyController {
 			 
 				}	// for end
 			} */
-		
-		mav.setViewName("redirect:/surveylist.do");
+//		
+		mav.setViewName("redirect:/getcommunity/"+c_code+"");
 		return mav;
 	} // 설문지 등록 end
 	

@@ -13,11 +13,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" 
 	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <style>
-		body{
-	    background: #F5F5F5;
-	    margin-top:100px;
+
+	body {
+		background: #f9f9f9; 
+		margin-top:100px;
 	}
-	
+
 	.content_guide {
 		/* position: absolute; */
 	    top: 0;
@@ -33,17 +34,16 @@
 	    /* border-width: 0 1px; */
 	    -webkit-box-sizing: content-box;
 	    box-sizing: content-box;
+	    margin-bottom: 40px;
 	}
 	
 	.title_board {
 		max-width: 886px;
 		position: relative;
-	    padding-top: 50px;
-	    padding-bottom: 32px;
+	    padding-top: 20px;
 	}
 	
 	hr {
- 	 background: #d3d3d3;
 	 height:1px;
 	 border: 0;
 	 padding-right: 100px; 
@@ -88,7 +88,8 @@
 	}
 	
 	.buttons {
-	text-align: center
+	text-align: center;
+	margin-bottom: 30px;
 	}
 </style>
 <link href="${pageContext.request.contextPath}/resources/css/partner_review/star.css" rel="stylesheet">
@@ -146,6 +147,6 @@
 		</div>
 	</form>
 
-
+<%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

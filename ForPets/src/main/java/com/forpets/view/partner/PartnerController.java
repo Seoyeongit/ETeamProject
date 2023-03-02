@@ -1,20 +1,35 @@
 package com.forpets.view.partner;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.forpets.biz.partner.PartnerService;
 import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.partner.impl.PartnerDAO;
+import com.forpets.biz.pet.PetVO;
+import com.forpets.biz.pet.impl.PetDAO;
 import com.forpets.biz.reserve.ReServeVO;
 import com.forpets.biz.reserve.ReserveService;
 import com.forpets.biz.reserve.impl.ReserveDAO;
@@ -26,6 +41,8 @@ public class PartnerController {
 	
 	@Autowired
 	private PartnerService partnerService;
+	@Autowired
+	private ServletContext servletContext;
 	
 	@RequestMapping(value="/partner/partnerMain")
 	public String partner(PartnerVO vo, PartnerDAO dao) {
@@ -105,6 +122,120 @@ public class PartnerController {
 		}
 		
 	}	
+	
+	@RequestMapping(value = "/partner/partImgUpd", method = RequestMethod.POST)
+	public String updatePartnerImg(PartnerVO vo, PartnerDAO DAO) {
+		System.out.println("==>partner udpate start");
+		
+		partnerService.updatePartnerImg(vo);
+		return "partner/modify";
+	}
+
+	//partner정보를 등록한다.
+	@RequestMapping(value = "/partner/partImgIns", method = RequestMethod.POST)
+	public String insertPartnerImg(PartnerVO vo, PartnerDAO DAO) {
+		System.out.println("==>partner insert start");
+		System.out.println(vo.toString());
+		
+		partnerService.insertPartnerImg(vo);
+		return "partner/modify";
+	}
+	
+
+	
+	@RequestMapping(value = "/partner/my-partnerImgUpload", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<PartnerVO> uploadPetImageActionPOST(MultipartFile uploadFile) throws IllegalStateException, IOException {
+		System.out.println("uploadAjaxActionPOST..........");
+		
+		File checkfile = new File(uploadFile.getOriginalFilename());
+		String type = null;
+		
+		type = Files.probeContentType(checkfile.toPath());
+		System.out.println("MIME TYPE : " + type  );
+		
+		if(!type.startsWith("image")) {
+			PartnerVO check = null;
+			return new ResponseEntity<PartnerVO>(check, HttpStatus.BAD_REQUEST);
+		}
+		
+		String resourcePath = servletContext.getRealPath("/resource");
+		String path = resourcePath + "/assts/upload";
+		
+		String uploadFolder = path;
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		
+		String str = sdf.format(date);
+		
+		String datePath = str.replace("-", File.separator);
+		/* 폴더 생성 */
+		File uploadPath = new File(uploadFolder, datePath);
+		
+		if(uploadPath.exists() == false) {
+			uploadPath.mkdirs();
+		}
+		
+		PartnerVO vo = new PartnerVO();
+		
+		/* 파일 이름 */
+		String uploadFileName = uploadFile.getOriginalFilename();
+		/* uuid적용 파일 이름 */
+		String uuid = UUID.randomUUID().toString();
+		
+		uploadFileName = uuid+"_"+uploadFileName;
+		
+		/* 파일위치, 파일 이름을 합칙 file 객체 */
+		File saveFile = new File(uploadPath, uploadFileName);
+		vo.setImg(saveFile.toString());
+		
+		/* 파일저장 */
+		uploadFile.transferTo(saveFile);
+		
+		ResponseEntity<PartnerVO> result = new ResponseEntity<PartnerVO>(vo, HttpStatus.OK);
+		
+		return result;
+		
+	}
+	
+	@RequestMapping("/partner/display")
+	public ResponseEntity<byte[]>getImage(String fileName, HttpServletRequest request){
+		System.out.println("getImage()....." + fileName);
+		
+		String applicationPath = request.getServletContext().getRealPath("/");
+		String[] personalPath = applicationPath.split("\\.metadata");
+		String part_img_path = personalPath[0] + "ForPets\\src\\main\\webapp\\resources\\assets\\upload";
+		
+		
+		File file = new File(part_img_path + fileName);
+		
+		ResponseEntity<byte[]> result = null;
+		
+		try {
+			HttpHeaders header = new HttpHeaders();
+			header.add("Content-type", Files.probeContentType(file.toPath()));
+			result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	@RequestMapping(value = "/partner/delete", method = RequestMethod.POST)
+	public ResponseEntity<String> DeleteImage(String fileName) {
+		System.out.println("deleteImage()...."+fileName);
+		String resourcePath = servletContext.getRealPath("/resource");
+		String path = resourcePath + "/assts/upload";
+		File file = null;
+		try {
+			file = new File(path + URLDecoder.decode(fileName, "UTF-8"));
+			file.delete();
+		}catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>("fail", HttpStatus.NOT_IMPLEMENTED);
+		}
+		return new ResponseEntity<String>("success", HttpStatus.OK);
+	}
 	
 	
 }

@@ -30,6 +30,9 @@
 	.footer {
 		text-align : center; !important;
 	}
+	.service-forpets{
+		margin-bottom : 5%;
+	}
 </style>
 </head>
 <body>
@@ -53,19 +56,23 @@
 		
 		<main id="main" class="main">
 			<section class="section">
-				<div class="row align-items-top">
+				<div class="row align-items-top" style="margin-left:10%;">
 					<!-- Service 소개 Start -->
 					<div class="col-lg-12 row">
-						<h4>돌봄 서비스</h4>
+						<div class="col-md-12">
+							<h4 class="my-3"><b>돌봄 서비스</b></h4>
+							<div class="text-muted my-3">포펫츠에서 제공하는 서비스 입니다.</div>
+						</div>
+						
 						<!-- 방문 -->
-						<div class="col-md-12 row">
+						<div class="col-md-12 row service-forpets">
 							<div class="col-md-5" style="float:left;">
 		                        <div class="col-12">
-		                            <img height="200px;" class="img-thumbnail rounded-circle" src="${pageContext.request.contextPath}/resources/assets/dog-normal.jpg" alt="normal" style="width: 80%">
+		                            <img class="img-thumbnail rounded-circle" src="${pageContext.request.contextPath}/resources/assets/dog-normal.jpg" alt="normal" style="width: 80%; height: 200px;">
 		                        </div>
 		                    </div>
 		                    <div class="col-md-5 align-self-center">
-			                    <div style="float:right;">
+			                    <div>
 			                        <h4 class="my-3">기본</h4>
 			                        <div class="text-muted">바쁜 당신과 혼자 남겨지는 당신의 아이.</div>
 			                        <div class="text-muted">ForPets가 해결 해드리겠습니다.</div>
@@ -75,31 +82,31 @@
 	                    </div>
 	                    
 	                    <!-- 산책 -->
-	                    <div class="col-md-12 row">
+	                    <div class="col-md-12 row service-forpets">
 							<div class="col-md-5 align-self-center">
 			                    <div style="float:left;">
 			                        <h4 class="my-3">산책</h4>
 			                        <div class="text-muted">바쁜 당신과 혼자 남겨지는 당신의 아이.</div>
 			                        <div class="text-muted">ForPets가 해결 해드리겠습니다.</div>
-			                        <div class="text-muted">친숙한 산책 경로로 기분 좋은 산책을 맡겨보세요</div>
+			                        <div class="text-muted">친숙한 산책 경로로 기분 좋은 산책을 맡겨보세요.</div>
 			                    </div>
 		                    </div>
-							<div class="col-md-5" style="float:right;">
+							<div class="col-md-5">
 		                        <div class="col-12">
-		                            <img height="200px;" class="img-thumbnail rounded-circle" src="${pageContext.request.contextPath}/resources/assets/dog-walking.jpg" alt="walking" style="width:80%">
+		                            <img class="img-thumbnail rounded-circle" src="${pageContext.request.contextPath}/resources/assets/dog-walking.jpg" alt="walking" style="width:80%; height: 200px;">
 		                        </div>
 		                    </div>
 	                    </div>
 						
 						<!-- 픽업 -->
-	                    <div class="col-md-12 row">
+	                    <div class="col-md-12 row service-forpets">
 							<div class="col-md-5" style="float:left;">
 		                        <div class="col-12">
-		                            <img height="200px;" class="img-thumbnail rounded-circle" src="${pageContext.request.contextPath}/resources/assets/dog-pickup.png" alt="pickup" style="width: 80%">
+		                            <img class="img-thumbnail rounded-circle" src="${pageContext.request.contextPath}/resources/assets/dog-pickup.png" alt="pickup" style="width: 80%; height: 200px;">
 		                        </div>
 		                    </div>
 		                    <div class="col-md-5 align-self-center">
-			                    <div style="float:right;">
+			                    <div>
 			                        <h4 class="my-3">병원</h4>
 	                        		<p class="text-muted">언제 아플지 모르는 우리 아이. 평일엔 시간을 내지 못하는 당신을 위해 ForPets에서 대신 병원 방문 , 진료, 치료 과정 하나하나 실시간으로 남겨드립니다.</p>
 			                    </div>
@@ -108,10 +115,10 @@
 	                    
 					</div><!-- Service 소개 End -->
 					
-					<div class="col-lg-12 row">
+					<div class="col-lg-12 row service-forpets">
 						<div class="col-md-12">
-							<h4 class="my-3">근처 병원 검색</h4>
-	                        <div class="text-muted">소중한 내 아이가 아플 때, 근처에 있는 병원을 빠르게 검색해보세요.</div>
+							<h4 class="my-3"><b>근처 병원 검색</b></h4>
+	                        <div class="text-muted my-3">소중한 내 아이가 아플 때, 근처에 있는 병원을 빠르게 검색해보세요.</div>
 	                        <span class="col-md-12">
 	                            <img src="${pageContext.request.contextPath}/resources/assets/map_img.JPG" alt="지도 이미지" style="width: 80%" height="80%">
 	                        </span>
@@ -120,8 +127,8 @@
 					
 					<div class="col-lg-12 row">
 						<div class="col-md-12">
-							<h4 class="my-3">반려인을 위한 정보</h4>
-							<div class="text-muted">반려인을 위한 정보를 동영상을 통해 알아보세요.</div>
+							<h4 class="my-3"><b>반려인을 위한 정보</b></h4>
+							<div class="text-muted my-3">반려인을 위한 정보를 동영상을 통해 알아보세요.</div>
 	                        <span class="col-md-12">
 	                            <img src="${pageContext.request.contextPath}/resources/assets/Tip.JPG" alt="팁 사진" style="width: 80%" height="80%">
 	                        </span>

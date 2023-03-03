@@ -155,6 +155,7 @@
 	<c:if test="${member.user_id == communityboard.user_id }">		
 			<a href="../updatecommunity/${communityboard.c_code }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="수정"></a>
 			<a href="../deletecommunity/${communityboard.c_code }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="삭제"></a>
+			<a href="${pageContext.request.contextPath}/answerlist.do/${svcode[0].sa_svcode }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="설문지 답변 확인"></a>
 	</c:if>
 			<a href="../communitylist"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="목록으로"></a>		
 		</div>

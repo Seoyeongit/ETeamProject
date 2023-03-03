@@ -34,4 +34,5 @@ public class PartnerVO {
 	private String img;
 	private MultipartFile part_img;
 
+
 }

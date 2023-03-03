@@ -112,6 +112,16 @@ public String searchCustomerList(CustomerVO vo,CustomerDAO dao, Model model) thr
 		return "forward:/getCustomerBoardView";
 	}
 	
+	
+//	@RequestMapping(value="/getCustomerBoardView2")
+//	public String getCustomerBoardView2(CustomerReVO vo, HttpSession session) {
+//		CustomerReVO sessionVo = (CustomerReVO) session.getAttribute("customerRe");
+//		vo.setCust_no(sessionVo.getCust_no());
+//		session.setAttribute("customerRe", custservice.getCustomerRe(vo));
+//		return "/customer/getCustomerBoardView";
+//	}
+	
+	
 	@RequestMapping(value="/getCustomerBoardView")
 	public String getCustomerBoardView(CustomerVO vo, CustomerDAO dao, CustomerReVO rvo, Model model, HttpSession session, HttpServletRequest request) throws IOException {
 		session.getAttribute("cust_no");
@@ -120,7 +130,7 @@ public String searchCustomerList(CustomerVO vo,CustomerDAO dao, Model model) thr
 		try {
 			
 			CustomerReVO cvo = custservice.getCustomerRe(rvo);
-			session.setAttribute("customerRe", cvo);
+			model.addAttribute("customerRe", cvo);
 			
 		} catch(Exception e) {
 			
@@ -191,7 +201,7 @@ public String searchCustomerList(CustomerVO vo,CustomerDAO dao, Model model) thr
 	}
 	
 	@RequestMapping(value="insertCustomerRe")
-	public String insertCustomerRe(CustomerReVO vo, CustomerDAO dao, HttpServletRequest request, HttpSession session) throws IOException {
+	public String insertCustomerRe(CustomerReVO vo, CustomerDAO dao, Model model, HttpServletRequest request, HttpSession session) throws IOException {
 		vo.setCust_no(Integer.parseInt(request.getParameter("cust_no")));
 		vo.setCust_content(request.getParameter("content"));
 		System.out.println(vo.getCust_no());
@@ -200,6 +210,7 @@ public String searchCustomerList(CustomerVO vo,CustomerDAO dao, Model model) thr
 			CustomerReVO cvo = custservice.getCustomerRe(vo);
 		} catch(Exception e) {
 			custservice.insertCustomerRe(vo);
+			session.setAttribute("customerRe", vo);
 			return "customer/getCustomerBoardView";
 		}
 		
@@ -213,7 +224,7 @@ public String searchCustomerList(CustomerVO vo,CustomerDAO dao, Model model) thr
 			session.setAttribute("customerRe", cvo);
 		}
 		
-		return "customer/getCustomerBoardView";
+		return "forward:/getCustomerBoardView";
 	}
 	
 	@RequestMapping(value="/getCustomerList")

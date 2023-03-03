@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -88,6 +90,7 @@ public class PartnerController {
 			vo.setPart_add(request.getParameter("part_add"));
 			vo.setPart_phnumber(request.getParameter("part_phnumber"));
 			vo.setSelf_infor(request.getParameter("self_infor"));
+			vo.setImg(request.getParameter("img"));
 			partnerService.updatePartner(vo);
 			
 			HttpSession session = request.getSession(false);
@@ -101,24 +104,30 @@ public class PartnerController {
 
 		}
 	
+	
 	@RequestMapping(value="/partner/login",method = RequestMethod.GET)
 	public String loginForm() {
 		return "partner/login";
 	}
 
 	@RequestMapping(value="/partner/login", method = RequestMethod.POST)
-	public String login(PartnerVO vo,HttpServletRequest request) {
+	public @ResponseBody Object login(@RequestBody PartnerVO vo,HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		
 		System.out.println("아이디 : " + vo.getPart_id());
 		
+		try {
 		if(partnerService.partnerGet(vo) != null) {
 			session.setAttribute("role","partners" );
 			session.setAttribute("partners", partnerService.partnerGet(vo));
 			System.out.println(session.getAttribute("partners").toString());
-			return "forward://";
+			return 1;
 		}else {
-			return "/";
+			return 0;
+		}}catch(EmptyResultDataAccessException e) {
+			return 0;
+		}catch(Exception e) {
+			return 9;
 		}
 		
 	}	
@@ -144,7 +153,7 @@ public class PartnerController {
 
 	
 	@RequestMapping(value = "/partner/my-partnerImgUpload", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<PartnerVO> uploadPetImageActionPOST(MultipartFile uploadFile) throws IllegalStateException, IOException {
+	public ResponseEntity<PartnerVO> uploadPetImageActionPOST(MultipartFile uploadFile, HttpServletRequest request) throws IllegalStateException, IOException {
 		System.out.println("uploadAjaxActionPOST..........");
 		
 		File checkfile = new File(uploadFile.getOriginalFilename());
@@ -158,10 +167,10 @@ public class PartnerController {
 			return new ResponseEntity<PartnerVO>(check, HttpStatus.BAD_REQUEST);
 		}
 		
-		String resourcePath = servletContext.getRealPath("/resource");
-		String path = resourcePath + "/assts/upload";
+		String applicationPath = request.getServletContext().getRealPath("/");
+		String[] personalPath = applicationPath.split("\\.metadata");
+		String part_img_path = personalPath[0] + "ForPets\\src\\main\\webapp\\resources\\assets\\upload";
 		
-		String uploadFolder = path;
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
@@ -170,7 +179,7 @@ public class PartnerController {
 		
 		String datePath = str.replace("-", File.separator);
 		/* 폴더 생성 */
-		File uploadPath = new File(uploadFolder, datePath);
+		File uploadPath = new File(part_img_path, datePath);
 		
 		if(uploadPath.exists() == false) {
 			uploadPath.mkdirs();

@@ -6,9 +6,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<jsp:include page="../favicon.jsp" />
+<title>Community board</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 <jsp:include page="/WEB-INF/views/nav.jsp"/>
-<jsp:include page="../favicon.jsp" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" 
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -102,7 +104,7 @@
 	    margin: auto;
 	    padding-right: 100px;
   		padding-left: 100px;
-  		margin-bottom: 40px;
+  		margin-bottom: 200px;
 	}
 	
 	.comment_board{
@@ -128,8 +130,6 @@
 	}
 
 </style>
-<meta charset="UTF-8">
-<title>Community board</title>
 </head>
 <body>
 

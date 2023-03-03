@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="../favicon.jsp"></jsp:include>
 <meta charset="UTF-8">
 <link href="${pageContext.request.contextPath}/resources/css/customer.css" rel="stylesheet" />
 <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
@@ -87,6 +88,7 @@
 				<th>제목</th>
 				<th>작성자</th>
 				<th>작성일</th>
+				<th>답변 상태</th>
 			</tr>
 			<c:forEach items="${CustList }" var="customer">
 				<tr>
@@ -104,6 +106,11 @@
 	                </c:choose>
 	                </td>
 					<td><fmt:formatDate value="${ customer.cust_date }" pattern="yyyy-MM-dd" /></td>
+					<td>
+						<c:if test="${customer.status eq null }">답변 완료</c:if>
+						<c:if test="${customer.status eq 1 }">답변 대기</c:if>
+						<c:if test="${customer.status eq 2 }">답변 완료</c:if>
+					</td>
 				</tr>
 			</c:forEach>
 			<tr>
@@ -136,7 +143,7 @@
                         <input type='hidden' name='searchCondition' value='<c:out value="${ pageMaker.cri.searchCondition }"/>'> 
                         <input type='hidden' name='searchKeyword'   value='<c:out value="${ pageMaker.cri.searchKeyword }"/>'>
                      </form>
-		<button class="back-bt" type="button" onclick="location.href='customerMain';">뒤로가기</button>
+		<button class="back-bt" type="button" onclick="location.href='customer.do';">뒤로가기</button>
 	<script>
   	$(function(){
       $(".paginate_button a").on("click",

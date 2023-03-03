@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
     <head>
+    	<jsp:include page="../favicon.jsp"></jsp:include>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -52,6 +53,7 @@
 			<th>예약 시간</th>
 		</tr>
 		<c:forEach items="${reserveListCare}" var="lCare">
+		<c:if test="${member.user_id ne null}">
 		<tr>
 			<td><input type="text" name="num" value="${ lCare.reserve_num }" readonly /></td>
 			<td><input type="text" name="user" value="${ lCare.user_id }" readonly /></td>
@@ -60,6 +62,7 @@
 			<td><input type="text" name="time" value="${ lCare.reserve_time }" readonly /></td>
 			<td><input type="button" onclick="location.href='../partner/viewWriteCare?reserve_num=${lCare.reserve_num}&user_id=${lCare.user_id}';" value="돌봄일지 작성하기"/></td>
 		</tr>
+		</c:if>
 		</c:forEach>
 		<tr>
 			<td><input type="button" onclick="location.href='partnerMain';" value="뒤로가기"/></td>

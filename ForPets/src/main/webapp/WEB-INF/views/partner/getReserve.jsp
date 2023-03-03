@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="../favicon.jsp"></jsp:include>
 <meta charset="UTF-8">
 <title>예약 일정 관리</title>
 </head>
@@ -19,6 +20,7 @@
 			<th>예약 시간</th>
 		</tr>
 		<c:forEach items="${reserveList}" var="rList">
+		<c:if test="${member.user_id ne null}">
 		<c:if test="${rList.status eq 1 }">
 		<tr>
 			<td><input type="text" name="num" value="${ rList.reserve_num }" readonly /></td>
@@ -28,6 +30,7 @@
 			<td><input type="text" name="time" value="${ rList.reserve_time }" readonly /></td>
 			<td><input type="button" onclick="location.href='../partner/detail?reserve_num=${rList.reserve_num}&user_id=${rList.user_id}';" value="확인하기"/></td>
 		</tr>
+		</c:if>
 		</c:if>
 		</c:forEach>
 	</table>
@@ -41,6 +44,7 @@
 			<th>예약 시간</th>
 		</tr>
 		<c:forEach items="${reserveList}" var="rList">
+		<c:if test="${member.user_id ne null}">
 		<c:if test="${rList.status eq 2 }">
 		<tr>
 			<td><input type="text" name="num" value="${ rList.reserve_num }" readonly /></td>
@@ -50,6 +54,7 @@
 			<td><input type="text" name="time" value="${ rList.reserve_time }" readonly /></td>
 			<td><input type="button" onclick="location.href='../partner/detail?reserve_num=${rList.reserve_num}&user_id=${rList.user_id}';" value="확인하기"/></td>
 		</tr>
+		</c:if>
 		</c:if>
 		</c:forEach>
 	</table>
@@ -63,6 +68,7 @@
 			<th>예약 시간</th>
 		</tr>
 		<c:forEach items="${reserveList}" var="rList">
+		<c:if test="${member.user_id ne null}">
 		<c:if test="${rList.status eq 3 }">
 		<tr>
 			<td><input type="text" name="num" value="${ rList.reserve_num }" readonly /></td>
@@ -73,8 +79,9 @@
 			<td><input type="button" onclick="location.href='../partner/detail?reserve_num=${rList.reserve_num}&user_id=${rList.user_id}';" value="확인하기"/></td>
 		</tr>
 		</c:if>
+		</c:if>
 		</c:forEach>
 	</table>
-	<input type="button" onclick="location.href='partner';" value="뒤로가기"/>
+	<input type="button" onclick="location.href='partnerMain';" value="뒤로가기"/>
 </body>
 </html>

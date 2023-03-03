@@ -34,4 +34,6 @@ public class UserDAO {
 		Object[] obj = {vo.getUser_id()};
 		return jdbcTemplate.queryForObject(GET_USERBYID, obj,new UserRowMapper());
 	}
+	
+	
 }

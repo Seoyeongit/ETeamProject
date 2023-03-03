@@ -137,6 +137,12 @@ button.partlog{
 	font-size:25px;
 	font-family:Noto Sans KR;
 }
+.error-msg{
+	font-size: 12px;
+    color: #ff003e;
+    vertical-align: middle;	
+}
+
 .footer {
   margin-top:200px;
   text-align: center;

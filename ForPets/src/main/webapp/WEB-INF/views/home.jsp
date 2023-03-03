@@ -246,6 +246,10 @@
                 </div>
             </div>
         </section>
+        
+        
+        
+        
         <!-- review-->
 	 <section class="page-section" id="review">
             <div class="">
@@ -255,6 +259,9 @@
                 </div>
         
                 <div class="card-wrap">
+                
+                
+                <c:forEach items="${reviewList}" var="review">
                     <div class="card">
                         <div class="review-content">
                             <div class="reviewer-wrap">
@@ -266,133 +273,21 @@
                                 <div>
                                     <div class="review-simple-starRating">
                                         <div>
-                                            한줄평
+                                           	${review.r_title }
                                         </div>
                                         <div>
-                                            ⭐⭐⭐⭐⭐
+                                        	<c:choose>
+                                        		<c:when test="${review.star_rating eq 5}">⭐⭐⭐⭐⭐</c:when>
+                                        		<c:when test="${review.star_rating eq 4}">⭐⭐⭐⭐</c:when>
+                                        	</c:choose>
                                         </div>
                                     </div>
-                                    <p>수고했습니다.</p>
+                                    <p>${review.r_content }</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-        
-                    <div class="card">
-                        <div class="review-content">
-                            <div class="reviewer-wrap">
-                                <div class="reviewer-img">
-                                    <img src="./noImage.png">
-                                </div>
-                            </div>
-                            <div class="review-text">
-                                <div>
-                                    <div class="review-simple-starRating">
-                                        <div>
-                                            한줄평
-                                        </div>
-                                        <div>
-                                            ⭐⭐⭐⭐⭐
-                                        </div>
-                                    </div>
-                                    <p>수고했습니다.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-        
-        
-                    <div class="card">
-                        <div class="review-content">
-                            <div class="reviewer-wrap">
-                                <div class="reviewer-img">
-                                    <img src="./noImage.png">
-                                </div>
-                            </div>
-                            <div class="review-text">
-                                <div>
-                                    <div class="review-simple-starRating">
-                                        <div>
-                                            한줄평
-                                        </div>
-                                        <div>
-                                            ⭐⭐⭐⭐⭐
-                                        </div>
-                                    </div>
-                                    <p>수고했습니다.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-        
-                    <div class="card">
-                        <div class="review-content">
-                            <div class="reviewer-wrap">
-                                <div class="reviewer-img">
-                                    <img src="./noImage.png">
-                                </div>
-                            </div>
-                            <div class="review-text">
-                                <div>
-                                    <div class="review-simple-starRating">
-                                        <div>
-                                            한줄평
-                                        </div>
-                                        <div>
-                                            ⭐⭐⭐⭐⭐
-                                        </div>
-                                    </div>
-                                    <p>수고했습니다.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-        
-                    <div class="card">
-                        <div class="review-content">
-                            <div class="reviewer-wrap">
-                                <div class="reviewer-img">
-                                    <img src="./noImage.png">
-                                </div>
-                            </div>
-                            <div class="review-text">
-                                <div>
-                                    <div class="review-simple-starRating">
-                                        <div>
-                                            한줄평
-                                        </div>
-                                        <div>
-                                            ⭐⭐⭐⭐⭐
-                                        </div>
-                                    </div>
-                                    <p>수고했습니다.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-        
-                    <div class="card">
-                        <div class="review-content">
-                            <div class="reviewer-wrap">
-                                <div class="reviewer-img">
-                                    <img src="./noImage.png">
-                                </div>
-                            </div>
-                            <div class="review-text">
-                                <div>
-                                    <div class="review-simple-starRating">
-                                        <div>
-                                            한줄평
-                                        </div>
-                                        <div>
-                                            ⭐⭐⭐⭐⭐
-                                        </div>
-                                    </div>
-                                    <p>수고했습니다.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                 </c:forEach>
         
                 </div>
         

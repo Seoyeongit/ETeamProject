@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/login.css" rel="stylesheet" />
 <style>
 	.footer {
@@ -16,16 +17,63 @@
 <%@ include file="/WEB-INF/views/nav.jsp" %>
 <center>
 <button type="button" class="loginimg" onclick="location.href='${pageContext.request.contextPath}/member/loginMain';"></button>
-<form action="${pageContext.request.contextPath}/member/login" method="post">
 <div class="userlog-tx">회원 로그인</div>
 <div class="loginform">
   	<div><input type="text" class="idbox" name="user_id" placeholder="아이디"/></div>
-    <div><input type="password" class="pwbox" name="user_pw" placeholder="비밀번호"/></div>
+    <div class="password-box"><input type="password" class="pwbox" name="user_pw" placeholder="비밀번호"/></div>
     <div class="login-con"><input type="submit" class="loginbox" value="로그인" /></div>
 </div>
-</form>
 </center>
 <br>
 <%@ include file="/WEB-INF/views/footer.jsp" %>
+
+<script>
+	$('.loginbox').on('click', function(){
+		const userData = { 
+				user_id : $('input[name=user_id]').val(),
+				user_pw : $('input[name=user_pw]').val()
+		};
+		
+		if($('.idbox').val()==null || $('.idbox').val()==''){
+			if($('.password-box').children('div').hasClass('error-msg')){ $(this).text('아이디를 입력해주세요.'); return;}
+			$('.loginform').children('.password-box').append($('<div>').addClass('error-msg').text('아이디를 입력해주세요.')); 
+			$('.idbox').focus();
+			return;
+		}
+		
+		else if($('.pwbox').val()==null || $('.pwbox').val()==''){
+			if($('.password-box').children('div').hasClass('error-msg')){
+				$(this).text('비밀번호를 입력해주세요.');
+				return;}
+			$('.loginform').children('.password-box').append($('<div>').addClass('error-msg').text('비밀번호를 입력해주세요.')); 
+			$('.pwbox').focus();
+			return;
+		}else{
+		$.ajax({
+			url:'../member/login',
+			type: "post",
+	        data: JSON.stringify(userData),
+	        dataType: "json",
+	        contentType: "application/json",
+			success:function(result){
+				if(result==1){
+					window.location.href="../";
+				}else{
+					if($('.password-box').children('div').hasClass('error-msg')){
+						$('.password-box').children('.error-msg').text('아이디(로그인 전용 아이디) 또는 비밀번호를 잘못 입력했습니다.입력하신 내용을 다시 확인해주세요.'); 
+						return;}
+					$('.loginform').children('.password-box').append($('<div>').addClass('error-msg').text('아이디(로그인 전용 아이디) 또는 비밀번호를 잘못 입력했습니다.입력하신 내용을 다시 확인해주세요.')); 
+					return;
+				}
+			},
+			error:function(reuslt){
+				alert('에러임');
+			}
+		});
+	}
+	})
+</script>
 </body>
+
+
 </html>

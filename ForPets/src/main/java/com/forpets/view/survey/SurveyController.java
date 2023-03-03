@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -199,34 +200,73 @@ public class SurveyController {
 			surdservice.insertAnswer(vo);		
 		}
 
-		mav.setViewName("redirect:/surveylist.do");
+		mav.setViewName("redirect:/communitylist");
 		return mav;
 	}
 	
 	
+//	// 답변 리스트 불러오기
+//	@RequestMapping("/answerlist.do")
+//	public ModelAndView answerList() throws Exception {
+//		ModelAndView mav = new ModelAndView();
+//		mav.setViewName("/Survey/AnswerList");
+//		mav.addObject("answerList",surdservice.getAnswerList());
+//		
+//		return mav;
+//	}
+	
 	// 답변 리스트 불러오기
-	@RequestMapping("/answerlist.do")
-	public ModelAndView answerList() throws Exception {
+	@RequestMapping("/answerlist.do/{sa_svcode}")
+	public ModelAndView answerList(@PathVariable String sa_svcode) throws Exception {
 		ModelAndView mav = new ModelAndView();
+		System.out.println("sa_svcode : " + sa_svcode);
 		mav.setViewName("/Survey/AnswerList");
-		mav.addObject("answerList",surdservice.getAnswerList());
+		mav.addObject("add", sa_svcode);
+//		mav.addObject("answerList",surdservice.getAnswerList(sa_svcode));
+		mav.addObject("answerList",surdservice.getAnswerName(sa_svcode));
+		System.out.println(surdservice.getAnswerName(sa_svcode));
+		mav.addObject("surveyboard", surdservice.getAnswerBoard(sa_svcode));
+		mav.addObject("surveyboard2", surdservice.getAnswerBoard2(sa_svcode));
+		mav.addObject("surveyboard3", surdservice.getAnswerBoard3(sa_svcode));
 		
 		return mav;
 	}
+	
+	
+	
 
 	// 질문 답변 불러오기 
-	@RequestMapping("/answerboard.do/{sd_svcode}&{user_id}")
-	public ModelAndView getAnswerBoard(@PathVariable String sd_svcode, @PathVariable String user_id) {
+	@RequestMapping("/answerboard.do/{sd_svcode}/{user_id}")
+	public @ResponseBody ModelAndView getAnswerBoard(@PathVariable String sd_svcode, @PathVariable String user_id) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/Survey/ViewSurvey");
+		System.out.println("sd_svcode :" + sd_svcode +", user_id :" + user_id );
+		mav.setViewName("/Survey/Answer");
+		mav.addObject("add", sd_svcode);
+		mav.addObject("nowid", user_id);
+//		mav.addObject("answerList",surdservice.getAnswerList(sa_svcode));
+		mav.addObject("answerList",surdservice.getAnswerName(sd_svcode));
 		mav.addObject("answerboard", surdservice.getAnswerBoard(sd_svcode));
 		mav.addObject("answerboard2", surdservice.getAnswerBoard2(sd_svcode));
 		mav.addObject("answerboard3", surdservice.getAnswerBoard3(sd_svcode));
 		mav.addObject("answerboard4", surdservice.getAnswerBoard4(sd_svcode, user_id));
-	//	System.out.println(surdservice.getAnswerBoard4(sd_svcode, user_id));
+	
+		System.out.println(surdservice.getAnswerBoard4(sd_svcode, user_id));
 	//	mav.addObject("answerboard4", surdservice.getAnswerBoard4());
 		return mav;
 	}
+	
+	// 질문 답변 불러오기 
+	@RequestMapping("/answerboard.do/{sd_svcode}")
+	public @ResponseBody List<SurveyAnswerVO> getAnswerBoard(@PathVariable String sd_svcode, @RequestParam String user_id, Model model) {
+		SurveyAnswerVO vo = new SurveyAnswerVO();
+		model.addAttribute("answerboard4", surdservice.getAnswerBoard4(sd_svcode, user_id));
+		
+		System.out.println("sd_svcode :" + sd_svcode +", user_id :" + user_id );
+		System.out.println(surdservice.getAnswerBoard4(sd_svcode, user_id));
+	//	mav.addObject("answerboard4", surdservice.getAnswerBoard4());
+		return surdservice.getAnswerBoard4(sd_svcode, user_id);
+	}
+	
 	
 	// 설문지 답변 삭제하기 
 	@RequestMapping("/deleteanswer.do/{sd_svcode}&{user_id}")

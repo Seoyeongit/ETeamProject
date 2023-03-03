@@ -89,7 +89,20 @@ public class CommunityController {
 		mav.addObject("communityboard", comservice.getCommunityBoard(c_code));
 		mav.addObject("getdat", datservice.getComdat(c_code));
 		return mav;
-	} 
+	}
+	
+	@RequestMapping(value = "/viewcommunityboard/{c_code}/{sv_code}", method = RequestMethod.GET) 
+	public ModelAndView getCommunityBoard(@PathVariable("c_code") String c_code, @PathVariable("sv_code") String sv_code) throws Exception {
+		System.out.println("c_code : "+c_code);
+		System.out.println("sv_code : " + sv_code);
+		
+		ModelAndView mav = new ModelAndView(); 
+		mav.setViewName("/Community/View_Community");
+		mav.addObject("communityboard", comservice.getCommunityBoard(c_code));
+		mav.addObject("getdat", datservice.getComdat(c_code));
+		mav.addObject("svcode", svservice.getAnswerList(sv_code));
+		return mav;
+	}
 	
 	// 글 수정 -> read
 	@RequestMapping("/updatecommunity/{c_code}") 

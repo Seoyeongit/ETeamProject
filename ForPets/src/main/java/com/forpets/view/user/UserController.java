@@ -23,6 +23,8 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+
+	
 	//회원정보수정.jsp를 View.
 	@RequestMapping(value="/myInfo/edit-Profile")
 	public String updateProfileView() {
@@ -51,6 +53,7 @@ public class UserController {
 		
 	}
 	
+
 	//임시 >> 로그인.jsp View
 	@RequestMapping(value="/member/loginMain",method = RequestMethod.GET)
 	public String loginChoice() {
@@ -62,17 +65,20 @@ public class UserController {
 		return "member/login";
 	}
 	
-	//임시>> 로그인처리
+	//로그인처리
 	@RequestMapping(value="/member/login", method = RequestMethod.POST)
-	public String login(UserVO vo,HttpServletRequest request) {
+	public @ResponseBody Object login(@RequestBody UserVO vo,HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		
+		try {
 		if(userService.getUser(vo) != null) {
 			session.setAttribute("member", userService.getUser(vo));
 			System.out.println(session.getAttribute("member").toString());
-			return "forward://";
+			return 1;
 		}else {
-			return "member/login";
+			return 0;
+		}
+		}catch(EmptyResultDataAccessException e) {
+			return 0;
 		}
 		
 	}

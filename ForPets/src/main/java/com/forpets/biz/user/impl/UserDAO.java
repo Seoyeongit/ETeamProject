@@ -18,7 +18,6 @@ public class UserDAO {
 	public UserVO getUser(UserVO vo) {
 		Object[] obj = {vo.getUser_id(),vo.getUser_pw()};
 		return jdbcTemplate.queryForObject(GET_USER,obj, new UserRowMapper());
-		
 	}
 	
 	public void updateUser(UserVO vo) {
@@ -35,4 +34,6 @@ public class UserDAO {
 		Object[] obj = {vo.getUser_id()};
 		return jdbcTemplate.queryForObject(GET_USERBYID, obj,new UserRowMapper());
 	}
+	
+	
 }

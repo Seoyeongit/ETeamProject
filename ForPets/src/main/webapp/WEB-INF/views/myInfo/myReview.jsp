@@ -6,6 +6,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
+<c:if test="${empty reserveList || reserveList eq ''}">
+	<jsp:include page="./noData/no_writeReview.jsp"></jsp:include>
+</c:if>
+
 <c:forEach items="${reserveList}" var="reserve">
 	<div
 		class="job-box d-md-flex align-items-center justify-content-between mb-30">

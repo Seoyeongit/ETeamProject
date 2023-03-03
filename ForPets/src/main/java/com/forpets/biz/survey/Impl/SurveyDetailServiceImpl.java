@@ -88,14 +88,20 @@ public class SurveyDetailServiceImpl implements SurveyDetailService {
 	
 	// 설문지 답변 리스트 불러오기
 	@Override
-	public List<SurveyAnswerVO> getAnswerList() throws Exception {
-		return surdDAO.getAnswerList();
+	public List<SurveyAnswerVO> getAnswerList(String sa_svcode) throws Exception {
+		return surdDAO.getAnswerList(sa_svcode);
 	}
 	
 	// 설문지 답변 불러오기
 	@Override
 	public List<SurveyDetailVO> getAnswerBoard(String sd_svcode) {
 		return surdDAO.getAnswerBoard(sd_svcode);
+	}
+	
+	// 설문지 답변 이름 불러오기
+	@Override
+	public List<String> getAnswerName(String sa_svcode) {
+		return surdDAO.getAnswerName(sa_svcode);
 	}
 	
 	@Override

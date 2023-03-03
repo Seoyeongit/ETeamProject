@@ -124,7 +124,7 @@ $(document).ready(function(){
 							<div class="card mb-3 col-6" id="set_pet">
 								<div class="row g-0">
 									<div class="col-md-4">
-										<img width="100%" id="pet_img" name="pet_img">
+										<img style="width:100%; height:200px;" id="pet_img" name="pet_img">
 									</div>
 									<div class="col-8 row">
 										<div class="card-body align-self-center">
@@ -215,7 +215,7 @@ $(document).ready(function(){
 							<div class="card mb-3 col-6" id="set_partner">
 								<div class="row g-0">
 									<div class="col-md-4">
-										<img width="100%" id="part_img" name="part_img">
+										<img style="width:100%; height:200px;" id="part_img" name="part_img">
 									</div>
 									<div class="col-8 row">
 										<div class="card-body align-self-center">

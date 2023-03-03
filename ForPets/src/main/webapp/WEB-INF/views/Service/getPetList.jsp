@@ -35,7 +35,7 @@ function sendPet(pet_id, pet_img) {
 			<div class="card mb-3">
 				<div class="row g-0">
 					<div class="col-4">
-						<img width="100%" src="./myInfo/display?fileName=${pet.img }" id="${pet.id }_img">
+						<img style="width:100%; height:200px;" src="./myInfo/display?fileName=${pet.img }" id="${pet.id }_img">
 					</div>
 					<div class="col-8 row">
 						<div class="card-body align-self-center">

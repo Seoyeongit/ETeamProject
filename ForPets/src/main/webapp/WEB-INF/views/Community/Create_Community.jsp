@@ -181,11 +181,12 @@
 	    border: 1px solid #C4C4C4;
 	    box-sizing: border-box;
 	    border-radius: 10px;
-		height: 30px;
+		  height: 30px;
 	    font-family: 'Roboto';
 	    font-style: normal;
 	    font-weight: 400;
 	    font-size: 12px;
+
 	    line-height: 16px;
 	}
 	
@@ -285,7 +286,9 @@
 			<!-- 	<input type="hidden" name="sd_order"> -->
 				<input class="svinput" type="text" placeholder = "질문 내용을 입력해 주세요." size=60 name="sd_title1"></td>
 			<td><select id="surOpt" name="sd_type1" class="pl">
+
 					<option value="">-- 설문지 유형을 선택해 주세요 --</option>
+
 					<option value="gaek">객관식</option>
 					<option value="ju">주관식</option>
 					<option value="check">체크박스</option>

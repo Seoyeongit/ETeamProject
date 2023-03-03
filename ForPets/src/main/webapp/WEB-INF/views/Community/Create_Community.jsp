@@ -6,9 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<jsp:include page="/WEB-INF/views/nav.jsp"/>
 <jsp:include page="../favicon.jsp"/>
+<meta charset="UTF-8">
+<title>make community</title>
+<jsp:include page="/WEB-INF/views/nav.jsp"/>
  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -118,7 +119,6 @@
 	    margin: auto;
 	    background-color: #fff;
 	    border: solid #e8e8e8;
-	    /* border-width: 0 1px; */
 	    -webkit-box-sizing: content-box;
 	    box-sizing: content-box;
 	    margin-bottom: 40px;
@@ -181,7 +181,7 @@
 	    border: 1px solid #C4C4C4;
 	    box-sizing: border-box;
 	    border-radius: 10px;
-		  height: 30px;
+		height: 30px;
 	    font-family: 'Roboto';
 	    font-style: normal;
 	    font-weight: 400;
@@ -204,7 +204,6 @@
 	}
 
 </style>
-<title>make community</title>
 </head>
 <body>
 

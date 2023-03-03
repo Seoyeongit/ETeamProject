@@ -19,8 +19,6 @@ public class CommunityServiceImpl implements CommunityService {
 
 	@Override
 	public List<CommunityVO> getCommunityList() throws Exception {
-		// System.out.println("연결?");
-//		return null;
 		return communityDAO.getCommunityList();
 	}
 	

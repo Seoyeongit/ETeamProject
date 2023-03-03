@@ -1,6 +1,5 @@
 package com.forpets.view.PartnerReview;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.forpets.biz.partnerReview.PartnerReviewService;
 import com.forpets.biz.partnerReview.PartnerReviewVO;
 import com.forpets.biz.user.UserVO;
@@ -78,12 +76,6 @@ public class PartnerReviewController {
 			 return mav;
 		 }
 		 
-//		  @RequestMapping("/deletepartreview/{pr_num}")
-//		  public String deletePR(@PathVariable int pr_num) throws Exception {
-//			  prservice.deletePR(pr_num);
-//			  return "redirect:/partnerlist";
-//		  }
-		  
 		  @RequestMapping("/deletepartreview/{pr_num}&{part_id}")
 		  public String deletePR(@PathVariable int pr_num, @PathVariable String part_id) throws Exception {
 			  prservice.deletePR(pr_num);

@@ -54,7 +54,7 @@ public class PartnerReviewDAO {
 		vo.setPart_no(resultSet.getInt("PART_NO"));
 		vo.setData_create(resultSet.getDate("DATA_CREATE"));
 		vo.setSelf_infor(resultSet.getString("SELF_INFOR"));
-//		vo.setImg(resultSet.getString("IMG"));
+		vo.setImg(resultSet.getString("PART_IMG"));
 		
 		return vo;
 	};

@@ -8,6 +8,12 @@
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 <jsp:include page="/WEB-INF/views/nav.jsp"/>
+<jsp:include page="../favicon.jsp"></jsp:include>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" 
+	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
 <style>
   	body{
 	    background: #F5F5F5;
@@ -52,33 +58,19 @@
 		margin-top : 30px;
 		margin-bottom : 30px;
 	}
+		
+	.btn {
+  	background-color: #19CE60;
+  	color : white;
+ 	float: center;
+	}
+
+	.btn:hover {
+	background-color: green;
+	color : white;
+	}
+
 </style>
-<script>
-/* 		function ans(name) {
-			var data1 = $(name).data("value");
-			alert(data1);
-			
-		 	$.ajax ({
-				url: '../answerboard.do/${add}',
-				method: "GET",
-				data: { 'user_id' : data1 },
-				success: function (data) {
-					$.each(data, function (key, value) {
-						 alert(value); 
-					})
-					alert("성공햇읍니당");
-				},
-				error :  function() {
-					alert("실패오ㅛㅇ");
-				}
-			});	 
-		} 
-		*/
-		
-		
-	
-		
-</script>
 <meta charset="UTF-8">
 <title>Answer list</title>
 </head>
@@ -97,8 +89,11 @@
 				<li><a href="${pageContext.request.contextPath}/answerboard.do/${add }/${ ans}">${ ans}님의 답변입니다.</a></li>
 			</c:forEach>
 			</ul>
+			
+				<a href="../deletesurvey.do/${add }"><input type="button" class="btn btn-sm btn-block" value="설문지 삭제"></a>
 		</div>
 		</div>
+		
 	
 	
 	<div class="review_guide col-8">
@@ -154,7 +149,7 @@
 	
 	</form>
 
-
+	
 		
 	</div>
 	</div>

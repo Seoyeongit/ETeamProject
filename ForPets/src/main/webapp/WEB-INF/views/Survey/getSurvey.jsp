@@ -6,8 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="../favicon.jsp"></jsp:include>
+<meta charset="UTF-8">
+<title>설문지 상세보기</title>
 <jsp:include page="/WEB-INF/views/nav.jsp"/>
-<jsp:include page="/WEB-INF/views/favicon.jsp" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" 
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" 
@@ -48,6 +50,18 @@
 		margin-bottom: 100px;
 	}
 	
+	.info {
+	    text-align: left;
+	    font-size: 14px;
+	    line-height: 30px;
+	    padding-right: 50px;
+    	padding-left: 50px;
+    	background-color: #F5F5F5;
+    	border-radius: 15px;
+    	padding: 15px;
+    	margin-bottom: 30px;
+	}
+	
 	.btn {
   	background-color: #19CE60;
   	color : white;
@@ -59,12 +73,17 @@
 	color : white;
 	}
 	
-
+	.svinput {
+		border-left-width:0;
+		border-right-width:0;
+		border-top-width:0;
+		border-bottom-width:0.5px;
+		font-size : 15px;
+		width:780px;
+	}
 
 	
 </style>
-<meta charset="UTF-8">
-<title>설문지 상세보기</title>
 </head>
 <body>
 	
@@ -75,7 +94,14 @@
 	<form action="../insertanswer.do" method="post">
 	<input type="hidden" name="sd_svcode" value="${surveyboard3.s_svcode }">
 
+		<hr class="hr1"><br>
 		
+		<div class="info">
+		<a> * 설문지는 모든 문항에 대답 해 주셔야 합니다.</a><br>
+		<a> * 설문지는 수정이 되지 않으니 신중하게 작성해주시고, 삭제 후 재 작성은 가능합니다.</a><br>
+		<a> * 의도적인 욕설, 비방 내용 작성 시 처벌을 받을 수 있습니다.</a>
+		
+		</div>
 		<c:forEach items="${surveyboard }" var="sur" >
 
 				<h5><b>Q. ${sur.sd_title }</b></h5>
@@ -88,7 +114,7 @@
 					<c:when test="${sur.sd_type eq 'ju' }">
 						
 								 <input type="hidden" name="${sur2.sc_order }" value="${sur2.sc_ascode }">
-								 <input type="text" name="${sur2.sc_ascode }" style="border-under: solid 1px black">
+								 <input class="svinput" type="text" name="${sur2.sc_ascode }" placeholder="답변을 입력해 주세요.">
 					
 					</c:when>
 						
@@ -119,7 +145,7 @@
 		</c:forEach>
 		
 	
-	<input type="submit" class="btn btn-lg btn-block" value="제출하기">
+	<input type="submit" class="btn btn-sm btn-block" value="제출하기">
 	</form>
 	</div>
 	</div>

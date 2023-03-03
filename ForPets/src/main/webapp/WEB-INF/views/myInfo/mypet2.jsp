@@ -44,8 +44,7 @@
 	<h3>나의반려동물등록하기</h3>
 	<hr>
 	<div>케어서비스를 이용하려면 반려동물을 등록해 주세요</div>
-	<form action="../myInfo/my-petReg" method="POST" entype="multipart/form-data">
-
+	
 		<br> <br>
 
 		<div>
@@ -74,15 +73,13 @@
 		
 		<input type="hidden" name="user_id" id="user_id" value="${member.user_id}">
 		<input type="submit" value="제출하기">
-	</form>
 
 
 	<script type="text/javascript">
-		$('form').submit(function(){
+	$('input[type=submit]').on('click',function(){
 			
 			$.ajax({
 				url:"../myInfo/my-petReg",
-				dataType:text,
 				type:'POST',
 				data : {
 					img : $('#imgSrc').val(),
@@ -90,15 +87,20 @@
 					age : $('#pet_age').val(),
 					type : $('#pet_type').val(),
 					gender : $('#pet_gender').val(),
-					user_id : $('#user_id').val()
+					user_id : $('#user_id').val(),
 				},
-				success : function(){
-					alert("등록되었습니다.")
-					opener.parent.location.reload();
-					window.close();
+				success :function(result){
+					if(result === 'success'){
+						alert("등록되었습니다.")
+						opener.parent.location.reload();
+						window.close();
+					}else{
+						alert("등록에 실패했습니다.");
+						location.reload();
+					}
 				},
-				error : function(){
-					alert("등록에 실패했습니다.")
+				error : function(result){
+					alert(result)
 					location.reload();
 				}
 			});
@@ -137,7 +139,7 @@
 					showUploadImage(result);
 				},
 				error : function(result) {
-					alert("이미지 파일이 아닙니다.");
+					alert(result);
 				}
 			});
 		});
@@ -151,8 +153,8 @@
 			//이미지소스를 가져옵니다.
 			let imgSrc = result.img;
 			
-			let resultSrc = imgSrc.replace(/^[A-Z]:.*\\upload/,'');
-
+			let resultSrc = imgSrc.replace(/^.*[\\\/]upload/, "");
+			
 			let uploadResult = $("#uploadResult");
 			let str = "";
 

@@ -17,4 +17,7 @@ public interface ReviewService {
 	
 	//특정회원의 리뷰리스트를 불러옵니다.
 	public List<ReviewVO> getReviewList(ReviewVO vo, String user_id);
+	
+	//리뷰전체를 가지고 옵니다.
+	public List<ReviewVO> getReviewListAll();
 }

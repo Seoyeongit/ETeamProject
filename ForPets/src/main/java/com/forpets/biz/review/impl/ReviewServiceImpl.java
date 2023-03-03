@@ -28,5 +28,10 @@ public class ReviewServiceImpl implements ReviewService{
 	public List<ReviewVO> getReviewList(ReviewVO vo,String user_id) {
 		return reviewDAO.getReviewList(vo,user_id);
 	}
+	
+	@Override
+	public List<ReviewVO> getReviewListAll() {
+		return reviewDAO.getReviewListAll();
+	}
 
 }

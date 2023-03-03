@@ -44,7 +44,8 @@
 	<h3>나의반려동물등록하기</h3>
 	<hr>
 	<div>케어서비스를 이용하려면 반려동물을 등록해 주세요</div>
-	<form action="../myInfo/my-petUpd" method="POST" entype="multipart/form-data">
+	<form action="../myInfo/my-petReg" method="POST" entype="multipart/form-data">
+
 		<br> <br>
 
 		<div>
@@ -54,10 +55,10 @@
 		</div>
 
 		<br> <br> <label for="pet_name">이름</label> <input
-			type="text" name="name" id="pet_name" value="${userPet.name}"><br>
+			type="text" name="name" id="pet_name"><br>
 
 		<label for="pet_age">나이</label> 
-		<input type="text" name="age" id="pet_age" value="${userPet.age}"><br> 
+		<input type="text" name="age" id="pet_age"><br> 
 		
 		<label for="pet_type">종류</label> 
 		<select name="type" id="pet_type">
@@ -68,11 +69,10 @@
 		</select><br> 
 		
 		<label for="pet_gender">성별</label> 
-		<input type="radio" name="gender" value="f" id="pet_gender" <c:if test ="${userPet.gender == 'f'.charAt(0)}">checked="checked"</c:if> />여자 
-		<input type="radio" name="gender" value="m" id="pet_gender" <c:if test ="${userPet.gender == 'm'.charAt(0)}">checked="checked"</c:if> />남자<br>
+		<input type="radio" name="gender" value="f" id="pet_gender"/>여자
+		<input type="radio" name="gender" value="m" id="pet_gender"/>남자<br>
 		
-		<input type="hidden" name="user_id" value="${member.user_id}" id="user_id">
-		<input type="hidden" name="id" value="${userPet.id}" id="pet_id">
+		<input type="hidden" name="user_id" id="user_id" value="${member.user_id}">
 		<input type="submit" value="제출하기">
 	</form>
 
@@ -81,7 +81,7 @@
 		$('form').submit(function(){
 			
 			$.ajax({
-				url:"../myInfo/my-petUpd",
+				url:"../myInfo/my-petReg",
 				dataType:text,
 				type:'POST',
 				data : {

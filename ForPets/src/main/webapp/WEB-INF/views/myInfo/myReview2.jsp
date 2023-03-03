@@ -8,8 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:if test="${empty myReview || myReview eq ''}">
+	<jsp:include page="./noData/no_Reivew.jsp"></jsp:include>
+</c:if>
 <c:forEach items="${myReview}" var="myR">
-	
 	<div class="d-flex flex-column mb-5 ">
 		<div class="m-0">
 			<h5>${myR.r_title }</h5>
@@ -34,8 +36,6 @@
 			</div>
 		</div>
 	</div>
-
-
 </c:forEach>
 </body>
 </html>

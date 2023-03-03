@@ -250,16 +250,12 @@
         
         <!-- review-->
 	 <section class="page-section" id="review">
-            <div class="">
-        
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase mb-4 ">실시간 포펫츠 후기</h2>
+            <div class="main-live-revi">
+        		<div class="text-center">
+                    <h2 class="section-heading text-uppercase mb-4 " style="color:white;">실시간 포펫츠 후기</h2>
                 </div>
-        
-                <div class="card-wrap">
-                
-                
-                <c:forEach items="${reviewList}" var="review">
+        		<div class="card-wrap">
+				 <c:forEach items="${reviewList}" var="review">
                     <div class="card">
                         <div class="review-content">
                             <div class="reviewer-wrap">

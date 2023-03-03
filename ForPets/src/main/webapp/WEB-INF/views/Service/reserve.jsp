@@ -71,7 +71,7 @@
 									<div class="card mb-3">
 										<div class="row g-0">
 											<div class="col-md-4">
-												<img width="100%" src="../myInfo/display?fileName=${pet_info.img }" id="pet_img" name="pet_img">
+												<img style="width:100%; height:200px;" src="../myInfo/display?fileName=${pet_info.img }" id="pet_img" name="pet_img">
 											</div>
 											<div class="col-8 row">
 												<div class="card-body align-self-center">
@@ -90,7 +90,7 @@
 									<div class="card mb-3">
 										<div class="row g-0">
 											<div class="col-md-4">
-												<img width="100%" id="part_img" name="part_img">
+												<img style="width:100%; height:200px;" src="../partner/display?fileName=${part_info.img }" id="part_img" name="part_img">
 											</div>
 											<div class="col-8 row">
 												<div class="card-body align-self-center">

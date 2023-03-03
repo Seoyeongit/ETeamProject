@@ -21,6 +21,12 @@ public class ReviewDAO {
 										"FROM REVIEW " + 
 										"JOIN RESERVE ON REViEW.RESERVE_NUM = reserve.RESERVE_NUM " + 
 										"WHERE RESERVE.USER_ID = ?";
+	private final String GET_REVIEWlIST_ALL = "SELECT * FROM REVIEW where star_rating in (4,5) and r_content is not null ORDER BY R_DATE DESC";
+	
+	
+	public List<ReviewVO> getReviewListAll() {
+		return jdbcTemplate.query(GET_REVIEWlIST_ALL, new ReviewRowMapper());
+	}
 	
 	public void insertReview(ReviewVO vo) {
 		Object[] obj = {vo.getStar_rating(),vo.getR_content(),vo.getR_title(),vo.getReserve_num()};

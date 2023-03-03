@@ -35,7 +35,7 @@ public class ReserveRowMapper implements RowMapper<ReServeVO> {
 			
 			voU.setUser_name(rs.getString("USER_NAME"));
 			voU.setUser_add(rs.getString("USER_ADD"));
-			voU.setPhnumber(Integer.parseInt(rs.getString("PHNUMBER")));
+			voU.setPhnumber(rs.getString("PHNUMBER"));
 			vo.setVoU(voU);
 			
 

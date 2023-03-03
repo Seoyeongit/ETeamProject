@@ -1,3 +1,6 @@
 @charset "UTF-8";
 
-
+.card {
+	background-color: #fff;
+	border: none;
+}

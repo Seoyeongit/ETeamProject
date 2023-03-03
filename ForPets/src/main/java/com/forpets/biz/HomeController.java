@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.forpets.biz.reserve.ReserveService;
+import com.forpets.biz.review.ReviewService;
 
 /**
  * Handles requests for the application home page.
@@ -22,18 +23,16 @@ import com.forpets.biz.reserve.ReserveService;
 @Controller
 public class HomeController {
 	@Autowired
-	private ReserveService reserveService;
+	private ReviewService reviewService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 
 	@RequestMapping(value = "/")
-	public String home(HttpServletRequest request) {
+	public String home(HttpServletRequest request, Model model) {
 		request.getSession(false);
-		
-		
-		
-		
+
+		model.addAttribute("reviewList", reviewService.getReviewListAll());
 		return "home";
 	}
 	

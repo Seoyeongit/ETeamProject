@@ -68,6 +68,12 @@
 			z-index : 100;
 		}
 		
+		.last-item-box{
+			text-align: center;
+		    padding-top: 70px;
+		    background-color: hsl(210,8%,90%);
+		}
+		
 	</style>
 </head>
 
@@ -116,7 +122,7 @@
 											<a
 												href="${pageContext.request.contextPath}/myInfo/my-petView?id=${userPet.id}"
 												onclick="window.open(this.href, '_blank', 'width=500, height=800'); return false;">
-												<input type="button" id="register_pet" value="정보수정하기">
+												<input type="button" id="update_pet" value="정보수정하기">
 											</a>
 									</div>
 								</div>
@@ -124,7 +130,8 @@
 						</c:forEach>
 
 						<div class="carousel-item">
-							<div>
+							<div class="last-item-box">
+								<p>다른 반려동물을 등록하시겠습니까?</p>
 								<a href="${pageContext.request.contextPath}/myInfo/my-petView"
 									onclick="window.open(this.href, '_blank', 'width=500, height=800'); return false;">
 									<input type="button" id="register_pet" value="펫등록하기">
@@ -222,7 +229,7 @@
 		)
 	
 	    item.onmousedown = function (event) {
-	        $('.hover-div-bk,#register_wark').css("display", "none");
+	        $('.hover-div-bk,#register_wark').hide(2000);
 	        function onMouseMove(event) {
 	            $('.hover-div-bk,#register_wark').css("display", "none");
 	        }

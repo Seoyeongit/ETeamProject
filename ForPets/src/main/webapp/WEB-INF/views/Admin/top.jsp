@@ -9,10 +9,11 @@
 <title>Side bar</title>
 <!-- Core theme CSS (includes Bootstrap)-->
 <link
-	href="${pageContext.request.contextPath}/resources/css/admin/sideBar.css"
+	href="${pageContext.request.contextPath}/resources/css/admin/sideBar.css?ver=1"
 	rel="stylesheet" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link
 	href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200;400;500;600;700&display=swap"
 	rel="stylesheet">
@@ -52,17 +53,45 @@
 								href="${pageContext.request.contextPath}/Admin/adminInfo/${admin.adm_id}">관리자
 								정보</a>
 							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#myLogoutModal" data-toggle="modal">로그아웃</a>
+							<!--  
 							<a class="dropdown-item"
-								href="${pageContext.request.contextPath}/Admin/logout">로그아웃</a>
+								href="${pageContext.request.contextPath}/Admin/logout">로그아웃</a> -->
 						</div></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 </div>
+
+<!-- Modal HTML -->
+<div id="myLogoutModal" class="modal fade">
+	<div class="modal-dialog modal-confirm modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header flex-column">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title w-100">로그아웃 하시겠습니까?</h4>
+
+			</div>
+			<div class="modal-body"></div>
+			<div class="modal-footer justify-content-center">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+				<button type="button" class="btn btn-danger"
+					onclick="location.href='${pageContext.request.contextPath}/Admin/logout'">로그아웃</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <!-- Bootstrap core JS-->
 <script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <!-- Core theme JS-->
 <script
 	src="${pageContext.request.contextPath}/resources/js/admin/sideBar.js"></script>

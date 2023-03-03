@@ -88,6 +88,7 @@ public class PartnerController {
 			vo.setPart_add(request.getParameter("part_add"));
 			vo.setPart_phnumber(request.getParameter("part_phnumber"));
 			vo.setSelf_infor(request.getParameter("self_infor"));
+			vo.setImg(request.getParameter("img"));
 			partnerService.updatePartner(vo);
 			
 			HttpSession session = request.getSession(false);
@@ -144,7 +145,7 @@ public class PartnerController {
 
 	
 	@RequestMapping(value = "/partner/my-partnerImgUpload", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<PartnerVO> uploadPetImageActionPOST(MultipartFile uploadFile) throws IllegalStateException, IOException {
+	public ResponseEntity<PartnerVO> uploadPetImageActionPOST(MultipartFile uploadFile, HttpServletRequest request) throws IllegalStateException, IOException {
 		System.out.println("uploadAjaxActionPOST..........");
 		
 		File checkfile = new File(uploadFile.getOriginalFilename());
@@ -158,10 +159,10 @@ public class PartnerController {
 			return new ResponseEntity<PartnerVO>(check, HttpStatus.BAD_REQUEST);
 		}
 		
-		String resourcePath = servletContext.getRealPath("/resource");
-		String path = resourcePath + "/assts/upload";
+		String applicationPath = request.getServletContext().getRealPath("/");
+		String[] personalPath = applicationPath.split("\\.metadata");
+		String part_img_path = personalPath[0] + "ForPets\\src\\main\\webapp\\resources\\assets\\upload";
 		
-		String uploadFolder = path;
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
@@ -170,7 +171,7 @@ public class PartnerController {
 		
 		String datePath = str.replace("-", File.separator);
 		/* 폴더 생성 */
-		File uploadPath = new File(uploadFolder, datePath);
+		File uploadPath = new File(part_img_path, datePath);
 		
 		if(uploadPath.exists() == false) {
 			uploadPath.mkdirs();

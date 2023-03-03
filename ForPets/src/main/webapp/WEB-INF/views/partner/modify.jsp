@@ -53,7 +53,7 @@
 		<div>
 			<div id="uploadResult"></div>
 			<label class="input-file-button" for="part_img">이미지업로드</label> 
-			<input type="file" id="part_img"><br>
+			<input type="file" id="part_img" name="part_img"><br>
 		</div>
 		
 		
@@ -193,7 +193,9 @@ var addr = ''; // 주소 변수
     			self_infor:$("#self_infor").val(),
     			part_nick:$("#part_nick").val(),
     			part_phnumber:$("#part_phnumber").val(),
-    			part_add:$("#result_partAdd").val()
+    			part_add:$("#result_partAdd").val(),
+    			img:$("#imgSrc").val()
+    			
     		},
     		dataType : "text",
     		type : "POST",
@@ -285,11 +287,18 @@ var addr = ''; // 주소 변수
 		}
 
 		let uploadResult = $("#uploadResult");
-
+		
 		let str = "";
-
-		let fileCallPath = encodeURIComponent(result.img
-				.replace(/\\/g, '/').replace("C:/DevSpace/springSpace/ETeamProject/ForPets/src/main/webapp/resources/assets/upload", ''));
+		
+		//이미지 경로
+		let imgSrc = result.img;
+		//'upload'부터 문자열 끝까지 일치하는 정규식 패턴
+		let regex =/^[A-Z]:.*\\upload/;
+		let str1 = imgSrc.replace(regex,'');
+		console.log(str1);
+		
+		
+		let fileCallPath = encodeURIComponent(str1);
 
 		console.log(fileCallPath);
 

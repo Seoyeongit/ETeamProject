@@ -44,14 +44,7 @@
 	<h3>나의반려동물등록하기</h3>
 	<hr>
 	<div>케어서비스를 이용하려면 반려동물을 등록해 주세요</div>
-	<c:choose>
-		<c:when test="${empty userPet }">
-	<form action="../myInfo/my-petReg" method="POST" entype="multipart/form-data">
-		</c:when>
-		<c:otherwise>
-	<form action="../myInfo/my-petUpd" method="POST" entype="multipart/form-data">	
-		</c:otherwise>
-	</c:choose>
+	<form action="../myInfo/my-petUpd" method="POST" entype="multipart/form-data">
 		<br> <br>
 
 		<div>
@@ -79,11 +72,7 @@
 		<input type="radio" name="gender" value="m" id="pet_gender" <c:if test ="${userPet.gender == 'm'.charAt(0)}">checked="checked"</c:if> />남자<br>
 		
 		<input type="hidden" name="user_id" value="${member.user_id}" id="user_id">
-		<c:choose>
-		<c:when test="${not empty userPet }">
 		<input type="hidden" name="id" value="${userPet.id}" id="pet_id">
-		</c:when>
-		</c:choose>
 		<input type="submit" value="제출하기">
 	</form>
 
@@ -92,7 +81,7 @@
 		$('form').submit(function(){
 			
 			$.ajax({
-				url:"../myInfo/my-petReg",
+				url:"../myInfo/my-petUpd",
 				dataType:text,
 				type:'POST',
 				data : {
@@ -158,15 +147,18 @@
 			if (!result || result.length == 0) {
 				return
 			}
+			
+			//이미지소스를 가져옵니다.
+			let imgSrc = result.img;
+			
+			let resultSrc = imgSrc.replace(/^[A-Z]:.*\\upload/,'');
 
 			let uploadResult = $("#uploadResult");
-
 			let str = "";
 
-			let fileCallPath = encodeURIComponent(result.img
-					.replace(/\\/g, '/').replace("C:/DevSpace/springSpace/ETeamProject/ForPets/src/main/webapp/resources/assets/upload", ''));
+			let fileCallPath = encodeURIComponent(resultSrc.replace(/\\/g, '/'));
 
-			console.log(fileCallPath);
+			console.log("===>"+fileCallPath);
 
 			str += "<div id='result_card'>";
 			str += "<img src=../myInfo/display?fileName=" + fileCallPath + ">";

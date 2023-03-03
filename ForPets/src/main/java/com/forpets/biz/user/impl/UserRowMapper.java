@@ -18,7 +18,7 @@ public class UserRowMapper implements RowMapper<UserVO> {
 		vo.setUser_name(rs.getString("USER_NAME"));
 		vo.setUser_nick(rs.getString("USER_NICK"));
 		vo.setUser_add(rs.getString("USER_ADD"));
-		vo.setPhnumber(Integer.parseInt(rs.getString("PHNUMBER").replace("-","")));
+		vo.setPhnumber(rs.getString("PHNUMBER"));
 		vo.setData_create(rs.getDate("DATA_CREATE"));
 		return vo;
 	}

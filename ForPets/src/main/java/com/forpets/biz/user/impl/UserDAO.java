@@ -18,7 +18,6 @@ public class UserDAO {
 	public UserVO getUser(UserVO vo) {
 		Object[] obj = {vo.getUser_id(),vo.getUser_pw()};
 		return jdbcTemplate.queryForObject(GET_USER,obj, new UserRowMapper());
-		
 	}
 	
 	public void updateUser(UserVO vo) {
@@ -27,7 +26,7 @@ public class UserDAO {
 	}
 	
 	public void saveUser(UserVO vo) {
-		Object[] obj = {vo.getUser_id(),vo.getUser_pw(),vo.getUser_name(),vo.getUser_nick(),vo.getUser_add(),vo.getGender(),vo.getPhnumber(),vo.getBirth()};
+		Object[] obj = {vo.getUser_id(),vo.getUser_pw(),vo.getUser_name(),vo.getUser_nick(),vo.getPhnumber()};
 		jdbcTemplate.update(INSERT_USER,obj);
 	}
 	

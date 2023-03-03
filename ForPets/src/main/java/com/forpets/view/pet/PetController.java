@@ -40,8 +40,6 @@ import com.forpets.biz.user.UserVO;
 public class PetController{
 	@Autowired
 	private PetService petService;
-	@Autowired
-	private ServletContext servletContext;
 	
 	//pet정보를 수정한다.
 	@RequestMapping(value = "/myInfo/my-petUpd", method = RequestMethod.POST)
@@ -49,6 +47,9 @@ public class PetController{
 		System.out.println("==>pet udpate start");
 		
 		petService.updatePet(vo);
+		
+		System.out.println(vo.toString());
+		
 		return "myInfo/main";
 	}
 
@@ -64,13 +65,19 @@ public class PetController{
 	
 	//pet등록jsp를 View.
 	@RequestMapping(value="/myInfo/my-petView")
-	public String myPetView(@RequestParam(value="id", required=false)int pet_id, Model model, PetVO pvo) {
+	public String myPetView(@RequestParam(value="id", required=false)Integer pet_id, Model model, PetVO pvo) {
+		
+		
+		if(pet_id != null) {
+		System.out.println("id : " + pet_id);
+		
 		if(pet_id > 0) {
 			String id_str = Integer.toString(pet_id);
 			model.addAttribute("userPet", petService.getPet(pvo, id_str));
 		}
-
 		return "myInfo/mypet";
+		}
+		return "myInfo/mypet2";
 	}
 	
 	
@@ -106,7 +113,7 @@ public class PetController{
 	
 
 	@RequestMapping(value = "/myInfo/my-petImgUpload", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<PetVO> uploadPetImageActionPOST(MultipartFile uploadFile) throws IllegalStateException, IOException {
+	public ResponseEntity<PetVO> uploadPetImageActionPOST(MultipartFile uploadFile, HttpServletRequest request) throws IllegalStateException, IOException {
 		System.out.println("uploadAjaxActionPOST..........");
 		
 		File checkfile = new File(uploadFile.getOriginalFilename());
@@ -120,10 +127,11 @@ public class PetController{
 			return new ResponseEntity<PetVO>(check, HttpStatus.BAD_REQUEST);
 		}
 		
-		String resourcePath = servletContext.getRealPath("/resource");
-		String path = resourcePath + "/assts/upload";
+		String applicationPath = request.getServletContext().getRealPath("/");
+		String[] personalPath = applicationPath.split("\\.metadata");
+		String pet_img_path = personalPath[0] + "ForPets\\src\\main\\webapp\\resources\\assets\\upload";
 		
-		String uploadFolder = path;
+		String uploadFolder = pet_img_path;
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
@@ -184,13 +192,17 @@ public class PetController{
 	}
 	
 	@RequestMapping(value = "/myInfo/delete", method = RequestMethod.POST)
-	public ResponseEntity<String> DeleteImage(String fileName) {
+	public ResponseEntity<String> DeleteImage(String fileName,  HttpServletRequest request) {
 		System.out.println("deleteImage()...."+fileName);
-		String resourcePath = servletContext.getRealPath("/resource");
-		String path = resourcePath + "/assts/upload";
+		
+		String applicationPath = request.getServletContext().getRealPath("/");
+		String[] personalPath = applicationPath.split("\\.metadata");
+		String pet_img_path = personalPath[0] + "ForPets\\src\\main\\webapp\\resources\\assets\\upload";
+		
+		
 		File file = null;
 		try {
-			file = new File(path + URLDecoder.decode(fileName, "UTF-8"));
+			file = new File(pet_img_path + URLDecoder.decode(fileName, "UTF-8"));
 			file.delete();
 		}catch (Exception e) {
 			e.printStackTrace();

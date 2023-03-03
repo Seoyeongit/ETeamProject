@@ -99,14 +99,14 @@
 									<c:otherwise>
 										<!-- 회원 및 비회원의 경우 -->
 										<div class="col-sm-12">
-											<h5><b><span id="tip_title">${ tip.tip_title }</span></b></h5>
-											<span class="align-top" style="font-size:15px;">조회수 : ${ tip.tip_hit +1 }회</span>
+											<h5><b><span id="tip_title" style="font-size:1.5rem;">${ tip.tip_title }</span></b></h5>
+											<span class="align-top" style="font-size:0.7rem;">조회수 : ${ tip.tip_hit +1 }회</span>
 											<c:choose>
 						                        <c:when test="${tip.tip_create_date eq tip.tip_update_date || tip.tip_update_date eq null}">
-														<span class="align-top" style="font-size:15px;">등록일 : ${ tip.tip_create_date }</span><br>
+														<span class="align-top" style="font-size:0.7rem;">등록일 : ${ tip.tip_create_date }</span><br>
 						                        </c:when>
 						                        <c:otherwise>
-														<span class="align-top" style="font-size:15px;">수정일 : ${ tip.tip_update_date }</span><br>
+														<span class="align-top" style="font-size:0.7rem;">수정일 : ${ tip.tip_update_date }</span><br>
 						                        </c:otherwise>
 								            </c:choose>
 											<span id="tip_content">${ tip.tip_content }</span>

@@ -85,28 +85,26 @@
         <header class="masthead">
             <div class="container d-flex">
                 <div class="masthead-subheading col-6 align-self-center">당신과 아이의 시간이<br><br> 함께 행복하기를 응원합니다.</div>
-                <div class="col-3 align-self-center forpets-slide">
-                   <div style="position:absolute;">
-                        <img src="${pageContext.request.contextPath}/resources/assets/img/mainback.png" style="width:700px; z-index:5;">
-                     </div>
-                     <div style="position:absolute;">
-                        <div id="carouselExampleSlidesOnly" class="carousel slide" data-interval="1000" data-ride="carousel" style="position:absolute;;">
-                     <div class="carousel-inner">
-                      <div class="carousel-item">
-                         <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/assets/dog-normal.jpg" alt="First slide">
-                      </div>
-                      <div class="carousel-item">
-                         <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/assets/dog-walking.jpg" alt="Second slide">
-                      </div>
-                      <div class="carousel-item">
-                         <img class="d-block w-100" src="${pageContext.request.contextPath}/resources/assets/dog-pickup.png" alt="Third slide">
-                      </div>
+                <div class="col-6 align-self-center forpets-slide">
+                	<div style="position:absolute;">
+                    	<img src="${pageContext.request.contextPath}/resources/assets/img/mainback.png" style="width:700px; height:500px; z-index:5;">
                     </div>
-                  </div>
-                     </div>
-                     <div style="position:relative;">
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" style="position:absolute; padding-top:137px; padding-left:128px;">
+		              	<div class="carousel-inner">
+		                  	<div class="carousel-item active" data-bs-interval="2000">
+		                      	<img class="d-block" style="width:550px; height:283px;" src="${pageContext.request.contextPath}/resources/assets/dog-normal.jpg" alt="First slide">
+		                  	</div>
+		                    <div class="carousel-item" data-bs-interval="2000">
+		                      	<img class="d-block" style="width:550px; height:283px;" src="${pageContext.request.contextPath}/resources/assets/dog-walking.jpg" alt="Second slide">
+		                    </div>
+		                    <div class="carousel-item" data-bs-interval="2000">
+		                       	<img class="d-block" style="width:550px; height:283px;" src="${pageContext.request.contextPath}/resources/assets/dog-pickup.png" alt="Third slide">
+		                    </div>
+		                 </div>
+              		</div>
+                    <div style="position:relative;">
                         <img src="${pageContext.request.contextPath}/resources/assets/img/mainimg2.png" style="width:700px; z-index:10;">
-                     </div>
+                    </div>
                      
                 </div>
             </div> 

@@ -35,6 +35,12 @@
 	.footer {
 		text-align : center; !important;
 	}
+	.forpets-service-reserve{
+		color : #8bda8b;
+		font-size : 2rem;
+		padding-top : 10px;
+		padding-bottom : 30px;
+	}
 </style>
 
 <script>
@@ -97,6 +103,11 @@ function showPetWorkPopUp() {
 			<section class="section">
 				<div class="row align-items-top">
 					<div class="col-lg-10">
+						<div class="col-lg-12">
+							<div class="col-lg-3 forpets-service-reserve">
+								<span><b>산책</b></span>
+							</div>
+						</div>
 						<form action="getService" method="post">
 							<input type="hidden" value="${member.user_id }" name="user_id">
 							<input type="hidden" id="pet_id" name="pet_id">

@@ -11301,7 +11301,7 @@ p {
 }
 
 .page-section {
-  padding: 6rem 0;
+  margin-bottom: -113px;
 }
 .page-section h2.section-heading, .page-section .section-heading.h2 {
   font-size: 2.5rem;
@@ -11318,7 +11318,7 @@ p {
 
 @media (min-width: 768px) {
   section {
-    padding: 9rem 0;
+   	padding-top: 9rem 0;
   }
 }
 .btn-xl {
@@ -11860,4 +11860,12 @@ section#contact form#contactForm :-ms-input-placeholder {
   text-align: center;
   font-size: 0.9rem;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.main-live-revi {
+	margin-bottom:7%;
+}
+
+.page-section {
+	margin-top:13%;
 }

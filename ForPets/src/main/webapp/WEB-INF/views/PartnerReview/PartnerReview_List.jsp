@@ -18,7 +18,6 @@
 	}
 	
 	.content_guide {
-		/* position: absolute; */
 	    top: 0;
 	    right: 0;
 	    bottom: 0;
@@ -29,7 +28,6 @@
 	    margin: auto;
 	    background-color: #fff;
 	    border: solid #e8e8e8;
-	    /* border-width: 0 1px; */
 	    -webkit-box-sizing: content-box;
 	    box-sizing: content-box;
 	    margin-bottom: 100px;

@@ -112,14 +112,6 @@
  
 	}
 
-=======
- 	 background: #d3d3d3;
-	 height:1px;
-	 border: 0;
-	 padding-right: 100px; 
-	 padding-left: 100px;
-
-	}
 	
 	.title_area {
 		border:none; 

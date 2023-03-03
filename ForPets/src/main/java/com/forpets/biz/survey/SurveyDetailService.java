@@ -34,7 +34,10 @@ public interface SurveyDetailService {
 	public String count(String sd_svcode);
 	
 	// 답변 리스트 불러오기
-	public List<SurveyAnswerVO> getAnswerList() throws Exception;
+	public List<SurveyAnswerVO> getAnswerList(String sa_svcode) throws Exception;
+	
+	// 설문지 답변 이름 불러오기(AJax)
+	public List<String> getAnswerName(String sa_svcode);
 	
 	// 설문지 답변 내용 보기
 	public List<SurveyDetailVO> getAnswerBoard(String sd_svcode);

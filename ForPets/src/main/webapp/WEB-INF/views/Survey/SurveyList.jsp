@@ -30,6 +30,6 @@
 		</table>
 	</form>
 	<a href="getcommunity.do"><input type="button" value="글 작성하기"></a>
-	<a href="answerlist.do">답변한 설문 확인하러 가기</a>
+	<a href="answerlist.do/${answerList.sa_svcode }">답변한 설문 확인하러 가기</a>
 </body>
 </html>

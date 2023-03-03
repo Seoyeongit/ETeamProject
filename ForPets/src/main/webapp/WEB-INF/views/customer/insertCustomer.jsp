@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="../favicon.jsp"></jsp:include>
 <meta charset="UTF-8">
 <link href="${pageContext.request.contextPath}/resources/css/customer.css" rel="stylesheet" />
 <title>문의 글 쓰기</title>

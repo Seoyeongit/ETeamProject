@@ -47,7 +47,9 @@ public class PartnerController {
 	private ServletContext servletContext;
 	
 	@RequestMapping(value="/partner/partnerMain")
-	public String partner(PartnerVO vo, PartnerDAO dao) {
+	public String partner(PartnerVO vo, PartnerDAO dao, HttpSession session) {
+		session.getAttribute("partners");
+		System.out.println(session);
 		return "/partner/partnerMain";
 	}
 	
@@ -101,7 +103,7 @@ public class PartnerController {
 				partnerService.updatePartner(vo);
 				session.setAttribute("partners", partnerService.partnerGet(vo));
 			}
-
+			System.out.println("-->" + vo);
 		}
 	
 	

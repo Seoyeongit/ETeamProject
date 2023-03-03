@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
     <head>
+    	<jsp:include page="../favicon.jsp"></jsp:include>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -25,7 +26,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
                 <span class="d-block d-lg-none">${partners.part_name }</span>
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="..." /></span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="../partner/display?fileName=${partners.img }" alt="..." /></span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -51,7 +52,8 @@
 		<br> <br>
 
 		<div>
-			<div id="uploadResult"></div>
+			<div class="img-up" id="uploadResult"></div>
+			<img class="part-pro-img" src="../partner/display?fileName=${partners.img }"/>
 			<label class="input-file-button" for="part_img">이미지업로드</label> 
 			<input type="file" id="part_img" name="part_img"><br>
 		</div>
@@ -114,8 +116,12 @@
                 <input type="hidden" id="result_partAdd" value="${partners.part_add}" name="part_add">
             </div>
         </div>
+        <div class="mb-3 row">
+        		<div class="col-sm-4">
+        			<label for="self_infor" class="col-form-label">자기소개</label><textarea id="self_infor" cols="161.8" rows="10" class="infor-box">${partners.self_infor }</textarea></div>
+        </div>
     </div>
-    <div>
+    <div class="cal-12">
         &nbsp;&nbsp;<input type="button" value="수정하기" id="edituserInfo">
         <input type="button" value="돌아가기" id="backMainPage">
     </div>
@@ -194,6 +200,7 @@ var addr = ''; // 주소 변수
     			part_nick:$("#part_nick").val(),
     			part_phnumber:$("#part_phnumber").val(),
     			part_add:$("#result_partAdd").val(),
+    			self_infor:$("#self_infor").val(),
     			img:$("#imgSrc").val()
     			
     		},

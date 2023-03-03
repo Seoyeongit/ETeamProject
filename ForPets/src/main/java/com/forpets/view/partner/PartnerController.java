@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -101,24 +103,30 @@ public class PartnerController {
 
 		}
 	
+	
 	@RequestMapping(value="/partner/login",method = RequestMethod.GET)
 	public String loginForm() {
 		return "partner/login";
 	}
 
 	@RequestMapping(value="/partner/login", method = RequestMethod.POST)
-	public String login(PartnerVO vo,HttpServletRequest request) {
+	public @ResponseBody Object login(@RequestBody PartnerVO vo,HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		
 		System.out.println("아이디 : " + vo.getPart_id());
 		
+		try {
 		if(partnerService.partnerGet(vo) != null) {
 			session.setAttribute("role","partners" );
 			session.setAttribute("partners", partnerService.partnerGet(vo));
 			System.out.println(session.getAttribute("partners").toString());
-			return "forward://";
+			return 1;
 		}else {
-			return "/";
+			return 0;
+		}}catch(EmptyResultDataAccessException e) {
+			return 0;
+		}catch(Exception e) {
+			return 9;
 		}
 		
 	}	

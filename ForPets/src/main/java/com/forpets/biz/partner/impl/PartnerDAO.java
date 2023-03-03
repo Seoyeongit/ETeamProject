@@ -42,6 +42,7 @@ public class PartnerDAO {
 					newPartner.setPart_no(resultSet.getInt("PART_NO"));
 					newPartner.setData_create(resultSet.getDate("DATA_CREATE"));
 					newPartner.setSelf_infor(resultSet.getString("SELF_INFOR"));
+					newPartner.setImg(resultSet.getString("PART_IMG"));
 					return newPartner;
 				}
 				, part_id);

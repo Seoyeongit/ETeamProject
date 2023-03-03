@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="../favicon.jsp"></jsp:include>
 <meta charset="UTF-8">
 <link href="${pageContext.request.contextPath}/resources/css/customer.css" rel="stylesheet" />
 <script src="http://code.jquery.com/jquery-3.1.1.js"></script>

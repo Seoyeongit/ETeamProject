@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="../favicon.jsp"></jsp:include>
 <meta charset="UTF-8">
 <title>예약 일정 관리</title>
 </head>

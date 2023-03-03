@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+	<jsp:include page="../favicon.jsp"></jsp:include>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -11,9 +12,6 @@
         <style>
 		.footer {
 		text-align : center; !important;
-		}
-		.img-profile {
-			img:url("../assets/img/animal-hospital222.png");
 		}
 		</style>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
@@ -32,7 +30,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
                 <span class="d-block d-lg-none">${partners.part_name }</span>
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="../assets/img/animal-hospital222.png" style="width:300px; height:300px;" alt="..." /></span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="../partner/display?fileName=${partners.img }" style="width:300px; height:300px;" alt="..." /></span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">

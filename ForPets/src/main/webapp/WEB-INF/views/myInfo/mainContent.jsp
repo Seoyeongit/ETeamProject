@@ -54,10 +54,15 @@
 		
 		#register_wark{
 			position: absolute;
-			top:35%;
+			top:45%;
 			left:40%;
 			display:none;
 			z-index : 200;
+			background-color: #474747;
+			color : #fff;
+			border : 0;
+			border-radius: 5px;
+			padding: 8px;
 		}
 		
 		.drragle-after{
@@ -176,8 +181,27 @@
 		#part-img img{
 			width: 50px;
 			height: 50px;
-			background-color: red;
 			border-radius:50px;
+		}
+		
+		.pet_upd_btn{
+			border: 1px solid #f9a825;
+		    color: #f9a825;
+		}
+		
+		.pet_upd_btn:horver{
+			color: #f9a825;
+		}
+		
+		.pet_reg_btn{
+			background-color: #f9a825;
+			color: #fff;
+		}
+		
+		.data-value-null{
+			font-size : 30px;
+			color : #6a1b9a;	
+			font-weight: 600;
 		}
 		
 	</style>
@@ -232,7 +256,7 @@
 											<a
 												href="${pageContext.request.contextPath}/myInfo/my-petView?id=${userPet.id}"
 												onclick="window.open(this.href, '_blank', 'width=500, height=800'); return false;">
-												<input type="button" id="update_pet" value="정보수정하기">
+												<input type="button" class="btn pet_upd_btn" id="update_pet" value="정보수정하기">
 											</a>
 									</div>
 								</div>
@@ -244,7 +268,7 @@
 								<p>다른 반려동물을 등록하시겠습니까?</p>
 								<a href="${pageContext.request.contextPath}/myInfo/my-petView"
 									onclick="window.open(this.href, '_blank', 'width=500, height=800'); return false;">
-									<input type="button" id="register_pet" value="펫등록하기">
+									<input type="button" id="register_pet" class="btn pet_reg_btn" value="펫등록하기">
 								</a>
 
 							</div>
@@ -281,7 +305,7 @@
 						<c:otherwise>
 						<a href="${pageContext.request.contextPath}/myInfo/modify-roadMap"
 						onclick="window.open(this.href, '_blank', 'width=500, height=800'); return false;">
-						<input type="button" id="register_wark" value="산책로 수정하기"></a></c:otherwise>
+						<input type="button" id="register_wark"  value="산책로 수정하기"></a></c:otherwise>
 						</c:choose>
 					</div>
 					
@@ -301,11 +325,18 @@
 			</div>
 			<div class="user_statisticData-body">
 				<div class="data-part">
-					<p class="data-key" >자주신청한 펫트너</p>
+					<p class="data-key" >자주선택한 펫트너</p>
+					<c:choose>
+					<c:when test="${data.multiPartInfo.part_name ne null || not empty data.multiPartInfo.part_name }">
 					<div id="part-img">
 						<img src="../partner/display?fileName=${data.multiPartInfo.img}">
 					</div>
 					<p class="data-value">${data.multiPartInfo.part_name }펫트너님(${data.cntMultiTime})회</p>
+					</c:when>
+					<c:otherwise>
+						<p class="data-value-null">없음</p>
+					</c:otherwise>
+					</c:choose>
 				</div>
 				
 				<div class="data-cntpart">
@@ -340,9 +371,11 @@
 	            $('#register_wark').css("display", "none");
 	        }
 	    )
+	    
+	     var item = document.getElementById('map');
 	
-	    $("#map").onmousedown = function (event) {
-	        $('.hover-div-bk,#register_wark').hide(2000);
+	    item.onmousedown = function (event) {
+	        $('.hover-div-bk,#register_wark').fadeOut(1000);
 	        function onMouseMove(event) {
 	            $('.hover-div-bk,#register_wark').css("display", "none");
 	        }

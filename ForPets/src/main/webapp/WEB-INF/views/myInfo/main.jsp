@@ -101,12 +101,12 @@ a input[id=register_wark] {
 			<div class="collapse navbar-collapse navbar_forpets"
 				id="navbarResponsive">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="edit-user-info">회원정보수정</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="check-user-reserve">예약확인</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="check-user-careDiary">돌봄일지</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="write-review">나의후기</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/customer.do">고객센터</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="../customerBoard.do">1:1문의</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="../myCustBoard">문의내역</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="edit-user-info">회원정보수정</a></li>
 				</ul>
 			</div>
 		</div>

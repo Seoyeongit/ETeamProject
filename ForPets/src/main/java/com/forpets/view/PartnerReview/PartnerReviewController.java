@@ -38,6 +38,9 @@ public class PartnerReviewController {
 			 mav.addObject("reviewList", prservice.getprReviewList(part_id));
 			 mav.addObject("avg",prservice.avg(part_id));
 			 mav.addObject("part_id", part_id);
+			 mav.addObject("img", prservice.img(part_id));
+			 System.out.println(prservice.img(part_id));
+			
 			return mav;
 			
 		 }

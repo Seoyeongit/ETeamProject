@@ -24,6 +24,7 @@ public class PartnerReviewDAO {
 	private final String PT_NAME = "select part_name from partners where part_id=?";
 	private final String PT_REVIEW = "select * from partner_review where part_id=?";
 	private final String AVG = "SELECT avg(pr_avg) FROM PARTNER_REVIEW WHERE PART_ID=?";
+	private final String IMG = "Select part_img from partners where part_id=?";
 	
 	// 리뷰 글 내용 불러오기
 	private final String GET_PRBOARD = "select * from partner_review where pr_num=?";
@@ -54,7 +55,7 @@ public class PartnerReviewDAO {
 		vo.setPart_no(resultSet.getInt("PART_NO"));
 		vo.setData_create(resultSet.getDate("DATA_CREATE"));
 		vo.setSelf_infor(resultSet.getString("SELF_INFOR"));
-//		vo.setImg(resultSet.getString("IMG"));
+		vo.setImg(resultSet.getString("PART_IMG"));
 		
 		return vo;
 	};
@@ -88,9 +89,15 @@ public class PartnerReviewDAO {
 		return jdbcTemplate.query(PT_REVIEW, previewRowMapper, part_id);
 	}
 	
+	// 평균 불러오기
 	public int avg(String part_id) {
 		int avg = jdbcTemplate.queryForObject(AVG, Integer.class, part_id);
 		return avg;
+	}
+	
+	// 이미지 불러오기
+	public String img(String part_id) {
+		return jdbcTemplate.queryForObject(IMG, String.class, part_id);
 	}
 	
 	public PartnerReviewVO PRBoard(int pr_num) {

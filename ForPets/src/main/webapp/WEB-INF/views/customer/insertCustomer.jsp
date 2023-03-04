@@ -36,6 +36,9 @@
 		.qs-con-red, .qs-con-box {
 			float:left;
 		}
+		.footer {
+			margin-top:5%;
+		}
 	</style>
 </head>
 <body>
@@ -79,5 +82,6 @@
 	</div>
 	</form>
 	<br>
+	<%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

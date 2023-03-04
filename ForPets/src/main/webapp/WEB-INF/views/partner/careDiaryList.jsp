@@ -24,9 +24,9 @@
     	<%@ include file="/WEB-INF/views/nav.jsp" %>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            <a class="navbar-brand js-scroll-trigger" href="../partner/partnerMain">
                 <span class="d-block d-lg-none">${partners.part_name }</span>
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="..." /></span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="../partner/display?fileName=${partners.img }" alt="..." /></span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -53,7 +53,6 @@
 			<th>예약 시간</th>
 		</tr>
 		<c:forEach items="${reserveListCare}" var="lCare">
-		<c:if test="${member.user_id ne null}">
 		<tr>
 			<td><input type="text" name="num" value="${ lCare.reserve_num }" readonly /></td>
 			<td><input type="text" name="user" value="${ lCare.user_id }" readonly /></td>
@@ -62,7 +61,6 @@
 			<td><input type="text" name="time" value="${ lCare.reserve_time }" readonly /></td>
 			<td><input type="button" onclick="location.href='../partner/viewWriteCare?reserve_num=${lCare.reserve_num}&user_id=${lCare.user_id}';" value="돌봄일지 작성하기"/></td>
 		</tr>
-		</c:if>
 		</c:forEach>
 		<tr>
 			<td><input type="button" onclick="location.href='partnerMain';" value="뒤로가기"/></td>

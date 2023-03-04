@@ -7359,9 +7359,14 @@ textarea.form-control-lg {
 }
 
 .mb-0 {
-  margin-bottom: 0 !important;
+  margin-bottom: 0;
 }
-
+h1.mb-0 {
+	margin-bottom:5rem;
+}
+.resume-section-content {
+	margin-bottom:10%;
+}
 .mb-1 {
   margin-bottom: 0.25rem !important;
 }
@@ -11451,4 +11456,10 @@ section.resume-section .resume-section-content {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   width:312%;
   resize:none;
+}
+.main-tex {
+	margin-top:12%;
+}
+.before {
+	margin-top:5%
 }

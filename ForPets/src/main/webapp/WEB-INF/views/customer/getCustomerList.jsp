@@ -15,6 +15,22 @@
 	.text-center {
 		margin-top:4%;
 	}
+	.list-tb-tr1 {
+		margin-bottom:20px;
+		height:40px;
+	}
+	.list-tb-tr2 {
+		margin-top:50px;
+		border-bottom:1px solid rgb(128,128,128, 0.7);
+		border-top:2px solid rgb(128,128,128, 0.7);
+		height:40px;
+	}
+	.cust-boa {
+	width:250px;
+	text-align:left;
+	background-color:white;
+	border:none;
+	}
 	.pagination-forpets {
       display: flex;
       padding-left: 0;
@@ -54,6 +70,12 @@
       border-top-right-radius: 0.25rem;
       border-bottom-right-radius: 0.25rem;
    }
+    .footer{
+    margin-top:5%;
+	text-align: center;
+  	font-size: 0.9rem;
+  	font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	}
 </style>
 </head>
 <body>
@@ -83,7 +105,7 @@
 		</div>
 		</form>
 		<table class="list-tb">
-			<tr>
+			<tr class="list-tb-tr1">
 				<th>번호</th>
 				<th>제목</th>
 				<th>작성자</th>
@@ -91,10 +113,9 @@
 				<th>답변 상태</th>
 			</tr>
 			<c:forEach items="${CustList }" var="customer">
-				<tr>
+				<tr class="list-tb-tr2">
 					<td>${ customer.cust_no }</td>
-					<td align="left"><a href="getCustomerBoardView?cust_no=${ customer.cust_no }">
-							${ customer.cust_title }</a></td>
+					<td align="left"><button type="button" class="cust-boa" onclick="location.href='getCustomerBoardView?cust_no=${customer.cust_no}';">${ customer.cust_title }</button></td>
 					<td>
 					<c:choose>
 	                    <c:when test="${customer.user_id == ' '}">
@@ -144,6 +165,7 @@
                         <input type='hidden' name='searchKeyword'   value='<c:out value="${ pageMaker.cri.searchKeyword }"/>'>
                      </form>
 		<button class="back-bt" type="button" onclick="location.href='customer.do';">뒤로가기</button>
+		<%@ include file="/WEB-INF/views/footer.jsp" %>
 	<script>
   	$(function(){
       $(".paginate_button a").on("click",

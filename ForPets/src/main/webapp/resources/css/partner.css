@@ -7359,9 +7359,14 @@ textarea.form-control-lg {
 }
 
 .mb-0 {
-  margin-bottom: 0 !important;
+  margin-bottom: 0;
 }
-
+h1.mb-0 {
+	margin-bottom:5rem;
+}
+.resume-section-content {
+	margin-bottom:10%;
+}
 .mb-1 {
   margin-bottom: 0.25rem !important;
 }
@@ -11451,4 +11456,113 @@ section.resume-section .resume-section-content {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   width:312%;
   resize:none;
+}
+.main-tex {
+	margin-top:12%;
+}
+.before {
+	margin-top:5%
+}
+.reser-add, .reser-add-hd {
+    width:40%;
+}
+.reser-add-hd {
+    text-align:center;
+}
+.care-tab {
+    margin-top:2%;
+    margin-left:10%;
+    width:70%;
+}
+.tab-hd{
+    border-top:2px solid rgb(128,128,128, 0.7);
+    border-bottom:1px solid rgb(128,128,128, 0.7);
+    height:50px;
+}
+.tab-con {
+    border-bottom:1px solid rgb(128,128,128, 0.7);
+    height:50px;
+}
+.main-tx {
+    margin-top:12.5%;
+    margin-left:10%;
+}
+.main-tx2 {
+    color:#8bda8b;
+    -webkit-text-stroke: 1px gray;
+}
+.back-bt {
+    margin-left:70%;
+}
+.write-bt {
+    float:right;
+}
+.write-bt {
+	background-color: #8bda8b;
+	color:#ffffff;
+	border-radius:5px;
+	border:1px solid rgba(128,128,128,0.7);
+}
+.reser-time-hd{
+    width:10%;
+}
+.reser-time {
+    margin-right:10px;
+}
+.back-bt {
+    margin-top:3%;
+    margin-left:73.8%;
+}
+.back-bt {
+	background-color: #ffffff;
+	color:rgba(0,0,0,0.7);
+	border-radius:5px;
+	border:1px solid rgba(128,128,128,0.7);
+	margin-top:3%;
+	margin-bottom:3%;
+}
+.care-before {
+	margin-left:10%;
+	margin-top:5%;
+}
+.care-before2 {
+	color:#8bda8b;
+	-webkit-text-stroke: 1px gray;
+}
+.care-ing{
+	margin-left:10%;
+	margin-top:5%;
+}
+.care-ing2{
+	color:#8bda8b;
+	-webkit-text-stroke: 1px gray;
+}
+.care-after{
+	margin-left:10%;
+	margin-top:5%;
+}
+.care-after2{
+	color:#8bda8b;
+	-webkit-text-stroke: 1px gray;
+}
+.hello-tx {
+	margin-top:12.5%;
+    margin-left:10%;
+}
+.hello-tx-sty {
+	color:#000000;
+}
+.hello-tx-sty2 {
+	color:#000000;
+	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+.user-sel-hd {
+	margin-top:5%;
+}
+.user-sel-inf {
+	resize:none;
+	margin-top:3%;
+	width:50%;
+	height:200px;
+	border:none;
 }

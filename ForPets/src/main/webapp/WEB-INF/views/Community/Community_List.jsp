@@ -93,10 +93,13 @@
 
 
 	<h1 style="text-align: center;">소모임 목록</h1>
-	<h5 style="text-align: center;">원하는 소모임을 찾아보세요 ! <a href="getcommunity"><input type="button" class="btn btn-sm btn-block" value="글 작성하러 가기"></a></h5>
-	<br>
 
+	<c:if test="${member.user_id != null}">
+		<h5 style="text-align: center;">원하는 소모임을 찾아보세요 ! 
+			<a href="getcommunity"><input type="button" class="btn btn-sm btn-block" value="글 작성하러 가기"></a></h5>
+	</c:if>
 	
+		<br>
 		
 	<div class="bg" style="justify-content: center;">
 	<form action="communitylist" method="post" class="list">

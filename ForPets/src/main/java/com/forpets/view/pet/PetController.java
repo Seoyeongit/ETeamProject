@@ -43,24 +43,24 @@ public class PetController{
 	
 	//pet정보를 수정한다.
 	@RequestMapping(value = "/myInfo/my-petUpd", method = RequestMethod.POST)
-	public String updatePet(PetVO vo, PetDAO petDAO) {
+	public ResponseEntity<String> updatePet(PetVO vo, PetDAO petDAO) {
 		System.out.println("==>pet udpate start");
 		
 		petService.updatePet(vo);
 		
 		System.out.println(vo.toString());
 		
-		return "myInfo/main";
+		return new ResponseEntity<String>("success", HttpStatus.OK);
 	}
 
 	//pet정보를 등록한다.
 	@RequestMapping(value = "/myInfo/my-petReg", method = RequestMethod.POST)
-	public String insertPet(PetVO vo, PetDAO petDAO) {
+	public  ResponseEntity<String> insertPet(PetVO vo, PetDAO petDAO) {
 		System.out.println("==>pet insert start");
 		System.out.println(vo.toString());
 		
 		petService.insertPet(vo);
-		return "myInfo/main";
+		return new ResponseEntity<String>("success", HttpStatus.OK);
 	}
 	
 	//pet등록jsp를 View.
@@ -127,10 +127,10 @@ public class PetController{
 			return new ResponseEntity<PetVO>(check, HttpStatus.BAD_REQUEST);
 		}
 		
-		String applicationPath = request.getServletContext().getRealPath("/");
-		String[] personalPath = applicationPath.split("\\.metadata");
-		String pet_img_path = personalPath[0] + "ForPets\\src\\main\\webapp\\resources\\assets\\upload";
 		
+	    String applicationPath = request.getServletContext().getRealPath("/");
+	    String[] personalPath = applicationPath.split(File.separator+".metadata");
+	    String pet_img_path = personalPath[0] + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
 		String uploadFolder = pet_img_path;
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -172,10 +172,9 @@ public class PetController{
 	public ResponseEntity<byte[]>getImage(String fileName, HttpServletRequest request){
 		System.out.println("getImage()....." + fileName);
 		
-		String applicationPath = request.getServletContext().getRealPath("/");
-		String[] personalPath = applicationPath.split("\\.metadata");
-		String pet_img_path = personalPath[0] + "ForPets\\src\\main\\webapp\\resources\\assets\\upload";
-		
+	    String applicationPath = request.getServletContext().getRealPath("/");
+	    String[] personalPath = applicationPath.split(File.separator+".metadata");
+	    String pet_img_path = personalPath[0] + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
 		
 		File file = new File(pet_img_path + fileName);
 		
@@ -195,10 +194,10 @@ public class PetController{
 	public ResponseEntity<String> DeleteImage(String fileName,  HttpServletRequest request) {
 		System.out.println("deleteImage()...."+fileName);
 		
-		String applicationPath = request.getServletContext().getRealPath("/");
-		String[] personalPath = applicationPath.split("\\.metadata");
-		String pet_img_path = personalPath[0] + "ForPets\\src\\main\\webapp\\resources\\assets\\upload";
-		
+	    String applicationPath = request.getServletContext().getRealPath("/");
+	    String[] personalPath = applicationPath.split(File.separator+".metadata");
+	    String pet_img_path = personalPath[0] + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
+
 		
 		File file = null;
 		try {

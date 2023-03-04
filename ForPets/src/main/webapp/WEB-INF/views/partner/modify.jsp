@@ -19,12 +19,21 @@
         <link href="${pageContext.request.contextPath}/resources/css/partner.css" rel="stylesheet" />
         <script src="${pageContext.request.contextPath}/resources/js/partner_page.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.js"></script>
+        <style>
+        	.part-pro-img{
+        		margin-left:7%;
+        		margin-bottom:5%;
+        	}
+        	input#file-upload-button{
+        		background-color:white;
+        	}
+        </style>
     </head>
     <body id="page-top">
     	<%@ include file="/WEB-INF/views/nav.jsp" %>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            <a class="navbar-brand js-scroll-trigger" href="../partner/partnerMain">
                 <span class="d-block d-lg-none">${partners.part_name }</span>
                 <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="../partner/display?fileName=${partners.img }" alt="..." /></span>
             </a>
@@ -54,8 +63,8 @@
 		<div>
 			<div class="img-up" id="uploadResult"></div>
 			<img class="part-pro-img" src="../partner/display?fileName=${partners.img }"/>
-			<label class="input-file-button" for="part_img">이미지업로드</label> 
-			<input type="file" id="part_img" name="part_img"><br>
+			<label class="input-file-button" for="part_img"></label> 
+			<input type="file" id="part_img" name="part_img" value="이미지 선택"><br>
 		</div>
 		
 		

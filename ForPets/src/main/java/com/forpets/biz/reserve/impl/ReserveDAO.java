@@ -46,7 +46,17 @@ public class ReserveDAO {
 	private final String COUNT_BEFORE_RESERVE = "select count(distinct reserve_num) from reserve where user_id = ? and status = 1";
 	
 	//230217 정영현
-	private final String GETRESERVE_LIST = "select * from reserve where part_id=?";
+	private final String GETRESERVE_LIST = 
+				" select reserve.part_id, reserve.reserve_num, reserve.reserve_day, reserve.reserve_add, reserve.user_id, reserve.reserve_time, reserve.status " +
+					" from reserve, " +
+						 " ( select reserve.user_id " +
+						 "   from reserve, users " + 
+						 "   where reserve.user_id = users.user_id " +
+					        	 "   group by reserve.user_id) " + 
+					" where reserve.part_id = ? " +
+					" group by reserve.part_id, reserve.reserve_num, reserve.reserve_day, reserve.reserve_add, reserve.user_id, reserve.reserve_time, reserve.status";
+	
+	
 	private final String GETRESERVE_LISTCAREBEFORE = "select * from reserve where part_id=? and status=1";
 	private final String GETRESERVE_LISTCARE = "select * from reserve where part_id=? and status=2";
 	private final String GETRESERVE_LISTCAREAFTER = "select * from reserve where part_id=? and status=3";

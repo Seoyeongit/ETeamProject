@@ -1096,3 +1096,16 @@ select*from customer;
 SELECT COUNT(*) FROM customer where cust_title like '%%' or cust_content like '%%';
 
 select * from reserve;
+
+select reserve.part_id, reserve.reserve_num, reserve.reserve_day, reserve.reserve_add, reserve.user_id, reserve.reserve_time, reserve.status
+from reserve,
+	  ( select reserve.user_id
+	    from reserve, users 
+	    where reserve.user_id = users.user_id
+        group by reserve.user_id) 
+where reserve.part_id = 'bpb222'
+group by reserve.part_id, reserve.reserve_num, reserve.reserve_day, reserve.reserve_add, reserve.user_id, reserve.reserve_time, reserve.status;
+
+select *
+from reserve
+where part_id='bpb222';

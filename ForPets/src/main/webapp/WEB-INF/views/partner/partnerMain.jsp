@@ -37,7 +37,7 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partner/modifyyy">정보 수정</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partner/careDiaryList">돌봄 일지 목록</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partnerlist.do">별점 및 리뷰보기</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partnerreviewlist/${partners.part_id}">별점 및 리뷰보기</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partner/getReserve">예약 일정 관리</a></li>
                 </ul>
             </div>
@@ -52,6 +52,9 @@
                         <span class="text-part-page">페이지</span>
                     </h1>
                     <br>
+                    <div>환영합니다.<span>${partners.part_name }</span>님</div>
+                    <div><span>${partners.part_name }</span>님의 자기소개</div>
+                    <div>${ partners.self_infor}</div>
                 </div>
             </section>
             <hr class="m-0" />

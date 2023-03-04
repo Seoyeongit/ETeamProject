@@ -27,6 +27,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.forpets.biz.customer.CustomerPagingDTO;
+import com.forpets.biz.customer.CustomerVO;
+import com.forpets.biz.customer.SearchCriteria;
+import com.forpets.biz.customer.impl.CustomerDAO;
 import com.forpets.biz.partner.PartnerService;
 import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.partner.impl.PartnerDAO;

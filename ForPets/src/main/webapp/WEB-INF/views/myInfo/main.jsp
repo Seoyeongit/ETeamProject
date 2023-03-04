@@ -16,6 +16,15 @@
 
 
 <style type="text/css">
+
+body{
+	margin: 0 !important;
+    padding: 0 !important;
+    height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
 .node {
 	position: absolute;
 	background-image: url(< c : out value = "${pageContext.request.contextPath}"/ >/ resources
@@ -47,27 +56,6 @@
 	z-index: 3;
 }
 
-.icon {
-	position: absolute;
-	left: 6px;
-	top: 9px;
-	width: 48px;
-	height: 48px;
-	background-image: url(< c : out value = "${pageContext.request.contextPath}"/ >/ resources
-		/ assets/ img/ marker/ sign-info-48.png);
-}
-
-.balloon {
-	position: absolute;
-	width: 60px;
-	height: 60px;
-	background-image: url(< c : out value = "${pageContext.request.contextPath}"/ >/ resources
-		/ assets/ img/ marker/ balloon.png);
-	-ms-transform-origin: 50% 34px;
-	-webkit-transform-origin: 50% 34px;
-	transform-origin: 50% 34px;
-}
-
 a:hover {
 	cursor: pointer;
 	color: red;
@@ -80,8 +68,48 @@ a input[id=register_wark] {
 
 .navbar_forpets {
 	position: absolute;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none
 }
 
+.navbar-nav li p{
+	color : #51945b;
+	font-weight: 700;
+	margin-bottom: 0;
+
+}
+
+#sideNav{
+	position: static !important;
+	display: block;
+	padding-top: 91px;
+}
+
+.footer {
+  flex: 0 0 auto;
+  width: 100%;
+  bottom: 0;
+  left: 0;	
+  text-align: center;
+  font-size: 0.9rem;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.main{
+	width: 100%;
+}
+
+#sideNav{
+	display: block !important;
+	position: relative !important;
+}
+
+#main_content{
+	display: flex;
+    margin-top: 70px;
+}
 
 </style>
 
@@ -92,21 +120,27 @@ a input[id=register_wark] {
 </head>
 <body>
 
-	<div><jsp:include page="../nav.jsp" />
+	<div style=" flex: 0 0 auto;"><jsp:include page="../nav.jsp" />
 	</div>
 
-	<div class="container" id="main_content">
+	<div class="" id="main_content">
 
-		<div class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav">
+		<div class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav" style="width: 20.8rem;">
 			<div class="collapse navbar-collapse navbar_forpets"
 				id="navbarResponsive">
 				<ul class="navbar-nav">
+					<li><p>나의서비스</p></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="check-user-reserve">예약확인</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="check-user-careDiary">돌봄일지</a></li>
+					<li><br></li>
+					<li><p>나의활동</p></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="write-review">나의후기</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="../customerBoard.do">1:1문의</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="../myCustBoard">문의내역</a></li>
+					<li><br></li>
+					<li><p>나의정보</p></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="edit-user-info">회원정보수정</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="edit-user-info">회원탈퇴</a></li>
 				</ul>
 			</div>
 		</div>

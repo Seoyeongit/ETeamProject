@@ -72,7 +72,6 @@
 
 .state-content{
 	text-align: center;
-	margin-top: 20px;
 	box-shadow: 0 1px 3px 0 #dbdbdb;
 	height: 130px;
 	border-radius: 4px;
@@ -101,7 +100,7 @@
 
 	<div class="container" id="reserve-container-root">
 
-			<div class="row">
+			<div>
 				<div class="col-lg-10 mx-auto mb-4">
 
 					<div class="row container rounded state-content" id="state-container">

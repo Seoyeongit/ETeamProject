@@ -6,6 +6,7 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.user.UserService;
 import com.forpets.biz.user.UserVO;
 
@@ -52,6 +53,41 @@ public class UserServiceImpl implements UserService {
 	public UserVO getUserById(UserVO vo) {
 		return userDAO.getUserById(vo);
 	}
+	
+	
+	
+	
+	@Override
+	public int cntUserJoinPeriod(String user_id) {
+		return userDAO.cntUserJoinPeriod(user_id);
+	}
+	
+	@Override
+	public int cntCommunityPrt(String user_id) {
+		return userDAO.cntCommunityPrt(user_id);
+	}
+	
+	@Override
+	public int cntTotalServe(String user_id) {
+		return userDAO.cntTotalServe(user_id);
+	}
+	
+	@Override
+	public int cntMultiPleTime(String user_id) {
+		return userDAO.cntMultiPleTime(user_id);
+	}
+	
+	@Override
+	public String getMultiPleServ(String user_id) {
+		return userDAO.getMultiPleServ(user_id);
+	}
+	
+	@Override
+	public PartnerVO multipleTimesPart(String user_id) {
+		return userDAO.multipleTimesPart(user_id);
+	}
+	
+	
 	
 	@Override
 	public void certifiedPhoneNumber(String userPhoneNumber, int randomNumber) {

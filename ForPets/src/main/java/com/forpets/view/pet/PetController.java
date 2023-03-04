@@ -7,6 +7,7 @@ import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -33,6 +34,7 @@ import com.forpets.biz.pet.PetVO;
 import com.forpets.biz.pet.WorkVO;
 import com.forpets.biz.pet.impl.PetDAO;
 import com.forpets.biz.pet.impl.WorkDAO;
+import com.forpets.biz.user.UserService;
 import com.forpets.biz.user.UserVO;
 
 @Controller
@@ -40,6 +42,8 @@ import com.forpets.biz.user.UserVO;
 public class PetController{
 	@Autowired
 	private PetService petService;
+	@Autowired
+	private UserService userServiece;
 	
 	//pet정보를 수정한다.
 	@RequestMapping(value = "/myInfo/my-petUpd", method = RequestMethod.POST)
@@ -105,7 +109,25 @@ public class PetController{
 		UserVO SessionVO = (UserVO) session.getAttribute("member");
 		vo.setUser_id(SessionVO.getUser_id());
 		
+		String user_id = SessionVO.getUser_id();
+		
+		/*유저관련 통계자료를 저장합니다.*/
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		//유저가입기간을 구합니다.
+		data.put("userJoin", userServiece.cntUserJoinPeriod(user_id));
+		//유저가 자주신청한 펫트너정보를 구합니다.
+		data.put("multiPartInfo", userServiece.multipleTimesPart(user_id));
+		//유저가 자주신청한 펫트너 에게 신청한 횟수를 구합니다.
+		data.put("cntMultiTime", userServiece.cntMultiPleTime(user_id));
+		//유저가 자주신청한 케어서비스를 구합니다.
+		data.put("multiServe",userServiece.getMultiPleServ(user_id));
+		//유저가 소모임참여한 횟수를 구합니다.
+		data.put("communityPrt",userServiece.cntCommunityPrt(user_id));
+		//유저가 서비스를 신청한 횟수를 구합니다.
+		data.put("totalServe",userServiece.cntTotalServe(user_id));
+		
 		session.setAttribute("userPet", petService.getPetInfo(vo));
+		model.addAttribute("data",data);
 
 		return "forward:/myInfo/selectWork";
 	}

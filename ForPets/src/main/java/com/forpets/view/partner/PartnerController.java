@@ -235,6 +235,7 @@ public class PartnerController {
 	@RequestMapping(value = "/partner/delete", method = RequestMethod.POST)
 	public ResponseEntity<String> DeleteImage(String fileName) {
 		System.out.println("deleteImage()...."+fileName);
+
 		String resourcePath = servletContext.getRealPath("/resource");
 		String path = resourcePath + "/assts/upload";
 		File file = null;

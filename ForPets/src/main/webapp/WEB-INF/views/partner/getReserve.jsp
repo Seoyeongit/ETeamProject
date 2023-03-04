@@ -13,7 +13,7 @@
 <title>예약 일정 관리</title>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/nav.jsp" %>
+	<%@ include file="/WEB-INF/views/nav2.jsp" %>
 	<nav class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav">
             <a class="navbar-brand js-scroll-trigger" href="../partner/partnerMain">
                 <span class="d-block d-lg-none">${partners.part_name }</span>
@@ -29,25 +29,25 @@
                 </ul>
             </div>
         </nav>
-    <h2 class="main-tex">예약 일정 관리</h2>
-	<h3 class="before">캐어 전</h3>
-	<table>
-		<tr>
+    <h2 class="main-tx"><b>예약 일정 <span class="main-tx2">관리</span></b></h2>
+	<h4 class="care-before">CARE <b><span class="care-before2">BEFORE</span></b></h4>
+	<table class="care-tab">
+		<tr class="tab-hd">
 			<th>예약 번호</th>
 			<th>예약자</th>
-			<th>예약 주소</th>
+			<th class="reser-add-hd">예약 주소</th>
 			<th>예약 날짜</th>
-			<th>예약 시간</th>
+			<th class="reser-time-hd" colspan="2">예약 시간</th>
 		</tr>
 		<c:forEach items="${reserveList}" var="rList">
 		<c:if test="${rList.status eq 1 }">
-		<tr>
-			<td><input type="text" name="num" value="${ rList.reserve_num }" readonly /></td>
-			<td><input type="text" name="user" value="${ rList.user_id }" readonly /></td>
-			<td><input type="text" name="add" value="${ rList.reserve_add }" readonly /></td>
-			<td><input type="text" name="date" value="${ rList.reserve_day }" readonly /></td>
-			<td><input type="text" name="time" value="${ rList.reserve_time }" readonly /></td>
-			<td><input type="button" onclick="location.href='../partner/detail?reserve_num=${rList.reserve_num}&user_id=${rList.user_id}';" value="확인하기"/></td>
+		<tr class="tab-con">
+			<td><div id="num">${ rList.reserve_num }</div></td>
+			<td><div id="user">${ rList.user_id }</div></td>
+			<td><div class="reser-add" id="add">${ rList.reserve_add }</div></td>
+			<td><div id="date">${ rList.reserve_day }</div></td>
+			<td><div class="reser-time" id="time">${ rList.reserve_time }</div></td>
+			<td><input type="button" class="write-bt" onclick="location.href='../partner/detail?reserve_num=${rList.reserve_num}&user_id=${rList.user_id}';" value="확인하기"/></td>
 		</tr>
 		</c:if>
 		</c:forEach>
@@ -79,24 +79,24 @@
          <input type='hidden' name='searchCondition' value='<c:out value="${ pageMaker.cri.searchCondition }"/>'> 
          <input type='hidden' name='searchKeyword'   value='<c:out value="${ pageMaker.cri.searchKeyword }"/>'>
      </form> -->
-	<h3>캐어 중</h3>
-	<table>
-		<tr>
+	<h4 class="care-ing">CARE <b><span class="care-ing2">ING</span></b></h4>
+	<table class="care-tab">
+		<tr class="tab-hd">
 			<th>예약 번호</th>
 			<th>예약자</th>
-			<th>예약 주소</th>
+			<th class="reser-add-hd">예약 주소</th>
 			<th>예약 날짜</th>
-			<th>예약 시간</th>
+			<th class="reser-time-hd" colspan="2">예약 시간</th>
 		</tr>
 		<c:forEach items="${reserveList}" var="rList">
 		<c:if test="${rList.status eq 2 }">
-		<tr>
-			<td><input type="text" name="num" value="${ rList.reserve_num }" readonly /></td>
-			<td><input type="text" name="user" value="${ rList.user_id }" readonly /></td>
-			<td><input type="text" name="add" value="${ rList.reserve_add }" readonly /></td>
-			<td><input type="text" name="date" value="${ rList.reserve_day }" readonly /></td>
-			<td><input type="text" name="time" value="${ rList.reserve_time }" readonly /></td>
-			<td><input type="button" onclick="location.href='../partner/detail?reserve_num=${rList.reserve_num}&user_id=${rList.user_id}';" value="확인하기"/></td>
+		<tr class="tab-con">
+			<td><div id="num">${ rList.reserve_num }</div></td>
+			<td><div id="user">${ rList.user_id }</div></td>
+			<td><div class="reser-add" id="add">${ rList.reserve_add }</div></td>
+			<td><div id="date">${ rList.reserve_day }</div></td>
+			<td><div class="reser-time" id="time">${ rList.reserve_time }</div></td>
+			<td><input type="button" class="write-bt" onclick="location.href='../partner/detail?reserve_num=${rList.reserve_num}&user_id=${rList.user_id}';" value="확인하기"/></td>
 		</tr>
 		</c:if>
 		</c:forEach>
@@ -130,24 +130,24 @@
          <input type='hidden' name='searchKeyword'   value='<c:out value="${ pageMaker.cri.searchKeyword }"/>'>
      </form>
      -->
-	<h3>캐어 완료</h3>
-	<table>
-		<tr>
+	<h4 class="care-after">CARE <b><span class="care-after2">AFTER</span></b></h4>
+	<table class="care-tab">
+		<tr class="tab-hd">
 			<th>예약 번호</th>
 			<th>예약자</th>
-			<th>예약 주소</th>
+			<th class="reser-add-hd">예약 주소</th>
 			<th>예약 날짜</th>
-			<th>예약 시간</th>
+			<th class="reser-time-hd" colspan="2">예약 시간</th>
 		</tr>
 		<c:forEach items="${reserveList}" var="rList">
 		<c:if test="${rList.status eq 3 }">
-		<tr>
-			<td><input type="text" name="num" value="${ rList.reserve_num }" readonly /></td>
-			<td><input type="text" name="user" value="${ rList.user_id }" readonly /></td>
-			<td><input type="text" name="add" value="${ rList.reserve_add }" readonly /></td>
-			<td><input type="text" name="date" value="${ rList.reserve_day }" readonly /></td>
-			<td><input type="text" name="time" value="${ rList.reserve_time }" readonly /></td>
-			<td><input type="button" onclick="location.href='../partner/detail?reserve_num=${rList.reserve_num}&user_id=${rList.user_id}';" value="확인하기"/></td>
+		<tr class="tab-con">
+			<td><div id="num">${ rList.reserve_num }</div></td>
+			<td><div id="user">${ rList.user_id }</div></td>
+			<td><div class="reser-add" id="add">${ rList.reserve_add }</div></td>
+			<td><div id="date">${ rList.reserve_day }</div></td>
+			<td><div class="reser-time" id="time">${ rList.reserve_time }</div></td>
+			<td><input type="button" class="write-bt" onclick="location.href='../partner/detail?reserve_num=${rList.reserve_num}&user_id=${rList.user_id}';" value="확인하기"/></td>
 		</tr>
 		</c:if>
 		</c:forEach>
@@ -181,7 +181,7 @@
          <input type='hidden' name='searchKeyword'   value='<c:out value="${ pageMaker.cri.searchKeyword }"/>'>
      </form>
      -->
-	<input type="button" onclick="location.href='partnerMain';" value="뒤로가기"/>
+	<button type="button" class="back-bt" onclick="location.href='partnerMain';">뒤로가기</button>
 <script>
   	$(function(){
       $(".paginate_button a").on("click",

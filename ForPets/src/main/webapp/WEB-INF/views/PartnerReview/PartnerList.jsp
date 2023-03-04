@@ -6,8 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="../favicon.jsp" />
 <meta charset="UTF-8">
- <jsp:include page="/WEB-INF/views/nav.jsp"/>
+<title>포펫츠 펫트너즈</title>
+<jsp:include page="/WEB-INF/views/nav.jsp"/>
   <style>
   	body{
 	    background: #F5F5F5;
@@ -82,10 +84,8 @@
   }
 
   </style>
-<title>포펫츠 펫트너즈</title>
-
+  
 </head>
-
 <body>
 <div class="background">
 

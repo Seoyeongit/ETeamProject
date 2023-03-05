@@ -1,87 +1,235 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<head>
-<style>
-body {
-	padding-top : 80px;
-	margin-top: 20px;
-}
-</style>
-</head>
-    
-    <h2>회원 정보 수정</h2>
-    <p>사이트 이용에 필요한 정보들을 입력합니다.</p>
+    <head>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    	<style type="text/css">
+    		.adit-form-box{
+    			width:50%;
+    			margin-left: auto;
+    			margin-right: auto;
+    			display: flex;
+    			flex-direction: column;
+    		}
+    		
+    		.form-control:disabled, .form-control[readonly] {
+			    background-color: transparent;
+			    opacity: 1;
+			}
+    		
+    		.adit-form-box>h2{
+    			text-align: center;
+    		}
+    		
+    		.adit-form-content{
+    			display: flex;
+    			flex-direction: column;
+    		}
+    		
+    		.adit-form-bottom{
+    			text-align: center;
+    		}
+    		
+    		.address-info{
+    		}
+    		
+    		.address-info-head{
+				display: flex;
+				flex-direction: row-reverse;
+    		}
+    		
+    		.info-box:not(:first-child) {
+				margin-top: 10px;
+			}
+			
+			.pw-info,.name-info{
+				display: flex;
+				flex-direction: row;
+				grid-gap: 21px;
+			}
+			
+			.pw-info >*, .name-info >*{
+				width: 100%;
+			}
+			
+			#find-address{
+				margin-right: 15px;
+			}
+			
+			
+			
+			/*제이쿼리 detepicker css적용 */
+			
+			.ui-state-default, .ui-widget-content .ui-state-default,
+			 .ui-widget-header .ui-state-default, .ui-button,
+			  html .ui-button.ui-state-disabled:hover,
+			   html .ui-button.ui-state-disabled:active{
+				border: 0;
+				background-color: transparent;
+				border-radius:5px;
+				padding:5px;
+				padding-top : 3px;
+				padding-bottom : 3px;
+				text-align: center;
+				transition:background-color 0.1s;
+			}
+			
+			.ui-state-default:hover{
+				
+				background-color: #8bda8b;
+				color: #fff;
+			}
+			
+			.ui-state-active, .ui-widget-content .ui-state-active,
+			 .ui-widget-header .ui-state-active,
+			  a.ui-button:active,
+			   .ui-button:active, .ui-button.ui-state-active:hover {
+			    font-weight:700;
+			    color: #8bda8b;
+			}
+			
+			.ui-widget-header {
+			    border: 0;
+			    background-color: transparent;
+			    color: #333333;
+			    font-weight: bold;
+			    font-size: 17px;
+			}
+			
+			.ui-datepicker th{
+				font-weight: 400;
+				font-size: 14px;
+				color : #8d8d8d;
+			}
+			
+			.ui-widget-content{
+				padding : 8px;
+			}
+			
+			.ui-widget-content{
+				font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+				box-sizing: content-box !important;
+				width: max-content;
+			}
+			
+			.ui-datepicker table {
+			    width: 68%;
+			    box-sizing: inherit;
+			    font-size: 15px;
+			    border-collapse: collapse;
+			    margin-right: auto;
+			    margin-left: auto;
+			    text-align: center;
+			}
+			
+			.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
+			    position: absolute;
+			    top: 2px;
+			    width: 1.8em;
+			    height: 1.8em;
+			 }
+			 
+			 .address-info>div:not(:first-child){
+			 	margin-bottom : 1em;
+			 }
 
-    <div class="container-sm text-bg-light">
-        <div class="info">
+    		
+    	</style>
+    </head>
+
+
+  <div class="adit-form-box">   
+    <h2>회원 정보 수정</h2>
+    <p style="text-align: center;">사이트 이용에 필요한 정보들을 입력합니다.</p>
+
+    <div class="adit-form-content container-sm text-bg-light">
+        <div class="info-box">
             <div class="">
                 <label for="user_id" class="form-label" >아이디</label>
                 <input type="text" class="form-control" id="user_id" value="${member.user_id}" name="user_id" readonly="readonly">
             </div>
         </div>
 
-        <div class="mb-3 row">
-            <div class="col-sm-4">
-                <label for="inputPassword" class="col-form-label">비밀번호</label>
-                <div class="col-sm-10">
+        <div class="pw-info info-box" >
+            <div >
+                <label for="inputPassword">비밀번호</label>
+                <div>
 				<input type="password" class="form-control" id="user_pw" name="user_pw" value="${member.user_pw }">
                 </div>
             </div>
-            <div class="col-sm-4">
-                <label for="inputPassword" class="col-form-label">비밀번호확인</label>
-                <div class="col-sm-10">
+            <div>
+                <label for="inputPassword" >비밀번호확인</label>
+                <div>
                     <input type="password" class="form-control" id="pwChk">
                 </div>
             </div>
         </div>
 
         
-        <div class="mb-3 row">
-            <div class="col-sm-4">
+        <div class="name-info info-box">
+            <div>
                 <label for="user_name" class="col-form-label">이름</label>
-                <div class="col-sm-10">
+                <div>
                     <input type="text" class="form-control" id="user_name" value="${member.user_name}" name="user_name">
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div>
                 <label for="user_nick" class="col-form-label">닉네임</label>
-                <div class="col-sm-10">
+                <div class=" ">
                     <input type="text" class="form-control" id="user_nick" value="${member.user_nick}" name="user_nick">
                 </div>
             </div>
         </div>
+        
+        <div class="info-box">
+            <div class="birth">
+                <label for="user_phnumber" class="form-label" >생년월일</label>
+                <input class="form-control" id="user-birth" placeholder="YYYY-MM-DD" autocomplete="off">
+            </div>
+        </div>
+        
+        
 
-        <div class="info">
+        <div class="info-box">
             <div class="">
                 <label for="user_phnumber" class="form-label" >전화번호</label>
                 <input type="text" class="form-control" id="user_phnumber" value="${member.phnumber}" name="phnumber">
             </div>
         </div>
 
-        <div class="info">
+        <div class="address-info info-box">
             <div class="">
-                <label for="exampleFormControlInput1" class="form-label" >주소</label>
-                <p>현재주소 : ${member.user_add}</p>
+                <label for="exampleFormControlInput1" class="form-label" >주소 <span> 현재주소 : ${member.user_add}</span></label>
+            </div>
+            <div class="address-info-head">
                 <input type="text"class="form-control" id="address_input_1" readonly="readonly" placeholder="우편번호">
-                <input type="button" onclick="execution_kakao_address()" value="우편번호 찾기"><br>
-                <input type="text" class="form-control"  id="address_input_2" readonly="readonly" placeholder="주소"><br>
-                <input type="text" class="form-control"  id="address_input_3" readonly="readonly" placeholder="상세주소"><br>
+                <input type="button" onclick="execution_kakao_address()" id="find-address" value="우편번호 찾기"><br>
+            </div>
+            <div>
+                <input type="text" class="form-control"  id="address_input_2" readonly="readonly" placeholder="주소">
+            </div>
+            <div>
+                <input type="text" class="form-control"  id="address_input_3" readonly="readonly" placeholder="상세주소">
                 <input type="hidden" id="result_userAdd" value="${member.user_add}" name="user_add">
             </div>
         </div>
     </div>
-    <div>
+    <div class="adit-form-bottom ">
         <input type="button" value="수정하기" id="edituserInfo">
         <input type="button" value="돌아가기" id="backMainPage">
     </div>
+   </div>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 
+
 var addr = ''; // 주소 변수
 
 function execution_kakao_address() {
+
+	
     new daum.Postcode({
         oncomplete: function (data) {
             // 각 주소의 노출 규칙에 따라 주소를 조합한다.
@@ -107,7 +255,7 @@ function execution_kakao_address() {
     	}).open();
 	}
     
-    $('#edituserInfo').click(function(){
+    $('.adit-form-bottom #edituserInfo').click(function(){
     	if(addr !== '' ){
     	addr += ' ' + $("#address_input_3").val();
         $("#result_userAdd").val(addr);
@@ -146,5 +294,23 @@ function execution_kakao_address() {
 	$("div #backMainPage").on("click",function(){
 		location.replace('../myInfo/main');
 	});
+	
+	$('#user-birth').hover(function(){
+		
+		$(this).datepicker({
+				dateFormat : "yy-mm-dd"
+				,prevText:"이전 달"
+				,nextText:"다음 달"
+				,showMonthAfterYear:true
+				,yearSuffix:"년"
+				,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //달력의 월 부분 텍스트
+				,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+				,dayNamesMin: ['일','월','화','수','목','금','토']
+				,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
+		}); 
+	});
+	
+
+
 
  </script>

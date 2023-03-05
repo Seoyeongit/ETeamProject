@@ -27,7 +27,7 @@ public class CommunityDAO {
 	private final String GET_MYCOMMULIST="select * from community where user_id=?";
 	private final String GET_COMMULIST_INMYANSWER = "select *\r\n" + 
 			"from community\r\n" + 
-			"where c_code = (select distinct c_code\r\n" + 
+			"where c_code in (select distinct c_code\r\n" + 
 			"from community\r\n" + 
 			"join survey on community.c_code = survey.s_code\r\n" + 
 			"join survey_answer on survey.S_SVCODE = survey_answer.sa_svcode\r\n" + 

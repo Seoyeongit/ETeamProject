@@ -85,6 +85,8 @@ a input[id=register_wark] {
 	position: static !important;
 	display: block;
 	padding-top: 50px;
+	min-height : 100vh !important;
+	max-height: 100% !important;
 }
 
 .footer {
@@ -111,6 +113,13 @@ a input[id=register_wark] {
     margin-top: 70px;
 }
 
+@media (min-width: 992px){
+	#sideNav {
+			min-height : 100vh !important;
+			max-height: 100% !important;
+	}
+ }
+
 </style>
 
 <!-- Core theme CSS (includes Bootstrap)-->
@@ -125,7 +134,7 @@ a input[id=register_wark] {
 
 	<div class="" id="main_content">
 
-		<div class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav" style="width: 20.8rem;">
+		<div class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav" style="width: 20.8rem; min-height: 100vh; max-height: 100%;">
 			<div class="collapse navbar-collapse navbar_forpets"
 				id="navbarResponsive">
 				<ul class="navbar-nav">
@@ -214,7 +223,6 @@ a input[id=register_wark] {
 				url : liurl,
 				dataType : 'html',
 				success : function(data) {
-					console.log(data);
 					window.history.pushState({}, '', newUrl);
 					display(data);
 				},

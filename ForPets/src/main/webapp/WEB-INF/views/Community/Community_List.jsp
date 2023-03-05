@@ -157,23 +157,26 @@
 								<c:forEach items="${svcode }" var="scode">
 		                    		<c:choose>
 			                    		<c:when test="${community.c_code eq scode.s_code }">
-			                    			<a><input type="button" class="btn btn-sm btn-block cbtn" value="설문지" onclick="click_sv();" 
+			                    			<a><input type="button" class="btn btn-sm btn-block cbtn" value="설문지" data-value="${scode.s_svcode}" onclick="click_sv(this);" 
 			                    					style="margin-top: 3px; background-color: white; border-color: #19CE60; color: #19CE60;"></a>
-			          						<script>
-								   				function click_sv() {
+			          						
+											</c:when>		
+    								</c:choose>
+		                    	</c:forEach> 
+		                    	<!-- 반복 데이터를 가지고 올 때 값이같으면 바뀌지않음  -->
+		                    	<script>
+								   				function click_sv(svcode) {
+								   					var data = $(svcode).data("value");
 								   			 		var user = '${member.user_id}';
 									   					if( user == '') {
 									   						alert('로그인을 해주세요 !');
 									   						window.location.href="${pageContext.request.contextPath}/member/login";			
 									   					} else {
-									   						window.location.href="${pageContext.request.contextPath}/surveyboard.do/${scode.s_svcode}";		
+									   						
+									   						window.location.href="${pageContext.request.contextPath}/surveyboard.do/"+data+"";		
 									   					} 
 								   					}
-											 </script>	
-											</c:when>		
-    								</c:choose>
-		                    	</c:forEach> 
-		                    	
+								</script>	
 
 		                   
 		                    	</div> 

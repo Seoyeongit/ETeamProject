@@ -151,10 +151,6 @@ body {
 	display: grid;
 }
 
-.user_statisticData-body>div:not (:last-child ){
-	border-right: 1px solid #dbdbdb;
-	border-width: 40%;
-}
 
 .data-key {
 	font-size: 15px;
@@ -167,7 +163,12 @@ body {
 	font-weight: 600;
 }
 
-[class="data-value"]:not (.data-part .data-value ){
+.user_statisticData-body > div:not(:last-child) {
+  border-right: 1px solid #dbdbdb;
+  border-width: 40%;
+}
+
+[class=data-value]:not(.data-part .data-value) {
 	font-size: 30px;
 }
 
@@ -333,7 +334,7 @@ body {
 			<p class="user-sign-txt">${member.user_nick }님은포펫츠와
 				${data.userJoin }일 함께해주셨어요!</p>
 		</div>
-	</div>
+	
 	<div class="user_statisticData-body">
 		<div class="data-part">
 			<p class="data-key">자주선택한 펫트너</p>
@@ -367,7 +368,7 @@ body {
 			<p class="data-key">소모임 참여 횟수</p>
 			<p class="data-value">${data.communityPrt}회</p>
 		</div>
-
+	</div>
 	</div>
 </div>
 

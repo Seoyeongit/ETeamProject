@@ -5,8 +5,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link
@@ -138,7 +136,7 @@ textarea{
 }
 
 .section-title button:hover{
-	background-color: #19ce6167;
+	background-color: rgba(29,192,120,.12);
 	border: 1px solid #19CE60;
 	color : #19CE60;
 }
@@ -165,6 +163,9 @@ textarea{
 <body>
 
 	<div class="container">
+		<div class="section-title text-center mb-5">
+            <h3 class="top-c-sep">나의후기</h3>
+       </div>
 		<div class="row">
 			<div class="col-lg-10 mx-auto mb-4">
 				<div class="section-title text-center ">

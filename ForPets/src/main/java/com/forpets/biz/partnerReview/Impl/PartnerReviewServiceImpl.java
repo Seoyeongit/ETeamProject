@@ -37,6 +37,11 @@ public class PartnerReviewServiceImpl implements PartnerReviewService {
 	}
 	
 	@Override
+	public String img(String part_id) {
+		return prDAO.img(part_id);
+	}
+	
+	@Override
 	public PartnerReviewVO PRBoard(int pr_num) {
 		return prDAO.PRBoard(pr_num);
 	}
@@ -57,5 +62,7 @@ public class PartnerReviewServiceImpl implements PartnerReviewService {
 		prDAO.updatePRBoard(vo);
 		
 	}
+	
+	
 	
 }

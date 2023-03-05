@@ -35,4 +35,9 @@ public class ComdatServiceImpl implements ComdatService {
 		comdatDAO.deleteComdat(vo);
 		
 	}
+	
+	@Override
+	public List<ComdatVO> getMyComdat(String user_id) {
+		return comdatDAO.getMyComdat(user_id);
+	}
 }

@@ -6,8 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="/WEB-INF/views/nav.jsp"/>
 <jsp:include page="/WEB-INF/views/favicon.jsp" />
+<meta charset="UTF-8">
+<title>글 수정하기</title>
+<jsp:include page="/WEB-INF/views/nav.jsp"/>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" 
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" 
@@ -17,6 +19,7 @@
 		 margin-top:100px;
 		 background-color:#f9f9f9;
 	}
+
 	
 	.content_guide {
 		/* position: absolute; */
@@ -42,6 +45,12 @@
 	    padding-top: 15px;
 	}
 	
+	.sep {
+		margin-left: 30px;
+		font-size :  16px;
+		color: #808080;
+	}
+	
 	hr {
  	 background: #d3d3d3;
 	 height:1px;
@@ -55,24 +64,27 @@
 	.title_area {
 		border:none; 
 		text-align:center; 
-		width:1000px; 
+		width: 800px; 
 		height:100px; 
-		padding-right: 100px; 
-		padding-left: 100px; 
-		font-size: 2.5em; 
+		padding-right: 30px; 
+		padding-left: 30px;  
 		text-align: left;
+		font-size: 2em;
 	}
 	
 	.text_area {
-		border: none;
+		border: solid 1px;
+		border-color: #F5F5F5;
 	    text-align: center;
-	    width: 1000px;
-	    height: 100px;
-	    padding-right: 100px;
-	    padding-left: 100px;
-	    font-size: 1.2em;
+		margin-left : 100px;
+	    margin-right : 100px;
+	    margin-top : 20px;
+	    margin-bottom: 50px;
+	    width: 800px;
+	    padding-right: 30px;
+	    padding-left: 30px;
 	    text-align: left;
-	    height: fit-content;
+	    height: 500px;
 	}
 	
 	.btn {
@@ -91,10 +103,7 @@
 	}
 
 </style>
-<meta charset="UTF-8">
-<title>글 수정하기</title>
 </head>
-
 <body>
 
 
@@ -108,12 +117,17 @@
 		<div class="content_guide">
 			<input type="hidden" name="c_code" value="${communityboard.c_code }">
 			<div class = "title_board">
-				<input class="title_area" type="text" name="c_title" value="${communityboard.c_title }">
+				<h4 class="sep"> 제목 : <input class="title_area" type="text" name="c_title" value="${communityboard.c_title }"></h4>
 			</div>
 			
 			<hr>
 			
-			<textarea class="text_area" name="c_content" >${communityboard.c_content }</textarea>
+				<div style="margin-left:25px; text-align:center; color:#808080;">
+					<a>내용을 수정 해 주세요.</a><br>
+				</div>
+		
+				
+				<textarea class="text_area" name="c_content" >${communityboard.c_content }</textarea>
 			
 			<div class="buttons">
 				<input type="submit" value="수정하기" class="btn" style="background-color:#19CE60; color:white ">
@@ -124,8 +138,6 @@
 	</form>
 
 
-<br><br>
-	
 <%@ include file="/WEB-INF/views/footer.jsp" %>
 
 </body>

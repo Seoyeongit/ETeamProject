@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
     <head>
+    	<jsp:include page="../favicon.jsp"></jsp:include>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -18,21 +19,30 @@
         <link href="${pageContext.request.contextPath}/resources/css/partner.css" rel="stylesheet" />
         <script src="${pageContext.request.contextPath}/resources/js/partner_page.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.js"></script>
+        <style>
+        	.part-pro-img{
+        		margin-left:7%;
+        		margin-bottom:5%;
+        	}
+        	input#file-upload-button{
+        		background-color:white;
+        	}
+        </style>
     </head>
     <body id="page-top">
-    	<%@ include file="/WEB-INF/views/nav.jsp" %>
+    	<%@ include file="/WEB-INF/views/nav2.jsp" %>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            <a class="navbar-brand js-scroll-trigger" href="../partner/partnerMain">
                 <span class="d-block d-lg-none">${partners.part_name }</span>
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="..." /></span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="../partner/display?fileName=${partners.img }" alt="..." /></span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partner/modifyyy">정보 수정</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partner/careDiaryList">돌봄 일지 목록</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partnerlist.do">별점 및 리뷰보기</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partnerreviewlist/${partners.part_id}">별점 및 리뷰보기</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partner/getReserve">예약 일정 관리</a></li>
                 </ul>
             </div>
@@ -51,9 +61,10 @@
 		<br> <br>
 
 		<div>
-			<div id="uploadResult"></div>
-			<label class="input-file-button" for="part_img">이미지업로드</label> 
-			<input type="file" id="part_img"><br>
+			<div class="img-up" id="uploadResult"></div>
+			<img class="part-pro-img" src="../partner/display?fileName=${partners.img }"/>
+			<label class="input-file-button" for="part_img"></label> 
+			<input type="file" id="part_img" name="part_img" value="이미지 선택"><br>
 		</div>
 		
 		
@@ -114,8 +125,12 @@
                 <input type="hidden" id="result_partAdd" value="${partners.part_add}" name="part_add">
             </div>
         </div>
+        <div class="mb-3 row">
+        		<div class="col-sm-4">
+        			<label for="self_infor" class="col-form-label">자기소개</label><textarea id="self_infor" cols="161.8" rows="10" class="infor-box">${partners.self_infor }</textarea></div>
+        </div>
     </div>
-    <div>
+    <div class="cal-12">
         &nbsp;&nbsp;<input type="button" value="수정하기" id="edituserInfo">
         <input type="button" value="돌아가기" id="backMainPage">
     </div>
@@ -193,7 +208,10 @@ var addr = ''; // 주소 변수
     			self_infor:$("#self_infor").val(),
     			part_nick:$("#part_nick").val(),
     			part_phnumber:$("#part_phnumber").val(),
-    			part_add:$("#result_partAdd").val()
+    			part_add:$("#result_partAdd").val(),
+    			self_infor:$("#self_infor").val(),
+    			img:$("#imgSrc").val()
+    			
     		},
     		dataType : "text",
     		type : "POST",
@@ -285,11 +303,18 @@ var addr = ''; // 주소 변수
 		}
 
 		let uploadResult = $("#uploadResult");
-
+		
 		let str = "";
-
-		let fileCallPath = encodeURIComponent(result.img
-				.replace(/\\/g, '/').replace("C:/DevSpace/springSpace/ETeamProject/ForPets/src/main/webapp/resources/assets/upload", ''));
+		
+		//이미지 경로
+		let imgSrc = result.img;
+		//'upload'부터 문자열 끝까지 일치하는 정규식 패턴
+		let regex =/^[A-Z]:.*\\upload/;
+		let str1 = imgSrc.replace(regex,'');
+		console.log(str1);
+		
+		
+		let fileCallPath = encodeURIComponent(str1);
 
 		console.log(fileCallPath);
 

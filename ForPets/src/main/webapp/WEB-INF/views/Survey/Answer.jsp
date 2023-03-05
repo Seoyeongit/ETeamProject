@@ -1,17 +1,113 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>    
+    <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>    
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
-<title>View Survey</title>
+<jsp:include page="/WEB-INF/views/nav.jsp"/>
+<style>
+  	body{
+	    background: #F5F5F5;
+	    margin-top:100px;
+	}
+	
+	.content_guide {
+	/* position: absolute; */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-width: 1000px;
+    min-height: 100%;
+    margin: auto;
+    background-color: #fff;
+    border: solid #e8e8e8;
+    /* border-width: 0 1px; */
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    margin-bottom: 40px;
+	}
+
+	.pt_guide {
+		float : left;
+	}
+	
+	.ptinfo {
+		margin-top : 30px;
+		margin-bottom : 30px;
+		border-right : black;
+	}
+	
+	.review_guide {
+		float: right;
+	}
+
+	.review_list {
+		text-align: -webkit-center;
+		margin-top : 30px;
+		margin-bottom : 30px;
+	}
+
+</style>
+<script>
+/* 		function ans(name) {
+			var data1 = $(name).data("value");
+			alert(data1);
+			
+		 	$.ajax ({
+				url: '../answerboard.do/${add}',
+				method: "GET",
+				data: { 'user_id' : data1 },
+				success: function (data) {
+					$.each(data, function (key, value) {
+						/* alert(value); 
+					})
+					alert("성공햇읍니당");
+				},
+				error :  function() {
+					alert("실패오ㅛㅇ");
+				}
+			});	 
+		}
+	 */
+		
+</script>
+<meta charset="UTF-8">
+<title>Answer list</title>
 </head>
 <body>
-
+	<h1 style="text-align: center;">설문지 답변 목록</h1>
+	
+	<div class="content_guide">
+		
+     <div class="row">
+     <div class="pt_guide col-4">
+	<div class="ptinfo">
+		<h3 style="text-align: center;">답변자 목록</h3>
+	
+		<ul>
+			<c:forEach items="${answerList }" var="ans">
+				<c:choose>
+					<c:when test="${ans eq nowid}">
+						<li>${ ans}님의 답변입니다.</li>
+					</c:when>
+				<c:otherwise>
+					<li><a href="${pageContext.request.contextPath}/answerboard.do/${add }/${ ans}">${ ans}님의 답변입니다.</a></li>
+				</c:otherwise>
+				</c:choose> 
+			</c:forEach>
+		</ul>
+		</div>
+		</div>
+	
+	
+	<div class="review_guide col-8">
+	<div class="review_list" style="border-left: solid 1.5px #D3D3D3; margin-left:-30px;">
+		
 	<h1> ${user_id } 님이 답변한 설문입니다. </h1>
 
 	<h3>${answerboard3.s_title }</h3>
@@ -113,8 +209,13 @@
 		</c:forEach>
 
 	</table>
+
+		
+	</div>
+	</div>
+		</div>	
+	</div>
 	
-	<a href="../deleteanswer.do/${sd_svcode }&${user_id}"><input type="button" value="삭제하기"></a>
-	
+<%@ include file="/WEB-INF/views/footer.jsp" %>		
 </body>
 </html>

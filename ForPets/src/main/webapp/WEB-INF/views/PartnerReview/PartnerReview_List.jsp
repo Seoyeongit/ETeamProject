@@ -6,9 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<jsp:include page="/WEB-INF/views/nav.jsp"/>
 <jsp:include page="/WEB-INF/views/favicon.jsp" />
+<meta charset="UTF-8">
+<title>펫트너 리뷰</title>
+<jsp:include page="/WEB-INF/views/nav.jsp"/>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 <style>
 
@@ -18,7 +19,6 @@
 	}
 	
 	.content_guide {
-		/* position: absolute; */
 	    top: 0;
 	    right: 0;
 	    bottom: 0;
@@ -29,7 +29,6 @@
 	    margin: auto;
 	    background-color: #fff;
 	    border: solid #e8e8e8;
-	    /* border-width: 0 1px; */
 	    -webkit-box-sizing: content-box;
 	    box-sizing: content-box;
 	    margin-bottom: 100px;
@@ -126,21 +125,30 @@
 
 </style>
 
-<title>펫트너 리뷰</title>
 </head>
 <body>
-	<h1 style="text-align: center;">펫트너 리뷰</h1>
-	<h5 style="text-align: center;">펫트너를 평가해주세요! <a href="../createpartreview/${part_id }"><input type="button" class="btn btn-sm btn-block" value="글 작성하기"></a></h5>
-
-
+	
+	
+	 
+	<c:if test="${member.user_id != null}">
+		<h1 style="text-align: center;">펫트너 리뷰</h1>
+		<h5 style="text-align: center;">펫트너를 평가해주세요!
+		<a href="../createpartreview/${part_id }"><input type="button" class="btn btn-sm btn-block" value="글 작성하기"></a></h5>
+	</c:if>
+	
+	
+	<c:if test="${role eq 'partners' }">
+		<h1 style="text-align: center;">펫트너 리뷰
+		<a href="${pageContext.request.contextPath}/partner/partnerMain"><input type="button" class="btn btn-sm btn-block" value="파트너 페이지로 돌아가기"></a></h1>
+	</c:if>
 
 <div class="content_guide">
 	
-
+	
      <div class="row">
      <div class="pt_guide col-4">
 	<div class="ptinfo"  >
-	    <img src = "${pageContext.request.contextPath}/resources/assets/img/commu/rabbitcomm.webp" style="width: 200px; height: 150px;">
+	    <img src = " ./partner/display?fileName=${img }" style="width: 200px; height: 150px;">
 		<h2>${prList } 펫트너</h2>
 		<input type="hidden" name="part_id" value="${part_id}">
 
@@ -210,6 +218,7 @@
 		</div>
 
 		</div>
+		
 			</c:forEach>
 			
 	

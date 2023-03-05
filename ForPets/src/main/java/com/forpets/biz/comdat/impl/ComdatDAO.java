@@ -27,6 +27,9 @@ public class ComdatDAO {
 	// 댓글 삭제
 	private final String DELETE_DAT = "delete from comdat where d_code =? and d_num = ?";
 	
+	//특정유저의 댓글리스트를 조회
+	private final String GET_MY_DAT ="select * from comdat where user_id=?";
+	
 	
 	// 댓글 조회
 	private final RowMapper<ComdatVO> comdatRowMapper = (resultSet, rowNum) -> {
@@ -58,6 +61,9 @@ public class ComdatDAO {
 	public void deleteComdat(ComdatVO vo) {
 		jdbcTemplate.update(DELETE_DAT, vo.getD_code(), vo.getD_num());
 	}
-		
+	
+	public List<ComdatVO> getMyComdat(String user_id) {
+		return jdbcTemplate.query(GET_MY_DAT, comdatRowMapper, user_id);
+	}
 		
 }

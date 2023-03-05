@@ -4,14 +4,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- 파비콘 -->
+<jsp:include page="../favicon.jsp"></jsp:include>
 <meta charset="UTF-8">
 <link href="${pageContext.request.contextPath}/resources/css/customer.css" rel="stylesheet" />
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <title>ForPets 고객센터</title>
 <style>
-   .footer {
-  text-align: center;
-  }
+  .footer{
+	margin-top:200px;
+	text-align: center;
+  	font-size: 0.9rem;
+  	font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+   }
    .qs-box{
       margin-left : 15%;
    }

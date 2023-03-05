@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="../favicon.jsp"></jsp:include>
 <meta charset="UTF-8">
 <link href="${pageContext.request.contextPath}/resources/css/customer.css" rel="stylesheet" />
 <title>문의 글 쓰기</title>
@@ -34,6 +35,9 @@
 		}
 		.qs-con-red, .qs-con-box {
 			float:left;
+		}
+		.footer {
+			margin-top:5%;
 		}
 	</style>
 </head>
@@ -78,5 +82,6 @@
 	</div>
 	</form>
 	<br>
+	<%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

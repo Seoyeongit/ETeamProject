@@ -52,7 +52,6 @@
 	                        	</ul>
                         </div>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/communitylist">소모임</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#review">리뷰보기</a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/partnerlist">펫트너</a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/customerMain">고객센터</a></li>
                        
@@ -83,10 +82,31 @@
         </nav>
         <!-- Masthead-->
         <header class="masthead">
-            <div class="container">
-                <div class="masthead-subheading">당신과 아이의 시간이</div>
-                <div class="masthead-subheading"> 함께 행복하기를 응원합니다.</div>
-            </div>
+            <div class="container d-flex">
+                <div class="masthead-subheading col-6 align-self-center">당신과 아이의 시간이<br><br> 함께 행복하기를 응원합니다.</div>
+                <div class="col-6 align-self-center forpets-slide">
+                	<div style="position:absolute;">
+                    	<img src="${pageContext.request.contextPath}/resources/assets/img/mainback.png" style="width:700px; height:500px; z-index:5;">
+                    </div>
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" style="position:absolute; padding-top:137px; padding-left:128px;">
+		              	<div class="carousel-inner">
+		                  	<div class="carousel-item active" data-bs-interval="2000">
+		                      	<img class="d-block" style="width:550px; height:283px;" src="${pageContext.request.contextPath}/resources/assets/dog-normal.jpg" alt="First slide">
+		                  	</div>
+		                    <div class="carousel-item" data-bs-interval="2000">
+		                      	<img class="d-block" style="width:550px; height:283px;" src="${pageContext.request.contextPath}/resources/assets/dog-walking.jpg" alt="Second slide">
+		                    </div>
+		                    <div class="carousel-item" data-bs-interval="2000">
+		                       	<img class="d-block" style="width:550px; height:283px;" src="${pageContext.request.contextPath}/resources/assets/dog-pickup.png" alt="Third slide">
+		                    </div>
+		                 </div>
+              		</div>
+                    <div style="position:relative;">
+                        <img src="${pageContext.request.contextPath}/resources/assets/img/mainimg2.png" style="width:700px; z-index:10;">
+                    </div>
+                     
+                </div>
+            </div> 
         </header>
         <!-- Services-->
         <section class="page-section" id="service">
@@ -223,15 +243,18 @@
                 </div>
             </div>
         </section>
+        
+        
+        
+        
         <!-- review-->
 	 <section class="page-section" id="review">
-            <div class="">
-        
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase mb-4 ">실시간 포펫츠 후기</h2>
+            <div class="main-live-revi">
+        		<div class="text-center">
+                    <h2 class="section-heading text-uppercase mb-4 " style="color:white;">실시간 포펫츠 후기</h2>
                 </div>
-        
-                <div class="card-wrap">
+        		<div class="card-wrap">
+				 <c:forEach items="${reviewList}" var="review">
                     <div class="card">
                         <div class="review-content">
                             <div class="reviewer-wrap">
@@ -243,133 +266,21 @@
                                 <div>
                                     <div class="review-simple-starRating">
                                         <div>
-                                            한줄평
+                                           	${review.r_title }
                                         </div>
                                         <div>
-                                            ⭐⭐⭐⭐⭐
+                                        	<c:choose>
+                                        		<c:when test="${review.star_rating eq 5}">⭐⭐⭐⭐⭐</c:when>
+                                        		<c:when test="${review.star_rating eq 4}">⭐⭐⭐⭐</c:when>
+                                        	</c:choose>
                                         </div>
                                     </div>
-                                    <p>수고했습니다.</p>
+                                    <p>${review.r_content }</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-        
-                    <div class="card">
-                        <div class="review-content">
-                            <div class="reviewer-wrap">
-                                <div class="reviewer-img">
-                                    <img src="./noImage.png">
-                                </div>
-                            </div>
-                            <div class="review-text">
-                                <div>
-                                    <div class="review-simple-starRating">
-                                        <div>
-                                            한줄평
-                                        </div>
-                                        <div>
-                                            ⭐⭐⭐⭐⭐
-                                        </div>
-                                    </div>
-                                    <p>수고했습니다.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-        
-        
-                    <div class="card">
-                        <div class="review-content">
-                            <div class="reviewer-wrap">
-                                <div class="reviewer-img">
-                                    <img src="./noImage.png">
-                                </div>
-                            </div>
-                            <div class="review-text">
-                                <div>
-                                    <div class="review-simple-starRating">
-                                        <div>
-                                            한줄평
-                                        </div>
-                                        <div>
-                                            ⭐⭐⭐⭐⭐
-                                        </div>
-                                    </div>
-                                    <p>수고했습니다.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-        
-                    <div class="card">
-                        <div class="review-content">
-                            <div class="reviewer-wrap">
-                                <div class="reviewer-img">
-                                    <img src="./noImage.png">
-                                </div>
-                            </div>
-                            <div class="review-text">
-                                <div>
-                                    <div class="review-simple-starRating">
-                                        <div>
-                                            한줄평
-                                        </div>
-                                        <div>
-                                            ⭐⭐⭐⭐⭐
-                                        </div>
-                                    </div>
-                                    <p>수고했습니다.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-        
-                    <div class="card">
-                        <div class="review-content">
-                            <div class="reviewer-wrap">
-                                <div class="reviewer-img">
-                                    <img src="./noImage.png">
-                                </div>
-                            </div>
-                            <div class="review-text">
-                                <div>
-                                    <div class="review-simple-starRating">
-                                        <div>
-                                            한줄평
-                                        </div>
-                                        <div>
-                                            ⭐⭐⭐⭐⭐
-                                        </div>
-                                    </div>
-                                    <p>수고했습니다.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-        
-                    <div class="card">
-                        <div class="review-content">
-                            <div class="reviewer-wrap">
-                                <div class="reviewer-img">
-                                    <img src="./noImage.png">
-                                </div>
-                            </div>
-                            <div class="review-text">
-                                <div>
-                                    <div class="review-simple-starRating">
-                                        <div>
-                                            한줄평
-                                        </div>
-                                        <div>
-                                            ⭐⭐⭐⭐⭐
-                                        </div>
-                                    </div>
-                                    <p>수고했습니다.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                 </c:forEach>
         
                 </div>
         

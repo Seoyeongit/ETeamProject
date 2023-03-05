@@ -1,11 +1,7 @@
 package com.forpets.biz.pet;
 
-import java.util.Date;
 
 import org.springframework.web.multipart.MultipartFile;
-
-import com.forpets.biz.user.UserVO;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

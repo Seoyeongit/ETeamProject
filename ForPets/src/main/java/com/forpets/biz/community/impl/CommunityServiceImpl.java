@@ -19,8 +19,6 @@ public class CommunityServiceImpl implements CommunityService {
 
 	@Override
 	public List<CommunityVO> getCommunityList() throws Exception {
-		// System.out.println("연결?");
-//		return null;
 		return communityDAO.getCommunityList();
 	}
 	
@@ -48,6 +46,16 @@ public class CommunityServiceImpl implements CommunityService {
 	public void deleteCommunity(String c_code) {
 		communityDAO.deleteCommunity(c_code);
 
+	}
+	
+	@Override
+	public List<CommunityVO> getListMyPost(String user_id) {
+		return communityDAO.getListMyPost(user_id);
+	}
+	
+	@Override
+	public List<CommunityVO> getPostInMyAnswer(String user_id) {
+		return communityDAO.getPostInMyAnswer(user_id);
 	}
 	
 }

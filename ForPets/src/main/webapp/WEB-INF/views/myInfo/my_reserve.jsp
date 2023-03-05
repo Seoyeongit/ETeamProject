@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>예약확인하기</title>
 <jsp:include page="../favicon.jsp"></jsp:include>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -73,7 +72,6 @@
 
 .state-content{
 	text-align: center;
-	margin-top: 20px;
 	box-shadow: 0 1px 3px 0 #dbdbdb;
 	height: 130px;
 	border-radius: 4px;
@@ -98,9 +96,15 @@
 </head>
 
 <body>
-	<div class="container" id="reserve-container-root">
 
-			<div class="row">
+
+	<div class="container" id="reserve-container-root">
+	
+		                    <div class="section-title text-center ">
+                        <h3 class="top-c-sep">예약확인</h3>
+                    </div>
+
+			<div>
 				<div class="col-lg-10 mx-auto mb-4">
 
 					<div class="row container rounded state-content" id="state-container">
@@ -127,7 +131,11 @@
 						
 					</div>
 
+				<c:if test="${empty reserveList || reserveList eq ''}">
+					<jsp:include page="./noData/no_reserve.jsp"></jsp:include>
+				</c:if>
 				<div class="container-rapper container-md row pt-5">
+				
 				
 					<c:forEach items="${reserveList}" var="reserve">
 						<div class="page-content note-has-grid p-3 col-sm-4">

@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
     <head>
+    	<jsp:include page="../favicon.jsp"></jsp:include>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -20,55 +21,46 @@
         <script src="${pageContext.request.contextPath}/resources/css/partner.css"></script>
     </head>
     <body id="page-top">
-    	<%@ include file="/WEB-INF/views/nav.jsp" %>
+    	<%@ include file="/WEB-INF/views/nav2.jsp" %>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            <a class="navbar-brand js-scroll-trigger" href="../partner/partnerMain">
                 <span class="d-block d-lg-none">${partners.part_name }</span>
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="..." /></span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="../partner/display?fileName=${partners.img }" alt="..." /></span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partner/modifyyy">정보 수정</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partner/careDiaryList">돌봄 일지 목록</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partnerlist.do">별점 및 리뷰보기</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partnerreviewlist/${partners.part_id}">별점 및 리뷰보기</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partner/getReserve">예약 일정 관리</a></li>
                 </ul>
             </div>
         </nav>
         <!-- Page Content-->
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <table>
-		<tr>
+        <h2 class="main-tx"><b>돌봄일지 <span class="main-tx2"> 목록</span></b></h2>
+        <table class="care-tab">
+		<tr class="tab-hd">
 			<th>예약 번호</th>
 			<th>예약자</th>
-			<th>예약 주소</th>
+			<th class="reser-add-hd">예약 주소</th>
 			<th>예약 날짜</th>
-			<th>예약 시간</th>
+			<th class="reser-time-hd" colspan="2">예약 시간</th>
 		</tr>
 		<c:forEach items="${reserveListCare}" var="lCare">
-		<tr>
-			<td><input type="text" name="num" value="${ lCare.reserve_num }" readonly /></td>
-			<td><input type="text" name="user" value="${ lCare.user_id }" readonly /></td>
-			<td><input type="text" name="add" value="${ lCare.reserve_add }" readonly /></td>
-			<td><input type="text" name="date" value="${ lCare.reserve_day }" readonly /></td>
-			<td><input type="text" name="time" value="${ lCare.reserve_time }" readonly /></td>
-			<td><input type="button" onclick="location.href='../partner/viewWriteCare?reserve_num=${lCare.reserve_num}&user_id=${lCare.user_id}';" value="돌봄일지 작성하기"/></td>
+		<tr class="tab-con">
+			<td><div id="num">${ lCare.reserve_num }</div></td>
+			<td><div id="user">${ lCare.user_id }</div></td>
+			<td><div class="reser-add" id="add">${ lCare.reserve_add }</div></td>
+			<td><div id="date">${ lCare.reserve_day }</div></td>
+			<td><div class="reser-time" id="time">${ lCare.reserve_time }</div></td>
+			<td><input type="button" class="write-bt" onclick="location.href='../partner/viewWriteCare?reserve_num=${lCare.reserve_num}&user_id=${lCare.user_id}';" value="작성하기"/></td>
 		</tr>
 		</c:forEach>
-		<tr>
-			<td><input type="button" onclick="location.href='partnerMain';" value="뒤로가기"/></td>
-		</tr>
 		</table>
-            <hr class="m-0" />
-            <!-- Experience-->
-            
-        </div>
+			<button class="back-bt" type="button" onclick="location.href='partnerMain';">뒤로가기</button>
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

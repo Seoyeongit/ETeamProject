@@ -6,9 +6,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="../favicon.jsp" />
+<meta charset="UTF-8">
+<title>Community board</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 <jsp:include page="/WEB-INF/views/nav.jsp"/>
-<jsp:include page="../favicon.jsp" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" 
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -102,7 +104,7 @@
 	    margin: auto;
 	    padding-right: 100px;
   		padding-left: 100px;
-  		margin-bottom: 40px;
+  		margin-bottom: 200px;
 	}
 	
 	.comment_board{
@@ -128,8 +130,6 @@
 	}
 
 </style>
-<meta charset="UTF-8">
-<title>Community board</title>
 </head>
 <body>
 
@@ -155,8 +155,9 @@
 	<c:if test="${member.user_id == communityboard.user_id }">		
 			<a href="../updatecommunity/${communityboard.c_code }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="수정"></a>
 			<a href="../deletecommunity/${communityboard.c_code }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="삭제"></a>
+			<a href="${pageContext.request.contextPath}/answerlist.do/${svcode[0].sa_svcode }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="설문지 답변 확인"></a>
 	</c:if>
-			<a href="../communitylist"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="목록으로"></a>		
+			<a href="${pageContext.request.contextPath}/communitylist"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="목록보기"></a>		
 		</div>
 	
 		</div>

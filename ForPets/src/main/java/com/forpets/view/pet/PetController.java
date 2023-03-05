@@ -7,13 +7,16 @@ import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.UUID;
+import java.util.function.Function;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,11 +31,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.pet.PetService;
 import com.forpets.biz.pet.PetVO;
 import com.forpets.biz.pet.WorkVO;
 import com.forpets.biz.pet.impl.PetDAO;
 import com.forpets.biz.pet.impl.WorkDAO;
+import com.forpets.biz.user.UserService;
 import com.forpets.biz.user.UserVO;
 
 @Controller
@@ -41,36 +46,45 @@ public class PetController{
 	@Autowired
 	private PetService petService;
 	@Autowired
-	private ServletContext servletContext;
+	private UserService userServiece;
 	
 	//pet정보를 수정한다.
 	@RequestMapping(value = "/myInfo/my-petUpd", method = RequestMethod.POST)
-	public String updatePet(PetVO vo, PetDAO petDAO) {
+	public ResponseEntity<String> updatePet(PetVO vo, PetDAO petDAO) {
 		System.out.println("==>pet udpate start");
 		
 		petService.updatePet(vo);
-		return "myInfo/main";
+		
+		System.out.println(vo.toString());
+		
+		return new ResponseEntity<String>("success", HttpStatus.OK);
 	}
 
 	//pet정보를 등록한다.
 	@RequestMapping(value = "/myInfo/my-petReg", method = RequestMethod.POST)
-	public String insertPet(PetVO vo, PetDAO petDAO) {
+	public  ResponseEntity<String> insertPet(PetVO vo, PetDAO petDAO) {
 		System.out.println("==>pet insert start");
 		System.out.println(vo.toString());
 		
 		petService.insertPet(vo);
-		return "myInfo/main";
+		return new ResponseEntity<String>("success", HttpStatus.OK);
 	}
 	
 	//pet등록jsp를 View.
 	@RequestMapping(value="/myInfo/my-petView")
-	public String myPetView(@RequestParam(value="id", required=false)int pet_id, Model model, PetVO pvo) {
+	public String myPetView(@RequestParam(value="id", required=false)Integer pet_id, Model model, PetVO pvo) {
+		
+		
+		if(pet_id != null) {
+		System.out.println("id : " + pet_id);
+		
 		if(pet_id > 0) {
 			String id_str = Integer.toString(pet_id);
 			model.addAttribute("userPet", petService.getPet(pvo, id_str));
 		}
-
 		return "myInfo/mypet";
+		}
+		return "myInfo/mypet2";
 	}
 	
 	
@@ -98,15 +112,44 @@ public class PetController{
 		UserVO SessionVO = (UserVO) session.getAttribute("member");
 		vo.setUser_id(SessionVO.getUser_id());
 		
+		String user_id = SessionVO.getUser_id();
+		
+		/*유저관련 통계자료를 저장합니다.*/
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		//유저가입기간을 구합니다.
+		data.put("userJoin", userServiece.cntUserJoinPeriod(user_id));
+		//유저가 자주신청한 펫트너정보를 구합니다.
+		data.put("multiPartInfo", getData(user_id, userServiece::multipleTimesPart, new PartnerVO()));
+		//유저가 자주신청한 펫트너 에게 신청한 횟수를 구합니다.
+		data.put("cntMultiTime", getData(user_id, userServiece::cntMultiPleTime, 0));
+		//유저가 자주신청한 케어서비스를 구합니다.
+		data.put("multiServe", getData(user_id, userServiece::getMultiPleServ, "없음"));
+		//유저가 소모임참여한 횟수를 구합니다.
+		data.put("communityPrt", getData(user_id, userServiece::cntCommunityPrt, 0));
+		//유저가 서비스를 신청한 횟수를 구합니다.
+		data.put("totalServe", getData(user_id, userServiece::cntTotalServe, 0));
+		/*유저관련 통계자료 저장 코드 끝*/
+		
 		session.setAttribute("userPet", petService.getPetInfo(vo));
+		model.addAttribute("data",data);
 
 		return "forward:/myInfo/selectWork";
 	}
 	
 	
+	//통계데이터를 가져올때 예외가생길때를 대비한 메서드입니다.
+	public static<T>T getData(String user_id, Function<String, T>func, T defaultValue){
+		try {
+			return func.apply(user_id);
+		}catch(EmptyResultDataAccessException e) {
+			return defaultValue;
+		}
+	}
+	
+	
 
 	@RequestMapping(value = "/myInfo/my-petImgUpload", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<PetVO> uploadPetImageActionPOST(MultipartFile uploadFile) throws IllegalStateException, IOException {
+	public ResponseEntity<PetVO> uploadPetImageActionPOST(MultipartFile uploadFile, HttpServletRequest request) throws IllegalStateException, IOException {
 		System.out.println("uploadAjaxActionPOST..........");
 		
 		File checkfile = new File(uploadFile.getOriginalFilename());
@@ -120,10 +163,11 @@ public class PetController{
 			return new ResponseEntity<PetVO>(check, HttpStatus.BAD_REQUEST);
 		}
 		
-		String resourcePath = servletContext.getRealPath("/resource");
-		String path = resourcePath + "/assts/upload";
 		
-		String uploadFolder = path;
+	    String applicationPath = request.getServletContext().getRealPath("/");
+	    String[] personalPath = applicationPath.split(File.separator+".metadata");
+	    String pet_img_path = personalPath[0] + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
+		String uploadFolder = pet_img_path;
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
@@ -164,10 +208,9 @@ public class PetController{
 	public ResponseEntity<byte[]>getImage(String fileName, HttpServletRequest request){
 		System.out.println("getImage()....." + fileName);
 		
-		String applicationPath = request.getServletContext().getRealPath("/");
-		String[] personalPath = applicationPath.split("\\.metadata");
-		String pet_img_path = personalPath[0] + "ForPets\\src\\main\\webapp\\resources\\assets\\upload";
-		
+	    String applicationPath = request.getServletContext().getRealPath("/");
+	    String[] personalPath = applicationPath.split(File.separator+".metadata");
+	    String pet_img_path = personalPath[0] + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
 		
 		File file = new File(pet_img_path + fileName);
 		
@@ -184,13 +227,17 @@ public class PetController{
 	}
 	
 	@RequestMapping(value = "/myInfo/delete", method = RequestMethod.POST)
-	public ResponseEntity<String> DeleteImage(String fileName) {
+	public ResponseEntity<String> DeleteImage(String fileName,  HttpServletRequest request) {
 		System.out.println("deleteImage()...."+fileName);
-		String resourcePath = servletContext.getRealPath("/resource");
-		String path = resourcePath + "/assts/upload";
+		
+	    String applicationPath = request.getServletContext().getRealPath("/");
+	    String[] personalPath = applicationPath.split(File.separator+".metadata");
+	    String pet_img_path = personalPath[0] + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
+
+		
 		File file = null;
 		try {
-			file = new File(path + URLDecoder.decode(fileName, "UTF-8"));
+			file = new File(pet_img_path + URLDecoder.decode(fileName, "UTF-8"));
 			file.delete();
 		}catch (Exception e) {
 			e.printStackTrace();

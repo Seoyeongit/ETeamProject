@@ -41,6 +41,12 @@
 	.footer {
 		text-align : center; !important;
 	}
+	.forpets-service-reserve{
+		color : #8bda8b;
+		font-size : 2rem;
+		padding-top : 10px;
+		padding-bottom : 30px;
+	}
 </style>
 
 <script>
@@ -96,6 +102,11 @@ $(document).ready(function(){
 			<section class="section">
 				<div class="row align-items-top">
 					<div class="col-lg-10">
+						<div class="col-lg-12">
+							<div class="col-lg-3 forpets-service-reserve">
+								<span><b>기본</b></span>
+							</div>
+						</div>
 						<form action="getService" method="post">
 							<input type="hidden" value="${member.user_id }" name="user_id">
 							<input type="hidden" id="pet_id" name="pet_id">
@@ -113,7 +124,7 @@ $(document).ready(function(){
 							<div class="card mb-3 col-6" id="set_pet">
 								<div class="row g-0">
 									<div class="col-md-4">
-										<img width="100%" id="pet_img" name="pet_img">
+										<img style="width:100%; height:200px;" id="pet_img" name="pet_img">
 									</div>
 									<div class="col-8 row">
 										<div class="card-body align-self-center">
@@ -204,7 +215,7 @@ $(document).ready(function(){
 							<div class="card mb-3 col-6" id="set_partner">
 								<div class="row g-0">
 									<div class="col-md-4">
-										<img width="100%" id="part_img" name="part_img">
+										<img style="width:100%; height:200px;" id="part_img" name="part_img">
 									</div>
 									<div class="col-8 row">
 										<div class="card-body align-self-center">

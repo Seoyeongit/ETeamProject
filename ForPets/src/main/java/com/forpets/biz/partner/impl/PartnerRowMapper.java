@@ -25,6 +25,7 @@ public class PartnerRowMapper implements RowMapper<PartnerVO> {
 	vo.setPart_no(rs.getInt("PART_NO"));
 	vo.setData_create(rs.getDate("DATA_CREATE"));
 	vo.setSelf_infor(rs.getString("SELF_INFOR"));
+	vo.setImg(rs.getString("PART_IMG"));
 	
 	return vo;
 	

@@ -28,4 +28,11 @@ public interface CommunityService {
 	// 소모임코드 총 갯수
 	public String getlistcount();
 	
+	// 특정유저의 게시글 보기
+	List<CommunityVO> getListMyPost(String user_id);
+	
+	// 특정유저가 답변한 게시글보기
+	List<CommunityVO> getPostInMyAnswer(String user_id);
+	
+	
 }

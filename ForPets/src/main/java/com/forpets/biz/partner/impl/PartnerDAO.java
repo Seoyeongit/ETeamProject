@@ -18,7 +18,7 @@ public class PartnerDAO {
 	
 	private final String PARTNER_LIST = "select * from PARTNERS order by part_id desc";
 	private final String PARTNER_GET = "select * from PARTNERS where part_id = ?";
-	private final String PARTNER_UPDATE = "UPDATE PARTNERS SET PART_PW=?, PART_NICK=?, PART_ADD=?, PART_PHNUMBER=?, SELF_INFOR=?" + " WHERE PART_ID=?";
+	private final String PARTNER_UPDATE = "UPDATE PARTNERS SET PART_PW=?, PART_NICK=?, PART_ADD=?, PART_PHNUMBER=?, SELF_INFOR=? ,PART_IMG=? "  + " WHERE PART_ID=?";
 	private final String INSERT_PartImg = "UPDATE partners SET PART_IMG=? WHERE PART_ID = ? ";
 	
 	public List<PartnerVO> getPartnerList(PartnerVO vo) {
@@ -42,6 +42,7 @@ public class PartnerDAO {
 					newPartner.setPart_no(resultSet.getInt("PART_NO"));
 					newPartner.setData_create(resultSet.getDate("DATA_CREATE"));
 					newPartner.setSelf_infor(resultSet.getString("SELF_INFOR"));
+					newPartner.setImg(resultSet.getString("PART_IMG"));
 					return newPartner;
 				}
 				, part_id);
@@ -55,7 +56,8 @@ public class PartnerDAO {
 	}
 	
 	public void updatePartner(PartnerVO vo) {
-		Object[] obj = {vo.getPart_pw(), vo.getPart_nick(), vo.getPart_add(), vo.getPart_phnumber(), vo.getSelf_infor(), vo.getPart_id()};
+		System.out.println(vo.getImg());
+		Object[] obj = {vo.getPart_pw(), vo.getPart_nick(), vo.getPart_add(), vo.getPart_phnumber(), vo.getSelf_infor(), vo.getImg(), vo.getPart_id()};
 		jdbcTemplate.update(PARTNER_UPDATE, obj);
 	}
 	

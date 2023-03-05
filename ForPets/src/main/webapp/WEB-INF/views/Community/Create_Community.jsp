@@ -6,9 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<jsp:include page="/WEB-INF/views/nav.jsp"/>
 <jsp:include page="../favicon.jsp"/>
+<meta charset="UTF-8">
+<title>make community</title>
+<jsp:include page="/WEB-INF/views/nav.jsp"/>
  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -118,7 +119,6 @@
 	    margin: auto;
 	    background-color: #fff;
 	    border: solid #e8e8e8;
-	    /* border-width: 0 1px; */
 	    -webkit-box-sizing: content-box;
 	    box-sizing: content-box;
 	    margin-bottom: 40px;
@@ -181,11 +181,12 @@
 	    border: 1px solid #C4C4C4;
 	    box-sizing: border-box;
 	    border-radius: 10px;
-	    padding: 12px 13px;
+		height: 30px;
 	    font-family: 'Roboto';
 	    font-style: normal;
 	    font-weight: 400;
-	    font-size: 14px;
+	    font-size: 12px;
+
 	    line-height: 16px;
 	}
 	
@@ -198,12 +199,11 @@
 	}
 	
 	table {
-  border-spacing: 10px;
-  border-collapse: separate;
-}
+	  border-spacing: 10px;
+	  border-collapse: separate;
+	}
 
 </style>
-<title>make community</title>
 </head>
 <body>
 
@@ -217,7 +217,7 @@
 
  	
 
-<form action="../insertcommunity" method="post" >
+<form action="${pageContext.request.contextPath}/insertcommunity" method="post" >
  
  		<div class="content_guide">
  		<c:choose>
@@ -285,7 +285,9 @@
 			<!-- 	<input type="hidden" name="sd_order"> -->
 				<input class="svinput" type="text" placeholder = "질문 내용을 입력해 주세요." size=60 name="sd_title1"></td>
 			<td><select id="surOpt" name="sd_type1" class="pl">
-					<option value="">-- 유형을 선택해 주세요 --</option>
+
+					<option value="">-- 설문지 유형을 선택해 주세요 --</option>
+
 					<option value="gaek">객관식</option>
 					<option value="ju">주관식</option>
 					<option value="check">체크박스</option>

@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="../favicon.jsp"></jsp:include>
 <meta charset="UTF-8">
 <link href="${pageContext.request.contextPath}/resources/css/customer.css" rel="stylesheet" />
 <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
@@ -16,19 +17,17 @@
 	margin-top:5%;
 	}
 	.my-cust-tb {
-		margin-top:15px;
+		margin-top:2%;
 		width:60%;
 		margin-right:auto;
 		margin-left:auto;
 		text-align:center;
 	}
-	.cust_hr {
-	border:1px solid black;
-	width:60%;
-	margin-left:20%;
-	}
 	.cust-no{
 		with:5%;
+	}
+	.list-title {
+		height:50px;
 	}
 	.cust-boa {
 	width:250px;
@@ -37,15 +36,23 @@
 	border:none;
 	}
 	.cust-line {
+	margin-top:50px;
 	border-bottom:1px solid rgb(128,128,128, 0.7);
+	border-top:2px solid rgb(128,128,128, 0.7);
+	height:50px;
 	}
 	.back-bt {
+	margin-bottom:5%;
 	background-color:white;
 	border:1px solid rgb(128,128,128, 0.7);
 	}
 	.text-center{
 		margin-top:5%;
 	}
+	.cust-boa {
+		margin-right:48%;
+	}
+	
 	.pagination-forpets {
       display: flex;
       padding-left: 0;
@@ -85,6 +92,11 @@
       border-top-right-radius: 0.25rem;
       border-bottom-right-radius: 0.25rem;
    }
+   .footer{
+	text-align: center;
+  	font-size: 0.9rem;
+  	font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	}
 </style>
 </head>
 <body>
@@ -100,14 +112,13 @@
 		</div>
 	</fieldset>
 	</form>
-	<h4 class="cust-hd">내 문의 내역</h4>
-	<hr class="cust_hr">
+	<h4 class="cust-hd"><b>내 문의 내역</b></h4>
 	<table class="my-cust-tb">
 			<c:forEach items="${myCustBoard }" var="customer">
 			<tr class="cust-line">
-					<td><div class="cust-no">${customer.cust_no }</div></td>
+					<td><div class="cust-no" style="display:none">${customer.cust_no }</div></td>
 					<td class="cust-tit-td"><button type="button" class="cust-boa" onclick="location.href='getCustomerBoardView?cust_no=${customer.cust_no}';">${ customer.cust_title }</button></td>
-					<td><div  class="cust-id-td"><c:choose>
+					<td><div  class="cust-id-td" style="display:none"><c:choose>
 	                    <c:when test="${customer.user_id == ' '}">
 	                    	<div>${customer.part_id }</div>
 	                    </c:when>
@@ -155,6 +166,7 @@
          <input type='hidden' name='searchKeyword'   value='<c:out value="${ pageMaker.cri.searchKeyword }"/>'>
      </form>
 	<button type="button" class="back-bt" onclick="location.href='customer.do';">뒤로가기</button>	
+	<%@ include file="/WEB-INF/views/footer.jsp" %>
 <script>
   	$(function(){
       $(".paginate_button a").on("click",

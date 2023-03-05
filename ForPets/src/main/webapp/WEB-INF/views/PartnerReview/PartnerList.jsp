@@ -6,8 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="../favicon.jsp" />
 <meta charset="UTF-8">
- <jsp:include page="/WEB-INF/views/nav.jsp"/>
+<title>포펫츠 펫트너즈</title>
+<jsp:include page="/WEB-INF/views/nav.jsp"/>
   <style>
   	body{
 	    background: #F5F5F5;
@@ -82,37 +84,20 @@
   }
 
   </style>
-<title>포펫츠 펫트너즈</title>
-
+  
 </head>
-
 <body>
 <div class="background">
 
 	<h1 style="text-align: center;">포펫츠의 펫트너즈를 소개합니다!</h1>
 	<h5 style="text-align: center;">원하는 펫트너즈를 클릭하면 리뷰보기로 이동합니다!</h5>
 	
-<%--  	<nav class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">
-                <span class="d-block d-lg-none">${partners.part_name }</span>
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="..." /></span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partner/modifyyy">파트너 정보보기</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/partner/careDiaryList">파트너 후기 전체 보기</a></li>
-
-                </ul>
-            </div>
-        </nav> --%>
-
        
       
        	  <c:forEach items="${prList }" var="pl">
         	<div class="box">
         		<div class="image">
-        			<img src = "${pageContext.request.contextPath}/resources/assets/img/commu/rabbitcomm.webp" style="width: 433px; height: 254px; border-radius: 3px; object-fit: cover;">
+        			<img src = "../partner/display?fileName=${pl.img }" style="width: 433px; height: 254px; border-radius: 3px; object-fit: cover;">
         		</div>
         				<div class="text_area note-has-grid">
 						

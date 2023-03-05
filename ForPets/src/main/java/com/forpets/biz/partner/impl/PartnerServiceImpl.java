@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.forpets.biz.customer.CustomerVO;
+import com.forpets.biz.customer.SearchCriteria;
 import com.forpets.biz.partner.PartnerService;
 import com.forpets.biz.partner.PartnerVO;
 
@@ -49,4 +52,5 @@ public class PartnerServiceImpl implements PartnerService {
 		partnerDAO.updatePartnerImg(vo);
 		
 	}
+	
 }

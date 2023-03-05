@@ -6,10 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="../favicon.jsp"></jsp:include>
 <meta charset="UTF-8">
 <title>community list</title>
 <jsp:include page="/WEB-INF/views/nav.jsp"/>
-<jsp:include page="../favicon.jsp"/>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" 
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" >
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" 
@@ -68,7 +68,23 @@
     color: #999;
     font-weight: 500;
 	}   
+	
+	.d-flex {
+	    grid-gap: 5px;
+	}
+	
+	.cbtn {
+		font-size: 11px; 
+		font-weight: 500; 
+		background-color: #19CE60; 
+		color: white; 
+		--bs-btn-padding-y: 0rem; 
+		--bs-btn-padding-x: 0.5rem; 
+		border-radius: 40px;s
+			                    		
+	}
 </style>
+
 </head>
 <body>
 
@@ -77,10 +93,13 @@
 
 
 	<h1 style="text-align: center;">소모임 목록</h1>
-	<h5 style="text-align: center;">원하는 소모임을 찾아보세요 ! <a href="getcommunity"><input type="button" class="btn btn-sm btn-block" value="글 작성하러 가기"></a></h5>
-	<br>
 
+	<c:if test="${member.user_id != null}">
+		<h5 style="text-align: center;">원하는 소모임을 찾아보세요 ! 
+			<a href="getcommunity"><input type="button" class="btn btn-sm btn-block" value="글 작성하러 가기"></a></h5>
+	</c:if>
 	
+		<br>
 		
 	<div class="bg" style="justify-content: center;">
 	<form action="communitylist" method="post" class="list">
@@ -94,18 +113,43 @@
 		            <div class="tab-content bg-transparent ">
 		                <div id="note-full-container" class="note-has-grid row">
 		                    <div class="single-note-item all-category">
-		                    	<h5 class="note-title text-truncate"><a href="viewcommunityboard/${ community.c_code}">${community.c_title }</a>
-		                    	<c:if test="${community.c_date eq min }">
-		                    	<span class="badge rounded-pill bg-light text-dark" style="font-size:0.5em; ">new</span>
-		                    	</c:if>	</h5>
-		                    		 
+		                    	<div class="d-flex flex-row">
+		                    	<h5 class="note-title text-truncate">
+		                    	
+		                    	<c:set var="loop_flag" value="false" />
+			                    <c:forEach items="${svcode }" var="scode">
+			                    	<c:if test="${not loop_flag }">
+				                    	<c:choose>
+				                    		<c:when test="${community.c_code eq scode.s_code}">
+				                    			<a href="viewcommunityboard/${ community.c_code}/${scode.s_svcode}">${community.c_title }</a>
+				                    			<c:set var="loop_flag" value="true" />
+				                    		</c:when>
+	    								</c:choose>
+			                    	</c:if>
+		                    	</c:forEach>
+		                    	<c:if test="${not loop_flag }">
+		                    		<a href="viewcommunityboard/${ community.c_code}">${community.c_title }</a>
+		                    	</c:if>
+		                    	
+			                    
+			                    
+			                    	<c:if test="${community.c_date eq min }">
+			                    		<span class="badge text-light rounded-pill" style="font-size:0.5em; background-color:#0055FE;">new</span>
+			                    	</c:if>
+		                    	</h5>
+								
+								<c:forEach items="${svcode }" var="scode">
+		                    		<c:choose>
+			                    		<c:when test="${community.c_code eq scode.s_code}"><a href="${pageContext.request.contextPath}/surveyboard.do/${scode.s_svcode}" style="margin-top: 3px;">
+			                    			<input type="button" class="btn btn-sm btn-block cbtn" value="설문지"></a>
+			                    		</c:when>		
+    								</c:choose>
+		                    	</c:forEach> 
+		                   
+		                    	</div> 
 		                    	 <h5 class="note">작성날짜 | ${community.c_date }</h5>
 		                    	
-		                    	<c:forEach items="${svcode }" var="scode">
-		                    	<c:choose>
-		                    		<c:when test="${community.c_code eq scode.s_code}"><a href="${pageContext.request.contextPath}/surveyboard.do/${scode.s_svcode}"><input type="button" class="btn btn-sm btn-block" value="설문지"></a></c:when>
-		                    	</c:choose>
-		                    	</c:forEach>           		
+		                              		
 		                  		  
 		                  		   <br><br><br><hr>
 		                    			<p class="note-date font-11 text-muted">작성자 | ${community.user_id }</p>

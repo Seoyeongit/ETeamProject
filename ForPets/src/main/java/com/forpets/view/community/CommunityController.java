@@ -3,6 +3,7 @@ package com.forpets.view.community;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -37,7 +38,6 @@ public class CommunityController {
 		mav.setViewName("/Community/Community_List");
 		mav.addObject("communityList", comservice.getCommunityList());
 		mav.addObject("svcode", svservice.getSurveyList());	
-		// System.out.println("커뮤니티목록 생성");
 		return mav;
 	}
 	
@@ -46,9 +46,6 @@ public class CommunityController {
 	public ModelAndView insertcommunity() throws Exception {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/Community/Create_Community");
-//		mav.addObject("listcount", comservice.getlistcount());
-//		mav.addObject("communityList", comservice.getCommunityList());
-		// System.out.println("커뮤니티목록 생성");
 		return mav;
 	}
 	
@@ -73,7 +70,6 @@ public class CommunityController {
 		svo.setC_title(vo.getC_title());
 		svo.setC_content(vo.getC_content());
 		svo.setUser_id(SessionVO.getUser_id());
-//		svo.setUser_id(vo.getUser_id());
 		comservice.insertCommunity(svo);
 		mav.setViewName("/Community/Community_List");
 		mav.addObject("communityList", comservice.getCommunityList());
@@ -89,12 +85,24 @@ public class CommunityController {
 		mav.addObject("communityboard", comservice.getCommunityBoard(c_code));
 		mav.addObject("getdat", datservice.getComdat(c_code));
 		return mav;
-	} 
+	}
+	
+	@RequestMapping(value = "/viewcommunityboard/{c_code}/{sv_code}", method = RequestMethod.GET) 
+	public ModelAndView getCommunityBoard(@PathVariable("c_code") String c_code, @PathVariable("sv_code") String sv_code) throws Exception {
+		System.out.println("c_code : "+c_code);
+		System.out.println("sv_code : " + sv_code);
+		
+		ModelAndView mav = new ModelAndView(); 
+		mav.setViewName("/Community/View_Community");
+		mav.addObject("communityboard", comservice.getCommunityBoard(c_code));
+		mav.addObject("getdat", datservice.getComdat(c_code));
+		mav.addObject("svcode", svservice.getAnswerList(sv_code));
+		return mav;
+	}
 	
 	// 글 수정 -> read
 	@RequestMapping("/updatecommunity/{c_code}") 
 	public ModelAndView updateCommunity(@PathVariable String c_code) throws Exception {
-//		System.out.println(c_code);
 		ModelAndView mav = new ModelAndView(); 
 		mav.setViewName("/Community/Update_Community"); // jsp로 연결
 		mav.addObject("communityboard", comservice.getCommunityBoard(c_code));
@@ -103,7 +111,6 @@ public class CommunityController {
 	
 	@RequestMapping(value = "/updateboard.do", method = RequestMethod.POST)
 	public ModelAndView updateCommunity(@ModelAttribute CommunityVO vo) throws Exception {
-//		System.out.println("컨트롤러 연결");
 		ModelAndView mav = new ModelAndView();
 		CommunityVO svo = new CommunityVO();
 		svo.setC_title(vo.getC_title());
@@ -118,22 +125,41 @@ public class CommunityController {
 	// 글 삭제
 	@RequestMapping("/deletecommunity/{c_code}")
 	public String deleteCommunity(@PathVariable String c_code) throws Exception {
-		// System.out.println("삭제 연결");
 		comservice.deleteCommunity(c_code);
 		return "redirect:/communitylist";
 	}
 	
+	
+	//마이페이지 마이소모임메인페이지를 불러옵니다.
+	@RequestMapping("/myInfo/viewMycommuMain")
+	public String viewMyCommuPage() {
+		return "myInfo/myCommunity_main";
+	}
+	
+	//내가 작성한 소모임 글을 불러옵니다.
+	@RequestMapping("/myInfo/getMyCommu")
+	public String getMyCommunity(HttpSession session, Model model) throws Exception {
+		UserVO sessionVO = (UserVO) session.getAttribute("member");
+		try {
+			model.addAttribute("myCommuList", comservice.getListMyPost(sessionVO.getUser_id()));
+		}catch(EmptyResultDataAccessException e) {
+			model.addAttribute("myCommuList", new CommunityVO());
+		}
+		return "myInfo/myCommunity_post";
+	}
+	
+	//내가참여한소모임글을불러옵니다.
+	@RequestMapping("/myInfo/getCommuInMyAnswer")
+	public String getCommunityInMyAnswer(HttpSession session, Model model) throws Exception {
+		UserVO sessionVO = (UserVO) session.getAttribute("member");
+		try {
+			model.addAttribute("myCommuList", comservice.getPostInMyAnswer(sessionVO.getUser_id()));
+		}catch(EmptyResultDataAccessException e) {
+			model.addAttribute("myCommuList", new CommunityVO());
+		}
+		return "myInfo/myCommunity_answerCommunity";
+	}
+	
 
-//	// 값 불러오기
-//	@RequestMapping(value="/surveyboard/{sd_svcode}", method=RequestMethod.GET)
-//	public ModelAndView getSurveyboard(@PathVariable String sd_svcode) {
-//		ModelAndView mav = new ModelAndView();
-//		// System.out.println(sd_svcode);
-//		mav.setViewName("/Survey/getSurvey");
-//		mav.addObject("surveyboard", svservice.getSurveyBoard(sd_svcode));
-//		mav.addObject("surveyboard2", svservice.getSurveyBoard2(sd_svcode));
-//		mav.addObject("surveyboard3", svservice.getSurveyBoard3(sd_svcode));
-//		return mav;
-//	}
 
 }

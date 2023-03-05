@@ -42,7 +42,10 @@ public class SurveyDetailDAO {
 	public final String SD_NUMBER = "select count(*) from survey_detail where sd_svcode=?";
 	
 	// 설문지 답변 리스트 불러오기
-	public final String ANSWER_LIST = "select * from Survey_answer order by sa_svcode DESC";
+	public final String ANSWER_LIST = "select * from Survey_answer where sa_svcode=?";
+	
+	// 설문지 불러오기 (ajax)
+	public final String ANSWER_NAME = "select user_id from Survey_answer where sa_svcode=? GROUP BY USER_ID";
 	
 	// 설문지 답변 내용 보기
 	public final String GET_ANSWER = "select * from survey_detail where sd_svcode=?";
@@ -179,25 +182,44 @@ public class SurveyDetailDAO {
 		return vo;
 	};
 	
-	public List<SurveyAnswerVO> getAnswerList() {
-		List<SurveyAnswerVO> voList = jdbcTemplate.query(ANSWER_LIST, answerRowMapper);
-		List<SurveyAnswerVO> newList = new ArrayList<SurveyAnswerVO>();
-		String id = "";
-		int count = voList.toArray().length;
-		for(int i=0;i<count;i++) {
-			SurveyAnswerVO svo = voList.get(i);
-			System.out.println("id : " + id);
-			System.out.println("user_id : " + svo.getUser_id());
-			if(svo.getUser_id().equals(id)) {
-				System.out.println("같은 id 이므로 넘어갑니다. ");
-				continue;
-			}
-			System.out.println("다른 Id 이므로 저장합니다.");
-			id = svo.getUser_id();
-			newList.add(svo);
+	public List<SurveyAnswerVO> getAnswerList(String sa_svcode) {
+		System.out.println("==============  리스트 ");
+		return jdbcTemplate.query(ANSWER_LIST, answerRowMapper, sa_svcode);
+	}
+		
+	// 설문지 이름 불러오기 (ajax)
+		private final RowMapper<String> ansnnameRowMapper = (resultSet, rowNum) -> {
+			System.out.println(resultSet.getString("USER_ID"));
+			return resultSet.getString("USER_ID");
+			
+		};
+		
+		public List<String> getAnswerName(String sa_svcode) {
+			System.out.println("DAO : " + sa_svcode);
+			return jdbcTemplate.query(ANSWER_NAME, ansnnameRowMapper, sa_svcode);
 		}
-		return newList;
-	} // 설문지 리스트 end
+				
+//	public List<SurveyAnswerVO> getAnswerList(String sa_svcode) {
+//		List<SurveyAnswerVO> voList = jdbcTemplate.query(ANSWER_LIST, answerRowMapper);
+//		List<SurveyAnswerVO> newList = new ArrayList<SurveyAnswerVO>();
+//		String id = "";
+//		int count = voList.toArray().length;
+//		for(int i=0;i<count;i++) {
+//			SurveyAnswerVO svo = voList.get(i);
+//			System.out.println("id : " + id);
+//			System.out.println("user_id : " + svo.getUser_id());
+//			if(svo.getUser_id().equals(id)) {
+//				System.out.println("같은 id 이므로 넘어갑니다. ");
+//				continue;
+//			}
+//			System.out.println("다른 Id 이므로 저장합니다.");
+//			id = svo.getUser_id();
+//			newList.add(svo);		}
+//		return newList;
+//	} 
+	
+	
+	// 설문지 리스트 end
 	
 	
 	

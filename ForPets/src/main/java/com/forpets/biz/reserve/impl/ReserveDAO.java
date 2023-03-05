@@ -27,7 +27,6 @@ public class ReserveDAO {
 			"AND reserve.USER_ID=? " + 
 			"AND reserve_num=?";
 	
-	private String RESERVE_LIST = "SELECT * FROM RESERVE,PARTNERS,USER_PET WHERE RESERVE.PART_ID= PARTNERS.PART_ID and reserve.pet_id = user_pet.pet_id AND reserve.USER_ID=?";
 	private final String RESERVE_COMPLETELIST = "select reserve.*, partners.part_name, user_pet.pet_name " + 
 			"from reserve " + 
 			"join partners on reserve.part_id = partners.part_id " + 
@@ -111,45 +110,43 @@ public class ReserveDAO {
 	/*
 	 * 특정회원의 예약내역리스트를 조회하는 메서드
 	 */
-	public List<ReServeVO> getReserveList(ReServeVO vo){
-		System.out.println("---> jdbcTemplate로 getReserveList() 기능 처리");
-		
-		Object[] orgs = null;
-		
-		if(vo.getStatus()!=0) {
-			RESERVE_LIST += "AND RESERVE.STATUS=? ORDER BY RESERVE.STATUS, RE_SEQ asc";
-			orgs = new Object[2];
-			orgs[0]= vo.getUser_id();
-			orgs[1]= vo.getStatus();		
-		}else {
-			RESERVE_LIST += "ORDER BY RESERVE.STATUS, RE_SEQ asc";
-			orgs = new Object[1];
-			orgs[0]= vo.getUser_id();	
-		}
-		
-		System.out.println(orgs[0].toString());
-
-		List<ReServeVO> list = jdbcTemplate.query(RESERVE_LIST,orgs,new RserveRowMapper_2());
-		List<ReServeVO> newList = new ArrayList<ReServeVO>();
-		String number = "";
-		
-		int count = list.toArray().length;
-		for(int i = 0; i<count;i++) {
-			ReServeVO rvo = list.get(i);
-			if(rvo.getReserve_num().equals(number)) {
-				
-				System.out.println("같은 예약번호이므로 넘어갑니다.");
-				continue;
-			}
-			System.out.println("다른 예약번호이므로 저장합니다.");
-			number = rvo.getReserve_num();
-			newList.add(rvo);
-		}
-		
-		RESERVE_LIST = "SELECT * FROM RESERVE,PARTNERS,USER_PET WHERE RESERVE.PART_ID= PARTNERS.PART_ID and reserve.pet_id = user_pet.pet_id AND reserve.USER_ID=?";
-
-		return newList;
-		
+	public List<ReServeVO> getReserveList(ReServeVO vo) {
+	    System.out.println("---> jdbcTemplate로 getReserveList() 기능 처리");
+	    
+	    String reserveList = "SELECT * FROM RESERVE,PARTNERS,USER_PET WHERE RESERVE.PART_ID= PARTNERS.PART_ID and reserve.pet_id = user_pet.pet_id AND reserve.USER_ID=?";
+	    
+	    Object[] orgs = null;
+	    
+	    if(vo.getStatus() != 0) {
+	        reserveList += " AND RESERVE.STATUS=? ORDER BY RESERVE.STATUS, RE_SEQ asc";
+	        orgs = new Object[2];
+	        orgs[0] = vo.getUser_id();
+	        orgs[1] = vo.getStatus();      
+	    } else {
+	        reserveList += " ORDER BY RESERVE.STATUS, RE_SEQ asc";
+	        orgs = new Object[1];
+	        orgs[0] = vo.getUser_id();  
+	    }
+	    
+	    System.out.println(orgs[0].toString());
+	    
+	    List<ReServeVO> list = jdbcTemplate.query(reserveList, orgs, new RserveRowMapper_2());
+	    List<ReServeVO> newList = new ArrayList<ReServeVO>();
+	    String number = "";
+	    
+	    int count = list.toArray().length;
+	    for(int i = 0; i < count; i++) {
+	        ReServeVO rvo = list.get(i);
+	        if(rvo.getReserve_num().equals(number)) {
+	            System.out.println("같은 예약번호이므로 넘어갑니다.");
+	            continue;
+	        }
+	        System.out.println("다른 예약번호이므로 저장합니다.");
+	        number = rvo.getReserve_num();
+	        newList.add(rvo);
+	    }
+	    
+	    return newList;
 	}
 	
 	/*

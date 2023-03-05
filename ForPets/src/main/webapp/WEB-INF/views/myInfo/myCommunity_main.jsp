@@ -164,13 +164,14 @@ textarea{
 
 	<div class="container">
 		<div class="section-title text-center mb-5">
-            <h3 class="top-c-sep">나의후기</h3>
+            <h3 class="top-c-sep">나의소모임</h3>
        </div>
 		<div class="row">
 			<div class="col-lg-10 mx-auto mb-4">
 				<div class="section-title text-center ">
-					<button class="btn btn-outline-primary" id="write-my-review">리뷰쓰기</button>
-					<button class="btn btn-outline-primary" id="view-my-review">내가 작성한 리뷰</button>
+					<button class="btn btn-outline-primary" id="view-my-post">개설한 소모임</button>
+					<button class="btn btn-outline-primary" id="view-my-answer">참여한 소모임</button>
+					<button class="btn btn-outline-primary" id="view-my-comment">댓글</button>
 				</div>
 			</div>
 		</div>
@@ -187,7 +188,7 @@ textarea{
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			var liurl = "../myInfo/getCptReserve";
+			var liurl = "../myInfo/getMyCommu";
 			$.ajax({
 				type : 'POST',
 				url : liurl,
@@ -204,9 +205,9 @@ textarea{
 		
 		
 		
-		$('#write-my-review').click(function() {
-			var liurl = "../myInfo/getCptReserve";
-			var newUrl = 'http://localhost:8000/biz/myInfo/review';
+		$('#view-my-post').click(function() {
+			var liurl ="../myInfo/getMyCommu";
+			var newUrl = 'http://localhost:8000/biz/myInfo/getMyCommu';
 			$.ajax({
 				type : 'POST',
 				url : liurl,
@@ -222,9 +223,9 @@ textarea{
 			});
 		});
 		
-		$('#view-my-review').click(function(){
-			var liurl = "../myInfo/getwrittenReview";
-			var newUrl = 'http://localhost:8000/biz/myInfo/review-written';
+		$('#view-my-answer').click(function(){
+			var liurl = "../myInfo/getCommuInMyAnswer";
+			var newUrl = 'http://localhost:8000/biz/myInfo/getCommuinMyAnswer';
 			$.ajax({
 				type : 'POST',
 				url : liurl,
@@ -239,6 +240,53 @@ textarea{
 			});
 		});
 		
+		$('#view-my-comment').click(function(){
+			var liurl = "../myInfo/getMyDat";
+			var newUrl = 'http://localhost:8000/biz/myInfo/getMyDat';
+			$.ajax({
+				type : 'POST',
+				url : liurl,
+				dataType : 'html',
+				success : function(data) {
+					window.history.pushState({}, '', newUrl);
+					$(".filter-result").html(data);
+				},
+				error : function(result) {
+					alert(result);
+				}
+			});
+		});
+		
+		function reload(){
+			$.ajax({
+				type : 'POST',
+				url : '../myInfo/getMyDat',
+				dataType : 'html',
+				success : function(data) {
+					$('.filter-result').html(data);
+				},
+				error : function(result) {
+					alert(result);
+				}
+			});
+		};
+		
+		function relodCommunityMain(){
+			var liurl = "../myInfo/viewMycommuMain";
+
+			$.ajax({
+				type : 'POST',
+				url : liurl,
+				dataType : 'html',
+				success : function(data) {
+					window.history.pushState({}, '', newUrl);
+					display(data);
+				},
+				error : function(result) {
+					alert(result);
+				}
+			});
+		}
 	
 	</script>
 </body>

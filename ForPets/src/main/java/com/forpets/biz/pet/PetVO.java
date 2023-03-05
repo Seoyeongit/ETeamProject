@@ -14,7 +14,7 @@ import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude ="pet_img")
+@ToString
 @Getter @Setter
 public class PetVO {
 	private int id; //펫아이디

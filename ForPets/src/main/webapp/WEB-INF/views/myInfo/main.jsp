@@ -84,7 +84,7 @@ a input[id=register_wark] {
 #sideNav{
 	position: static !important;
 	display: block;
-	padding-top: 91px;
+	padding-top: 50px;
 }
 
 .footer {
@@ -134,6 +134,7 @@ a input[id=register_wark] {
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="check-user-careDiary">돌봄일지</a></li>
 					<li><br></li>
 					<li><p>나의활동</p></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="get-myCommu">나의소모임</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="write-review">나의후기</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="../customerBoard.do">1:1문의</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="../myCustBoard">문의내역</a></li>
@@ -146,7 +147,10 @@ a input[id=register_wark] {
 		</div>
 
 
-		<main class="main" id="main"> </main>
+		<main class="main" id="main">
+			<div class="card-body p-5" id="my-message-sibal">
+			</div>
+		</main>
 
 	</div>
 	
@@ -157,39 +161,32 @@ a input[id=register_wark] {
 
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=037898d01be77d2487543d1d6ea4c210&libraries=services,drawing"></script>
 	<script type="text/javascript">
-		$(document).ready(function() {
+	
+	
+		function display(data){
+			window.scrollTo(0,0);
+			$("#my-message-sibal").html(data);
+		};
+	
+		window.onload = function() {
 			var liurl = "../myInfo/getPetInfo";
 			$.ajax({
 				type : 'POST',
 				url : liurl,
 				dataType : 'html',
 				success : function(data) {
-					$("#main").html(data);
+					$("#my-message-sibal").html(data);
 				},
 				error : function(result) {
 					alert(result);
 				}
 
 			});
-		})
-
-		$(window).on('popstate', function() {
-			//현재 URL에서 데이터를 가져오는 AJAX를 호출합니다.
-			$.ajax({
-				url : location.pathname,
-				success : function(data) {
-					$(".right-profile-card").addClass("card");
-					//가져온 데이터를 현재 페이지에 업데이트합니다.
-					$("#my-message-sibal").html(data);
-				}
-			})
-		});
+		};
 
 		//회원정보수정페이지로 넘어갑니다.
 		$("#edit-user-info").click(function() {
-			var _this = $(this);
 			var liurl = "../myInfo/edit-Profile";
-			$("card-body p-5").html('');
 			var newUrl = 'http://localhost:8000/biz/myInfo/edit-Profile';
 
 			$.ajax({
@@ -198,8 +195,7 @@ a input[id=register_wark] {
 				dataType : 'html',
 				success : function(data) {
 					window.history.pushState({}, '', newUrl);
-					window.scrollTo(0,0);
-					$("#my-message-sibal").html(data);
+					display(data);
 				},
 				error : function(result) {
 					alert(result);
@@ -210,21 +206,17 @@ a input[id=register_wark] {
 
 		//예약정보확인페이지로 넘어갑니다.
 		$('#check-user-reserve').click(function() {
-			var _this = $(this);
 			var liurl = "../myInfo/check-reservation";
 			var newUrl = 'http://localhost:8000/biz/myInfo/check-reservation';
-
-			$("card-body p-5").html('');
 
 			$.ajax({
 				type : 'POST',
 				url : liurl,
 				dataType : 'html',
 				success : function(data) {
+					console.log(data);
 					window.history.pushState({}, '', newUrl);
-					window.scrollTo(0,0);
-					$("#my-message-sibal").html(data);
-
+					display(data);
 				},
 				error : function(result) {
 					alert(result);
@@ -233,16 +225,11 @@ a input[id=register_wark] {
 		});
 		
 
-		
-		
-
 		//돌봄일지 페이지로 넘어갑니다.
 		$('#check-user-careDiary').click(function() {
-			var _this = $(this);
 			var liurl = "../myInfo/viewCare";
 			var newUrl = 'http://localhost:8000/biz/myInfo/viewCare';
 
-			$("card-body p-5").html('');
 
 			$.ajax({
 				type : 'POST',
@@ -250,9 +237,7 @@ a input[id=register_wark] {
 				dataType : 'html',
 				success : function(data) {
 					window.history.pushState({}, '', newUrl);
-					window.scrollTo(0,0);
-					$("#my-message-sibal").html(data);
-
+					display(data);
 				},
 				error : function(result) {
 					alert(result);
@@ -273,10 +258,8 @@ a input[id=register_wark] {
 					diary_id : diary_id
 				},
 				success : function(data) {
-					$(".right-profile-card").removeClass("card");
 					window.history.pushState({}, '', newUrl);
-					window.scrollTo(0,0);
-					$("#my-message-sibal").html(data);
+					display(data);
 				},
 				error : function(result) {
 					alert(result);
@@ -286,9 +269,7 @@ a input[id=register_wark] {
 		
 		//리뷰페이지로 넘어갑니다.
 		$("#write-review").click(function() {
-			var _this = $(this);
 			var liurl = "../myInfo/review";
-			$("card-body p-5").html('');
 			var newUrl = 'http://localhost:8000/biz/myInfo/review';
 
 			$.ajax({
@@ -297,8 +278,7 @@ a input[id=register_wark] {
 				dataType : 'html',
 				success : function(data) {
 					window.history.pushState({}, '', newUrl);
-					window.scrollTo(0,0);
-					$("#my-message-sibal").html(data);
+					display(data);
 				},
 				error : function(result) {
 					alert(result);
@@ -307,6 +287,25 @@ a input[id=register_wark] {
 
 		});
 		
+		//나의소모임페이지로 넘어갑니다.
+		$("#get-myCommu").click(function() {
+			var liurl = "../myInfo/viewMycommuMain";
+			var newUrl = 'http://localhost:8000/biz/myInfo/getMyCommu';
+
+			$.ajax({
+				type : 'POST',
+				url : liurl,
+				dataType : 'html',
+				success : function(data) {
+					window.history.pushState({}, '', newUrl);
+					display(data);
+				},
+				error : function(result) {
+					alert(result);
+				}
+			});
+
+		});
 
 		
 		//산책경로수정페이지가 popup창으로 열립니다.

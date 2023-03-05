@@ -217,7 +217,7 @@
 
  	
 
-<form action="../insertcommunity" method="post" >
+<form action="${pageContext.request.contextPath}/insertcommunity" method="post" >
  
  		<div class="content_guide">
  		<c:choose>

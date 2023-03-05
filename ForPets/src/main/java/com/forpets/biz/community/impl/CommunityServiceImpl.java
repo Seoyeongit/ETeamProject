@@ -48,4 +48,14 @@ public class CommunityServiceImpl implements CommunityService {
 
 	}
 	
+	@Override
+	public List<CommunityVO> getListMyPost(String user_id) {
+		return communityDAO.getListMyPost(user_id);
+	}
+	
+	@Override
+	public List<CommunityVO> getPostInMyAnswer(String user_id) {
+		return communityDAO.getPostInMyAnswer(user_id);
+	}
+	
 }

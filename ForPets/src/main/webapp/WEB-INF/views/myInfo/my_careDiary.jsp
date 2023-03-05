@@ -100,12 +100,10 @@
 
 
 
-            <div class="row">
-                 <div class="col-lg-10 mx-auto mb-4">
+            <div>
                     <div class="section-title text-center ">
                         <h3 class="top-c-sep">돌봄일지보기</h3>
                     </div>
-                </div>
             </div>
             
             	<c:if test="${empty careDIA || careDIA eq ''}">

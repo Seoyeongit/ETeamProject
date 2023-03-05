@@ -3,7 +3,9 @@ package com.forpets.view.community;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -125,6 +127,37 @@ public class CommunityController {
 	public String deleteCommunity(@PathVariable String c_code) throws Exception {
 		comservice.deleteCommunity(c_code);
 		return "redirect:/communitylist";
+	}
+	
+	
+	//마이페이지 마이소모임메인페이지를 불러옵니다.
+	@RequestMapping("/myInfo/viewMycommuMain")
+	public String viewMyCommuPage() {
+		return "myInfo/myCommunity_main";
+	}
+	
+	//내가 작성한 소모임 글을 불러옵니다.
+	@RequestMapping("/myInfo/getMyCommu")
+	public String getMyCommunity(HttpSession session, Model model) throws Exception {
+		UserVO sessionVO = (UserVO) session.getAttribute("member");
+		try {
+			model.addAttribute("myCommuList", comservice.getListMyPost(sessionVO.getUser_id()));
+		}catch(EmptyResultDataAccessException e) {
+			model.addAttribute("myCommuList", new CommunityVO());
+		}
+		return "myInfo/myCommunity_post";
+	}
+	
+	//내가참여한소모임글을불러옵니다.
+	@RequestMapping("/myInfo/getCommuInMyAnswer")
+	public String getCommunityInMyAnswer(HttpSession session, Model model) throws Exception {
+		UserVO sessionVO = (UserVO) session.getAttribute("member");
+		try {
+			model.addAttribute("myCommuList", comservice.getPostInMyAnswer(sessionVO.getUser_id()));
+		}catch(EmptyResultDataAccessException e) {
+			model.addAttribute("myCommuList", new CommunityVO());
+		}
+		return "myInfo/myCommunity_answerCommunity";
 	}
 	
 

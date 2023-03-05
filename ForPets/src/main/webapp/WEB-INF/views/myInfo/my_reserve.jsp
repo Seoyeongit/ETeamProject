@@ -99,6 +99,10 @@
 
 
 	<div class="container" id="reserve-container-root">
+	
+		                    <div class="section-title text-center ">
+                        <h3 class="top-c-sep">예약확인</h3>
+                    </div>
 
 			<div>
 				<div class="col-lg-10 mx-auto mb-4">

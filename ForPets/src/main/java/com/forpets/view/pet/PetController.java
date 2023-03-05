@@ -9,12 +9,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
+import java.util.function.Function;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -29,6 +31,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.pet.PetService;
 import com.forpets.biz.pet.PetVO;
 import com.forpets.biz.pet.WorkVO;
@@ -116,20 +119,31 @@ public class PetController{
 		//유저가입기간을 구합니다.
 		data.put("userJoin", userServiece.cntUserJoinPeriod(user_id));
 		//유저가 자주신청한 펫트너정보를 구합니다.
-		data.put("multiPartInfo", userServiece.multipleTimesPart(user_id));
+		data.put("multiPartInfo", getData(user_id, userServiece::multipleTimesPart, new PartnerVO()));
 		//유저가 자주신청한 펫트너 에게 신청한 횟수를 구합니다.
-		data.put("cntMultiTime", userServiece.cntMultiPleTime(user_id));
+		data.put("cntMultiTime", getData(user_id, userServiece::cntMultiPleTime, 0));
 		//유저가 자주신청한 케어서비스를 구합니다.
-		data.put("multiServe",userServiece.getMultiPleServ(user_id));
+		data.put("multiServe", getData(user_id, userServiece::getMultiPleServ, "없음"));
 		//유저가 소모임참여한 횟수를 구합니다.
-		data.put("communityPrt",userServiece.cntCommunityPrt(user_id));
+		data.put("communityPrt", getData(user_id, userServiece::cntCommunityPrt, 0));
 		//유저가 서비스를 신청한 횟수를 구합니다.
-		data.put("totalServe",userServiece.cntTotalServe(user_id));
+		data.put("totalServe", getData(user_id, userServiece::cntTotalServe, 0));
+		/*유저관련 통계자료 저장 코드 끝*/
 		
 		session.setAttribute("userPet", petService.getPetInfo(vo));
 		model.addAttribute("data",data);
 
 		return "forward:/myInfo/selectWork";
+	}
+	
+	
+	//통계데이터를 가져올때 예외가생길때를 대비한 메서드입니다.
+	public static<T>T getData(String user_id, Function<String, T>func, T defaultValue){
+		try {
+			return func.apply(user_id);
+		}catch(EmptyResultDataAccessException e) {
+			return defaultValue;
+		}
 	}
 	
 	

@@ -21,5 +21,8 @@ public interface ComdatService {
 	
 	// 댓글 삭제하기
 	public void deleteComdat(ComdatVO vo);
+	
+	// 특정유저의 댓글을불러옵니다.
+	public List<ComdatVO> getMyComdat(String user_id);
 }
 

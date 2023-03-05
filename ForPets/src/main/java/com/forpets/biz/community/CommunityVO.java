@@ -20,4 +20,5 @@ public class CommunityVO {
 	private String c_content; //내용
 	private String user_id; //유저아이디
 	private Date c_date; //소모임생성날짜
+	private String c_pet; // 강아지, 고양이
 }

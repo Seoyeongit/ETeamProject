@@ -141,7 +141,13 @@
 			<div class = "title_board">
 				<p class="title_area">${communityboard.c_title }</p>
 					<div class="info">
-						<p class="writer"> <b>${communityboard.user_id }</b> | ${communityboard.c_date }</p>
+						<p class="writer"> <b>${communityboard.user_id }</b> | ${communityboard.c_date } </p>
+						<c:set var="test" value="${svcode[0].sa_svcode }"> </c:set>
+						<c:choose>
+							<c:when  test="${not empty test}">
+						 <a href="${pageContext.request.contextPath}/surveyboard.do/${svcode[0].sa_svcode}" style="float :right">설문지 답변하러 가기</a>
+		 					</c:when>
+		 				</c:choose> 
 		 			</div>
 		 			
 		 			<hr class="hr1"><br>
@@ -152,11 +158,19 @@
 		 	<br>
 	
 		<div class="buttons"> 
-	<c:if test="${member.user_id == communityboard.user_id }">		
-			<a href="../updatecommunity/${communityboard.c_code }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="수정"></a>
-			<a href="../deletecommunity/${communityboard.c_code }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="삭제"></a>
-			<a href="${pageContext.request.contextPath}/answerlist.do/${svcode[0].sa_svcode }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="설문지 답변 확인"></a>
-	</c:if>
+	<c:choose>
+		<c:when test="${member.user_id == communityboard.user_id}">		
+				<a href="../updatecommunity/${communityboard.c_code }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="수정"></a>
+				<a href="../deletecommunity/${communityboard.c_code }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="삭제"></a>
+			<c:choose>
+				<c:when test="${not empty test }">	
+				<a href="${pageContext.request.contextPath}/answerlist.do/${svcode[0].sa_svcode }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="설문지 답변 확인"></a>
+				</c:when>		
+			</c:choose>		
+		</c:when>
+
+	</c:choose>
+
 			<a href="${pageContext.request.contextPath}/communitylist"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="목록보기"></a>		
 		</div>
 	
@@ -214,17 +228,25 @@
    
 	</div>
 	
+
 	<div class="comment">
-	<form action="../insertcomdat" method="post">
-		<input type="hidden" name="d_code" value="${communityboard.c_code }">
-		<input type="hidden" name="user_id">
-
-				<textarea class="comment_board" name="d_content" style="" placeholder="댓글을 입력해 주세요."></textarea>
-				<input type="submit" value="댓글 작성하기" class="btn" style="background-color:#19CE60; color:white; float:right;">
-
-	</form>
+	<c:choose>
+		<c:when test="${member.user_id != null }">
+		<form action="${pageContext.request.contextPath}/insertcomdat" method="post">
+			<input type="hidden" name="d_code" value="${communityboard.c_code }">
+			<input type="hidden" name="user_id">
+	
+					<textarea class="comment_board" name="d_content" style="" placeholder="댓글을 입력해 주세요."></textarea>
+					<input type="submit" value="댓글 작성하기" class="btn" style="background-color:#19CE60; color:white; float:right;">
+	
+		</form>
+		</c:when>
+		<c:otherwise>
+			<p style="text-align: center;"><a href="${pageContext.request.contextPath}/member/login" >로그인</a>을 하시면 댓글 쓰기가 가능합니다.</p>
+		</c:otherwise>
+	</c:choose>
 	</div>
-
+		
 
 	
 

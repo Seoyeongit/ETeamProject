@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Forpets 팁</title>
 <link href="${pageContext.request.contextPath}/resources/css/Tip/tip.css" rel="stylesheet" />
 <style>
 	#main_content {

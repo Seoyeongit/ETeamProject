@@ -140,15 +140,25 @@
  		<div class="content_guide">
 			<div class = "title_board">
 				<p class="title_area">${communityboard.c_title }</p>
-					<div class="info">
+		
+				
+				<div class="info">
 						<p class="writer"> <b>${communityboard.user_id }</b> | ${communityboard.c_date } </p>
-						<c:set var="test" value="${svcode[0].sa_svcode }"> </c:set>
-						<c:choose>
+ 					<c:set var="test" value="${svcode[0].sa_svcode }"> </c:set>
+					<%-- 	<c:choose>
 							<c:when  test="${not empty test}">
-						 <a href="${pageContext.request.contextPath}/surveyboard.do/${svcode[0].sa_svcode}" style="float :right">설문지 답변하러 가기</a>
+						 <a style="float :right" data-value="${s_svcode[0].s_svcode }"onclick="click_ans(this);">설문지 답변하러 가기</a>
 		 					</c:when>
 		 				</c:choose> 
-		 			</div>
+		 				<script>
+		 				function click_ans(s_code) {
+		   					var scode = $(s_code).data("value");
+		   			 		
+			   						window.location.href="${pageContext.request.contextPath}/surveyboard.do/"+scode+"";		
+			   					 
+		   					}
+		 				</script>  --%>
+		 			</div> 
 		 			
 		 			<hr class="hr1"><br>
 
@@ -160,13 +170,13 @@
 		<div class="buttons"> 
 	<c:choose>
 		<c:when test="${member.user_id == communityboard.user_id}">		
-				<a href="../updatecommunity/${communityboard.c_code }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="수정"></a>
-				<a href="../deletecommunity/${communityboard.c_code }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="삭제"></a>
+				<a href="${pageContext.request.contextPath}/updatecommunity/${communityboard.c_code }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="수정"></a>
+				<a href="${pageContext.request.contextPath}/deletecommunity/${communityboard.c_code }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="삭제"></a>
 			<c:choose>
 				<c:when test="${not empty test }">	
 				<a href="${pageContext.request.contextPath}/answerlist.do/${svcode[0].sa_svcode }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="설문지 답변 확인"></a>
 				</c:when>		
-			</c:choose>		
+			</c:choose>		 
 		</c:when>
 
 	</c:choose>
@@ -236,7 +246,7 @@
 			<input type="hidden" name="d_code" value="${communityboard.c_code }">
 			<input type="hidden" name="user_id">
 	
-					<textarea class="comment_board" name="d_content" style="" placeholder="댓글을 입력해 주세요."></textarea>
+					<textarea class="comment_board" name="d_content" style="" placeholder="댓글을 입력해 주세요." required></textarea>
 					<input type="submit" value="댓글 작성하기" class="btn" style="background-color:#19CE60; color:white; float:right;">
 	
 		</form>

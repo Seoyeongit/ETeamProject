@@ -108,9 +108,9 @@
 	<div class="review_guide col-8">
 	<div class="review_list" style="border-left: solid 1.5px #D3D3D3; margin-left:-30px;">
 		
-	<h1> ${user_id } 님이 답변한 설문입니다. </h1>
+	<h4> ${user_id } 님이 답변한 설문입니다. </h4>
 
-	<h3>${answerboard3.s_title }</h3>
+	<h6>${answerboard3.s_title }</h6>
  	<input type="hidden" name="sd_svcode" value="${answerboard3.s_svcode }">
 
 	<table>

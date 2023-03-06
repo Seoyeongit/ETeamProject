@@ -101,6 +101,7 @@ public class CommunityController {
 		mav.addObject("communityboard", comservice.getCommunityBoard(c_code));
 		mav.addObject("getdat", datservice.getComdat(c_code));
 		mav.addObject("svcode", svservice.getAnswerList(sv_code));
+		mav.addObject("sv_add",sv_code);
 		return mav;
 	}
 	

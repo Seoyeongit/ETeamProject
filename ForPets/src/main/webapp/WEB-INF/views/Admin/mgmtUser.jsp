@@ -89,7 +89,7 @@
 										<th>주소</th>
 										<th>가입일</th>
 										<th>경고수</th>
-										<th>관리</th>
+										<th>탈퇴</th>
 									</tr>
 								</thead>
 								<tbody>

@@ -20,6 +20,12 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/admin/adminInfo.css?after"
 	rel="stylesheet" type="text/css" />
+<script>
+	$('#form-admin').submit(function() {
+		$('#adminUpdateModal').modal('show');
+		return false;
+	})
+</script>
 </head>
 <body>
 	<div class="d-flex" id="wrapper">
@@ -35,14 +41,13 @@
 						정보</h1>
 				</div>
 				<div class="card shadow mb-5 py-5 px-5">
-					<form action="../modInfo.do" method="post">
+					<form action="../modInfo.do" method="post" id="form-admin">
 						<div class="table-responsive px-5">
 							<table class="table table-borderless align-middle">
 								<tbody>
 									<tr height="50">
 										<td class="align-middle">아이디</td>
-										<td style="width: 80%">
-										<input type="text"
+										<td style="width: 90%"><input type="text"
 											class="form-control" name="adm_id" value="${admin.adm_id}"
 											readonly="readonly" onfocus="this.blur();" tabindex="-1"
 											style="background-color: #f2f5f3;" /></td>
@@ -50,7 +55,7 @@
 
 									<tr height="50">
 										<td class="align-middle">이름</td>
-										<td style="width: 80%"><input type="text"
+										<td style="width: 90%"><input type="text"
 											class="form-control" size="30" name="adm_name"
 											value="${admin.adm_name}"></td>
 									</tr>
@@ -78,7 +83,7 @@
 									<tr height="50">
 										<td align="center" colspan="2"><input type="hidden"
 											name="id" value="${admin.adm_id}"> <input
-											type="submit" value="수정하기">&nbsp;&nbsp;</td>
+											type="submit" class="btn border" value="수정하기"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -88,10 +93,39 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Modal HTML -->
+	<div id="adminUpdateModal" class="modal fade">
+		<div class="modal-dialog modal-confirm modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header flex-column">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title w-100">수정 완료</h4>
+
+				</div>
+				<div class="modal-body">
+					<p>관리자 정보가 성공적으로 수정되었습니다.</p>
+				</div>
+				<div class="modal-footer justify-content-center">
+					<button class="btn btn-success" data-dismiss="modal">
+						<span>확인</span> <i class="material-icons">&#xE5C8;</i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
-<!-- Bootstrap core JS-->
+<!-- Bootstrap c'ore JS-->
+
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <!-- Core theme JS-->
 <script
 	src="${pageContext.request.contextPath}/resources/js/admin/sideBar.js"></script>

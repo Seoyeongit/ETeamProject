@@ -30,5 +30,13 @@ public interface AdminService {
 
 	// 유저 탈퇴
 	public void deleteUser(UserVO uvo, String user_id);
+	
+	// 대시보드
+	// 총 수익
+	public Integer getEarnings();
+	public Integer getUserCount();
+	public Double getReviewAvg();
+	public Integer getReserveCount();
+	public List<AdminVO> getMontlyReserve(AdminVO avo);
 
 }

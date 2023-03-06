@@ -178,9 +178,12 @@ public class AdminController {
 	public String getDashBoard(AdminVO vo, AdminDAO dao, Model model) {
 		System.out.println("dashboard 이동");
 		
+		
 		HashMap<String, Integer> stats = new HashMap<String, Integer>();
 		stats.put("earnings", admService.getEarnings());
 		model.addAttribute("stats", stats);
+		
+		model.addAttribute("reserve_chart", admService.getMontlyReserve(vo));
 		return "/Admin/mgmt";
 		
 //		HashMap<String, Integer> var = new HashMap<String, Integer>();

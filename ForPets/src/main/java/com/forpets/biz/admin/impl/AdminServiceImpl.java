@@ -53,6 +53,11 @@ public class AdminServiceImpl implements AdminService {
 	public Integer getEarnings() {
 		return adminDAO.getEarnings();
 	}
+
+	@Override
+	public List<AdminVO> getMontlyReserve(AdminVO avo) {
+		return adminDAO.getMontlyReserve(avo);
+	}
 	
 	
 }

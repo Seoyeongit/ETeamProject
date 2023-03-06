@@ -31,6 +31,7 @@ public class AdminDAO {
 			+ "where adm_id=?";
 	private final String TIP_PREV = "select tip_title, tip_img_url from TIP_BOARD order by tip_seq desc";
 	private final String GET_EARNINGS = "SELECT SUM(S_PRICE) FROM SERV RIGHT OUTER JOIN RESERVE USING (S_NUM)";
+	private final String MONTHLY_RESERVE = "SELECT TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') AS year_month, COUNT(*) AS total FROM RESERVE GROUP BY TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') ORDER BY TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') ASC";
 	
 	private final RowMapper<AdminVO> adminRowMapper = (resultSet, rowNum) -> {
 		AdminVO newvo = new AdminVO();
@@ -41,16 +42,17 @@ public class AdminDAO {
 		newvo.setAdm_email(resultSet.getString("adm_email"));
 		newvo.setAdm_no(resultSet.getInt("adm_no"));
 		newvo.setAdm_date(resultSet.getDate("adm_date"));
-		
+
 		return newvo;
 	};
-	
+
 	private final RowMapper<AdminVO> statsRowMapper = (resultSet, rowNum) -> {
 		AdminVO svo = new AdminVO();
-		svo.setEarnings(resultSet.getInt("earnings"));
+		svo.setYear_month(resultSet.getString("year_month"));
+		svo.setMontly_reserve(resultSet.getInt("total"));
 		return svo;
 	};
-	
+
 	private final RowMapper<PartnerVO> partRowMapper = (resultSet, rowNum) -> {
 		PartnerVO pvo = new PartnerVO();
 		pvo.setPart_id(resultSet.getString("part_id"));
@@ -62,17 +64,17 @@ public class AdminDAO {
 		pvo.setPart_phnumber(resultSet.getString("part_phnumber"));
 		return pvo;
 	};
-	
+
 	private final RowMapper<TipVO> tipRowMapper = (resultSet, rowNum) -> {
 		TipVO tvo = new TipVO();
 		tvo.setTip_title(resultSet.getString("tip_title"));
 		tvo.setTip_img_url(resultSet.getString("tip_img_url"));
 		return tvo;
 	};
-	
-	//관리자 정보
+
+	// 관리자 정보
 	public AdminVO getAdmin(AdminVO vo) {
-		Object[] adm = {vo.getAdm_id(), vo.getAdm_pw()};
+		Object[] adm = { vo.getAdm_id(), vo.getAdm_pw() };
 		try {
 			AdminVO admvo = jdbcTemplate.queryForObject(GET_ADMIN, adm, adminRowMapper);
 			return admvo;
@@ -82,14 +84,15 @@ public class AdminDAO {
 //		AdminVO admvo = jdbcTemplate.queryForObject(GET_ADMIN, adm, adminRowMapper);
 //		return admvo;
 	}
-	
+
 	// 관리자 수정
 	public void updateAdmin(AdminVO vo) {
-		jdbcTemplate.update(UPDATE_ADMIN, vo.getAdm_name(), vo.getAdm_phone(), vo.getAdm_email(), vo.getAdm_pw(), vo.getAdm_id());
+		jdbcTemplate.update(UPDATE_ADMIN, vo.getAdm_name(), vo.getAdm_phone(), vo.getAdm_email(), vo.getAdm_pw(),
+				vo.getAdm_id());
 		System.out.println("---> updateAdmin()");
-		System.out.println(vo.getAdm_name() + vo.getAdm_phone() + vo.getAdm_email() + vo.getAdm_pw() +  vo.getAdm_id());
+		System.out.println(vo.getAdm_name() + vo.getAdm_phone() + vo.getAdm_email() + vo.getAdm_pw() + vo.getAdm_id());
 	}
-	
+
 	// 회원 목록
 	public List<UserVO> getUserList(UserVO uvo) {
 		return jdbcTemplate.query(USER_LIST, new UserRowMapper());
@@ -99,7 +102,6 @@ public class AdminDAO {
 	public List<PartnerVO> getPartList(PartnerVO pvo) {
 		return jdbcTemplate.query(PARTNER_LIST, partRowMapper);
 	}
-
 
 	// 팁 게시판 미리보기
 	public List<TipVO> getTipPrev(TipVO tvo) {
@@ -116,9 +118,10 @@ public class AdminDAO {
 		return jdbcTemplate.queryForObject(GET_EARNINGS, Integer.class);
 	}
 	
-	
+	public List<AdminVO> getMontlyReserve(AdminVO avo) {
+		return jdbcTemplate.query(MONTHLY_RESERVE, statsRowMapper);
+	}
+
 	// 소모임 게시판 미리보기
-	
-	
-	
+
 }

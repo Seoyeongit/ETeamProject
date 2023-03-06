@@ -34,5 +34,6 @@ public interface AdminService {
 	// 대시보드
 	// 총 수익
 	public Integer getEarnings();
+	public List<AdminVO> getMontlyReserve(AdminVO avo);
 
 }

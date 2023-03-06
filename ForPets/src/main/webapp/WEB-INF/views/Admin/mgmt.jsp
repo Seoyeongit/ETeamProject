@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +26,9 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/admin/mgmt.css?ver=1.1"
 	rel="stylesheet" type="text/css" />
+
+<script
+	src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
 </head>
 <body>
 	<div class="d-flex" id="wrapper">
@@ -44,38 +48,24 @@
 							<div class="card-body">
 								<div class="row align-items-center">
 									<div class="col mr-2">
-										<div class="text-xs font-weight-bold text-uppercase mb-1">총
+										<div class="text-xs font-weight-bold text-uppercase-gray mb-1">총
 											수익</div>
-										<div class="h5 mb-0 font-weight-bold text-gray-800">${stats.earnings}</div>
-										<div class="mt-2 mb-0 text-muted text-xs">
-											<span class="text-success mr-2"><i
-												class="fa fa-arrow-up"></i> 3.48%</span> <span>Since last
-												month</span>
-										</div>
-									</div>
-									<div class="col-auto">
-										<i class="fas fa-calendar fa-2x text-primary"></i>
+										<div class="h2 mb-0 font-weight-bold text-gray-800">${stats.earnings}원</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+
 					<!-- Earnings (Annual) Card Example -->
 					<div class="col-xl-3 col-md-6 mb-4">
 						<div class="card shadow border-light h-100">
 							<div class="card-body">
 								<div class="row align-items-center">
 									<div class="col mr-2">
-										<div class="text-xs font-weight-bold text-uppercase mb-1">Sales</div>
-										<div class="h5 mb-0 font-weight-bold text-gray-800">650</div>
-										<div class="mt-2 mb-0 text-muted text-xs">
-											<span class="text-success mr-2"><i
-												class="fas fa-arrow-up"></i> 12%</span> <span>Since last
-												years</span>
-										</div>
-									</div>
-									<div class="col-auto">
-										<i class="fas fa-shopping-cart fa-2x text-success"></i>
+										<div class="text-xs font-weight-bold text-uppercase-gray mb-1">총
+											수익</div>
+										<div class="h2 mb-0 font-weight-bold text-gray-800">${stats.earnings}원</div>
 									</div>
 								</div>
 							</div>
@@ -87,17 +77,9 @@
 							<div class="card-body">
 								<div class="row align-items-center">
 									<div class="col mr-2">
-										<div class="text-xs font-weight-bold text-uppercase mb-1">New
-											User</div>
-										<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">366</div>
-										<div class="mt-2 mb-0 text-muted text-xs">
-											<span class="text-success mr-2"><i
-												class="fas fa-arrow-up"></i> 20.4%</span> <span>Since last
-												month</span>
-										</div>
-									</div>
-									<div class="col-auto">
-										<i class="fas fa-users fa-2x text-info"></i>
+										<div class="text-xs font-weight-bold text-uppercase-gray mb-1">총
+											수익</div>
+										<div class="h2 mb-0 font-weight-bold text-gray-800">${reserve_chart[0].montly_reserve}원</div>
 									</div>
 								</div>
 							</div>
@@ -109,32 +91,103 @@
 							<div class="card-body">
 								<div class="row align-items-center">
 									<div class="col mr-2">
-										<div class="text-xs font-weight-bold text-uppercase mb-1">Pending
-											Requests</div>
-										<div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-										<div class="mt-2 mb-0 text-muted text-xs">
-											<span class="text-danger mr-2"><i
-												class="fas fa-arrow-down"></i> 1.10%</span> <span>Since
-												yesterday</span>
-										</div>
-									</div>
-									<div class="col-auto">
-										<i class="fas fa-comments fa-2x text-warning"></i>
+										<div class="text-xs font-weight-bold text-uppercase-gray mb-1">총
+											수익</div>
+										<div class="h2 mb-0 font-weight-bold text-gray-800">${stats.earnings}원</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="card shadow mb-5 py-5 px-5"></div>
+				<div class="card shadow border-light mb-5 py-4 px-5">
+					<div class="row">
+						<div class="h4 m-0 text-xs font-weight-bold text-gray mb-1">월별 예약 수</div>
+					</div>
+					<div class="card-body">
+						<div class="chart-area">
+							<canvas id="myLineChart" height="80"></canvas>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </body>
 <!-- Bootstrap core JS-->
+<script>
+	var reserve = new Array();
+
+	<c:forEach items="${reserve_chart}" var="reserve">
+	reserve.push("${reserve.montly_reserve}");
+	</c:forEach>
+
+	var months = new Array();
+
+	<c:forEach items="${reserve_chart}" var="reserve">
+	months.push("${reserve.year_month}");
+	</c:forEach>
+
+	Chart.defaults.font.family = 'Noto Sans KR';
+
+	const ctx = document.getElementById('myLineChart').getContext('2d');
+	const chart = new Chart(ctx, {
+		// CORE PART !!
+
+		// 라인차트임을 명시
+		type : 'line',
+		data : {
+			// 데이타들의 라벨. X축이 된다.
+			labels : months,
+			// 실제 데이타를 넣는다.                
+			datasets : [ {
+				// 각 데이타의 라벨 
+				label : "예약 수",
+				// 데이타 값. config.data.labels와 수를 같게 해주면 된다.
+				backgroundColor : 'rgb(255, 99, 132)',
+				borderColor : 'rgb(255, 99, 132)',
+				data : reserve,
+				fill : false,
+			} ]
+		},
+		options : {
+			responsive : true,
+			title : {
+				display : true,
+				text : 'Chart.js Line Chart'
+			},
+			tooltips : {
+				mode : 'index',
+				intersect : false,
+			},
+			hover : {
+				mode : 'nearest',
+				intersect : true
+			},
+			scales : {
+				xAxes : [ {
+					display : true,
+					scaleLabel : {
+						display : true,
+						labelString : 'Month'
+					}
+				} ],
+				yAxes : [ {
+					display : true,
+					scaleLabel : {
+						display : true,
+						labelString : 'Value'
+					}
+				} ]
+			}
+		}
+	});
+</script>
+
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script
 	src="${pageContext.request.contextPath}/resources/js/admin/sideBar.js"></script>
+
 </html>

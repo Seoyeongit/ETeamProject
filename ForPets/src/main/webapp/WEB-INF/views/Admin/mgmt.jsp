@@ -101,8 +101,9 @@
 								<div class="row align-items-center">
 									<div class="col">
 										<div class="mb-0 text-gray-800">
-											<p class="h2 mb-0 font-weight-bold"><fmt:formatNumber value="${dstats.reviewAvg}" pattern=".00"/>
-												<span class="h6 mb-0 font-weight-bold">(점)</span>
+											<p class="h2 mb-0 font-weight-bold">
+												<fmt:formatNumber value="${dstats.reviewAvg}" pattern=".00" />
+												/ 5 <span class="h6 mb-0 font-weight-bold">(점)</span>
 											</p>
 										</div>
 									</div>
@@ -144,19 +145,47 @@
 						</div>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-6 md-6 justify-content-center">
+						<div class="card shadow border-light mb-5 py-4 px-5">
+							<div class="row">
+								<div class="h4 m-0 text-xs font-weight-bold text-gray mb-1">월별
+									예약 수</div>
+							</div>
+							<div class="card-body justify-content-center">
+								<div class="chart-area justify-content-center">
+									<canvas id="pieChart"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-6 md-6 justify-content-center">
+						<div class="card shadow border-light mb-5 py-4 px-5">
+							<div class="row">
+								<div class="h4 m-0 text-xs font-weight-bold text-gray mb-1">월별
+									예약 수</div>
+							</div>
+							<div class="card-body">
+								<div class="chart-area">
+									<canvas id="#"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </body>
 <!-- Bootstrap core JS-->
 <script>
-	var reserve = new Array();
+	let reserve = new Array();
 
 	<c:forEach items="${reserve_chart}" var="reserve">
 	reserve.push("${reserve.montly_reserve}");
 	</c:forEach>
 
-	var months = new Array();
+	let months = new Array();
 
 	<c:forEach items="${reserve_chart}" var="reserve">
 	months.push("${reserve.year_month}");
@@ -214,6 +243,28 @@
 					}
 				} ]
 			}
+		}
+	});
+
+	let pieChartData = {
+		labels : [ 'foo', 'bar', 'baz', 'fie', 'foe', 'fee' ],
+		datasets : [ {
+			data : [ 95, 12, 13, 7, 13, 10 ],
+			backgroundColor : [ 'rgb(255, 99, 132)', 'rgb(255, 159, 64)',
+					'rgb(255, 205, 86)', 'rgb(75, 192, 192)',
+					'rgb(54, 162, 235)', 'rgb(153, 102, 255)' ]
+		} ]
+	};
+
+	const ctxp = document.getElementById('pieChart').getContext('2d');
+	const pieChart = new Chart(ctxp, {
+		type : 'pie',
+		data : pieChartData,
+		options : {
+			responsive : false,
+			legend : {
+				display : true
+			},
 		}
 	});
 </script>

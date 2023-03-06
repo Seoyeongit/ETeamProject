@@ -97,7 +97,7 @@
        	  <c:forEach items="${prList }" var="pl">
         	<div class="box">
         		<div class="image">
-        			<img src = "../partner/display?fileName=${pl.img }" style="width: 433px; height: 254px; border-radius: 3px; object-fit: cover;">
+        			<img src = "${pageContext.request.contextPath}/partner/display?fileName=${pl.img }" style="width: 433px; height: 254px; border-radius: 3px; object-fit: cover;">
         		</div>
         				<div class="text_area note-has-grid">
 						

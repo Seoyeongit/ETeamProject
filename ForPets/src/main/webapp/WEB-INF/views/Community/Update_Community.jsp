@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>글 수정하기</title>
 <jsp:include page="/WEB-INF/views/nav.jsp"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" 
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" 
@@ -121,7 +122,15 @@
 			</div>
 			
 			<hr>
-			
+				<select name="c_pet" id="c_pet">
+							<option value="">-- 동물을 선택해 주세요. --</option>
+							<option value="dog">강아지</option>
+							<option value="cat">고양이</option>
+				</select>
+				<script>
+					$("#c_pet").val("${communityboard.c_pet}").prop("selected", true);				
+				</script>
+				
 				<div style="margin-left:25px; text-align:center; color:#808080;">
 					<a>내용을 수정 해 주세요.</a><br>
 				</div>

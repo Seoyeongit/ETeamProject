@@ -19,19 +19,19 @@ public class CommunityDAO {
 	private JdbcTemplate jdbcTemplate;
 
 	private final String COMMUNITY_LIST = "select * from community order by C_DATE DESC ";
-	private final String INSERT_COMMUNITY = "INSERT INTO COMMUNITY (C_CODE, C_TITLE, C_CONTENT, USER_ID, C_DATE) VALUES(?, ?, ?, ?, sysdate)";
+	private final String INSERT_COMMUNITY = "INSERT INTO COMMUNITY (C_CODE, C_TITLE, C_CONTENT, USER_ID, C_DATE, C_PET) VALUES(?, ?, ?, ?, sysdate, ?)";
 	private final String GET_COMMUNITY = "select * from community where C_CODE=?";
 	private final String ALL_NUMBER = "select count(*) from community";
-	private final String UPDATE_COMMUNITY = "update community set C_TITLE=?, C_CONTENT=? where C_CODE=?";
+	private final String UPDATE_COMMUNITY = "update community set C_TITLE=?, C_CONTENT=?, C_PET=? where C_CODE=?";
 	private final String DELETE_COMMUNITY = "delete from community where C_CODE=? ";
-	private final String GET_MYCOMMULIST="select * from community where user_id=?";
+	private final String GET_MYCOMMULIST="select * from community where user_id=? order by C_DATE desc";
 	private final String GET_COMMULIST_INMYANSWER = "select *\r\n" + 
 			"from community\r\n" + 
-			"where c_code = (select distinct c_code\r\n" + 
+			"where c_code in (select distinct c_code\r\n" + 
 			"from community\r\n" + 
 			"join survey on community.c_code = survey.s_code\r\n" + 
 			"join survey_answer on survey.S_SVCODE = survey_answer.sa_svcode\r\n" + 
-			"where survey_answer.user_id =?)";
+			"where survey_answer.user_id =?) order by C_DATE desc";
 	
 	private final RowMapper<CommunityVO> communityRowMapper = (resultSet, rowNum) -> {
 		CommunityVO vo = new CommunityVO();
@@ -40,6 +40,7 @@ public class CommunityDAO {
 		vo.setC_content(resultSet.getString("C_CONTENT"));
 		vo.setUser_id(resultSet.getString("USER_ID"));
 		vo.setC_date(resultSet.getDate("C_DATE"));
+		vo.setC_pet(resultSet.getString("C_PET"));
 		
 		return vo;
 	};
@@ -52,7 +53,7 @@ public class CommunityDAO {
 	
 	public void insertCommunity(CommunityVO vo) {
 		// System.out.println("인서트 보드");
-		jdbcTemplate.update(INSERT_COMMUNITY,vo.getC_code(), vo.getC_title(), vo.getC_content(), vo.getUser_id());
+		jdbcTemplate.update(INSERT_COMMUNITY,vo.getC_code(), vo.getC_title(), vo.getC_content(), vo.getUser_id(), vo.getC_pet());
 	}
 	
 	
@@ -66,6 +67,7 @@ public class CommunityDAO {
 				newvo.setC_content(resultSet.getString("C_CONTENT"));
 				newvo.setUser_id(resultSet.getString("USER_ID"));
 				newvo.setC_date(resultSet.getDate("C_DATE"));
+				newvo.setC_pet(resultSet.getString("C_PET"));
 				return newvo;
 			}
 			, c_code);
@@ -81,7 +83,7 @@ public class CommunityDAO {
 		
 	
 	public void updateCommunity(CommunityVO vo) {
-		jdbcTemplate.update(UPDATE_COMMUNITY, vo.getC_title(), vo.getC_content(), vo.getC_code());
+		jdbcTemplate.update(UPDATE_COMMUNITY, vo.getC_title(), vo.getC_content(), vo.getC_pet(), vo.getC_code());
 	}
 
 	public void deleteCommunity(String c_code) {

@@ -24,7 +24,11 @@ public class ReserveRowMapper implements RowMapper<ReServeVO> {
 			vo.setReserve_day(rs.getString("RESERVE_DAY"));
 			vo.setReserve_time(rs.getString("RESERVE_TIME"));
 			vo.setReserve_add(rs.getString("RESERVE_ADD"));
-			vo.setPick_add(rs.getString("PICK_ADD"));
+			if(rs.getString("PICK_ADD") == null) {
+				vo.setPick_add("");
+			} else {
+				vo.setPick_add(rs.getString("PICK_ADD"));
+			}
 			vo.setReserve_request(rs.getString("RESERVE_REQUEST"));
 			vo.setS_num(rs.getInt("S_NUM"));
 			vo.setPart_id(rs.getString("PART_ID"));

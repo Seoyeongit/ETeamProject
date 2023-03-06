@@ -148,7 +148,7 @@
      <div class="row">
      <div class="pt_guide col-4">
 	<div class="ptinfo"  >
-	    <img src = " ./partner/display?fileName=${img }" style="width: 200px; height: 150px;">
+	    <img src = "${pageContext.request.contextPath}/partner/display?fileName=${img }" style="width: 200px; height: 150px;">
 		<h2>${prList } 펫트너</h2>
 		<input type="hidden" name="part_id" value="${part_id}">
 

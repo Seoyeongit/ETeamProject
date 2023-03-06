@@ -8,7 +8,7 @@
 <head>
 <jsp:include page="../favicon.jsp"></jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title></title>
+<title>Forpets 팁</title>
 <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/Tip/tip.css" rel="stylesheet" />
 <style>

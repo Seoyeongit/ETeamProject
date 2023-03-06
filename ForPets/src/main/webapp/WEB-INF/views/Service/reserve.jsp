@@ -8,7 +8,7 @@
 <head>
 <jsp:include page="../favicon.jsp"></jsp:include>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Forpets 서비스</title>
 <script src="${pageContext.request.contextPath}/resources/js/kakaopay.js" type="text/javascript"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -36,6 +36,11 @@
 	}
 	.footer {
 		text-align : center; !important;
+	}
+	.back-bt {
+		margin-bottom:5%;
+		background-color:white;
+		border:1px solid rgb(128,128,128, 0.7);
 	}
 </style>
 
@@ -175,7 +180,8 @@
 
 							<hr>
 							<div class="col-12">
-								<input type="button" onclick="pay('${servList[0].s_name}', ${total_price})" style="float:right;" value="결제하기">
+								<!-- <input type="button" onclick="pay('${servList[0].s_name}', ${total_price})" style="float:right;" value="결제하기"> -->
+								<button type="button" class="back-bt rounded" onclick="pay('${servList[0].s_name}', ${total_price})" style="float:right;">결제하기</button>
 							</div>
 						</form>
 					</div>

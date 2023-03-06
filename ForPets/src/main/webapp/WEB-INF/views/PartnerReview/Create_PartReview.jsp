@@ -112,7 +112,7 @@
  		<div class="content_guide">
 			<input type="hidden" value="c${date }" name="c_code">
 				<div class = "title_board">
-					<input class="title_area" type="text" name="pr_title" placeholder="제목">
+					<input class="title_area" type="text" name="pr_title" placeholder="제목" required>
 						
 						</div>
 			
@@ -120,7 +120,7 @@
 
 		
 				
-			<div class="mb-3" name="myform" id="myform">
+			<div class="mb-3" name="myform" id="myform" required>
 				<fieldset>
 					<span class="text-bold">파트너 별점을 선택해주세요</span>
 					<input type="radio" name="pr_avg" value="5" id="rate1"><label
@@ -138,7 +138,7 @@
 			
 			<hr>
 			
-		<div style="white-space:pre;"><textarea class="text_area" name="pr_content" placeholder="내용을 입력해 주세요."></textarea></div>
+		<div style="white-space:pre;"><textarea class="text_area" name="pr_content" placeholder="내용을 입력해 주세요." required></textarea></div>
 		
 		
 			<div class="buttons">

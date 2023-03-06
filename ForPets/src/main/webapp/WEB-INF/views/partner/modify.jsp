@@ -24,8 +24,25 @@
         		margin-left:7%;
         		margin-bottom:5%;
         	}
-        	input#file-upload-button{
-        		background-color:white;
+        	.add-num-edit{
+        		margin-top:5px;
+        		margin-bottom:5px;
+        		background-color: #8bda8b;
+				color:#ffffff;
+				border-radius:5px;
+				border:1px solid rgba(128,128,128,0.7);
+				width:10%;
+				height:30px;
+        	}
+        	.up-bt-edit, .back-bt-edit{
+        		margin-top:5px;
+        		margin-bottom:5px;
+        		background-color: #8bda8b;
+				color:#ffffff;
+				border-radius:5px;
+				border:1px solid rgba(128,128,128,0.7);
+				width:7%;
+				height:35px;
         	}
         </style>
     </head>
@@ -64,7 +81,7 @@
 			<div class="img-up" id="uploadResult"></div>
 			<img class="part-pro-img" src="../partner/display?fileName=${partners.img }"/>
 			<label class="input-file-button" for="part_img"></label> 
-			<input type="file" id="part_img" name="part_img" value="이미지 선택"><br>
+			<input type="file" class="img-tag" id="part_img" name="part_img" value="이미지 선택"><br>
 		</div>
 		
 		
@@ -119,7 +136,7 @@
                 <label for="exampleFormControlInput1" class="form-label" >주소</label>
                 <p>현재주소 : ${partners.part_add}</p>
                 <input type="text"class="form-control" id="sample6_postcode" readonly="readonly" placeholder="우편번호">
-                <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+                <input type="button" class="add-num-edit" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
                 <input type="text" class="form-control"  id="sample6_address" readonly="readonly" placeholder="주소"><br>
                 <input type="text" class="form-control"  id="sample6_detailAddress" placeholder="상세주소"><br>
                 <input type="hidden" id="result_partAdd" value="${partners.part_add}" name="part_add">
@@ -131,8 +148,8 @@
         </div>
     </div>
     <div class="cal-12">
-        &nbsp;&nbsp;<input type="button" value="수정하기" id="edituserInfo">
-        <input type="button" value="돌아가기" id="backMainPage">
+        &nbsp;&nbsp;<input type="button" class="up-bt-edit" value="수정하기" id="edituserInfo">
+        <input type="button" class="back-bt-edit" value="돌아가기" id="backMainPage">
     </div>
         
         <!-- Bootstrap core JS-->

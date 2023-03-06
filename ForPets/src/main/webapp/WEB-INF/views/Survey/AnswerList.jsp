@@ -82,9 +82,9 @@
      <div class="row">
      <div class="pt_guide col-4">
 	<div class="ptinfo"  >
-		<h3>답변자 목록</h3>
+		<h5>답변자 목록</h5>
 		
-			<ul style="text-align: center;">
+			<ul>
 			<c:forEach items="${answerList }" var="ans">
 				<li><a href="${pageContext.request.contextPath}/answerboard.do/${add }/${ ans}">${ ans}님의 답변입니다.</a></li>
 			</c:forEach>

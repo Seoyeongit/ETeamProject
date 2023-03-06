@@ -674,7 +674,6 @@ CREATE TABLE reserve
 -- reserve table primary key
 ALTER TABLE reserve ADD CONSTRAINT re_seq PRIMARY KEY (re_seq);
 
-
 -- serv table sequence
 CREATE SEQUENCE serv_seq
   START WITH 1

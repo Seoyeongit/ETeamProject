@@ -174,9 +174,18 @@ public class PartnerController {
 		}
 		
 		String applicationPath = request.getServletContext().getRealPath("/");
-		String[] personalPath = applicationPath.split("\\.metadata");
-		String part_img_path = personalPath[0] + "ForPets\\src\\main\\webapp\\resources\\assets\\upload";
+		 String[] personalPath = applicationPath.split(File.separator+".metadata");
+		 String osName = System.getProperty("os.name");
+		 String part_img_path = null;
+		 if(osName.contains("Windows")) {
+			part_img_path = personalPath[0] + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
+		 } else if (osName.contains("Mac")) {
 		
+			part_img_path = personalPath[0]+ File.separator + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload"  + File.separator;
+		 }
+		
+
+				
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
@@ -216,11 +225,21 @@ public class PartnerController {
 	@RequestMapping("/partner/display")
 	public ResponseEntity<byte[]>getImage(String fileName, HttpServletRequest request){
 		System.out.println("getImage()....." + fileName);
-		
+		System.out.println(request.getServletContext().getRealPath("/"));
 		String applicationPath = request.getServletContext().getRealPath("/");
-		String[] personalPath = applicationPath.split("\\.metadata");
-		String part_img_path = personalPath[0] + "ForPets\\src\\main\\webapp\\resources\\assets\\upload";
+		String[] personalPath = applicationPath.split(File.separator+".metadata");
 		
+		
+		String osName = System.getProperty("os.name");
+		String part_img_path = null;
+		 if(osName.contains("Windows")) {
+			part_img_path = personalPath[0] + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
+		 } else if (osName.contains("Mac")) {
+			String a = "/";
+			String b = "\\";
+			fileName = fileName.replace(b, a);
+			part_img_path = personalPath[0]+ File.separator + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload" + File.separator;
+		 }
 		
 		File file = new File(part_img_path + fileName);
 		
@@ -237,14 +256,24 @@ public class PartnerController {
 	}
 	
 	@RequestMapping(value = "/partner/delete", method = RequestMethod.POST)
-	public ResponseEntity<String> DeleteImage(String fileName) {
+	public ResponseEntity<String> DeleteImage(String fileName, HttpServletRequest request) {
 		System.out.println("deleteImage()...."+fileName);
 
-		String resourcePath = servletContext.getRealPath("/resource");
-		String path = resourcePath + "/assts/upload";
+		String applicationPath = request.getServletContext().getRealPath("/");
+		String[] personalPath = applicationPath.split(File.separator+".metadata");
+		String osName = System.getProperty("os.name");
+		String part_img_path = null;
+		 if(osName.contains("Windows")) {
+			part_img_path = personalPath[0] + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
+		 } else if (osName.contains("Mac")) {
+			 String a = "/";
+				String b = "\\";
+				fileName = fileName.replace(b, a);
+			part_img_path = personalPath[0]+ File.separator + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
+		 }
 		File file = null;
 		try {
-			file = new File(path + URLDecoder.decode(fileName, "UTF-8"));
+			file = new File(part_img_path + URLDecoder.decode(fileName, "UTF-8"));
 			file.delete();
 		}catch (Exception e) {
 			e.printStackTrace();

@@ -178,7 +178,7 @@
             <div>
                 <label for="user_name" class="col-form-label">이름</label>
                 <div>
-                    <input type="text" class="form-control" id="user_name" value="${member.user_name}" name="user_name" autocomplete="off">
+                    <input type="text" class="form-control" id="user_name" value="${member.user_name}" name="user_name" autocomplete="off" readonly="readonly">
                 </div>
             </div>
             <div>

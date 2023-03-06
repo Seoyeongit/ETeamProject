@@ -166,8 +166,18 @@ public class PetController{
 		
 	    String applicationPath = request.getServletContext().getRealPath("/");
 	    String[] personalPath = applicationPath.split(File.separator+".metadata");
-	    String pet_img_path = personalPath[0] + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
-		String uploadFolder = pet_img_path;
+	    String osName = System.getProperty("os.name");
+		String pet_img_path = null;
+		 if(osName.contains("Windows")) {
+			pet_img_path = personalPath[0] + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
+		 } else if (osName.contains("Mac")) {
+			pet_img_path = personalPath[0]+ File.separator + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
+		 }
+	    
+		
+		System.out.println(request.getServletContext().getRealPath("/"));
+		System.out.println(applicationPath.split(File.separator+".metadata"));
+		System.out.println("personalPath[0] : " + personalPath[0]);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
@@ -176,7 +186,7 @@ public class PetController{
 		
 		String datePath = str.replace("-", File.separator);
 		/* 폴더 생성 */
-		File uploadPath = new File(uploadFolder, datePath);
+		File uploadPath = new File(pet_img_path, datePath);
 		
 		if(uploadPath.exists() == false) {
 			uploadPath.mkdirs();
@@ -210,8 +220,16 @@ public class PetController{
 		
 	    String applicationPath = request.getServletContext().getRealPath("/");
 	    String[] personalPath = applicationPath.split(File.separator+".metadata");
-	    String pet_img_path = personalPath[0] + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
-		
+	    String osName = System.getProperty("os.name");
+		String pet_img_path = null;
+		 if(osName.contains("Windows")) {
+			pet_img_path = personalPath[0] + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
+		 } else if (osName.contains("Mac")) {
+			 String a = "/";
+			 String b = "\\";
+			 fileName = fileName.replace(b, a);
+			pet_img_path = personalPath[0]+ File.separator + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload" + File.separator;
+		 }
 		File file = new File(pet_img_path + fileName);
 		
 		ResponseEntity<byte[]> result = null;
@@ -232,8 +250,16 @@ public class PetController{
 		
 	    String applicationPath = request.getServletContext().getRealPath("/");
 	    String[] personalPath = applicationPath.split(File.separator+".metadata");
-	    String pet_img_path = personalPath[0] + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
-
+		String osName = System.getProperty("os.name");
+		String pet_img_path = null;
+		 if(osName.contains("Windows")) {
+			pet_img_path = personalPath[0] + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
+		 } else if (osName.contains("Mac")) {
+			 String a = "/";
+			 String b = "\\";
+			 fileName = fileName.replace(b, a);
+			pet_img_path = personalPath[0]+ File.separator + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload" + File.separator;
+		 }
 		
 		File file = null;
 		try {

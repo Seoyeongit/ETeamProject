@@ -83,7 +83,7 @@ $(document).ready(function(){
    <div class="qs-box font">
       <div class="row container">
          <div class="col-2 d-flex justify-content-center">
-            <button type="button" class="forpets_q show-qa" id="q_1" onclick="show_a(this.id)">자주 묻는 질문 1</button>
+            <button type="button" class="forpets_q show-qa" id="q_1" onclick="show_a(this.id)">회원에서 파트너로 전향하려면 어떻게 해야 하나요</button>
          </div>
          <div class="col-2 d-flex justify-content-center">
             <button type="button" class="forpets_q show-qa" id="q_2" onclick="show_a(this.id)">자주 묻는 질문 2</button>
@@ -102,12 +102,12 @@ $(document).ready(function(){
          
          <div class="col-12" id="q_1_a">
             <div class="qa-box">
-               <h5>자주 묻는 질문 1</h5>
-               <span>자주 묻는 질문 1에 대한 답변입니다.</span><br>
-               <span>자주 묻는 질문 1에 대한 답변입니다.</span><br>
-               <span>자주 묻는 질문 1에 대한 답변입니다.</span><br>
-               <span>자주 묻는 질문 1에 대한 답변입니다.</span><br>
-               <span>자주 묻는 질문 1에 대한 답변입니다.</span><br>
+               <h5>회원에서 파트너로 전향하려면 어떻게 해야 하나요</h5>
+               <span>파트너는 회원분들의 아이를</span><br>
+               <span>자기 자식 처럼 여길 수 있는 분들로</span><br>
+               <span>엄선하고 있기 때문에 관리자가 선별하여</span><br>
+               <span>승인 해드리는 형태 이므로</span><br>
+               <span>관리자에게 신청을 먼저 해주시면 됩니다.</span><br>
             </div>
          </div>
          

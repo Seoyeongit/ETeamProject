@@ -180,7 +180,8 @@ public class PartnerController {
 		 if(osName.contains("Windows")) {
 			part_img_path = personalPath[0] + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
 		 } else if (osName.contains("Mac")) {
-			part_img_path = personalPath[0]+ File.separator + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
+		
+			part_img_path = personalPath[0]+ File.separator + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload"  + File.separator;
 		 }
 		
 
@@ -224,16 +225,20 @@ public class PartnerController {
 	@RequestMapping("/partner/display")
 	public ResponseEntity<byte[]>getImage(String fileName, HttpServletRequest request){
 		System.out.println("getImage()....." + fileName);
-		
+		System.out.println(request.getServletContext().getRealPath("/"));
 		String applicationPath = request.getServletContext().getRealPath("/");
 		String[] personalPath = applicationPath.split(File.separator+".metadata");
+		
 		
 		String osName = System.getProperty("os.name");
 		String part_img_path = null;
 		 if(osName.contains("Windows")) {
 			part_img_path = personalPath[0] + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
 		 } else if (osName.contains("Mac")) {
-			part_img_path = personalPath[0]+ File.separator + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
+			String a = "/";
+			String b = "\\";
+			fileName = fileName.replace(b, a);
+			part_img_path = personalPath[0]+ File.separator + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload" + File.separator;
 		 }
 		
 		File file = new File(part_img_path + fileName);
@@ -261,6 +266,9 @@ public class PartnerController {
 		 if(osName.contains("Windows")) {
 			part_img_path = personalPath[0] + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
 		 } else if (osName.contains("Mac")) {
+			 String a = "/";
+				String b = "\\";
+				fileName = fileName.replace(b, a);
 			part_img_path = personalPath[0]+ File.separator + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
 		 }
 		File file = null;

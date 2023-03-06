@@ -3,6 +3,7 @@ package com.forpets.view.comdat;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -97,7 +98,7 @@ public class ComdatController {
 			model.addAttribute("postInMyDat",list);
 			
 		}catch(EmptyResultDataAccessException e) {
-			model.addAttribute("myDat", new ComdatVO());
+			model.addAttribute("myDat", new ArrayList<ComdatVO>());
 		}
 		return "myInfo/myCommunity_comment";
 	}

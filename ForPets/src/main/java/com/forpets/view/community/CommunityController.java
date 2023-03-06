@@ -1,5 +1,8 @@
 package com.forpets.view.community;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -145,7 +148,7 @@ public class CommunityController {
 		try {
 			model.addAttribute("myCommuList", comservice.getListMyPost(sessionVO.getUser_id()));
 		}catch(EmptyResultDataAccessException e) {
-			model.addAttribute("myCommuList", new CommunityVO());
+			model.addAttribute("myCommuList", new ArrayList<CommunityVO>());
 		}
 		return "myInfo/myCommunity_post";
 	}
@@ -157,7 +160,7 @@ public class CommunityController {
 		try {
 			model.addAttribute("myCommuList", comservice.getPostInMyAnswer(sessionVO.getUser_id()));
 		}catch(EmptyResultDataAccessException e) {
-			model.addAttribute("myCommuList", new CommunityVO());
+			model.addAttribute("myCommuList", new ArrayList<CommunityVO>());
 		}
 		return "myInfo/myCommunity_answerCommunity";
 	}

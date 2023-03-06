@@ -38,16 +38,23 @@
 	display: block;
 	cursor: pointer;
 }
+
+#image-container{
+	width: 500px;
+	height: 500px;
+	background-color: gray;
+}
 </style>
 </head>
 <body>
-	<h3>나의반려동물등록하기</h3>
+	<h3>반려동물수정하기</h3>
 	<hr>
-	<div>케어서비스를 이용하려면 반려동물을 등록해 주세요</div>
 		<br> <br>
 
 		<div>
-			<div id="uploadResult"></div>
+			<div id="uploadResult">
+				<div id="image-container"></div>
+			</div>
 			<label class="input-file-button" for="pet_img">이미지업로드</label> 
 			<input type="file" id="pet_img"><br>
 		</div>
@@ -62,8 +69,6 @@
 		<select name="type" id="pet_type">
 			<option value="dog">강아지</option>
 			<option value="cat">고양이</option>
-			<option value="mouse">햄스터</option>
-			<option value="other">기타</option>
 		</select><br> 
 		
 		<label for="pet_gender">성별</label> 
@@ -166,7 +171,6 @@
 			str += "<div id='result_card'>";
 			str += "<img src=../myInfo/display?fileName=" + fileCallPath + ">";
 			str += "<div class = 'imgDeleteBtn' data-file='"+fileCallPath+"'>x</div>";
-			str += "<input type='text' name='img' id='imgSrc' value='"+fileCallPath+"'>";
 			str += "</div>";
 
 			uploadResult.html(str);

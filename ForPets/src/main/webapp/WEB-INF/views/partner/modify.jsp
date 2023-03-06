@@ -326,12 +326,12 @@ var addr = ''; // 주소 변수
 		//이미지 경로
 		let imgSrc = result.img;
 		//'upload'부터 문자열 끝까지 일치하는 정규식 패턴
-		let regex =/^[A-Z]:.*\\upload/;
-		let str1 = imgSrc.replace(regex,'');
-		console.log(str1);
+		let resultSrc = imgSrc.replace(/^.*[\\\/]upload/, "");
+	
+
 		
 		
-		let fileCallPath = encodeURIComponent(str1);
+		let fileCallPath = encodeURIComponent(resultSrc);
 
 		console.log(fileCallPath);
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,7 +101,7 @@
 								<div class="row align-items-center">
 									<div class="col">
 										<div class="mb-0 text-gray-800">
-											<p class="h2 mb-0 font-weight-bold">${reserve_chart[0].montly_reserve}
+											<p class="h2 mb-0 font-weight-bold"><fmt:formatNumber value="${dstats.reviewAvg}" pattern=".00"/>
 												<span class="h6 mb-0 font-weight-bold">(점)</span>
 											</p>
 										</div>
@@ -122,7 +123,7 @@
 								<div class="row align-items-center">
 									<div class="col">
 										<div class="mb-0 text-gray-800">
-											<p class="h2 mb-0 font-weight-bold">${stats.earnings}<span
+											<p class="h2 mb-0 font-weight-bold">${stats.reserveCount}<span
 													class="h6 mb-0 font-weight-bold">(건)</span>
 											</p>
 										</div>
@@ -134,7 +135,7 @@
 				</div>
 				<div class="card shadow border-light mb-5 py-4 px-5 md-6">
 					<div class="row">
-						<div class="h3 m-0 text-xs font-weight-bold text-gray mb-1">월별
+						<div class="h4 m-0 text-xs font-weight-bold text-gray mb-1">월별
 							예약 수</div>
 					</div>
 					<div class="card-body">

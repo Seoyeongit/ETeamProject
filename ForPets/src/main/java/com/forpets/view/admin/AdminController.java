@@ -182,8 +182,11 @@ public class AdminController {
 		HashMap<String, Integer> stats = new HashMap<String, Integer>();
 		stats.put("earnings", admService.getEarnings());
 		stats.put("userCount", admService.getUserCount());
+		stats.put("reserveCount", admService.getReserveCount());
+		HashMap<String, Double> dstats = new HashMap<String, Double>();
+		dstats.put("reviewAvg", admService.getReviewAvg());
 		model.addAttribute("stats", stats);
-		
+		model.addAttribute("dstats", dstats);
 		model.addAttribute("reserve_chart", admService.getMontlyReserve(vo));
 		return "/Admin/mgmt";
 		

@@ -33,6 +33,7 @@ public class AdminDAO {
 	private final String GET_EARNINGS = "SELECT SUM(S_PRICE) FROM SERV RIGHT OUTER JOIN RESERVE USING (S_NUM)";
 	private final String GET_USERCOUNT = "SELECT COUNT(*) FROM USERS";
 	private final String GET_REVAVG = "select avg(pr_avg) from partner_review";
+	private final String GET_RESERVECOUNT = "SELECT COUNT(*) FROM RESERVE";
 	private final String MONTHLY_RESERVE = "SELECT TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') AS year_month, COUNT(*) AS total FROM RESERVE GROUP BY TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') ORDER BY TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') ASC";
 	
 	
@@ -129,6 +130,10 @@ public class AdminDAO {
 	
 	public double getReviewAvg() {
 		return jdbcTemplate.queryForObject(GET_REVAVG, Double.class);
+	}
+	
+	public int getReserveCount() {
+		return jdbcTemplate.queryForObject(GET_RESERVECOUNT, Integer.class);
 	}
 	
 	public List<AdminVO> getMontlyReserve(AdminVO avo) {

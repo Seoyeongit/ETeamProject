@@ -63,6 +63,17 @@ public class AdminServiceImpl implements AdminService {
 	public Integer getUserCount() {
 		return adminDAO.getUserCount();
 	}
+
+	@Override
+	public Double getReviewAvg() {
+		return adminDAO.getReviewAvg();
+	}
+
+	@Override
+	public Integer getReserveCount() {
+		return adminDAO.getReserveCount();
+	}
+	
 	
 	
 }

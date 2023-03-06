@@ -210,6 +210,14 @@ body {
 	height: 25px;
 	color: #fff;
 }
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+	    filter: brightness(0.5);
+}
+
+.carousel-control-next-icon:focus, .carousel-control-prev-icon:focus {
+	    filter: brightness(0.5);
+}
 </style>
 </head>
 
@@ -268,9 +276,9 @@ body {
 			</div>
 			</c:forEach>
 
-			<div class="carousel-item">
+			<div class="carousel-item  <c:if test="${userPet eq '' || empty userPet}">active</c:if> ">
 				<div class="last-item-box">
-					<p>다른 반려동물을 등록하시겠습니까?</p>
+					<p><c:if test="${not empty userPet}">다른</c:if>반려동물을 등록하시겠습니까?</p>
 					<a href="${pageContext.request.contextPath}/myInfo/my-petView"
 						onclick="window.open(this.href, '_blank', 'width=500, height=800'); return false;">
 						<input type="button" id="register_pet" class="btn pet_reg_btn"

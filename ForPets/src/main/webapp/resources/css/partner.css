@@ -11359,7 +11359,8 @@ p.lead {
     display: flex;
     flex-direction: column;
     width: 17rem;
-    height: 100vh;
+    min-height: 100vh;
+    max-height: 100%;
   }
   #sideNav .navbar-brand {
     display: flex;

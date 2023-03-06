@@ -8,7 +8,7 @@
 <head>
 <jsp:include page="../favicon.jsp"></jsp:include>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Forpets 서비스</title>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/juso.js" ></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/pet_partner.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/pickup_add.js"></script>
@@ -43,6 +43,11 @@
 		font-size : 2rem;
 		padding-top : 10px;
 		padding-bottom : 30px;
+	}
+	.back-bt {
+		margin-bottom:5%;
+		background-color:white;
+		border:1px solid rgb(128,128,128, 0.7);
 	}
 </style>
 
@@ -132,8 +137,8 @@ $(document).ready(function(){
 								</div>
 							</div><!-- End Card with an image on left -->
 							<br>
-							<input type="button" value="내 반려동물 보기" onclick="getPetListPopUp()">
-							
+							<!-- <input type="button" value="내 반려동물 보기" onclick="getPetListPopUp()"> -->
+							<button type="button" class="back-bt rounded" onclick="getPetListPopUp()">내 반려동물 보기</button>
 							<hr>
 							<div class="mb-3 row">
 								<h5><b>서비스 선택</b></h5>
@@ -232,11 +237,12 @@ $(document).ready(function(){
 								</div>
 							</div><!-- End Card with an image on left -->
 							<br>
-							<input type="button" value="파트너선택" onclick="getPartnerListPopUp()">
-							
+							<!-- <input type="button" value="파트너선택" onclick="getPartnerListPopUp()"> -->
+							<button type="button" class="back-bt rounded" onclick="getPartnerListPopUp()">파트너 선택</button>
 							<hr>
 							<div class="col-12">
-								<input type="button" value="다음" onclick="reserveMake()" style="float:right;">
+								<!-- <input type="button" value="다음" onclick="reserveMake()" style="float:right;"> -->
+								<button type="button" class="back-bt rounded" onclick="reserveMake()" style="float:right;">다음</button>
 							</div>
 						</form>
 					</div>

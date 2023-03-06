@@ -6,7 +6,7 @@
 <head>
 <jsp:include page="../favicon.jsp"></jsp:include>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Forpets 서비스</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/Tip/tip.css" rel="stylesheet" />
 <style>

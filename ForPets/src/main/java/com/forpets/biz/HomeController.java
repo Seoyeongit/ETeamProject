@@ -14,8 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.forpets.biz.community.CommunityService;
 import com.forpets.biz.reserve.ReserveService;
 import com.forpets.biz.review.ReviewService;
+import com.forpets.biz.survey.SurveyDetailService;
 
 /**
  * Handles requests for the application home page.
@@ -25,14 +27,23 @@ public class HomeController {
 	@Autowired
 	private ReviewService reviewService;
 	
+	@Autowired
+	CommunityService comservice;
+	
+	@Autowired
+	SurveyDetailService svservice;
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 
 	@RequestMapping(value = "/")
-	public String home(HttpServletRequest request, Model model) {
+	public String home(HttpServletRequest request, Model model) throws Exception {
 		request.getSession(false);
 
 		model.addAttribute("reviewList", reviewService.getReviewListAll());
+		
+		model.addAttribute("communityList", comservice.getCommunityList());
+		model.addAttribute("svcode", svservice.getSurveyList());	
 		return "home";
 	}
 	

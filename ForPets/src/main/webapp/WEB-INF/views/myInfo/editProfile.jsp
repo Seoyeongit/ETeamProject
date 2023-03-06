@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
     <head>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -55,6 +56,13 @@
 			
 			#find-address{
 				margin-right: 15px;
+			}
+			
+			.phnumber{
+				display: flex;
+				flex-direction: row;
+				grid-gap : 10px;
+				align-items: center;
 			}
 			
 			
@@ -138,16 +146,15 @@
     	</style>
     </head>
 
-
   <div class="adit-form-box">   
     <h2>회원 정보 수정</h2>
     <p style="text-align: center;">사이트 이용에 필요한 정보들을 입력합니다.</p>
-
+<form>
     <div class="adit-form-content container-sm text-bg-light">
         <div class="info-box">
             <div class="">
                 <label for="user_id" class="form-label" >아이디</label>
-                <input type="text" class="form-control" id="user_id" value="${member.user_id}" name="user_id" readonly="readonly">
+                <input type="text" class="form-control" id="user_id" value="${member.user_id}" name="user_id" readonly="readonly"  autocomplete="username">
             </div>
         </div>
 
@@ -161,7 +168,7 @@
             <div>
                 <label for="inputPassword" >비밀번호확인</label>
                 <div>
-                    <input type="password" class="form-control" id="pwChk">
+                    <input type="password" class="form-control" id="pwChk" autocomplete="new-password">
                 </div>
             </div>
         </div>
@@ -171,13 +178,13 @@
             <div>
                 <label for="user_name" class="col-form-label">이름</label>
                 <div>
-                    <input type="text" class="form-control" id="user_name" value="${member.user_name}" name="user_name">
+                    <input type="text" class="form-control" id="user_name" value="${member.user_name}" name="user_name" autocomplete="off">
                 </div>
             </div>
             <div>
                 <label for="user_nick" class="col-form-label">닉네임</label>
                 <div class=" ">
-                    <input type="text" class="form-control" id="user_nick" value="${member.user_nick}" name="user_nick">
+                    <input type="text" class="form-control" id="user_nick" value="${member.user_nick}" name="user_nick" autocomplete="off">
                 </div>
             </div>
         </div>
@@ -185,16 +192,17 @@
         <div class="info-box">
             <div class="birth">
                 <label for="user_phnumber" class="form-label" >생년월일</label>
-                <input class="form-control" id="user-birth" placeholder="YYYY-MM-DD" autocomplete="off">
+                <input class="form-control" id="user-birth" placeholder="YYYY-MM-DD" autocomplete="off" value="${member.birth }">
             </div>
         </div>
         
-        
 
         <div class="info-box">
-            <div class="">
                 <label for="user_phnumber" class="form-label" >전화번호</label>
-                <input type="text" class="form-control" id="user_phnumber" value="${member.phnumber}" name="phnumber">
+            <div class="phnumber">
+                <input type="text" class="form-control" id="user_phnumber_1" autocomplete="off" value="${fn:substring(member.phnumber ,0,3) }">-
+                <input type="text" class="form-control" id="user_phnumber_2" autocomplete="off" value="${fn:substring(member.phnumber ,3,7)}">-
+                <input type="text" class="form-control" id="user_phnumber_3" autocomplete="off" value="${fn:substring(member.phnumber ,7,11)}">
             </div>
         </div>
 
@@ -220,9 +228,11 @@
         <input type="button" value="돌아가기" id="backMainPage">
     </div>
    </div>
+ </form>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+
 
 
 var addr = ''; // 주소 변수
@@ -274,8 +284,9 @@ function execution_kakao_address() {
     			user_pw:$("#user_pw").val(),
     			user_name:$("#user_name").val(),
     			user_nick:$("#user_nick").val(),
-    			phnumber:Number($("#user_phnumber").val()),
-    			user_add:$("#result_userAdd").val()
+    			phnumber:$("#user_phnumber_1").val()+"-"+$("#user_phnumber_2").val()+"-"+$("#user_phnumber_3").val(),
+    			user_add:$("#result_userAdd").val(),
+    			birthStr:$('#user-birth').val()
     		},
     		dataType : "text",
     		type : "GET",
@@ -310,7 +321,5 @@ function execution_kakao_address() {
 		}); 
 	});
 	
-
-
 
  </script>

@@ -24,14 +24,14 @@ public class CommunityDAO {
 	private final String ALL_NUMBER = "select count(*) from community";
 	private final String UPDATE_COMMUNITY = "update community set C_TITLE=?, C_CONTENT=? where C_CODE=?";
 	private final String DELETE_COMMUNITY = "delete from community where C_CODE=? ";
-	private final String GET_MYCOMMULIST="select * from community where user_id=?";
+	private final String GET_MYCOMMULIST="select * from community where user_id=? order by C_DATE desc";
 	private final String GET_COMMULIST_INMYANSWER = "select *\r\n" + 
 			"from community\r\n" + 
 			"where c_code in (select distinct c_code\r\n" + 
 			"from community\r\n" + 
 			"join survey on community.c_code = survey.s_code\r\n" + 
 			"join survey_answer on survey.S_SVCODE = survey_answer.sa_svcode\r\n" + 
-			"where survey_answer.user_id =?)";
+			"where survey_answer.user_id =?) order by C_DATE desc";
 	
 	private final RowMapper<CommunityVO> communityRowMapper = (resultSet, rowNum) -> {
 		CommunityVO vo = new CommunityVO();

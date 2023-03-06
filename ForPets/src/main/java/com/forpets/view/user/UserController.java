@@ -1,5 +1,9 @@
 package com.forpets.view.user;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -33,10 +37,16 @@ public class UserController {
 	
 	//회원정보수정처리
 	@RequestMapping(value="/myInfo/edit")
-	public String updateProfile(@ModelAttribute("member")UserVO vo, UserDAO userDAO,HttpServletRequest request) {
+	public String updateProfile(@ModelAttribute("member")UserVO vo, UserDAO userDAO,HttpServletRequest request, String birthStr) {
 		System.out.println("회원 정보 수정 처리");
 		System.out.println("member : " + vo.toString());
 		
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			vo.setBirth(format.parse(birthStr));
+		} catch (ParseException e) {
+			return "error";
+		}
 		
 		//새로운 세션생성을 방지한다.
 		HttpSession session = request.getSession(false);

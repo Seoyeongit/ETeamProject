@@ -50,7 +50,7 @@
                        
                         <c:choose>
                         <c:when test="${role eq 'partners' }">
-                        	<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/partner/partnerMain">파트너 페이지</a></li>
+                        	<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/partner/partnerMain">펫트너 페이지</a></li>
                         	<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
                         </c:when>
                         

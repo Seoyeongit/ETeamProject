@@ -13,7 +13,7 @@
 <title>고객 센터</title>
 <style>
 	.cust-hd {
-	margin-left:30%;
+	margin-left:22%;
 	margin-top:5%;
 	}
 	.my-cust-tb {
@@ -165,7 +165,7 @@
          <input type='hidden' name='searchCondition' value='<c:out value="${ pageMaker.cri.searchCondition }"/>'> 
          <input type='hidden' name='searchKeyword'   value='<c:out value="${ pageMaker.cri.searchKeyword }"/>'>
      </form>
-	<button type="button" class="back-bt" onclick="location.href='customer.do';">뒤로가기</button>	
+	<button type="button" class="back-bt" onclick="location.href='customerMain';">뒤로가기</button>	
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
 <script>
   	$(function(){

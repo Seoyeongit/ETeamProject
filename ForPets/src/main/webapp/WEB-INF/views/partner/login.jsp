@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/login.css" rel="stylesheet" />
-<title>파트너 로그인</title>
+<title>펫트너 로그인</title>
 <style>
 	.footer {
   text-align: center;
@@ -18,7 +18,7 @@
 <%@ include file="/WEB-INF/views/nav.jsp" %>
 <center>
 <button type="button" class="loginimg" onclick="location.href='${pageContext.request.contextPath}/member/loginMain';"></button>
-<div class="partlog-tx">파트너 로그인</div>
+<div class="partlog-tx">펫트너 로그인</div>
 <div class="loginform">
   	<div><input type="text" class="idbox" name="part_id" placeholder="아이디"/></div>
     <div class="password-box"><input type="password" class="pwbox" name="part_pw" placeholder="비밀번호"/></div>

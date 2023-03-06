@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>파트너 페이지</title>
+        <title>펫트너 페이지</title>
         <style>
 		.footer {
 		text-align : center; !important;
@@ -42,7 +42,7 @@
                 </ul>
             </div>
         </nav>
-	<h1 class="main-tx"><b>파트너 <span class="main-tx2"> 페이지</span></b></h1>
+	<h1 class="main-tx"><b>펫트너 <span class="main-tx2"> 페이지</span></b></h1>
     <div class="hello-tx">
     <h3 class="hello-tx-sty"><b>환영합니다.</b> * <span class="hello-tx-sty2">${partners.part_name }</span> * 님</h3>
     <h5 class="user-sel-hd"><span>${partners.part_name }</span>님의 자기소개</h5>

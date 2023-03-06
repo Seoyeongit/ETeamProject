@@ -114,28 +114,28 @@
 					<c:when test="${sur.sd_type eq 'ju' }">
 						
 								 <input type="hidden" name="${sur2.sc_order }" value="${sur2.sc_ascode }">
-								 <input class="svinput" type="text" name="${sur2.sc_ascode }" placeholder="답변을 입력해 주세요.">
+								 <input class="svinput" type="text" name="${sur2.sc_ascode }" placeholder="답변을 입력해 주세요." required>
 					
 					</c:when>
 						
 					<c:when test="${sur.sd_type eq 'gaek' }">
-						 	<input type="radio" name="${sur2.sc_order }" value="${sur2.sc_ascode }">${sur2.sc_answer }
+						 	<input type="radio" name="${sur2.sc_order }" value="${sur2.sc_ascode }" required>${sur2.sc_answer }
 							<input type="hidden" name="${sur2.sc_ascode }" value="${sur2.sc_answer }">
 					</c:when>
 					
 					<c:when test="${sur.sd_type eq 'check' }">
-							 	<input type="checkbox" name="${sur2.sc_order }" value="${sur2.sc_ascode }">${sur2.sc_answer } 
+							 	<input type="checkbox" name="${sur2.sc_order }" value="${sur2.sc_ascode }" required>${sur2.sc_answer } 
 							 	<input type="hidden" name="${sur2.sc_ascode }" value="${sur2.sc_answer }">
 					</c:when>
 					
 					<c:when test="${sur.sd_type eq 'time' }">
 							  	<input type="hidden" name="${sur2.sc_order }" value="${sur2.sc_ascode }">
-								<input type="time" name="${sur2.sc_ascode }">
+								<input type="time" name="${sur2.sc_ascode }" required>
 					</c:when>
 					
 				    <c:when test="${sur.sd_type eq 'schedule' }">
 							  	<input type="hidden" name="${sur2.sc_order }" value="${sur2.sc_ascode }">
-								<input type="date" name="${sur2.sc_ascode }">
+								<input type="date" name="${sur2.sc_ascode }" required>
 					</c:when>
 				</c:choose>
 			</c:when>

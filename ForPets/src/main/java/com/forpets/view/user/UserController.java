@@ -145,5 +145,10 @@ public class UserController {
 		return Integer.toString(randomNumber);
 	}
 	
+	//회원탈퇴 페이지로 넘어갑니다.
+	@RequestMapping(value="/member/custInfoOut")
+	public String viewInfoOut() {
+		return "myInfo/deleteMyInfo";
+	}
 	
 }

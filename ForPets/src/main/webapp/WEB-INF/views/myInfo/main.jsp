@@ -150,7 +150,7 @@ a input[id=register_wark] {
 					<li><br></li>
 					<li><p>나의정보</p></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="edit-user-info">회원정보수정</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="edit-user-info">회원탈퇴</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="cust-user-info">회원탈퇴</a></li>
 				</ul>
 			</div>
 		</div>
@@ -274,6 +274,23 @@ a input[id=register_wark] {
 				}
 			});
 		}
+		
+		//회원탈퇴페이지로 넘어갑니다.
+		$('#cust-user-info').on('click',function(){
+			var liurl = "../member/custInfoOut";
+
+			$.ajax({
+				type : 'POST',
+				url : liurl,
+				dataType : 'html',
+				success : function(data) {
+					display(data);
+				},
+				error : function(result) {
+					alert(result);
+				}
+			});
+		})
 		
 		//리뷰페이지로 넘어갑니다.
 		$("#write-review").click(function() {

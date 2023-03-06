@@ -53,7 +53,50 @@
 			<input type="file" id="pet_img"><br>
 		</div>
 
-		<br> <br> <label for="pet_name">이름</label> <input
+		<br> <br> 
+		
+		
+				<label for="pet_type">고객님의 반려동물은 무슨동물 인가요?</label> 
+			<div>
+			<input type="radio" name="gender" value="f" id="pet_gender"/>강아지예요 
+			<input type="radio" name="gender" value="m" id="pet_gender"/>고양이예요<br>
+			</div>
+		<label for="pet_type">반려동물의 성별을 알려주세요!</label> 
+			<div>
+			<input type="radio" name="gender" value="f" id="pet_gender"/>여아예요 
+			<input type="radio" name="gender" value="m" id="pet_gender"/>남아예요<br>
+			</div>
+		<label for="pet_type">반려동물은 중성화를 했나요?</label> 
+			<div>
+			<input type="radio" name="gender" value="f" id="pet_gender"/>네 했어요 
+			<input type="radio" name="gender" value="m" id="pet_gender"/>안했어요<br>
+			</div>
+		<hr>
+		<label for="pet_name">이름을 적어주세요</label> 
+		<input type="text" name="name" id="pet_name" value="${userPet.name}"><br>
+
+		<label for="pet_age">나이는 어떻게 되나요</label> 
+		<input type="text" name="age" id="pet_age" value="${userPet.age}"><br> 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<label for="pet_name">이름</label> <input
 			type="text" name="name" id="pet_name"><br>
 
 		<label for="pet_age">나이</label> 

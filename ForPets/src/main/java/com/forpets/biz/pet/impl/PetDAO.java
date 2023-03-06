@@ -19,11 +19,13 @@ public class PetDAO {
 
 	
 	private final String GET_PETINFO =  "SELECT * FROM USER_PET WHERE USER_ID = ?";
-	private final String INSERT_PET = "INSERT INTO user_pet VALUES((user_pet_seq.NEXTVAL),?,?,?,?,?,?)";
 	
-	private final String INSERT_PET2 = "INSERT INTO user_pet(pet_id,PET_NAME,PET_TYPE,PET_IMG,PET_AGE,PET_GENDER,USER_ID) VALUES((user_pet_seq.NEXTVAL),?,?,?,?,chr(?),?)";
+	private final String INSERT_PET2 = "INSERT INTO user_pet "
+										+ "VALUES((user_pet_seq.NEXTVAL),?,?,?,?,chr(?),?,?,?,?,?,?,?)";
 	
-	private final String UPDATE_PET = "UPDATE USER_PET SET PET_NAME=?, PET_TYPE=?, PET_IMG=?, PET_AGE=?, PET_GENDER=chr(?) WHERE PET_ID=?";
+	private final String UPDATE_PET = "UPDATE USER_PET "
+									+ "SET PET_NAME=?, PET_TYPE=?, PET_IMG=?, PET_AGE=?, PET_GENDER=chr(?), WEIGHT=?,PET_TYPE_DETAIL=?,LICENSE=?,IS_NEUTERED=chr(?),PET_SOCIAL=?,IS_VACCIN=chr(?) "
+									+ "WHERE PET_ID=?";
 	
 	private final String COUNT_PET = "select count(*) from user_pet where user_id=?";
 	
@@ -35,7 +37,14 @@ public class PetDAO {
 		try{
 			char gender = vo.getGender();
 			int genderCode = gender;
-			jdbcTemplate.update(INSERT_PET2,vo.getName(),vo.getType(),vo.getImg(),vo.getAge(),genderCode,vo.getUser_id());
+			int neuteredCode = vo.getIsneutered();
+			int vaccinCode = vo.getIsVaccin();
+			
+			Object[] obj = {vo.getName(),vo.getType(),vo.getImg(),vo.getAge(),genderCode,vo.getUser_id(),vo.getWeight(),
+							vo.getType_detail(),vo.getLicense(),neuteredCode,vo.getSocial(),vaccinCode};
+			
+			jdbcTemplate.update(INSERT_PET2,obj);
+		
 		}catch (Exception e) {
 			System.out.println(e);
 			System.out.println("오류임");
@@ -56,10 +65,13 @@ public class PetDAO {
 	
 	public void updatePet(PetVO vo) {
 		
-		
 		char gender = vo.getGender();
 		int genderCode = gender;
-		Object[] orgs = {vo.getName(),vo.getType(),vo.getImg(),vo.getAge(),genderCode,vo.getId()};
+		int neuteredCode = vo.getIsneutered();
+		int vaccinCode = vo.getIsVaccin();
+		
+		Object[] orgs = {vo.getName(),vo.getType(),vo.getImg(),vo.getAge(),genderCode,vo.getWeight(),vo.getType_detail()
+						,vo.getLicense(),neuteredCode,vo.getSocial(),vaccinCode,vo.getId()};
 		
 		jdbcTemplate.update(UPDATE_PET,orgs);
 	}

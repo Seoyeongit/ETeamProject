@@ -18,7 +18,8 @@
   	font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
    }
    .qs-box{
-      margin-left : 15%;
+      margin-left : 25%;
+      margin-top : 5%;
    }
    .qa-box{
       margin-left : 5%;
@@ -95,9 +96,10 @@ $(document).ready(function(){
          <div class="col-2 d-flex justify-content-center">
             <button type="button" class="forpets_q show-qa" id="q_4" onclick="show_a(this.id)">자주 묻는 질문 4</button>
          </div>
-         <div class="col-2 d-flex justify-content-center">
+         <!-- <div class="col-2 d-flex justify-content-center">
             <button type="button" class="forpets_q show-qa" id="q_5" onclick="show_a(this.id)">자주 묻는 질문 5</button>
-         </div>
+         </div>-->
+         <div class="col-2 d-flex justify-content-center"></div>
          <div class="col-2 d-flex justify-content-center"></div>
          
          <div class="col-12" id="q_1_a">
@@ -144,7 +146,7 @@ $(document).ready(function(){
             </div>
          </div>
          
-         <div class="col-12" id="q_5_a">
+         <!-- <div class="col-12" id="q_5_a">
             <div class="qa-box">
                <h5>자주 묻는 질문 5</h5>
             <span>자주 묻는 질문 5에 대한 답변입니다.</span><br>
@@ -153,7 +155,7 @@ $(document).ready(function(){
             <span>자주 묻는 질문 5에 대한 답변입니다.</span><br>
             <span>자주 묻는 질문 5에 대한 답변입니다.</span><br>
             </div>
-         </div>
+         </div> -->
          
          <div class="col-2 d-flex justify-content-center">
             <button type="button" class="forpets_q show-qa" id="q_6" onclick="show_a(this.id)">자주 묻는 질문 6</button>
@@ -167,11 +169,10 @@ $(document).ready(function(){
          <div class="col-2 d-flex justify-content-center">
             <button type="button" class="forpets_q show-qa" id="q_9" onclick="show_a(this.id)">자주 묻는 질문 9</button>
          </div>
-         <div class="col-2 d-flex justify-content-center">
+        <!-- <div class="col-2 d-flex justify-content-center">
             <button type="button" class="forpets_q show-qa" id="q_10" onclick="show_a(this.id)">자주 묻는 질문 10</button>
-         </div>
+         </div> -->
          <div class="col-2 d-flex justify-content-center"></div>
-         
          <div class="col-12" id="q_6_a">
             <div class="qa-box">
                <h5>자주 묻는 질문 6</h5>
@@ -219,7 +220,7 @@ $(document).ready(function(){
                
          </div>
          
-         <div class="col-12" id="q_10_a">
+         <!-- <div class="col-12" id="q_10_a">
             <div class="qa-box">
                <h5>자주 묻는 질문 10</h5>
             <span>자주 묻는 질문 10에 대한 답변입니다.</span><br>
@@ -228,7 +229,7 @@ $(document).ready(function(){
             <span>자주 묻는 질문 10에 대한 답변입니다.</span><br>
             <span>자주 묻는 질문 10에 대한 답변입니다.</span><br>
             </div>
-         </div>
+         </div> -->
       </div>
    </div>
    <br>

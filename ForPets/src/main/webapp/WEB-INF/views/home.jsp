@@ -146,7 +146,7 @@
         <section class="page-section bg-light" id="community">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">community</h2>
+                    <h2 class="section-heading text-uppercase">소모임</h2>
                     <h3 class="section-subheading text-muted">다른 아이들의 하루와 당신의 아이의 하루를 공유해보세요.</h3>
                 </div>
                 <div class="row">

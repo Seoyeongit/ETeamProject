@@ -69,6 +69,7 @@ public class CommunityController {
 		svo.setC_code(vo.getC_code());
 		svo.setC_title(vo.getC_title());
 		svo.setC_content(vo.getC_content());
+		svo.setC_pet(vo.getC_pet());
 		svo.setUser_id(SessionVO.getUser_id());
 		comservice.insertCommunity(svo);
 		mav.setViewName("/Community/Community_List");
@@ -115,6 +116,7 @@ public class CommunityController {
 		CommunityVO svo = new CommunityVO();
 		svo.setC_title(vo.getC_title());
 		svo.setC_content(vo.getC_content());
+		svo.setC_pet(vo.getC_pet());
 		svo.setC_code(vo.getC_code());
 		comservice.updateComunity(svo);
 		mav.setViewName("redirect:/communitylist");
@@ -129,7 +131,7 @@ public class CommunityController {
 		return "redirect:/communitylist";
 	}
 	
-	
+
 	//마이페이지 마이소모임메인페이지를 불러옵니다.
 	@RequestMapping("/myInfo/viewMycommuMain")
 	public String viewMyCommuPage() {

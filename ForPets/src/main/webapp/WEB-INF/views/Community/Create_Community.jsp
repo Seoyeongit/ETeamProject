@@ -203,6 +203,14 @@
 	  border-collapse: separate;
 	}
 
+	.info {
+		margin: 0 0 -6px;
+		float:right;
+	    font-size: 14px;
+	    line-height: 30px;
+	    padding-right: 100px;
+    	padding-left: 100px;
+	}
 </style>
 </head>
 <body>
@@ -229,11 +237,21 @@
 			 </c:otherwise> 
 		</c:choose>
 				<div class = "title_board">
-					<input class="title_area" type="text" name="c_title" placeholder="제목">
-
+				
+					<input class="title_area" type="text" name="c_title" placeholder="제목" >
+				
+				</div>
+				<div class="info">
+						<p > 자신의 반려동물을 알려주세요 ! : 
+						<select name="c_pet" id="c_pet" class="pl">
+							<option value="">-- 동물을 선택해 주세요. --</option>
+							<option value="dog">강아지</option>
+							<option value="cat">고양이</option>
+						</select> </p>
+				</div>		
 						
-						</div>
-						<hr>
+						
+						<br><hr>
 						<div style="white-space:pre;" ><textarea class="text_area" name="c_content" placeholder="내용을 입력해 주세요."></textarea></div>
 
 			
@@ -252,8 +270,6 @@
 	</form>
 	
 
-  
-<!-- Button trigger modal -->
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

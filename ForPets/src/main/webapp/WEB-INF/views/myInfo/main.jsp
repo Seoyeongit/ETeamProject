@@ -85,6 +85,8 @@ a input[id=register_wark] {
 	position: static !important;
 	display: block;
 	padding-top: 50px;
+	min-height : 100vh !important;
+	max-height: 100% !important;
 }
 
 .footer {
@@ -111,6 +113,13 @@ a input[id=register_wark] {
     margin-top: 70px;
 }
 
+@media (min-width: 992px){
+	#sideNav {
+			min-height : 100vh !important;
+			max-height: 100% !important;
+	}
+ }
+
 </style>
 
 <!-- Core theme CSS (includes Bootstrap)-->
@@ -125,7 +134,7 @@ a input[id=register_wark] {
 
 	<div class="" id="main_content">
 
-		<div class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav" style="width: 20.8rem;">
+		<div class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav" style="width: 20.8rem; min-height: 100vh; max-height: 100%;">
 			<div class="collapse navbar-collapse navbar_forpets"
 				id="navbarResponsive">
 				<ul class="navbar-nav">
@@ -141,7 +150,7 @@ a input[id=register_wark] {
 					<li><br></li>
 					<li><p>나의정보</p></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="edit-user-info">회원정보수정</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="edit-user-info">회원탈퇴</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="cust-user-info">회원탈퇴</a></li>
 				</ul>
 			</div>
 		</div>
@@ -214,7 +223,6 @@ a input[id=register_wark] {
 				url : liurl,
 				dataType : 'html',
 				success : function(data) {
-					console.log(data);
 					window.history.pushState({}, '', newUrl);
 					display(data);
 				},
@@ -266,6 +274,23 @@ a input[id=register_wark] {
 				}
 			});
 		}
+		
+		//회원탈퇴페이지로 넘어갑니다.
+		$('#cust-user-info').on('click',function(){
+			var liurl = "../member/custInfoOut";
+
+			$.ajax({
+				type : 'POST',
+				url : liurl,
+				dataType : 'html',
+				success : function(data) {
+					display(data);
+				},
+				error : function(result) {
+					alert(result);
+				}
+			});
+		})
 		
 		//리뷰페이지로 넘어갑니다.
 		$("#write-review").click(function() {

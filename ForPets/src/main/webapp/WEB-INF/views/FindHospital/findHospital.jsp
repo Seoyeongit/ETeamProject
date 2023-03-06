@@ -6,7 +6,7 @@
 <head>
 <jsp:include page="../favicon.jsp"></jsp:include>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Forpets 근처 병원 찾기</title>
 <link href="${pageContext.request.contextPath}/resources/css/Tip/tip.css" rel="stylesheet" />
 <style>
 	#main_content {

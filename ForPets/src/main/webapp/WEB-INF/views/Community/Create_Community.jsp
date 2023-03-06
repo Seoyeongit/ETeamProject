@@ -238,12 +238,12 @@
 		</c:choose>
 				<div class = "title_board">
 				
-					<input class="title_area" type="text" name="c_title" placeholder="제목" >
+					<input class="title_area" type="text" name="c_title" placeholder="제목" required>
 				
 				</div>
 				<div class="info">
 						<p > 자신의 반려동물을 알려주세요 ! : 
-						<select name="c_pet" id="c_pet" class="pl">
+						<select name="c_pet" id="c_pet" class="pl" required>
 							<option value="">-- 동물을 선택해 주세요. --</option>
 							<option value="dog">강아지</option>
 							<option value="cat">고양이</option>
@@ -252,7 +252,7 @@
 						
 						
 						<br><hr>
-						<div style="white-space:pre;" ><textarea class="text_area" name="c_content" placeholder="내용을 입력해 주세요."></textarea></div>
+						<div style="white-space:pre;" ><textarea class="text_area" name="c_content" placeholder="내용을 입력해 주세요." required></textarea></div>
 
 			
 			<div class="buttons">
@@ -286,7 +286,9 @@
 	<input type="hidden" value="1" id="survey_count" name="survey_count">
 	<input type="hidden" value="s${date}" name="sd_svcode">
 	<input type="hidden" value="${c_code}" name="c_code">
-	<p style="text-align:center;"><b>설문지 제목 :</b> <input class="svinput" type="text" placeholder="설문지 제목을 입력하세요." size=80 name="s_title"></p>
+	<p><b>** 작성한 설문지는 수정할 수 없으니 신중하게 작성 해 주세요</b></p><br>
+	
+	<p style="text-align:center;"><b>설문지 제목 :</b> <input class="svinput" type="text" placeholder="설문지 제목을 입력하세요." size=80 name="s_title" required></p>
 
 	
 	<table id="survey" >
@@ -299,8 +301,8 @@
 		<tr class="item1">
 			<td>
 			<!-- 	<input type="hidden" name="sd_order"> -->
-				<input class="svinput" type="text" placeholder = "질문 내용을 입력해 주세요." size=60 name="sd_title1"></td>
-			<td><select id="surOpt" name="sd_type1" class="pl">
+				<input class="svinput" type="text" placeholder = "질문 내용을 입력해 주세요." size=60 name="sd_title1" required></td>
+			<td><select id="surOpt" name="sd_type1" class="pl" required>
 
 					<option value="">-- 설문지 유형을 선택해 주세요 --</option>
 

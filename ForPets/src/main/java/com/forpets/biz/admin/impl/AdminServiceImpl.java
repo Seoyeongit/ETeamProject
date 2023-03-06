@@ -58,6 +58,11 @@ public class AdminServiceImpl implements AdminService {
 	public List<AdminVO> getMontlyReserve(AdminVO avo) {
 		return adminDAO.getMontlyReserve(avo);
 	}
+
+	@Override
+	public Integer getUserCount() {
+		return adminDAO.getUserCount();
+	}
 	
 	
 }

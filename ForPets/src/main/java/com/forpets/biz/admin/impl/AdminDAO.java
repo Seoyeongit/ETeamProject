@@ -31,7 +31,10 @@ public class AdminDAO {
 			+ "where adm_id=?";
 	private final String TIP_PREV = "select tip_title, tip_img_url from TIP_BOARD order by tip_seq desc";
 	private final String GET_EARNINGS = "SELECT SUM(S_PRICE) FROM SERV RIGHT OUTER JOIN RESERVE USING (S_NUM)";
+	private final String GET_USERCOUNT = "SELECT COUNT(*) FROM USERS";
+	private final String GET_REVAVG = "select avg(pr_avg) from partner_review";
 	private final String MONTHLY_RESERVE = "SELECT TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') AS year_month, COUNT(*) AS total FROM RESERVE GROUP BY TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') ORDER BY TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') ASC";
+	
 	
 	private final RowMapper<AdminVO> adminRowMapper = (resultSet, rowNum) -> {
 		AdminVO newvo = new AdminVO();
@@ -114,8 +117,15 @@ public class AdminDAO {
 	}
 
 	public int getEarnings() {
-		System.out.println(jdbcTemplate.queryForObject(GET_EARNINGS, Integer.class));
 		return jdbcTemplate.queryForObject(GET_EARNINGS, Integer.class);
+	}
+	
+	public int getUserCount() {
+		return jdbcTemplate.queryForObject(GET_USERCOUNT, Integer.class);
+	}
+	
+	public double getReviewAvg() {
+		return ;
 	}
 	
 	public List<AdminVO> getMontlyReserve(AdminVO avo) {

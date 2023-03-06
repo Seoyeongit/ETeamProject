@@ -24,6 +24,7 @@ public class AdminVO {
 	private Date adm_date; //등록날짜
 	
 	private int earnings; //총수익
+	private int user_count; // 유저수
 	private String year_month; // 예약년-월
 	private int montly_reserve; // 월별 예약수
 

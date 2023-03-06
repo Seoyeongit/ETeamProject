@@ -181,6 +181,7 @@ public class AdminController {
 		
 		HashMap<String, Integer> stats = new HashMap<String, Integer>();
 		stats.put("earnings", admService.getEarnings());
+		stats.put("userCount", admService.getUserCount());
 		model.addAttribute("stats", stats);
 		
 		model.addAttribute("reserve_chart", admService.getMontlyReserve(vo));

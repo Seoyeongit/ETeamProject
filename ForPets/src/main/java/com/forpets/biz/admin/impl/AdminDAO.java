@@ -63,7 +63,10 @@ public class AdminDAO {
 		pvo.setPart_nick(resultSet.getString("part_nick"));
 		pvo.setPart_add(resultSet.getString("part_add"));
 		pvo.setPart_no(resultSet.getInt("part_no"));
+		pvo.setBirth(resultSet.getDate("birth"));
 		pvo.setData_create(resultSet.getDate("data_create"));
+		pvo.setSelf_infor(resultSet.getString("self_infor"));
+		pvo.setImg(resultSet.getString("part_img"));
 		pvo.setPart_phnumber(resultSet.getString("part_phnumber"));
 		return pvo;
 	};
@@ -125,7 +128,7 @@ public class AdminDAO {
 	}
 	
 	public double getReviewAvg() {
-		return ;
+		return jdbcTemplate.queryForObject(GET_REVAVG, Double.class);
 	}
 	
 	public List<AdminVO> getMontlyReserve(AdminVO avo) {

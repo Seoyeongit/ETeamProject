@@ -91,7 +91,7 @@
 										<tr>
 											<td align="center">${partner.part_no}</td>
 											<td><a href="#"><img
-													src="/examples/images/avatar/1.jpg" class="avatar"
+													src="${pageContext.request.contextPath}/partner/display?fileName=${partner.img}" class="avatar"
 													alt="${partner.part_name}"></a>
 												${partner.part_name}(${partner.part_id})</td>
 											<td align="center">${partner.part_add}</td>

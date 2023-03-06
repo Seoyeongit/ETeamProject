@@ -225,7 +225,10 @@ public class PetController{
 		 if(osName.contains("Windows")) {
 			pet_img_path = personalPath[0] + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
 		 } else if (osName.contains("Mac")) {
-			pet_img_path = personalPath[0]+ File.separator + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
+			 String a = "/";
+			 String b = "\\";
+			 fileName = fileName.replace(b, a);
+			pet_img_path = personalPath[0]+ File.separator + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload" + File.separator;
 		 }
 		File file = new File(pet_img_path + fileName);
 		
@@ -252,7 +255,10 @@ public class PetController{
 		 if(osName.contains("Windows")) {
 			pet_img_path = personalPath[0] + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
 		 } else if (osName.contains("Mac")) {
-			pet_img_path = personalPath[0]+ File.separator + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload";
+			 String a = "/";
+			 String b = "\\";
+			 fileName = fileName.replace(b, a);
+			pet_img_path = personalPath[0]+ File.separator + "ForPets" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "upload" + File.separator;
 		 }
 		
 		File file = null;

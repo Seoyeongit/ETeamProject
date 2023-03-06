@@ -15,7 +15,7 @@
 	<!-- 오라클클라우드DB로 접속합니다. -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-   		 <property name="url" value="jdbc:oracle:thin:@forpets_high?TNS_ADMIN=/Users/iseoyeon/Documents/Wallet_forpets"/>
+   		 <property name="url" value="jdbc:oracle:thin:@forpets_high?TNS_ADMIN=C:\\Wallet_forpets"/>
   		  <property name="username" value="ADMIN"/>
   		  <property name="password" value="Eschg2885@6948"/>
 	</bean>

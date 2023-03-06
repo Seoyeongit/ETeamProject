@@ -43,6 +43,7 @@ div.get-tit {
 div.get-con {
 	margin-left:22%;
 	margin-top:4%;
+	white-space : pre;
 }
 .con-line {
 	width:60%;
@@ -94,6 +95,7 @@ div.get-con {
 	margin-top:2%;
 	margin-left:auto;
 	margin-right:auto;
+	white-space : pre;
 }
 .qs-re {
 	margin-top:5%;
@@ -132,7 +134,7 @@ div.get-con {
 			<div class="wri-no">${customer.cust_no}</div><c:choose><c:when test="${customer.user_id == ' '}"><div class="wri-part">${customer.part_id }</div></c:when>
 			<c:otherwise><div class="wri-user">${customer.user_id }</div></c:otherwise></c:choose><div class="wri-date">${ customer.cust_date}</div><br>
 			<hr class="con-line">
-			<div class="get-con" id="content">${ customer.cust_content}</div>
+			<div class="get-con" id="content" cols="15">${ customer.cust_content}</div>
 			<hr class="foot-line">
 		</form>
 		<h4 class="qs-re"><b>문의 답변</b></h4>

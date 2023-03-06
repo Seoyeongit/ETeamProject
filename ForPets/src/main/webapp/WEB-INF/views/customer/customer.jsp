@@ -17,6 +17,10 @@
   	font-size: 0.9rem;
   	font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
    }
+   .qs-text{
+   	  padding-top:5%;
+   	  margin-left : 27%;
+   }
    .qs-box{
       margin-left : 25%;
       margin-top : 5%;

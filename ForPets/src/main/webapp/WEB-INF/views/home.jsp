@@ -33,12 +33,12 @@
 	.cbtn {
 		font-size: 11px; 
 		font-weight: 500; 
-		background-color: #19CE60; 
-		color: white; 
+		 background-color: white; 
+		 border-color: #19CE60; 
+		 color: #19CE60;
 		--bs-btn-padding-y: 0rem; 
 		--bs-btn-padding-x: 0.5rem; 
-		border-radius: 40px;
-			                    		
+		border-radius: 40px;                   		
 	}
 	.page-content {
 	display: flex;
@@ -65,6 +65,12 @@
 	    margin-right : 120px;
 	    
 	}
+	
+	.note{
+	font-size: 14px;
+    color: #999;
+    font-weight: 500;
+	} 
 </style>
     </head>
     <body id="page-top">
@@ -199,14 +205,15 @@
 					                    	<c:if test="${not loop_flag }">
 						                    	<c:choose>
 						                    		<c:when test="${community.c_code eq scode.s_code}">
-						                    			<a href="viewcommunityboard/${ community.c_code}/${scode.s_svcode}">${community.c_title }</a>
+						                    			<a href="viewcommunityboard/${ community.c_code}/${scode.s_svcode}" 
+						                    				style="text-decoration: none; color: #666666;">${community.c_title }</a>
 						                    			<c:set var="loop_flag" value="true" />
 						                    		</c:when>
 			    								</c:choose>
 					                    	</c:if>
 				                    	</c:forEach>
 				                    	<c:if test="${not loop_flag }">
-				                    		<a href="viewcommunityboard/${ community.c_code}">${community.c_title }</a>
+				                    		<a href="viewcommunityboard/${ community.c_code}" style="text-decoration: none; color: #666666;">${community.c_title }</a>
 				                    	</c:if>
 		
 					                    
@@ -214,31 +221,7 @@
 					                    		<span class="badge text-light rounded-pill" style="font-size:0.5em; background-color:#0080ff;">new</span>
 					                    	</c:if>
 				                    	</h5>
-										
-										<c:forEach items="${svcode }" var="scode">
-				                    		<c:choose>
-					                    		<c:when test="${community.c_code eq scode.s_code }">
-					                    			<a><input type="button" class="btn btn-sm btn-block cbtn" value="설문지" data-value="${scode.s_svcode}" onclick="click_sv(this);" 
-					                    					style="margin-top: 3px; background-color: white; border-color: #19CE60; color: #19CE60;"></a>
-					          						
-													</c:when>		
-		    								</c:choose>
-				                    	</c:forEach> 
-				                    	<!-- 반복 데이터를 가지고 올 때 값이같으면 바뀌지않음  -->
-				                    	<script>
-										   				function click_sv(svcode) {
-										   					var data = $(svcode).data("value");
-										   			 		var user = '${member.user_id}';
-											   					if( user == '') {
-											   						alert('로그인을 해주세요 !');
-											   						window.location.href="${pageContext.request.contextPath}/member/login";			
-											   					} else {
-											   						
-											   						window.location.href="${pageContext.request.contextPath}/surveyboard.do/"+data+"";		
-											   					} 
-										   					}
-										</script>	
-		
+
 				                   
 				                    	</div> 
 				                    	 <h5 class="note">작성날짜 | ${community.c_date }</h5>

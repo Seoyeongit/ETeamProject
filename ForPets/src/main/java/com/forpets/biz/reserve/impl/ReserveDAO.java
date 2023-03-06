@@ -246,7 +246,7 @@ public class ReserveDAO {
 	// 230217 정영현
 	public List<ReServeVO> getReserveListPart(ReServeVO vo){
 		Object[] obj = {vo.getPart_id()};
-		List<ReServeVO> list =  jdbcTemplate.query(GETRESERVE_LIST,obj, new ReserveRowMapper());
+		List<ReServeVO> list =  jdbcTemplate.query(GETRESERVE_LIST,obj, new ReservePartRowMapper());
 		List<ReServeVO> newList = new ArrayList<ReServeVO>();
 		String number = "";
 		

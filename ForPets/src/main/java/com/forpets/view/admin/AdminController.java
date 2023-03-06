@@ -1,5 +1,6 @@
 package com.forpets.view.admin;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,7 +44,7 @@ public class AdminController {
 			session.setAttribute("admin", admService.getAdmin(vo));
 			session.setAttribute("role", "admin");
 			System.out.println("로그인 후 mgmt로 이동");
-			return "/Admin/mgmt";
+			return "redirect:/Admin/mgmt";
 		} else {
 			System.out.println("로그인 실패");
 			return "redirect:/rofstep";
@@ -69,7 +70,7 @@ public class AdminController {
 		HttpSession session = request.getSession(false);
 		if (session != null && session.getAttribute("admin") != null) {
 			System.out.println("관리자 세션 검증 후 main 이동");
-			return "/Admin/mgmt";
+			return "redirect:/Admin/mgmt";
 		} else {
 			System.out.println("관리자 페이지 접근 불가");
 			return "redirect:/";
@@ -170,5 +171,34 @@ public class AdminController {
 		System.out.println("getComPreview");
 		return "/Admin/communityPrev";
 	}
+	
+	// 대시보드 controller
+	// 통계 List
+	@RequestMapping(value = "Admin/mgmt")
+	public String getDashBoard(AdminVO vo, AdminDAO dao, Model model) {
+		System.out.println("dashboard 이동");
+		
+		
+		HashMap<String, Integer> stats = new HashMap<String, Integer>();
+		stats.put("earnings", admService.getEarnings());
+		stats.put("userCount", admService.getUserCount());
+		stats.put("reserveCount", admService.getReserveCount());
+		HashMap<String, Double> dstats = new HashMap<String, Double>();
+		dstats.put("reviewAvg", admService.getReviewAvg());
+		model.addAttribute("stats", stats);
+		model.addAttribute("dstats", dstats);
+		model.addAttribute("reserve_chart", admService.getMontlyReserve(vo));
+		return "/Admin/mgmt";
+		
+//		HashMap<String, Integer> var = new HashMap<String, Integer>();
+//		
+//		var.put("회원통계", AdminService.get)
+//		VAR.PUT("무슨통계", AdminService,=.get)
+//		model.addAttribute("전체통계리스트", var);
+//		
+//		전체통계리스트.회원통계 
+//		전체통계리스트.무슨통계
+	}
+
 
 }

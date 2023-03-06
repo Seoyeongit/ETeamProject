@@ -30,6 +30,41 @@
 	  color: #8bda8b;
 	  background-color: white;
 	}
+	.cbtn {
+		font-size: 11px; 
+		font-weight: 500; 
+		background-color: #19CE60; 
+		color: white; 
+		--bs-btn-padding-y: 0rem; 
+		--bs-btn-padding-x: 0.5rem; 
+		border-radius: 40px;
+			                    		
+	}
+	.page-content {
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 20px 0;
+    width: 300px;
+    height: 240px;
+    background: #fff;
+    border: 2px solid #d1d1d1;
+    border-radius: 30px;
+    position: relative;
+    cursor: pointer;
+    transition: .2s ease-in;
+	}
+	.container-rapper {
+	    display: flex;
+	    grid-gap: 27px;
+	    gap: 27px;
+	    flex-wrap: wrap;
+	    justify-content: center;
+	    max-width: 1400px;
+	    margin-left : 120px;
+	    margin-right : 120px;
+	    
+	}
 </style>
     </head>
     <body id="page-top">
@@ -109,7 +144,7 @@
             </div> 
         </header>
         <!-- Services-->
-        <section class="page-section" id="service">
+        <section class="page-section" id="service" style="margin-bottom:5%;">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Services</h2>
@@ -143,104 +178,91 @@
             </div>
         </section>
         <!-- 소모임 게시판 -->
-        <section class="page-section bg-light" id="community">
+        <section class="page-section bg-light" style="padding-bottom:10%;" id="community">
             <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">community</h2>
+                <div class="text-center" style="padding-top:30px;">
+                    <h2 class="section-heading text-uppercase">소모임</h2>
                     <h3 class="section-subheading text-muted">다른 아이들의 하루와 당신의 아이의 하루를 공유해보세요.</h3>
                 </div>
-                <div class="row">
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- 소모임 1-->
-                        <div class="community-board">
-                            <a class="community-link" data-bs-toggle="modal" href="#communityModal1">
-                                <div class="community-hover">
-                                    <div class="community-hover-content"></div>
-                                </div>
-                                <img class="img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/commu/dogcoum.jpg" alt="..." style="width: 640px" height="420px" />
-                            </a>
-                            <div class="community-caption">
-                                <div class="community-caption-heading">강아지</div>
-                                <div class="community-caption-subheading text-muted">소형견 모임</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- 소모임 2-->
-                        <div class="community-board">
-                            <a class="community-link" data-bs-toggle="modal" href="#portfolioModal2">
-                                <div class="community-hover">
-                                    <div class="community-hover-content"></div>
-                                </div>
-                                <img class="img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/commu/catcomm1.jfif" alt="..." style="width: 640px" height="420px" />
-                            </a>
-                            <div class="community-caption">
-                                <div class="community-caption-heading">고양이</div>
-                                <div class="community-caption-subheading text-muted">냥집사 모임</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- Portfolio item 3-->
-                        <div class="community-board">
-                            <a class="community-link" data-bs-toggle="modal" href="#portfolioModal3">
-                                <div class="community-hover">
-                                    <div class="community-hover-content"></div>
-                                </div>
-                                <img class="img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/commu/rabbitcomm.webp" alt="..." style="width: 640px" height="420px"/>
-                            </a>
-                            <div class="community-caption">
-                                <div class="community-caption-heading">토끼</div>
-                                <div class="community-caption-subheading text-muted">토끼집사 모임</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                        <!-- Portfolio item 4-->
-                        <div class="community-board">
-                            <a class="community-link" data-bs-toggle="modal" href="#portfolioModal4">
-                                <div class="community-hover">
-                                    <div class="community-hover-content"></div>
-                                </div>
-                                <img class="img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/commu/dogcomm2.png" alt="..." />
-                            </a>
-                            <div class="community-caption">
-                                <div class="community-caption-heading">강아지</div>
-                                <div class="community-caption-subheading text-muted">강아지 사교모임</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
-                        <!-- Portfolio item 5-->
-                        <div class="community-board">
-                            <a class="community-link" data-bs-toggle="modal" href="#portfolioModal5">
-                                <div class="community-hover">
-                                    <div class="community-hover-content"></div>
-                                </div>
-                                <img class="img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/commu/catcomm2.jpg" alt="..." />
-                            </a>
-                            <div class="community-caption">
-                                <div class="community-caption-heading">고양이</div>
-                                <div class="community-caption-subheading text-muted">우리애가 제일 별나요</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <!-- Portfolio item 6-->
-                        <div class="community-board">
-                            <a class="community-link" data-bs-toggle="modal" href="#portfolioModal6">
-                                <div class="community-hover">
-                                    <div class="community-hover-content"></div>
-                                </div>
-                                <img class="img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/commu/dogcomm3.webp" alt="..." />
-                            </a>
-                            <div class="community-caption">
-                                <div class="community-caption-heading">대형견</div>
-                                <div class="community-caption-subheading text-muted">대형견 모임</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="container-rapper">
+					<c:forEach items="${communityList }" var="community" end="5">
+						<input type="hidden" name ="c_code" value="${community.c_code }">
+						<div class="page-content note-has-grid p-4 col-sm-4">
+				            <div class="tab-content bg-transparent ">
+				                <div id="note-full-container" class="note-has-grid row">
+				                    <div class="single-note-item all-category">
+				                    	<div class="d-flex flex-row">
+				                    	<h5 class="note-title text-truncate">
+				                    	
+				                    	<c:set var="loop_flag" value="false" />
+					                    <c:forEach items="${svcode }" var="scode">
+					                    	<c:if test="${not loop_flag }">
+						                    	<c:choose>
+						                    		<c:when test="${community.c_code eq scode.s_code}">
+						                    			<a href="viewcommunityboard/${ community.c_code}/${scode.s_svcode}">${community.c_title }</a>
+						                    			<c:set var="loop_flag" value="true" />
+						                    		</c:when>
+			    								</c:choose>
+					                    	</c:if>
+				                    	</c:forEach>
+				                    	<c:if test="${not loop_flag }">
+				                    		<a href="viewcommunityboard/${ community.c_code}">${community.c_title }</a>
+				                    	</c:if>
+		
+					                    
+					                    	<c:if test="${community.c_date eq min ||  community.c_date eq oneDayAfterStr}">
+					                    		<span class="badge text-light rounded-pill" style="font-size:0.5em; background-color:#0080ff;">new</span>
+					                    	</c:if>
+				                    	</h5>
+										
+										<c:forEach items="${svcode }" var="scode">
+				                    		<c:choose>
+					                    		<c:when test="${community.c_code eq scode.s_code }">
+					                    			<a><input type="button" class="btn btn-sm btn-block cbtn" value="설문지" data-value="${scode.s_svcode}" onclick="click_sv(this);" 
+					                    					style="margin-top: 3px; background-color: white; border-color: #19CE60; color: #19CE60;"></a>
+					          						
+													</c:when>		
+		    								</c:choose>
+				                    	</c:forEach> 
+				                    	<!-- 반복 데이터를 가지고 올 때 값이같으면 바뀌지않음  -->
+				                    	<script>
+										   				function click_sv(svcode) {
+										   					var data = $(svcode).data("value");
+										   			 		var user = '${member.user_id}';
+											   					if( user == '') {
+											   						alert('로그인을 해주세요 !');
+											   						window.location.href="${pageContext.request.contextPath}/member/login";			
+											   					} else {
+											   						
+											   						window.location.href="${pageContext.request.contextPath}/surveyboard.do/"+data+"";		
+											   					} 
+										   					}
+										</script>	
+		
+				                   
+				                    	</div> 
+				                    	 <h5 class="note">작성날짜 | ${community.c_date }</h5>
+				                    	
+				                    	
+		        		 				<br><hr>
+		          						<p class="note-date font-11 text-muted">작성자 | ${community.user_id }
+		          						<c:choose>	
+		          							<c:when test="${community.c_pet eq 'cat' }">
+		          								<span class="badge text-light rounded-pill" style="font-size:0.5em; background-color:#8977ad;">고양이</span>
+		          							</c:when>
+		          							<c:otherwise>
+		          								<span class="badge text-light rounded-pill" style="font-size:0.5em; background-color:#6989bb;">강아지</span>
+		          							</c:otherwise>
+		          						</c:choose></p>
+		
+		
+					             	</div>
+					            </div>
+		                </div>
+		            </div>
+          </c:forEach>
+        </div>
+                
             </div>
         </section>
         

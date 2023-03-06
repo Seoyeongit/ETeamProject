@@ -3,6 +3,7 @@ package com.forpets.view.comdat;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -91,13 +92,18 @@ public class ComdatController {
 			List<ComdatVO> result = datservice.getMyComdat(sessionVO.getUser_id());
 			
 			for(int i = 0; i<result.size(); i++) {
+				try {
 				list.put(result.get(i).getD_num(), commuService.getCommunityBoard(result.get(i).getD_code()));
+				}catch(EmptyResultDataAccessException e) {
+					list.put(-0,new CommunityVO());
+				}
 			}
-			model.addAttribute("myDat", datservice.getMyComdat(sessionVO.getUser_id()));
+			model.addAttribute("myDat", result);
 			model.addAttribute("postInMyDat",list);
 			
 		}catch(EmptyResultDataAccessException e) {
-			model.addAttribute("myDat", new ComdatVO());
+			System.out.println("--->catch메서드실행되었습니다.");
+			model.addAttribute("myDat", new ArrayList<ComdatVO>());
 		}
 		return "myInfo/myCommunity_comment";
 	}

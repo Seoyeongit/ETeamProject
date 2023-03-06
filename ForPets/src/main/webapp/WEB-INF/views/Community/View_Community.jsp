@@ -144,25 +144,17 @@
 				
 				<div class="info">
 						<p class="writer"> <b>${communityboard.user_id }</b> | ${communityboard.c_date } </p>
- 					<c:set var="test" value="${svcode[0].sa_svcode }"> </c:set>
-					<%-- 	<c:choose>
+					<c:set var="test" value="${sv_add }"> </c:set>
+					 	<c:choose>
 							<c:when  test="${not empty test}">
-						 <a style="float :right" data-value="${s_svcode[0].s_svcode }"onclick="click_ans(this);">설문지 답변하러 가기</a>
+						 <a href="${pageContext.request.contextPath}/surveyboard.do/${sv_add }" style="float: right;">설문지 답변하러 가기</a>
 		 					</c:when>
 		 				</c:choose> 
-		 				<script>
-		 				function click_ans(s_code) {
-		   					var scode = $(s_code).data("value");
-		   			 		
-			   						window.location.href="${pageContext.request.contextPath}/surveyboard.do/"+scode+"";		
-			   					 
-		   					}
-		 				</script>  --%>
+		 		
 		 			</div> 
 		 			
 		 			<hr class="hr1"><br>
-
-		 		
+				
 		 		<div class="text_area" style="white-space:pre;">${communityboard.c_content }</div>
 		 		
 		 	<br>

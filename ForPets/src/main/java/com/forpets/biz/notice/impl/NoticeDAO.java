@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.forpets.biz.notice.NoticeVO;
+import com.forpets.biz.notice.SearchCriteria;
 
 @Repository("noticeDAO")
 public class NoticeDAO {
@@ -26,7 +27,7 @@ public class NoticeDAO {
 	private final String HIT_NOTICE = "update NOTICE_BOARD set ntc_hit=?"
 			+ "where ntc_seq=?";
 	private final String DELETE_NOTICE = "delete from NOTICE_BOARD where ntc_seq=?";
-	
+	private final String GETTOTALPAGES = "SELECT COUNT(*) FROM NOTICE_BOARD WHERE 1 = 1 ";
 	
 	
 	private final RowMapper<NoticeVO> noticeRowMapper = (resultSet, rowNum) -> {
@@ -101,5 +102,50 @@ public class NoticeDAO {
 		jdbcTemplate.update(DELETE_NOTICE, vo.getNtc_seq());
 		System.out.println("---> deleteNotice()");
 	}
+	
+	
+	// paging 처리
+	public int getTotalPages(SearchCriteria cri) {
+		String sql = GETTOTALPAGES;
+		if(cri.getSearchCondition().equals("TITLE")) {
+			sql += "AND NTC_TITLE LIKE '%" + cri.getSearchKeyword()+ "%'";
+		}
+		if(cri.getSearchCondition().equals("CONTENT")) {
+			sql += "AND NTC_CTNT LIKE '%" + cri.getSearchKeyword()+ "%'";
+		}
+		return jdbcTemplate.queryForObject(sql, Integer.class);
+	}
+	
+	public List<NoticeVO> getNoticeWithPaging(SearchCriteria cri) {
+		Object[] orgs = {cri.getPageNum(), cri.getAmount(), cri.getPageNum(), cri.getAmount()};
+		return jdbcTemplate.query("GETNOTICEWITHPAGING", orgs, noticeRowMapper);
+	}
+
+	public List<NoticeVO> getNoticeWithDynamicPaging(SearchCriteria cri) {
+		System.out.println("getNoticeWithDynamicPaging...");
+		System.out.println("Condition : " + cri.getSearchCondition());
+		System.out.println("Keyword : " + cri.getSearchKeyword());
+		String sql_in =
+			"SELECT ROWNUM RN, NTC_SEQ, NTC_TITLE, NTC_CTNT, NTC_IMGURL, NTC_CDATE, NTC_HIT, NTC_UDATE " +
+			"FROM ( SELECT * FROM NOTICE_BOARD WHERE 1 = 1 ";
+		if(cri.getSearchCondition().equals("TITLE")) {
+			sql_in = sql_in + "AND NTC_TITLE LIKE '%" + cri.getSearchKeyword()+ "%'";
+		}
+		if(cri.getSearchCondition().equals("CONTENT")) {
+			sql_in = sql_in + "AND NTC_CTNT LIKE '%" + cri.getSearchKeyword()+ "%'";
+		}
+		sql_in = sql_in + "ORDER BY NTC_SEQ DESC) WHERE ROWNUM <= " + cri.getPageNum() * cri.getAmount();
+		
+		String sql =
+			"SELECT NTC_SEQ, NTC_TITLE, NTC_CTNT, NTC_IMGURL, NTC_CDATE, NTC_HIT, NTC_UDATE " + 
+			"FROM (" + sql_in + ") WHERE RN > " + (cri.getPageNum() - 1) * cri.getAmount();
+		
+		System.out.println("sql : " + sql);
+		
+		return jdbcTemplate.query(sql, noticeRowMapper);
+	}
+	
+	
+	
 	
 }

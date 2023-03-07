@@ -55,11 +55,11 @@ public class AdminController {
 	}
 
 	// 관리자 로그아웃
-	@RequestMapping(value="/Admin/logout")
+	@RequestMapping(value = "/Admin/logout")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		
-		if(session != null) {
+
+		if (session != null) {
 			session.invalidate();
 			System.out.println("로그아웃");
 		}
@@ -122,7 +122,7 @@ public class AdminController {
 		System.out.println("getUserList");
 		return "/Admin/mgmtUser";
 	}
-	
+
 	// 회원 탈퇴
 	@RequestMapping(value = "/Admin/deleteUser/{user_id}")
 	public String deleteUser(UserVO uvo, @PathVariable("user_id") String user_id) {
@@ -130,7 +130,6 @@ public class AdminController {
 		System.out.println("deleteUser 완료");
 		return "redirect:/Admin/mgmtUser";
 	}
-	
 
 	// 파트너 관리
 	@RequestMapping(value = "/Admin/mgmtPartner")
@@ -154,6 +153,23 @@ public class AdminController {
 		return "/Admin/mgmtPartner";
 	}
 
+	// 파트너 정보
+	@RequestMapping(value = "/Admin/mgmtPartner/{part_id}")
+	public String getPartInfo(PartnerVO pvo, PartnerDAO pdao, Model model, HttpServletRequest request,
+			@PathVariable(value = "part_id") String part_id) throws Exception {
+		System.out.println("---> partnerInfo 이동");
+
+//		새로운 세션 생성 방지
+		HttpSession session = request.getSession(false);
+
+		model.addAttribute("partInfo", admService.getPartInfo(pvo));
+		if (session != null && session.getAttribute("admin") != null) {
+			model.addAttribute("partInfo", admService.getPartInfo(pvo));
+		}
+
+		return "/Admin/getPartnerInfo";
+	}
+
 	// 게시판 관리 view
 	@RequestMapping(value = "/Admin/mgmtBoard")
 	public String mgmtBoard() {
@@ -167,8 +183,7 @@ public class AdminController {
 		System.out.println("getTipPreview");
 		return "/Admin/tipPrev";
 	}
-	
-	
+
 	// 소모임 preview
 	@RequestMapping(value = "/Admin/communityPrev")
 	public String communityPrev(CommunityVO cvo, CommunityDAO cdao, Model model) {
@@ -176,16 +191,13 @@ public class AdminController {
 		System.out.println("getComPreview");
 		return "/Admin/communityPrev";
 	}
-	
 
-	
 	// 대시보드 controller
 	// 통계 List
 	@RequestMapping(value = "Admin/mgmt")
 	public String getDashBoard(AdminVO vo, AdminDAO dao, PartnerVO pvo, PartnerDAO pdao, Model model) {
 		System.out.println("dashboard 이동");
-		
-		
+
 		HashMap<String, Integer> stats = new HashMap<String, Integer>();
 		stats.put("earnings", admService.getEarnings());
 		stats.put("userCount", admService.getUserCount());
@@ -194,12 +206,12 @@ public class AdminController {
 		dstats.put("reviewAvg", admService.getReviewAvg());
 		model.addAttribute("stats", stats);
 		model.addAttribute("dstats", dstats);
-		
+
 		model.addAttribute("reserve_chart", admService.getMontlyReserve(vo));
 		model.addAttribute("service_chart", admService.getServiceCount(vo));
 		model.addAttribute("getPartner", admService.getPartRank(pvo));
 		return "/Admin/mgmt";
-		
+
 //		HashMap<String, Integer> var = new HashMap<String, Integer>();
 //		
 //		var.put("회원통계", AdminService.get)
@@ -209,6 +221,5 @@ public class AdminController {
 //		전체통계리스트.회원통계 
 //		전체통계리스트.무슨통계
 	}
-
 
 }

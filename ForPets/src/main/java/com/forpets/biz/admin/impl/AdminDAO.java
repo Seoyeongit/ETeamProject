@@ -39,7 +39,7 @@ public class AdminDAO {
 	private final String MONTHLY_RESERVE = "SELECT TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') AS year_month, COUNT(*) AS total FROM RESERVE GROUP BY TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') ORDER BY TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') ASC";
 	private final String SERVICE_COUNT = "SELECT s_num, count(s_num) AS service from reserve where s_num in(1,2,4,5,8) group by s_num order by 1";
 	private final String PARTNER_RANK = "SELECT PARTNERS.PART_ID, PARTNERS.PART_NAME, COUNT(DISTINCT RESERVE.RESERVE_NUM) AS RES_CNT FROM PARTNERS INNER JOIN RESERVE ON PARTNERS.PART_ID = RESERVE.PART_ID GROUP BY PARTNERS.PART_ID, PARTNERS.PART_NAME ORDER BY RES_CNT DESC";
-	
+	private final String PARTNER_INFO = "SELECT * FROM PARTNERS WHERE PART_ID=?";
 	
 	private final RowMapper<AdminVO> adminRowMapper = (resultSet, rowNum) -> {
 		AdminVO newvo = new AdminVO();
@@ -183,6 +183,10 @@ public class AdminDAO {
 
 	public List<PartnerVO> getPartRank(PartnerVO pvo) {
 		return jdbcTemplate.query(PARTNER_RANK, partRankRowMapper);
+	}
+
+	public PartnerVO getPartInfo(PartnerVO pvo) {
+		return jdbcTemplate.queryForObject(PARTNER_INFO, partRowMapper);
 	}
 
 

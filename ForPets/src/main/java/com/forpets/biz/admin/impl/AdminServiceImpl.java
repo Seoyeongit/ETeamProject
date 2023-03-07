@@ -89,6 +89,11 @@ public class AdminServiceImpl implements AdminService {
 	public List<CommunityVO> getComPrev(CommunityVO cvo) {
 		return adminDAO.getComPrev(cvo);
 	}
+
+	@Override
+	public PartnerVO getPartInfo(PartnerVO pvo) {
+		return adminDAO.getPartInfo(pvo);
+	}
 	
 	
 	

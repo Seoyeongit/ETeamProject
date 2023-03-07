@@ -75,10 +75,7 @@ public class NoticeController {
 		return "/Notice/getNoticeBoard";
 	} 
 	
-	public String selectBoard() {
-		return "boardDetail";
-	}
-	
+		
 	
 	// 글 수정폼 이동
 	@RequestMapping(value="/updateNoticeForm.do/{ntc_seq}")

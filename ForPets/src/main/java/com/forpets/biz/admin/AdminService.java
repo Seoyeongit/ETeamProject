@@ -46,6 +46,8 @@ public interface AdminService {
 
 	public List<PartnerVO> getPartRank(PartnerVO pvo);
 
+	PartnerVO getPartInfo(PartnerVO pvo);
+
 
 
 }

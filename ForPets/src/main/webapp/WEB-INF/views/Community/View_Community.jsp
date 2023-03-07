@@ -146,9 +146,15 @@
 						<p class="writer"> <b>${communityboard.user_id }</b> | ${communityboard.c_date } </p>
 					<c:set var="test" value="${sv_add }"> </c:set>
 					 	<c:choose>
-							<c:when  test="${not empty test}">
-						 <a href="${pageContext.request.contextPath}/surveyboard.do/${sv_add }" style="float: right;">설문지 답변하러 가기</a>
+					 		
+					 		<c:when test="${member.user_id != null }">
+					 		<c:choose>
+								<c:when  test="${not empty test}">
+							 		<a href="${pageContext.request.contextPath}/surveyboard.do/${sv_add }" style="float: right;">설문지 답변하러 가기</a>
+			 					</c:when>
+			 				</c:choose>
 		 					</c:when>
+		 					
 		 				</c:choose> 
 		 		
 		 			</div> 

@@ -19,11 +19,13 @@ public class PetDAO {
 
 	
 	private final String GET_PETINFO =  "SELECT * FROM USER_PET WHERE USER_ID = ?";
-	private final String INSERT_PET = "INSERT INTO user_pet VALUES((user_pet_seq.NEXTVAL),?,?,?,?,?,?)";
 	
-	private final String INSERT_PET2 = "INSERT INTO user_pet(pet_id,PET_NAME,PET_TYPE,PET_IMG,PET_AGE,PET_GENDER,USER_ID) VALUES((user_pet_seq.NEXTVAL),?,?,?,?,chr(?),?)";
+	private final String INSERT_PET = "INSERT INTO user_pet "
+										+ "VALUES((user_pet_seq.NEXTVAL),?,?,?,?,?,?,?,?,?,?,?,?)";
 	
-	private final String UPDATE_PET = "UPDATE USER_PET SET PET_NAME=?, PET_TYPE=?, PET_IMG=?, PET_AGE=?, PET_GENDER=chr(?) WHERE PET_ID=?";
+	private final String UPDATE_PET = "UPDATE USER_PET "
+									+ "SET PET_NAME=?, PET_IMG=?, PET_AGE=?, PET_GENDER=chr(?), WEIGHT=?,PET_TYPE_DETAIL=?,LICENSE=?,IS_NEUTERED=chr(?),PET_SOCIAL=?,IS_VACCIN=chr(?) "
+									+ "WHERE PET_ID=?";
 	
 	private final String COUNT_PET = "select count(*) from user_pet where user_id=?";
 	
@@ -35,16 +37,34 @@ public class PetDAO {
 		try{
 			char gender = vo.getGender();
 			int genderCode = gender;
-			jdbcTemplate.update(INSERT_PET2,vo.getName(),vo.getType(),vo.getImg(),vo.getAge(),genderCode,vo.getUser_id());
+			int neuteredCode = vo.getIsNeutered();
+			int vaccinCode = vo.getIsVaccin();
+			
+			Object[] obj = {vo.getName(),vo.getType(),vo.getImg(),vo.getAge(),
+							vo.getGender() == '\u0000' ? null : vo.getGender(),
+							vo.getUser_id(),vo.getWeight(),
+							vo.getType_detail(),vo.getLicense(),
+							vo.getIsNeutered() == '\u0000' ? null : vo.getIsNeutered(),
+							vo.getSocial(),
+							vo.getIsVaccin() == '\u0000' ? null : vo.getIsVaccin()
+							};
+			
+			jdbcTemplate.update(INSERT_PET,obj);
+		
 		}catch (Exception e) {
 			System.out.println(e);
 			System.out.println("오류임");
 		}
 	}
 	
-	public List<PetVO> getPetInfo(PetVO vo) {
-		Object[] orgs = {vo.getUser_id()};
+	public List<PetVO> getPetInfo(String user_id) {
+		Object[] orgs = {user_id};
 		return jdbcTemplate.query(GET_PETINFO,orgs, new PetRowMapper());
+	}
+	
+	public PetVO getPetDetail(Integer pet_id) {
+		Object[] orgs = {pet_id};
+		return jdbcTemplate.queryForObject(PET_GET, orgs, new PetRowMapper());
 	}
 	
 	public int countPet(PetVO vo) {
@@ -57,9 +77,13 @@ public class PetDAO {
 	public void updatePet(PetVO vo) {
 		
 		
-		char gender = vo.getGender();
-		int genderCode = gender;
-		Object[] orgs = {vo.getName(),vo.getType(),vo.getImg(),vo.getAge(),genderCode,vo.getId()};
+		
+		int genderCode = vo.getGender();
+		int neuteredCode = vo.getIsNeutered();
+		int vaccinCode = vo.getIsVaccin();
+		
+		Object[] orgs = {vo.getName(),vo.getImg(),vo.getAge(),genderCode,vo.getWeight(),vo.getType_detail()
+						,vo.getLicense(),neuteredCode,vo.getSocial(),vaccinCode,vo.getId()};
 		
 		jdbcTemplate.update(UPDATE_PET,orgs);
 	}

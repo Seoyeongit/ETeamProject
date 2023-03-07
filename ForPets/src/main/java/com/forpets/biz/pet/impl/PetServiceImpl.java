@@ -21,13 +21,18 @@ public class PetServiceImpl implements PetService {
 
 
 	@Override
-	public List<PetVO> getPetInfo(PetVO vo) {
-		return petDAO.getPetInfo(vo);
+	public List<PetVO> getPetInfo(String user_id) {
+		return petDAO.getPetInfo(user_id);
 	}
 	
 	@Override
 	public int countPet(PetVO vo) {
 		return petDAO.countPet(vo);
+	}
+	
+	@Override
+	public PetVO getPetDetail(Integer pet_id) {
+		return petDAO.getPetDetail(pet_id);
 	}
 	
 	//230130 최지혁 - 펫 리스트

@@ -165,13 +165,16 @@
 				<a href="${pageContext.request.contextPath}/updatecommunity/${communityboard.c_code }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="수정"></a>
 				<a href="${pageContext.request.contextPath}/deletecommunity/${communityboard.c_code }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="삭제"></a>
 			<c:choose>
-				<c:when test="${not empty test }">	
+				<c:when test="${not empty svcode[0].sa_svcode }">	
 				<a href="${pageContext.request.contextPath}/answerlist.do/${svcode[0].sa_svcode }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="설문지 답변 확인"></a>
 				</c:when>		
 			</c:choose>		 
 		</c:when>
-
 	</c:choose>
+	
+			<c:if test="${role eq 'admin' }">
+				<a href="${pageContext.request.contextPath}/deletecommunity/${communityboard.c_code }"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="삭제"></a>
+			</c:if>
 
 			<a href="${pageContext.request.contextPath}/communitylist"><input class="btn" style="background-color:#19CE60; color:white;" type="button" value="목록보기"></a>		
 		</div>

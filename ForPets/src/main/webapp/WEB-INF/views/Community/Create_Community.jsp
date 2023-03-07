@@ -14,93 +14,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		// 구분을 위한 count 변수
-		var count = 1;
-		
-		// 설문지 추가 버튼
-		$("#addSurBtn").click(function(){
-			// 구분을 위한 count 증가
-			count += 1;
-			
-			// 설문지 최대 번호 구하기 -> 증가
-			var last = $("#survey tr:last").attr("class").replace("item","");
-			var newitem = $("#survey tr:eq(1)").clone();
 
-
-			newitem.removeClass();
-			newitem.find("td:eq(0)").attr("rowspan", "1");
-			
-			// item 추가할 때 title, type, answer 구분자를 추가해서 name 설정
-			newitem.find("td:eq(0)").find("input:eq(0)").attr("name", "sd_title"+count);
-			newitem.find("td:eq(1)").find("select:eq(0)").attr("name", "sd_type"+count);
-			newitem.find("td:eq(2)").find("input:eq(1)").attr("name", "sc_answer"+count);
-			
-			newitem.addClass("item"+(parseInt(last)+1));
-			
-			// 총 작성된 질문 수 = count
-			$("#survey_count").val(count);
-
-			$("#survey").append(newitem);
-		}); // 설문지 추가 END
-		
-		
-		// 항목 추가 버튼
-		$(".addBtn").live("click", function(){
-			var click = $(this).parent().parent();
-			var cls = click.attr("class");
-			
-			// tr복사 후 마지막에 추가
-			var newrow = click.clone();
-			newrow.find("td:eq(0)").children().remove();
-			newrow.find("td:eq(1)").children().remove();
-			newrow.insertAfter($("#survey ."+cls+":last"));
-		}); // 항목 추가 END
-		
-
-
-        
-        // 삭제버튼 클릭 시 
-        $(".delBtn").live("click", function() {
-        	var click = $(this).parent().parent();
-        	var cls = click.attr("class");
-        	
-        	if (click.find("td:eq(0)").attr("rowspan")) {
-        		if(click.next().hasClass(cls)) {
-        			click.next().preped(click.find("td:eq(0)"));
-        		}
-        	}
-        	click.remove();
-        
-        });
-		
-	});
-     
- 	 $(document).change("select[name=sd_type]", function() { 
-	
-		let qs = $("#surOpt").find("option:selected").val();	 
-				
-	 	 /* 	if (qs == "gaek") {
-		    		alert (qs);
-		    		
-		    	} else if (qs == "check") {
-		    		alert (qs); 
-		    		
-		    	} else if (qs == "ju") {
-		    		alert (qs);
-		    		
-		    	} else if (qs == "time") {
-		        		alert (qs);	
-		        		
-		    	} else if (qs == "schedule") {
-		    		alert (qs);	 */
-		    		
-		    	//} // if end 
-			}); 
-			
-	
-</script>
 <style>
 	body {
 		background: #f9f9f9; 
@@ -302,7 +216,7 @@
 			<td>
 			<!-- 	<input type="hidden" name="sd_order"> -->
 				<input class="svinput" type="text" placeholder = "질문 내용을 입력해 주세요." size=60 name="sd_title1" required></td>
-			<td><select id="surOpt" name="sd_type1" class="pl" required>
+			<td><select id="surOpt" name="sd_type1" class="pl" required onchange="handle(this)">
 
 					<option value="">-- 설문지 유형을 선택해 주세요 --</option>
 
@@ -313,7 +227,7 @@
 					<option value="schedule">달력형</option>
 				</select>
 			</td>
-            <td><input type="hidden" name="sc_ascode" value=""><input class="svinput" type="text" name="sc_answer1"/>      
+            <td><input type="hidden" name="sc_ascode" value=""><input class="svinput" type="text" name="sc_answer1" />      
             	<button type="button" class="addBtn btn btn-sm" style="border-color:#19CE60; color:#19CE60;">항목추가</button></td>
             <td><button class="delBtn btn btn-sm" style="border-color:#19CE60; color:#19CE60;">삭제</button></td>
 		</tr>
@@ -335,6 +249,112 @@
 
 
 <%@ include file="/WEB-INF/views/footer.jsp" %>	
+<script type="text/javascript">
+	$(document).ready(function(){
+		// 구분을 위한 count 변수
+		var count = 1;
+		
+		// 설문지 추가 버튼
+		$("#addSurBtn").click(function(){
+			// 구분을 위한 count 증가
+			count += 1;
+			
+			// 설문지 최대 번호 구하기 -> 증가
+			var last = $("#survey tr:last").attr("class").replace("item","");
+			var newitem = $("#survey tr:eq(1)").clone();
+			
+			newitem.find("td:eq(0)").find("input:eq(0)").attr('value','');
+			newitem.find("td:eq(1)").find("select:eq(0)").attr('value','');
+			newitem.find("td:eq(2)").find("input:eq(1)").attr('value','');
+			
+			newitem.removeClass();
+			newitem.find("td:eq(0)").attr("rowspan", "1");
+			
+			// item 추가할 때 title, type, answer 구분자를 추가해서 name 설정
+			newitem.find("td:eq(0)").find("input:eq(0)").attr("name", "sd_title"+count);
+			newitem.find("td:eq(1)").find("select:eq(0)").attr("name", "sd_type"+count);
+			newitem.find("td:eq(2)").find("input:eq(1)").attr("name", "sc_answer"+count);
+			
+			newitem.addClass("item"+(parseInt(last)+1));
+			
+			// 총 작성된 질문 수 = count
+			$("#survey_count").val(count);
 
+			$("#survey").append(newitem);
+		}); // 설문지 추가 END
+		
+		
+		// 항목 추가 버튼
+		$(".addBtn").live("click", function(){
+			var click = $(this).parent().parent();
+			var cls = click.attr("class");
+			
+			// tr복사 후 마지막에 추가
+			var newrow = click.clone();
+			newrow.find("td:eq(0)").children().remove();
+			newrow.find("td:eq(1)").children().remove();
+			newrow.find("td:eq(2)").find("input:eq(1)").attr('value','');
+			newrow.insertAfter($("#survey ."+cls+":last"));
+		}); // 항목 추가 END
+		
+
+
+        
+        // 삭제버튼 클릭 시 
+        $(".delBtn").live("click", function() {
+        	var click = $(this).parent().parent();
+        	var cls = click.attr("class");
+        	
+        	if (click.find("td:eq(0)").attr("rowspan")) {
+        		if(click.next().hasClass(cls)) {
+        			click.next().preped(click.find("td:eq(0)"));
+        		}
+        	}
+        	click.remove();
+        
+        });
+		
+	});
+     
+/*  	 $(document).onchange("select[name=sd_type]", function() { 
+	
+		let qs = $(this).$("#surOpt").find("option:selected").val();	 
+				
+	 	  	if (qs == "gaek") {
+		    		alert (qs);
+		    		
+		    	} else if (qs == "check") {
+		    		alert (qs); 
+		    		
+		    	} else if (qs == "ju") {
+		    		alert (qs);
+		    		
+		    	} else if (qs == "time") {
+		        		alert (qs);	
+		        		
+		    	} else if (qs == "schedule") {
+		    		alert (qs);	 
+		    		
+		    	} // if end 
+			});  */
+			
+			function handle(test_sel) {
+				let qs = $(test_sel).val();
+				let name = $(test_sel).attr('name');
+				let no_name = name.substring(name.length -1);
+				if (qs == "gaek") {
+					$("input[name=sc_answer"+no_name+"]").attr('readonly', false);
+		    	} else if (qs == "check") {
+		    		$("input[name=sc_answer"+no_name+"]").attr('readonly', false);
+		    	} else if (qs == "ju") {
+		    		$("input[name=sc_answer"+no_name+"]").attr('readonly', true);
+		    	} else if (qs == "time") {
+		        	$("input[name=sc_answer"+no_name+"]").attr('readonly', true);
+		    	} else if (qs == "schedule") {
+		    		$("input[name=sc_answer"+no_name+"]").attr('readonly', true);
+		    	} // if end 
+			}
+	
+</script>
 </body>
 </html>

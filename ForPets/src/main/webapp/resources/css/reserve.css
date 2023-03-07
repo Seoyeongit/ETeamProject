@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+.main-controller {
+	border:1px solid rgba(128,128,128,.8);
+	border-radius:10px;
+	width:45%;
+	margin-top:5%;
+	margin-left:10%;
+	height:auto;
+	background-color:rgba(211,211,211,0.6);
+	font-family: 'Poor Story', cursive;
+	font-size:20px;
+}
+.text-controller {
+	margin-top:5%;
+	margin-left:5%;
+	margin-bottom:5%;
+}
+.back-bt {
+	width:80px;
+	height:40px;
+	border:1px solid rgba(128,128,128,.8);
+	border-radius:10px;
+	backgroud-color:#ffffff;
+	margin-top:10px;
+	margin-left:50%;
+}
+.name-box {
+	flex-direction: row;
+    display: flex;
+}
+.pet-name {
+	margin-left:10%;
+}
+.user-box {
+	flex-direction: row;
+    display: flex;
+    margin-top:15px;
+}
+.user-id {
+	margin-left:10%;
+}
+.add-box {
+	flex-direction: row;
+    display: flex;
+    margin-top:15px;
+}
+.add-detail {
+	margin-left:12%;
+}
+.phnum-box{
+	flex-direction: row;
+    display: flex;
+    margin-top:15px;
+}
+.ph-num {
+	margin-left:12%;
+}
+.warnig {
+	flex-direction: row;
+    display: flex;
+    margin-top:15px;
+}
+.warn-not{
+	margin-left:7%;
+}
+.ser-name {
+	flex-direction: row;
+    display: flex;
+    margin-top:15px;
+}
+.serv-nam{
+	margin-left:7%;
+}
+.add-serv {
+	flex-direction: row;
+    display: flex;
+    margin-top:15px;
+}
+.add-seradd {
+	margin-left:5%;
+}

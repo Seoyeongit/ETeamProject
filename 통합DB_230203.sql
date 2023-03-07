@@ -260,6 +260,11 @@ INSERT INTO serv VALUES((serv_seq.NEXTVAL), '훈련', 50000);
 
 select * from serv;
 
+
+select * from reserve;
+
+drop 
+
 -- tip_board sequence
 CREATE SEQUENCE tip_board_seq
   START WITH 1
@@ -1108,3 +1113,7 @@ group by reserve.part_id, reserve.reserve_num, reserve.reserve_day, reserve.rese
 select *
 from reserve
 where part_id='bpb222';
+
+select * from partners;
+select * from reserve;
+delete from reserve where reserve_num='RN_44';

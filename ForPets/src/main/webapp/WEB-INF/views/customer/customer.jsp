@@ -28,6 +28,7 @@
    .qa-box{
       margin-left : 5%;
       margin-bottom:5%;
+      
    }
    .show-qa {
       background-color : white !important;
@@ -39,7 +40,9 @@
    }
    .forpets_q{
       margin-bottom : 20%;
+      box-shadow: 0 5px 7px lightgray, 0 6px 8px lightgray;
    }
+
 </style>
 <script>
 function show_a(this_id) {
@@ -89,7 +92,7 @@ $(document).ready(function(){
    <div class="qs-box font">
       <div class="row container">
          <div class="col-2 d-flex justify-content-center">
-            <button type="button" class="forpets_q show-qa" id="q_1" onclick="show_a(this.id)">회원에서 파트너로 전향하려면 어떻게 해야 하나요</button>
+            <button type="button" class="forpets_q show-qa" id="q_1" onclick="show_a(this.id)">회원에서 파트너로 전향하려면</button>
          </div>
          <div class="col-2 d-flex justify-content-center">
             <button type="button" class="forpets_q show-qa" id="q_2" onclick="show_a(this.id)">출입 비밀번호등 정보 유출이 걱정될 때</button>
@@ -161,7 +164,7 @@ $(document).ready(function(){
          </div> -->
          
          <div class="col-2 d-flex justify-content-center">
-            <button type="button" class="forpets_q show-qa" id="q_6" onclick="show_a(this.id)">원하는 펫트너와 예약할 수 있나요?</button>
+            <button type="button" class="forpets_q show-qa" id="q_6" onclick="show_a(this.id)">원하는 펫트너와 예약하고 싶을때</button>
          </div>
          <div class="col-2 d-flex justify-content-center">
             <button type="button" class="forpets_q show-qa" id="q_7" onclick="show_a(this.id)">새벽이나 밤 늦게도 이용 할 수 있나요?</button>

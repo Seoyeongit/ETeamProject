@@ -48,6 +48,7 @@
 	<div class=""></div>
         <h1 class="hd-main"><b>돌봄일지 작성</b></h1>
         	<div class="main-control">
+        		<h3 class="main-con-hdd">고객님이 신청하신 서비스내역 입니다.</h3>
             <div class="main-control-hd">
             <div class="pet-info">
                 <!--이데이터는 서버로 보내지 않습니다.-->
@@ -68,7 +69,6 @@
                 </div>
             </div>
 			<div class="serivce-list">
-            <h3>고객님이 신청하신 서비스내역 입니다.</h3>
             <div class="인적사항정보div">
                 <!--이데이터는 서버로 보내지 않습니다.-->
                 <div>
@@ -140,7 +140,8 @@
         	</div>
         	<div class="write-bt-control">
         		<input type="hidden" name="reserve_num" value="${reserve.reserve_num }">
-				<div class="write-bt"><input type="submit" class="write-bt-sub" value="작성하기"></div></div>
+				<div class="write-bt"><input type="submit" class="write-bt-sub" value="작성하기"></div>
+				<div class="back-bt"><input type="button" class="back-bt-sub" onclick="location.href='careDiaryList';" value="뒤로가기"></div></div>
     	</div> 
     	</form>
     		

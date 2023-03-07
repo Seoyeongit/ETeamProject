@@ -73,6 +73,16 @@ public class AdminServiceImpl implements AdminService {
 	public Integer getReserveCount() {
 		return adminDAO.getReserveCount();
 	}
+
+	@Override
+	public List<AdminVO> getServiceCount(AdminVO avo) {
+		return adminDAO.getServiceCount(avo);
+	}
+
+	@Override
+	public List<PartnerVO> getPartRank(PartnerVO pvo) {
+		return adminDAO.getPartRank(pvo);
+	}
 	
 	
 	

@@ -83,9 +83,10 @@
 							<table class="table table-hover">
 								<thead>
 									<tr align="center">
-										<th>no</th>
+										<th></th>
 										<th>회원ID</th>
 										<th>닉네임</th>
+										<th>이름</th>
 										<th>주소</th>
 										<th>가입일</th>
 										<th>경고수</th>
@@ -95,9 +96,10 @@
 								<tbody>
 									<c:forEach var="user" items="${getUser}">
 										<tr align="center">
-											<td>${user.user_no}</td>
+											<td></td>
 											<td>${user.user_id}</td>
 											<td>${user.user_nick}</td>
+											<td>${user.user_name}</td>
 											<td>${user.user_add}</td>
 											<td>${user.data_create}</td>
 											<td>${user.war}</td>

@@ -175,7 +175,7 @@ public class AdminController {
 	// 대시보드 controller
 	// 통계 List
 	@RequestMapping(value = "Admin/mgmt")
-	public String getDashBoard(AdminVO vo, AdminDAO dao, Model model) {
+	public String getDashBoard(AdminVO vo, AdminDAO dao, PartnerVO pvo, PartnerDAO pdao, Model model) {
 		System.out.println("dashboard 이동");
 		
 		
@@ -187,7 +187,10 @@ public class AdminController {
 		dstats.put("reviewAvg", admService.getReviewAvg());
 		model.addAttribute("stats", stats);
 		model.addAttribute("dstats", dstats);
+		
 		model.addAttribute("reserve_chart", admService.getMontlyReserve(vo));
+		model.addAttribute("service_chart", admService.getServiceCount(vo));
+		model.addAttribute("getPartner", admService.getPartRank(pvo));
 		return "/Admin/mgmt";
 		
 //		HashMap<String, Integer> var = new HashMap<String, Integer>();

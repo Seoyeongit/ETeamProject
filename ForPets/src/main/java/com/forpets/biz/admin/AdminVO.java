@@ -27,7 +27,8 @@ public class AdminVO {
 	private int user_count; // 유저수
 	private String year_month; // 예약년-월
 	private int montly_reserve; // 월별 예약수
-
+	private int service_count; // 서비스별 예약현황
+	private int s_num;
 	
 
 }

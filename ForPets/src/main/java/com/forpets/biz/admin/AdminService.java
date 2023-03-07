@@ -38,5 +38,8 @@ public interface AdminService {
 	public Double getReviewAvg();
 	public Integer getReserveCount();
 	public List<AdminVO> getMontlyReserve(AdminVO avo);
+	public List<AdminVO> getServiceCount(AdminVO avo);
+
+	public List<PartnerVO> getPartRank(PartnerVO pvo);
 
 }

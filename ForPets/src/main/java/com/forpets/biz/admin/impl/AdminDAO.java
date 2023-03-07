@@ -30,8 +30,8 @@ public class AdminDAO {
 	private final String USER_LIST = "select * from USERS order by user_id";
 	private final String DELETE_USER = "delete from USERS where user_id=?";
 	private final String PARTNER_LIST = "select * from PARTNERS order by part_no";
-	private final String UPDATE_ADMIN = "update ADMIN set adm_name=?, adm_phone=?, adm_email=?, adm_pw=?"
-			+ "where adm_id=?";
+	private final String UPDATE_ADMIN = "update ADMIN set adm_name=?, adm_phone=?, adm_email=?"
+			+ "where adm_id=? and adm_pw=?";
 	private final String TIP_PREV = "select tip_title, tip_img_url from TIP_BOARD order by tip_seq desc";
 	private final String COM_PREV = "select * from community order by C_DATE DESC ";
 	private final String GET_EARNINGS = "SELECT SUM(S_PRICE) FROM SERV RIGHT OUTER JOIN RESERVE USING (S_NUM)";
@@ -43,7 +43,7 @@ public class AdminDAO {
 	private final String PARTNER_RANK = "SELECT PARTNERS.PART_ID, PARTNERS.PART_NAME, COUNT(DISTINCT RESERVE.RESERVE_NUM) AS RES_CNT FROM PARTNERS INNER JOIN RESERVE ON PARTNERS.PART_ID = RESERVE.PART_ID GROUP BY PARTNERS.PART_ID, PARTNERS.PART_NAME ORDER BY RES_CNT DESC";
 	private final String PARTNER_INFO = "SELECT * FROM PARTNERS WHERE PART_ID=?";
 	private final String USER_INFO = "SELECT * FROM USERS WHERE USER_ID=?";
-
+	
 	// paging 처리
 	private final String GETTOTALPAGES = "SELECT COUNT(*) FROM USERS WHERE 1 = 1 ";
 	private final String GETLISTWITHPAGING = "SELECT USER_ID, USER_NAME, USER_NICK, USER_ADD,GENDER,PHNUMBER,BIRTH,WAR,USER_NO,DATA_CREATE\r\n"
@@ -135,10 +135,8 @@ public class AdminDAO {
 
 	// 관리자 수정
 	public void updateAdmin(AdminVO vo) {
-		jdbcTemplate.update(UPDATE_ADMIN, vo.getAdm_name(), vo.getAdm_phone(), vo.getAdm_email(), vo.getAdm_pw(),
-				vo.getAdm_id());
+		jdbcTemplate.update(UPDATE_ADMIN, vo.getAdm_name(), vo.getAdm_phone(), vo.getAdm_email(), vo.getAdm_id(), vo.getAdm_pw());
 		System.out.println("---> updateAdmin()");
-		System.out.println(vo.getAdm_name() + vo.getAdm_phone() + vo.getAdm_email() + vo.getAdm_pw() + vo.getAdm_id());
 	}
 
 	// 회원 목록

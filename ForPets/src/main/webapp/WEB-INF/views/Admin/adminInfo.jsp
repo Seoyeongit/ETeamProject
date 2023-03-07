@@ -20,6 +20,7 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/admin/adminInfo.css?after"
 	rel="stylesheet" type="text/css" />
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
 	$('#form-admin').submit(function() {
 		$('#adminUpdateModal').modal('show');
@@ -77,7 +78,8 @@
 									<tr height="50">
 										<td class="align-middle">패스워드</td>
 										<td><input type="hidden" id="adm_pw" name="adm_pw"
-											value="${admin.adm_pw}"></td>
+											value="${admin.adm_pw}"> <input type="password"
+											class="form-control" id="adm_pwck" name="adm_pwck"></td>
 									</tr>
 
 									<tr height="50">
@@ -117,7 +119,18 @@
 	</div>
 </body>
 <!-- Bootstrap c'ore JS-->
+<script>
+	$('input[type=submit]').on('click', function() {
+		var pw = $("#adm_pw").val();
+		var pwch = $("#adm_pwck").val();
 
+		if (pw !== pwch) {
+			alert("암호가 일치하지 않습니다 한번더 확인해주세요.");
+			return false;
+		}
+
+	})
+</script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

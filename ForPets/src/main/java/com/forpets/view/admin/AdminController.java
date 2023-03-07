@@ -21,11 +21,14 @@ import com.forpets.biz.admin.AdminVO;
 import com.forpets.biz.admin.SearchCriteria_user;
 import com.forpets.biz.admin.UserInfoPagingDTO;
 import com.forpets.biz.admin.impl.AdminDAO;
+import com.forpets.biz.community.CommunityService;
 import com.forpets.biz.community.CommunityVO;
 import com.forpets.biz.community.impl.CommunityDAO;
 import com.forpets.biz.partner.PartnerService;
 import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.partner.impl.PartnerDAO;
+import com.forpets.biz.partnerReview.PartnerReviewService;
+import com.forpets.biz.pet.PetService;
 import com.forpets.biz.reserve.ReServeVO;
 import com.forpets.biz.tip.SearchCriteria;
 import com.forpets.biz.tip.TipPagingDTO;
@@ -41,6 +44,15 @@ public class AdminController {
 
 	@Autowired
 	private AdminService admService;
+	
+	@Autowired
+	private CommunityService comService;
+	
+	@Autowired
+	private PetService petService;
+	
+	@Autowired
+	private PartnerReviewService reviewService;
 
 	// 관리자 로그인
 	@RequestMapping(value = "/Admin/login", method = RequestMethod.POST)
@@ -148,12 +160,12 @@ public class AdminController {
 
 		if (session != null && session.getAttribute("admin") != null) {
 			model.addAttribute("userInfo", admService.getUserInfo(uvo, user_id));
+			model.addAttribute("userPost", comService.getListMyPost(user_id));
+			model.addAttribute("userPet", petService.getPetInfo(user_id));
 		}
-
+		
 		return "/Admin/getUserInfo";
 	}
-	
-	
 	
 	
 
@@ -190,8 +202,10 @@ public class AdminController {
 
 		if (session != null && session.getAttribute("admin") != null) {
 			model.addAttribute("partInfo", admService.getPartInfo(pvo, part_id));
+			model.addAttribute("partReview", reviewService.getprReviewList(part_id));
+			model.addAttribute("avgReview", reviewService.avg(part_id));
 		}
-
+		
 		return "/Admin/getPartnerInfo";
 	}
 

@@ -162,7 +162,7 @@ input[type=text]:focus{
 }
 
 
-.form-box:nth-child(10)>label{
+.form-box:nth-child(11)>label{
 	width: 100%;
     display: block;
     text-align: center;

@@ -103,7 +103,11 @@ public class PetDAO {
 		newPet.setType(resultSet.getString("PET_TYPE"));
 		newPet.setImg(resultSet.getString("PET_IMG"));
 		newPet.setAge(resultSet.getInt("PET_AGE"));
+		try {
 		newPet.setGender(resultSet.getString("PET_GENDER").charAt(0));
+		}catch(NullPointerException e) {
+			newPet.setGender(' ');
+		}
 		newPet.setUser_id(resultSet.getString("USER_ID"));
 		return newPet;
 	};
@@ -119,7 +123,11 @@ public class PetDAO {
 					newPet.setType(resultSet.getString("PET_TYPE"));
 					newPet.setImg(resultSet.getString("PET_IMG"));
 					newPet.setAge(resultSet.getInt("PET_AGE"));
+					try {
 					newPet.setGender(resultSet.getString("PET_GENDER").charAt(0));
+					}catch(NullPointerException e) {
+						newPet.setGender(' ');
+					}
 					newPet.setUser_id(resultSet.getString("USER_ID"));
 					return newPet;
 				}

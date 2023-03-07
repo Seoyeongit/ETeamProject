@@ -59,6 +59,11 @@ public class ReserveServiceImpl implements ReserveService{
 	public ReServeVO makeReserve(ReServeVO vo, HttpServletRequest request) {
 		return reserveDAO.makeReserve(vo, request);
 	}
+	
+	@Override
+	public List<ReServeVO> reserveDetailLIst(ReServeVO vo) {
+		return reserveDAO.reserveDetailLIst(vo);
+	}
 
 	@Override
 	public ReServeVO getReserve(ReServeVO vo) {

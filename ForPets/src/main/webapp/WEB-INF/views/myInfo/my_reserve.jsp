@@ -190,8 +190,8 @@
 												</c:choose>
 												
 											</div>
-											
-											</div>
+											<input type="button" class="btn" onclick="location.href='myreserveDetail?reserve_num=${reserve.reserve_num}'" value="상세보기">
+										</div>
 									</div>
 								</div>
 							</div>

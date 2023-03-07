@@ -5,16 +5,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <style>
-            body{
-        padding-top:80px;
-    }
 
+	.careDIA-box{
+		width: 80%;
+		margin-left: auto;
+		margin-right: auto;
+	}
     
     .filter-result .job-box {
       -webkit-box-shadow: 0 1px 3px 0 #dbdbdb;
@@ -39,8 +39,6 @@
     .job-box .img-holder {
       height: 65px;
       width: 65px;
-      background-color: #4e63d7;
-      background-image: -webkit-gradient(linear, left top, right top, from(rgba(78, 99, 215, 0.9)), to(#5a85dd));
       background-image: linear-gradient(to right, rgba(78, 99, 215, 0.9) 0%, #5a85dd 100%);
       font-family: "Open Sans", sans-serif;
       color: #fff;
@@ -56,6 +54,7 @@
           -ms-flex-align: center;
               align-items: center;
       border-radius: 65px;
+          background-size: cover;
     }
     
 
@@ -96,13 +95,13 @@
 </head>
 <body>
 
-<div class="container">
+<div class="careDIA-box">
 
 
 
             <div>
                     <div class="section-title text-center ">
-                        <h3 class="top-c-sep">돌봄일지보기</h3>
+                        <h3 class="top-c-sep mb-5">돌봄일지보기</h3>
                     </div>
             </div>
             
@@ -118,9 +117,8 @@
 						<c:forEach items="${careDIA }" var="dia">
                             <div class="job-box d-md-flex align-items-center justify-content-between mb-30">
                                 <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
-                                    <div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
-                                        펫
-                                    </div>
+                                    <div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex" 
+                                    	style="background-image: url('../partner/display?fileName=${dia.voR.voP.img}');"></div>
                                     
                                     <div class="job-content">
                                         <h5 class="text-center text-md-left">💁‍♂️'${dia.voR.voP.part_name}'펫트너님의 돌봄일지 </h5>
@@ -147,13 +145,12 @@
                                     <a id="check-user-careDiary-detail" class="btn d-block w-100 d-sm-inline-block btn-light" onclick="getID(${dia.diary_id})">돌봄일지보기</a>
                                 </div>
                             </div>
-						</c:forEach>
-                        </div>
+						</c:forEach></div>
                     </div>
-
                 </div>
             </div>
 
         </div>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </body>
 </html>

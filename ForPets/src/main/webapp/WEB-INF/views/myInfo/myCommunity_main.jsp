@@ -176,7 +176,7 @@ textarea{
 			</div>
 		</div>
 
-		<div class="row">
+		<div class="row" style="width: 85%; margin-left: auto; margin-right: auto;">
 			<div class="col-lg-10 mx-auto">
 				<div class="career-search mb-60">
 					<div class="filter-result"></div>

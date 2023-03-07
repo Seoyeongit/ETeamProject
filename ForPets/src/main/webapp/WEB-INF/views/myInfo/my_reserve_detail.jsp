@@ -179,10 +179,6 @@
 					        </div>
 
 							<hr>
-							<div class="col-12">
-								<!-- <input type="button" onclick="pay('${servList[0].s_name}', ${total_price})" style="float:right;" value="결제하기"> -->
-								<button type="button" class="back-bt rounded" onclick="pay('${servList[0].s_name}', ${total_price})" style="float:right;">결제하기</button>
-							</div>
 						</form>
 					</div>
 				</div>

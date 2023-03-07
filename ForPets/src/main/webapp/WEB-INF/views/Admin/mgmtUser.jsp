@@ -89,7 +89,6 @@
 										<th>이름</th>
 										<th>주소</th>
 										<th>가입일</th>
-										<th>경고수</th>
 										<th>탈퇴</th>
 									</tr>
 								</thead>
@@ -97,14 +96,15 @@
 									<c:forEach var="user" items="${getUser}">
 										<tr align="center">
 											<td></td>
-											<td>${user.user_id}</td>
+											<td><a href="${pageContext.request.contextPath}/Admin/mgmtUser/${user.user_id}">${user.user_id}</a></td>
 											<td>${user.user_nick}</td>
 											<td>${user.user_name}</td>
 											<td>${user.user_add}</td>
 											<td>${user.data_create}</td>
-											<td>${user.war}</td>
 											<td><a href="#userDeleteModal" class="trigger-btn" title="탈퇴"
-												data-toggle="modal"><i class="material-icons">&#xE5C8;</i></a>
+												data-toggle="modal"><img
+													src="${pageContext.request.contextPath}/resources/assets/img/admin/delete.png"
+													width="24px" alt="정보 보기" /></a>
 												<!-- <a href="${pageContext.request.contextPath}/Admin/deleteUser/${user.user_id }" class="view" title="탈퇴"
 												data-toggle="tooltip"></a> --></td>
 										</tr>
@@ -114,25 +114,28 @@
 							<br>
 							<div class="clearfix">
 								<ul class="pagination">
+								<li class="page-item"><a class="page-link"
+											href="/biz/Admin/mgmtUser?pageNum=${pageMaker.startPage}&amount=10&searchCondition=${ pageMaker.cri.searchCondition }&searchKeyword=${ pageMaker.cri.searchKeyword }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
 									<c:if test="${pageMaker.prev}">
-										<li class="page-item-forpets paginate_button previous">
-											<a class=" page-link-forpets" href="${pageMaker.startPage -1}">Previous</a>
-										</li>
-									</c:if>
+											<li class="page-item paginate_button">
+											<a
+												href="${pageMaker.startPage -1}" class="page-link">Previous</a>
+											</li>
+										</c:if>
+
+										<c:forEach begin="${pageMaker.startPage}"
+											end="${pageMaker.endPage}" var="num">
+											<li
+												class="page-item paginate_button ${pageMaker.cri.pageNum == num ? "active":""}"><a
+												href="${num}" class="page-link">${num}</a></li>
+										</c:forEach>
+										<c:if test="${pageMaker.next}">
+											<li class="page-item paginate_button"><a
+												href="${pageMaker.endPage +1 }" class="page-link">Next</a></li>
+										</c:if>
 									
-									
-									<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num" >
-										<li class="page-item-forpets paginate_button ${pageMaker.cri.pageNum == num ? "active":""} ">
-											<a class=" page-link-forpets" href="${num}">${num}</a>
-										</li>
-									</c:forEach>
-									
-									
-									<c:if test="${pageMaker.next}">
-										<li class="page-item-forpets paginate_button next">
-											<a class=" page-link-forpets" href="${pageMaker.endPage +1 }">Next</a>
-										</li>
-									</c:if>
+									<li class="page-item"><a class="page-link" href="/biz/Admin/mgmtUser?pageNum=${pageMaker.endPage}&amount=10&searchCondition=${ pageMaker.cri.searchCondition }&searchKeyword=${ pageMaker.cri.searchKeyword }"
+											aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
 								</ul>
 							</div>
 						</div>

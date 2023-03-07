@@ -235,6 +235,9 @@
 				// 데이타 값. config.data.labels와 수를 같게 해주면 된다.
 				backgroundColor : 'rgb(255, 99, 132)',
 				borderColor : 'rgb(255, 99, 132)',
+				pointStyle: 'circle',
+				pointRadius: 8,
+			    pointHoverRadius: 15,
 				data : reserve,
 				fill : false,
 			} ]

@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,9 +98,13 @@
 								<div class="clearfix">
 									<ul class="pagination">
 										<li class="page-item"><a class="page-link"
-											href="/biz/Notice/noticeBoard?pageNum=${pageMaker.startPage}&amount=10&searchCondition=${ pageMaker.cri.searchCondition }&searchKeyword=${ pageMaker.cri.searchKeyword }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
+											href="/biz/Notice/noticeBoard?pageNum=${pageMaker.startPage}&amount=10&searchCondition=${ pageMaker.cri.searchCondition }&searchKeyword=${ pageMaker.cri.searchKeyword }"
+											aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
 										<c:if test="${pageMaker.prev}">
-										<li class="page-item paginate_button"><a href="${pageMaker.startPage -1}" class="page-link">Previous</a></li>
+											<li class="page-item paginate_button">
+											<a
+												href="${pageMaker.startPage -1}" class="page-link">Previous</a>
+											</li>
 										</c:if>
 
 										<c:forEach begin="${pageMaker.startPage}"
@@ -110,9 +114,11 @@
 												href="${num}" class="page-link">${num}</a></li>
 										</c:forEach>
 										<c:if test="${pageMaker.next}">
-										<li class="page-item paginate_button"><a href="${pageMaker.endPage +1 }" class="page-link">Next</a></li>
+											<li class="page-item paginate_button"><a
+												href="${pageMaker.endPage +1 }" class="page-link">Next</a></li>
 										</c:if>
-										<li class="page-item"><a class="page-link" href="/biz/Notice/noticeBoard?pageNum=${pageMaker.endPage}&amount=10&searchCondition=${ pageMaker.cri.searchCondition }&searchKeyword=${ pageMaker.cri.searchKeyword }"
+										<li class="page-item"><a class="page-link"
+											href="/biz/Notice/noticeBoard?pageNum=${pageMaker.endPage}&amount=10&searchCondition=${ pageMaker.cri.searchCondition }&searchKeyword=${ pageMaker.cri.searchKeyword }"
 											aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
 									</ul>
 									<form id='pageForm' action="noticeBoard" method="get">
@@ -136,17 +142,16 @@
 </body>
 <!-- Bootstrap core JS-->
 <script>
-
-$(function(){
-	$(".paginate_button a").on("click",
-		function(e) {
-			e.preventDefault();
-			$("#pageForm").find("input[name='pageNum']").val($(this).attr("href"));
-			$("#pageForm").submit();
-		}
-	);
-});
-
+	$(function() {
+		$(".paginate_button a").on(
+				"click",
+				function(e) {
+					e.preventDefault();
+					$("#pageForm").find("input[name='pageNum']").val(
+							$(this).attr("href"));
+					$("#pageForm").submit();
+				});
+	});
 </script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

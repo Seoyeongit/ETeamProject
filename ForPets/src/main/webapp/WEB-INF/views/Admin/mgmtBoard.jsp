@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title>게시판 관리</title>
 <jsp:include page="../favicon.jsp"></jsp:include>
 <!-- Core theme CSS (includes Bootstrap)-->

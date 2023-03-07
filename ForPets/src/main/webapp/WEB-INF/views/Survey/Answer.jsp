@@ -21,7 +21,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1200px;
     min-height: 100%;
     margin: auto;
     background-color: #fff;
@@ -44,6 +44,9 @@
 	
 	.review_guide {
 		float: right;
+		border-left: solid 1.5px #D3D3D3;
+	    margin-top: 20px;
+	    margin-bottom: 20px;
 	}
 
 	.review_list {
@@ -51,6 +54,16 @@
 		margin-top : 30px;
 		margin-bottom : 30px;
 	}
+	
+	.svinput {
+		border-left-width:0;
+		border-right-width:0;
+		border-top-width:0;
+		border-bottom-width:0.5px;
+		font-size : 15px;
+		width:780px;
+	}
+	
 
 </style>
 <script>
@@ -85,7 +98,7 @@
 	<div class="content_guide">
 		
      <div class="row">
-     <div class="pt_guide col-4">
+     <div class="pt_guide col-3">
 	<div class="ptinfo">
 		<h3 style="text-align: center;">답변자 목록</h3>
 	
@@ -106,61 +119,56 @@
 	
 	
 	<div class="review_guide col-8">
-	<div class="review_list" style="border-left: solid 1.5px #D3D3D3; margin-left:-30px;">
+	<div class="review_list" style="text-align: left;">
 		
-	<h4> ${user_id } 님이 답변한 설문입니다. </h4>
+	<h4> ${user_id } 님이 답변한 설문입니다. </h4> <br>
 
-	<h6>${answerboard3.s_title }</h6>
+	<h5>${answerboard3.s_title }</h5>
  	<input type="hidden" name="sd_svcode" value="${answerboard3.s_svcode }">
 
-	<table>
+	
 		<c:forEach items="${answerboard }" var="ans" >
-			<tr>
-				 <th>Q. ${ans.sd_title } </th> 
-			</tr>			
+			
+				<br> <h5>Q. ${ans.sd_title } </h5>
+						
 			<c:forEach items="${answerboard2 }" var="ans2">
 			
 				<c:choose>
 					<c:when test="${ans.sd_order eq ans2.sc_order }">
 						<c:choose>
 							<c:when test="${ans.sd_type eq 'ju' }">
-								<tr>
+								
 									<c:forEach items="${answerboard4 }" var="ans4">
 										<c:choose>
 											<c:when test="${ ans2.sc_order eq ans4.sa_order}">
-												 <td>
-													 <input type="text" name="${ans2.sc_ascode }" value="${ans4.sa_content }" readonly>
-												 </td>
+												
+													 <input type="text" name="${ans2.sc_ascode }" value="${ans4.sa_content }" class="svinput" readonly><br>
+												 
 									 		</c:when>
 									 	</c:choose>	
 									 </c:forEach>
-								</tr>
+								
 							</c:when>	
 							
 					<c:when test="${ans.sd_type eq 'gaek' }">
-						<tr>
+						
 							<c:forEach items="${answerboard4 }" var="ans4">
 								<c:choose>
 									<c:when test="${ ans2.sc_order eq ans4.sa_order and ans2.sc_ascode eq ans4.sa_ascode}">
-										<td>
-							 				<input type="radio" name="${ans2.sc_order }" value="${ans2.sc_ascode }" checked onclick="return(false);">${ans4.sa_content }
-										 </td>
+										<input type="radio" name="${ans2.sc_order }" value="${ans2.sc_ascode }" checked onclick="return(false);">${ans4.sa_content }
 							 		</c:when>
 							 		<c:when  test="${ ans2.sc_order eq ans4.sa_order }">
-							 			<td>
-							 				<input type="radio" name="${ans2.sc_order }" value="${ans2.sc_ascode }" onclick="return(false);">${ans2.sc_answer }
-										 </td>
+							 				<input type="radio" name="${ans2.sc_order }" value="${ans2.sc_ascode }" onclick="return(false);">${ans2.sc_answer }<br>
 							 		</c:when>
 							 	</c:choose>	
 							 </c:forEach>							 
-						</tr>
+
 					</c:when>
 					
 					<c:when test="${ans.sd_type eq 'check' }">
-						<tr>
-						 	<td>
-							 	<input type="checkbox" name="${ans2.sc_order }" id="${ans2.sc_ascode }" onclick="return(false);">${ans2.sc_answer }
-							</td>
+					
+							 	<input type="checkbox" name="${ans2.sc_order }" id="${ans2.sc_ascode }" onclick="return(false);">${ans2.sc_answer }<br>
+							
 						<c:forEach items="${answerboard4 }" var="ans4">
 								<c:choose>
 									<c:when test="${ ans2.sc_order eq ans4.sa_order and ans2.sc_ascode eq ans4.sa_ascode}">
@@ -171,44 +179,45 @@
 							 		</c:when>
 							 	</c:choose>	
 							</c:forEach>
-						</tr>
+						
 					</c:when>
 					
 					<c:when test="${ans.sd_type eq 'time' }">
-						<tr>
+					
 							<c:forEach items="${answerboard4 }" var="ans4">
 								<c:choose>
 									<c:when test="${ ans2.sc_order eq ans4.sa_order}">
-										<td>
-											<input type="time" name="${ans2.sc_ascode }" value="${ans4.sa_content }" readonly>
-										</td>
+										
+											<input type="time" name="${ans2.sc_ascode }" value="${ans4.sa_content }" class="svinput" readonly><br>
+										
 								 	</c:when>
 								</c:choose>	
 							</c:forEach>
-						</tr>
+						
 					</c:when>
 					
 				    <c:when test="${ans.sd_type eq 'schedule' }">
-						<tr>
+						
 							 <c:forEach items="${answerboard4 }" var="ans4">
 								<c:choose>
 									<c:when test="${ ans2.sc_order eq ans4.sa_order}">
-										<td>
-											<input type="date" name="${ans2.sc_ascode }" value="${ans4.sa_content }" readonly>
-										</td>
+										
+											<input type="date" name="${ans2.sc_ascode }" value="${ans4.sa_content }" class="svinput" readonly><br>
+										
 								 	</c:when>
 								</c:choose>	
 							</c:forEach>
-						</tr>
+					
 					</c:when>
 					
 				</c:choose>
 			</c:when>
 		</c:choose>
+
 		</c:forEach>
+		
 		</c:forEach>
 
-	</table>
 
 		
 	</div>

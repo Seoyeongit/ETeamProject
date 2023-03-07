@@ -7,6 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title>펫트너 관리</title>
 <jsp:include page="../favicon.jsp"></jsp:include>
 <!-- Core theme CSS (includes Bootstrap)-->
@@ -90,16 +92,20 @@
 									<c:forEach var="partner" items="${getPartner}">
 										<tr>
 											<td align="center">${partner.part_no}</td>
-											<td><a href="#"><img
-													src="${pageContext.request.contextPath}/partner/display?fileName=${partner.img}" class="avatar"
-													alt="${partner.part_name}" style= "width: 50px;">
-												${partner.part_name}(${partner.part_id})</a></td>
+											<td><a
+												href="${pageContext.request.contextPath}/Admin/mgmtPartner/${partner.part_id}"><img
+													src="${pageContext.request.contextPath}/partner/display?fileName=${partner.img}"
+													class="avatar" alt="${partner.part_name}"
+													style="width: 50px;">
+													${partner.part_name}(${partner.part_id})</a></td>
 											<td align="center">${partner.part_add}</td>
 											<td align="center">${partner.data_create}</td>
 											<td align="center">${partner.part_phnumber}</td>
-											<td align="center"><a href="#" class="view"
-												title="View Details" data-toggle="tooltip"><i
-													class="material-icons">&#xE5C8;</i></a></td>
+											<td align="center"><a
+												href="${pageContext.request.contextPath}/Admin/mgmtPartner/${partner.part_id}"
+												title="정보 보기"><img
+													src="${pageContext.request.contextPath}/resources/assets/img/admin/info.png"
+													width="24px" alt="정보 보기" /></a></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -107,16 +113,37 @@
 							<br>
 							<div class="clearfix">
 								<ul class="pagination">
-									<li class="page-item disabled"><a class="page-link"
-										href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
-									<li class="page-item"><a href="#" class="page-link">1</a></li>
-									<li class="page-item"><a href="#" class="page-link">2</a></li>
-									<li class="page-item active"><a href="#" class="page-link">3</a></li>
-									<li class="page-item"><a href="#" class="page-link">4</a></li>
-									<li class="page-item"><a href="#" class="page-link">5</a></li>
-									<li class="page-item"><a class="page-link" href="#"
+									<li class="page-item"><a class="page-link"
+										href="/biz/Notice/noticeBoard?pageNum=${pageMaker.startPage}&amount=10&searchCondition=${ pageMaker.cri.searchCondition }&searchKeyword=${ pageMaker.cri.searchKeyword }"
+										aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
+									<c:if test="${pageMaker.prev}">
+										<li class="page-item paginate_button"><a
+											href="${pageMaker.startPage -1}" class="page-link">Previous</a></li>
+									</c:if>
+
+									<c:forEach begin="${pageMaker.startPage}"
+										end="${pageMaker.endPage}" var="num">
+										<li
+											class="page-item paginate_button ${pageMaker.cri.pageNum == num ? "active":""}"><a
+											href="${num}" class="page-link">${num}</a></li>
+									</c:forEach>
+									<c:if test="${pageMaker.next}">
+										<li class="page-item paginate_button"><a
+											href="${pageMaker.endPage +1 }" class="page-link">Next</a></li>
+									</c:if>
+									<li class="page-item"><a class="page-link"
+										href="/biz/Notice/noticeBoard?pageNum=${pageMaker.endPage}&amount=10&searchCondition=${ pageMaker.cri.searchCondition }&searchKeyword=${ pageMaker.cri.searchKeyword }"
 										aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
 								</ul>
+								<form id='pageForm' action="mgmtPartner" method="get">
+									<input type='hidden' name='pageNum'
+										value='${pageMaker.cri.pageNum}'> <input type='hidden'
+										name='amount' value='${pageMaker.cri.amount}'> <input
+										type='hidden' name='searchCondition'
+										value='<c:out value="${ pageMaker.cri.searchCondition }"/>'>
+									<input type='hidden' name='searchKeyword'
+										value='<c:out value="${ pageMaker.cri.searchKeyword }"/>'>
+								</form>
 							</div>
 						</div>
 						<br>

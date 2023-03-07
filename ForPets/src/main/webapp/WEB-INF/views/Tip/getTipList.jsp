@@ -156,14 +156,15 @@
 										</li>
 									</c:if>
 								</ul>
-							</div>
-							<form id='pageForm' action="getTipList" method="get">
-								<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
-								<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+															<form id='pageForm' action="getTipList" method="get">
+								<input type='text' name='pageNum' value='${pageMaker.cri.pageNum}'>
+								<input type='text'' name='amount' value='${pageMaker.cri.amount}'>
 							
-								<input type='hidden' name='searchCondition' value='<c:out value="${ pageMaker.cri.searchCondition }"/>'> 
-								<input type='hidden' name='searchKeyword'	value='<c:out value="${ pageMaker.cri.searchKeyword }"/>'>
+								<input type='text' name='searchCondition' value='<c:out value="${ pageMaker.cri.searchCondition }"/>'> 
+								<input type='text' name='searchKeyword'	value='<c:out value="${ pageMaker.cri.searchKeyword }"/>'>
 							</form>
+							</div>
+
 						</div>
 					</div>
 				</section>

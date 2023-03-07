@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.forpets.biz.admin.AdminService;
 import com.forpets.biz.admin.AdminVO;
 import com.forpets.biz.admin.impl.AdminDAO;
+import com.forpets.biz.community.CommunityVO;
+import com.forpets.biz.community.impl.CommunityDAO;
 import com.forpets.biz.partner.PartnerService;
 import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.partner.impl.PartnerDAO;
@@ -164,18 +167,22 @@ public class AdminController {
 		System.out.println("getTipPreview");
 		return "/Admin/tipPrev";
 	}
-
+	
+	
 	// 소모임 preview
 	@RequestMapping(value = "/Admin/communityPrev")
-	public String communityPrev() {
+	public String communityPrev(CommunityVO cvo, CommunityDAO cdao, Model model) {
+		model.addAttribute("comPrev", admService.getComPrev(cvo));
 		System.out.println("getComPreview");
 		return "/Admin/communityPrev";
 	}
 	
+
+	
 	// 대시보드 controller
 	// 통계 List
 	@RequestMapping(value = "Admin/mgmt")
-	public String getDashBoard(AdminVO vo, AdminDAO dao, Model model) {
+	public String getDashBoard(AdminVO vo, AdminDAO dao, PartnerVO pvo, PartnerDAO pdao, Model model) {
 		System.out.println("dashboard 이동");
 		
 		
@@ -187,7 +194,10 @@ public class AdminController {
 		dstats.put("reviewAvg", admService.getReviewAvg());
 		model.addAttribute("stats", stats);
 		model.addAttribute("dstats", dstats);
+		
 		model.addAttribute("reserve_chart", admService.getMontlyReserve(vo));
+		model.addAttribute("service_chart", admService.getServiceCount(vo));
+		model.addAttribute("getPartner", admService.getPartRank(pvo));
 		return "/Admin/mgmt";
 		
 //		HashMap<String, Integer> var = new HashMap<String, Integer>();

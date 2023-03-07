@@ -49,4 +49,35 @@ ORDER BY TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') DESC;
 
 SELECT TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') AS year_month, COUNT(*) AS total FROM RESERVE GROUP BY TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') ORDER BY TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') ASC;
 
-SELECT TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM'), COUNT(*) FROM RESERVE GROUP BY TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') ORDER BY TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') DESC;
+SELECT COUNT(*) FROM USERS;
+
+SELECT COUNT(*) FROM RESERVE;
+
+select s_num, count(s_num) AS service_count
+from reserve
+where s_num in(1,2,4,5,8)
+group by s_num
+order by 1;
+
+
+select s_num, count(s_num), round(count(s_num)/ (select sum(count(s_num))from reserve where s_num in(6,7) group by s_num)*100,2)AS percentage
+from reserve
+where s_num in(6,7)
+group by s_num
+order by 1;
+
+
+SELECT
+part_id,
+COUNT(DISTINCT reserve_num) AS cnt,
+ROUND(COUNT(DISTINCT reserve_num) / (SELECT COUNT(DISTINCT reserve_num) FROM reserve) * 100, 2) AS percentage
+FROM reserve
+GROUP BY part_id
+ORDER BY cnt DESC;
+
+
+SELECT PARTNERS.PART_ID, PARTNERS.PART_NAME, COUNT(DISTINCT RESERVE.RESERVE_NUM) AS CNT
+FROM PARTNERS 
+INNER JOIN RESERVE ON PARTNERS.PART_ID = RESERVE.PART_ID 
+GROUP BY P.PART_ID, P.PART_NAME
+ORDER BY CNT DESC;

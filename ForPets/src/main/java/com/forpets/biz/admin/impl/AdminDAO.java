@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.forpets.biz.admin.AdminVO;
+import com.forpets.biz.community.CommunityVO;
 import com.forpets.biz.notice.NoticeVO;
 import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.partner.impl.PartnerDAO;
@@ -30,11 +31,14 @@ public class AdminDAO {
 	private final String UPDATE_ADMIN = "update ADMIN set adm_name=?, adm_phone=?, adm_email=?, adm_pw=?"
 			+ "where adm_id=?";
 	private final String TIP_PREV = "select tip_title, tip_img_url from TIP_BOARD order by tip_seq desc";
+	private final String COM_PREV = "select * from community order by C_DATE DESC ";
 	private final String GET_EARNINGS = "SELECT SUM(S_PRICE) FROM SERV RIGHT OUTER JOIN RESERVE USING (S_NUM)";
 	private final String GET_USERCOUNT = "SELECT COUNT(*) FROM USERS";
 	private final String GET_REVAVG = "select avg(pr_avg) from partner_review";
 	private final String GET_RESERVECOUNT = "SELECT COUNT(*) FROM RESERVE";
 	private final String MONTHLY_RESERVE = "SELECT TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') AS year_month, COUNT(*) AS total FROM RESERVE GROUP BY TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') ORDER BY TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') ASC";
+	private final String SERVICE_COUNT = "SELECT s_num, count(s_num) AS service from reserve where s_num in(1,2,4,5,8) group by s_num order by 1";
+	private final String PARTNER_RANK = "SELECT PARTNERS.PART_ID, PARTNERS.PART_NAME, COUNT(DISTINCT RESERVE.RESERVE_NUM) AS RES_CNT FROM PARTNERS INNER JOIN RESERVE ON PARTNERS.PART_ID = RESERVE.PART_ID GROUP BY PARTNERS.PART_ID, PARTNERS.PART_NAME ORDER BY RES_CNT DESC";
 	
 	
 	private final RowMapper<AdminVO> adminRowMapper = (resultSet, rowNum) -> {
@@ -56,7 +60,21 @@ public class AdminDAO {
 		svo.setMontly_reserve(resultSet.getInt("total"));
 		return svo;
 	};
-
+	
+	private final RowMapper<AdminVO> piechartRowMapper = (resultSet, rowNum) -> {
+		AdminVO svo = new AdminVO();
+		svo.setService_count(resultSet.getInt("service"));
+		return svo;
+	};
+	
+	private final RowMapper<PartnerVO> partRankRowMapper = (resultSet, rowNum) -> {
+		PartnerVO pvo = new PartnerVO();
+		pvo.setPart_id(resultSet.getString("part_id"));
+		pvo.setPart_name(resultSet.getString("part_name"));
+		pvo.setPart_reserve(resultSet.getInt("res_cnt"));
+		return pvo;
+	};
+	
 	private final RowMapper<PartnerVO> partRowMapper = (resultSet, rowNum) -> {
 		PartnerVO pvo = new PartnerVO();
 		pvo.setPart_id(resultSet.getString("part_id"));
@@ -77,6 +95,18 @@ public class AdminDAO {
 		tvo.setTip_title(resultSet.getString("tip_title"));
 		tvo.setTip_img_url(resultSet.getString("tip_img_url"));
 		return tvo;
+	};
+	
+	private final RowMapper<CommunityVO> comRowMapper = (resultSet, rowNum) -> {
+		CommunityVO vo = new CommunityVO();
+		vo.setC_code(resultSet.getString("C_CODE"));
+		vo.setC_title(resultSet.getString("C_TITLE"));
+		vo.setC_content(resultSet.getString("C_CONTENT"));
+		vo.setUser_id(resultSet.getString("USER_ID"));
+		vo.setC_date(resultSet.getDate("C_DATE"));
+		vo.setC_pet(resultSet.getString("C_PET"));
+		
+		return vo;
 	};
 
 	// 관리자 정보
@@ -116,6 +146,13 @@ public class AdminDAO {
 		return jdbcTemplate.query(TIP_PREV, tipRowMapper);
 	}
 
+	// 소모임 미리보기
+	public List<CommunityVO> getComPrev(CommunityVO cvo) {
+		return jdbcTemplate.query(COM_PREV, comRowMapper);
+	}
+	
+	
+	
 	public void deleteUser(UserVO uvo, String user_id) {
 		jdbcTemplate.update(DELETE_USER, user_id);
 	}
@@ -139,7 +176,14 @@ public class AdminDAO {
 	public List<AdminVO> getMontlyReserve(AdminVO avo) {
 		return jdbcTemplate.query(MONTHLY_RESERVE, statsRowMapper);
 	}
+	
+	public List<AdminVO> getServiceCount(AdminVO avo) {
+		return jdbcTemplate.query(SERVICE_COUNT, piechartRowMapper);
+	}
 
-	// 소모임 게시판 미리보기
+	public List<PartnerVO> getPartRank(PartnerVO pvo) {
+		return jdbcTemplate.query(PARTNER_RANK, partRankRowMapper);
+	}
+
 
 }

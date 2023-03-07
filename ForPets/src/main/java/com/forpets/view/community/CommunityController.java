@@ -57,9 +57,9 @@ public class CommunityController {
 		if (list.isEmpty()) {
 				return "redirect:/myInfo/main";
 		} else {
-			return "redirect://Community/Create_Community";
+			return "Community/Create_Community";
 		}
-	} 
+	}
 	
 	
 	@RequestMapping("/getcommunity/{c_code}")

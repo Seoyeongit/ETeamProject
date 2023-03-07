@@ -15,15 +15,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.forpets.biz.partner.PartnerService;
+import com.forpets.biz.carediary.CareDiaryService;
+import com.forpets.biz.carediary.CareDiaryVO;
 import com.forpets.biz.partner.PartnerVO;
-import com.forpets.biz.pet.PetService;
 import com.forpets.biz.pet.PetVO;
 import com.forpets.biz.reserve.ReServeVO;
 import com.forpets.biz.reserve.ReserveService;
 import com.forpets.biz.reserve.impl.ReserveDAO;
 import com.forpets.biz.review.ReviewService;
-import com.forpets.biz.service.Service;
 import com.forpets.biz.service.ServiceVO;
 import com.forpets.biz.user.UserVO;
 
@@ -34,13 +33,8 @@ public class ReserveController {
 	private ReserveService reserveService;
 	@Autowired
 	private ReviewService reviewService;
-	
 	@Autowired
-	private PetService petService;
-	@Autowired
-	private PartnerService partnerService;
-	@Autowired
-	private Service serviceService;
+	private CareDiaryService careDiaryService;
 	
 	/**
 	 * 예약내역으로 이동하는 메서드
@@ -70,30 +64,8 @@ public class ReserveController {
 			System.out.println("--->Reserve Controller Error");
 		}
 		return "myInfo/my_reserve";
-	}
+	}	
 	
-	@RequestMapping(value="/myInfo/myreserveDetail")
-	public String myreserveDetail(ReServeVO rvo, PetVO pvo, PartnerVO partvo, ServiceVO svo, Model model) {
-		System.out.println("myreserveDetail...");
-		System.out.println("reserve_num : " + rvo.getReserve_num());
-		List<ReServeVO> rvoList = (List<ReServeVO>) reserveService.reserveDetailLIst(rvo);
-		PetVO newpvo = petService.getPetDetail(rvoList.get(0).getPet_id());
-		PartnerVO newpartvo = partnerService.getPartner(partvo, rvoList.get(0).getPart_id());
-		List<ServiceVO> svoList = new ArrayList<ServiceVO>();
-		int total_price = 0;
-		for(int i=0;i<rvoList.size();i++) {
-			ServiceVO a = serviceService.getServ(svo, rvoList.get(i).getS_num());
-			total_price += a.getS_price();
-			svoList.add(a);
-		}
-		
-		model.addAttribute("reserve", rvoList.get(0));
-		model.addAttribute("pet_info", newpvo);
-		model.addAttribute("part_info", newpartvo);
-		model.addAttribute("servList", svoList);
-		model.addAttribute("total_price", total_price);
-		return "myInfo/my_reserve_detail";
-	}
 	
 	//예약내역데이터를 가져와서 
 	@RequestMapping(value = "/myInfo/getCptReserve")
@@ -219,4 +191,22 @@ public class ReserveController {
 		return "/partner/careDiaryList";
 	}
 	
+	@RequestMapping(value="/CareBefore")
+	public String getReserveBefore(CareDiaryVO vo, Model model, HttpSession session) {
+		System.out.println("reserve_num : " + vo.getReserve_num());
+		careDiaryService.updateReserveStatus(vo, 2);
+		return "redirect:partner/getReserve";
+	}
+	
+	@RequestMapping(value="/CareIng")
+	public String getReserveIng(CareDiaryVO vo, ReServeVO rvo, HttpSession session) {
+		careDiaryService.updateReserveStatus(vo, 3);
+		return "redirect:partner/getReserve";
+	}
+	
+	@RequestMapping(value="/CareAfter")
+	public String getReserveAfter(CareDiaryVO vo, ReServeVO rvo, HttpSession session) {
+		careDiaryService.updateReserveStatus(vo, 4);
+		return "redirect:partner/getReserve";
+	}
 }

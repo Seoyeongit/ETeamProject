@@ -1,19 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-
-<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<title>추가서비스</title>
+<style>
+div.sss,.hhh{
+float:left;
+}
+.sss {
+	margin-left:6%;
+}
+.hhh {
+	margin-left:8%;
+}
+</style>
 </head>
 <body>
 	<h3>추가서비스</h3>
-	<input type="checkbox" onclick="check(this)" class="shower_serv"> 샤워서비스는 진행하셨나요?
-	<textarea rows="" cols="" class="shower_serv"  readonly="readonly"></textarea>
-	<hr>
-	<input type="checkbox" onclick="check(this)" class="training_serv"> 훈련서비스는 진행하셨나요?
-	<textarea rows="" cols="" class="training_serv"  readonly="readonly"></textarea>
+	<div class="sss"><input type="checkbox" onclick="check(this)" class="shower_serv">샤워서비스는 진행하셨나요?<br>
+	<textarea rows="" cols="" class="shower_serv"  readonly="readonly"></textarea></div>
+	<div class="hhh"><input type="checkbox" onclick="check(this)" class="training_serv">훈련서비스는 진행하셨나요?<br>
+	<textarea rows="" cols="" class="training_serv"  readonly="readonly"></textarea></div>
 	
 	
 	<script type="text/javascript">

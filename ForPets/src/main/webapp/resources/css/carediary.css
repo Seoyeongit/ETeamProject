@@ -1,0 +1,133 @@
+@charset "UTF-8";
+
+.hd-main {
+	text-align:center;
+	color:#8bda8b;
+	-webkit-text-stroke: 1px gray;
+}
+.pet-info {
+	margin-top:2%;
+	background-color:#8bda8b;
+	width:30%;
+	height:230px;
+	border-radius:15px;
+	padding-left:15px;
+}
+.pet-info-detail {
+}
+.info-detail {
+	color:#ffffff;
+}
+.pet-detail{
+	margin-top:2px;
+	color:#ffffff;
+}
+.pet-name {
+	color:#ffffff;
+	font-size:30px;
+	-webkit-text-stroke: 1px gray;
+	padding-bottom:3px;
+}
+.pet-info, .serivce-list {
+}
+.serivce-list {
+	margin-left:13%;
+	font-family: 'Poor Story', cursive;
+	font-size:25px;
+}
+.care-list {
+	font-family: 'Poor Story', cursive;
+}
+.main-control {
+	border:1px solid rgba(0,0,0,.5);
+	border-radius:10px;
+	width:80%;
+	height:auto;
+	fit-content:auto;
+	margin-left:10%;
+}
+.main-control-hd {
+	display:flex;
+	flex-direction: row;
+	margin-top:5%;
+	margin-left:10%;
+}
+.pet-condi, .medi-resul, .care-reive  {
+	border-radius:10px;
+	background-color:white;
+	height:100px;
+	border:0.5px solid rgba(211,211,211,.9);
+	resize:none;
+}
+.condi, .resul, .revie {
+}
+.care-list-lis {
+	margin-left:10%;
+}
+.day-time {
+	background-color:#e2e2e2;
+	width:40%;
+	height:40px;
+	border-radius:15px;
+	flex-direction: row;
+    display: flex;
+    margin-left:10%;
+    padding-left:10px;
+    padding-top:15px;
+}
+.serv-con {
+	display:flex;
+	flex-direction:row;
+	flex-wrap: wrap;
+	grid-gap:60px;
+	margin-top:5%;
+	margin-left:15%;
+	margin-bottom:50px;
+}
+textarea{
+	resize:none;
+	border-radius:10px;
+	background-color:white;
+	height:100px;
+	border:0.5px solid rgba(211,211,211,.9);
+	resize:none;
+	padding-top:20px;
+	padding-left:20px;
+}
+.write-bt-control {
+	margin-top:9%;
+	margin-left:82%;
+	margin-bottom:70px;
+	display: flex;
+    flex-direction: row;
+}
+.write-bt-sub{
+	height:40px;
+	border-radius:10px;
+	color:white;
+	background-color:#8bda8b;
+	border:0.3px solid rgba(211,211,211,.8);
+}
+.input-tex{
+	margin-left:3%;
+	width:90px;
+	height:25px;
+	border-radius:4px;
+	background-color:white;
+	border:0.3px solid rgba(211,211,211,.8);
+	padding-left:10px;
+}
+.input-tim {
+	height:27px;
+	border-radius:4px;
+	background-color:white;
+	border:0.3px solid rgba(211,211,211,.8);
+	padding-left:10px;
+}
+ul {
+	 list-style:none;
+}
+.add-serv {
+	margin-left:10%;
+	margin-top:5%;
+}

@@ -135,6 +135,27 @@ public class AdminController {
 		System.out.println("deleteUser 완료");
 		return "redirect:/Admin/mgmtUser";
 	}
+	
+	
+	// 유저 정보
+	@RequestMapping(value = "/Admin/mgmtUser/{user_id}")
+	public String getUserInfo(UserVO uvo, UserDAO udao, Model model, HttpServletRequest request,
+			@PathVariable(value = "user_id") String user_id) throws Exception {
+		System.out.println("---> userInfo 이동");
+
+//		새로운 세션 생성 방지
+		HttpSession session = request.getSession(false);
+
+		if (session != null && session.getAttribute("admin") != null) {
+			model.addAttribute("userInfo", admService.getUserInfo(uvo, user_id));
+		}
+
+		return "/Admin/getUserInfo";
+	}
+	
+	
+	
+	
 
 	// 파트너 관리
 	@RequestMapping(value = "/Admin/mgmtPartner")
@@ -167,9 +188,8 @@ public class AdminController {
 //		새로운 세션 생성 방지
 		HttpSession session = request.getSession(false);
 
-		model.addAttribute("partInfo", admService.getPartInfo(pvo));
 		if (session != null && session.getAttribute("admin") != null) {
-			model.addAttribute("partInfo", admService.getPartInfo(pvo));
+			model.addAttribute("partInfo", admService.getPartInfo(pvo, part_id));
 		}
 
 		return "/Admin/getPartnerInfo";

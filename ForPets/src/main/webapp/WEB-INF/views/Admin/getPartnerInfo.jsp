@@ -23,6 +23,18 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/admin/partnerList.css?ver=1.1"
 	rel="stylesheet" type="text/css" />
+
+<style>
+#avatar-col {
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+}
+
+.avatar {
+	width: max-content;
+}
+</style>
 </head>
 <body>
 	<div class="d-flex" id="wrapper">
@@ -33,50 +45,59 @@
 			<div class="container-fluid" id="admin-content">
 				<div
 					class="d-sm-flex align-items-center justify-content-between mb-4">
-					<h1 class="h3 mb-0 text-gray-800">파트너 관리</h1>
+					<h1 class="h3 mb-0 text-gray-800">파트너 정보</h1>
 				</div>
-				<div class="card shadow mb-5 py-5 px-5">
+				<div class="card shadow mb-5 px-5">
 					<div class="table-responsive px-5">
+						<div class="row">
+							<div class="col" id="avatar-col">
+								<img
+									src="${pageContext.request.contextPath}/partner/display?fileName=${partInfo.img}"
+									class="avatar" alt="${partInfo.part_name}"
+									style="width: 200px;" />
+							</div>
+						</div>
 						<table class="table table-borderless align-middle">
 							<tbody>
 								<tr height="50">
 									<td class="align-middle">아이디</td>
 									<td style="width: 90%"><input type="text"
-										class="form-control" name="adm_id" value="${part.adm_id}"
-										readonly="readonly" onfocus="this.blur();" tabindex="-1"
+										class="form-control" name="part_id"
+										value="${partInfo.part_id}" readonly="readonly"
+										onfocus="this.blur();" tabindex="-1"
 										style="background-color: #f2f5f3;" /></td>
 								</tr>
 
 								<tr height="50">
 									<td class="align-middle">이름</td>
 									<td style="width: 90%"><input type="text"
-										class="form-control" size="30" name="adm_name"
-										value="${admin.adm_name}"></td>
+										class="form-control" size="30" name="part_name"
+										value="${partInfo.part_name}"></td>
 								</tr>
 
 
 								<tr height="50">
-									<td class="align-middle">이메일</td>
-									<td><input type="email" class="form-control"
-										name="adm_email" value="${admin.adm_email}"></td>
+									<td class="align-middle">주소</td>
+									<td><input type="text" class="form-control"
+										name="part_add" value="${partInfo.part_add}"></td>
+								</tr>
+								
+								<tr height="50">
+									<td class="align-middle">생년월일</td>
+									<td><input type="text" class="form-control"
+										name="birth" value="${partInfo.birth}"></td>
 								</tr>
 
 								<tr height="50">
 									<td class="align-middle">전화번호</td>
 									<td><input type="tel" class="form-control"
-										name="adm_phone" value="${admin.adm_phone}"></td>
+										name="part_phnumber" value="${partInfo.part_phnumber}"></td>
 								</tr>
 
 
 								<tr height="50">
-									<td class="align-middle">패스워드</td>
-									<td><input type="hidden" id="adm_pw" name="adm_pw"
-										value="${admin.adm_pw}"></td>
-								</tr>
-
-								<tr height="50">
-									<td align="center" colspan="2"><input type="hidden"
-										name="id" value="${admin.adm_id}"></td>
+									<td class="align-middle">자기소개</td>
+									<td><textarea class="form-control" rows="5" name="self_infor">${partInfo.self_infor}</textarea></td>
 								</tr>
 							</tbody>
 						</table>
@@ -85,9 +106,15 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
 </body>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Core theme JS-->
+<script
+	src="${pageContext.request.contextPath}/resources/js/admin/sideBar.js"></script>
 </html>

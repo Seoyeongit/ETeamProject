@@ -92,7 +92,7 @@
 									<c:forEach var="partner" items="${getPartner}">
 										<tr>
 											<td align="center">${partner.part_no}</td>
-											<td><a href="#"><img
+											<td><a href="${pageContext.request.contextPath}/Admin/mgmtPartner/${partner.part_id}"><img
 													src="${pageContext.request.contextPath}/partner/display?fileName=${partner.img}"
 													class="avatar" alt="${partner.part_name}"
 													style="width: 50px;">
@@ -100,8 +100,8 @@
 											<td align="center">${partner.part_add}</td>
 											<td align="center">${partner.data_create}</td>
 											<td align="center">${partner.part_phnumber}</td>
-											<td align="center"><a href="#" class="view"
-												title="View Details" data-toggle="tooltip"><i
+											<td align="center"><a href="${pageContext.request.contextPath}/Admin/mgmtPartner/${partner.part_id}" class="view"
+												title="정보 보기" data-toggle="tooltip"><i
 													class="material-icons">&#xE5C8;</i></a></td>
 										</tr>
 									</c:forEach>

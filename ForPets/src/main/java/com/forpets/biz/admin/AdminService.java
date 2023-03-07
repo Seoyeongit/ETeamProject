@@ -62,6 +62,8 @@ public interface AdminService {
 	List<UserVO> getListWithDynamicPaging(SearchCriteria_user cri);
 
 	
-	PartnerVO getPartInfo(PartnerVO pvo);
+	PartnerVO getPartInfo(PartnerVO pvo, String part_id);
+
+	UserVO getUserInfo(UserVO uvo, String user_id);
 
 }

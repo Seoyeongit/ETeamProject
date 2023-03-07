@@ -93,8 +93,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public PartnerVO getPartInfo(PartnerVO pvo) {
-		return adminDAO.getPartInfo(pvo);
+	public PartnerVO getPartInfo(PartnerVO pvo, String part_id) {
+		return adminDAO.getPartInfo(pvo, part_id);
 	}
 	
 	
@@ -111,6 +111,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<UserVO> getListWithPaging(SearchCriteria_user cri) {
 		return adminDAO.getListWithDynamicPaging(cri);
+	}
+
+	@Override
+	public UserVO getUserInfo(UserVO uvo, String user_id) {
+		return adminDAO.getUserInfo(uvo, user_id);
 	}
 	
 	

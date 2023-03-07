@@ -44,6 +44,8 @@ public class ReserveDAO {
 	private final String COUNT_ING_RESERVE = "select count(distinct reserve_num) from reserve where user_id = ? and status = 2";
 	private final String COUNT_BEFORE_RESERVE = "select count(distinct reserve_num) from reserve where user_id = ? and status = 1";
 	
+	private final String GETRESERVE = "select * from RESERVE where reserve_num = ?";
+	
 	//230217 정영현
 	private final String GETRESERVE_LIST = 
 				" select reserve.part_id, reserve.reserve_num, reserve.reserve_day, reserve.reserve_add, reserve.user_id, reserve.reserve_time, reserve.status " +
@@ -325,6 +327,9 @@ public class ReserveDAO {
 		return vo;
 	}
 	
-	
+	public List<ReServeVO> reserveDetailLIst(ReServeVO vo) {
+		Object[] obj = {vo.getReserve_num()};
+		return jdbcTemplate.query(GETRESERVE, obj, new ReserveRowMapper());
+	}
 
 }

@@ -27,7 +27,7 @@
 <style>
 
 .thumb-content {
-	height: 180px;
+	height: 150px;
 }
 
 </style>	
@@ -74,9 +74,6 @@
 										<div class="thumb-content">
 											<h5>${ tipPrev[1].tip_title }</h5>
 											<p></p>
-											<a href="getTip?tip_seq=${ tipPrev[1].tip_seq }"
-												class="btn btn-primary">상세보기 <i
-												class="fa fa-angle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -90,9 +87,6 @@
 										<div class="thumb-content">
 											<h5>${ tipPrev[2].tip_title }</h5>
 											<p></p>
-											<a href="getTip?tip_seq=${ tipPrev[2].tip_seq }"
-												class="btn btn-primary">상세보기 <i
-												class="fa fa-angle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -106,9 +100,6 @@
 										<div class="thumb-content">
 											<h5>${ tipPrev[3].tip_title }</h5>
 											<p></p>
-											<a href="getTip?tip_seq=${ tipPrev[3].tip_seq }"
-												class="btn btn-primary">상세보기 <i
-												class="fa fa-angle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -126,9 +117,6 @@
 										<div class="thumb-content">
 											<h5>${ tipPrev[4].tip_title }</h5>
 											<p></p>
-											<a href="getTip?tip_seq=${ tipPrev[4].tip_seq }"
-												class="btn btn-primary">상세보기 <i
-												class="fa fa-angle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -142,9 +130,6 @@
 										<div class="thumb-content">
 											<h5>${ tipPrev[5].tip_title }</h5>
 											<p></p>
-											<a href="getTip?tip_seq=${ tipPrev[5].tip_seq }"
-												class="btn btn-primary">상세보기 <i
-												class="fa fa-angle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -158,9 +143,6 @@
 										<div class="thumb-content">
 											<h5>${ tipPrev[6].tip_title }</h5>
 											<p></p>
-											<a href="getTip?tip_seq=${ tipPrev[6].tip_seq }"
-												class="btn btn-primary">상세보기 <i
-												class="fa fa-angle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -174,9 +156,6 @@
 										<div class="thumb-content">
 											<h5>${ tipPrev[7].tip_title }</h5>
 											<p></p>
-											<a href="getTip?tip_seq=${ tipPrev[7].tip_seq }"
-												class="btn btn-primary">상세보기 <i
-												class="fa fa-angle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -194,9 +173,6 @@
 										<div class="thumb-content">
 											<h5>${ tipPrev[8].tip_title }</h5>
 											<p></p>
-											<a href="getTip?tip_seq=${ tipPrev[8].tip_seq }"
-												class="btn btn-primary">상세보기 <i
-												class="fa fa-angle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -210,9 +186,6 @@
 										<div class="thumb-content">
 											<h5>${ tipPrev[9].tip_title }</h5>
 											<p></p>
-											<a href="getTip?tip_seq=${ tipPrev[9].tip_seq }"
-												class="btn btn-primary">상세보기 <i
-												class="fa fa-angle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -226,9 +199,6 @@
 										<div class="thumb-content">
 											<h5>${ tipPrev[10].tip_title }</h5>
 											<p></p>
-											<a href="getTip?tip_seq=${ tipPrev[10].tip_seq }"
-												class="btn btn-primary">상세보기 <i
-												class="fa fa-angle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -242,9 +212,6 @@
 										<div class="thumb-content">
 											<h5>${ tipPrev[11].tip_title }</h5>
 											<p></p>
-											<a href="getTip?tip_seq=${ tipPrev[11].tip_seq }"
-												class="btn btn-primary">상세보기 <i
-												class="fa fa-angle-right"></i></a>
 										</div>
 									</div>
 								</div>

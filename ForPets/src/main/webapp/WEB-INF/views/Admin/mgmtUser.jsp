@@ -102,7 +102,9 @@
 											<td>${user.user_add}</td>
 											<td>${user.data_create}</td>
 											<td><a href="#userDeleteModal" class="trigger-btn" title="탈퇴"
-												data-toggle="modal"><i class="material-icons">&#xE5C8;</i></a>
+												data-toggle="modal"><img
+													src="${pageContext.request.contextPath}/resources/assets/img/admin/delete.png"
+													width="24px" alt="정보 보기" /></a>
 												<!-- <a href="${pageContext.request.contextPath}/Admin/deleteUser/${user.user_id }" class="view" title="탈퇴"
 												data-toggle="tooltip"></a> --></td>
 										</tr>

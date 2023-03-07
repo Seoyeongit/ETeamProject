@@ -61,7 +61,7 @@
 									</div>
 									<div class="col-sm-5"></div>
 									<div class="col-sm-5 float-right" id="search-group">
-										<form action="getUserList.do" method="post">
+										<form action="../Admin/mgmtUser" method="post">
 											<!-- 검색 -->
 											<div class="input-group">
 												<div class="col-sm-3">
@@ -114,15 +114,25 @@
 							<br>
 							<div class="clearfix">
 								<ul class="pagination">
-									<li class="page-item disabled"><a class="page-link"
-										href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
-									<li class="page-item"><a href="#" class="page-link">1</a></li>
-									<li class="page-item"><a href="#" class="page-link">2</a></li>
-									<li class="page-item active"><a href="#" class="page-link">3</a></li>
-									<li class="page-item"><a href="#" class="page-link">4</a></li>
-									<li class="page-item"><a href="#" class="page-link">5</a></li>
-									<li class="page-item"><a class="page-link" href="#"
-										aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
+									<c:if test="${pageMaker.prev}">
+										<li class="page-item-forpets paginate_button previous">
+											<a class=" page-link-forpets" href="${pageMaker.startPage -1}">Previous</a>
+										</li>
+									</c:if>
+									
+									
+									<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num" >
+										<li class="page-item-forpets paginate_button ${pageMaker.cri.pageNum == num ? "active":""} ">
+											<a class=" page-link-forpets" href="${num}">${num}</a>
+										</li>
+									</c:forEach>
+									
+									
+									<c:if test="${pageMaker.next}">
+										<li class="page-item-forpets paginate_button next">
+											<a class=" page-link-forpets" href="${pageMaker.endPage +1 }">Next</a>
+										</li>
+									</c:if>
 								</ul>
 							</div>
 						</div>
@@ -130,6 +140,13 @@
 				</div>
 			</div>
 		</div>
+							<form id='pageForm' action="../Admin/mgmtUser" method="get">
+								<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+								<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+							
+								<input type='hidden' name='searchCondition' value='<c:out value="${ pageMaker.cri.searchCondition }"/>'> 
+								<input type='hidden' name='searchKeyword'	value='<c:out value="${ pageMaker.cri.searchKeyword }"/>'>
+							</form>
 	</div>
 
 	<!-- Modal HTML -->
@@ -168,4 +185,15 @@
 <!-- Core theme JS-->
 <script
 	src="${pageContext.request.contextPath}/resources/js/admin/sideBar.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".paginate_button a").on("click",
+		function(e) {
+			e.preventDefault();
+			$("#pageForm").find("input[name='pageNum']").val($(this).attr("href"));
+			$("#pageForm").submit();
+		}
+	);
+});
+</script>
 </html>

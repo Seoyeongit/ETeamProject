@@ -18,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.forpets.biz.admin.AdminService;
 import com.forpets.biz.admin.AdminVO;
+import com.forpets.biz.admin.SearchCriteria_user;
+import com.forpets.biz.admin.UserInfoPagingDTO;
 import com.forpets.biz.admin.impl.AdminDAO;
 import com.forpets.biz.community.CommunityVO;
 import com.forpets.biz.community.impl.CommunityDAO;
@@ -25,6 +27,8 @@ import com.forpets.biz.partner.PartnerService;
 import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.partner.impl.PartnerDAO;
 import com.forpets.biz.reserve.ReServeVO;
+import com.forpets.biz.tip.SearchCriteria;
+import com.forpets.biz.tip.TipPagingDTO;
 import com.forpets.biz.tip.TipService;
 import com.forpets.biz.tip.TipVO;
 import com.forpets.biz.tip.impl.TipDAO;
@@ -113,16 +117,16 @@ public class AdminController {
 		return "redirect:/Admin/main";
 	}
 
-	// 회원 관리
-	@RequestMapping(value = "/Admin/mgmtUser")
-	public String getUserList(UserVO uvo, UserDAO udao, Model model, HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-
-		model.addAttribute("getUser", admService.getUserList(uvo));
-		System.out.println("getUserList");
-		return "/Admin/mgmtUser";
-	}
-	
+//	// 회원 관리
+//	@RequestMapping(value = "/Admin/mgmtUser")
+//	public String getUserList(UserVO uvo, UserDAO udao, Model model, HttpServletRequest request) {
+//		HttpSession session = request.getSession(false);
+//
+//		model.addAttribute("getUser", admService.getUserList(uvo));
+//		System.out.println("getUserList");
+//		return "/Admin/mgmtUser";
+//	}
+//	
 	// 회원 탈퇴
 	@RequestMapping(value = "/Admin/deleteUser/{user_id}")
 	public String deleteUser(UserVO uvo, @PathVariable("user_id") String user_id) {
@@ -209,6 +213,31 @@ public class AdminController {
 //		전체통계리스트.회원통계 
 //		전체통계리스트.무슨통계
 	}
+	
+	// 유저 paging 처리
+	@RequestMapping(value="/Admin/mgmtUser")
+	public String getTipList(UserVO uvo, UserDAO udao, SearchCriteria_user cri, Model model) {
+		System.out.println("---> getUSERList 실행");
+		
+		System.out.println("SearchCondition : " + cri.getSearchCondition());
+		System.out.println("SearchKeyword : " + cri.getSearchKeyword());
+		
+		if (cri.getSearchCondition() == null) { cri.setSearchCondition("NAME"); }
+		if (cri.getSearchKeyword() == null) { cri.setSearchKeyword(""); }
+		
+		System.out.println("SearchCondition : " + cri.getSearchCondition());
+		System.out.println("SearchKeyword : " + cri.getSearchKeyword());
+		
+		System.out.println("totalpages : " + admService.getTotalPages(cri));
+		
+		UserInfoPagingDTO pageMaker = new UserInfoPagingDTO(cri, admService.getTotalPages(cri));
+		
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("getUser", admService.getListWithDynamicPaging(cri));
+		System.out.println("---> getUSERList 완료");
+		return "/Admin/mgmtUser";
+	}
+	
 
 
 }

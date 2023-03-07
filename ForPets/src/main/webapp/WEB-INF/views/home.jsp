@@ -124,7 +124,7 @@
         <!-- Masthead-->
         <header class="masthead">
             <div class="container d-flex">
-                <div class="masthead-subheading col-6 align-self-center">당신과 아이의 시간이<br><br> 함께 행복하기를 응원합니다.</div>
+                <div class="masthead-subheading col-6">당신과 아이의 시간이<br><br> 함께 행복하기를 응원합니다.</div>
                 <div class="col-6 align-self-center forpets-slide">
                 	<div style="position:absolute;">
                     	<img src="${pageContext.request.contextPath}/resources/assets/img/mainback.png" style="width:700px; height:500px; z-index:5;">

@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.forpets.biz.admin.AdminService;
 import com.forpets.biz.admin.AdminVO;
+import com.forpets.biz.admin.SearchCriteria_user;
 import com.forpets.biz.community.CommunityVO;
 import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.reserve.ReServeVO;
+import com.forpets.biz.tip.SearchCriteria;
 import com.forpets.biz.tip.TipVO;
 import com.forpets.biz.user.UserVO;
 
@@ -88,6 +90,22 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<CommunityVO> getComPrev(CommunityVO cvo) {
 		return adminDAO.getComPrev(cvo);
+	}
+	
+	
+	@Override
+	public int getTotalPages(SearchCriteria_user cri) {
+		return adminDAO.getTotalPages(cri);
+	}
+	
+	@Override
+	public List<UserVO> getListWithDynamicPaging(SearchCriteria_user cri) {
+		return adminDAO.getListWithDynamicPaging(cri);
+	}
+	
+	@Override
+	public List<UserVO> getListWithPaging(SearchCriteria_user cri) {
+		return adminDAO.getListWithDynamicPaging(cri);
 	}
 	
 	

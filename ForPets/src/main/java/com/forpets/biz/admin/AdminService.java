@@ -5,6 +5,7 @@ import java.util.List;
 import com.forpets.biz.community.CommunityVO;
 import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.reserve.ReServeVO;
+import com.forpets.biz.tip.SearchCriteria;
 import com.forpets.biz.tip.TipVO;
 import com.forpets.biz.user.UserVO;
 
@@ -45,7 +46,16 @@ public interface AdminService {
 	public List<AdminVO> getServiceCount(AdminVO avo);
 
 	public List<PartnerVO> getPartRank(PartnerVO pvo);
+	
+	
+	// 글 목록 조회
+	int getTotalPages(SearchCriteria_user cri);
+	
+	// 회원 목록 조회 with paging
+	List<UserVO> getListWithPaging(SearchCriteria_user cri);
 
+	// 회원 목록 조회 with dynamic(search condition) paging
+	List<UserVO> getListWithDynamicPaging(SearchCriteria_user cri);
 
 
 }

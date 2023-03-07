@@ -29,7 +29,7 @@ public class SurveyDetailDAO {
 	
 	// 설문지 상세보기
 	private final String GET_SURVEYBOARD = "select * from survey_detail where sd_svcode=?";
-	private final String GET_SURVEYBOARD2 = "select * from survey_choice where sc_svcode=?";
+	private final String GET_SURVEYBOARD2 = "select * from survey_choice where sc_svcode=? ORDER BY SC_NUMBER ASC";
 	private final String GET_SURVEYBOARD3 = "select * from survey where s_svcode=?";
 	
 	// 설문지 글 삭제
@@ -49,7 +49,7 @@ public class SurveyDetailDAO {
 	
 	// 설문지 답변 내용 보기
 	public final String GET_ANSWER = "select * from survey_detail where sd_svcode=?";
-	public final String GET_ANSWER2 = "select * from survey_choice where sc_svcode=?";
+	public final String GET_ANSWER2 = "select * from survey_choice where sc_svcode=? ORDER BY SC_NUMBER ASC";
 	public final String GET_ANSWER3 = "select * from survey where s_svcode=?";
 	public final String GET_ANSWER4 = "select * from survey_answer where sa_svcode=? and user_id=?";
 	

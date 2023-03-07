@@ -37,21 +37,21 @@ public class ReserveRowMapper implements RowMapper<ReServeVO> {
 			vo.setStatus(rs.getInt("STATUS"));
 			
 			
-			voU.setUser_name(rs.getString("USER_NAME"));
-			voU.setUser_add(rs.getString("USER_ADD"));
-			voU.setPhnumber(rs.getString("PHNUMBER"));
-			vo.setVoU(voU);
+			//voU.setUser_name(rs.getString("USER_NAME"));
+			//voU.setUser_add(rs.getString("USER_ADD"));
+			//voU.setPhnumber(rs.getString("PHNUMBER"));
+			//vo.setVoU(voU);
 			
 
 			
 			
-			voPet.setName(rs.getString("pet_name"));
-			vo.setVoPet(voPet);
+			//voPet.setName(rs.getString("pet_name"));
+			//vo.setVoPet(voPet);
 			
 			
 			
-			voP.setPart_name(rs.getString("PART_NAME"));
-			vo.setVoP(voP);
+			//voP.setPart_name(rs.getString("PART_NAME"));
+			//vo.setVoP(voP);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

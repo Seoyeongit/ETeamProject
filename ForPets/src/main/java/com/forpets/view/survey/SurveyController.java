@@ -139,7 +139,8 @@ public class SurveyController {
 			vo.setSa_svcode(sd_svcode);
 			vo.setSa_order("od"+i+"");
 			String sc_ascode = req.getParameter("od"+i+"");
-			String sa_content = req.getParameter(sc_ascode);
+			String sa_content = req.getParameter("od"+i+"-"+sc_ascode+"");
+					
 
 			if (sc_ascode.substring(0,1).equals("c")) {
 				String[] check = req.getParameterValues("od"+i+"");

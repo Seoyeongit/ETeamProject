@@ -4,3 +4,18 @@
 	background-color: #fff;
 	border: none;
 }
+
+
+#pieChart {
+	width: max-content;
+}
+
+#chart-body {
+	width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#table-card {
+	height: 514px;
+}

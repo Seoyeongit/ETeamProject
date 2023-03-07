@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.forpets.biz.admin.AdminService;
 import com.forpets.biz.admin.AdminVO;
+import com.forpets.biz.community.CommunityVO;
 import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.reserve.ReServeVO;
 import com.forpets.biz.tip.TipVO;
@@ -72,6 +73,21 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public Integer getReserveCount() {
 		return adminDAO.getReserveCount();
+	}
+
+	@Override
+	public List<AdminVO> getServiceCount(AdminVO avo) {
+		return adminDAO.getServiceCount(avo);
+	}
+
+	@Override
+	public List<PartnerVO> getPartRank(PartnerVO pvo) {
+		return adminDAO.getPartRank(pvo);
+	}
+
+	@Override
+	public List<CommunityVO> getComPrev(CommunityVO cvo) {
+		return adminDAO.getComPrev(cvo);
 	}
 	
 	

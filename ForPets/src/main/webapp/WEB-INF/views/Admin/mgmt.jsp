@@ -25,7 +25,7 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link
-	href="${pageContext.request.contextPath}/resources/css/admin/mgmt.css?ver=1.1"
+	href="${pageContext.request.contextPath}/resources/css/admin/mgmt.css?ver=1.3"
 	rel="stylesheet" type="text/css" />
 
 <script
@@ -101,8 +101,9 @@
 								<div class="row align-items-center">
 									<div class="col">
 										<div class="mb-0 text-gray-800">
-											<p class="h2 mb-0 font-weight-bold"><fmt:formatNumber value="${dstats.reviewAvg}" pattern=".00"/>
-												<span class="h6 mb-0 font-weight-bold">(점)</span>
+											<p class="h2 mb-0 font-weight-bold">
+												<fmt:formatNumber value="${dstats.reviewAvg}" pattern=".00" />
+												/ 5 <span class="h6 mb-0 font-weight-bold">(점)</span>
 											</p>
 										</div>
 									</div>
@@ -144,22 +145,76 @@
 						</div>
 					</div>
 				</div>
+
+				<div class="row">
+					<div class="col-6 md-6 justify-content-center">
+						<div class="card shadow border-light mb-5 py-4 px-5">
+							<div class="row">
+								<div class="h4 m-0 text-xs font-weight-bold text-gray mb-1">서비스별
+									현황</div>
+							</div>
+							<div class="card-body justify-content-center" id="chart-body">
+								<div class="chart-area justify-content-center">
+									<canvas id="pieChart" height="400"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-6 md-6 justify-content-center">
+						<div class="card shadow border-light mb-5 py-4 px-5" id="table-card">
+							<div class="row mb-4">
+								<div class="h4 m-0 text-xs font-weight-bold text-gray mb-1">펫트너
+									랭킹</div>
+							</div>
+							<div class="table-responsive-xxl">
+								<div class="table-wrapper">
+
+									<table class="table table-hover">
+										<thead>
+											<tr align="center">
+												<th>no</th>
+												<th>펫트너</th>
+												<th>예약수</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="partner" items="${getPartner}" varStatus="i">
+												<tr>
+													<td align="center"> ${i.index + 1}</td>
+													<td align="center">
+														${partner.part_name}(${partner.part_id})</td>
+													<td align="center">${partner.part_reserve}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </body>
 <!-- Bootstrap core JS-->
 <script>
-	var reserve = new Array();
+	let reserve = new Array();
 
 	<c:forEach items="${reserve_chart}" var="reserve">
 	reserve.push("${reserve.montly_reserve}");
 	</c:forEach>
 
-	var months = new Array();
+	let months = new Array();
 
 	<c:forEach items="${reserve_chart}" var="reserve">
 	months.push("${reserve.year_month}");
+	</c:forEach>
+
+	let serviceCount = new Array();
+
+	<c:forEach items="${service_chart}" var="service">
+	serviceCount.push("${service.service_count}");
 	</c:forEach>
 
 	Chart.defaults.font.family = 'Noto Sans KR';
@@ -214,6 +269,28 @@
 					}
 				} ]
 			}
+		}
+	});
+
+	let pieChartData = {
+		labels : [ '기본', '산책', '병원픽업', '미용픽업', '호텔픽업' ],
+		datasets : [ {
+			data : serviceCount,
+			backgroundColor : [ 'rgb(255, 99, 132)', 'rgb(255, 159, 64)',
+					'rgb(255, 205, 86)', 'rgb(75, 192, 192)',
+					'rgb(54, 162, 235)', 'rgb(153, 102, 255)' ]
+		} ]
+	};
+
+	const ctxp = document.getElementById('pieChart').getContext('2d');
+	const pieChart = new Chart(ctxp, {
+		type : 'pie',
+		data : pieChartData,
+		options : {
+			responsive : false,
+			legend : {
+				display : true
+			},
 		}
 	});
 </script>

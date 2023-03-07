@@ -34,5 +34,6 @@ public class PartnerVO {
 	private String img;
 	private MultipartFile part_img;
 
+	private int part_reserve; // 파트너 reserve count
 
 }

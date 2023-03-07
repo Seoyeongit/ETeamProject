@@ -41,7 +41,7 @@
 				</div>
 				<div class="card shadow mb-4">
 					<div class="card-header py-3" id="table-card-header">
-						<h5 class="m-0 text-gray">소모임</h5>
+						<h5 class="m-0 text-gray"><a href="${pageContext.request.contextPath}/communitylist" id="mgmt_board_link">소모임</a></h5>
 					</div>
 					<iframe name="communityPrev" id="communityPrev"
 						style="width: 100%; height: 300px; border: 0px"

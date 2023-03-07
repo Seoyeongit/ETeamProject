@@ -22,7 +22,7 @@ public class PartnerReviewDAO {
 	
 	// 파트너 리뷰 리스트 불러오기
 	private final String PT_NAME = "select part_name from partners where part_id=?";
-	private final String PT_REVIEW = "select * from partner_review where part_id=?";
+	private final String PT_REVIEW = "select * from partner_review where part_id=? order by pr_date desc" ;
 	private final String AVG = "SELECT avg(pr_avg) FROM PARTNER_REVIEW WHERE PART_ID=?";
 	private final String IMG = "Select part_img from partners where part_id=?";
 	

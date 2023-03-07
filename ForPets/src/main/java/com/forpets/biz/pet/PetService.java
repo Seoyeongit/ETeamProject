@@ -19,7 +19,7 @@ public interface PetService {
 	 * @param vo 펫모듈을 파라미터 값으로 한다.
 	 * @return petVO가 리턴되며 해당객체는 가져온 펫정보가 초기화된 객체이다.
 	 */
-	List<PetVO> getPetInfo (PetVO vo);
+	List<PetVO> getPetInfo (String user_id);
 	
 	/**
 	 * 펫정보가 몇개인지 count한다.
@@ -33,6 +33,14 @@ public interface PetService {
 	 * @return
 	 */
 	void updatePet(PetVO vo);
+	
+	/**
+	 * 특정 펫아이디의 펫정보를 가져온다.
+	 * @param vo
+	 * @param user_id
+	 * @return
+	 */
+	PetVO getPetDetail(Integer pet_id);
 	
 	//230130 최지혁
 	List<PetVO> getPetList(PetVO vo, String user_id);

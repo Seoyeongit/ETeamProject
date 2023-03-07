@@ -50,14 +50,18 @@ public class PetController{
 	
 	//pet정보를 수정한다.
 	@RequestMapping(value = "/myInfo/my-petUpd", method = RequestMethod.POST)
-	public ResponseEntity<String> updatePet(PetVO vo, PetDAO petDAO) {
+	public ResponseEntity<String> updatePet(PetVO vo, PetDAO petDAO, HttpServletRequest request) {
 		System.out.println("==>pet udpate start");
 		
-		petService.updatePet(vo);
+		HttpSession session = request.getSession(false);
 		
-		System.out.println(vo.toString());
-		
-		return new ResponseEntity<String>("success", HttpStatus.OK);
+		if(session != null && session.getAttribute("userPet") != null) {
+			petService.updatePet(vo);
+			UserVO sessionVO = (UserVO) session.getAttribute("member");
+			session.setAttribute("userPet", petService.getPetInfo(sessionVO.getUser_id()));
+			return new ResponseEntity<String>("success", HttpStatus.OK);
+		}
+		return new ResponseEntity<String>("false", HttpStatus.BAD_REQUEST);
 	}
 
 	//pet정보를 등록한다.
@@ -79,10 +83,9 @@ public class PetController{
 		System.out.println("id : " + pet_id);
 		
 		if(pet_id > 0) {
-			String id_str = Integer.toString(pet_id);
-			model.addAttribute("userPet", petService.getPet(pvo, id_str));
+			model.addAttribute("userPet", petService.getPetDetail(pet_id));
+			return "myInfo/mypet";
 		}
-		return "myInfo/mypet";
 		}
 		return "myInfo/mypet2";
 	}
@@ -107,10 +110,9 @@ public class PetController{
 	
 	//pet등록정보를 가져온다.
 	@RequestMapping(value="/myInfo/getPetInfo")
-	public String getPetInfo(PetVO vo, HttpSession session,Model model) {
+	public String getPetInfo(HttpSession session,Model model) {
 
 		UserVO SessionVO = (UserVO) session.getAttribute("member");
-		vo.setUser_id(SessionVO.getUser_id());
 		
 		String user_id = SessionVO.getUser_id();
 		
@@ -130,7 +132,12 @@ public class PetController{
 		data.put("totalServe", getData(user_id, userServiece::cntTotalServe, 0));
 		/*유저관련 통계자료 저장 코드 끝*/
 		
-		session.setAttribute("userPet", petService.getPetInfo(vo));
+		session.setAttribute("userPet", petService.getPetInfo(user_id));
+		
+		
+		System.out.println(petService.getPetInfo(user_id).toString());
+		
+		
 		model.addAttribute("data",data);
 
 		return "forward:/myInfo/selectWork";
@@ -294,8 +301,7 @@ public class PetController{
 	public String choicePetInfo(PetVO vo, PetDAO petDAO, HttpSession session,WorkVO voW, WorkDAO workDAO,Model model) {
 		System.out.println("===>pet get start");
 		UserVO voP = (UserVO) session.getAttribute("member");
-		vo.setUser_id(voP.getUser_id());
-		session.setAttribute("userPet", petService.getPetInfo(vo));
+		session.setAttribute("userPet", petService.getPetInfo(voP.getUser_id()));
 		return "forward:/Service/showPetWork";
 		
 	}

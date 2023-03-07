@@ -27,7 +27,7 @@ public class PetVO {
 	private String user_id; //유저아이디
 	private int weight; //몸무게
 	private String type_detail; //묘종.견종
-	private char Isneutered; //중성화유무
+	private char isNeutered; //중성화유무
 	private String license; //동물등록
 	private String social; //사회성
 	private char isVaccin; //예방접종유무

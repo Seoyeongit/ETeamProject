@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>반려동물등록하기</title>﻿
+<title>반려동물수정하기</title>﻿
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 ﻿
 <style type="text/css">
@@ -178,12 +178,21 @@ input[type=submit]{
     font-weight: 600;
     font-size: 18px;
     letter-spacing: 1px;
+    cursor: pointer;
+    transition : all 0.5s;
+	transition-timing-function: ease-out;
+}
+
+input[type=submit]:hover{
+	background-color: #ffe2ce;
+	color: #f57013;
 }
 
 </style>
 </head>
 <body>
 	<h3>반려동물수정하기</h3>
+
 	<hr>
 		<br> <br>
 		<div>
@@ -217,11 +226,11 @@ input[type=submit]{
 		<label>중성화</label> 
 			<div class="radio-box">
 				<label for="pet_IsNeutered_Y"  style="width: 95px;">
-					<input type="radio" name="Isneutered" value="Y" id="pet_IsNeutered_Y" <c:if test ="${userPet.Isneutered == 'Y'.charAt(0)}">checked="checked"</c:if>/><span>했음</span>
+					<input type="radio" name="isNeutered" value="Y" id="pet_IsNeutered_Y" <c:if test ="${userPet.isNeutered eq 'Y'.charAt(0)}">checked="checked"</c:if>/><span>했음</span>
 				</label>
 				
 				<label for="pet_IsNeutered_N">
-					<input type="radio" name="Isneutered" value="N" id="pet_IsNeutered_N" <c:if test ="${userPet.Isneutered == 'N'.charAt(0)}">checked="checked"</c:if>/><span>안했음</span>
+					<input type="radio" name="isNeutered" value="N" id="pet_IsNeutered_N" <c:if test ="${userPet.isNeutered eq 'N'.charAt(0)}">checked="checked"</c:if>/><span>안했음</span>
 				</label>
 			</div>
 		</div>
@@ -283,21 +292,21 @@ input[type=submit]{
 				</label>
 				
 				<label for="pet_social_fear">
-					<input type="radio" name="social" value="afraid" id="pet_reaction_afraid" <c:if test ="${userPet.social == 'afraid'}">checked="checked"</c:if>/><span>무서워해요</span>
+					<input type="radio" name="social" value="afraid" id="pet_reaction_afraid" <c:if test ="${userPet.social eq 'afraid'}">checked="checked"</c:if>/><span>무서워해요</span>
 				</label>
 				<label for="pet_social_bad">
-					<input type="radio" name="social" value="angry" id="pet_reaction_angry" <c:if test ="${userPet.social == 'angry'}">checked="checked"</c:if>/><span>물어요</span>
+					<input type="radio" name="social" value="angry" id="pet_reaction_angry" <c:if test ="${userPet.social eq 'angry'}">checked="checked"</c:if>/><span>물어요</span>
 				</label>
 			</div>
 			<br>
 		<label for="pet_type">예방접종을 완료하셨나요?</label> 
 			<div class="pet_info_detail">
 				<label for="pet_isVaccin_N">
-					<input type="radio" name="isVaccin" value="N" id="pet_isVaccin_N" <c:if test ="${userPet.isVaccin == 'N'.charAt(0)}">checked="checked"</c:if>/><span>아니오</span>
+					<input type="radio" name="isVaccin" value="N" id="pet_isVaccin_N" <c:if test ="${userPet.isVaccin eq 'N'.charAt(0)}">checked="checked"</c:if>/><span>아니오</span>
 				</label>
 				
 				<label for="pet_isVaccin_Y">
-					<input type="radio" name="isVaccin" value="Y" id="pet_isVaccin_Y" <c:if test ="${userPet.isVaccin == 'Y'.charAt(0)}">checked="checked"</c:if>/><span>네</span>
+					<input type="radio" name="isVaccin" value="Y" id="pet_isVaccin_Y" <c:if test ="${userPet.isVaccin eq 'Y'.charAt(0)}">checked="checked"</c:if>/><span>네</span>
 				</label>
 			</div>
 			
@@ -305,6 +314,8 @@ input[type=submit]{
 		
 		<input type="hidden" name="user_id" value="${member.user_id}" id="user_id">
 		<input type="hidden" name="id" value="${userPet.id}" id="pet_id">
+		<input type="hidden" name="img" value="${userPet.img }" id="pet_img_src">
+		
 		<div style="text-align: center;">
 			<input type="submit" value="제출하기">
 		</div>
@@ -312,11 +323,11 @@ input[type=submit]{
 
 	<script type="text/javascript">
 	$(function(){
-		let petImgSrc = $('#image-container').attr("param");
+		let petImgSrc = $('#pet_img_src').val();
 		let btn="";
 		btn += "<div class = 'imgDeleteBtn' data-file='"+petImgSrc+"'>x</div>";
 		
-		if(petImgSrc != null){
+		if(petImgSrc != ''){
 		$('#image-container').css('background-image','url("../myInfo/display?fileName='+petImgSrc+'")');
 		$('#uploadResult').append(btn);
 		}
@@ -324,23 +335,32 @@ input[type=submit]{
 	
 		$('input[type=submit]').on('click',function(){
 			
+
 			$.ajax({
 				url:"../myInfo/my-petUpd",
 				type:'POST',
 				data : {
 					id : $('#pet_id').val(),
+					
 					name : $('#pet_name').val(),
-					type : $('#pet_type').val(),
-					img : $('#imgSrc').val(),
+					
+					img : $('#pet_img_src').val(),
+					
 					age : $('#pet_age').val(),
-					gender : $('#pet_gender').val(),
-					user_id : $('#user_id').val(),
-					weight: $('#pet_weight').val(),
+					
+					gender : $('input[name=gender]:checked').val(),
+					
+					weight : $('#pet_weight').val(),
+					
 					type_detail : $('#type_detail').val(),
-					Isneutered:$('input[name=Isneutered]').val(),
-					license:$('input[name=license]').val(),
-					social:$('input[name=social]').val(),
-					isVaccin:$('input[name=isVaccin]').val()
+					
+					isNeutered : $('input[name=isNeutered]:checked').val(),
+					 
+					license : $('input[name=license]:checked').val(),
+					
+					social : $('input[name=social]:checked').val(),
+					
+					isVaccin : $('input[name=isVaccin]:checked').val()
 				},
 				success : function(result){
 					if(result === 'success'){
@@ -357,7 +377,10 @@ input[type=submit]{
 					location.reload();
 				}
 			});
-		});
+
+			
+			
+					});
 	
 	
 		/* 이미지 업로드 */
@@ -415,10 +438,9 @@ input[type=submit]{
 			let fileCallPath = encodeURIComponent(resultSrc.replace(/\\/g, '/'));
 
 			console.log("===>"+fileCallPath);
-
-			str += "<div id='result_card'>";
-			str += "<input type='hidden' name='img' id='imgSrc' value='"+fileCallPath+"'>";
-			str += "</div>";
+			
+			
+			$('#pet_img_src').val(fileCallPath);
 			
 			btn += "<div class = 'imgDeleteBtn' data-file='"+fileCallPath+"'>x</div>";
 			
@@ -432,6 +454,7 @@ input[type=submit]{
 		$("#uploadResult").on("click", ".imgDeleteBtn", function(e){
 			deleteFile();
 			$('#image-container').css('background-image','url("https://i.ibb.co/NWPMVPk/no-image-pet.png")');
+			$('#pet_img_src').val('');
 			$(this).remove();
 		})
 		

@@ -61,9 +61,6 @@
 										<div class="thumb-content">
 											<h5>${ tipPrev[0].tip_title }</h5>
 											<p></p>
-											<a href="getTip?tip_seq=${ tipPrev[0].tip_seq }"
-												class="btn btn-primary">상세보기 <i
-												class="fa fa-angle-right"></i></a>
 										</div>
 									</div>
 								</div>

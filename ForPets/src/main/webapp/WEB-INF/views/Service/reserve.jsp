@@ -37,6 +37,12 @@
 	.footer {
 		text-align : center; !important;
 	}
+	.forpets-service-reserve{
+		color : #8bda8b;
+		font-size : 2rem;
+		padding-top : 10px;
+		padding-bottom : 30px;
+	}
 	.back-bt {
 		margin-bottom:5%;
 		background-color:white;
@@ -68,6 +74,11 @@
 			<section class="section">
 				<div class="row align-items-top">
 					<div class="col-lg-10">
+						<div class="col-lg-12">
+							<div class="col-lg-3 forpets-service-reserve">
+								<span><b>예약사항 확인</b></span>
+							</div>
+						</div>
 						<form action="reserveInsert" method="post">
 							<div class="col-12 row">
 								<div class="col-sm-6">

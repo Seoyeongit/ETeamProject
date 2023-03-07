@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.forpets.biz.community.CommunityVO;
 import com.forpets.biz.notice.NoticeService;
 import com.forpets.biz.notice.NoticeVO;
+import com.forpets.biz.notice.SearchCriteria;
 
 @Service("noticeService")
 public class NoticeServiceImpl implements NoticeService {
@@ -42,5 +43,20 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public void deleteNotice(NoticeVO vo) {
 		noticeDAO.deleteNotice(vo);
+	}
+
+	@Override
+	public List<NoticeVO> getNoticeWithPaging(SearchCriteria cri) {
+		return noticeDAO.getNoticeWithPaging(cri);
+	}
+
+	@Override
+	public List<NoticeVO> getNoticeWithDynamicPaging(SearchCriteria cri) {
+		return noticeDAO.getNoticeWithDynamicPaging(cri);
+	}
+
+	@Override
+	public int getTotalPages(SearchCriteria cri) {
+		return noticeDAO.getTotalPages(cri);
 	}
 }

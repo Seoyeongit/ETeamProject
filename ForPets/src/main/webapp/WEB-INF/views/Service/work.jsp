@@ -218,7 +218,7 @@ function showPetWorkPopUp() {
 							
 							<hr>
 
-							<h5><b>파트너 정보</b></h5>
+							<h5><b>펫트너 정보</b></h5>
 							<!-- Card with an image on left -->
 							<div class="card mb-3 col-6" id="set_partner">
 								<div class="row g-0">
@@ -235,7 +235,7 @@ function showPetWorkPopUp() {
 							</div><!-- End Card with an image on left -->
 							<br>
 							<!-- <input type="button" value="파트너선택" onclick="getPartnerListPopUp()"> -->
-							<button type="button" class="back-bt rounded" onclick="getPartnerListPopUp()">파트너 선택</button>
+							<button type="button" class="back-bt rounded" onclick="getPartnerListPopUp()">펫트너 선택</button>
 							<hr>
 							<div class="col-12">
 								<!-- <input type="button" value="다음" onclick="reserveMake()" style="float:right;"> -->

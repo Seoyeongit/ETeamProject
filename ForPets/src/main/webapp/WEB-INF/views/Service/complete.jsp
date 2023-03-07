@@ -81,7 +81,7 @@
 								</div><!-- End Card with an image on left -->
 							</div>
 							<div class="col-sm-6">
-								<h5><b>파트너 정보</b></h5>
+								<h5><b>펫트너 정보</b></h5>
 								<div class="card mb-3">
 									<div class="row g-0">
 										<div class="col-md-4">

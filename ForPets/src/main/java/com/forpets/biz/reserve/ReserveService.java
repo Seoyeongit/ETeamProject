@@ -35,11 +35,14 @@ public interface ReserveService {
 	//Reserve Table에 데이터 추가를 위한 정보
 	public ReServeVO makeReserve(ReServeVO vo, HttpServletRequest request);
 	
+	public List<ReServeVO> reserveDetailLIst(ReServeVO vo);
+	
+	
 	// 230217 정영현
 	public List<ReServeVO> getReserveListPart(ReServeVO vo);
 	
 	public ReServeVO getReserveDetail(ReServeVO vo);
 	
 	public List<ReServeVO> getReserveListCare(ReServeVO vo);
-
+	
 }

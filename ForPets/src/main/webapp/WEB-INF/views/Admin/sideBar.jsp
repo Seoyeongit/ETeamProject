@@ -27,19 +27,31 @@
 	<div class="list-group list-group-flush">
 		<a
 			class="list-group-item list-group-item-action list-group-item-light p-3"
-			href="${pageContext.request.contextPath}/Admin/main">대시보드</a> <a
+			href="${pageContext.request.contextPath}/Admin/main"><img
+			src="${pageContext.request.contextPath}/resources/assets/img/admin/dashboard.png"
+			width="24px" alt="대시보드" /> &nbsp; 대시보드</a> <a
 			class="list-group-item list-group-item-action list-group-item-light p-3"
-			href="${pageContext.request.contextPath}/Admin/mgmtUser">회원관리</a> <a
+			href="${pageContext.request.contextPath}/Admin/mgmtUser"><img
+			src="${pageContext.request.contextPath}/resources/assets/img/admin/profile.png"
+			width="24px" alt="회원관리" /> &nbsp; 회원관리</a> <a
 			class="list-group-item list-group-item-action list-group-item-light p-3"
-			href="${pageContext.request.contextPath}/Admin/mgmtPartner">파트너관리</a>
+			href="${pageContext.request.contextPath}/Admin/mgmtPartner"><img
+			src="${pageContext.request.contextPath}/resources/assets/img/admin/group-users.png"
+			width="24px" alt="파트너관리" /> &nbsp; 파트너관리</a>
 		<a
 			class="list-group-item list-group-item-action list-group-item-light p-3"
-			href="${pageContext.request.contextPath}/Notice/noticeBoard">공지사항</a>
+			href="${pageContext.request.contextPath}/Notice/noticeBoard"><img
+			src="${pageContext.request.contextPath}/resources/assets/img/admin/notice.png"
+			width="24px" alt="공지사항" /> &nbsp; 공지사항</a>
 		<a
 			class="list-group-item list-group-item-action list-group-item-light p-3"
-			href="${pageContext.request.contextPath}/Admin/mgmtBoard">게시판관리</a> <a
+			href="${pageContext.request.contextPath}/Admin/mgmtBoard"><img
+			src="${pageContext.request.contextPath}/resources/assets/img/admin/open-list.png"
+			width="24px" alt="게시판관리" /> &nbsp; 게시판관리</a> <a
 			class="list-group-item list-group-item-action list-group-item-light p-3"
-			href="${pageContext.request.contextPath}/customer.do">고객센터</a>
+			href="${pageContext.request.contextPath}/customer.do"><img
+			src="${pageContext.request.contextPath}/resources/assets/img/admin/faq.png"
+			width="24px" alt="고객센터" /> &nbsp; 고객센터</a>
 	</div>
 </div>
 <!-- Bootstrap core JS-->

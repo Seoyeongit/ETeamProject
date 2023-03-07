@@ -38,23 +38,20 @@ public class AdminDAO {
 	private final String GET_USERCOUNT = "SELECT COUNT(*) FROM USERS";
 	private final String GET_REVAVG = "select avg(pr_avg) from partner_review";
 	private final String GET_RESERVECOUNT = "SELECT COUNT(*) FROM RESERVE";
-	private final String MONTHLY_RESERVE = "SELECT TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') AS year_month, COUNT(*) AS total FROM RESERVE GROUP BY TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') ORDER BY TO_CHAR(TO_DATE(RESERVE_DAY, 'YYYY/MM/DD'), 'YYYY/MM') ASC";
+	private final String MONTHLY_RESERVE = "SELECT TO_CHAR(TO_DATE(PAY_DATE, 'YYYY/MM/DD'), 'YYYY/MM') AS year_month, COUNT(*) AS total FROM RESERVE GROUP BY TO_CHAR(TO_DATE(PAY_DATE, 'YYYY/MM/DD'), 'YYYY/MM') ORDER BY TO_CHAR(TO_DATE(PAY_DATE, 'YYYY/MM/DD'), 'YYYY/MM') ASC";
 	private final String SERVICE_COUNT = "SELECT s_num, count(s_num) AS service from reserve where s_num in(1,2,4,5,8) group by s_num order by 1";
 	private final String PARTNER_RANK = "SELECT PARTNERS.PART_ID, PARTNERS.PART_NAME, COUNT(DISTINCT RESERVE.RESERVE_NUM) AS RES_CNT FROM PARTNERS INNER JOIN RESERVE ON PARTNERS.PART_ID = RESERVE.PART_ID GROUP BY PARTNERS.PART_ID, PARTNERS.PART_NAME ORDER BY RES_CNT DESC";
-	
+	private final String PARTNER_INFO = "SELECT * FROM PARTNERS WHERE PART_ID=?";
+	private final String USER_INFO = "SELECT * FROM USERS WHERE USER_ID=?";
+
 	// paging 처리
 	private final String GETTOTALPAGES = "SELECT COUNT(*) FROM USERS WHERE 1 = 1 ";
-	private final String GETLISTWITHPAGING =
-				"SELECT USER_ID, USER_NAME, USER_NICK, USER_ADD,GENDER,PHNUMBER,BIRTH,WAR,USER_NO,DATA_CREATE\r\n" + 
-				"FROM(SELECT ROWNUM RN, USER_ID, USER_NAME, USER_NICK, USER_ADD,GENDER,PHNUMBER,BIRTH,WAR,USER_NO,DATA_CREATE\r\n" + 
-				"FROM USERS\r\n" + 
-				"WHERE ROWNUM <= ?*?\r\n" + 
-				"ORDER BY SEQ DESC)\r\n" + 
-				"WHERE RN > (?-1) * ?";
-			
+	private final String GETLISTWITHPAGING = "SELECT USER_ID, USER_NAME, USER_NICK, USER_ADD,GENDER,PHNUMBER,BIRTH,WAR,USER_NO,DATA_CREATE\r\n"
+			+ "FROM(SELECT ROWNUM RN, USER_ID, USER_NAME, USER_NICK, USER_ADD,GENDER,PHNUMBER,BIRTH,WAR,USER_NO,DATA_CREATE\r\n"
+			+ "FROM USERS\r\n" + "WHERE ROWNUM <= ?*?\r\n" + "ORDER BY SEQ DESC)\r\n" + "WHERE RN > (?-1) * ?";
+
 	// paging 처리 끝
-	
-	
+
 	private final RowMapper<AdminVO> adminRowMapper = (resultSet, rowNum) -> {
 		AdminVO newvo = new AdminVO();
 		newvo.setAdm_id(resultSet.getString("adm_id"));
@@ -74,13 +71,13 @@ public class AdminDAO {
 		svo.setMontly_reserve(resultSet.getInt("total"));
 		return svo;
 	};
-	
+
 	private final RowMapper<AdminVO> piechartRowMapper = (resultSet, rowNum) -> {
 		AdminVO svo = new AdminVO();
 		svo.setService_count(resultSet.getInt("service"));
 		return svo;
 	};
-	
+
 	private final RowMapper<PartnerVO> partRankRowMapper = (resultSet, rowNum) -> {
 		PartnerVO pvo = new PartnerVO();
 		pvo.setPart_id(resultSet.getString("part_id"));
@@ -88,7 +85,7 @@ public class AdminDAO {
 		pvo.setPart_reserve(resultSet.getInt("res_cnt"));
 		return pvo;
 	};
-	
+
 	private final RowMapper<PartnerVO> partRowMapper = (resultSet, rowNum) -> {
 		PartnerVO pvo = new PartnerVO();
 		pvo.setPart_id(resultSet.getString("part_id"));
@@ -110,7 +107,7 @@ public class AdminDAO {
 		tvo.setTip_img_url(resultSet.getString("tip_img_url"));
 		return tvo;
 	};
-	
+
 	private final RowMapper<CommunityVO> comRowMapper = (resultSet, rowNum) -> {
 		CommunityVO vo = new CommunityVO();
 		vo.setC_code(resultSet.getString("C_CODE"));
@@ -119,7 +116,7 @@ public class AdminDAO {
 		vo.setUser_id(resultSet.getString("USER_ID"));
 		vo.setC_date(resultSet.getDate("C_DATE"));
 		vo.setC_pet(resultSet.getString("C_PET"));
-		
+
 		return vo;
 	};
 
@@ -164,9 +161,7 @@ public class AdminDAO {
 	public List<CommunityVO> getComPrev(CommunityVO cvo) {
 		return jdbcTemplate.query(COM_PREV, comRowMapper);
 	}
-	
-	
-	
+
 	public void deleteUser(UserVO uvo, String user_id) {
 		jdbcTemplate.update(DELETE_USER, user_id);
 	}
@@ -174,23 +169,23 @@ public class AdminDAO {
 	public int getEarnings() {
 		return jdbcTemplate.queryForObject(GET_EARNINGS, Integer.class);
 	}
-	
+
 	public int getUserCount() {
 		return jdbcTemplate.queryForObject(GET_USERCOUNT, Integer.class);
 	}
-	
+
 	public double getReviewAvg() {
 		return jdbcTemplate.queryForObject(GET_REVAVG, Double.class);
 	}
-	
+
 	public int getReserveCount() {
 		return jdbcTemplate.queryForObject(GET_RESERVECOUNT, Integer.class);
 	}
-	
+
 	public List<AdminVO> getMontlyReserve(AdminVO avo) {
 		return jdbcTemplate.query(MONTHLY_RESERVE, statsRowMapper);
 	}
-	
+
 	public List<AdminVO> getServiceCount(AdminVO avo) {
 		return jdbcTemplate.query(SERVICE_COUNT, piechartRowMapper);
 	}
@@ -198,62 +193,61 @@ public class AdminDAO {
 	public List<PartnerVO> getPartRank(PartnerVO pvo) {
 		return jdbcTemplate.query(PARTNER_RANK, partRankRowMapper);
 	}
-	
-	
+
 	// paging 처리
-		public int getTotalPages(SearchCriteria_user cri) {
-			String sql = GETTOTALPAGES;
-			if(cri.getSearchCondition().equals("NAME")) {
-				sql += "AND USER_NAME LIKE '%" + cri.getSearchKeyword()+ "%'";
-			}
-			if(cri.getSearchCondition().equals("NICKNAME")) {
-				sql += "AND USER_NICK LIKE '%" + cri.getSearchKeyword()+ "%'";
-			}
-			if(cri.getSearchCondition().equals("ADD")) {
-				sql += "AND USER_ADD LIKE '%" + cri.getSearchKeyword()+ "%'";
-			}
-			return jdbcTemplate.queryForObject(sql, Integer.class);
+	public int getTotalPages(SearchCriteria_user cri) {
+		String sql = GETTOTALPAGES;
+		if (cri.getSearchCondition().equals("NAME")) {
+			sql += "AND USER_NAME LIKE '%" + cri.getSearchKeyword() + "%'";
 		}
+		if (cri.getSearchCondition().equals("NICKNAME")) {
+			sql += "AND USER_NICK LIKE '%" + cri.getSearchKeyword() + "%'";
+		}
+		if (cri.getSearchCondition().equals("ADD")) {
+			sql += "AND USER_ADD LIKE '%" + cri.getSearchKeyword() + "%'";
+		}
+		return jdbcTemplate.queryForObject(sql, Integer.class);
+	}
 
-		// 글 목록 조회 with paging
-		public List<UserVO> getListWithPaging(SearchCriteria_user cri) {
-			Object[] orgs = {cri.getPageNum(), cri.getAmount(), cri.getPageNum(), cri.getAmount()};
-			return jdbcTemplate.query(GETLISTWITHPAGING, orgs, new UserRowMapper());
-		}
-		
-		// 글 목록 조회 with paging
-		public List<UserVO> getListWithDynamicPaging(SearchCriteria_user cri) {
-			System.out.println("getTipListWithDynamicPaging...");
-			System.out.println("Condition : " + cri.getSearchCondition());
-			System.out.println("Keyword : " + cri.getSearchKeyword());
-			String sql_in =
-				"SELECT ROWNUM RN, USER_ID, USER_NAME, USER_NICK, USER_ADD,GENDER,PHNUMBER,BIRTH,WAR,USER_NO,DATA_CREATE " +
-				"FROM ( SELECT * FROM USERS WHERE 1 = 1 ";
-			
-			
-			if(cri.getSearchCondition().equals("NAME")) {
-				sql_in = sql_in + "AND USER_NAME LIKE '%" + cri.getSearchKeyword()+ "%'";
-			}
-			if(cri.getSearchCondition().equals("NICKNAME")) {
-				sql_in = sql_in + "AND USER_NICK LIKE '%" + cri.getSearchKeyword()+ "%'";
-			}
-			if(cri.getSearchCondition().equals("ADD")) {
-				sql_in = sql_in + "AND USER_ADD LIKE '%" + cri.getSearchKeyword()+ "%'";
-			}
-			sql_in = sql_in + "ORDER BY USER_NO DESC) WHERE ROWNUM <= " + cri.getPageNum() * cri.getAmount();
-			
-			String sql =
-				"SELECT USER_ID, USER_NAME, USER_NICK, USER_ADD,GENDER,PHNUMBER,BIRTH,WAR,USER_NO,DATA_CREATE " + 
-				"FROM (" + sql_in + ") WHERE RN > " + (cri.getPageNum() - 1) * cri.getAmount();
-			
-			System.out.println("sql : " + sql);
-			
-			return jdbcTemplate.query(sql, new UserRowMapper());
-		}
-		
-	
-	
-	
+	// 글 목록 조회 with paging
+	public List<UserVO> getListWithPaging(SearchCriteria_user cri) {
+		Object[] orgs = { cri.getPageNum(), cri.getAmount(), cri.getPageNum(), cri.getAmount() };
+		return jdbcTemplate.query(GETLISTWITHPAGING, orgs, new UserRowMapper());
+	}
 
+	// 글 목록 조회 with paging
+	public List<UserVO> getListWithDynamicPaging(SearchCriteria_user cri) {
+		System.out.println("getTipListWithDynamicPaging...");
+		System.out.println("Condition : " + cri.getSearchCondition());
+		System.out.println("Keyword : " + cri.getSearchKeyword());
+		String sql_in = "SELECT ROWNUM RN, USER_ID, USER_NAME, USER_NICK, USER_ADD,GENDER,PHNUMBER,BIRTH,WAR,USER_NO,DATA_CREATE "
+				+ "FROM ( SELECT * FROM USERS WHERE 1 = 1 ";
+
+		if (cri.getSearchCondition().equals("NAME")) {
+			sql_in = sql_in + "AND USER_NAME LIKE '%" + cri.getSearchKeyword() + "%'";
+		}
+		if (cri.getSearchCondition().equals("NICKNAME")) {
+			sql_in = sql_in + "AND USER_NICK LIKE '%" + cri.getSearchKeyword() + "%'";
+		}
+		if (cri.getSearchCondition().equals("ADD")) {
+			sql_in = sql_in + "AND USER_ADD LIKE '%" + cri.getSearchKeyword() + "%'";
+		}
+		sql_in = sql_in + "ORDER BY USER_NO DESC) WHERE ROWNUM <= " + cri.getPageNum() * cri.getAmount();
+
+		String sql = "SELECT USER_ID, USER_NAME, USER_NICK, USER_ADD,GENDER,PHNUMBER,BIRTH,WAR,USER_NO,DATA_CREATE "
+				+ "FROM (" + sql_in + ") WHERE RN > " + (cri.getPageNum() - 1) * cri.getAmount();
+
+		System.out.println("sql : " + sql);
+
+		return jdbcTemplate.query(sql, new UserRowMapper());
+	}
+
+	public PartnerVO getPartInfo(PartnerVO pvo, String part_id) {
+		return jdbcTemplate.queryForObject(PARTNER_INFO, partRowMapper, part_id);
+	}
+
+	public UserVO getUserInfo(UserVO uvo, String user_id) {
+		return jdbcTemplate.queryForObject(USER_INFO, new UserRowMapper(), user_id);
+	}
 
 }

@@ -150,7 +150,7 @@
 									<div class="thumb-wrapper">
 										<div class="thumb-content">
 											<div class="prev-title">
-												<h5>${ comPrev[7].tip_title }</h5>
+												<h5>${ comPrev[7].c_title }</h5>
 												<p>${ comPrev[7].c_date }</p>
 											</div>
 											<div class="prev-id">

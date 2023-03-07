@@ -29,4 +29,8 @@ public class CareDiaryServiceImpl implements CareDiaryService{
 		return careDiaryDAO.getCareDiaryDetail(diary_id, user_id);
 	}
 
+	@Override
+	   public void updateReserveStatus(CareDiaryVO vo, int status) {
+	      careDiaryDAO.updateReserveStatus(vo, status);
+	   }
 }

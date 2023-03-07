@@ -11,6 +11,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>돌봄일지쓰기</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="${pageContext.request.contextPath}/resources/css/carediary.css" rel="stylesheet" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+	
     <style>
         .infomation-container{
             background-color: rgb(236, 236, 236);
@@ -36,12 +44,16 @@
     </style>
 </head>
 <body>
-        <h2>돌봄일지작성</h2>
-            <h3>고객님의 반려동물 정보 입니다.</h3>
-            <div class="infomation-container">
+	<form action="../partner/writeCare" method="post">
+	<div class=""></div>
+        <h1 class="hd-main"><b>돌봄일지 작성</b></h1>
+        	<div class="main-control">
+            <div class="main-control-hd">
+            <div class="pet-info">
                 <!--이데이터는 서버로 보내지 않습니다.-->
-                <div>
-                    <h3>${pet.name }</h3>
+                <div class="pet-info-detail">
+                <div class="info-detail">
+                    <h3 class="pet-name">${pet.name }</h3>
                     <c:if test="${pet.gender eq 'm'.charAt(0)}">남</c:if>
                     <c:if test="${pet.gender eq 'f'.charAt(0)}">여</c:if>
                      (${pet.age }세/
@@ -49,19 +61,18 @@
                     <c:if test="${pet.type eq 'cat'}">고양이</c:if>
                      )
                 </div>
-                <div>
-                    <ul>
-                        <li>사회성 : 보통입니다</li>
-                        <li>예민한 곳 : 배를 만지는것을 싫어합니다.</li>
-                    </ul>
+                <div class="pet-detail">
+						<div>사회성 : 보통입니다</div>
+                        <div>예민한 곳 : 배를 만지는것을 싫어합니다.</div>
+                </div>
                 </div>
             </div>
-
+			<div class="serivce-list">
             <h3>고객님이 신청하신 서비스내역 입니다.</h3>
             <div class="인적사항정보div">
                 <!--이데이터는 서버로 보내지 않습니다.-->
                 <div>
-                    <h3>'
+                    <h3>
                     <c:choose>
           				<c:when test="${reserve.s_num eq 1}">기본돌봄서비스</c:when>
           				<c:when test="${reserve.s_num eq 2}">산책돌봄서비스</c:when>
@@ -69,7 +80,7 @@
           				<c:when test="${reserve.s_num eq 5}">미용픽업서비스</c:when>
           			</c:choose>  
                     
-                    '</h3>
+                    </h3>
                 </div>
                 <div>
                     <div>요청날짜 ${reserve.reserve_day }</div>
@@ -96,34 +107,42 @@
                       	</c:forEach>
                       	</c:if>
                     </ul>
-                    <p>요청사항</p>
-                    <div>
+                    <p><b>요청사항</b></p>
+                    <div class="rque-st">
                         ${reserve.reserve_request}
                     </div>
                 </div>
             </div>
-            
-			<div>
-				<h3>돌봄목록</h3>
-				<form action="../partner/writeCare" method="post">
-				<div>
-				 케어완료 날짜/시간 : <input type="text" name="complete_day" value="${now}"><input type="time" name="complete_time">
+            </div>
+            </div>
+            <hr>
+			<div class="care-list">
+				<h3 class="care-list-lis">돌봄 목록</h3>
+				<div class="day-time">
+				 케어완료 날짜/시간 : <input type="text" class="input-tex"name="complete_day" value="${now}"><input type="time" class="input-tim" name="complete_time">
 				</div>
+			<div class="serv-con">
 				<c:choose>
-				<c:when test="${reserve.s_num eq 1 }"><jsp:include page="./careDiary/normal.jsp"/></c:when>
-				<c:when test="${reserve.s_num eq 2 }"><jsp:include page="./careDiary/wark.jsp"/></c:when>
-				<c:when test="${reserve.s_num eq 4 }"><jsp:include page="./careDiary/pickUp_hospital.jsp"/></c:when>
-				<c:when test="${reserve.s_num eq 5 }"><jsp:include page="./careDiary/pickUp_salon.jsp"/></c:when>
+				<c:when test="${reserve.s_num eq 1 }"><%@ include file="/WEB-INF/views/partner/careDiary/normal.jsp" %></c:when>
+				<c:when test="${reserve.s_num eq 2 }"><%@ include file="/WEB-INF/views/partner/careDiary/wark.jsp" %></c:when>
+				<c:when test="${reserve.s_num eq 4 }"><%@ include file="/WEB-INF/views/partner/careDiary/pickUp_hospital.jsp" %></c:when>
+				<c:when test="${reserve.s_num eq 5 }"><%@ include file="/WEB-INF/views/partner/careDiary/pickUp_salon.jsp" %></c:when>
 				</c:choose>
+			</div>
+			<hr>
+			<div class="add-serv">
 				<c:forEach items="${reserve.s_numArr }" var="sNum">
         			<c:choose>
-        				<c:when test="${sNum eq 6 || sNum eq 7}"><jsp:include page="./careDiary/addService.jsp"/></c:when>
+        				<c:when test="${sNum eq 6 || sNum eq 7}"><%@ include file="/WEB-INF/views/partner/careDiary/addService.jsp" %></c:when>
         			</c:choose>
         		</c:forEach>
+        	</div>
+        	</div>
+        	<div class="write-bt-control">
         		<input type="hidden" name="reserve_num" value="${reserve.reserve_num }">
-				<input type="submit" value="작성하기"> 
-    			</form>
-    		</div>
+				<div class="write-bt"><input type="submit" class="write-bt-sub" value="작성하기"></div></div>
+    	</div> 
+    	</form>
     		
     		<script type="text/javascript">
     			

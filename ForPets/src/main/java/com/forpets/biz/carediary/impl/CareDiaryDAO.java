@@ -31,6 +31,7 @@ public class CareDiaryDAO {
 			"where reserve.user_id = ? " + 
 			"and carediary.diary_id = ?";
 	
+	private final String UP_STATUS = "UPDATE RESERVE SET STATUS = ? WHERE RESERVE_NUM=?";
 	
 	
 	public List<CareDiaryVO> getCareDiary(CareDiaryVO vo, String user_id) {
@@ -102,5 +103,9 @@ public class CareDiaryDAO {
 		Object[] obj = {vo.getPet_condition(), vo.getCare_review(), vo.getMedi_result(), vo.getBeauty_list(), vo.getWalk_time(), vo.getShower_serv(), vo.getTraining_serv(), vo.getMeal(), vo.getSnak(), vo.getPet_play(), vo.getReserve_num(),vo.getComplete_day(),vo.getComplete_time()};
 		jdbcTemplate.update(INSERT_DIA, obj);
 	}
-
+	
+	public void updateReserveStatus(CareDiaryVO vo, int status) {
+	      Object[] obj = {status ,vo.getReserve_num()};
+	      jdbcTemplate.update(UP_STATUS, obj);
+	   }
 }

@@ -28,6 +28,6 @@ public interface CareDiaryService {
 	 */
 	 void insertCareDiary(CareDiaryVO vo);
 	 
-	 
+	 void updateReserveStatus(CareDiaryVO vo, int status);
 
 }

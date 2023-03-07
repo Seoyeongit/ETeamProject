@@ -27,6 +27,7 @@
    }
    .qa-box{
       margin-left : 5%;
+      margin-bottom:5%;
    }
    .show-qa {
       background-color : white !important;

@@ -15,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.forpets.biz.carediary.CareDiaryService;
+import com.forpets.biz.carediary.CareDiaryVO;
 import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.pet.PetVO;
 import com.forpets.biz.reserve.ReServeVO;
@@ -31,7 +33,8 @@ public class ReserveController {
 	private ReserveService reserveService;
 	@Autowired
 	private ReviewService reviewService;
-	
+	@Autowired
+	private CareDiaryService careDiaryService;
 	
 	/**
 	 * 예약내역으로 이동하는 메서드
@@ -188,4 +191,22 @@ public class ReserveController {
 		return "/partner/careDiaryList";
 	}
 	
+	@RequestMapping(value="/CareBefore")
+	public String getReserveBefore(CareDiaryVO vo, Model model, HttpSession session) {
+		System.out.println("reserve_num : " + vo.getReserve_num());
+		careDiaryService.updateReserveStatus(vo, 2);
+		return "redirect:partner/getReserve";
+	}
+	
+	@RequestMapping(value="/CareIng")
+	public String getReserveIng(CareDiaryVO vo, ReServeVO rvo, HttpSession session) {
+		careDiaryService.updateReserveStatus(vo, 3);
+		return "redirect:partner/getReserve";
+	}
+	
+	@RequestMapping(value="/CareAfter")
+	public String getReserveAfter(CareDiaryVO vo, ReServeVO rvo, HttpSession session) {
+		careDiaryService.updateReserveStatus(vo, 4);
+		return "redirect:partner/getReserve";
+	}
 }

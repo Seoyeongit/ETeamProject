@@ -2,12 +2,25 @@
     pageEncoding="UTF-8"%>
 <head>
 	<style type="text/css">
+		   .delete-form{
+    			width:60%;
+    			margin-left: auto;
+    			margin-right: auto;
+    			display: flex;
+    			flex-direction: column;
+    		}
+	
+	
 		.form-container{
 			border : 1px solid balck;
 		}
+		
+		.delete-footer{
+			text-align: center;
+		}
 	</style>
 </head>
-<div>
+<div class = "delete-form">
 	<div>
 		<h2>회원탈퇴</h2>
 		<hr>
@@ -19,8 +32,9 @@
 			<li>포펫츠 이용약관 동의를 철회한 후에라도 해당 약관에 다시 동의하시면 서비스를 이용할 수 있습니다.</li>
 			<li>포펫츠 에서 제공하는 케어서비스가 완료되지 않은 경우 서비스 철회 하실 수 없습니다.</li>
 		</ul>
+	<hr>
 	</div>
-	<div>
+	<div class="delete-footer">
 		<div>포펫츠 회원 탈퇴(이용약관 동의 철회)를 하시겠습니까?</div>
 		<div><input type="button" value="회원탈퇴"></div>
 	</div>

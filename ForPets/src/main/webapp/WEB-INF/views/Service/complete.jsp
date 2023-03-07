@@ -33,6 +33,17 @@
 	.footer {
 		text-align : center; !important;
 	}
+	.forpets-service-reserve{
+		color : #8bda8b;
+		font-size : 2rem;
+		padding-top : 10px;
+		padding-bottom : 30px;
+	}
+	.back-bt {
+		margin-bottom:5%;
+		background-color:white;
+		border:1px solid rgb(128,128,128, 0.7);
+	}
 </style>
 </head>
 <body>
@@ -58,7 +69,11 @@
 			<section class="section">
 				<div class="row align-items-top">
 					<div class="col-lg-10">
-						<h1><b>예약이 완료 되었습니다.</b></h1>
+						<div class="col-lg-12">
+							<div class="col-lg-3 forpets-service-reserve">
+								<span><b>예약 완료</b></span>
+							</div>
+						</div>
 						<div class="col-12 row">
 							<div class="col-sm-6">
 								<h5><b>반려동물 정보</b></h5>
@@ -81,7 +96,7 @@
 								</div><!-- End Card with an image on left -->
 							</div>
 							<div class="col-sm-6">
-								<h5><b>파트너 정보</b></h5>
+								<h5><b>펫트너 정보</b></h5>
 								<div class="card mb-3">
 									<div class="row g-0">
 										<div class="col-md-4">

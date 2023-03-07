@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     	<style type="text/css">
     		.adit-form-box{
-    			width:50%;
+    			width:41%;
     			margin-left: auto;
     			margin-right: auto;
     			display: flex;

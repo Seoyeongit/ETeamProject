@@ -22,5 +22,13 @@ public class AdminVO {
 	private String adm_email; //관리자 이메일
 	private int adm_no;	//관리자 번호
 	private Date adm_date; //등록날짜
+	
+	private int earnings; //총수익
+	private int user_count; // 유저수
+	private String year_month; // 예약년-월
+	private int montly_reserve; // 월별 예약수
+	private int service_count; // 서비스별 예약현황
+	private int s_num;
+	
 
 }

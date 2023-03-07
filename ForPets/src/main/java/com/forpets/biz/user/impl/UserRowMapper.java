@@ -14,7 +14,11 @@ public class UserRowMapper implements RowMapper<UserVO> {
 		UserVO vo = new UserVO();
 		
 		vo.setUser_id(rs.getString("USER_ID"));
-		vo.setUser_pw(rs.getString("USER_PW"));
+		try {
+			vo.setUser_pw(rs.getString("USER_PW"));
+		}catch(SQLException e){
+			vo.setUser_pw(null);
+		}
 		vo.setUser_name(rs.getString("USER_NAME"));
 		vo.setUser_nick(rs.getString("USER_NICK"));
 		vo.setUser_add(rs.getString("USER_ADD"));

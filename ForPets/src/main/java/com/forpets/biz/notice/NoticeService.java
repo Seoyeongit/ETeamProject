@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.forpets.biz.community.CommunityVO;
+import com.forpets.biz.notice.SearchCriteria;
 
 /*
  *  공지사항관련 서비스는 여기서 추상메서드를 추가하세요.
@@ -26,5 +27,14 @@ public interface NoticeService {
 
 	//삭제
 	public void deleteNotice(NoticeVO vo);
+	
+	
+	//paging
+	List<NoticeVO> getNoticeWithPaging(SearchCriteria cri);
+	
+	//paging dynamic
+	List<NoticeVO> getNoticeWithDynamicPaging(SearchCriteria cri);
+
+	int getTotalPages(SearchCriteria cri);
 	
 }

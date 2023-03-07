@@ -16,13 +16,23 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link
-	href="${pageContext.request.contextPath}/resources/css/admin/tipPrev.css"
+	href="${pageContext.request.contextPath}/resources/css/admin/tipPrev.css?ver=1"
 	rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	
+<style>
+
+.thumb-content {
+	height: 180px;
+}
+
+</style>	
+	
+	
 </head>
 <body>
 	<div class="container-xl">
@@ -51,9 +61,6 @@
 										<div class="thumb-content">
 											<h5>${ tipPrev[0].tip_title }</h5>
 											<p></p>
-											<a href="getTip?tip_seq=${ tipPrev[0].tip_seq }"
-												class="btn btn-primary">상세보기 <i
-												class="fa fa-angle-right"></i></a>
 										</div>
 									</div>
 								</div>

@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.forpets.biz.notice.NoticeService;
 import com.forpets.biz.notice.NoticeVO;
 import com.forpets.biz.notice.impl.NoticeDAO;
+import com.forpets.biz.notice.SearchCriteria;
+import com.forpets.biz.notice.NoticePagingDTO;
+import com.forpets.biz.tip.TipVO;
+import com.forpets.biz.tip.impl.TipDAO;
 
 @Controller
 @RequestMapping("/Notice")
@@ -22,17 +26,38 @@ public class NoticeController {
 	@Autowired
 	private NoticeService notService;
 	
-	// 게시판 목록
-	@RequestMapping(value="/noticeBoard")
-	public String noticeBoard(NoticeVO notvo, NoticeDAO noticeDAO, Model model) throws Exception {
-		if (notvo.getSearchCondition() == null) {notvo.setSearchCondition("TITLE"); }
-		if (notvo.getSearchKeyword() == null) {notvo.setSearchKeyword(""); }
-		System.out.println("SearchCondition : " + notvo.getSearchCondition());
-		System.out.println("SearchKeyword : " + notvo.getSearchKeyword());
-		model.addAttribute("noticeBoard", notService.getNoticeList(notvo));	// Model 정보 저장
-		System.out.println("getNoticeList");
-		return "./Notice/noticeBoard";
-	}
+//	// 게시판 목록
+//	@RequestMapping(value="/noticeBoard")
+//	public String noticeBoard(NoticeVO notvo, NoticeDAO noticeDAO, Model model) throws Exception {
+//		if (notvo.getSearchCondition() == null) {notvo.setSearchCondition("TITLE"); }
+//		if (notvo.getSearchKeyword() == null) {notvo.setSearchKeyword(""); }
+//		System.out.println("SearchCondition : " + notvo.getSearchCondition());
+//		System.out.println("SearchKeyword : " + notvo.getSearchKeyword());
+//		model.addAttribute("noticeBoard", notService.getNoticeList(notvo));	// Model 정보 저장
+//		System.out.println("getNoticeList");
+//		return "./Notice/noticeBoard";
+//	}
+	
+	// paging 처리
+		@RequestMapping(value="/noticeBoard")
+		public String getTipList(NoticeVO vo, NoticeDAO noticeDAO, SearchCriteria cri, Model model) {
+			System.out.println("---> getNoticeList 실행");
+			System.out.println("SearchCondition : " + cri.getSearchCondition());
+			System.out.println("SearchKeyword : " + cri.getSearchKeyword());
+			if (cri.getSearchCondition() == null) { cri.setSearchCondition("TITLE"); }
+			if (cri.getSearchKeyword() == null) { cri.setSearchKeyword(""); }
+			System.out.println("SearchCondition : " + cri.getSearchCondition());
+			System.out.println("SearchKeyword : " + cri.getSearchKeyword());
+			
+			System.out.println("totalpages : " + notService.getTotalPages(cri));
+			
+			NoticePagingDTO pageMaker = new NoticePagingDTO(cri, notService.getTotalPages(cri));
+			
+			model.addAttribute("pageMaker", pageMaker);
+			model.addAttribute("noticeBoard", notService.getNoticeWithDynamicPaging(cri));
+			System.out.println("---> getNoticeList 완료");
+			return  "./Notice/noticeBoard";
+		}
 	
 	
 	// 게시판 글 상세보기
@@ -49,6 +74,11 @@ public class NoticeController {
 		
 		return "/Notice/getNoticeBoard";
 	} 
+	
+	public String selectBoard() {
+		return "boardDetail";
+	}
+	
 	
 	// 글 수정폼 이동
 	@RequestMapping(value="/updateNoticeForm.do/{ntc_seq}")

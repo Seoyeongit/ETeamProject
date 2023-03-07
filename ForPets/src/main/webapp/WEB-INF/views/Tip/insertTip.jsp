@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="../favicon.jsp"></jsp:include>
 <meta charset="UTF-8">
 <title>Forpets 팁</title>
 <link href="${pageContext.request.contextPath}/resources/css/Tip/tip.css" rel="stylesheet" />

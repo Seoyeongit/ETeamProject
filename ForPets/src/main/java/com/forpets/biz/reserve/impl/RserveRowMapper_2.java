@@ -33,8 +33,11 @@ public class RserveRowMapper_2 implements RowMapper<ReServeVO> {
 			voPet.setName(rs.getString("pet_name"));
 			vo.setVoPet(voPet);
 			
-			voP.setPart_name(rs.getString("PART_NAME"));
+			voP.setPart_name(rs.getString("PART_NAME"));			
+			voP.setImg(rs.getString("PART_IMG"));
+			
 			vo.setVoP(voP);
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

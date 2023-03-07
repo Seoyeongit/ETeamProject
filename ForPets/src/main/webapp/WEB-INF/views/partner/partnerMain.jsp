@@ -20,6 +20,9 @@
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="${pageContext.request.contextPath}/resources/css/partner.css" rel="stylesheet" />
         <script src="${pageContext.request.contextPath}/resources/js/partner_page.js"></script>
@@ -44,9 +47,9 @@
         </nav>
 	<h1 class="main-tx"><b>펫트너 <span class="main-tx2"> 페이지</span></b></h1>
     <div class="hello-tx">
-    <h3 class="hello-tx-sty"><b>환영합니다.</b> * <span class="hello-tx-sty2">${partners.part_name }</span> * 님</h3>
+    <h3 class="hello-tx-sty"><b>환영합니다.</b>  <span class="hello-tx-sty2">${partners.part_name }</span> 님</h3>
     <h5 class="user-sel-hd"><span>${partners.part_name }</span>님의 자기소개</h5>
-    <textarea class="user-sel-inf" readonly>${ partners.self_infor}</textarea>
+    <div class="user-sel-inf">${ partners.self_infor}</div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

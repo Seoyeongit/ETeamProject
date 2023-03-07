@@ -59,7 +59,7 @@ public class ReserveDAO {
 	
 	
 	private final String GETRESERVE_LISTCAREBEFORE = "select * from reserve where part_id=? and status=1";
-	private final String GETRESERVE_LISTCARE = "select * from reserve where part_id=? and status=2";
+	private final String GETRESERVE_LISTCARE = "select * from reserve where part_id=? and status=4";
 	private final String GETRESERVE_LISTCAREAFTER = "select * from reserve where part_id=? and status=3";
 	
 	//230130 최지혁

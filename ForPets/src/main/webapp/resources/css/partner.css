@@ -11489,9 +11489,9 @@ section.resume-section .resume-section-content {
     margin-left:10%;
 }
 .main-tx2 {
-    color:#8bda8b;
-    -webkit-text-stroke: 1px gray;
+    color:#51945B;
 }
+
 .back-bt {
     margin-left:70%;
 }
@@ -11499,13 +11499,19 @@ section.resume-section .resume-section-content {
     float:right;
 }
 .write-bt {
+	background-color: #ffffff;
+	color:#000000;
+	border-radius:5px;
+	border:1px solid rgba(128,128,128,0.7);
+}
+.check-bt {
 	background-color: #8bda8b;
 	color:#ffffff;
 	border-radius:5px;
 	border:1px solid rgba(128,128,128,0.7);
 }
 .reser-time-hd{
-    width:10%;
+    width:23%;
 }
 .reser-time {
     margin-right:10px;
@@ -11527,31 +11533,31 @@ section.resume-section .resume-section-content {
 	margin-top:5%;
 }
 .care-before2 {
-	color:#8bda8b;
-	-webkit-text-stroke: 1px gray;
+	color:#51945B;
 }
 .care-ing{
 	margin-left:10%;
 	margin-top:5%;
 }
 .care-ing2{
-	color:#8bda8b;
-	-webkit-text-stroke: 1px gray;
+	color:#51945B;
 }
 .care-after{
 	margin-left:10%;
 	margin-top:5%;
 }
 .care-after2{
-	color:#8bda8b;
-	-webkit-text-stroke: 1px gray;
+	color:#51945B;
 }
 .hello-tx {
-	margin-top:12.5%;
+	margin-top:8%;
     margin-left:10%;
 }
 .hello-tx-sty {
+	width:50%;
 	color:#000000;
+	font-family: 'Gowun Dodum', sans-serif;
+	
 }
 .hello-tx-sty2 {
 	color:#000000;
@@ -11559,11 +11565,19 @@ section.resume-section .resume-section-content {
 }
 .user-sel-hd {
 	margin-top:5%;
+	margin-left:12px;
+	font-family: 'Gowun Dodum', sans-serif;
 }
 .user-sel-inf {
-	resize:none;
 	margin-top:3%;
 	width:50%;
 	height:200px;
-	border:none;
+	box-shadow: 0 5px 7px lightgray, 0 6px 8px lightgray;
+	border-radius:10px;
+	padding-top:15px;
+	padding-left:15px;
+	padding-right:15px;
+	font-family: 'Gowun Dodum', sans-serif;
+}
+.hello-tx-sty {
 }

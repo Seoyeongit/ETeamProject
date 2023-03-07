@@ -3,8 +3,8 @@ package com.forpets.view.community;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
 
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
@@ -15,10 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.forpets.biz.comdat.ComdatService;
 import com.forpets.biz.community.CommunityService;
 import com.forpets.biz.community.CommunityVO;
+import com.forpets.biz.pet.PetService;
+import com.forpets.biz.pet.PetVO;
 import com.forpets.biz.survey.SurveyDetailService;
 import com.forpets.biz.user.UserVO;
 
@@ -34,6 +35,9 @@ public class CommunityController {
 	@Autowired
 	SurveyDetailService svservice;
 	
+	@Autowired
+	PetService petservice;
+	
 	// 게시판 목록 불러오기
 	@RequestMapping("/communitylist")
 	public ModelAndView community() throws Exception {
@@ -46,11 +50,17 @@ public class CommunityController {
 	
 	// 글 번호 매기기
 	@RequestMapping("/getcommunity")
-	public ModelAndView insertcommunity() throws Exception {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/Community/Create_Community");
-		return mav;
-	}
+	public String insertcommunity(HttpSession session, Model model) throws Exception {
+		UserVO sessionVO = (UserVO) session.getAttribute("member");
+		List<PetVO> list = (petservice.getPetInfo(sessionVO.getUser_id()));
+		
+		if (list.isEmpty()) {
+				return "redirect:/myInfo/main";
+		} else {
+			return "redirect://Community/Create_Community";
+		}
+	} 
+	
 	
 	@RequestMapping("/getcommunity/{c_code}")
 	public ModelAndView insertcomm(@PathVariable String c_code) {
@@ -77,6 +87,7 @@ public class CommunityController {
 		comservice.insertCommunity(svo);
 		mav.setViewName("/Community/Community_List");
 		mav.addObject("communityList", comservice.getCommunityList());
+		
 		return mav;
 	}
 	

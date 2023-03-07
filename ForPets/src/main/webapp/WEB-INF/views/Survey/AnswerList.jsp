@@ -20,6 +20,7 @@
 	    margin-top:100px;
 	}
 	
+	
 	.content_guide {
 	/* position: absolute; */
     top: 0;
@@ -27,7 +28,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1200px;
     min-height: 100%;
     margin: auto;
     background-color: #fff;
@@ -43,7 +44,6 @@
 	}
 	
 	.ptinfo {
-		text-align: center;
 		margin-top : 30px;
 		margin-bottom : 30px;
 		border-right : black;
@@ -51,6 +51,9 @@
 	
 	.review_guide {
 		float: right;
+		border-left: solid 1.5px #D3D3D3;
+	    margin-top: 20px;
+	    margin-bottom: 20px;
 	}
 
 	.review_list {
@@ -69,6 +72,15 @@
 	background-color: green;
 	color : white;
 	}
+	
+	.svinput {
+		border-left-width:0;
+		border-right-width:0;
+		border-top-width:0;
+		border-bottom-width:0.5px;
+		font-size : 15px;
+		width:780px;
+	}
 
 </style>
 <meta charset="UTF-8">
@@ -80,9 +92,9 @@
 	<div class="content_guide">
 		
      <div class="row">
-     <div class="pt_guide col-4">
+     <div class="pt_guide col-3">
 	<div class="ptinfo"  >
-		<h5>답변자 목록</h5>
+		<h3 style="text-align: center;">답변자 목록</h3>
 		
 			<ul>
 			<c:forEach items="${answerList }" var="ans">
@@ -90,14 +102,14 @@
 			</c:forEach>
 			</ul>
 			
-				<a href="../deletesurvey.do/${add }"><input type="button" class="btn btn-sm btn-block" value="설문지 삭제"></a>
+				<a href="../deletesurvey.do/${add }"><input type="button" class="btn btn-sm btn-block" value="설문지 삭제" style="float: right;"></a>
 		</div>
 		</div>
 		
 	
 	
 	<div class="review_guide col-8">
-	<div class="review_list" style="border-left: solid 1.5px #D3D3D3; margin-left:-30px;">
+	<div class="review_list" style="text-align: left;">
 		
 
 		<form action="../insertanswer.do" method="post">
@@ -116,7 +128,7 @@
 					<c:when test="${sur.sd_type eq 'ju' }">
 						
 								 <input type="hidden" name="${sur2.sc_order }" value="${sur2.sc_ascode }">
-								 <input type="text" name="${sur2.sc_ascode }" style="border-under: solid 1px black" readonly>
+								 <input type="text" name="${sur2.sc_ascode }"  class="svinput"  readonly >
 					
 					</c:when>
 						
@@ -132,12 +144,12 @@
 					
 					<c:when test="${sur.sd_type eq 'time' }">
 							  	<input type="hidden" name="${sur2.sc_order }" value="${sur2.sc_ascode }">
-								<input type="time" name="${sur2.sc_ascode }" readonly>
+								<input type="time" name="${sur2.sc_ascode }" class="svinput" readonly>
 					</c:when>
 					
 				    <c:when test="${sur.sd_type eq 'schedule' }">
 							  	<input type="hidden" name="${sur2.sc_order }" value="${sur2.sc_ascode }">
-								<input type="date" name="${sur2.sc_ascode }" readonly>
+								<input type="date" name="${sur2.sc_ascode }" class="svinput" readonly>
 					</c:when>
 				</c:choose>
 			</c:when>

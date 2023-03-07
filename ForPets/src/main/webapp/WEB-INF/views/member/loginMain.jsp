@@ -20,7 +20,7 @@
 <div class="loginform">
 	<br>
   	<div class="login-con"><input type="button" class="userlogin" onclick="location.href='${pageContext.request.contextPath}/member/login'"value="회원 로그인"/></div>
-    <div class="login-con"><input type="button" class="partlogin" onclick="location.href='${pageContext.request.contextPath}/partner/login';"value="파트너 로그인"/></div>
+    <div class="login-con"><input type="button" class="partlogin" onclick="location.href='${pageContext.request.contextPath}/partner/login';"value="펫트너 로그인"/></div>
     <div class="login-con"><input type="submit"  class="joinbox" value="회원가입" /></div>
 </div>
 </form>

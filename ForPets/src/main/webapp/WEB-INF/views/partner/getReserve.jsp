@@ -11,6 +11,8 @@
     <script src="${pageContext.request.contextPath}/resources/js/partner_page.js"></script>
     <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <title>예약 일정 관리</title>
+<style>
+</style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/nav2.jsp" %>
@@ -30,6 +32,7 @@
             </div>
         </nav>
     <h2 class="main-tx"><b>예약 일정 <span class="main-tx2">관리</span></b></h2>
+    <form action="../CareBefore" method="post">
 	<h4 class="care-before">CARE <b><span class="care-before2">BEFORE</span></b></h4>
 	<table class="care-tab">
 		<tr class="tab-hd">
@@ -48,10 +51,12 @@
 			<td><div id="date">${ rList.reserve_day }</div></td>
 			<td><div class="reser-time" id="time">${ rList.reserve_time }</div></td>
 			<td><input type="button" class="write-bt" onclick="location.href='../partner/detail?reserve_num=${rList.reserve_num}&user_id=${rList.user_id}';" value="확인하기"/></td>
+			<td><input type="button" class="" onclick="location.href='../CareBefore?reserve_num=${rList.reserve_num}'" value="시작하기"></td>
 		</tr>
 		</c:if>
 		</c:forEach>
 	</table>
+	</form>
 <!-- paging -->
    <!-- <div class="text-center">
         <ul class="pagination-forpets justify-content-center">
@@ -79,6 +84,7 @@
          <input type='hidden' name='searchCondition' value='<c:out value="${ pageMaker.cri.searchCondition }"/>'> 
          <input type='hidden' name='searchKeyword'   value='<c:out value="${ pageMaker.cri.searchKeyword }"/>'>
      </form> -->
+    <form action="CareIng" method="post">
 	<h4 class="care-ing">CARE <b><span class="care-ing2">ING</span></b></h4>
 	<table class="care-tab">
 		<tr class="tab-hd">
@@ -97,10 +103,12 @@
 			<td><div id="date">${ rList.reserve_day }</div></td>
 			<td><div class="reser-time" id="time">${ rList.reserve_time }</div></td>
 			<td><input type="button" class="write-bt" onclick="location.href='../partner/detail?reserve_num=${rList.reserve_num}&user_id=${rList.user_id}';" value="확인하기"/></td>
+			<td><input type="button" class="" onclick="location.href='../CareIng?reserve_num=${rList.reserve_num}'" value="시작하기"></td>
 		</tr>
 		</c:if>
 		</c:forEach>
 	</table>
+	</form>
 <!-- paging -->
 	<!--
     <div class="text-center">
@@ -130,6 +138,7 @@
          <input type='hidden' name='searchKeyword'   value='<c:out value="${ pageMaker.cri.searchKeyword }"/>'>
      </form>
      -->
+    <form action="CareAfter" method="post">
 	<h4 class="care-after">CARE <b><span class="care-after2">AFTER</span></b></h4>
 	<table class="care-tab">
 		<tr class="tab-hd">
@@ -148,10 +157,12 @@
 			<td><div id="date">${ rList.reserve_day }</div></td>
 			<td><div class="reser-time" id="time">${ rList.reserve_time }</div></td>
 			<td><input type="button" class="write-bt" onclick="location.href='../partner/detail?reserve_num=${rList.reserve_num}&user_id=${rList.user_id}';" value="확인하기"/></td>
+			<td><input type="button" class="" onclick="location.href='../CareAfter?reserve_num=${rList.reserve_num}'" value="시작하기"></td>
 		</tr>
 		</c:if>
 		</c:forEach>
 	</table>
+	</form>
 <!-- paging -->
 <!-- 
     <div class="text-center">

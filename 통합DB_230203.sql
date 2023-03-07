@@ -670,7 +670,7 @@ CREATE TABLE reserve
     -- 요청사항
     reserve_request VARCHAR2(2000) NULL
 );
-
+select * from reserve;
 -- reserve table primary key
 ALTER TABLE reserve ADD CONSTRAINT re_seq PRIMARY KEY (re_seq);
 

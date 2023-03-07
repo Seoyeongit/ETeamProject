@@ -92,6 +92,7 @@ public class CareDiaryController {
 			vo.setBeauty_list(sb.toString());
 		}
 		careDiaryService.insertCareDiary(vo);
+		careDiaryService.updateReserveStatus(vo, 4);
 		return "partner/careDiaryList";
 	}
 	

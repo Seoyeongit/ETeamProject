@@ -9,7 +9,7 @@
 <title>서비스 확인 페이지</title>
 </head>
 <body>
-
+	
 	<div>강아지 이름</div>
 	<div>${reserve.voPet.name}</div>
 	<div>사용자</div>

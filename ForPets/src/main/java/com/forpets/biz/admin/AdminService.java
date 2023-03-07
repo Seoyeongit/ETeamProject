@@ -2,6 +2,7 @@ package com.forpets.biz.admin;
 
 import java.util.List;
 
+import com.forpets.biz.community.CommunityVO;
 import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.reserve.ReServeVO;
 import com.forpets.biz.tip.TipVO;
@@ -28,6 +29,9 @@ public interface AdminService {
 	// 팁게목록
 	public List<TipVO> getTipPrev(TipVO tvo);
 
+	// 소모임 목록
+	public List<CommunityVO> getComPrev(CommunityVO cvo);
+	
 	// 유저 탈퇴
 	public void deleteUser(UserVO uvo, String user_id);
 	
@@ -41,5 +45,7 @@ public interface AdminService {
 	public List<AdminVO> getServiceCount(AdminVO avo);
 
 	public List<PartnerVO> getPartRank(PartnerVO pvo);
+
+
 
 }

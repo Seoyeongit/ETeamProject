@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.forpets.biz.admin.AdminVO;
+import com.forpets.biz.community.CommunityVO;
 import com.forpets.biz.notice.NoticeVO;
 import com.forpets.biz.partner.PartnerVO;
 import com.forpets.biz.partner.impl.PartnerDAO;
@@ -30,6 +31,7 @@ public class AdminDAO {
 	private final String UPDATE_ADMIN = "update ADMIN set adm_name=?, adm_phone=?, adm_email=?, adm_pw=?"
 			+ "where adm_id=?";
 	private final String TIP_PREV = "select tip_title, tip_img_url from TIP_BOARD order by tip_seq desc";
+	private final String COM_PREV = "select * from community order by C_DATE DESC ";
 	private final String GET_EARNINGS = "SELECT SUM(S_PRICE) FROM SERV RIGHT OUTER JOIN RESERVE USING (S_NUM)";
 	private final String GET_USERCOUNT = "SELECT COUNT(*) FROM USERS";
 	private final String GET_REVAVG = "select avg(pr_avg) from partner_review";
@@ -94,6 +96,18 @@ public class AdminDAO {
 		tvo.setTip_img_url(resultSet.getString("tip_img_url"));
 		return tvo;
 	};
+	
+	private final RowMapper<CommunityVO> comRowMapper = (resultSet, rowNum) -> {
+		CommunityVO vo = new CommunityVO();
+		vo.setC_code(resultSet.getString("C_CODE"));
+		vo.setC_title(resultSet.getString("C_TITLE"));
+		vo.setC_content(resultSet.getString("C_CONTENT"));
+		vo.setUser_id(resultSet.getString("USER_ID"));
+		vo.setC_date(resultSet.getDate("C_DATE"));
+		vo.setC_pet(resultSet.getString("C_PET"));
+		
+		return vo;
+	};
 
 	// 관리자 정보
 	public AdminVO getAdmin(AdminVO vo) {
@@ -132,6 +146,13 @@ public class AdminDAO {
 		return jdbcTemplate.query(TIP_PREV, tipRowMapper);
 	}
 
+	// 소모임 미리보기
+	public List<CommunityVO> getComPrev(CommunityVO cvo) {
+		return jdbcTemplate.query(COM_PREV, comRowMapper);
+	}
+	
+	
+	
 	public void deleteUser(UserVO uvo, String user_id) {
 		jdbcTemplate.update(DELETE_USER, user_id);
 	}
@@ -163,9 +184,6 @@ public class AdminDAO {
 	public List<PartnerVO> getPartRank(PartnerVO pvo) {
 		return jdbcTemplate.query(PARTNER_RANK, partRankRowMapper);
 	}
-	
 
-
-	// 소모임 게시판 미리보기
 
 }

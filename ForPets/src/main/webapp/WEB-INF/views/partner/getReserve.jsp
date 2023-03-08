@@ -50,8 +50,8 @@
 			<td><div class="reser-add" id="add">${ rList.reserve_add }</div></td>
 			<td><div id="date">${ rList.reserve_day }</div></td>
 			<td><div class="reser-time" id="time">${ rList.reserve_time }</div></td>
-			<td><input type="button" class="write-bt" onclick="location.href='../partner/detail?reserve_num=${rList.reserve_num}&user_id=${rList.user_id}';" value="확인하기"/></td>
-			<td><input type="button" class="" onclick="location.href='../CareBefore?reserve_num=${rList.reserve_num}'" value="시작하기"></td>
+			<td><input type="button" class="write-bt" onclick="location.href='../partner/detail?reserve_num=${rList.reserve_num}&user_id=${rList.user_id}';" value="확인"/></td>
+			<td><input type="button" class="check-bt" onclick="location.href='../CareBefore?reserve_num=${rList.reserve_num}'" value="시작"></td>
 		</tr>
 		</c:if>
 		</c:forEach>
@@ -102,8 +102,8 @@
 			<td><div class="reser-add" id="add">${ rList.reserve_add }</div></td>
 			<td><div id="date">${ rList.reserve_day }</div></td>
 			<td><div class="reser-time" id="time">${ rList.reserve_time }</div></td>
-			<td><input type="button" class="write-bt" onclick="location.href='../partner/detail?reserve_num=${rList.reserve_num}&user_id=${rList.user_id}';" value="확인하기"/></td>
-			<td><input type="button" class="" onclick="location.href='../CareIng?reserve_num=${rList.reserve_num}'" value="시작하기"></td>
+			<td><input type="button" class="write-bt" onclick="location.href='../partner/detail?reserve_num=${rList.reserve_num}&user_id=${rList.user_id}';" value="확인"/></td>
+			<td><input type="button" class="check-bt" onclick="location.href='../CareIng?reserve_num=${rList.reserve_num}'" value="케어"></td>
 		</tr>
 		</c:if>
 		</c:forEach>
@@ -156,8 +156,8 @@
 			<td><div class="reser-add" id="add">${ rList.reserve_add }</div></td>
 			<td><div id="date">${ rList.reserve_day }</div></td>
 			<td><div class="reser-time" id="time">${ rList.reserve_time }</div></td>
-			<td><input type="button" class="write-bt" onclick="location.href='../partner/detail?reserve_num=${rList.reserve_num}&user_id=${rList.user_id}';" value="확인하기"/></td>
-			<td><input type="button" class="" onclick="location.href='../CareAfter?reserve_num=${rList.reserve_num}'" value="시작하기"></td>
+			<td><input type="button" class="write-bt" onclick="location.href='../partner/detail?reserve_num=${rList.reserve_num}&user_id=${rList.user_id}';" value="확인"/></td>
+			<td><input type="button" class="check-bt" onclick="location.href='../CareAfter?reserve_num=${rList.reserve_num}'" value="완료"></td>
 		</tr>
 		</c:if>
 		</c:forEach>

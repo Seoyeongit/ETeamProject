@@ -29,6 +29,7 @@
    }
    .forpets_q{
       margin-bottom : 20%;
+      box-shadow: 0 5px 7px lightgray, 0 6px 8px lightgray;
    }
 </style>
 <script>

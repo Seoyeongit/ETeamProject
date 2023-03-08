@@ -17,12 +17,15 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.forpets.biz.carediary.CareDiaryService;
 import com.forpets.biz.carediary.CareDiaryVO;
+import com.forpets.biz.partner.PartnerService;
 import com.forpets.biz.partner.PartnerVO;
+import com.forpets.biz.pet.PetService;
 import com.forpets.biz.pet.PetVO;
 import com.forpets.biz.reserve.ReServeVO;
 import com.forpets.biz.reserve.ReserveService;
 import com.forpets.biz.reserve.impl.ReserveDAO;
 import com.forpets.biz.review.ReviewService;
+import com.forpets.biz.service.Service;
 import com.forpets.biz.service.ServiceVO;
 import com.forpets.biz.user.UserVO;
 
@@ -35,6 +38,13 @@ public class ReserveController {
 	private ReviewService reviewService;
 	@Autowired
 	private CareDiaryService careDiaryService;
+	
+	@Autowired
+	private PetService petService;
+	@Autowired
+	private PartnerService partnerService;
+	@Autowired
+	private Service serviceService;
 	
 	/**
 	 * 예약내역으로 이동하는 메서드
@@ -66,6 +76,28 @@ public class ReserveController {
 		return "myInfo/my_reserve";
 	}	
 	
+	@RequestMapping(value="/myInfo/myreserveDetail")
+	public String myreserveDetail(ReServeVO rvo, PetVO pvo, PartnerVO partvo, ServiceVO svo, Model model) {
+		System.out.println("myreserveDetail...");
+		System.out.println("reserve_num : " + rvo.getReserve_num());
+		List<ReServeVO> rvoList = (List<ReServeVO>) reserveService.reserveDetailLIst(rvo);
+		PetVO newpvo = petService.getPetDetail(rvoList.get(0).getPet_id());
+		PartnerVO newpartvo = partnerService.getPartner(partvo, rvoList.get(0).getPart_id());
+		List<ServiceVO> svoList = new ArrayList<ServiceVO>();
+		int total_price = 0;
+		for(int i=0;i<rvoList.size();i++) {
+			ServiceVO a = serviceService.getServ(svo, rvoList.get(i).getS_num());
+			total_price += a.getS_price();
+			svoList.add(a);
+		}
+		
+		model.addAttribute("reserve", rvoList.get(0));
+		model.addAttribute("pet_info", newpvo);
+		model.addAttribute("part_info", newpartvo);
+		model.addAttribute("servList", svoList);
+		model.addAttribute("total_price", total_price);
+		return "myInfo/my_reserve_detail";
+	}
 	
 	//예약내역데이터를 가져와서 
 	@RequestMapping(value = "/myInfo/getCptReserve")

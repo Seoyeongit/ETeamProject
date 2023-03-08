@@ -21,7 +21,7 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link
-	href="${pageContext.request.contextPath}/resources/css/admin/partnerList.css?ver=1.1"
+	href="${pageContext.request.contextPath}/resources/css/admin/partnerList.css?ver=1.3"
 	rel="stylesheet" type="text/css" />
 </head>
 <body>

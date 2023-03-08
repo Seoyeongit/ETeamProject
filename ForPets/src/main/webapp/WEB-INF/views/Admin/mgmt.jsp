@@ -25,7 +25,7 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link
-	href="${pageContext.request.contextPath}/resources/css/admin/mgmt.css?ver=1.3"
+	href="${pageContext.request.contextPath}/resources/css/admin/mgmt.css?ver=1.4"
 	rel="stylesheet" type="text/css" />
 
 <script
@@ -58,7 +58,7 @@
 									<div class="col align-items-center">
 										<div class="mb-0 text-gray-800 align-items-center">
 											<p class="h2 mb-0 font-weight-bold align-items-center">${stats.earnings}<span
-													class="h6 mb-0 font-weight-bold align-items-center">(원)</span>
+													class="h6 mb-0 font-weight-bold align-items-center">&nbsp;(원)</span>
 											</p>
 										</div>
 									</div>

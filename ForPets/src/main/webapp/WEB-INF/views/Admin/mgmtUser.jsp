@@ -23,8 +23,21 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link
-	href="${pageContext.request.contextPath}/resources/css/admin/userList.css?ver=1.1"
+	href="${pageContext.request.contextPath}/resources/css/admin/userList.css?ver=1.3"
 	rel="stylesheet" type="text/css" />
+
+<style>
+.h3 {
+	color: #696969;
+}
+
+.card{
+	color: #696969;
+}
+
+</style>
+
+
 </head>
 <body>
 
@@ -83,9 +96,8 @@
 							<table class="table table-hover">
 								<thead>
 									<tr align="center">
-										<th></th>
-										<th>회원ID</th>
-										<th>닉네임</th>
+										<th>no</th>
+										<th>&nbsp;&nbsp;회원ID(닉네임)</th>
 										<th>이름</th>
 										<th>주소</th>
 										<th>가입일</th>
@@ -93,19 +105,18 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="user" items="${getUser}">
+									<c:forEach var="user" items="${getUser}" varStatus="i">
 										<tr align="center">
-											<td></td>
-											<td><a href="${pageContext.request.contextPath}/Admin/mgmtUser/${user.user_id}">${user.user_id}</a></td>
-											<td>${user.user_nick}</td>
+											<td>${i.index + 1}</td>
+											<td><a
+												href="${pageContext.request.contextPath}/Admin/mgmtUser/${user.user_id}">&nbsp;&nbsp;${user.user_id}(${user.user_nick})</a></td>
 											<td>${user.user_name}</td>
 											<td>${user.user_add}</td>
 											<td>${user.data_create}</td>
-											<td><a href="#userDeleteModal" class="trigger-btn" title="탈퇴"
-												data-toggle="modal"><img
+											<td><a href="#userDeleteModal" class="trigger-btn"
+												title="탈퇴" data-toggle="modal"><img
 													src="${pageContext.request.contextPath}/resources/assets/img/admin/delete.png"
-													width="24px" alt="정보 보기" /></a>
-												<!-- <a href="${pageContext.request.contextPath}/Admin/deleteUser/${user.user_id }" class="view" title="탈퇴"
+													width="24px" alt="정보 보기" /></a> <!-- <a href="${pageContext.request.contextPath}/Admin/deleteUser/${user.user_id }" class="view" title="탈퇴"
 												data-toggle="tooltip"></a> --></td>
 										</tr>
 									</c:forEach>
@@ -114,28 +125,29 @@
 							<br>
 							<div class="clearfix">
 								<ul class="pagination">
-								<li class="page-item"><a class="page-link"
-											href="/biz/Admin/mgmtUser?pageNum=${pageMaker.startPage}&amount=10&searchCondition=${ pageMaker.cri.searchCondition }&searchKeyword=${ pageMaker.cri.searchKeyword }" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
+									<li class="page-item"><a class="page-link"
+										href="/biz/Admin/mgmtUser?pageNum=${pageMaker.startPage}&amount=10&searchCondition=${ pageMaker.cri.searchCondition }&searchKeyword=${ pageMaker.cri.searchKeyword }"
+										aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
 									<c:if test="${pageMaker.prev}">
-											<li class="page-item paginate_button">
-											<a
-												href="${pageMaker.startPage -1}" class="page-link">Previous</a>
-											</li>
-										</c:if>
+										<li class="page-item paginate_button"><a
+											href="${pageMaker.startPage -1}" class="page-link">Previous</a>
+										</li>
+									</c:if>
 
-										<c:forEach begin="${pageMaker.startPage}"
-											end="${pageMaker.endPage}" var="num">
-											<li
-												class="page-item paginate_button ${pageMaker.cri.pageNum == num ? "active":""}"><a
-												href="${num}" class="page-link">${num}</a></li>
-										</c:forEach>
-										<c:if test="${pageMaker.next}">
-											<li class="page-item paginate_button"><a
-												href="${pageMaker.endPage +1 }" class="page-link">Next</a></li>
-										</c:if>
-									
-									<li class="page-item"><a class="page-link" href="/biz/Admin/mgmtUser?pageNum=${pageMaker.endPage}&amount=10&searchCondition=${ pageMaker.cri.searchCondition }&searchKeyword=${ pageMaker.cri.searchKeyword }"
-											aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
+									<c:forEach begin="${pageMaker.startPage}"
+										end="${pageMaker.endPage}" var="num">
+										<li
+											class="page-item paginate_button ${pageMaker.cri.pageNum == num ? "active":""}"><a
+											href="${num}" class="page-link">${num}</a></li>
+									</c:forEach>
+									<c:if test="${pageMaker.next}">
+										<li class="page-item paginate_button"><a
+											href="${pageMaker.endPage +1 }" class="page-link">Next</a></li>
+									</c:if>
+
+									<li class="page-item"><a class="page-link"
+										href="/biz/Admin/mgmtUser?pageNum=${pageMaker.endPage}&amount=10&searchCondition=${ pageMaker.cri.searchCondition }&searchKeyword=${ pageMaker.cri.searchKeyword }"
+										aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
 								</ul>
 							</div>
 						</div>
@@ -143,13 +155,15 @@
 				</div>
 			</div>
 		</div>
-							<form id='pageForm' action="../Admin/mgmtUser" method="get">
-								<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
-								<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
-							
-								<input type='hidden' name='searchCondition' value='<c:out value="${ pageMaker.cri.searchCondition }"/>'> 
-								<input type='hidden' name='searchKeyword'	value='<c:out value="${ pageMaker.cri.searchKeyword }"/>'>
-							</form>
+		<form id='pageForm' action="../Admin/mgmtUser" method="get">
+			<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+			<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+
+			<input type='hidden' name='searchCondition'
+				value='<c:out value="${ pageMaker.cri.searchCondition }"/>'>
+			<input type='hidden' name='searchKeyword'
+				value='<c:out value="${ pageMaker.cri.searchKeyword }"/>'>
+		</form>
 	</div>
 
 	<!-- Modal HTML -->
@@ -189,14 +203,15 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/admin/sideBar.js"></script>
 <script type="text/javascript">
-$(function(){
-	$(".paginate_button a").on("click",
-		function(e) {
-			e.preventDefault();
-			$("#pageForm").find("input[name='pageNum']").val($(this).attr("href"));
-			$("#pageForm").submit();
-		}
-	);
-});
+	$(function() {
+		$(".paginate_button a").on(
+				"click",
+				function(e) {
+					e.preventDefault();
+					$("#pageForm").find("input[name='pageNum']").val(
+							$(this).attr("href"));
+					$("#pageForm").submit();
+				});
+	});
 </script>
 </html>

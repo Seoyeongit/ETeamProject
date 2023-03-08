@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +22,7 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link
-	href="${pageContext.request.contextPath}/resources/css/admin/partnerList.css?ver=1.1"
+	href="${pageContext.request.contextPath}/resources/css/admin/userList.css?ver=1.1"
 	rel="stylesheet" type="text/css" />
 
 <style>
@@ -48,16 +49,11 @@
 					class="d-sm-flex align-items-center justify-content-between mb-4">
 					<h1 class="h3 mb-0 text-gray-800">유저 정보</h1>
 				</div>
-				<div class="card shadow mb-5 px-5">
-					<div class="table-responsive px-5">
-						<div class="row">
-							<div class="col" id="avatar-col">
-								<img
-									src="${pageContext.request.contextPath}/partner/display?fileName=${partInfo.img}"
-									class="avatar" alt="${userInfo.user_name}"
-									style="width: 200px;" />
-							</div>
-						</div>
+				<div class="card shadow mb-4">
+					<div class="card-header py-3" id="table-card-header">
+						<h5 class="m-0 text-gray">회원 정보</h5>
+					</div>
+					<div class="table-responsive px-5 mb-5">
 						<table class="table table-borderless align-middle">
 							<tbody>
 								<tr height="50">
@@ -82,27 +78,85 @@
 									<td><input type="text" class="form-control"
 										name="user_add" value="${userInfo.user_add}"></td>
 								</tr>
-								
+
 								<tr height="50">
 									<td class="align-middle">생년월일</td>
-									<td><input type="text" class="form-control"
-										name="birth" value="${userInfo.birth}"></td>
+									<td><input type="text" class="form-control" name="birth"
+										value="${userInfo.birth}"></td>
 								</tr>
 
 								<tr height="50">
 									<td class="align-middle">전화번호</td>
-									<td><input type="tel" class="form-control"
-										name="phnumber" value="${userInfo.phnumber}"></td>
+									<td><input type="tel" class="form-control" name="phnumber"
+										value="${userInfo.phnumber}"></td>
 								</tr>
 
-
-								<tr height="50">
-									<td class="align-middle">자기소개</td>
-									<td><textarea class="form-control" rows="5" name="self_infor">${partInfo.self_infor}</textarea></td>
-								</tr>
 							</tbody>
 						</table>
 					</div>
+				</div>
+				<div class="card shadow mb-4">
+					<div class="card-header py-3" id="table-card-header">
+						<h5 class="m-0 text-gray">펫 정보</h5>
+					</div>
+					<div class="table-responsive px-5 mb-5">
+						<c:forEach var="userPet" items="${userPet}">
+							<div class="row">
+								<div class="col" id="avatar-col">
+									<img src="${pageContext.request.contextPath}/myInfo/display?fileName=${userPet.img}" class="avatar" alt="${userPet.img}"
+										style="width: 200px;" />
+								</div>
+							</div>
+							<table class="table table-borderless align-middle">
+								<tbody>
+									<tr height="50">
+										<td class="align-middle">이름</td>
+										<td style="width: 90%"><input type="text"
+											class="form-control" name="name" value="${userPet.name}"
+											readonly="readonly" onfocus="this.blur();" tabindex="-1"
+											style="background-color: #f2f5f3;" /></td>
+									</tr>
+
+									<tr height="50">
+										<td class="align-middle">종류</td>
+										<td style="width: 90%"><input type="text"
+											class="form-control" size="30" name="type"
+											value="<c:choose><c:when test="${userPet.type eq 'cat' }">고양이</c:when><c:when test="${userPet.type eq 'dog' }">강아지</c:when><c:otherwise></c:otherwise></c:choose>"></td>
+									</tr>
+
+									<tr height="50">
+										<td class="align-middle">나이</td>
+										<td style="width: 90%"><input type="text"
+											class="form-control" size="30" name="age"
+											value="${userPet.age}"></td>
+									</tr>
+<!--
+									<tr height="50">
+										<td class="align-middle">성별</td>
+										<td style="width: 90%"><input type="text"
+											class="form-control" size="30" name="gender"
+											value="<c:choose><c:when test="${fn:contains(userPet.gender, 'f')}"> <c:out value="$여아" /></c:when><c:when test="${fn:contains(userPet.gender, 'm')}">남아</c:when><c:otherwise></c:otherwise></c:choose>"></td>
+									</tr>
+
+									<tr height="50">
+										<td class="align-middle">중성화</td>
+										<td style="width: 90%"><input type="text"
+											class="form-control" size="30" name="isNeutered"
+											value="${userPet.isNeutered}"></td>
+									</tr>
+
+
+									<tr height="50">
+										<td class="align-middle">예방접종</td>
+										<td><input type="text" class="form-control"
+											name="isVaccin" value="${userPet.isVaccin}"></td>
+									</tr>
+  -->
+								</tbody>
+							</table>
+						</c:forEach>
+					</div>
+
 				</div>
 			</div>
 		</div>

@@ -8,10 +8,10 @@
 <head>
 <jsp:include page="../favicon.jsp"></jsp:include>
 <meta charset="UTF-8">
-<title>Forpets 서비스</title>
-<script src="${pageContext.request.contextPath}/resources/js/kakaopay.js" type="text/javascript"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<link
+	href="${pageContext.request.contextPath}/resources/css/myInfo_main.css"
+	rel="stylesheet" />
+<title>마이페이지</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.js"></script>
 
 <link href="${pageContext.request.contextPath}/resources/css/Tip/tip.css" rel="stylesheet" />
@@ -44,28 +44,150 @@
 	}
 </style>
 
+<style type="text/css">
+
+body{
+	margin: 0 !important;
+    padding: 0 !important;
+    height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.node {
+	position: absolute;
+	background-image: url(< c : out value = "${pageContext.request.contextPath}"/ >/ resources
+		/ assets/ img/ marker/ sign-info-64.png);
+	cursor: pointer;
+	width: 64px;
+	height: 64px;
+}
+
+.tooltip {
+	background-color: #fff;
+	position: absolute;
+	border: 2px solid #333;
+	font-size: 25px;
+	font-weight: bold;
+	padding: 3px 5px 0;
+	left: 65px;
+	top: 14px;
+	border-radius: 5px;
+	white-space: nowrap;
+	display: none;
+}
+
+.tracker {
+	position: absolute;
+	margin: -35px 0 0 -30px;
+	display: none;
+	cursor: pointer;
+	z-index: 3;
+}
+
+a:hover {
+	cursor: pointer;
+	color: red;
+}
+
+a input[id=register_wark] {
+	margin: 1em;
+	float: right;
+}
+
+.navbar_forpets {
+	position: absolute;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none
+}
+
+.navbar-nav li p{
+	color : #51945b;
+	font-weight: 700;
+	margin-bottom: 0;
+
+}
+
+#sideNav{
+	position: static !important;
+	display: block;
+	padding-top: 50px;
+	min-height : 100vh !important;
+	max-height: 100% !important;
+}
+
+.footer {
+  flex: 0 0 auto;
+  width: 100%;
+  bottom: 0;
+  left: 0;	
+  text-align: center;
+  font-size: 0.9rem;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.main{
+	width: 100%;
+}
+
+#sideNav{
+	display: block !important;
+	position: relative !important;
+}
+
+#main_content{
+	display: flex;
+    margin-top: 70px;
+}
+
+@media (min-width: 992px){
+	#sideNav {
+			min-height : 100vh !important;
+			max-height: 100% !important;
+	}
+ }
+
+</style>
+
+<!-- Core theme CSS (includes Bootstrap)-->
+<link
+	href="${pageContext.request.contextPath}/resources/css/partner.css"
+	rel="stylesheet" />
+</head>
 </head>
 <body>
 	<jsp:include page="../nav.jsp" />
-	<div id="main_content">
-		
-		<nav class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav">
-            <div class="collapse navbar-collapse navbar_forpets" id="navbarResponsive">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/choice">서비스 예약</a></li>
-                    	<ul class="navbar-nav">
-                    		<li class="nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/normal">- 기본</a></span></li>
-	                    	<li class="nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/work">- 산책</a></span></li>
-    	                	<li class="nav-item"><span style="font-size:15px;"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Service/pickup">- 픽업</a></span></li>
-                    	</ul>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/FindHospital/findHospital">근처 병원 찾기</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/Tip/getTipList">팁 게시판</a></li>
-                </ul>
-            </div>
-		</nav>
-		
-		<main id="main" class="main">
-			<section class="section">
+	<div style=" flex: 0 0 auto;"><jsp:include page="../nav.jsp" />
+	</div>
+
+	<div class="" id="main_content">
+
+		<div class="navbar navbar-expand-lg navbar-dark part-nav" id="sideNav" style="width: 20.8rem; min-height: 100vh; max-height: 100%;">
+			<div class="collapse navbar-collapse navbar_forpets"
+				id="navbarResponsive">
+				<ul class="navbar-nav">
+					<li><p>나의서비스</p></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="check-user-reserve">예약확인</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="check-user-careDiary">돌봄일지</a></li>
+					<li><br></li>
+					<li><p>나의활동</p></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="get-myCommu">나의소모임</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="write-review">나의후기</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="../customerBoard.do">1:1문의</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="../myCustBoard">문의내역</a></li>
+					<li><br></li>
+					<li><p>나의정보</p></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="edit-user-info">회원정보수정</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" id="cust-user-info">회원탈퇴</a></li>
+				</ul>
+			</div>
+		</div>
+
+
+		<main class="main" id="main">
+			<div class="card-body p-5" id="my-message-sibal">
 				<div class="row align-items-top">
 					<div class="col-lg-10">
 						<form action="reserveInsert" method="post">
@@ -182,11 +304,16 @@
 						</form>
 					</div>
 				</div>
-			</section>
-		</main><!-- End #main -->
+			</div>
+		</main>
+
 	</div>
-	<div id="footer_div" style="background-color : white;">
-		<jsp:include page="../footer.jsp" />
+	
+	
+	<div id="footer">
+		<jsp:include page="../footer.jsp"></jsp:include>
 	</div>
+	
+	
 </body>
 </html>
